@@ -149,7 +149,7 @@ def extraer_de_post(texto: str) -> list:
     )
     afecta = bool(
         re.search(
-            r"se (ha )?afecta|afectados? por|afectaciones|se localizan? aver"
+            r"se (ha )?afect|afectados? por|afectaciones|se localizan? aver"
             r"|se detect[oa]|se interrump|averias? existentes"
             r"|inicia la afectacion|afectando|circuitos? disparad",
             plano,

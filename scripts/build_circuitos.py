@@ -67,7 +67,8 @@ def estado_de(plano):
     """con/sin servicio según el tipo de parte donde aparece el circuito."""
     if re.search(r"restableci|teniendo con servicio|quedan? con servicio|en servicio", plano):
         return "con servicio"
-    if re.search(r"se afecta|afectaci|afectados|disparo autom|\bdaf\b|emergencia", plano):
+    # "se afect" cubre presente y pasado: "se afecta", "se afectó" (jul/2026)
+    if re.search(r"se afect|afectaci|afectados|disparo autom|\bdaf\b|emergencia", plano):
         return "sin servicio"
     return None
 

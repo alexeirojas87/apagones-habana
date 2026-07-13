@@ -20,18 +20,31 @@ function estadoVigente(c) {
   const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
   if (en) {
     if (c.estado === "con servicio" && t && t > new Date(en.desde))
-      return { clase: "con", txt: "con servicio", obsoleto: false };
-    return { clase: "sin", txt: "sin servicio (SEN caído)", obsoleto: c.estado !== "sin servicio" };
+      return { clase: "con", txt: "con servicio", desde: c.estado_fecha, obsoleto: false };
+    return { clase: "sin", txt: "sin servicio (SEN caído)", desde: en.desde,
+             obsoleto: c.estado !== "sin servicio" };
   }
   if (c.estado === "con servicio") {
     const b = c.bloque && ESTADO && ESTADO.bloques ? ESTADO.bloques[c.bloque] : null;
     if (t && b && b.estado === "afectado" && b.desde && t < new Date(b.desde))
-      return { clase: "sin", txt: "sin servicio", obsoleto: true };
-    return { clase: "con", txt: "con servicio", obsoleto: false };
+      return { clase: "sin", txt: "sin servicio", desde: b.desde, obsoleto: true };
+    return { clase: "con", txt: "con servicio", desde: c.estado_fecha, obsoleto: false };
   }
-  if (c.estado === "sin servicio") return { clase: "sin", txt: "sin servicio", obsoleto: false };
+  if (c.estado === "sin servicio")
+    return { clase: "sin", txt: "sin servicio", desde: c.estado_fecha, obsoleto: false };
   // Nunca reportado afectado -> por descarte se asume con corriente (azul).
   return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };
+}
+
+// "lleva 3h", "lleva 45 min", "lleva 2d 5h" desde una fecha ISO
+function llevaDesde(iso) {
+  if (!iso) return "";
+  const min = Math.max(0, (Date.now() - new Date(iso)) / 60000);
+  if (min < 1) return "";
+  if (min < 60) return `lleva ${Math.round(min)} min`;
+  const h = min / 60;
+  if (h < 48) return `lleva ${Math.round(h * 10) / 10}h`;
+  return `lleva ${Math.floor(h / 24)}d ${Math.round(h % 24)}h`;
 }
 
 function render(filtro = "") {
@@ -46,8 +59,15 @@ function render(filtro = "") {
     cont.innerHTML = `<p class="vacio">${q ? "Ningún circuito coincide." : "Sin circuitos aún."}</p>`;
     return;
   }
+  // horas oficiales declaradas en el parte de déficit vigente (ganan al cálculo)
+  const horasDef = {};
+  if (ESTADO && ESTADO.deficit && ESTADO.deficit.circuitos)
+    for (const d of ESTADO.deficit.circuitos) horasDef[d.codigo] = d.horas;
   cont.innerHTML = cs.map((c) => {
     const e = estadoVigente(c);
+    const lleva = e.clase === "sin" && horasDef[c.codigo] != null
+      ? `lleva ${horasDef[c.codigo]}h (según la UNE)`
+      : llevaDesde(e.desde);
     const of = c.oficial ? `<span class="circ-of" title="Verificado con la tabla oficial de la Empresa Eléctrica">✓ oficial</span>` : "";
     const daf = c.daf ? `<span class="circ-daf" title="Circuito con microcortes por Disparo Automático de Frecuencia">🟡 DAF</span>` : "";
     // municipio(s): usa la lista oficial si existe (puede ser más de uno)
@@ -66,6 +86,7 @@ function render(filtro = "") {
         <span class="circ-cod">${esc(c.codigo)}</span>
         ${of}${daf}
         <span class="circ-est ${e.clase}">${esc(e.txt)}</span>
+        ${lleva ? `<span class="circ-lleva ${e.clase}">⏱ ${esc(lleva)}</span>` : ""}
         <span class="circ-meta">${meta}</span>
         ${enMapa}
       </div>

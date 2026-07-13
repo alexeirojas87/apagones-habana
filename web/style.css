@@ -284,6 +284,9 @@ footer a { color: #8ab4f8; }
 .circ-est.sin { background: #3a0d10; color: #ff8a8e; }
 .circ-est.nd { background: #26303d; color: #8a95a5; }
 .circ-est.asum { background: #14283d; color: #8ab4f8; }
+.circ-lleva { font-size: .7rem; font-weight: 600; }
+.circ-lleva.sin { color: #ff8a8e; }
+.circ-lleva.con { color: #7fd08c; }
 .circ-meta { font-size: .7rem; color: #8a95a5; margin-left: auto; }
 .circ-calles { font-size: .82rem; line-height: 1.35; color: #c4ccd6; }
 .circ-sininfo { color: #7a8390; font-style: italic; }

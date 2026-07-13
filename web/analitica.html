@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Análisis — Apagones La Habana</title>
+<meta name="description" content="Análisis de datos de los apagones en La Habana por rango de fechas: bloques más afectados, causas, averías por municipio, horarios.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>📊 Análisis de apagones</h1>
+  <p id="rango-info">cargando…</p>
+  <nav class="tabs"><a href="index.html">🗺 Mapa</a> <span class="activo">📊 Análisis</span> <a href="partes.html">📢 Partes</a> <a href="circuitos.html">🔌 Circuitos</a> <a href="sugerencias.html">💡 Sugerencias</a></nav>
+</header>
+
+<div id="controles">
+  <button data-dias="0.5">Hoy</button>
+  <button data-dias="7">7 días</button>
+  <button data-dias="14">14 días</button>
+  <button data-dias="30">30 días</button>
+  <button data-dias="0" class="sel">Todo</button>
+  <span class="desde-hasta">
+    <input type="date" id="desde"> a <input type="date" id="hasta">
+  </span>
+</div>
+
+<main id="paneles">
+  <section class="kpis" id="kpis"></section>
+  <section class="panel"><h2>Circuitos con más horas sin corriente <span class="nota">(máximo declarado en el rango)</span></h2><div id="c-circ-horas" class="chart"></div></section>
+  <section class="panel"><h2>🏆 Récords históricos</h2><div id="c-records" class="records"></div></section>
+  <section class="panel" style="grid-column:1/-1"><h2>Déficit de generación afectado (MW) en el tiempo</h2><div id="c-mw" class="chart chart-tira"></div></section>
+  <section class="panel"><h2>Circuitos más veces afectados <span class="nota">(nº de partes en el rango)</span></h2><div id="c-circ-freq" class="chart"></div></section>
+  <section class="panel"><h2>Tipos de avería (roturas)</h2><div id="c-tipos" class="chart"></div></section>
+  <section class="panel" style="grid-column:1/-1"><h2>Tendencia semanal: circuitos afectados y déficit medio</h2><div id="c-semanas" class="chart"></div></section>
+  <section class="panel"><h2>Causas de los avisos</h2><div id="c-causas" class="chart"></div></section>
+  <section class="panel"><h2>Municipios más mencionados <span class="nota">(en avisos específicos)</span></h2><div id="c-municipios" class="chart"></div></section>
+  <section class="panel"><h2>Averías (roturas) por municipio</h2><div id="c-averias" class="chart"></div></section>
+  <section class="panel"><h2>Cortes por día</h2><div id="c-dias" class="chart chart-tira"></div></section>
+  <section class="panel"><h2>¿A qué hora empiezan los cortes?</h2><div id="c-horas" class="chart chart-tira"></div></section>
+  <section class="panel"><h2>Lugares más reportados por vecinos</h2><div id="c-lugares" class="chart"></div></section>
+</main>
+
+<footer>
+  <p>Análisis sobre datos recopilados del canal de la <a href="https://t.me/EmpresaElectricaDeLaHabana">Empresa Eléctrica de La Habana</a> y comentarios. Datos no oficiales, aproximados.</p>
+</footer>
+
+<script src="analitica.js"></script>
+</body>
+</html>

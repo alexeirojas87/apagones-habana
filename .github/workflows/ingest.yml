@@ -1,0 +1,119 @@
+name: Ingesta EELH
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # cada 10 min (GitHub puede demorarlo unos minutos más)
+  workflow_dispatch:          # permite lanzarlo a mano desde la pestaña Actions
+
+concurrency:
+  group: ingesta
+  cancel-in-progress: false
+
+permissions:
+  contents: write  # push de la caché de geocodificación de averías
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18  # la geocodificación con caché fría puede pasar de 10 min;
+                         # la concurrencia serializa, así que no se solapan corridas
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r ingestor/requirements.txt
+
+      - run: python ingestor/ingest.py
+        env:
+          TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          TELEGRAM_API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          TELEGRAM_SESSION: ${{ secrets.TELEGRAM_SESSION }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - run: python extractor/extract.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      # Extracción LLM de partes oficiales (best-effort; caché por message_id).
+      # Va ANTES que comentarios_llm: si la cuota gratis escasea, los partes
+      # oficiales tienen prioridad sobre los comentarios.
+      - run: python scripts/partes_llm.py || echo "LLM partes falló, se continúa"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_AI_TOKEN: ${{ secrets.CLOUDFLARE_AI_TOKEN }}
+
+      # Comparador regex vs LLM: registra discrepancias para la verificación diaria
+      - run: python scripts/comparar_extraccion.py || echo "comparador falló, se continúa"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      # Enriquecimiento LLM de comentarios (best-effort: no debe tumbar el pipeline)
+      - run: python scripts/comentarios_llm.py || echo "LLM comentarios falló, se continúa"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_AI_TOKEN: ${{ secrets.CLOUDFLARE_AI_TOKEN }}
+
+      - run: python scripts/estado.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      # Aprende membresía barrio->bloque del canal (corrige omisiones del PDF)
+      - run: python scripts/aprende_bloques.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - run: python scripts/build_barrios.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - run: python scripts/build_analitica.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - run: python scripts/build_partes.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      - run: python scripts/build_circuitos.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
+      # Persiste las cachés de geocodificación (averías + circuitos) para no repetir
+      # consultas a Nominatim/Overpass. Es BEST-EFFORT: si hay conflicto con otra
+      # corrida (ambas tocan la caché), se resuelve tomando lo entrante y nunca
+      # falla el job (la caché es regenerable) -> el deploy de abajo siempre corre.
+      - run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/geocache_averias.json data/geocache_circuitos_lineas.json data/partes_llm.json data/discrepancias_extraccion.json data/llm_cuota.json || true
+          if ! git diff --cached --quiet; then
+            git commit -m "caché de geocodificación [skip ci]"
+            git pull --rebase --autostash -X theirs || git rebase --abort || true
+            git push || true
+          fi
+        continue-on-error: true
+
+      # Hosting: Cloudflare Pages (accesible desde Cuba, sirve web + tiles del
+      # mismo origen). Ya no usamos GitHub Pages: los tiles son .pbf servidos
+      # desde Cloudflare, así que nada depende de github.io.
+      - run: npx -y wrangler@latest pages deploy web --project-name apagones-habana --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

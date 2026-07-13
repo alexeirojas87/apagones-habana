@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apagones La Habana</title>
+<meta name="description" content="Estado del servicio eléctrico en La Habana por bloques, según el canal de la Empresa Eléctrica y reportes de usuarios.">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>⚡ Apagones La Habana</h1>
+  <p id="actualizado">cargando…</p>
+  <nav class="tabs"><span class="activo">🗺 Mapa</span> <a href="analitica.html">📊 Análisis</a> <a href="partes.html">📢 Partes</a> <a href="circuitos.html">🔌 Circuitos</a> <a href="sugerencias.html">💡 Sugerencias</a></nav>
+  <div id="buscador">
+    <input id="busqueda" type="search" placeholder="🔍 Buscar calle o reparto…" autocomplete="off">
+    <div id="resultados" hidden></div>
+  </div>
+</header>
+
+<div id="aviso-nacional" hidden></div>
+<div id="aviso-deficit" hidden></div>
+
+<section id="resumen-circuitos" aria-label="Resumen por circuito"></section>
+<!-- #bloques: en desuso mientras la UNE reporte por circuito; se conserva por si vuelve a bloques -->
+<section id="bloques" aria-label="Estado por bloque" hidden></section>
+
+<div id="mapa"></div>
+
+<footer>
+  <p>Fuente: canal de Telegram de la <a href="https://t.me/EmpresaElectricaDeLaHabana">Empresa Eléctrica de La Habana</a>
+  y comentarios de usuarios. Datos no oficiales, pueden contener errores. Se actualiza cada ~10 minutos.</p>
+</footer>
+
+<script src="vendor/leaflet.js"></script>
+<script src="vendor/protomaps-leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

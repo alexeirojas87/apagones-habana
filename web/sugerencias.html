@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sugerencias y bugs — Apagones La Habana</title>
+<meta name="description" content="Envía sugerencias de mejoras o reporta errores de la web de Apagones La Habana.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>💡 Sugerencias y bugs</h1>
+  <p id="sug-info">Propón una mejora o reporta un error. Se anota como tarea en el proyecto.</p>
+  <nav class="tabs"><a href="index.html">🗺 Mapa</a> <a href="analitica.html">📊 Análisis</a> <a href="partes.html">📢 Partes</a> <a href="circuitos.html">🔌 Circuitos</a> <span class="activo">💡 Sugerencias</span></nav>
+</header>
+
+<main id="sug-main">
+  <form id="sug-form" class="sug-form">
+    <label class="sug-campo">
+      <span>Tipo</span>
+      <select id="sug-tipo">
+        <option value="sugerencia">💡 Sugerencia / mejora</option>
+        <option value="bug">🐛 Error (bug)</option>
+      </select>
+    </label>
+    <label class="sug-campo">
+      <span>Título</span>
+      <input id="sug-titulo" type="text" maxlength="120" placeholder="Resúmelo en una frase" autocomplete="off">
+    </label>
+    <label class="sug-campo">
+      <span>Detalle <em>(opcional)</em></span>
+      <textarea id="sug-detalle" rows="5" maxlength="2000" placeholder="¿Qué mejorarías o qué falla? Si es un bug, cómo reproducirlo."></textarea>
+    </label>
+    <button id="sug-enviar" type="submit">Enviar</button>
+    <p id="sug-estado" class="sug-estado"></p>
+  </form>
+</main>
+
+<footer>
+  <p>Apagones La Habana — proyecto comunitario, datos no oficiales.</p>
+</footer>
+
+<script src="sugerencias.js"></script>
+</body>
+</html>

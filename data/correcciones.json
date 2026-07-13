@@ -1,0 +1,406 @@
+{
+ "_doc": "VERDAD LOCAL — correcciones sobre el PDF base (data/bloques.json). El PDF es solo la semilla; este archivo y bloques_aprendidos.json (aprendido del canal) tienen prioridad. Ante discrepancia PDF vs realidad, gana la realidad. Cada sección la consume un script vía scripts/correcciones.py.",
+ "clasificacion_barrios": {
+  "Colinas de Villareal": "bloque",
+  "Reparto Náutico": "bloque"
+ },
+ "protegidas_confirmadas": [],
+ "excluir_poligono_osm": [
+  {
+   "municipio": "Habana del Este",
+   "nombre": "Cojímar",
+   "motivo": "El polígono OSM de Cojímar abarca la Villa Panamericana, que no rota. La zona B5 se representa por sus calles, no por el barrio completo."
+  }
+ ],
+ "rellenar_como_area": [
+  {
+   "municipio": "Habana del Este",
+   "empieza": "Cojímar:",
+   "excluir_calles": [
+    "Monumental"
+   ]
+  },
+  {
+   "municipio": "Plaza",
+   "empieza": "27, 2 hasta B"
+  },
+  {
+   "municipio": "Plaza",
+   "empieza": "Línea hasta 17"
+  },
+  {
+   "municipio": "Centro Habana",
+   "empieza": "San Lázaro hasta Malecón"
+  }
+ ],
+ "bbox_localidad": {
+  "Cojímar": [
+   23.152,
+   -82.303,
+   23.172,
+   -82.283
+  ]
+ },
+ "poligonos_manuales": [
+  {
+   "nombre": "Cojímar",
+   "municipio": "Habana del Este",
+   "bloque": 5,
+   "nota": "polígono OSM recortado al este de la Villa Panamericana; bloque según PDF (revisar si cambia)",
+   "anillo": [
+    [
+     -82.30267,
+     23.17039
+    ],
+    [
+     -82.30047,
+     23.16992
+    ],
+    [
+     -82.3004,
+     23.17013
+    ],
+    [
+     -82.29971,
+     23.16999
+    ],
+    [
+     -82.29957,
+     23.16987
+    ],
+    [
+     -82.29968,
+     23.16944
+    ],
+    [
+     -82.29975,
+     23.16925
+    ],
+    [
+     -82.2977,
+     23.16875
+    ],
+    [
+     -82.29734,
+     23.16865
+    ],
+    [
+     -82.2967,
+     23.16874
+    ],
+    [
+     -82.29657,
+     23.16871
+    ],
+    [
+     -82.29649,
+     23.16858
+    ],
+    [
+     -82.29632,
+     23.16831
+    ],
+    [
+     -82.29603,
+     23.16846
+    ],
+    [
+     -82.29597,
+     23.1685
+    ],
+    [
+     -82.2959,
+     23.16839
+    ],
+    [
+     -82.29564,
+     23.16853
+    ],
+    [
+     -82.29555,
+     23.16852
+    ],
+    [
+     -82.29499,
+     23.16772
+    ],
+    [
+     -82.29537,
+     23.16751
+    ],
+    [
+     -82.29486,
+     23.16677
+    ],
+    [
+     -82.29488,
+     23.16661
+    ],
+    [
+     -82.29518,
+     23.16643
+    ],
+    [
+     -82.29478,
+     23.1658
+    ],
+    [
+     -82.29446,
+     23.16525
+    ],
+    [
+     -82.29391,
+     23.16532
+    ],
+    [
+     -82.29399,
+     23.16458
+    ],
+    [
+     -82.29392,
+     23.16419
+    ],
+    [
+     -82.29356,
+     23.16319
+    ],
+    [
+     -82.29343,
+     23.16293
+    ],
+    [
+     -82.29321,
+     23.16283
+    ],
+    [
+     -82.29304,
+     23.16188
+    ],
+    [
+     -82.29244,
+     23.16197
+    ],
+    [
+     -82.29227,
+     23.16097
+    ],
+    [
+     -82.29252,
+     23.16026
+    ],
+    [
+     -82.2919,
+     23.1601
+    ],
+    [
+     -82.29184,
+     23.16036
+    ],
+    [
+     -82.29151,
+     23.16028
+    ],
+    [
+     -82.29195,
+     23.15886
+    ],
+    [
+     -82.29408,
+     23.1594
+    ],
+    [
+     -82.29464,
+     23.15833
+    ],
+    [
+     -82.29228,
+     23.15769
+    ],
+    [
+     -82.2924,
+     23.15713
+    ],
+    [
+     -82.29246,
+     23.1569
+    ],
+    [
+     -82.2922,
+     23.15679
+    ],
+    [
+     -82.29256,
+     23.15565
+    ],
+    [
+     -82.29398,
+     23.156
+    ],
+    [
+     -82.2941,
+     23.15569
+    ],
+    [
+     -82.29461,
+     23.15562
+    ],
+    [
+     -82.29629,
+     23.15483
+    ],
+    [
+     -82.2969,
+     23.1553
+    ],
+    [
+     -82.29748,
+     23.15528
+    ],
+    [
+     -82.29766,
+     23.1552
+    ],
+    [
+     -82.2977,
+     23.15474
+    ],
+    [
+     -82.29854,
+     23.15462
+    ],
+    [
+     -82.29879,
+     23.15451
+    ],
+    [
+     -82.2994,
+     23.15454
+    ],
+    [
+     -82.29977,
+     23.15448
+    ],
+    [
+     -82.29985,
+     23.15465
+    ],
+    [
+     -82.29956,
+     23.15476
+    ],
+    [
+     -82.29948,
+     23.15519
+    ],
+    [
+     -82.29935,
+     23.15552
+    ],
+    [
+     -82.29927,
+     23.15581
+    ],
+    [
+     -82.29931,
+     23.15594
+    ],
+    [
+     -82.2995,
+     23.15622
+    ],
+    [
+     -82.2994,
+     23.15737
+    ],
+    [
+     -82.30015,
+     23.15757
+    ],
+    [
+     -82.30032,
+     23.15688
+    ],
+    [
+     -82.30056,
+     23.15691
+    ],
+    [
+     -82.30074,
+     23.15693
+    ],
+    [
+     -82.30103,
+     23.15729
+    ],
+    [
+     -82.30209,
+     23.15753
+    ],
+    [
+     -82.30203,
+     23.15775
+    ],
+    [
+     -82.303,
+     23.15794
+    ],
+    [
+     -82.303,
+     23.17028
+    ],
+    [
+     -82.30267,
+     23.17039
+    ]
+   ]
+  }
+ ],
+ "lugares_manual": {
+  "guiteras": {
+   "lat": 23.15198,
+   "lon": -82.25912,
+   "nota": "Reparto Antonio Guiteras, Habana del Este"
+  },
+  "comodoro": {
+   "lat": 23.106,
+   "lon": -82.44481,
+   "nota": "Hotel Comodoro, 3ra Ave, Miramar (Playa)"
+  }
+ },
+ "circuitos_municipio": {
+  "A1071": "Guanabacoa",
+  "A1550": "Boyeros",
+  "GC7": "Habana del Este",
+  "GC18": "Habana del Este",
+  "MB930": "Habana del Este",
+  "GC13": "Guanabacoa",
+  "R451": "Regla",
+  "R461": "Regla",
+  "R466": "Regla",
+  "D1125": "Arroyo Naranjo",
+  "A945": "Boyeros",
+  "A155": "Boyeros",
+  "A1219": "Playa",
+  "L315": "Playa",
+  "A1465": "La Lisa",
+  "A1547": "La Lisa",
+  "P314": "Centro Habana",
+  "P322": "Centro Habana",
+  "PZ7": "Plaza",
+  "2210": "Cerro",
+  "OP310": "Habana Vieja",
+  "OP417": "Habana Vieja",
+  "OP304": "Habana Vieja",
+  "OP306": "Habana Vieja",
+  "OP318": "Habana Vieja",
+  "OP320": "Habana Vieja",
+  "OP406": "Habana Vieja",
+  "OP410": "Habana Vieja",
+  "OP411": "Habana Vieja",
+  "OP424": "Habana Vieja",
+  "R454": "Regla"
+ },
+ "circuitos_falsos": [
+  "L2"
+ ]
+}

@@ -1,0 +1,121 @@
+{
+ "68314": {
+  "fecha": "2026-07-10T16:09:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "C16",
+   "R454"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Averías existentes hasta el momento 🚨Subestación Apolo: (continúan las labores) 🚨Puente Primario Partido 📌Municipio: Regla 👉Dirección: 1ra y 6ta , Mañana 📉Afec"
+ },
+ "68312": {
+  "fecha": "2026-07-10T15:39:20+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "R454"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨⚡️Consumidores del municipio Guanabacoa se detectó una AVERÍA por PRIMARIO PARTIDO en : 1ra y 6ta Reparto Mañana afectando el servicio en : 👉🏻R454:Mañana, Vale"
+ },
+ "68305": {
+  "fecha": "2026-07-10T15:08:19+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "L316"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L316, que se ha transferido temporalmente la carga al circuito L317 del siguiente rep"
+ },
+ "68299": {
+  "fecha": "2026-07-10T15:00:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL56",
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Habana del Este pertenecientes al circuito AL56, que se ha transferido temporalmente la carga al circuito MB930 del si"
+ },
+ "68298": {
+  "fecha": "2026-07-10T14:57:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Arroyo Naranjo se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : Camilo Cienfuegos / Rosales y Final , Reparto Eléctr"
+ },
+ "68296": {
+  "fecha": "2026-07-10T14:53:51+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨⚡️Consumidores del municipio 10 de Octubre se detectó una AVERÍA por PRIMARIO PARTIDO en : 👉🏻D634 :Cuadrante entre Milagros, Figueroa, Vista Alegre y 10 de Oct"
+ },
+ "68295": {
+  "fecha": "2026-07-10T14:35:16+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Consumidores del municipio 10 de Octubre se afecta el servicio por DISPARO de Circuito en : 👉🏻D634 :Cuadrante entre Milagros, Figueroa, Vista Alegre y 10 de"
+ },
+ "68389": {
+  "fecha": "2026-07-11T21:43:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2210"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Cerro-10 de Octubre ,el cuadrante Camagüey desde Callejón de Los Perros hasta Calzada de Vento, Callejón de Los Perros desde Lìnea"
+ },
+ "68385": {
+  "fecha": "2026-07-11T18:40:37+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨⚡️ Consumidores del municipio 10 de Octubre se detecta una AVERÍA por PRIMARIO PARTIDO en : María Regla /B y C. Circuito:A 980 👉 Luyanó Cuadrante de Concha a A"
+ },
+ "68381": {
+  "fecha": "2026-07-11T16:36:00+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "R456"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Guanabacoa se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : Rubiera/Martí y Calixto García.🛑⚡️"
+ },
+ "68379": {
+  "fecha": "2026-07-11T15:04:07+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A820"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨⚡️ Consumidores del municipio Boyeros se detecta una AVERÍA por PRIMARIO PARTIDO en : Perla y calle 1ra Circuito:A 820 👉 250 Miraflores Viejo , Embil , Altura "
+ },
+ "68351": {
+  "fecha": "2026-07-11T00:59:06+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : G / 15 Y 17, Vedado.🛑⚡️"
+ },
+ "68403": {
+  "fecha": "2026-07-12T01:45:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢📢Consumidores del municipio Arroyo Naranjo queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba : 👉 Camilo Cienfuegos/ Rosales y Final,rep"
+ }
+}

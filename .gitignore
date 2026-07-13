@@ -1,0 +1,5 @@
+__pycache__/
+*.session
+.env
+docs/*.pdf
+.DS_Store

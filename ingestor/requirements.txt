@@ -1,0 +1,2 @@
+telethon>=1.36
+supabase>=2.4

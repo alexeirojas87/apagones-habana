@@ -1,0 +1,32 @@
+B1 | Guanabacoa | Altura de Vía Blanca
+B3 | Cerro | Fondo del Latino y Edificios de la Esquina de Tejas.
+B3 | Cerro | Alrededores de la Concretera Nacional.
+B3 | La Lisa | Águila Hatuey, Purísima, Magdalena.
+B3 | La Lisa | Facute.
+B4 | Plaza | Cuadrantes 35 a 39
+B5 | Marianao | Bombeo Quibú
+B5 | Habana del Este | Zona Franca de Berroa.
+B5 | Habana del Este | Acueducto Presa Bacuranao.
+B5 | Guanabacoa | Finca El Recreo.
+B5 | Guanabacoa | Acueducto Arango Sepultura.
+B5 | 10 de Octubre | Clínica de Mínimo Acceso.
+B5 | 10 de Octubre | Hospitales
+B5 | 10 de Octubre | Terapia Miguel Enríquez.
+B5 | 10 de Octubre | Mónaco: Vento hasta Cortina.
+B5 | 10 de Octubre | Santa Catalina a San Mariano.
+B5 | Boyeros | Finca Viviana, Carretera Torrens a 205; calle 304 hasta 205A.
+B5 | Boyeros | Finca Palermo.
+B6 | Centro Habana | Cuadrante La Victoria: Soledad y Castillo desde Carlos III a Zanja.
+B6 | La Lisa | Acueducto Tecnológico Punta Brava
+B6 | La Lisa | Contingente 6to Congreso
+B6 | La Lisa | Ave 170 desde El Río a Hospital Frank País.
+B6 | La Lisa | 162 entre 69 y 81.
+B6 | Guanabacoa | La Caridad
+B6 | Cotorro | Acueducto Paraíso
+B6 | 10 de Octubre | Parte de Lawton desde Luz a Línea de Ferrocarril y desde C hasta H, cuadrante de calle Dolores hasta C y calle 14 hasta 17, Reparto Vista Alegre.
+B6 | 10 de Octubre | 11 y 12 desde D a H
+B6 | Arroyo Naranjo | Girald desde Callejas del Matadero a 23.
+B6 | Arroyo Naranjo | Fraternidad: Carlos a Julio de Cárdenas
+B6 | Arroyo Naranjo | Carretera Cantera a Victoria.
+B6 | Arroyo Naranjo | Matanzas a Pinar del Río.
+B6 | Playa | Reparto 6to Congreso.

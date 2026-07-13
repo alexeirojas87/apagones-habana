@@ -1,0 +1,9 @@
+name = "apagones-cron"
+main = "src/index.js"
+compatibility_date = "2024-11-01"
+workers_dev = false  # sin URL pública: solo lo dispara el cron (evita abuso del endpoint)
+
+# GitHub Actions ignora/retrasa los cron `schedule`; este Worker sí dispara puntual.
+# Cada 10 min llama a workflow_dispatch de la ingesta (endpoint ya probado a mano).
+[triggers]
+crons = ["*/10 * * * *"]

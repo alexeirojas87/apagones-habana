@@ -36,9 +36,9 @@ def _sin_tildes(s):
 
 
 def normalizar_codigo(texto):
-    """'l317 / 1244' -> ['L317', '1244']; inválidos se descartan."""
+    """'l317 / 1244' o 'T44 y T41' -> lista de códigos; inválidos se descartan."""
     out = []
-    for pieza in re.split(r"\s*/\s*", str(texto or "")):
+    for pieza in re.split(r"\s*[,/]\s*|\s+[yeYE]\s+", str(texto or "")):
         p = pieza.strip().replace(" ", "").upper()
         if RE_COD_LETRAS.match(p) or RE_COD_NUM.match(p):
             out.append(p)
@@ -51,9 +51,11 @@ def identificar(texto):
     separador explícito (no confundir '13; 15; 16' ni '23-B y 41').
     Devuelve (codigos, resto)."""
     t = (texto or "").strip()
-    m = (re.match(r"((?:[A-Za-z]{1,3}\d{1,4})(?:\s*/\s*(?:[A-Za-z]{1,3}\d{1,4}|\d{3,4}))*)"
+    # códigos separados por barra o por " y " ("T44 y T41 Toyo...")
+    sep = r"(?:\s*/\s*|\s+[yeYE]\s+)"
+    m = (re.match(rf"((?:[A-Za-z]{{1,3}}\d{{1,4}})(?:{sep}(?:[A-Za-z]{{1,3}}\d{{1,4}}|\d{{3,4}}))*)"
                   r"\b\s*[-–:]?\s*(.*)", t)
-         or re.match(r"((?:\d{3,4})(?:\s*/\s*(?:[A-Za-z]{1,3}\d{1,4}|\d{3,4}))*)"
+         or re.match(rf"((?:\d{{3,4}})(?:{sep}(?:[A-Za-z]{{1,3}}\d{{1,4}}|\d{{3,4}}))*)"
                      r"\s*[-–:]\s*(.*)", t))
     if not m:
         return [], t

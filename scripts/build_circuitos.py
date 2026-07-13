@@ -35,9 +35,11 @@ _COD = r"(?:[A-Za-z]{1,3}\d{1,4}|\d{2,4})"  # letra+dígitos (C7, A1443) o núme
 # calles. Los códigos pueden ir separados por coma O por barra ("OP310/OP417/...:
 # Soterrado Habana Vieja") y comparten la misma descripción. Exigimos la viñeta 👉
 # para admitir códigos de número puro sin falsos positivos.
+# separador entre códigos: coma, barra o " y "/" e " ("T44 y T41 Toyo" jul/2026)
+_SEP = r"(?:\s*[,/]\s*|\s+[yeYE]\s+)"
 RE_CIRC = re.compile(
     r"(?m)^\s*👉\s*"
-    rf"({_COD}(?:\s*[,/]\s*{_COD})*)"
+    rf"({_COD}(?:{_SEP}{_COD})*)"
     r"\s*([-–:])?\s*(.+?)\s*$"
 )
 RE_UN_CODIGO = re.compile(rf"^{_COD}$")
@@ -111,7 +113,7 @@ def main():
             calles = limpiar_calles(m.group(3))
             if len(calles) < 3:
                 continue
-            for cod in re.split(r"\s*[,/]\s*", m.group(1)):
+            for cod in re.split(_SEP, m.group(1)):
                 cod = cod.strip().upper()
                 if not RE_UN_CODIGO.match(cod):
                     continue

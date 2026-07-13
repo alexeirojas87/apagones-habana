@@ -38,7 +38,8 @@ _COD = r"(?:[A-Za-z]{1,3}\d{1,4}|\d{2,4})"  # letra+dígitos (C7, A1443) o núme
 # separador entre códigos: coma, barra o " y "/" e " ("T44 y T41 Toyo" jul/2026)
 _SEP = r"(?:\s*[,/]\s*|\s+[yeYE]\s+)"
 RE_CIRC = re.compile(
-    r"(?m)^\s*👉\s*"
+    # la viñeta puede traer modificador de tono de piel ("👉🏼", jul/2026)
+    r"(?m)^\s*👉[\U0001F3FB-\U0001F3FF]?\s*"
     rf"({_COD}(?:{_SEP}{_COD})*)"
     r"\s*([-–:])?\s*(.+?)\s*$"
 )
@@ -65,10 +66,12 @@ def municipios_geo():
 
 def estado_de(plano):
     """con/sin servicio según el tipo de parte donde aparece el circuito."""
-    if re.search(r"restableci|teniendo con servicio|quedan? con servicio|en servicio", plano):
+    if re.search(r"restableci|teniendo con servicio|quedan? con servicio|en servicio|reparad", plano):
         return "con servicio"
-    # "se afect" cubre presente y pasado: "se afecta", "se afectó" (jul/2026)
-    if re.search(r"se afect|afectaci|afectados|disparo autom|\bdaf\b|emergencia", plano):
+    # "se afect" cubre presente y pasado; "afectando" el gerundio de las averías;
+    # "se localiza aver"/"via libre" son los avisos de avería y de emergencia
+    if re.search(r"se afect|afectaci|afectando|afectados|se localiza aver|via libre"
+                 r"|disparo autom|\bdaf\b|emergencia", plano):
         return "sin servicio"
     return None
 
@@ -81,7 +84,7 @@ def main():
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
     filas, off = [], 0
     while True:
-        lote = (sb.table("mensajes").select("fecha,texto").eq("chat", "canal")
+        lote = (sb.table("mensajes").select("message_id,fecha,texto").eq("chat", "canal")
                 .order("fecha").range(off, off + 999).execute().data)
         filas += lote
         if len(lote) < 1000:
@@ -97,6 +100,14 @@ def main():
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import correcciones  # noqa: E402
     falsos = set(correcciones.circuitos_falsos())  # 'L2' = calle L, no circuito
+    # extracciones LLM por post (partes_llm.py): el LLM entiende redacciones que
+    # los regex no ("se afectó", "T44 y T41", "👉🏼"...). Se aplican DESPUÉS del
+    # regex en cada post (mismo orden cronológico), así el catálogo se corrige
+    # aunque el regex no haya entendido el parte.
+    try:
+        llm_cache = json.load(open(os.path.join(RAIZ, "data", "partes_llm.json")))
+    except Exception:
+        llm_cache = {}
 
     cat = {}  # codigo -> registro acumulado (en orden cronológico gana el último)
     for f in filas:
@@ -173,6 +184,32 @@ def main():
                 r["estado_fecha"] = fecha
                 if mun_cod and not r["municipio"]:
                     r["municipio"] = mun_cod
+
+        # --- Extracción LLM de ESTE post (si existe): complementa/corrige ---
+        v = llm_cache.get(str(f.get("message_id")))
+        if v and v.get("via") == "llm":
+            dudosos = set(v.get("por_confirmar") or [])
+            for item in v.get("circuitos") or []:
+                for cod in item.get("codigos") or []:
+                    if cod in dudosos or cod in falsos or not RE_UN_CODIGO.match(cod):
+                        continue
+                    _pre = re.match(r"^[A-Z]+", cod)
+                    r = cat.setdefault(cod, {
+                        "codigo": cod, "prefijo": _pre.group(0) if _pre else "",
+                        "calles": "", "municipio": None, "bloque": None, "causa": None,
+                        "veces": 0, "primera": fecha, "ultima": fecha,
+                        "estado": None, "estado_fecha": None,
+                    })
+                    r["ultima"] = max(r["ultima"] or fecha, fecha)
+                    if item.get("calles") and len(item["calles"]) > len(r["calles"]):
+                        r["calles"] = item["calles"]
+                    if item.get("municipio") and not r["municipio"]:
+                        r["municipio"] = (municipios_en(item["municipio"]) or [None])[0]
+                    if item.get("causa") == "DAF":
+                        r["daf"] = True
+                    if item.get("estado") and (r["estado_fecha"] or "") <= fecha:
+                        r["estado"] = item["estado"]
+                        r["estado_fecha"] = fecha
 
     # --- Fusión con el catálogo OFICIAL de la UNE (data/circuitos_oficial.json,
     # extraído de las tablas PDF, cargado arriba) ---. Es la fuente de verdad:

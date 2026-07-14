@@ -117,5 +117,23 @@
   ],
   "solo_regex": [],
   "extracto": "🟢📢Consumidores del municipio Arroyo Naranjo queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba : 👉 Camilo Cienfuegos/ Rosales y Final,rep"
+ },
+ "68737": {
+  "fecha": "2026-07-13T18:38:10+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1305"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Cerro, se localiza avería secundaria por transformador dañado en las calles 50A y Final, Santa Ana🚨"
+ },
+ "68735": {
+  "fecha": "2026-07-13T18:29:10+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Cotorro, se localiza avería secundaria por transformador dañado en las calles 99 y Final, Buenos Aires🚨"
  }
 }

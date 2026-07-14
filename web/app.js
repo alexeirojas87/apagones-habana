@@ -231,18 +231,36 @@ async function iniciar() {
         <div class="rc-fuente">${fuente}</div>
       </div>` : "";
 
-    // Tarjetas de los circuitos con más horas sin corriente (parte vigente),
-    // como columna CENTRAL del panel en escritorio (tira deslizable si no caben)
-    const def = estado.deficit;
+    // Tarjetas de los circuitos con más horas sin corriente: del CATÁLOGO
+    // COMPLETO (no solo los ~5 que lista el parte de déficit: un circuito
+    // apagado por avería/afectación puede llevar más horas que esos). Las horas
+    // oficiales del parte ganan sobre nuestro conteo cuando existen.
+    const horasDef = {};
+    if (estado.deficit && estado.deficit.circuitos)
+      for (const d of estado.deficit.circuitos) horasDef[d.codigo] = d.horas;
+    const top = cat
+      .filter((c) => circuitoVigente(c) === "sin")
+      .map((c) => {
+        let h = horasDef[c.codigo], oficialH = h != null;
+        if (h == null && c.estado_fecha) {
+          let desde = new Date(c.estado_fecha);
+          const en = estado.evento_nacional;
+          if (en && desde < new Date(en.desde)) desde = new Date(en.desde);
+          h = (Date.now() - desde) / 3600000;
+        }
+        return { c, h: h != null ? Math.round(h * 10) / 10 : null, oficialH };
+      })
+      .filter((x) => x.h != null)
+      .sort((a, b) => b.h - a.h).slice(0, 8);
     let cards = "";
-    if (def && (def.circuitos || []).length) {
-      const top = [...def.circuitos].sort((a, b) => b.horas - a.horas).slice(0, 8);
+    if (top.length) {
       cards = `<div class="rc-box rc-box-cards">
         <div class="rc-box-t">Con más horas sin corriente</div>
-        <div class="rc-cards">` + top.map((c) => `
-        <a class="rc-card" href="circuitos.html?c=${encodeURIComponent(c.codigo)}" title="Ver dirección de ${esc(c.codigo)}">
+        <div class="rc-cards">` + top.map(({ c, h, oficialH }) => `
+        <a class="rc-card" href="circuitos.html?c=${encodeURIComponent(c.codigo)}"
+           title="${oficialH ? "Horas declaradas por la UNE" : "Horas desde el último parte que lo afectó"} — ver ${esc(c.codigo)}">
           <span class="rc-card-cab"><span class="rc-dot"></span>${esc(c.codigo)}</span>
-          <span class="rc-card-h">${c.horas}<small>h sin luz</small></span>
+          <span class="rc-card-h">${h}<small>h sin luz${oficialH ? " · UNE" : ""}</small></span>
           <span class="rc-card-det">${c.calles ? esc(c.calles.slice(0, 42)) : "sin información de calles"}</span>
         </a>`).join("") + `</div></div>`;
     }

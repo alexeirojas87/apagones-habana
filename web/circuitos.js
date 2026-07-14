@@ -65,9 +65,15 @@ function render(filtro = "") {
     for (const d of ESTADO.deficit.circuitos) horasDef[d.codigo] = d.horas;
   cont.innerHTML = cs.map((c) => {
     const e = estadoVigente(c);
+    // sin servicio con >24 h sin noticias: el contador ya no es creíble (la UNE
+    // no siempre anuncia el restablecimiento) -> se muestra la fecha, no horas
+    const viejoSin = e.clase === "sin" && e.desde &&
+      (Date.now() - new Date(e.desde)) > 24 * 3600000;
     const lleva = e.clase === "sin" && horasDef[c.codigo] != null
       ? `lleva ${horasDef[c.codigo]}h (según la UNE)`
-      : llevaDesde(e.desde);
+      : viejoSin
+        ? `sin noticias desde el ${fechaHabana(e.desde)}`
+        : llevaDesde(e.desde);
     const of = c.oficial ? `<span class="circ-of" title="Verificado con la tabla oficial de la Empresa Eléctrica">✓ oficial</span>` : "";
     const daf = c.daf ? `<span class="circ-daf" title="Circuito con microcortes por Disparo Automático de Frecuencia">🟡 DAF</span>` : "";
     // municipio(s): usa la lista oficial si existe (puede ser más de uno)
@@ -86,7 +92,7 @@ function render(filtro = "") {
         <span class="circ-cod">${esc(c.codigo)}</span>
         ${of}${daf}
         <span class="circ-est ${e.clase}">${esc(e.txt)}</span>
-        ${lleva ? `<span class="circ-lleva ${e.clase}">⏱ ${esc(lleva)}</span>` : ""}
+        ${lleva ? `<span class="circ-lleva ${viejoSin ? "nd" : e.clase}">⏱ ${esc(lleva)}</span>` : ""}
         <span class="circ-meta">${meta}</span>
         ${enMapa}
       </div>

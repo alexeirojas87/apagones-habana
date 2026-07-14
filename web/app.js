@@ -250,8 +250,11 @@ async function iniciar() {
         }
         return { c, h: h != null ? Math.round(h * 10) / 10 : null, oficialH };
       })
-      .filter((x) => x.h != null)
-      .sort((a, b) => b.h - a.h).slice(0, 8);
+      // horas creíbles: las oficiales del parte siempre; las nuestras solo si el
+      // último parte que lo afectó es de <24 h (un 'sin servicio' sin noticias
+      // en días es un restablecimiento que la UNE nunca anunció, no 100+ horas)
+      .filter((x) => x.h != null && (x.oficialH || x.h <= 24))
+      .sort((a, b) => b.h - a.h).slice(0, 5);
     let cards = "";
     if (top.length) {
       cards = `<div class="rc-box rc-box-cards">

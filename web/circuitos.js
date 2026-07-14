@@ -30,8 +30,13 @@ function estadoVigente(c) {
       return { clase: "sin", txt: "sin servicio", desde: b.desde, obsoleto: true };
     return { clase: "con", txt: "con servicio", desde: c.estado_fecha, obsoleto: false };
   }
-  if (c.estado === "sin servicio")
+  if (c.estado === "sin servicio") {
+    // >24 h sin noticias: la UNE no siempre anuncia el restablecimiento ->
+    // estado real desconocido (gris), misma regla que el mapa y la portada
+    if (t && (Date.now() - t) > 24 * 3600000)
+      return { clase: "nd", txt: "sin noticias +24h", desde: c.estado_fecha, obsoleto: false };
     return { clase: "sin", txt: "sin servicio", desde: c.estado_fecha, obsoleto: false };
+  }
   // Nunca reportado afectado -> por descarte se asume con corriente (azul).
   return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };
 }
@@ -65,14 +70,10 @@ function render(filtro = "") {
     for (const d of ESTADO.deficit.circuitos) horasDef[d.codigo] = d.horas;
   cont.innerHTML = cs.map((c) => {
     const e = estadoVigente(c);
-    // sin servicio con >24 h sin noticias: el contador ya no es creíble (la UNE
-    // no siempre anuncia el restablecimiento) -> se muestra la fecha, no horas
-    const viejoSin = e.clase === "sin" && e.desde &&
-      (Date.now() - new Date(e.desde)) > 24 * 3600000;
     const lleva = e.clase === "sin" && horasDef[c.codigo] != null
       ? `lleva ${horasDef[c.codigo]}h (según la UNE)`
-      : viejoSin
-        ? `sin noticias desde el ${fechaHabana(e.desde)}`
+      : e.clase === "nd"
+        ? `se afectó el ${fechaHabana(e.desde)}; sin noticias desde entonces`
         : llevaDesde(e.desde);
     const of = c.oficial ? `<span class="circ-of" title="Verificado con la tabla oficial de la Empresa Eléctrica">✓ oficial</span>` : "";
     const daf = c.daf ? `<span class="circ-daf" title="Circuito con microcortes por Disparo Automático de Frecuencia">🟡 DAF</span>` : "";
@@ -92,7 +93,7 @@ function render(filtro = "") {
         <span class="circ-cod">${esc(c.codigo)}</span>
         ${of}${daf}
         <span class="circ-est ${e.clase}">${esc(e.txt)}</span>
-        ${lleva ? `<span class="circ-lleva ${viejoSin ? "nd" : e.clase}">⏱ ${esc(lleva)}</span>` : ""}
+        ${lleva ? `<span class="circ-lleva ${e.clase}">⏱ ${esc(lleva)}</span>` : ""}
         <span class="circ-meta">${meta}</span>
         ${enMapa}
       </div>
@@ -115,16 +116,17 @@ function cargar() {
   ])
     .then(([d, est]) => {
       DATOS = d; ESTADO = est;
-      let ncon = 0, nsin = 0;
+      let ncon = 0, nsin = 0, nnd = 0;
       for (const c of d.circuitos) {
         const cl = estadoVigente(c).clase;
-        if (cl === "con") ncon++; else if (cl === "sin") nsin++;
+        if (cl === "con") ncon++; else if (cl === "sin") nsin++; else if (cl === "nd") nnd++;
       }
-      const nasum = d.circuitos.length - ncon - nsin;
+      const nasum = d.circuitos.length - ncon - nsin - nnd;
       const sen = est && est.evento_nacional
         ? " · ⚠️ SEN caído: los restablecidos antes del apagón cuentan como sin servicio" : "";
       document.getElementById("circ-info").textContent =
         `${d.circuitos.length} circuitos · 🟢 ${ncon} con servicio · 🔴 ${nsin} sin servicio` +
+        `${nnd > 0 ? ` · ⚪ ${nnd} sin noticias +24h` : ""}` +
         `${nasum > 0 ? ` · 🔵 ${nasum} sin apagones reportados` : ""}${sen}`;
       render(filtro.value);  // conserva el filtro escrito
     })

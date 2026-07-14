@@ -61,6 +61,7 @@ h1 { font-size: 1.15rem; margin: 0; }
 .rc-barra .seg.sin { background: #e5484d; }
 .rc-barra .seg.con { background: #46a758; }
 .rc-barra .seg.asum { background: #3d6fb4; }
+.rc-barra .seg.nd { background: #6b7686; }
 .rc-chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .rc-chip {
   font-size: .72rem; font-weight: 600; border-radius: 999px; padding: 3px 10px;
@@ -70,6 +71,7 @@ h1 { font-size: 1.15rem; margin: 0; }
 .rc-chip.sin { color: #ff8a8e; } .rc-chip.sin::before { color: #e5484d; }
 .rc-chip.con { color: #7fd08c; } .rc-chip.con::before { color: #46a758; }
 .rc-chip.asum { color: #9db9e8; cursor: help; } .rc-chip.asum::before { color: #3d6fb4; }
+.rc-chip.nd { color: #a8b2bf; cursor: help; } .rc-chip.nd::before { color: #6b7686; }
 .rc-pnums { display: flex; gap: 14px; flex-wrap: wrap; }
 .rc-pnum b { font-size: 1.15rem; font-weight: 800; font-variant-numeric: tabular-nums; display: block; line-height: 1.15; }
 .rc-pnum small { color: #8a95a5; font-size: .72rem; }
@@ -117,6 +119,7 @@ a.bloque:hover { outline: 1px solid #37414f; }
   .rc-mini-barra .seg.sin { background: #e5484d; }
   .rc-mini-barra .seg.con { background: #46a758; }
   .rc-mini-barra .seg.asum { background: #3d6fb4; }
+  .rc-mini-barra .seg.nd { background: #6b7686; }
   .rc-mini-txt { font-size: .74rem; color: #b9c2cd; white-space: nowrap;
     overflow: hidden; text-overflow: ellipsis; }
   .rc-mini-txt b.sin { color: #ff8a8e; } .rc-mini-txt b.con { color: #7fd08c; }

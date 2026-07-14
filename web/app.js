@@ -161,6 +161,8 @@ async function iniciar() {
   //  - Un "con servicio" anterior al apagón vigente de su bloque ya no vale.
   //  - "asum": nunca ha aparecido afectado en un parte -> por descarte se asume
   //    con corriente (azul, no verde: es deducción, no dato oficial).
+  //  - "nd": sin servicio con >24 h sin noticias -> estado real desconocido (la
+  //    UNE no siempre anuncia el restablecimiento); gris, no rojo.
   function circuitoVigente(c) {
     const en = estado.evento_nacional;
     const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
@@ -170,7 +172,11 @@ async function iniciar() {
       if (t && b && b.estado === "afectado" && b.desde && t < new Date(b.desde)) return "sin";
       return "con";
     }
-    return c.estado === "sin servicio" ? "sin" : "asum";
+    if (c.estado === "sin servicio") {
+      if (t && (Date.now() - t) > 24 * 3600000) return "nd";
+      return "sin";
+    }
+    return "asum";
   }
 
   // ¿Resumen expandido? Solo aplica en móvil (en escritorio siempre abierto por
@@ -182,12 +188,14 @@ async function iniciar() {
   function resumenCircuitos() {
     const cont = document.getElementById("resumen-circuitos");
     const cat = catCircuitos.circuitos || [];
-    let ncon = 0, nsin = 0, nasum = 0;
-    const perMuni = {};  // municipio -> {sin, tot}; los "asum" cuentan como con corriente
+    let ncon = 0, nsin = 0, nasum = 0, nnd = 0;
+    const perMuni = {};  // municipio -> {sin, tot}; "asum" cuenta como con corriente,
+                         // "nd" (sin noticias) queda FUERA del estimado: estado desconocido
     for (const c of cat) {
       const v = circuitoVigente(c);
-      if (v === "sin") nsin++; else if (v === "con") ncon++; else nasum++;
-      if (c.municipio && POB_MUNI[c.municipio]) {
+      if (v === "sin") nsin++; else if (v === "con") ncon++;
+      else if (v === "nd") nnd++; else nasum++;
+      if (c.municipio && POB_MUNI[c.municipio] && v !== "nd") {
         const o = perMuni[c.municipio] || (perMuni[c.municipio] = { sin: 0, tot: 0 });
         o.tot++; if (v === "sin") o.sin++;
       }
@@ -220,6 +228,7 @@ async function iniciar() {
     const tot = cat.length || 1;
     const pw = (n) => (n / tot * 100).toFixed(1);
     const tipAsum = "Nunca han aparecido afectados en los partes: por descarte se asume que tienen corriente";
+    const tipNd = "Reportados sin servicio hace más de 24 h y la UNE no los menciona desde entonces: estado real desconocido";
     const pob = sinP != null ? `
       <div class="rc-box">
         <div class="rc-box-t">Personas afectadas
@@ -272,6 +281,7 @@ async function iniciar() {
     const mini = `<button id="rc-toggle" class="rc-toggle" aria-expanded="${rcAbierto}">
         <span class="rc-mini-barra">
           <span class="seg sin" style="width:${pw(nsin)}%"></span>
+          <span class="seg nd" style="width:${pw(nnd)}%"></span>
           <span class="seg con" style="width:${pw(ncon)}%"></span>
           <span class="seg asum" style="width:${pw(nasum)}%"></span>
         </span>
@@ -284,14 +294,16 @@ async function iniciar() {
       <div class="rc-box">
         <div class="rc-box-t">Circuitos <span class="rc-n">${cat.length}</span>
           <a class="rc-mas" href="circuitos.html">ver todos →</a></div>
-        <div class="rc-barra" role="img" aria-label="${ncon} con servicio, ${nsin} sin servicio, ${nasum} sin apagones reportados">
+        <div class="rc-barra" role="img" aria-label="${ncon} con servicio, ${nsin} sin servicio, ${nnd} sin noticias, ${nasum} sin apagones reportados">
           <span class="seg sin" style="width:${pw(nsin)}%"></span>
+          <span class="seg nd" style="width:${pw(nnd)}%"></span>
           <span class="seg con" style="width:${pw(ncon)}%"></span>
           <span class="seg asum" style="width:${pw(nasum)}%"></span>
         </div>
         <div class="rc-chips">
           <span class="rc-chip sin">${nsin} sin servicio</span>
           <span class="rc-chip con">${ncon} con servicio</span>
+          ${nnd > 0 ? `<span class="rc-chip nd" tabindex="0" title="${tipNd}">${nnd} sin noticias +24h</span>` : ""}
           ${nasum > 0 ? `<span class="rc-chip asum" tabindex="0" title="${tipAsum}">${nasum} sin apagones reportados</span>` : ""}
         </div>
       </div>${cards}${pob}</div></div>`;
@@ -555,6 +567,7 @@ async function iniciar() {
       sin: { l: "#e5484d", b: "#8b0000", e: "🔴", txt: "sin corriente" },
       con: { l: "#46a758", b: "#1c5f2b", e: "🟢", txt: "con servicio" },
       asum: { l: "#4a90d9", b: "#2b5c94", e: "🔵", txt: "sin apagones reportados" },
+      nd: { l: "#6b7686", b: "#4a525e", e: "⚪", txt: "sin noticias hace +24 h" },
     };
     for (const c of (catCircuitos.circuitos || [])) {
       if (!(c.lineas && c.lineas.length) && c.lat === undefined) continue;  // sin ubicar
@@ -562,10 +575,12 @@ async function iniciar() {
       const col = COL_CIRC[v];
       const h = horasDef[c.codigo];
       const calles = c.calles ? esc(c.calles) : "sin información de calles por parte de la UNE";
+      const fmtDia = (iso) => new Date(iso).toLocaleDateString("es-CU", { day: "numeric", month: "short", timeZone: "America/Havana" });
       const detalle = v === "asum"
         ? "Nunca ha aparecido afectado en los partes: por descarte se asume con corriente."
-        : `${h != null ? "Lleva " + h + "h de afectación. " : ""}Último dato oficial: ${
-            new Date(c.ultima).toLocaleDateString("es-CU", { day: "numeric", month: "short", timeZone: "America/Havana" })}.`;
+        : v === "nd"
+          ? `Se reportó sin servicio el ${fmtDia(c.estado_fecha)} y la UNE no lo menciona desde entonces: estado real desconocido.`
+          : `${h != null ? "Lleva " + h + "h de afectación. " : ""}Último dato oficial: ${fmtDia(c.ultima)}.`;
       const popup = `<div class="popup"><h3>${col.e} Circuito ${esc(c.codigo)} — ${col.txt}</h3>
          <p>${calles}${c.bloque ? " · (B" + c.bloque + ")" : ""}</p>
          <p class="hora">${detalle} Ubicación aproximada.</p>
@@ -951,8 +966,8 @@ async function iniciar() {
   leyenda.onAdd = () => {
     const div = L.DomUtil.create("div", "leyenda");
     div.innerHTML = movil
-      ? "🔴 sin luz · 🟢 con luz · 🔵 sin apagones reportados<br>🟣 avería · 🟡 DAF · 🟠 reporte"
-      : "Circuitos: 🔴 sin corriente · 🟢 con servicio · " +
+      ? "🔴 sin luz · 🟢 con luz · ⚪ sin noticias · 🔵 sin apagones<br>🟣 avería · 🟡 DAF · 🟠 reporte"
+      : "Circuitos: 🔴 sin corriente · 🟢 con servicio · ⚪ sin noticias hace +24 h · " +
         "🔵 sin apagones reportados (se asume con corriente).<br>" +
         "🟣 averías/roturas · 🟡 circuitos DAF (microcortes).<br>" +
         "🟠 reporte vecinal (se confirma en rojo con 10+ vecinos).<br>" +

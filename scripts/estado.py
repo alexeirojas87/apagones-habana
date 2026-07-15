@@ -529,6 +529,17 @@ def detectar_evento_nacional(sb, ahora):
         .ilike("texto", "%Actualización de afectaciones%")
         .gt("fecha", f_desc).limit(1).execute().data
     )
+    # también cierra el evento el anuncio EXPLÍCITO de restablecimiento total
+    # ("restablecido el Sistema Eléctrico Nacional", 15/jul/2026). OJO: los
+    # parciales dicen "se han restablecido: Subestaciones..." y NO cuentan
+    # (por eso se exige "restablecido el sistema/sen").
+    if not reanuda:
+        reanuda = (
+            sb.table("mensajes").select("fecha").eq("chat", "canal")
+            .or_("texto.ilike.%restablecido el sistema el%,"
+                 "texto.ilike.%restablecido el sen%")
+            .gt("fecha", f_desc).limit(1).execute().data
+        )
     if reanuda:
         return None
     ev = {"desde": f_desc, "causa": "Desconexión total del SEN"}

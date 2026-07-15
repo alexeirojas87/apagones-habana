@@ -505,15 +505,25 @@ def detectar_evento_nacional(sb, ahora):
     desc = (
         sb.table("mensajes").select("fecha,texto").eq("chat", "canal")
         .ilike("texto", "%desconexi%total%")
-        # la UNE alterna la redacción: "Sistema Electroenergético Nacional" (oct/2025)
-        # y "Sistema Eléctrico Nacional" (jul/2026); el _ tolera la tilde
-        .or_("texto.ilike.%electroenerg%,texto.ilike.%el_ctrico nacional%")
+        # la UNE alterna la redacción: "Sistema Electroenergético Nacional"
+        # (oct/2025), "Sistema Eléctrico Nacional" (10/jul/2026) y "del SEN" a
+        # secas (14/jul/2026); el _ tolera la tilde
+        .or_("texto.ilike.%electroenerg%,texto.ilike.%el_ctrico nacional%,"
+             "texto.ilike.%del sen%")
         .gte("fecha", (ahora - timedelta(hours=72)).isoformat())
         .order("message_id", desc=True).limit(1).execute().data
     )
-    if not desc:
+    f_desc = desc[0]["fecha"] if desc else None
+    if not f_desc:
+        # respaldo LLM: el extractor clasifica 'caida_sen' aunque la redacción
+        # sea nueva (el regex de arriba ya falló 3 veces por cambios de la UNE)
+        corte = (ahora - timedelta(hours=72)).isoformat()
+        fechas = [v.get("fecha") for v in partes_llm_cache().values()
+                  if v.get("via") == "llm" and v.get("tipo") == "caida_sen"
+                  and (v.get("fecha") or "") >= corte]
+        f_desc = max(fechas) if fechas else None
+    if not f_desc:
         return None
-    f_desc = desc[0]["fecha"]
     reanuda = (
         sb.table("mensajes").select("fecha").eq("chat", "canal")
         .ilike("texto", "%Actualización de afectaciones%")

@@ -153,5 +153,32 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 5:45 pm se afecta el servicio eléctrico en los siguientes circuitos: 👉 2203:Ampliación Sevillano, Sevillano, Món"
+ },
+ "68985": {
+  "fecha": "2026-07-15T14:43:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L316"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa se detectó una AVERÍA de un primario partido en 29 /70 y 72 : 👉Calle 70 desde 13 hasta 29 (Reparto Buenavista); Calle 64 des"
+ },
+ "68983": {
+  "fecha": "2026-07-15T14:31:55+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1042"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Cotorro se detectó una AVERÍA en : 👉Loteria y Alberro ( Circuito A1042 ) ."
+ },
+ "68975": {
+  "fecha": "2026-07-15T13:15:42+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H343"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio San Miguel del Padrón se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉Avenida Ciudamar Esquina 15 ( Circuito H343 "
  }
 }

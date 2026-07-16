@@ -180,5 +180,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio San Miguel del Padrón se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉Avenida Ciudamar Esquina 15 ( Circuito H343 "
+ },
+ "68950": {
+  "fecha": "2026-07-15T02:18:18+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1248"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza se detecto una Avería por Primario Partido afectando: 👉Avenida del Zoológico desde Avenida del Río hasta Ulloa (Nuevo Vedado"
  }
 }

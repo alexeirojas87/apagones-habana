@@ -144,5 +144,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Habana del Este, se localiza avería secundaria por transformador dañado en la Zona 24, Edf 3🚨"
+ },
+ "69014": {
+  "fecha": "2026-07-15T22:07:27+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ14"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 5:45 pm se afecta el servicio eléctrico en los siguientes circuitos: 👉 2203:Ampliación Sevillano, Sevillano, Món"
  }
 }

@@ -151,5 +151,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería secundaria por transformador dañado en las calles 4ta entre B y C, Habana Nueva🚨"
+ },
+ "69402": {
+  "fecha": "2026-07-17T22:26:16+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 06:20pm se afectó el servicio eléctrico en el siguiente circuito: 👉1243.: Calles 40 desde 41 hasta 38; 47 de 28 "
  }
 }

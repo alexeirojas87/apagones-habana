@@ -1,69 +1,4 @@
 {
- "68314": {
-  "fecha": "2026-07-10T16:09:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "C16",
-   "R454"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Averías existentes hasta el momento 🚨Subestación Apolo: (continúan las labores) 🚨Puente Primario Partido 📌Municipio: Regla 👉Dirección: 1ra y 6ta , Mañana 📉Afec"
- },
- "68312": {
-  "fecha": "2026-07-10T15:39:20+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "R454"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨⚡️Consumidores del municipio Guanabacoa se detectó una AVERÍA por PRIMARIO PARTIDO en : 1ra y 6ta Reparto Mañana afectando el servicio en : 👉🏻R454:Mañana, Vale"
- },
- "68305": {
-  "fecha": "2026-07-10T15:08:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "L316"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L316, que se ha transferido temporalmente la carga al circuito L317 del siguiente rep"
- },
- "68299": {
-  "fecha": "2026-07-10T15:00:48+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL56",
-   "MB930"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Habana del Este pertenecientes al circuito AL56, que se ha transferido temporalmente la carga al circuito MB930 del si"
- },
- "68298": {
-  "fecha": "2026-07-10T14:57:14+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1695"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Arroyo Naranjo se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : Camilo Cienfuegos / Rosales y Final , Reparto Eléctr"
- },
- "68296": {
-  "fecha": "2026-07-10T14:53:51+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨⚡️Consumidores del municipio 10 de Octubre se detectó una AVERÍA por PRIMARIO PARTIDO en : 👉🏻D634 :Cuadrante entre Milagros, Figueroa, Vista Alegre y 10 de Oct"
- },
- "68295": {
-  "fecha": "2026-07-10T14:35:16+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Consumidores del municipio 10 de Octubre se afecta el servicio por DISPARO de Circuito en : 👉🏻D634 :Cuadrante entre Milagros, Figueroa, Vista Alegre y 10 de"
- },
  "68389": {
   "fecha": "2026-07-11T21:43:22+00:00",
   "tipo_llm": "afectacion",
@@ -189,5 +124,32 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Plaza se detecto una Avería por Primario Partido afectando: 👉Avenida del Zoológico desde Avenida del Río hasta Ulloa (Nuevo Vedado"
+ },
+ "69412": {
+  "fecha": "2026-07-17T23:02:25+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1228"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 06:58m se afectó el servicio eléctrico en el siguiente circuito: A1228: Hoteles de Monte de Barreto ."
+ },
+ "69410": {
+  "fecha": "2026-07-17T22:57:19+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC16"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 06:55pm se afectó el servicio eléctrico de los siguientes circuitos: 👉AL56: Zonas: 13; 15; 16; 17; 18; 21 y Micr"
+ },
+ "69394": {
+  "fecha": "2026-07-17T22:05:35+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "R464"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería secundaria por transformador dañado en las calles 4ta entre B y C, Habana Nueva🚨"
  }
 }

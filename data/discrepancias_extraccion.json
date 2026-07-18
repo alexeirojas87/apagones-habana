@@ -17,15 +17,6 @@
   "solo_regex": [],
   "extracto": "🚨⚡️ Consumidores del municipio 10 de Octubre se detecta una AVERÍA por PRIMARIO PARTIDO en : María Regla /B y C. Circuito:A 980 👉 Luyanó Cuadrante de Concha a A"
  },
- "68381": {
-  "fecha": "2026-07-11T16:36:00+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "R456"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Guanabacoa se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : Rubiera/Martí y Calixto García.🛑⚡️"
- },
  "68403": {
   "fecha": "2026-07-12T01:45:05+00:00",
   "tipo_llm": "restablecimiento",

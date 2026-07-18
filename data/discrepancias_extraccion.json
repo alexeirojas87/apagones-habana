@@ -1,13 +1,4 @@
 {
- "68389": {
-  "fecha": "2026-07-11T21:43:22+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2210"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Cerro-10 de Octubre ,el cuadrante Camagüey desde Callejón de Los Perros hasta Calzada de Vento, Callejón de Los Perros desde Lìnea"
- },
  "68403": {
   "fecha": "2026-07-12T01:45:05+00:00",
   "tipo_llm": "restablecimiento",

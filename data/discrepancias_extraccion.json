@@ -35,15 +35,6 @@
   "solo_regex": [],
   "extracto": "🚨⚡️ Consumidores del municipio Boyeros se detecta una AVERÍA por PRIMARIO PARTIDO en : Perla y calle 1ra Circuito:A 820 👉 250 Miraflores Viejo , Embil , Altura "
  },
- "68351": {
-  "fecha": "2026-07-11T00:59:06+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "AL56"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Plaza se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : G / 15 Y 17, Vedado.🛑⚡️"
- },
  "68403": {
   "fecha": "2026-07-12T01:45:05+00:00",
   "tipo_llm": "restablecimiento",

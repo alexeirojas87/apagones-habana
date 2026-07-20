@@ -1,13 +1,4 @@
 {
- "68737": {
-  "fecha": "2026-07-13T18:38:10+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D1305"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Cerro, se localiza avería secundaria por transformador dañado en las calles 50A y Final, Santa Ana🚨"
- },
  "69014": {
   "fecha": "2026-07-15T22:07:27+00:00",
   "tipo_llm": "afectacion",

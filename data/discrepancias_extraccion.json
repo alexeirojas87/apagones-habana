@@ -115,5 +115,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Cerro se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉Calzada del Cerro desde Cruz del Padre hasta San Carlos, San"
+ },
+ "69627": {
+  "fecha": "2026-07-19T13:11:41+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1125"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Habana del Este se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉Guiteras: desde Vía Monumental hasta LFC y desde V"
  }
 }

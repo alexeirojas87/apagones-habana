@@ -17,15 +17,6 @@
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Cotorro, se localiza avería secundaria por transformador dañado en las calles 99 y Final, Buenos Aires🚨"
  },
- "68712": {
-  "fecha": "2026-07-13T16:07:07+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "AL53"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Habana del Este, se localiza avería secundaria por transformador dañado en la Zona 24, Edf 3🚨"
- },
  "69014": {
   "fecha": "2026-07-15T22:07:27+00:00",
   "tipo_llm": "afectacion",

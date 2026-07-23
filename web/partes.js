@@ -13,6 +13,8 @@ function diaHabana(iso) {
 }
 
 let DATOS = null;
+const PARTE_ID = Number(new URLSearchParams(location.search).get("id")) || null;
+let PARTE_ENFOCADO = false;
 
 function render(filtro = "") {
   const feed = document.getElementById("feed");
@@ -26,18 +28,26 @@ function render(filtro = "") {
   for (const p of partes) {
     const dia = diaHabana(p.fecha);
     if (dia !== diaPrev) { html += `<h2 class="dia">${esc(dia)}</h2>`; diaPrev = dia; }
-    const link = `https://t.me/${DATOS.canal}/${p.id}`;
+    const link = `partes.html?id=${encodeURIComponent(p.id)}`;
     const cuerpo = esc(p.texto).replace(/\n/g, "<br>");
-    html += `<article class="parte">
+    html += `<article class="parte${p.id === PARTE_ID ? " destacada" : ""}" id="parte-${p.id}">
       <div class="parte-cab">
         <span class="parte-tag">${esc(p.tag)}</span>
         <span class="parte-hora">${horaHabana(p.fecha)}</span>
-        <a class="parte-tg" href="${link}" target="_blank" rel="noopener">ver en Telegram ↗</a>
+        <a class="parte-tg" href="${link}" aria-label="Enlace permanente a este parte">enlace al parte</a>
       </div>
       <div class="parte-txt">${cuerpo}</div>
     </article>`;
   }
   feed.innerHTML = html;
+  if (PARTE_ID && !PARTE_ENFOCADO && !q) {
+    const objetivo = document.getElementById(`parte-${PARTE_ID}`);
+    if (objetivo) {
+      PARTE_ENFOCADO = true;
+      requestAnimationFrame(() =>
+        objetivo.scrollIntoView({ behavior: "smooth", block: "center" }));
+    }
+  }
 }
 
 const filtro = document.getElementById("filtro");

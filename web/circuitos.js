@@ -83,8 +83,7 @@ function renderDaf() {
         <div class="daf-periodo">${estado} · ${fechaCompleta(d.desde)}–${fechaCompleta(d.hasta)}
           · ${codigos.length} circuito${codigos.length === 1 ? "" : "s"}</div>
       </div>
-      <a class="daf-fuente" href="https://t.me/EmpresaElectricaDeLaHabana/${encodeURIComponent(d.message_id)}"
-         target="_blank" rel="noopener">Ver parte oficial ↗</a>
+      <a class="daf-fuente" href="partes.html?id=${encodeURIComponent(d.message_id)}">Ver parte oficial →</a>
     </div>
     <p>Son los circuitos asignados esta semana para proteger el SEN. Estar en esta lista
        no significa que estén apagados ahora: solo se afectan cuando se activa el DAF.</p>

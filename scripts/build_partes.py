@@ -11,9 +11,8 @@ from datetime import datetime, timedelta, timezone
 from supabase import create_client
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
-DIAS = 7          # ventana del feed
+DIAS = 7          # ventana normal del feed
 MAX = 250         # tope de posts
-CANAL = "EmpresaElectricaDeLaHabana"  # para el enlace "ver en Telegram"
 
 
 def etiqueta(texto):
@@ -46,6 +45,17 @@ def main():
         .eq("chat", "canal").gte("fecha", desde)
         .order("fecha", desc=True).limit(MAX).execute().data
     )
+    # El recuadro DAF enlaza al parte semanal dentro de esta pestaña. Se conserva
+    # siempre el último, aunque haya salido de la ventana normal de siete días
+    # por una demora de la Empresa en publicar la siguiente rotación.
+    daf_semanal = (
+        sb.table("mensajes").select("message_id,fecha,texto")
+        .eq("chat", "canal").ilike("texto", "%rotad%viernes%")
+        .order("fecha", desc=True).limit(1).execute().data
+    )
+    ids = {f["message_id"] for f in filas}
+    filas += [f for f in daf_semanal if f["message_id"] not in ids]
+    filas.sort(key=lambda f: f["fecha"], reverse=True)
     partes = [
         {
             "id": f["message_id"],
@@ -56,7 +66,7 @@ def main():
         for f in filas
         if (f.get("texto") or "").strip()
     ]
-    salida = {"generado": datetime.now(timezone.utc).isoformat(), "canal": CANAL, "partes": partes}
+    salida = {"generado": datetime.now(timezone.utc).isoformat(), "partes": partes}
     destino = os.path.join(RAIZ, "web", "data", "partes.json")
     json.dump(salida, open(destino, "w"), ensure_ascii=False)
     print(f"partes.json: {len(partes)} partes ({os.path.getsize(destino) // 1024} KB)")

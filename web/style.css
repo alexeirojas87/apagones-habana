@@ -237,6 +237,14 @@ footer a { color: #8ab4f8; }
 }
 #feed .dia:first-child { margin-top: 4px; }
 .parte { background: #1b222c; border-radius: 10px; padding: 10px 13px; margin-bottom: 10px; }
+.parte.destacada {
+  border: 1px solid #8a741f; box-shadow: 0 0 0 3px rgba(255, 206, 77, .12);
+  animation: parte-destacada 1.2s ease-out;
+}
+@keyframes parte-destacada {
+  from { background: #393117; }
+  to { background: #1b222c; }
+}
 .parte-cab { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
 .parte-tag { font-size: .72rem; font-weight: 600; background: #10141a; border-radius: 999px; padding: 2px 9px; color: #cdd6e0; }
 .parte-hora { font-size: .74rem; color: #8a95a5; }

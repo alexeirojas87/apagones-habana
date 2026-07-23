@@ -14,7 +14,8 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 from supabase import create_client
 
@@ -44,6 +45,99 @@ RE_CIRC = re.compile(
     r"\s*([-–:])?\s*(.+?)\s*$"
 )
 RE_UN_CODIGO = re.compile(rf"^{_COD}$")
+
+MESES = {
+    "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
+    "mayo": 5, "junio": 6, "julio": 7, "agosto": 8,
+    "septiembre": 9, "setiembre": 9, "octubre": 10,
+    "noviembre": 11, "diciembre": 12,
+}
+RE_LINEA_PERIODO_DAF = re.compile(r"(?im)^.*\bDAF\s*:.*$")
+RE_FIN_DAF = re.compile(
+    r"jueves\s+(\d{1,2})\s+de\s+([a-záéíóúñ]+)", re.IGNORECASE
+)
+RE_INICIO_DAF = re.compile(
+    r"viernes\s+(\d{1,2})(?:\s+de\s+([a-záéíóúñ]+))?", re.IGNORECASE
+)
+
+
+def _fecha_cercana(dia, mes, publicada):
+    """Fecha con el año más cercano al parte (resuelve semanas dic/ene)."""
+    candidatas = []
+    for anio in (publicada.year - 1, publicada.year, publicada.year + 1):
+        try:
+            candidatas.append(date(anio, mes, dia))
+        except ValueError:
+            pass
+    return min(candidatas, key=lambda d: abs((d - publicada).days))
+
+
+def extraer_daf_oficial(filas, ahora=None):
+    """Última rotación semanal DAF publicada por la Empresa.
+
+    Los partes pueden traer dos períodos en el mismo mensaje (semana saliente y
+    entrante). Se elige el que cubre la fecha actual; si ninguno está vigente se
+    conserva la última lista, marcada como vencida, para informar sin presentarla
+    como estado actual.
+    """
+    hoy = (ahora or datetime.now(ZoneInfo("America/Havana"))).date()
+    rotaciones = []
+    for f in filas:
+        texto = f.get("texto") or ""
+        plano = normalizar(texto)
+        if "rotad" not in plano or "viernes" not in plano or \
+                ("circuitos designados" not in plano and
+                 "circuitos protegidos" not in plano):
+            continue
+        publicada = datetime.fromisoformat(f["fecha"]).date()
+        marcas = list(RE_LINEA_PERIODO_DAF.finditer(texto))
+        for i, marca in enumerate(marcas):
+            linea = marca.group(0)
+            fin_m = RE_FIN_DAF.search(linea)
+            if not fin_m:
+                continue
+            mes_fin = MESES.get(normalizar(fin_m.group(2)))
+            if not mes_fin:
+                continue
+            hasta = _fecha_cercana(int(fin_m.group(1)), mes_fin, publicada)
+            ini_m = RE_INICIO_DAF.search(linea)
+            if ini_m:
+                mes_ini = MESES.get(normalizar(ini_m.group(2))) if ini_m.group(2) else mes_fin
+                if not mes_ini:
+                    continue
+                # "viernes 31 al jueves 6 de agosto": el viernes es del mes anterior.
+                if not ini_m.group(2) and int(ini_m.group(1)) > hasta.day:
+                    mes_ini = 12 if mes_fin == 1 else mes_fin - 1
+                desde = _fecha_cercana(int(ini_m.group(1)), mes_ini, hasta)
+                if desde > hasta:
+                    desde = date(desde.year - 1, desde.month, desde.day)
+            else:
+                # Algunos encabezados solo dicen "hasta el jueves N".
+                desde = hasta - timedelta(days=6)
+
+            fin_contenido = marcas[i + 1].start() if i + 1 < len(marcas) else len(texto)
+            contenido = texto[marca.end():fin_contenido]
+            codigos = []
+            for circ in RE_CIRC.finditer(contenido):
+                for cod in re.split(_SEP, circ.group(1)):
+                    cod = cod.strip().upper()
+                    if RE_UN_CODIGO.match(cod) and cod not in codigos:
+                        codigos.append(cod)
+            if codigos:
+                rotaciones.append({
+                    "desde": desde.isoformat(),
+                    "hasta": hasta.isoformat(),
+                    "publicado": f["fecha"],
+                    "message_id": f["message_id"],
+                    "circuitos": codigos,
+                })
+    if not rotaciones:
+        return None
+    activas = [r for r in rotaciones
+               if date.fromisoformat(r["desde"]) <= hoy <= date.fromisoformat(r["hasta"])]
+    elegida = max(activas or rotaciones,
+                  key=lambda r: (r["hasta"], r["publicado"]))
+    return {**elegida, "vigente": elegida in activas}
 
 
 def _en_poly(lat, lon, ring):
@@ -154,8 +248,6 @@ def main():
                     r["municipio"] = muni
                 if causa:
                     r["causa"] = causa
-                if causa == "DAF":
-                    r["daf"] = True  # circuito visto en aviso de Disparo Automático por Frecuencia
                 if est:
                     r["estado"] = est
                     r["estado_fecha"] = fecha
@@ -205,8 +297,6 @@ def main():
                         r["calles"] = item["calles"]
                     if item.get("municipio") and not r["municipio"]:
                         r["municipio"] = (municipios_en(item["municipio"]) or [None])[0]
-                    if item.get("causa") == "DAF":
-                        r["daf"] = True
                     if item.get("estado") and (r["estado_fecha"] or "") <= fecha:
                         r["estado"] = item["estado"]
                         r["estado_fecha"] = fecha
@@ -317,6 +407,16 @@ def main():
         elif c["codigo"] in manual_muni:
             c["municipio"] = manual_muni[c["codigo"]]
 
+    # Rotación semanal DAF oficial: sustituye la vieja bandera histórica ("alguna
+    # vez apareció en un disparo") por la lista vigente del parte de la UNE.
+    daf_oficial = extraer_daf_oficial(filas)
+    daf_vigentes = set(daf_oficial["circuitos"]) \
+        if daf_oficial and daf_oficial["vigente"] else set()
+    for c in circuitos:
+        c.pop("daf", None)
+        if c["codigo"] in daf_vigentes:
+            c["daf"] = True
+
     # Fase 2b: geometría de las CALLES reales (OSM/Overpass) de cada circuito, para
     # dibujarlas en el mapa. Cacheada por código (la geometría no cambia) y acotada
     # por corrida (Overpass es lento). Los que no resuelven quedan sin líneas (el
@@ -365,6 +465,7 @@ def main():
         "generado": datetime.now(timezone.utc).isoformat(),
         "total": len(circuitos),
         "record_apagados": record,   # pico histórico de circuitos sin servicio a la vez
+        "daf_oficial": daf_oficial,
         "circuitos": circuitos,
     }
     destino = os.path.join(RAIZ, "web", "data", "circuitos.json")

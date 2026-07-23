@@ -52,6 +52,46 @@ function llevaDesde(iso) {
   return `lleva ${Math.floor(h / 24)}d ${Math.round(h % 24)}h`;
 }
 
+function fechaCompleta(iso) {
+  if (!iso) return "";
+  const d = /^\d{4}-\d{2}-\d{2}$/.test(iso)
+    ? new Date(`${iso}T12:00:00-04:00`) : new Date(iso);
+  return d.toLocaleDateString("es-CU", {
+    day: "numeric", month: "long", timeZone: "America/Havana",
+  });
+}
+
+function renderDaf() {
+  const cont = document.getElementById("daf-oficial");
+  const d = DATOS && DATOS.daf_oficial;
+  if (!d) {
+    cont.innerHTML = `<div class="daf-card vencido">
+      <div class="daf-titulo">🟡 Rotación oficial DAF</div>
+      <p>No se ha identificado todavía un parte semanal de la Empresa Eléctrica.</p>
+    </div>`;
+    return;
+  }
+  const codigos = d.circuitos || [];
+  const estado = d.vigente ? "Vigente" : "Última lista publicada · ya vencida";
+  const chips = codigos.map((codigo) =>
+    `<button type="button" class="daf-codigo" data-codigo="${esc(codigo)}">${esc(codigo)}</button>`
+  ).join("");
+  cont.innerHTML = `<div class="daf-card ${d.vigente ? "" : "vencido"}">
+    <div class="daf-cab">
+      <div>
+        <div class="daf-titulo">🟡 Circuitos designados para DAF</div>
+        <div class="daf-periodo">${estado} · ${fechaCompleta(d.desde)}–${fechaCompleta(d.hasta)}
+          · ${codigos.length} circuito${codigos.length === 1 ? "" : "s"}</div>
+      </div>
+      <a class="daf-fuente" href="https://t.me/EmpresaElectricaDeLaHabana/${encodeURIComponent(d.message_id)}"
+         target="_blank" rel="noopener">Ver parte oficial ↗</a>
+    </div>
+    <p>Son los circuitos asignados esta semana para proteger el SEN. Estar en esta lista
+       no significa que estén apagados ahora: solo se afectan cuando se activa el DAF.</p>
+    <div class="daf-codigos">${chips}</div>
+  </div>`;
+}
+
 function render(filtro = "") {
   const cont = document.getElementById("lista");
   const q = filtro.trim().toLowerCase();
@@ -104,6 +144,13 @@ function render(filtro = "") {
 
 const filtro = document.getElementById("filtro");
 filtro.addEventListener("input", () => DATOS && render(filtro.value));
+document.getElementById("daf-oficial").addEventListener("click", (ev) => {
+  const boton = ev.target.closest("[data-codigo]");
+  if (!boton || !DATOS) return;
+  filtro.value = boton.dataset.codigo;
+  render(filtro.value);
+  document.getElementById("lista").scrollIntoView({ behavior: "smooth" });
+});
 
 // Enlace directo a un circuito: circuitos.html?c=CÓDIGO -> prefiltra por ese código.
 const _cParam = new URLSearchParams(location.search).get("c");
@@ -128,6 +175,7 @@ function cargar() {
         `${d.circuitos.length} circuitos · 🟢 ${ncon} con servicio · 🔴 ${nsin} sin servicio` +
         `${nnd > 0 ? ` · ⚪ ${nnd} sin noticias +24h` : ""}` +
         `${nasum > 0 ? ` · 🔵 ${nasum} sin apagones reportados` : ""}${sen}`;
+      renderDaf();
       render(filtro.value);  // conserva el filtro escrito
     })
     .catch(() => { if (!DATOS) document.getElementById("circ-info").textContent = "error cargando el catálogo"; });

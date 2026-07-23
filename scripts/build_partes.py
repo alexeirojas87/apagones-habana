@@ -56,6 +56,25 @@ def main():
     )
     ids = {f["message_id"] for f in filas}
     filas += [f for f in daf_semanal if f["message_id"] not in ids]
+
+    # Las tarjetas de Circuitos enlazan a su mención oficial más reciente. Esos
+    # partes deben seguir disponibles aunque sean anteriores a los siete días
+    # del feed normal. build_circuitos.py corre antes y publica los message_id.
+    try:
+        catalogo = json.load(open(os.path.join(RAIZ, "web", "data", "circuitos.json")))
+        ids_ref = {c.get("ultima_message_id") for c in catalogo.get("circuitos", [])
+                   if c.get("ultima_message_id")}
+    except Exception:
+        ids_ref = set()
+    ids = {f["message_id"] for f in filas}
+    faltan = sorted(ids_ref - ids)
+    for i in range(0, len(faltan), 100):
+        filas += (
+            sb.table("mensajes").select("message_id,fecha,texto")
+            .eq("chat", "canal").in_("message_id", faltan[i:i + 100])
+            .execute().data
+        )
+
     filas.sort(key=lambda f: f["fecha"], reverse=True)
     partes = [
         {

@@ -235,10 +235,12 @@ def main():
                     "codigo": cod, "prefijo": _pre.group(0) if _pre else "",
                     "calles": "", "municipio": None, "bloque": None, "causa": None,
                     "veces": 0, "primera": fecha, "ultima": fecha,
+                    "ultima_message_id": f["message_id"],
                     "estado": None, "estado_fecha": None,
                 })
                 r["veces"] += 1
                 r["ultima"] = fecha
+                r["ultima_message_id"] = f["message_id"]
                 # nos quedamos con la lista de calles más completa vista
                 if len(calles) > len(r["calles"]):
                     r["calles"] = calles
@@ -268,10 +270,12 @@ def main():
                     "codigo": cod, "prefijo": _pre.group(0) if _pre else "",
                     "calles": "", "municipio": None, "bloque": None, "causa": "déficit de generación",
                     "veces": 0, "primera": fecha, "ultima": fecha,
+                    "ultima_message_id": f["message_id"],
                     "estado": None, "estado_fecha": None,
                 })
                 r["veces"] += 1
                 r["ultima"] = fecha
+                r["ultima_message_id"] = f["message_id"]
                 r["estado"] = "sin servicio"
                 r["estado_fecha"] = fecha
                 if mun_cod and not r["municipio"]:
@@ -290,9 +294,12 @@ def main():
                         "codigo": cod, "prefijo": _pre.group(0) if _pre else "",
                         "calles": "", "municipio": None, "bloque": None, "causa": None,
                         "veces": 0, "primera": fecha, "ultima": fecha,
+                        "ultima_message_id": f["message_id"],
                         "estado": None, "estado_fecha": None,
                     })
-                    r["ultima"] = max(r["ultima"] or fecha, fecha)
+                    if (r["ultima"] or "") <= fecha:
+                        r["ultima"] = fecha
+                        r["ultima_message_id"] = f["message_id"]
                     if item.get("calles") and len(item["calles"]) > len(r["calles"]):
                         r["calles"] = item["calles"]
                     if item.get("municipio") and not r["municipio"]:
@@ -312,6 +319,7 @@ def main():
             r = cat[cod] = {"codigo": cod, "prefijo": _pre.group(0) if _pre else "",
                             "calles": "", "municipio": None, "bloque": None, "causa": None,
                             "veces": 0, "primera": None, "ultima": None,
+                            "ultima_message_id": None,
                             "estado": None, "estado_fecha": None}
         r["oficial"] = True
         r["municipios"] = info.get("municipios") or []  # lista oficial (puede ser >1: feeders de frontera)

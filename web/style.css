@@ -321,13 +321,15 @@ footer a { color: #8ab4f8; }
 .circ-meta { font-size: .7rem; color: #8a95a5; margin-left: auto; }
 .circ-calles { font-size: .82rem; line-height: 1.35; color: #c4ccd6; }
 .circ-sininfo { color: #7a8390; font-style: italic; }
-.circ-mapa { margin-left: auto; color: #8ab4f8; text-decoration: none; font-size: .72rem; white-space: nowrap; }
+.circ-acciones { display: flex; gap: 10px; margin-left: auto; }
+.circ-mapa, .circ-parte { color: #8ab4f8; text-decoration: none; font-size: .72rem; white-space: nowrap; }
 @media (max-width: 640px) {
   #daf-oficial { padding: 8px 10px 0; }
   .daf-cab { display: block; }
   .daf-fuente { display: inline-block; margin-top: 7px; }
   #lista { padding: 6px 10px 32px; }
   .circ-meta { margin-left: 0; flex-basis: 100%; }
+  .circ-acciones { margin-left: 0; }
 }
 
 /* ---------- pestaña de análisis ---------- */

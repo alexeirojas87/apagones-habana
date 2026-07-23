@@ -85,12 +85,14 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
-      - run: python scripts/build_partes.py
+      # Primero el catálogo: build_partes conserva luego la última mención
+      # enlazada por cada circuito, aunque haya salido de su ventana de 7 días.
+      - run: python scripts/build_circuitos.py
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
-      - run: python scripts/build_circuitos.py
+      - run: python scripts/build_partes.py
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

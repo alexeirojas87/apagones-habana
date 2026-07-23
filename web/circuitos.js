@@ -127,6 +127,11 @@ function render(filtro = "") {
     const enMapa = (c.lat != null || (c.lineas && c.lineas.length))
       ? `<a class="circ-mapa" href="index.html?c=${encodeURIComponent(c.codigo)}" title="Centrar el mapa en este circuito">🗺️ ver en el mapa</a>`
       : "";
+    const ultimoParte = c.ultima_message_id
+      ? `<a class="circ-parte" href="partes.html?id=${encodeURIComponent(c.ultima_message_id)}" title="Abrir la mención oficial más reciente de este circuito">📢 ver último parte</a>`
+      : "";
+    const acciones = enMapa || ultimoParte
+      ? `<span class="circ-acciones">${enMapa}${ultimoParte}</span>` : "";
     return `<article class="circ">
       <div class="circ-cab">
         <span class="circ-cod">${esc(c.codigo)}</span>
@@ -134,7 +139,7 @@ function render(filtro = "") {
         <span class="circ-est ${e.clase}">${esc(e.txt)}</span>
         ${lleva ? `<span class="circ-lleva ${e.clase}">⏱ ${esc(lleva)}</span>` : ""}
         <span class="circ-meta">${meta}</span>
-        ${enMapa}
+        ${acciones}
       </div>
       <div class="circ-calles">${calles}</div>
     </article>`;

@@ -28,13 +28,13 @@ function render(filtro = "") {
   for (const p of partes) {
     const dia = diaHabana(p.fecha);
     if (dia !== diaPrev) { html += `<h2 class="dia">${esc(dia)}</h2>`; diaPrev = dia; }
-    const link = `partes.html?id=${encodeURIComponent(p.id)}`;
+    const link = `https://t.me/${DATOS.canal}/${p.id}`;
     const cuerpo = esc(p.texto).replace(/\n/g, "<br>");
     html += `<article class="parte${p.id === PARTE_ID ? " destacada" : ""}" id="parte-${p.id}">
       <div class="parte-cab">
         <span class="parte-tag">${esc(p.tag)}</span>
         <span class="parte-hora">${horaHabana(p.fecha)}</span>
-        <a class="parte-tg" href="${link}" aria-label="Enlace permanente a este parte">enlace al parte</a>
+        <a class="parte-tg" href="${link}" target="_blank" rel="noopener">ver en Telegram ↗</a>
       </div>
       <div class="parte-txt">${cuerpo}</div>
     </article>`;

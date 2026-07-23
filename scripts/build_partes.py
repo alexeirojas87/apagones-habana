@@ -13,6 +13,7 @@ from supabase import create_client
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 DIAS = 7          # ventana normal del feed
 MAX = 250         # tope de posts
+CANAL = "EmpresaElectricaDeLaHabana"
 
 
 def etiqueta(texto):
@@ -66,7 +67,8 @@ def main():
         for f in filas
         if (f.get("texto") or "").strip()
     ]
-    salida = {"generado": datetime.now(timezone.utc).isoformat(), "partes": partes}
+    salida = {"generado": datetime.now(timezone.utc).isoformat(),
+              "canal": CANAL, "partes": partes}
     destino = os.path.join(RAIZ, "web", "data", "partes.json")
     json.dump(salida, open(destino, "w"), ensure_ascii=False)
     print(f"partes.json: {len(partes)} partes ({os.path.getsize(destino) // 1024} KB)")

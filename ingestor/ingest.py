@@ -22,6 +22,7 @@ MAX_POR_CORRIDA = 1000   # tope incremental por chat y por corrida
 BACKFILL_INICIAL = 2000  # con la tabla vacía: solo los N mensajes más recientes
                          # (la historia completa son años de canal y millones de
                          # comentarios: no cabe en el tier gratis ni hace falta)
+BUSQUEDA_DAF = "rotados cada viernes"
 
 
 def db():
@@ -76,6 +77,24 @@ async def ingerir_chat(client, sb, entidad, chat: str) -> int:
     return len(filas)
 
 
+async def refrescar_partes_daf(client, sb, canal) -> int:
+    """Actualiza partes semanales DAF aunque Telegram los edite tras publicarlos.
+
+    La ingesta incremental por message_id no vuelve a ver mensajes antiguos. La
+    Empresa sí los edita (el 69192 añadió C8 horas después), por lo que una
+    búsqueda acotada mantiene la fuente semanal sincronizada sin releer el canal.
+    """
+    filas = []
+    async for msg in client.iter_messages(canal, search=BUSQUEDA_DAF, limit=10):
+        if msg.message:
+            filas.append(a_fila("canal", msg))
+    if filas:
+        sb.table("mensajes").upsert(
+            filas, on_conflict="chat,message_id"
+        ).execute()
+    return len(filas)
+
+
 async def main():
     client = TelegramClient(
         StringSession(os.environ["TELEGRAM_SESSION"]),
@@ -87,6 +106,7 @@ async def main():
     async with client:
         canal = await client.get_entity(CANAL)
         n_canal = await ingerir_chat(client, sb, canal, "canal")
+        n_daf = await refrescar_partes_daf(client, sb, canal)
 
         # El grupo de discusión vinculado es donde viven los comentarios.
         full = await client(GetFullChannelRequest(canal))
@@ -98,7 +118,8 @@ async def main():
         else:
             print("AVISO: el canal no tiene grupo de discusión vinculado", file=sys.stderr)
 
-    print(f"Ingesta OK: {n_canal} mensajes del canal, {n_com} comentarios")
+    print(f"Ingesta OK: {n_canal} mensajes del canal, {n_com} comentarios, "
+          f"{n_daf} partes DAF refrescados")
 
 
 if __name__ == "__main__":

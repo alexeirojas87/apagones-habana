@@ -22,6 +22,7 @@ class DafOficialTest(unittest.TestCase):
 🛑DAF: desde el viernes 17 hasta el jueves 24 de julio.
 👉AL52: Zonas 6 y 7
 👉R464: Habana Nueva
+👉 C8: Infanta y Washington
 """,
         }]
         ahora = datetime(2026, 7, 23, 12, tzinfo=ZoneInfo("America/Havana"))
@@ -29,7 +30,7 @@ class DafOficialTest(unittest.TestCase):
         self.assertTrue(daf["vigente"])
         self.assertEqual(daf["desde"], "2026-07-17")
         self.assertEqual(daf["hasta"], "2026-07-24")
-        self.assertEqual(daf["circuitos"], ["AL52", "R464"])
+        self.assertEqual(daf["circuitos"], ["AL52", "R464", "C8"])
 
     def test_infiere_mes_anterior_al_cruzar_de_mes(self):
         filas = [{

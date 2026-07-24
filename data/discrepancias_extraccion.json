@@ -1,49 +1,4 @@
 {
- "69014": {
-  "fecha": "2026-07-15T22:07:27+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ14"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 5:45 pm se afecta el servicio eléctrico en los siguientes circuitos: 👉 2203:Ampliación Sevillano, Sevillano, Món"
- },
- "68985": {
-  "fecha": "2026-07-15T14:43:14+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "L316"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Playa se detectó una AVERÍA de un primario partido en 29 /70 y 72 : 👉Calle 70 desde 13 hasta 29 (Reparto Buenavista); Calle 64 des"
- },
- "68983": {
-  "fecha": "2026-07-15T14:31:55+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1042"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Cotorro se detectó una AVERÍA en : 👉Loteria y Alberro ( Circuito A1042 ) ."
- },
- "68975": {
-  "fecha": "2026-07-15T13:15:42+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H343"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio San Miguel del Padrón se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉Avenida Ciudamar Esquina 15 ( Circuito H343 "
- },
- "68950": {
-  "fecha": "2026-07-15T02:18:18+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1248"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Plaza se detecto una Avería por Primario Partido afectando: 👉Avenida del Zoológico desde Avenida del Río hasta Ulloa (Nuevo Vedado"
- },
  "69412": {
   "fecha": "2026-07-17T23:02:25+00:00",
   "tipo_llm": "afectacion",
@@ -97,5 +52,51 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Habana del Este se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉Guiteras: desde Vía Monumental hasta LFC y desde V"
+ },
+ "70428": {
+  "fecha": "2026-07-23T23:50:41+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1425",
+   "A1516"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Regla, se encuentra afectado por un disparo del circuito el siguiente circuito: 👉A1516: Casa Blanca. 👉A1425:Casa Blanca"
+ },
+ "70424": {
+  "fecha": "2026-07-23T23:12:46+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H341"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Cerro- Boyeros-10 de octubre se encuentra afectado por una avería primaria el siguiente circuito: 👉H341:Cuadrante desde Vía Blanca"
+ },
+ "70412": {
+  "fecha": "2026-07-23T20:27:58+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP404"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Centro Habana,se encuentran afectados por una avería soterrada en la dirección Águila y Dragones afectando el siguiente circuito: "
+ },
+ "70408": {
+  "fecha": "2026-07-23T19:22:32+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1516"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Regla,se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afecta : 📍Carretera del Naval/Callejón San Nicolás y Sasa,Casa"
+ },
+ "70399": {
+  "fecha": "2026-07-23T18:18:57+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2203"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio 10 de octubre se encuentra afectado por un disparo del circuito el siguiente circuito: 👉2203:Ampliación Sevillano, Sevillano, Móna"
  }
 }

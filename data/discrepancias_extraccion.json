@@ -1,13 +1,4 @@
 {
- "69412": {
-  "fecha": "2026-07-17T23:02:25+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1228"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 06:58m se afectó el servicio eléctrico en el siguiente circuito: A1228: Hoteles de Monte de Barreto ."
- },
  "69645": {
   "fecha": "2026-07-19T18:47:29+00:00",
   "tipo_llm": "averia",

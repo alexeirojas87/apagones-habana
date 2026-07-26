@@ -1,13 +1,4 @@
 {
- "69645": {
-  "fecha": "2026-07-19T18:47:29+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP402"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Cerro se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉Calzada del Cerro desde Cruz del Padre hasta San Carlos, San"
- },
  "70428": {
   "fecha": "2026-07-23T23:50:41+00:00",
   "tipo_llm": "afectacion",

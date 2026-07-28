@@ -98,5 +98,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Plaza, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉21/8 y 10.🛑⚡️"
+ },
+ "71126": {
+  "fecha": "2026-07-27T04:51:14+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1861"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Consumidores del municipio Marianao, se encuentran afectados por DISPARO DE CIRCUITO en: 👉Ciudad Libertad; Calle 39 desde 76 hasta 98; Calle 37 desde 104 ha"
  }
 }

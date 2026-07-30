@@ -36,15 +36,6 @@
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Regla,se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afecta : 📍Carretera del Naval/Callejón San Nicolás y Sasa,Casa"
  },
- "70399": {
-  "fecha": "2026-07-23T18:18:57+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2203"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio 10 de octubre se encuentra afectado por un disparo del circuito el siguiente circuito: 👉2203:Ampliación Sevillano, Sevillano, Móna"
- },
  "71230": {
   "fecha": "2026-07-27T23:23:08+00:00",
   "tipo_llm": "afectacion",

@@ -9,15 +9,6 @@
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Regla, se encuentra afectado por un disparo del circuito el siguiente circuito: 👉A1516: Casa Blanca. 👉A1425:Casa Blanca"
  },
- "70424": {
-  "fecha": "2026-07-23T23:12:46+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Cerro- Boyeros-10 de octubre se encuentra afectado por una avería primaria el siguiente circuito: 👉H341:Cuadrante desde Vía Blanca"
- },
  "71230": {
   "fecha": "2026-07-27T23:23:08+00:00",
   "tipo_llm": "afectacion",

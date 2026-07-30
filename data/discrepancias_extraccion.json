@@ -107,5 +107,87 @@
   ],
   "solo_regex": [],
   "extracto": "⭕️⚡️Consumidores del municipio Marianao, se encuentran afectados por DISPARO DE CIRCUITO en: 👉Ciudad Libertad; Calle 39 desde 76 hasta 98; Calle 37 desde 104 ha"
+ },
+ "71578": {
+  "fecha": "2026-07-29T23:30:24+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "L323"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Playa, se encuentran afectados por Disparo de Circuito por posible Avería en: 👉L323: Cuadrante de avenida 5taF desde calle 118 hast"
+ },
+ "71577": {
+  "fecha": "2026-07-29T23:26:51+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1190"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Informamos que se localizan AVERÍAS SECUNDARIAS por TRANSFORMADOR DAÑADO en: 👉Boyeros (D1190): 321 / 144 y 146.🚨"
+ },
+ "71576": {
+  "fecha": "2026-07-29T23:24:33+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1008"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Informamos que se localizan AVERÍAS SECUNDARIAS por TRANSFORMADOR DAÑADO en: 👉Arroyo Naranjo (A1008): Anita / Libertad y Pedro Nuevo.🚨"
+ },
+ "71575": {
+  "fecha": "2026-07-29T23:22:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SR850"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Queda reparada la Avería Secundaría por Transformador Dañado que afectaba: 📌Cotorro (SR850): Callejón Rancho Francisco✅"
+ },
+ "71571": {
+  "fecha": "2026-07-29T23:03:49+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A367"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 06:56 PM se afectó el servicio eléctrico en los circuitos: 👉A327: Calle 100 y Ojo de Agua, Zona Guaso Managua 👉A"
+ },
+ "71569": {
+  "fecha": "2026-07-29T23:01:14+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 06:53 PM se afectó el servicio eléctrico en los circuitos: 👉 SG313:Alrededores de calles avenida 409 y calle 212"
+ },
+ "71567": {
+  "fecha": "2026-07-29T22:56:16+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1328",
+   "M609"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 06:44 PM se afectó el servicio eléctrico en los circuitos: 👉 H442: Reparto Barrio Obrero, Guardiola, Jacomino, C"
+ },
+ "71560": {
+  "fecha": "2026-07-29T22:22:22+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Informamos que se localizan AVERÍAS SECUNDARIAS por TRANSFORMADOR DAÑADO en: 👉San Miguel del Padrón (S515): Ctra del Pitirre Fca la Toya.🚨"
+ },
+ "71558": {
+  "fecha": "2026-07-29T22:12:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1244"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Queda reparada la Avería Secundaría por Transformador Dañado que afectaba: 📌23 entre 46 y 48 (1244)✅"
  }
 }

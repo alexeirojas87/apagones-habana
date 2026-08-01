@@ -143,5 +143,60 @@
   ],
   "solo_regex": [],
   "extracto": "✅Queda reparada la Avería Secundaría por Transformador Dañado que afectaba: 📌23 entre 46 y 48 (1244)✅"
+ },
+ "71992": {
+  "fecha": "2026-07-31T23:49:54+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2202"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 7:13 pm se afecta el servicio eléctrico en los siguientes circuitos: 👉2074:67 hasta 87 por 218, 216 hasta 192, 5"
+ },
+ "71988": {
+  "fecha": "2026-07-31T23:24:29+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D860",
+   "PG980"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 6:27 pm se afecta el servicio eléctrico en los siguientes circuitos: 👉A1440: Repartos Mulgoba, Jesús Menéndez, A"
+ },
+ "71985": {
+  "fecha": "2026-07-31T22:59:00+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ14"
+  ],
+  "solo_regex": [],
+  "extracto": "📌⚡️ Consumidores del municipio Plaza se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉 23/26 y 28📌⚡️"
+ },
+ "71984": {
+  "fecha": "2026-07-31T22:58:16+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "GC12"
+  ],
+  "solo_regex": [],
+  "extracto": "📌⚡️ Consumidores del municipio Habana del Este se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉 33/Maceo y Los Pinos,Cojimar📌⚡️"
+ },
+ "71970": {
+  "fecha": "2026-07-31T20:23:45+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "C13"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 4:11 pm se afecta el servicio eléctrico en los siguientes circuitos: 👉 C7: Alrededores del cuadrante desde calle"
+ },
+ "71966": {
+  "fecha": "2026-07-31T19:37:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB910"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 3:25 pm comenzó el restablecimiento del servicio en los siguientes circuitos: 👉 GC19:Repartos Roble, Militar, Fu"
  }
 }

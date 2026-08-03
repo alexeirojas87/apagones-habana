@@ -198,5 +198,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 3:25 pm comenzó el restablecimiento del servicio en los siguientes circuitos: 👉 GC19:Repartos Roble, Militar, Fu"
+ },
+ "72380": {
+  "fecha": "2026-08-02T19:48:24+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Plaza, se localiza avería secundaria por transformador dañado en Calzada entre B y C, Vedado🚨"
+ },
+ "72375": {
+  "fecha": "2026-08-02T19:37:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C7"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Averías existentes hasta el momento 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Plinex: (continúan las labores) Avería Primaria: Conector Partido."
  }
 }

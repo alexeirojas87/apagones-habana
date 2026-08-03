@@ -314,7 +314,10 @@ def main():
                         r["calles"] = item["calles"]
                     if item.get("municipio") and not r["municipio"]:
                         r["municipio"] = (municipios_en(item["municipio"]) or [None])[0]
-                    if item.get("estado") and (r["estado_fecha"] or "") <= fecha:
+                    # Solo un código escrito explícitamente en el parte puede
+                    # cambiar estado; casar un nombre por calles es auxiliar.
+                    if cod in (item.get("codigos_estado") or []) and \
+                            item.get("estado") and (r["estado_fecha"] or "") <= fecha:
                         r["estado"] = item["estado"]
                         r["estado_fecha"] = fecha
 

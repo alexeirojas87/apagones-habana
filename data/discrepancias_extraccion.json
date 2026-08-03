@@ -35,15 +35,6 @@
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 6: 14 pm comienza el restablecimiento del servicio en los siguientes circuitos: 👉H341:Cuadrante desde Vía Blanca"
  },
- "71193": {
-  "fecha": "2026-07-27T17:38:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ15"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 01:34 PM comienza el restablecimiento del servicio en los siguientes circuitos: 👉 SR860:Dulce Nombre, Santa Marí"
- },
  "71578": {
   "fecha": "2026-07-29T23:30:24+00:00",
   "tipo_llm": "afectacion",

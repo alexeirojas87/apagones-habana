@@ -25,7 +25,7 @@ from supabase import create_client
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "extractor"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from extract import bloques_en, municipios_en, zonas_en  # noqa: E402
+from extract import bloques_en, es_inicio_desconexion_total, municipios_en, zonas_en  # noqa: E402
 from geocode_zonas import nominatim, bbox_municipios, normalizar, resolver_zonas_numeradas  # noqa: E402
 import correcciones  # noqa: E402
 import circuitos_id  # noqa: E402
@@ -502,7 +502,7 @@ def detectar_evento_nacional(sb, ahora):
     72 h y NO se ha reanudado la rotación normal (un parte de 'Actualización de
     afectaciones' POSTERIOR a la desconexión = el SEN volvió a operar por bloques).
     Devuelve dict {desde, causa, restablecido_pct?, pct_fecha?} o None."""
-    desc = (
+    candidatos = (
         sb.table("mensajes").select("fecha,texto").eq("chat", "canal")
         .ilike("texto", "%desconexi%total%")
         # la UNE alterna la redacción: "Sistema Electroenergético Nacional"
@@ -511,9 +511,13 @@ def detectar_evento_nacional(sb, ahora):
         .or_("texto.ilike.%electroenerg%,texto.ilike.%el_ctrico nacional%,"
              "texto.ilike.%del sen%")
         .gte("fecha", (ahora - timedelta(hours=72)).isoformat())
-        .order("message_id", desc=True).limit(1).execute().data
+        .order("message_id", desc=True).limit(100).execute().data
     )
-    f_desc = desc[0]["fecha"] if desc else None
+    # Los partes de recuperación repiten "tras la desconexión total del SEN".
+    # Se busca el aviso real más reciente, no la mención más reciente de la frase.
+    inicio = next((f for f in candidatos
+                   if es_inicio_desconexion_total(f.get("texto") or "")), None)
+    f_desc = inicio["fecha"] if inicio else None
     if not f_desc:
         # respaldo LLM: el extractor clasifica 'caida_sen' aunque la redacción
         # sea nueva (el regex de arriba ya falló 3 veces por cambios de la UNE)

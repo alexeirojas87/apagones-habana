@@ -43,8 +43,11 @@ MUNICIPIOS = {
     "san miguel del padron": "San Miguel del Padrón",
 }
 
+RE_DESCONEXION_TOTAL = re.compile(
+    r"desconexi[oó]n total del (sistema electroenerg|sen\b)", re.IGNORECASE
+)
+
 CAUSAS = [
-    (r"desconexi[oó]n total del (sistema electroenerg|sen\b)", "desconexión total del SEN"),
     (r"disparo autom[aá]tico por frecuencia|\bDAF\b", "DAF"),
     (r"d[eé]ficit de generaci[oó]n|afectaciones? por d[eé]ficit", "déficit de generación"),
     (r"disparo por sobrecarga|\bsobrecarga\b", "sobrecarga"),
@@ -89,10 +92,28 @@ def municipios_en(texto: str) -> list:
 
 
 def causa_en(texto: str):
+    if es_inicio_desconexion_total(texto):
+        return "desconexión total del SEN"
     for patron, nombre in CAUSAS:
         if re.search(patron, texto, re.IGNORECASE):
             return nombre
     return None
+
+
+def es_inicio_desconexion_total(texto: str) -> bool:
+    """Distingue la caída de los partes posteriores sobre su recuperación.
+
+    La EELH repite ``tras la desconexión total del SEN`` en cada actualización
+    de restablecimiento. Esos partes describen el mismo evento y no deben
+    reiniciar su hora de comienzo.
+    """
+    if not RE_DESCONEXION_TOTAL.search(texto):
+        return False
+    plano = normalizar(texto)
+    es_progreso = "restablec" in plano and re.search(
+        r"\btras (?:la )?desconexion total\b", plano
+    )
+    return not es_progreso
 
 
 def bloques_en(texto: str) -> list:
@@ -134,7 +155,7 @@ def extraer_de_post(texto: str) -> list:
     # El aviso no nombra bloques, así que forzamos los seis con su causa propia;
     # el conteo de horas arranca desde este mensaje. El restablecimiento llega
     # luego en avisos normales (restablecimiento / parte de actualización).
-    if re.search(r"desconexi[oó]n total del (sistema electroenerg|sen\b)", plano):
+    if es_inicio_desconexion_total(texto):
         return [
             {"municipios": [], "zonas": [], "causa": "desconexión total del SEN",
              "tipo": "afectacion", "bloque": b}

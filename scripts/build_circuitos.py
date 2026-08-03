@@ -44,6 +44,13 @@ RE_CIRC = re.compile(
     rf"({_COD}(?:{_SEP}{_COD})*)"
     r"\s*([-–:])?\s*(.+?)\s*$"
 )
+# Respaldo para el parte semanal DAF: ocasionalmente la Empresa omite la viñeta
+# en una línea (p. ej. ``AL53 : Zonas...``). Se exige prefijo alfabético y un
+# separador explícito para no convertir números de calles en circuitos.
+RE_CIRC_DAF_SIN_VINETA = re.compile(
+    rf"(?m)^\s*([A-Za-z]{{1,3}}\d{{1,4}}(?:{_SEP}[A-Za-z]{{1,3}}\d{{1,4}})*)"
+    r"\s*[-–:]\s*(.+?)\s*$"
+)
 RE_UN_CODIGO = re.compile(rf"^{_COD}$")
 
 MESES = {
@@ -118,7 +125,10 @@ def extraer_daf_oficial(filas, ahora=None):
             fin_contenido = marcas[i + 1].start() if i + 1 < len(marcas) else len(texto)
             contenido = texto[marca.end():fin_contenido]
             codigos = []
-            for circ in RE_CIRC.finditer(contenido):
+            circuitos_en_texto = list(RE_CIRC.finditer(contenido))
+            circuitos_en_texto += list(RE_CIRC_DAF_SIN_VINETA.finditer(contenido))
+            circuitos_en_texto.sort(key=lambda m: m.start())
+            for circ in circuitos_en_texto:
                 for cod in re.split(_SEP, circ.group(1)):
                     cod = cod.strip().upper()
                     if RE_UN_CODIGO.match(cod) and cod not in codigos:

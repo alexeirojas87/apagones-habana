@@ -61,6 +61,22 @@ class DafOficialTest(unittest.TestCase):
         self.assertFalse(daf["vigente"])
         self.assertEqual(daf["circuitos"], ["L315"])
 
+    def test_admite_circuito_sin_vineta_en_parte_daf(self):
+        filas = [{
+            "message_id": 71897,
+            "fecha": "2026-07-31T04:23:29+00:00",
+            "texto": """Los circuitos protegidos por DAF serán rotados cada viernes.
+🛑DAF: Desde el Viernes 31 hasta el Jueves 06 de Agosto.
+👉 A1227 : Zamora y Los Quemados
+📌Habana del Este:
+AL53 : Zonas: 1, 2, 3, 5, 24, 8, 7, Alamar
+""",
+        }]
+        ahora = datetime(2026, 8, 3, 8, tzinfo=ZoneInfo("America/Havana"))
+        daf = MOD.extraer_daf_oficial(filas, ahora)
+        self.assertTrue(daf["vigente"])
+        self.assertEqual(daf["circuitos"], ["A1227", "AL53"])
+
 
 if __name__ == "__main__":
     unittest.main()

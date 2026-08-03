@@ -1,4 +1,4 @@
-"""Extractor LLM de PARTES OFICIALES (Cloudflare Workers AI): entiende el
+"""Extractor LLM de PARTES OFICIALES (NVIDIA NIM + respaldo Cloudflare): entiende el
 contenido del parte aunque la UNE cambie la redacción/emojis/formato, que es lo
 que rompe los regex una y otra vez.
 
@@ -15,7 +15,7 @@ Diseño (docs/plan-extraccion-llm.md, tarea 2):
     queda sin procesar y se reintenta en la próxima corrida (los regex de
     estado.py siguen siendo la base mientras tanto — tarea 4 invierte eso).
 
-Env: SUPABASE_URL, SUPABASE_SERVICE_KEY, CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_AI_TOKEN
+Env: SUPABASE_URL, SUPABASE_SERVICE_KEY, NVIDIA_API_KEY y credenciales Cloudflare
 """
 
 import json
@@ -23,20 +23,19 @@ import os
 import re
 import sys
 import time
-import urllib.error
-import urllib.request
 from datetime import datetime, timedelta, timezone
 
 from supabase import create_client
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import circuitos_id  # noqa: E402
-import llm_cuota  # noqa: E402
+import llm_provider  # noqa: E402
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE_FILE = os.path.join(RAIZ, "data", "partes_llm.json")
 
 MODELO = os.environ.get("MODELO_PARTES", "@cf/meta/llama-3.3-70b-instruct-fp8-fast")
+MODELO_NVIDIA = os.environ.get("MODELO_NVIDIA_PARTES", "openai/gpt-oss-120b")
 MAX_LLM = int(os.environ.get("MAX_LLM_PARTES", "15"))
 VENTANA_H = 24
 
@@ -66,30 +65,11 @@ RELEVANTE = re.compile(
     re.IGNORECASE)
 
 
-def llm(texto, account, token):
-    body = json.dumps({
-        "messages": [{"role": "system", "content": PROMPT},
-                     {"role": "user", "content": texto[:2500]}],
-        "temperature": 0,
-    }).encode()
-    req = urllib.request.Request(
-        f"https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/{MODELO}",
-        data=body, headers={"Authorization": f"Bearer {token}",
-                            "Content-Type": "application/json"},
-    )
-    r = json.load(urllib.request.urlopen(req, timeout=90)).get("result", {})
-    salida = r.get("response")
-    if not isinstance(salida, str):
-        try:
-            salida = r["choices"][0]["message"]["content"]
-        except (KeyError, IndexError, TypeError):
-            return None
-    salida = salida.replace("```json", "").replace("```", "")
-    m = re.search(r"\{.*\}", salida, re.DOTALL)
-    try:
-        return json.loads(m.group(0)) if m else None
-    except json.JSONDecodeError:
-        return None
+def llm(texto):
+    return llm_provider.extraer_json(
+        [{"role": "system", "content": PROMPT},
+         {"role": "user", "content": texto[:2500]}],
+        "partes", {"nvidia": MODELO_NVIDIA, "cloudflare": MODELO}, timeout=90)
 
 
 def validar(extraccion):
@@ -133,9 +113,6 @@ def validar(extraccion):
 
 def main():
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
-    account = os.environ["CLOUDFLARE_ACCOUNT_ID"]
-    token = os.environ["CLOUDFLARE_AI_TOKEN"]
-
     cache = {}
     if os.path.exists(CACHE_FILE):
         try:
@@ -161,30 +138,11 @@ def main():
             continue
         if nuevos >= MAX_LLM:
             continue  # tope por corrida; la próxima sigue donde quedó
-        if not llm_cuota.puede("partes"):
-            print("presupuesto diario de partes agotado; se sigue mañana")
-            break
-        crudo, err = None, None
-        for intento in range(2):  # un reintento con espera si es límite por minuto
-            try:
-                llm_cuota.registrar("partes")
-                crudo = llm(p["texto"], account, token)
-                break
-            except urllib.error.HTTPError as e:
-                err = e
-                if e.code == 429 and intento == 0:
-                    time.sleep(20)
-                    continue
-                break
-            except Exception as e:
-                err = e
-                break
-        if crudo is None and err is not None:
-            print(f"LLM falló en {mid}: {err}")
+        crudo, uso = llm(p["texto"])
+        if crudo is None:
+            print(f"LLM falló en {mid}: {', '.join(uso['errores']) or 'sin proveedor disponible'}")
             fallos += 1
             if fallos >= 3:
-                if isinstance(err, urllib.error.HTTPError) and err.code == 429:
-                    llm_cuota.marcar_agotada()  # que comentarios_llm no insista hoy
                 break  # cuota agotada o servicio caído: no insistir esta corrida
             continue
         time.sleep(1.5)  # respeta el límite por minuto del free tier
@@ -192,7 +150,8 @@ def main():
         if valido is None:
             fallos += 1
             continue
-        cache[mid] = {"fecha": p["fecha"], **valido, "via": "llm", "modelo": MODELO}
+        cache[mid] = {"fecha": p["fecha"], **valido, "via": "llm",
+                      "proveedor": uso["proveedor"], "modelo": uso["modelo"]}
         nuevos += 1
 
     json.dump(cache, open(CACHE_FILE, "w"), ensure_ascii=False)

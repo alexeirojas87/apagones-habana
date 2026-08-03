@@ -1,4 +1,4 @@
-"""Enriquece los comentarios de vecinos con el LLM (Cloudflare Workers AI) para
+"""Enriquece comentarios con NVIDIA NIM y respaldo Cloudflare para
 extraer señal ubicable que las reglas no capturan: lugar, bloque, horas sin luz.
 Los que reportan sin/con corriente y tienen un lugar geocodificable se guardan en
 comentarios_llm con lat/lon, para pintarlos en el mapa como reportes vecinales.
@@ -16,8 +16,6 @@ import os
 import re
 import sys
 import time
-import urllib.error
-import urllib.request
 from datetime import datetime, timedelta, timezone
 
 from supabase import create_client
@@ -25,11 +23,12 @@ from supabase import create_client
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from geocode_zonas import nominatim, normalizar, resolver_zonas_numeradas  # noqa: E402
 import comentarios_reglas  # noqa: E402  (fallback determinista)
-import llm_cuota  # noqa: E402  (presupuesto diario compartido con partes_llm)
+import llm_provider  # noqa: E402
 
 BBOX_HABANA = (-82.70, 22.90, -81.90, 23.35)
 
 MODELO = os.environ.get("MODELO", "@cf/meta/llama-3.3-70b-instruct-fp8-fast")
+MODELO_NVIDIA = os.environ.get("MODELO_NVIDIA_COMENTARIOS", "openai/gpt-oss-20b")
 # El LLM es la BASE; MAX_LLM acota el gasto por corrida (cuota gratis ~10.000
 # neuronas/día). Lo que exceda el tope, o si el LLM falla/agota cuota, lo procesa
 # el fallback determinista (comentarios_reglas) — así nunca se pierde la señal.
@@ -60,28 +59,11 @@ def prometedor(texto):
     return True
 
 
-def llm(texto, account, token):
-    body = json.dumps({
-        "messages": [{"role": "system", "content": PROMPT}, {"role": "user", "content": texto[:800]}],
-        "temperature": 0,
-    }).encode()
-    req = urllib.request.Request(
-        f"https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/{MODELO}",
-        data=body, headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
-    )
-    r = json.load(urllib.request.urlopen(req, timeout=60)).get("result", {})
-    salida = r.get("response")
-    if not isinstance(salida, str):
-        try:
-            salida = r["choices"][0]["message"]["content"]
-        except (KeyError, IndexError, TypeError):
-            return None
-    salida = salida.replace("```json", "").replace("```", "")
-    m = re.search(r"\{.*\}", salida, re.DOTALL)
-    try:
-        return json.loads(m.group(0)) if m else None
-    except json.JSONDecodeError:
-        return None
+def llm(texto):
+    return llm_provider.extraer_json(
+        [{"role": "system", "content": PROMPT},
+         {"role": "user", "content": texto[:800]}],
+        "comentarios", {"nvidia": MODELO_NVIDIA, "cloudflare": MODELO}, timeout=60)
 
 
 def geocodificar_lugar(lugar, osm, cache):
@@ -103,7 +85,6 @@ def geocodificar_lugar(lugar, osm, cache):
 def main():
     ahora = datetime.now(timezone.utc)
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
-    account, token = os.environ["CLOUDFLARE_ACCOUNT_ID"], os.environ["CLOUDFLARE_AI_TOKEN"]
     desde = (ahora - timedelta(hours=VENTANA_H)).isoformat()
 
     recientes = (
@@ -137,20 +118,11 @@ def main():
         # (sin señal clara, o con señal pero sin lugar ubicable). El presupuesto
         # diario protege la cuota de los partes oficiales.
         r = None
-        if llm_ok and usados_llm < MAX_LLM and llm_cuota.puede("comentarios"):
-            try:
-                llm_cuota.registrar("comentarios")
-                r = llm(m["texto"], account, token)
-                usados_llm += 1
-            except urllib.error.HTTPError as e:
-                if e.code == 429:
-                    print("Workers AI 429 (cuota): se sigue solo con reglas")
-                    llm_ok = False
-                    llm_cuota.marcar_agotada()
-                else:
-                    raise
-            except Exception:
-                llm_ok = False  # cualquier fallo del LLM -> solo reglas
+        if llm_ok and usados_llm < MAX_LLM:
+            r, uso = llm(m["texto"])
+            usados_llm += uso["intentos"]
+            if r is None:
+                llm_ok = False  # sin proveedores/cuota: sigue solo con reglas
 
         if isinstance(r, dict):
             fila = {

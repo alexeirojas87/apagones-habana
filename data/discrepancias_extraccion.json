@@ -216,5 +216,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 09:47am se afectó el servicio eléctrico del siguiente circuito: 👉A 815: Alrededores de calles calzada de Vento d"
+ },
+ "72437": {
+  "fecha": "2026-08-03T12:42:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1125",
+   "H341",
+   "PZ10",
+   "R461"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢 Actualización sobre el restablecimiento SEN: 👉 A esta hora iniciando el arranque de: • Unidades 1 y 2 CTE Ernesto Guevara De La Serna, • Unidades 5 y 8 CTE Má"
  }
 }

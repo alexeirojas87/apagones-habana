@@ -216,8 +216,9 @@ def circuitos_llm(message_id):
     dudosos = set(v.get("por_confirmar") or [])
     out = []
     for item in v.get("circuitos") or []:
+        con_evidencia = set(item.get("codigos_estado") or [])
         for cod in item.get("codigos") or []:
-            if cod not in dudosos:
+            if cod not in dudosos and cod in con_evidencia:
                 out.append({**item, "codigo": cod})
     return out
 
@@ -461,8 +462,9 @@ def circuitos_parciales(sb, eventos, ahora, cajas, sen_desde=None):
             continue
         dudosos = set(v.get("por_confirmar") or [])
         for item in v.get("circuitos") or []:
+            con_evidencia = set(item.get("codigos_estado") or [])
             for cod in item.get("codigos") or []:
-                if cod in dudosos or cod in ya_cod:
+                if cod in dudosos or cod in ya_cod or cod not in con_evidencia:
                     continue
                 ya_cod.add(cod)
                 info = cat_coords.get(cod) or {}

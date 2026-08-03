@@ -293,7 +293,9 @@ def main():
 
         # --- Extracción LLM de ESTE post (si existe): complementa/corrige ---
         v = llm_cache.get(str(f.get("message_id")))
-        if v and v.get("via") == "llm":
+        # Las cachés anteriores a v2 no registran evidencia del código original;
+        # no deben modificar ni estado ni metadatos hasta ser revalidadas.
+        if v and v.get("via") == "llm" and v.get("validador_version") == 2:
             dudosos = set(v.get("por_confirmar") or [])
             for item in v.get("circuitos") or []:
                 for cod in item.get("codigos") or []:

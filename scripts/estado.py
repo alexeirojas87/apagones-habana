@@ -211,7 +211,7 @@ def partes_llm_cache():
 def circuitos_llm(message_id):
     """Circuitos validados que el LLM extrajo de un post (sin los por_confirmar)."""
     v = partes_llm_cache().get(str(message_id))
-    if not v or v.get("via") != "llm":
+    if not v or v.get("via") != "llm" or v.get("validador_version") != 2:
         return []
     dudosos = set(v.get("por_confirmar") or [])
     out = []
@@ -456,7 +456,8 @@ def circuitos_parciales(sb, eventos, ahora, cajas, sen_desde=None):
     except Exception:
         pass
     for mid, v in partes_llm_cache().items():
-        if v.get("via") != "llm" or v.get("tipo") != "restablecimiento":
+        if v.get("via") != "llm" or v.get("validador_version") != 2 or \
+                v.get("tipo") != "restablecimiento":
             continue
         if (v.get("fecha") or "") < corte:
             continue

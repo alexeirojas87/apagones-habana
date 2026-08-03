@@ -17,24 +17,6 @@
   "solo_regex": [],
   "extracto": "⚡️Consumidores del municipio Plaza, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉21/ 24 y 26🛑⚡️"
  },
- "71223": {
-  "fecha": "2026-07-27T22:51:39+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2075"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 6: 14 pm comienza el restablecimiento del servicio en los siguientes circuitos: 👉H341:Cuadrante desde Vía Blanca"
- },
- "71222": {
-  "fecha": "2026-07-27T22:50:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2075"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 6: 14 pm comienza el restablecimiento del servicio en los siguientes circuitos: 👉H341:Cuadrante desde Vía Blanca"
- },
  "71578": {
   "fecha": "2026-07-29T23:30:24+00:00",
   "tipo_llm": "afectacion",

@@ -44,15 +44,6 @@
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 01:34 PM comienza el restablecimiento del servicio en los siguientes circuitos: 👉 SR860:Dulce Nombre, Santa Marí"
  },
- "71182": {
-  "fecha": "2026-07-27T15:59:22+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "AL52"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Plaza, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉21/8 y 10.🛑⚡️"
- },
  "71578": {
   "fecha": "2026-07-29T23:30:24+00:00",
   "tipo_llm": "afectacion",

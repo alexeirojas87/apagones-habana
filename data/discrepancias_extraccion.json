@@ -168,5 +168,17 @@
   ],
   "solo_regex": [],
   "extracto": "📉Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentran"
+ },
+ "72478": {
+  "fecha": "2026-08-04T16:47:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1470",
+   "D1380",
+   "D836",
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12: 23 pm comienza el restablecimiento del servicio eléctrico en los siguiente circuitos: 👉D1372:Las Cañas, Cala"
  }
 }

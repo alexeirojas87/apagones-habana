@@ -261,5 +261,17 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 04:40 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉OP 318: Soterrado Habana Vieja. 👉 OP410 👉"
+ },
+ "72538": {
+  "fecha": "2026-08-04T22:07:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1242",
+   "A1075",
+   "A980",
+   "R461"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 5:21 pm quedó restablecido el servicio de los siguientes circuitos: 👉SR830:Reparto Delicias 👉R464:Reparto Modelo"
  }
 }

@@ -197,5 +197,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣Averías existentes hasta el momento 🚨 Averías Primarias: 📌Municipio: 10 de octubre-Cerro 👉Dirección: Alrededores de los cuadrantes: Desde calle Úrsula hasta Ca"
+ },
+ "72484": {
+  "fecha": "2026-08-04T18:10:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1290"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 01:26 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉A1547: Zona de la Finca de Mamoncillo. Re"
  }
 }

@@ -236,5 +236,30 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Cerro,por una avería primaria en calle Albear / 1ra y Palatino se encuentra afectado el circuito : 👉-C7: Alrededores del cuadrante d"
+ },
+ "72524": {
+  "fecha": "2026-08-04T21:08:41+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A940"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 04:50 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉D860:Repartos Wajay, INAV, Ampliación del"
+ },
+ "72522": {
+  "fecha": "2026-08-04T21:01:20+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP329",
+   "OP406",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 04:40 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉OP 318: Soterrado Habana Vieja. 👉 OP410 👉"
  }
 }

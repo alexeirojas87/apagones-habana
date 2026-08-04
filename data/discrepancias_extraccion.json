@@ -206,5 +206,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 01:26 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉A1547: Zona de la Finca de Mamoncillo. Re"
+ },
+ "72495": {
+  "fecha": "2026-08-04T19:04:08+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1861"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Informamos a los consumidores de los municipios Marianao-Lisa que por avería en la subestación San Agustín se encuentran afectados los siguientes circuitos: 📣M"
  }
 }

@@ -273,5 +273,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 5:21 pm quedó restablecido el servicio de los siguientes circuitos: 👉SR830:Reparto Delicias 👉R464:Reparto Modelo"
+ },
+ "72547": {
+  "fecha": "2026-08-04T23:41:51+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1223"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Informamos a los consumidores de los municipios Marianao-Lisa-Playa que por un disparo por 110KV en la subestación Victoria de Girón se encuentran afectados lo"
  }
 }

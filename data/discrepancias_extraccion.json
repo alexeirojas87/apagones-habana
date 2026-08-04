@@ -215,5 +215,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Informamos a los consumidores de los municipios Marianao-Lisa que por avería en la subestación San Agustín se encuentran afectados los siguientes circuitos: 📣M"
+ },
+ "72499": {
+  "fecha": "2026-08-04T19:26:45+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "217",
+   "247",
+   "286",
+   "452"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Averías por Transformadores Dañados: 📌Municipio: Habana del Este. 👉Dirección: 452/ 7ma y 9na, Alturas de Boca Ciega. 👉Dirección: 33/ Maceo y Los Pinos, Cojimar"
  }
 }

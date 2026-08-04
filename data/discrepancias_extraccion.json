@@ -180,5 +180,22 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12: 23 pm comienza el restablecimiento del servicio eléctrico en los siguiente circuitos: 👉D1372:Las Cañas, Cala"
+ },
+ "72477": {
+  "fecha": "2026-08-04T16:21:54+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1007",
+   "A1075",
+   "A1203",
+   "A815",
+   "AL53",
+   "GC12",
+   "GC13",
+   "OP325",
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Averías existentes hasta el momento 🚨 Averías Primarias: 📌Municipio: 10 de octubre-Cerro 👉Dirección: Alrededores de los cuadrantes: Desde calle Úrsula hasta Ca"
  }
 }

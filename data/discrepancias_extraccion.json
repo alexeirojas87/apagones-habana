@@ -227,5 +227,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Averías por Transformadores Dañados: 📌Municipio: Habana del Este. 👉Dirección: 452/ 7ma y 9na, Alturas de Boca Ciega. 👉Dirección: 33/ Maceo y Los Pinos, Cojimar"
+ },
+ "72501": {
+  "fecha": "2026-08-04T19:59:43+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C7"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Cerro,por una avería primaria en calle Albear / 1ra y Palatino se encuentra afectado el circuito : 👉-C7: Alrededores del cuadrante d"
  }
 }

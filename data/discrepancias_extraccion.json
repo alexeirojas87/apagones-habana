@@ -63,15 +63,6 @@
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 06:44 PM se afectó el servicio eléctrico en los circuitos: 👉 H442: Reparto Barrio Obrero, Guardiola, Jacomino, C"
  },
- "71560": {
-  "fecha": "2026-07-29T22:22:22+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Informamos que se localizan AVERÍAS SECUNDARIAS por TRANSFORMADOR DAÑADO en: 👉San Miguel del Padrón (S515): Ctra del Pitirre Fca la Toya.🚨"
- },
  "71992": {
   "fecha": "2026-07-31T23:49:54+00:00",
   "tipo_llm": "afectacion",

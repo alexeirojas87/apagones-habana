@@ -26,15 +26,6 @@
   "solo_regex": [],
   "extracto": "🚨Informamos que se localizan AVERÍAS SECUNDARIAS por TRANSFORMADOR DAÑADO en: 👉Arroyo Naranjo (A1008): Anita / Libertad y Pedro Nuevo.🚨"
  },
- "71575": {
-  "fecha": "2026-07-29T23:22:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SR850"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Queda reparada la Avería Secundaría por Transformador Dañado que afectaba: 📌Cotorro (SR850): Callejón Rancho Francisco✅"
- },
  "71992": {
   "fecha": "2026-07-31T23:49:54+00:00",
   "tipo_llm": "afectacion",

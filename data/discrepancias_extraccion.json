@@ -363,5 +363,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Averías existentes hasta el momento: 🚨Averías Primarias: 📌Municipio: Boyeros 👉Dirección: Reparto Ciudad de la Construcción Alrededores de calles Cowley, Rodríg"
+ },
+ "72685": {
+  "fecha": "2026-08-05T16:46:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1247"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:12 PM comenzó el restablecimiento del servicio en los siguientes circuitos: 👉 L317:Alrededores de calles 70 d"
  }
 }

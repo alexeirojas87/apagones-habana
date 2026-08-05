@@ -306,5 +306,14 @@
    "R456"
   ],
   "extracto": "📣🚨Informamos a la población que a partir de las 07:29 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉A1007: Alrededores de calles: -Alegría, M"
+ },
+ "72500": {
+  "fecha": "2026-08-04T19:55:35+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "T41"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:54 pm se afectan 503 MW distribuidos en 151 circuitos de distribución. A continuación,"
  }
 }

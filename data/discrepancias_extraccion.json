@@ -333,5 +333,14 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️Consumidores del municipio Centro Habana , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉San Lazaro / Aramburu y Hospi"
+ },
+ "72588": {
+  "fecha": "2026-08-05T04:35:02+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1008"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:34 pm se afectan 554 MW distribuidos en 144 circuitos de distribución. A continuación,"
  }
 }

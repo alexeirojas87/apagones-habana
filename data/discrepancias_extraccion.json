@@ -72,15 +72,6 @@
   "solo_regex": [],
   "extracto": "🚨Informamos que se localizan AVERÍAS SECUNDARIAS por TRANSFORMADOR DAÑADO en: 👉San Miguel del Padrón (S515): Ctra del Pitirre Fca la Toya.🚨"
  },
- "71558": {
-  "fecha": "2026-07-29T22:12:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1244"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Queda reparada la Avería Secundaría por Transformador Dañado que afectaba: 📌23 entre 46 y 48 (1244)✅"
- },
  "71992": {
   "fecha": "2026-07-31T23:49:54+00:00",
   "tipo_llm": "afectacion",

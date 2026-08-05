@@ -35,34 +35,6 @@
   "solo_regex": [],
   "extracto": "✅Queda reparada la Avería Secundaría por Transformador Dañado que afectaba: 📌Cotorro (SR850): Callejón Rancho Francisco✅"
  },
- "71571": {
-  "fecha": "2026-07-29T23:03:49+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A367"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 06:56 PM se afectó el servicio eléctrico en los circuitos: 👉A327: Calle 100 y Ojo de Agua, Zona Guaso Managua 👉A"
- },
- "71569": {
-  "fecha": "2026-07-29T23:01:14+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 06:53 PM se afectó el servicio eléctrico en los circuitos: 👉 SG313:Alrededores de calles avenida 409 y calle 212"
- },
- "71567": {
-  "fecha": "2026-07-29T22:56:16+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1328",
-   "M609"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 06:44 PM se afectó el servicio eléctrico en los circuitos: 👉 H442: Reparto Barrio Obrero, Guardiola, Jacomino, C"
- },
  "71992": {
   "fecha": "2026-07-31T23:49:54+00:00",
   "tipo_llm": "afectacion",

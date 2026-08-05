@@ -291,5 +291,20 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 06:03 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉A945: Reparto Colonia. Alrededores de ave"
+ },
+ "72559": {
+  "fecha": "2026-08-05T00:44:40+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [],
+  "solo_regex": [
+   "1175",
+   "1246",
+   "1851",
+   "D1280",
+   "GC13",
+   "R453",
+   "R456"
+  ],
+  "extracto": "📣🚨Informamos a la población que a partir de las 07:29 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉A1007: Alrededores de calles: -Alegría, M"
  }
 }

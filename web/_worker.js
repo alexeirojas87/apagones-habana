@@ -175,72 +175,43 @@ const CHAT_PROMPT = "Eres el asistente de Apagones Habana, un mapa del estado el
 async function chatRAG(consulta, env, request) {
   if (!env.NAN_API_KEY) return { respuesta: "El chat no está configurado." };
   try {
-  // 1. Embed consulta
-  const embResp = await fetch(`${NAN_BASE(env)}/embeddings`, {
-    method: "POST",
-    headers: { authorization: `Bearer ${env.NAN_API_KEY}`, "content-type": "application/json" },
-    body: JSON.stringify({ model: "qwen3-embedding", input: consulta.slice(0, 512) }),
-  });
-  const embData = await embResp.json();
-  const vec = embData.data?.[0]?.embedding;
-  if (!vec) return { respuesta: "Error al procesar la consulta." + JSON.stringify(embData).slice(0, 200) };
+    const baseUrl = `https://${request.url.split("/")[2]}`;
+    const estadoReq = await fetch(`${baseUrl}/data/estado.json?t=${Date.now()}`).catch(() => null);
+    let contexto = "";
+    if (estadoReq && estadoReq.ok) {
+      const est = await estadoReq.json();
+      const bloq = est.bloques || {};
+      const lineas = Object.entries(bloq).map(([b, v]) =>
+        `Bloque ${b}: ${v.estado}${v.desde ? " desde " + (v.desde || "").slice(0,16) : ""}${v.causa ? " (" + v.causa + ")" : ""}`
+      ).join("\n");
+      const muns = Object.entries(est.municipios || {}).slice(0, 8)
+        .map(([m, v]) => `${m}: ${v.reportes_sin || 0} reportes`).join("\n");
+      const data = [lineas, muns].filter(Boolean).join("\n\n");
+      contexto = data || "(sin datos de estado ahora)";
+    }
 
-  function coseno(a, b) {
-    let dot = 0, na = 0, nb = 0;
-    for (let i = 0; i < a.length; i++) { dot += a[i] * b[i]; na += a[i] * a[i]; nb += b[i] * b[i]; }
-    return dot / (Math.sqrt(na) * Math.sqrt(nb));
+    const userMsg = contexto
+      ? `Datos actuales:\n${contexto}\n\nPregunta: ${consulta}\n\nResponde usando los datos. Si preguntan por un lugar que no aparece, dilo. Sé conciso.`
+      : `Pregunta: ${consulta}\n\nNo tengo datos del estado eléctrico ahora. Sugiere al usuario visitar el mapa.`;
+
+    const genResp = await fetch(`${NAN_BASE(env)}/chat/completions`, {
+      method: "POST",
+      headers: { authorization: `Bearer ${env.NAN_API_KEY}`, "content-type": "application/json" },
+      body: JSON.stringify({
+        model: "deepseek-v4-flash",
+        messages: [
+          { role: "system", content: CHAT_PROMPT },
+          { role: "user", content: userMsg },
+        ],
+        temperature: 0.3, max_tokens: 1024,
+      }),
+    });
+    const genData = await genResp.json();
+    const texto = genData.choices?.[0]?.message?.content;
+    return { respuesta: texto || "No pude generar respuesta." };
+  } catch (e) {
+    return { respuesta: "Error: " + (e.message || e) };
   }
-
-  // 2. Cargar embeddings desde assets estáticos (archivos generados por chatbot/embeddings.py)
-  const baseUrl = `https://${request.url.split("/")[2]}`;
-  const [embReq, metaReq] = await Promise.all([
-    fetch(`${baseUrl}/data/chatbot_embeddings.json`).catch(() => null),
-    fetch(`${baseUrl}/data/chatbot_metadata.json`).catch(() => null),
-  ]);
-  if (!embReq || !metaReq || !embReq.ok || !metaReq.ok) {
-    return { respuesta: "Base de conocimiento no disponible ahora. Los embeddings se generan con cada corrida del pipeline." };
-  }
-  const [embeddings, metadataRaw] = await Promise.all([embReq.json(), metaReq.json()]);
-  const metadata = {};
-  for (const m of metadataRaw) metadata[m.id] = m;
-
-  // 3. Similitud coseno → top 20
-  const scores = embeddings.map((e) => ({ id: e.id, sim: coseno(vec, e.embedding) }));
-  scores.sort((a, b) => b.sim - a.sim);
-  const top = scores.slice(0, 5);
-  const docs = top.map((t) => {
-    const m = metadata[t.id];
-    return m ? `[${(m.fecha || "").slice(0, 16)}] ${m.texto || ""}` : "";
-  }).filter(Boolean);
-  if (!docs.length) return { respuesta: "No encontré información relevante para tu consulta." };
-
-  // 4. Rerank NaN
-  const rerankResp = await fetch(`${NAN_BASE(env)}/rerank`, {
-    method: "POST",
-    headers: { authorization: `Bearer ${env.NAN_API_KEY}`, "content-type": "application/json" },
-    body: JSON.stringify({ model: "rerank", query: consulta, documents: docs }),
-  });
-  const rerankData = await rerankResp.json();
-  const resultados = (rerankData.results || []).sort((a, b) => b.relevance_score - a.relevance_score);
-  const topDocs = resultados.slice(0, 3).map((r) => docs[r.index]).filter(Boolean);
-  const contexto = topDocs.join("\n");
-
-  // 5. deepseek genera respuesta
-  const genResp = await fetch(`${NAN_BASE(env)}/chat/completions`, {
-    method: "POST",
-    headers: { authorization: `Bearer ${env.NAN_API_KEY}`, "content-type": "application/json" },
-    body: JSON.stringify({
-      model: "deepseek-v4-flash",
-      messages: [
-        { role: "system", content: CHAT_PROMPT },
-        { role: "user", content: `Contexto:\n${contexto}\n\nPregunta: ${consulta}` },
-      ],
-      temperature: 0.3, max_tokens: 1024,
-    }),
-  });
-  const genData = await genResp.json();
-  return { respuesta: genData.choices?.[0]?.message?.content || "No pude generar una respuesta: " + JSON.stringify(genData).slice(0, 200) };
-  } catch (e) { return { respuesta: "Error interno: " + e.message }; }
 }
 
 export default {

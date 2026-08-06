@@ -1,17 +1,22 @@
-"""Agrega todo el histórico (eventos + comentarios_llm) en web/data/analitica.json,
-un archivo compacto que la pestaña de análisis filtra por rango de fechas del lado
-del cliente. Se corre en el cron (barato, sin red).
+"""Agrega todo el histórico (eventos + comentarios_llm) en web/data/analitica.json.
+También genera resumen diario y análisis de patrones con deepseek-v4-flash de NaN.
 
-Formato: registros mínimos por evento para que el frontend calcule cualquier
-ranking/serie según el rango elegido, sin recalcular en el servidor.
+Se corre en el cron después de estado.py (los datos del día ya están completos).
 """
 
 import json
 import os
 import re
+import sys
+import urllib.request
 from datetime import datetime, timedelta, timezone
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from supabase import create_client
+
+NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nanbuilders.ai/v1")
+MODELO_NAN = os.environ.get("MODELO_NAN_PARTES", "deepseek-v4-flash")
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 
@@ -155,6 +160,90 @@ def posts_like(sb, patron):
         desde += 1000
 
 
+def _nan_chat(messages, api_key):
+    body = json.dumps({
+        "model": MODELO_NAN, "messages": messages,
+        "temperature": 0.3, "max_tokens": 1024,
+    }).encode()
+    req = urllib.request.Request(
+        f"{NAN_BASE_URL}/chat/completions", data=body,
+        headers={"Authorization": f"Bearer {api_key}",
+                 "Content-Type": "application/json"},
+    )
+    data = json.load(urllib.request.urlopen(req, timeout=60))
+    return data["choices"][0]["message"]["content"]
+
+
+def generar_resumen_diario(eventos, comentarios, api_key):
+    total_eventos = len(eventos)
+    tipos = {}
+    bloques = set()
+    municipios = set()
+    for e in eventos:
+        tipos[e[1]] = tipos.get(e[1], 0) + 1
+        if e[2]: bloques.add(e[2])
+        for m in e[4]: municipios.add(m)
+    reportes_sin = sum(1 for c in comentarios if c[1] == "sin_corriente")
+    reportes_con = sum(1 for c in comentarios if c[1] == "con_corriente")
+    prompt = (
+        f"Resume la situación eléctrica de La Habana en las últimas 24 horas. "
+        f"Datos: {total_eventos} eventos oficiales ({', '.join(f'{k}: {v}' for k, v in tipos.items())}), "
+        f"{len(bloques)} bloques afectados, {len(municipios)} municipios mencionados, "
+        f"{reportes_sin} reportes de sin corriente, {reportes_con} de con corriente. "
+        f"Genera 3-4 líneas en español informal. No des datos de días anteriores."
+    )
+    try:
+        return _nan_chat([
+            {"role": "system", "content": "Eres un analista de datos eléctricos de La Habana. Sé conciso."},
+            {"role": "user", "content": prompt},
+        ], api_key)
+    except Exception:
+        return None
+
+
+def detectar_patrones(parte_horas, evento_counts, api_key):
+    if len(parte_horas) < 10:
+        return None
+    horas_por_bloque = {}
+    for f, b, h in parte_horas:
+        horas_por_bloque.setdefault(b, []).append(h)
+    resumen = {}
+    for b, hs in horas_por_bloque.items():
+        if len(hs) >= 3:
+            resumen[b] = {"veces": len(hs), "promedio_h": round(sum(hs) / len(hs), 1),
+                          "max_h": max(hs)}
+    prompt = (
+        f"Analiza estos datos de cortes eléctricos en La Habana (últimos 30 días):\n"
+        f"Horas promedio por bloque: {json.dumps(resumen)}\n"
+        f"Eventos por tipo: {json.dumps(evento_counts)}\n"
+        f"¿Hay algún patrón destacable? Responde en 2-3 líneas en español."
+    )
+    try:
+        return _nan_chat([
+            {"role": "system", "content": "Eres un analista de datos."},
+            {"role": "user", "content": prompt},
+        ], api_key)
+    except Exception:
+        return None
+
+
+def generar_alertas(parte_horas, eventos, api_key):
+    if len(parte_horas) < 5:
+        return []
+    alertas = []
+    frecuencias = {}
+    for f, b, h in parte_horas:
+        frecuencias[b] = frecuencias.get(b, 0) + 1
+    for b, n in frecuencias.items():
+        if n >= 3:
+            alertas.append({
+                "bloque": b, "tipo": "cortes_frecuentes",
+                "mensaje": f"Bloque {b}: {n} cortes en las últimas horas.",
+                "severidad": "alta" if n >= 5 else "media",
+            })
+    return alertas
+
+
 def main():
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
 
@@ -231,10 +320,21 @@ def main():
         "comentarios": comentarios,
         "mw": mw,
         "parte_horas": parte_horas,
-        "averias": averias,  # [fecha_primera, tipo, municipio] — averías distintas
+        "averias": averias,
         "horas_sin_dia": horas_sin_dia,
-        "circuitos_partes": circuitos_partes,  # [fecha, codigo, horas] por parte de déficit
+        "circuitos_partes": circuitos_partes,
+        "resumen_diario": None,
+        "patrones": None,
+        "alertas": [],
     }
+    api_key = os.environ.get("NAN_API_KEY")
+    if api_key:
+        salida["resumen_diario"] = generar_resumen_diario(eventos, comentarios, api_key)
+        evento_counts = {}
+        for e in eventos:
+            evento_counts[e[1]] = evento_counts.get(e[1], 0) + 1
+        salida["patrones"] = detectar_patrones(parte_horas, evento_counts, api_key)
+        salida["alertas"] = generar_alertas(parte_horas, eventos, api_key)
     destino = os.path.join(RAIZ, "web", "data", "analitica.json")
     json.dump(salida, open(destino, "w"), ensure_ascii=False)
     kb = os.path.getsize(destino) // 1024

@@ -50,6 +50,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_AI_TOKEN: ${{ secrets.CLOUDFLARE_AI_TOKEN }}
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          NAN_API_KEY: ${{ secrets.NAN_API_KEY }}
 
       # Comparador regex vs LLM: registra discrepancias para la verificación diaria
       - run: python scripts/comparar_extraccion.py || echo "comparador falló, se continúa"
@@ -65,6 +66,7 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_AI_TOKEN: ${{ secrets.CLOUDFLARE_AI_TOKEN }}
           NVIDIA_API_KEY: ${{ secrets.NVIDIA_API_KEY }}
+          NAN_API_KEY: ${{ secrets.NAN_API_KEY }}
 
       - run: python scripts/estado.py
         env:
@@ -86,6 +88,14 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          NAN_API_KEY: ${{ secrets.NAN_API_KEY }}
+
+      # Genera embeddings para el chatbot (best-effort)
+      - run: python scripts/chatbot/embeddings.py || echo "chatbot embeddings falló, se continúa"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          NAN_API_KEY: ${{ secrets.NAN_API_KEY }}
 
       # Primero el catálogo: build_partes conserva luego la última mención
       # enlazada por cada circuito, aunque haya salido de su ventana de 7 días.

@@ -172,7 +172,7 @@ const NAN_BASE = (env) => env.NAN_BASE_URL || "https://api.nanbuilders.ai/v1";
 
 const CHAT_PROMPT = "Eres el asistente de Apagones Habana, un mapa del estado eléctrico de La Habana. Responde usando la información proporcionada. Sé conciso e informal. Si no hay datos relevantes, dilo amablemente.";
 
-async function chatRAG(consulta, env) {
+async function chatRAG(consulta, env, request) {
   if (!env.NAN_API_KEY) return { respuesta: "El chat no está configurado." };
 
   // 1. Embed consulta
@@ -191,12 +191,15 @@ async function chatRAG(consulta, env) {
     return dot / (Math.sqrt(na) * Math.sqrt(nb));
   }
 
-  // 2. Cargar embeddings desde assets estáticos
+  // 2. Cargar embeddings desde assets estáticos (archivos generados por chatbot/embeddings.py)
+  const baseUrl = `https://${request.url.split("/")[2]}`;
   const [embReq, metaReq] = await Promise.all([
-    env.ASSETS.fetch(new Request("https://fake/data/chatbot_embeddings.json")).catch(() => null),
-    env.ASSETS.fetch(new Request("https://fake/data/chatbot_metadata.json")).catch(() => null),
+    fetch(`${baseUrl}/data/chatbot_embeddings.json`).catch(() => null),
+    fetch(`${baseUrl}/data/chatbot_metadata.json`).catch(() => null),
   ]);
-  if (!embReq || !metaReq) return { respuesta: "Base de conocimiento no disponible ahora." };
+  if (!embReq || !metaReq || !embReq.ok || !metaReq.ok) {
+    return { respuesta: "Base de conocimiento no disponible ahora. Los embeddings se generan con cada corrida del pipeline." };
+  }
   const [embeddings, metadataRaw] = await Promise.all([embReq.json(), metaReq.json()]);
   const metadata = {};
   for (const m of metadataRaw) metadata[m.id] = m;
@@ -257,7 +260,7 @@ export default {
     if (url.pathname === "/api/reportes") return listarReportes(env);
     if (url.pathname === "/api/chat" && request.method === "POST") {
       const body = await request.json();
-      const resultado = await chatRAG(String(body.consulta || ""), env);
+      const resultado = await chatRAG(String(body.consulta || ""), env, request);
       return new Response(JSON.stringify(resultado), {
         headers: { "content-type": "application/json", "access-control-allow-origin": "*" },
       });

@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 GRUPO = "EmpresaElectricaDeLaHabana"
 LIMITE_POR_CORRIDA = 20
 
-NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nanbuilders.ai/v1")
+NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nan.builders/v1")
 MODELO_WHISPER = os.environ.get("MODELO_WHISPER", "whisper")
 
 

@@ -26,7 +26,7 @@ RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE = os.path.join(RAIZ, "data", "geocache.json")
 FALLOS = os.path.join(RAIZ, "data", "geocode_fallos.txt")
 
-NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nanbuilders.ai/v1")
+NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nan.builders/v1")
 MODELO_NAN = os.environ.get("MODELO_NAN_GEOCODE", "deepseek-v4-flash")
 MODELO_CF = os.environ.get("MODELO", "@cf/meta/llama-3.3-70b-instruct-fp8-fast")
 

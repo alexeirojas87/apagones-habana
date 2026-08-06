@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from supabase import create_client
 
-NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nanbuilders.ai/v1")
+NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nan.builders/v1")
 MODELO_NAN = os.environ.get("MODELO_NAN_PARTES", "deepseek-v4-flash")
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")

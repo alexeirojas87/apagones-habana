@@ -168,7 +168,7 @@ async function crearSugerencia(request, env) {
   return json({ ok: true });
 }
 
-const NAN_BASE = (env) => env.NAN_BASE_URL || "https://api.nanbuilders.ai/v1";
+const NAN_BASE = (env) => env.NAN_BASE_URL || "https://api.nan.builders/v1";
 
 const CHAT_PROMPT = "Eres el asistente de Apagones Habana, un mapa del estado eléctrico de La Habana. Responde usando la información proporcionada. Sé conciso e informal. Si no hay datos relevantes, dilo amablemente.";
 

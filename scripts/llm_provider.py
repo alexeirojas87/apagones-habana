@@ -15,7 +15,7 @@ import urllib.request
 import llm_cuota
 
 NVIDIA_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
-NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nanbuilders.ai/v1")
+NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nan.builders/v1")
 
 
 def proveedor_preferido():

@@ -299,5 +299,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:12 PM se afectó el servicio eléctrico en los siguientes circuitos: D640: La Concepción, Villapol, Ampliación "
+ },
+ "72798": {
+  "fecha": "2026-08-06T03:06:12+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "102",
+   "103",
+   "105"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉102 / 103 y 105.🛑⚡️"
  }
 }

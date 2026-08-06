@@ -31,7 +31,7 @@ DIAS_HISTORICO = 90  # últimos 90 días
 def embed(texto, api_key):
     body = json.dumps({
         "model": MODELO_EMBED,
-        "input": texto[:2048],
+        "input": [texto[:2048]],
     }).encode()
     req = urllib.request.Request(
         f"{NAN_BASE_URL}/embeddings", data=body,

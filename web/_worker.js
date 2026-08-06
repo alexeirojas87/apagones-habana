@@ -176,23 +176,29 @@ async function chatRAG(consulta, env, request) {
   if (!env.NAN_API_KEY) return { respuesta: "El chat no está configurado." };
   try {
     const baseUrl = `https://${request.url.split("/")[2]}`;
-    const estadoReq = await fetch(`${baseUrl}/data/estado.json?t=${Date.now()}`).catch(() => null);
+    const [estadoReq, circuitosReq] = await Promise.all([
+      fetch(`${baseUrl}/data/estado.json?t=${Date.now()}`).catch(() => null),
+      fetch(`${baseUrl}/data/circuitos.json?t=${Date.now()}`).catch(() => null),
+    ]);
     let contexto = "";
-    if (estadoReq && estadoReq.ok) {
+    if (estadoReq && estadoReq.ok && circuitosReq && circuitosReq.ok) {
       const est = await estadoReq.json();
-      const bloq = est.bloques || {};
-      const lineas = Object.entries(bloq).map(([b, v]) =>
-        `Bloque ${b}: ${v.estado}${v.desde ? " desde " + (v.desde || "").slice(0,16) : ""}${v.causa ? " (" + v.causa + ")" : ""}`
-      ).join("\n");
+      const cat = await circuitosReq.json();
+      const circuitos = (cat.circuitos || []).filter(c => c.estado === "sin servicio").slice(0, 20);
+      const circs = circuitos.map(c => `${c.codigo}: ${c.calles ? c.calles.slice(0, 60) : ""}${c.municipio ? " (" + c.municipio + ")" : ""}`).join("\n");
       const muns = Object.entries(est.municipios || {}).slice(0, 8)
-        .map(([m, v]) => `${m}: ${v.reportes_sin || 0} reportes`).join("\n");
-      const data = [lineas, muns].filter(Boolean).join("\n\n");
-      contexto = data || "(sin datos de estado ahora)";
+        .map(([m, v]) => `${m}: ${v.reportes_sin || 0} reportes sin luz`).join("\n");
+      const reportes = (est.reportes_llm || []).slice(0, 10)
+        .map(r => `${r.lugar}: ${r.tipo === "sin_corriente" ? "sin luz" : "con luz"}`).join("\n");
+      const partes = [circs ? "Circuitos sin servicio:\n" + circs : "",
+                     muns ? "Reportes por municipio:\n" + muns : "",
+                     reportes ? "Reportes vecinales recientes:\n" + reportes : ""].filter(Boolean).join("\n\n");
+      contexto = partes || "(sin datos ahora)";
     }
 
-    const userMsg = contexto
-      ? `Datos actuales:\n${contexto}\n\nPregunta: ${consulta}\n\nResponde usando los datos. Si preguntan por un lugar que no aparece, dilo. Sé conciso.`
-      : `Pregunta: ${consulta}\n\nNo tengo datos del estado eléctrico ahora. Sugiere al usuario visitar el mapa.`;
+    const prompt = contexto
+      ? `Datos actuales de La Habana (la UNE reporta por circuito, no por bloque):\n${contexto}\n\nPregunta: ${consulta}\n\nResponde usando los datos. Si preguntan por un lugar que no aparece en los datos, dilo. Sé conciso.`
+      : `Pregunta: ${consulta}\n\nNo tengo datos del estado eléctrico ahora. Sugiere al usuario visitar el mapa en https://apagones-habana.pages.dev`;
 
     const genResp = await fetch(`${NAN_BASE(env)}/chat/completions`, {
       method: "POST",
@@ -200,8 +206,8 @@ async function chatRAG(consulta, env, request) {
       body: JSON.stringify({
         model: "deepseek-v4-flash",
         messages: [
-          { role: "system", content: CHAT_PROMPT },
-          { role: "user", content: userMsg },
+          { role: "system", content: "Eres el asistente de Apagones Habana, un mapa del estado eléctrico de La Habana. La UNE reporta por circuito, no por bloque. Responde usando los datos proporcionados. Sé conciso e informal." },
+          { role: "user", content: prompt },
         ],
         temperature: 0.3, max_tokens: 1024,
       }),

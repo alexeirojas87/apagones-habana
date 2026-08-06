@@ -23,7 +23,7 @@ CACHE_FILE = os.path.join(RAIZ, "data", "partes_llm.json")
 EMBED_FILE = os.path.join(RAIZ, "web", "data", "chatbot_embeddings.json")
 META_FILE = os.path.join(RAIZ, "web", "data", "chatbot_metadata.json")
 
-NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nanbuilders.ai/v1")
+NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nan.builders/v1")
 MODELO_EMBED = os.environ.get("MODELO_EMBED", "qwen3-embedding")
 DIAS_HISTORICO = 90  # últimos 90 días
 

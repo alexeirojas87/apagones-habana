@@ -22,7 +22,7 @@ RAIZ = os.path.join(os.path.dirname(__file__), "..", "..")
 EMBED_FILE = os.path.join(RAIZ, "web", "data", "chatbot_embeddings.json")
 META_FILE = os.path.join(RAIZ, "web", "data", "chatbot_metadata.json")
 
-NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nanbuilders.ai/v1")
+NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nan.builders/v1")
 MODELO_EMBED = "qwen3-embedding"
 MODELO_RERANK = "rerank"
 MODELO_GEN = os.environ.get("MODELO_NAN_PARTES", "deepseek-v4-flash")

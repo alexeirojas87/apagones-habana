@@ -174,7 +174,7 @@ const CHAT_PROMPT = "Eres el asistente de Apagones Habana, un mapa del estado el
 
 async function chatRAG(consulta, env, request) {
   if (!env.NAN_API_KEY) return { respuesta: "El chat no está configurado." };
-
+  try {
   // 1. Embed consulta
   const embResp = await fetch(`${NAN_BASE(env)}/embeddings`, {
     method: "POST",
@@ -183,7 +183,7 @@ async function chatRAG(consulta, env, request) {
   });
   const embData = await embResp.json();
   const vec = embData.data?.[0]?.embedding;
-  if (!vec) return { respuesta: "Error al procesar la consulta." };
+  if (!vec) return { respuesta: "Error al procesar la consulta." + JSON.stringify(embData).slice(0, 200) };
 
   function coseno(a, b) {
     let dot = 0, na = 0, nb = 0;
@@ -239,7 +239,8 @@ async function chatRAG(consulta, env, request) {
     }),
   });
   const genData = await genResp.json();
-  return { respuesta: genData.choices?.[0]?.message?.content || "No pude generar una respuesta." };
+  return { respuesta: genData.choices?.[0]?.message?.content || "No pude generar una respuesta: " + JSON.stringify(genData).slice(0, 200) };
+  } catch (e) { return { respuesta: "Error interno: " + e.message }; }
 }
 
 export default {

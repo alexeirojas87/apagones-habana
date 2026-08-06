@@ -168,7 +168,8 @@ def _nan_chat(messages, api_key):
     req = urllib.request.Request(
         f"{NAN_BASE_URL}/chat/completions", data=body,
         headers={"Authorization": f"Bearer {api_key}",
-                 "Content-Type": "application/json"},
+                 "Content-Type": "application/json",
+                 "User-Agent": "apagones-habana/1.0"},
     )
     data = json.load(urllib.request.urlopen(req, timeout=60))
     return data["choices"][0]["message"]["content"]

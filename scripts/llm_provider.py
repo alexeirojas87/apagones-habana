@@ -42,6 +42,8 @@ def _disponible(proveedor):
                 os.environ.get("CLOUDFLARE_AI_TOKEN"))
 
 
+_UA = "apagones-habana/1.0"
+
 def _nan(messages, modelo, timeout):
     body = json.dumps({
         "model": modelo,
@@ -53,7 +55,8 @@ def _nan(messages, modelo, timeout):
     req = urllib.request.Request(
         f"{NAN_BASE_URL}/chat/completions", data=body,
         headers={"Authorization": f"Bearer {os.environ['NAN_API_KEY']}",
-                 "Content-Type": "application/json"},
+                 "Content-Type": "application/json",
+                 "User-Agent": _UA},
     )
     data = json.load(urllib.request.urlopen(req, timeout=timeout))
     return data["choices"][0]["message"]["content"]
@@ -70,7 +73,8 @@ def _nvidia(messages, modelo, timeout):
     req = urllib.request.Request(
         NVIDIA_URL, data=body,
         headers={"Authorization": f"Bearer {os.environ['NVIDIA_API_KEY']}",
-                 "Content-Type": "application/json"},
+                 "Content-Type": "application/json",
+                 "User-Agent": _UA},
     )
     data = json.load(urllib.request.urlopen(req, timeout=timeout))
     return data["choices"][0]["message"]["content"]
@@ -83,7 +87,8 @@ def _cloudflare(messages, modelo, timeout):
         f"https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/{modelo}",
         data=body,
         headers={"Authorization": f"Bearer {os.environ['CLOUDFLARE_AI_TOKEN']}",
-                 "Content-Type": "application/json"},
+                 "Content-Type": "application/json",
+                 "User-Agent": _UA},
     )
     data = json.load(urllib.request.urlopen(req, timeout=timeout)).get("result", {})
     salida = data.get("response")

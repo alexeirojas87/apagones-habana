@@ -1,12 +1,15 @@
 """Reintento de las zonas del PDF que no se pudieron geocodificar, asistido por
-LLM. El LLM NO da coordenadas (las inventaría): solo desenreda la descripción y
+deepseek-v4-flash de NaN Builders. deepseek entiende direcciones ambiguas a la
+cubana mucho mejor que llama-3.3-70b.
+
+El LLM NO da coordenadas (las inventaría): solo desenreda la descripción y
 devuelve términos buscables limpios (un punto de interés, o una calle + reparto
 de contexto). Esos términos van a Nominatim, que sí tiene coordenadas reales.
 
 Actualiza data/geocache.json con los aciertos; luego correr geocode_zonas.py
 para regenerar web/data/zonas.geojson (usa la caché, no re-consulta).
 
-Env: CLOUDFLARE_ACCOUNT_ID, CLOUDFLARE_AI_TOKEN
+Env: NAN_API_KEY (preferido) o CLOUDFLARE_ACCOUNT_ID + CLOUDFLARE_AI_TOKEN
 """
 
 import json
@@ -22,11 +25,14 @@ from geocode_zonas import nominatim, bbox_municipios, MUNICIPIOS_NORM  # noqa: E
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE = os.path.join(RAIZ, "data", "geocache.json")
 FALLOS = os.path.join(RAIZ, "data", "geocode_fallos.txt")
-MODELO = os.environ.get("MODELO", "@cf/meta/llama-3.3-70b-instruct-fp8-fast")
+
+NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nanbuilders.ai/v1")
+MODELO_NAN = os.environ.get("MODELO_NAN_GEOCODE", "deepseek-v4-flash")
+MODELO_CF = os.environ.get("MODELO", "@cf/meta/llama-3.3-70b-instruct-fp8-fast")
 
 PROMPT = (
     "Eres un asistente de geocodificación para La Habana, Cuba. Recibes la "
-    "descripción de una zona eléctrica y devuelves SOLO un JSON, sin texto extra:\n"
+    "descripción de una zona eléctrica y devuelves SOLO un objeto JSON, sin texto extra:\n"
     '{"tipo": "punto"|"calle", '
     '"buscar": [términos buscables en OpenStreetMap, del más específico al más general], '
     '"reparto": nombre del reparto/barrio de contexto o null}\n'
@@ -37,13 +43,31 @@ PROMPT = (
 )
 
 
-def llm(texto, account, token):
+def _nan_llm(texto, api_key):
+    body = json.dumps({
+        "model": MODELO_NAN,
+        "messages": [{"role": "system", "content": PROMPT}, {"role": "user", "content": texto[:800]}],
+        "temperature": 0,
+        "max_tokens": 512,
+    }).encode()
+    req = urllib.request.Request(
+        f"{NAN_BASE_URL}/chat/completions", data=body,
+        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+    )
+    data = json.load(urllib.request.urlopen(req, timeout=60))
+    salida = data["choices"][0]["message"]["content"]
+    salida = salida.replace("```json", "").replace("```", "")
+    m = re.search(r"\{.*\}", salida, re.DOTALL)
+    return json.loads(m.group(0)) if m else None
+
+
+def _cf_llm(texto, account, token):
     body = json.dumps({
         "messages": [{"role": "system", "content": PROMPT}, {"role": "user", "content": texto[:600]}],
         "temperature": 0,
     }).encode()
     req = urllib.request.Request(
-        f"https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/{MODELO}",
+        f"https://api.cloudflare.com/client/v4/accounts/{account}/ai/run/{MODELO_CF}",
         data=body, headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
     )
     r = json.load(urllib.request.urlopen(req, timeout=60)).get("result", {})
@@ -62,7 +86,9 @@ def llm(texto, account, token):
 
 
 def main():
-    account, token = os.environ["CLOUDFLARE_ACCOUNT_ID"], os.environ["CLOUDFLARE_AI_TOKEN"]
+    api_key = os.environ.get("NAN_API_KEY")
+    account = os.environ.get("CLOUDFLARE_ACCOUNT_ID")
+    token = os.environ.get("CLOUDFLARE_AI_TOKEN")
     cajas = bbox_municipios()
     cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
 
@@ -71,9 +97,14 @@ def main():
     for linea in fallos:
         _, municipio, zona = [x.strip() for x in linea.split("|", 2)]
         clave = f"{municipio}|{zona}"
-        if cache.get(clave):  # ya resuelto en una corrida previa
+        if cache.get(clave):
             continue
-        hints = llm(zona, account, token)
+        if api_key:
+            hints = _nan_llm(zona, api_key)
+        elif account and token:
+            hints = _cf_llm(zona, account, token)
+        else:
+            break
         if not hints or not hints.get("buscar"):
             continue
         caja = cajas.get(municipio)

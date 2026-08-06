@@ -310,5 +310,15 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉102 / 103 y 105.🛑⚡️"
+ },
+ "72820": {
+  "fecha": "2026-08-06T06:24:33+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "241",
+   "243"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Lisa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉52 / 241 y 243.🛑⚡️"
  }
 }

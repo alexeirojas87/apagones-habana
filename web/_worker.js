@@ -168,6 +168,77 @@ async function crearSugerencia(request, env) {
   return json({ ok: true });
 }
 
+const NAN_BASE = (env) => env.NAN_BASE_URL || "https://api.nanbuilders.ai/v1";
+
+const CHAT_PROMPT = "Eres el asistente de Apagones Habana, un mapa del estado eléctrico de La Habana. Responde usando la información proporcionada. Sé conciso e informal. Si no hay datos relevantes, dilo amablemente.";
+
+async function chatRAG(consulta, env) {
+  if (!env.NAN_API_KEY) return { respuesta: "El chat no está configurado." };
+
+  // 1. Embed consulta
+  const embResp = await fetch(`${NAN_BASE(env)}/embeddings`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${env.NAN_API_KEY}`, "content-type": "application/json" },
+    body: JSON.stringify({ model: "qwen3-embedding", input: consulta.slice(0, 512) }),
+  });
+  const embData = await embResp.json();
+  const vec = embData.data?.[0]?.embedding;
+  if (!vec) return { respuesta: "Error al procesar la consulta." };
+
+  function coseno(a, b) {
+    let dot = 0, na = 0, nb = 0;
+    for (let i = 0; i < a.length; i++) { dot += a[i] * b[i]; na += a[i] * a[i]; nb += b[i] * b[i]; }
+    return dot / (Math.sqrt(na) * Math.sqrt(nb));
+  }
+
+  // 2. Cargar embeddings desde assets estáticos
+  const [embReq, metaReq] = await Promise.all([
+    env.ASSETS.fetch(new Request("https://fake/data/chatbot_embeddings.json")).catch(() => null),
+    env.ASSETS.fetch(new Request("https://fake/data/chatbot_metadata.json")).catch(() => null),
+  ]);
+  if (!embReq || !metaReq) return { respuesta: "Base de conocimiento no disponible ahora." };
+  const [embeddings, metadataRaw] = await Promise.all([embReq.json(), metaReq.json()]);
+  const metadata = {};
+  for (const m of metadataRaw) metadata[m.id] = m;
+
+  // 3. Similitud coseno → top 20
+  const scores = embeddings.map((e) => ({ id: e.id, sim: coseno(vec, e.embedding) }));
+  scores.sort((a, b) => b.sim - a.sim);
+  const top = scores.slice(0, 5);
+  const docs = top.map((t) => {
+    const m = metadata[t.id];
+    return m ? `[${(m.fecha || "").slice(0, 16)}] ${m.texto || ""}` : "";
+  }).filter(Boolean);
+  if (!docs.length) return { respuesta: "No encontré información relevante para tu consulta." };
+
+  // 4. Rerank NaN
+  const rerankResp = await fetch(`${NAN_BASE(env)}/rerank`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${env.NAN_API_KEY}`, "content-type": "application/json" },
+    body: JSON.stringify({ model: "rerank", query: consulta, documents: docs }),
+  });
+  const rerankData = await rerankResp.json();
+  const resultados = (rerankData.results || []).sort((a, b) => b.relevance_score - a.relevance_score);
+  const topDocs = resultados.slice(0, 3).map((r) => docs[r.index]).filter(Boolean);
+  const contexto = topDocs.join("\n");
+
+  // 5. deepseek genera respuesta
+  const genResp = await fetch(`${NAN_BASE(env)}/chat/completions`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${env.NAN_API_KEY}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      model: "deepseek-v4-flash",
+      messages: [
+        { role: "system", content: CHAT_PROMPT },
+        { role: "user", content: `Contexto:\n${contexto}\n\nPregunta: ${consulta}` },
+      ],
+      temperature: 0.3, max_tokens: 1024,
+    }),
+  });
+  const genData = await genResp.json();
+  return { respuesta: genData.choices?.[0]?.message?.content || "No pude generar una respuesta." };
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -175,14 +246,32 @@ export default {
     if (url.pathname === "/api/reporte" && request.method === "POST") return crearReporte(request, env);
     if (url.pathname === "/api/reporte" && request.method === "OPTIONS") {
       return new Response(null, {
+        status: 204,
         headers: {
           "access-control-allow-origin": "*",
-          "access-control-allow-methods": "POST",
+          "access-control-allow-methods": "POST, OPTIONS",
           "access-control-allow-headers": "content-type",
         },
       });
     }
     if (url.pathname === "/api/reportes") return listarReportes(env);
+    if (url.pathname === "/api/chat" && request.method === "POST") {
+      const body = await request.json();
+      const resultado = await chatRAG(String(body.consulta || ""), env);
+      return new Response(JSON.stringify(resultado), {
+        headers: { "content-type": "application/json", "access-control-allow-origin": "*" },
+      });
+    }
+    if (url.pathname === "/api/chat" && request.method === "OPTIONS") {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          "access-control-allow-origin": "*",
+          "access-control-allow-methods": "POST, OPTIONS",
+          "access-control-allow-headers": "content-type",
+        },
+      });
+    }
     return env.ASSETS.fetch(request);
   },
 };

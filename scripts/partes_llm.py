@@ -1,28 +1,16 @@
-"""Extractor LLM de PARTES OFICIALES (NVIDIA NIM + respaldo Cloudflare): entiende el
-contenido del parte aunque la UNE cambie la redacción/emojis/formato, que es lo
-que rompe los regex una y otra vez.
+"""Extractor LLM de PARTES OFICIALES con NaN Builders (deepseek-v4-flash).
+NaN elimina las restricciones de cuota y contexto del diseño anterior, así que
+procesamos todos los posts sin truncar, sin sleep y sin tope por corrida.
 
-Diseño (docs/plan-extraccion-llm.md, tarea 2):
-  - Cada post del canal se procesa UNA sola vez: caché data/partes_llm.json por
-    message_id (mismo patrón que las geocachés; la commitea el cron).
-  - Salida JSON estricta por post: tipo, circuitos (codigo/calles/municipio/
-    estado/horas/causa), bloques, mw_deficit, pct_restablecido.
-  - Todo código pasa por el resolutor (circuitos_id): se normaliza; si no es
-    conocido y tampoco casa por calles -> va a 'por_confirmar' (mitiga
-    alucinaciones del LLM). Si el LLM no da código pero sí calles, se intenta
-    casar por calles.
-  - MAX_LLM por corrida acota el gasto (free tier). Si el LLM falla, el post
-    queda sin procesar y se reintenta en la próxima corrida (los regex de
-    estado.py siguen siendo la base mientras tanto — tarea 4 invierte eso).
-
-Env: SUPABASE_URL, SUPABASE_SERVICE_KEY, NVIDIA_API_KEY y credenciales Cloudflare
+NVIDIA NIM y Cloudflare Workers AI quedan como respaldo (fallback) por si
+NaN no está disponible. La caché por message_id sigue vigente para no
+reprocesar lo ya visto.
 """
 
 import json
 import os
 import re
 import sys
-import time
 from datetime import datetime, timedelta, timezone
 
 from supabase import create_client
@@ -34,11 +22,11 @@ import llm_provider  # noqa: E402
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE_FILE = os.path.join(RAIZ, "data", "partes_llm.json")
 
+MODELO_NAN = os.environ.get("MODELO_NAN_PARTES", "deepseek-v4-flash")
 MODELO = os.environ.get("MODELO_PARTES", "@cf/meta/llama-3.3-70b-instruct-fp8-fast")
 MODELO_NVIDIA = os.environ.get("MODELO_NVIDIA_PARTES", "openai/gpt-oss-120b")
-MAX_LLM = int(os.environ.get("MAX_LLM_PARTES", "15"))
 VENTANA_H = 24
-VALIDADOR_VERSION = 2
+VALIDADOR_VERSION = 3
 
 PROMPT = (
     "Eres un analista de partes OFICIALES de la Empresa Eléctrica de La Habana "
@@ -83,8 +71,8 @@ RE_DISTRIBUCION = re.compile(r"\bcircuitos?\b", re.IGNORECASE)
 def llm(texto):
     return llm_provider.extraer_json(
         [{"role": "system", "content": PROMPT},
-         {"role": "user", "content": texto[:2500]}],
-        "partes", {"nvidia": MODELO_NVIDIA, "cloudflare": MODELO}, timeout=90)
+         {"role": "user", "content": texto[:8000]}],
+        "partes", {"nan": MODELO_NAN, "nvidia": MODELO_NVIDIA, "cloudflare": MODELO}, timeout=120)
 
 
 def codigo_explicito_en(codigo, texto):
@@ -183,16 +171,13 @@ def main():
                           "mw_deficit": None, "pct_restablecido": None,
                           "via": "prefiltro", "validador_version": VALIDADOR_VERSION}
             continue
-        if nuevos >= MAX_LLM:
-            continue  # tope por corrida; la próxima sigue donde quedó
         crudo, uso = llm(p["texto"])
         if crudo is None:
             print(f"LLM falló en {mid}: {', '.join(uso['errores']) or 'sin proveedor disponible'}")
             fallos += 1
             if fallos >= 3:
-                break  # cuota agotada o servicio caído: no insistir esta corrida
+                break
             continue
-        time.sleep(1.5)  # respeta el límite por minuto del free tier
         valido = validar(crudo, p["texto"])
         if valido is None:
             fallos += 1

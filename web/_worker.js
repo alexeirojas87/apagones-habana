@@ -183,7 +183,7 @@ async function chatRAG(env, request) {
       fetch(`${baseUrl}/data/estado.json?t=${Date.now()}`).catch(() => null),
       fetch(`${baseUrl}/data/circuitos.json?t=${Date.now()}`).catch(() => null),
     ]);
-    let facts = "No hay datos del estado eléctrico ahora.";
+    let dataBlock = "No hay datos del estado eléctrico ahora.";
     if (estadoReq && estadoReq.ok && circuitosReq && circuitosReq.ok) {
       const est = await estadoReq.json();
       const cat = await circuitosReq.json();
@@ -203,38 +203,36 @@ async function chatRAG(env, request) {
         return "asum";
       };
       let ncon = 0, nsin = 0, nasum = 0, nnd = 0;
-      const topHoras = [];
-      const ndList = [];
+      const lineas = [];
       for (const c of (cat.circuitos || [])) {
         const v = vigente(c);
         if (v === "sin") nsin++; else if (v === "con") ncon++; else if (v === "nd") nnd++; else nasum++;
+        let h = "";
         if (v === "sin" && c.estado_fecha) {
-          let h = (Date.now() - new Date(c.estado_fecha)) / 3600000;
-          if (h <= 24) topHoras.push({ cod: c.codigo, h, calles: (c.calles || "").replace(/\s+/g, " ").slice(0, 40), muni: c.municipio || "" });
+          h = ` ${((Date.now() - new Date(c.estado_fecha)) / 3600000).toFixed(1)}h`;
         }
-        if (v === "nd") {
-          ndList.push({ cod: c.codigo, fecha: (c.estado_fecha || "").slice(0, 10), calles: (c.calles || "").replace(/\s+/g, " ").slice(0, 40), muni: c.municipio || "" });
-        }
+        const calles = c.calles ? c.calles.replace(/\s+/g, " ").slice(0, 45) : "";
+        const fecha = c.estado_fecha ? c.estado_fecha.slice(0, 10) : "";
+        lineas.push(`${c.codigo} ${v}${h} ${calles} ${c.municipio || ""} ${fecha}`.trim());
       }
-      topHoras.sort((a, b) => b.h - a.h);
-      const top5 = topHoras.slice(0, 5).map(c => `${c.cod}: ${c.h.toFixed(1)}h ${c.calles} ${c.muni}`).join("\n");
-      const reportes = (est.reportes_llm || []).slice(0, 20)
-        .map(r => `${r.lugar}: ${r.tipo === "sin_corriente" ? "sin luz" : "con luz"}${r.horas ? " ~" + r.horas + "h" : ""}`).join("\n");
-      facts = [
-        `Resumen: ${nsin} sin servicio, ${ncon} con servicio, ${nnd} sin noticias +24h, ${nasum} sin apagones reportados (de ${(cat.circuitos || []).length} totales).`,
-        top5 ? `Top 5 con más horas sin corriente:\n${top5}` : "",
-        ndList.length ? `Circuitos sin noticias +24h (${ndList.length}): ${ndList.map(c => c.cod).join(", ")}` : "",
-        reportes ? `Reportes vecinales:\n${reportes}` : "",
-      ].filter(Boolean).join("\n\n");
+      const reportes = (est.reportes_llm || []).slice(0, 40)
+        .map(r => `${r.lugar}: ${r.tipo === "sin_corriente" ? "sin_luz" : "con_luz"}${r.horas ? " " + r.horas + "h" : ""} ${(r.fecha || "").slice(0, 16)}`).join("\n");
+      dataBlock = [
+        `RESUMEN: ${nsin} sin servicio, ${ncon} con servicio, ${nnd} sin noticias +24h, ${nasum} sin apagones reportados. Total: ${(cat.circuitos || []).length} circuitos.`,
+        `CIRCUITOS (codigo estado horas calles municipio ultima_fecha):`,
+        ...lineas,
+        reportes ? `\nREPORTES VECINALES:\n${reportes}` : "",
+      ].join("\n");
     }
 
     const messages = [
-      { role: "system", content: `Eres un asistente que responde preguntas sobre el estado eléctrico de La Habana.
-Tienes estos DATOS PRECOMPUTADOS. NO calcules ni infieras nada: solo presenta los datos que te doy.
-Si te preguntan algo que no está en los datos, dilo honestamente.
+      { role: "system", content: `Eres un analista de datos eléctricos de La Habana.
+Tienes acceso a TODOS los circuitos con su estado actual y horas sin luz computadas.
+Puedes analizar, comparar, buscar patrones y responder preguntas específicas.
+Sé analítico pero conciso. Usa los datos que te doy, no inventes nada.
 
-DATOS:
-${facts}` },
+DATOS COMPLETOS:
+${dataBlock}` },
       ...historial.slice(-6),
       { role: "user", content: consulta },
     ];
@@ -245,7 +243,7 @@ ${facts}` },
       body: JSON.stringify({
         model: "deepseek-v4-flash",
         messages,
-        temperature: 0.3, max_tokens: 2048, reasoning_effort: "low",
+        temperature: 0.3, max_tokens: 8192, reasoning_effort: "medium",
       }),
     });
     const genData = await genResp.json();

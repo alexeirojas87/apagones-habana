@@ -362,5 +362,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 08:12am quedó restablecido el servicio de los siguientes circuitos: 👉OP411/OP420/OP424/OP318/OP406/OP306/OP410:/"
+ },
+ "72966": {
+  "fecha": "2026-08-07T00:47:26+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "233"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Boyeros, se afecta el servicio eléctrico por avería primaria en: 233 entre 284 y 286.🚨"
  }
 }

@@ -335,5 +335,32 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:14PM se afectó el servicio eléctrico en los siguientes circuitos: 👉OP424, OP318, OP410 Prado desde Monte hast"
+ },
+ "73027": {
+  "fecha": "2026-08-07T13:38:01+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [],
+  "solo_regex": [
+   "1248",
+   "2075",
+   "A1202",
+   "A1203",
+   "A1217",
+   "A1218",
+   "C14",
+   "C8",
+   "D640",
+   "D740",
+   "H341",
+   "H442",
+   "OP408",
+   "P317",
+   "PZ5",
+   "R451",
+   "R454",
+   "R466",
+   "SR840"
+  ],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 am se afecta 433 MW distribuidos en 135 circuitos de distribución. A continuación, "
  }
 }

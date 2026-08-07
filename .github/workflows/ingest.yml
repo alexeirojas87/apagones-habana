@@ -83,12 +83,6 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
-      # Aprende membresía barrio->bloque del canal (corrige omisiones del PDF)
-      - run: python scripts/aprende_bloques.py
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-
       - run: python scripts/build_barrios.py
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}

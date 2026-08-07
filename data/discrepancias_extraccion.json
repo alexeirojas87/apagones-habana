@@ -18,24 +18,6 @@
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 6:27 pm se afecta el servicio eléctrico en los siguientes circuitos: 👉A1440: Repartos Mulgoba, Jesús Menéndez, A"
  },
- "71985": {
-  "fecha": "2026-07-31T22:59:00+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "PZ14"
-  ],
-  "solo_regex": [],
-  "extracto": "📌⚡️ Consumidores del municipio Plaza se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉 23/26 y 28📌⚡️"
- },
- "71984": {
-  "fecha": "2026-07-31T22:58:16+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "GC12"
-  ],
-  "solo_regex": [],
-  "extracto": "📌⚡️ Consumidores del municipio Habana del Este se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉 33/Maceo y Los Pinos,Cojimar📌⚡️"
- },
  "72336": {
   "fecha": "2026-08-02T15:09:19+00:00",
   "tipo_llm": "afectacion",

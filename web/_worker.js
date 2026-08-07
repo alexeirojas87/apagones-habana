@@ -211,7 +211,7 @@ async function chatRAG(env, request) {
         if (v === "sin" && c.estado_fecha) {
           h = ` ${((Date.now() - new Date(c.estado_fecha)) / 3600000).toFixed(1)}h`;
         }
-        const calles = c.calles ? c.calles.replace(/\s+/g, " ").slice(0, 45) : "";
+        const calles = c.calles ? c.calles.replace(/\s+/g, " ").slice(0, 80) : "";
         const fecha = c.estado_fecha ? c.estado_fecha.slice(0, 10) : "";
         lineas.push(`${c.codigo} ${v}${h} ${calles} ${c.municipio || ""} ${fecha}`.trim());
       }

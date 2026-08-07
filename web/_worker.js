@@ -199,6 +199,7 @@ async function chatRAG(consulta, env, request) {
         }
         return "asum";
       };
+      let ncon = 0, nsin = 0, nasum = 0, nnd = 0;
       const lineasSin = [], lineasNd = [];
       for (const c of (cat.circuitos || [])) {
         const v = vigente(c);

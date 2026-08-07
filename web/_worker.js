@@ -199,21 +199,18 @@ async function chatRAG(consulta, env, request) {
         }
         return "asum";
       };
-      const lineas = [];
-      let ncon = 0, nsin = 0, nasum = 0, nnd = 0;
+      const lineasSin = [], lineasNd = [];
       for (const c of (cat.circuitos || [])) {
         const v = vigente(c);
         if (v === "sin") nsin++; else if (v === "con") ncon++; else if (v === "nd") nnd++; else nasum++;
-        const calles = c.calles ? c.calles.replace(/\s+/g, " ").slice(0, 60) : "";
+        const calles = c.calles ? c.calles.replace(/\s+/g, " ").slice(0, 50) : "";
         const fecha = c.estado_fecha ? c.estado_fecha.slice(0, 16) : "";
-        if (v === "sin" || v === "nd") {
-          lineas.push(`${c.codigo} ${v === "nd" ? "(sin noticias +24h)" : "(sin servicio)"} ${calles} ${c.municipio || ""} ${fecha}`);
-        }
+        if (v === "sin") lineasSin.push(`${c.codigo} ${calles} ${c.municipio || ""} ${fecha}`);
+        if (v === "nd") lineasNd.push(`${c.codigo} ${calles} ${c.municipio || ""} ${fecha}`);
       }
-      // También incluir reportes vecinales
       const reportes = (est.reportes_llm || []).slice(0, 30)
         .map(r => `Vecino ${r.lugar}: ${r.tipo === "sin_corriente" ? "sin luz" : "con luz"}${r.horas ? " ~" + r.horas + "h" : ""}`).join("\n");
-      contexto = `Resumen: ${nsin} sin servicio, ${ncon} con servicio, ${nnd} sin noticias +24h, ${nasum} sin apagones reportados (de ${(cat.circuitos || []).length} totales).\n\nCircuitos:\n${lineas.join("\n")}\n\nReportes vecinales:\n${reportes || "(sin reportes)"}`;
+      contexto = `Resumen: ${nsin} sin servicio, ${ncon} con servicio, ${nnd} sin noticias +24h, ${nasum} sin apagones reportados (de ${(cat.circuitos || []).length} totales).\n\n--- SIN SERVICIO (${nsin}) ---\n${lineasSin.join("\n")}\n\n--- SIN NOTICIAS +24H (${nnd}) ---\n${lineasNd.join("\n")}\n\n--- Reportes vecinales ---\n${reportes || "(sin reportes)"}`;
     }
 
     const prompt = contexto
@@ -229,7 +226,7 @@ async function chatRAG(consulta, env, request) {
           { role: "system", content: "Eres el asistente de Apagones Habana, un mapa del estado eléctrico de La Habana. La UNE reporta por circuito, no por bloque. Responde usando los datos proporcionados. Sé conciso e informal." },
           { role: "user", content: prompt },
         ],
-        temperature: 0.3, max_tokens: 1024,
+        temperature: 0.3, max_tokens: 4096, reasoning_effort: "low",
       }),
     });
     const genData = await genResp.json();

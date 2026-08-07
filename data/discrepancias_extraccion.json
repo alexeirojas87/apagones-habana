@@ -36,15 +36,6 @@
   "solo_regex": [],
   "extracto": "📌⚡️ Consumidores del municipio Habana del Este se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉 33/Maceo y Los Pinos,Cojimar📌⚡️"
  },
- "71970": {
-  "fecha": "2026-07-31T20:23:45+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "C13"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:11 pm se afecta el servicio eléctrico en los siguientes circuitos: 👉 C7: Alrededores del cuadrante desde calle"
- },
  "72336": {
   "fecha": "2026-08-02T15:09:19+00:00",
   "tipo_llm": "afectacion",

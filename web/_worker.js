@@ -272,7 +272,7 @@ export default {
     }
     if (url.pathname === "/api/reportes") return listarReportes(env);
     if (url.pathname === "/api/chat" && request.method === "POST") {
-      const resultado = await chatRAG("", env, request);
+      const resultado = await chatRAG(env, request);
       return new Response(JSON.stringify(resultado), {
         headers: { "content-type": "application/json", "access-control-allow-origin": "*" },
       });

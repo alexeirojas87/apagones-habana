@@ -52,6 +52,28 @@ def canonicos():
     return [(n, _norm(n)) for n in (nombres or MUNICIPIOS_FALLBACK)]
 
 
+def episodios(regs):
+    """Duración de cada corte, a partir de los partes de un circuito.
+
+    OJO: cada parte declara las horas ACUMULADAS del corte en curso, no un
+    incremento. Un mismo apagón aparece varias veces con el contador subiendo
+    (8.4, 11.6, 14.4, ... 26.4) y sumar esos valores multiplica la cifra real
+    por 3 o 4. Un valor MENOR que el anterior significa que aquel corte
+    terminó y empezó otro, así que cada tramo creciente cuenta una sola vez,
+    por su máximo.
+    """
+    eps, actual = [], None
+    for _fecha, h in sorted(regs):
+        if actual is not None and h < actual:
+            eps.append(actual)   # el contador se reinició: cierra el corte
+            actual = h
+        else:
+            actual = h
+    if actual is not None:
+        eps.append(actual)
+    return eps
+
+
 def resolver_municipios(bruto, canon):
     """Mapea un municipio crudo a los canónicos que menciona.
 
@@ -116,24 +138,27 @@ def main():
         if fecha < corte or not codigo:
             continue
         try:
-            horas[codigo].append(float(h))
+            horas[codigo].append((fecha, float(h)))
         except (TypeError, ValueError):
             continue
         if codigo not in ultima or fecha > ultima[codigo]:
             ultima[codigo] = fecha
 
     circuitos = {}
-    for codigo, hs in horas.items():
+    for codigo, regs in horas.items():
+        eps = episodios(regs)
+        if not eps:
+            continue
         circuitos[codigo] = {
-            "menciones": len(hs),
-            "horas_max": round(max(hs), 1),
-            "horas_media": round(sum(hs) / len(hs), 1),
-            "horas_total": round(sum(hs), 1),
+            "cortes": len(eps),
+            "horas_max": round(max(eps), 1),
+            "horas_media": round(sum(eps) / len(eps), 1),
+            "horas_total": round(sum(eps), 1),
             "ultima": ultima.get(codigo),
         }
 
-    # Peores por carga acumulada: más representativo que la media, que premia
-    # a un circuito con un único corte largo.
+    # Peores por horas acumuladas reales: más representativo que la media, que
+    # premia a un circuito con un único corte largo.
     ranking = sorted(circuitos.items(), key=lambda kv: kv[1]["horas_total"], reverse=True)
     ranking_peores = [{"codigo": c, **v} for c, v in ranking[:TOP_CIRCUITOS]]
 

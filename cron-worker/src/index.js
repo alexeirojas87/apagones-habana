@@ -19,7 +19,7 @@ const WEB = "https://apagones-habana.pages.dev";
 const VIEJO_MIN = 45;      // edad que dispara la auto-reparación
 const CRITICO_MIN = 120;   // edad que además abre el issue de alerta
 const ZOMBI_COLA_MIN = 15; // queued/pending más viejo que esto = zombi
-const ZOMBI_RUN_MIN = 25;  // in_progress más viejo que esto = colgado (timeout es 18)
+const ZOMBI_RUN_MIN = 22;  // in_progress más viejo que esto = colgado (timeout es 20)
 
 function gh(env, ruta, opts = {}) {
   return fetch(`https://api.github.com/repos/${REPO}${ruta}`, {

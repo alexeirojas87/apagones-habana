@@ -6,4 +6,4 @@ workers_dev = false  # sin URL pública: solo lo dispara el cron (evita abuso de
 # GitHub Actions ignora/retrasa los cron `schedule`; este Worker sí dispara puntual.
 # Cada 10 min llama a workflow_dispatch de la ingesta (endpoint ya probado a mano).
 [triggers]
-crons = ["*/10 * * * *"]
+crons = ["*/30 * * * *"]

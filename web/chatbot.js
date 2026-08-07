@@ -67,6 +67,7 @@
   var inp = document.getElementById("cb-inp");
   var btn = document.getElementById("cb-enviar");
   var msgs = document.getElementById("chatbot-mensajes");
+  var historial = [];
 
   function agregar(texto, clase) {
     var d = document.createElement("div");
@@ -82,16 +83,19 @@
     if (!q) return;
     inp.value = "";
     agregar(esc(q), "cb-usr");
+    historial.push({ role: "user", content: q });
     var loading = agregar("Pensando…", "cb-bot loading");
     btn.disabled = true;
     fetch(API + "/api/chat", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ consulta: q }),
+      body: JSON.stringify({ consulta: q, historial: historial.slice(0, -1) }),
     }).then(function (r) { return r.json(); }).then(function (d) {
       loading.remove();
-      if (d.respuesta) agregar(esc(d.respuesta).replace(/\n/g, "<br>"), "cb-bot");
-      else agregar("Lo siento, no pude procesar la consulta.", "cb-error");
+      if (d.respuesta) {
+        agregar(esc(d.respuesta).replace(/\n/g, "<br>"), "cb-bot");
+        historial.push({ role: "assistant", content: d.respuesta });
+      } else agregar("Lo siento, no pude procesar la consulta.", "cb-error");
     }).catch(function () {
       loading.remove();
       agregar("Error de conexión. Intenta de nuevo.", "cb-error");

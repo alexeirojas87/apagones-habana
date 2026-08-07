@@ -172,15 +172,17 @@ const NAN_BASE = (env) => env.NAN_BASE_URL || "https://api.nan.builders/v1";
 
 const CHAT_PROMPT = "Eres el asistente de Apagones Habana, un mapa del estado eléctrico de La Habana. Responde usando la información proporcionada. Sé conciso e informal. Si no hay datos relevantes, dilo amablemente.";
 
-async function chatRAG(consulta, env, request) {
+async function chatRAG(env, request) {
   if (!env.NAN_API_KEY) return { respuesta: "El chat no está configurado." };
   try {
+    const body = await request.json();
+    const historial = body.historial || [];
     const baseUrl = `https://${request.url.split("/")[2]}`;
     const [estadoReq, circuitosReq] = await Promise.all([
       fetch(`${baseUrl}/data/estado.json?t=${Date.now()}`).catch(() => null),
       fetch(`${baseUrl}/data/circuitos.json?t=${Date.now()}`).catch(() => null),
     ]);
-    let contexto = "";
+    let facts = "No hay datos del estado eléctrico ahora.";
     if (estadoReq && estadoReq.ok && circuitosReq && circuitosReq.ok) {
       const est = await estadoReq.json();
       const cat = await circuitosReq.json();
@@ -200,39 +202,54 @@ async function chatRAG(consulta, env, request) {
         return "asum";
       };
       let ncon = 0, nsin = 0, nasum = 0, nnd = 0;
-      const lineasSin = [], lineasNd = [];
+      const topHoras = [];
+      const ndList = [];
       for (const c of (cat.circuitos || [])) {
         const v = vigente(c);
         if (v === "sin") nsin++; else if (v === "con") ncon++; else if (v === "nd") nnd++; else nasum++;
-        const calles = c.calles ? c.calles.replace(/\s+/g, " ").slice(0, 50) : "";
-        const fecha = c.estado_fecha ? c.estado_fecha.slice(0, 16) : "";
-        if (v === "sin") lineasSin.push(`${c.codigo} ${calles} ${c.municipio || ""} ${fecha}`);
-        if (v === "nd") lineasNd.push(`${c.codigo} ${calles} ${c.municipio || ""} ${fecha}`);
+        if (v === "sin" && c.estado_fecha) {
+          let h = (Date.now() - new Date(c.estado_fecha)) / 3600000;
+          if (h <= 24) topHoras.push({ cod: c.codigo, h, calles: (c.calles || "").replace(/\s+/g, " ").slice(0, 40), muni: c.municipio || "" });
+        }
+        if (v === "nd") {
+          ndList.push({ cod: c.codigo, fecha: (c.estado_fecha || "").slice(0, 10), calles: (c.calles || "").replace(/\s+/g, " ").slice(0, 40), muni: c.municipio || "" });
+        }
       }
-      const reportes = (est.reportes_llm || []).slice(0, 30)
-        .map(r => `Vecino ${r.lugar}: ${r.tipo === "sin_corriente" ? "sin luz" : "con luz"}${r.horas ? " ~" + r.horas + "h" : ""}`).join("\n");
-      contexto = `Resumen: ${nsin} sin servicio, ${ncon} con servicio, ${nnd} sin noticias +24h, ${nasum} sin apagones reportados (de ${(cat.circuitos || []).length} totales).\n\n--- SIN SERVICIO (${nsin}) ---\n${lineasSin.join("\n")}\n\n--- SIN NOTICIAS +24H (${nnd}) ---\n${lineasNd.join("\n")}\n\n--- Reportes vecinales ---\n${reportes || "(sin reportes)"}`;
+      topHoras.sort((a, b) => b.h - a.h);
+      const top5 = topHoras.slice(0, 5).map(c => `${c.cod}: ${c.h.toFixed(1)}h ${c.calles} ${c.muni}`).join("\n");
+      const reportes = (est.reportes_llm || []).slice(0, 20)
+        .map(r => `${r.lugar}: ${r.tipo === "sin_corriente" ? "sin luz" : "con luz"}${r.horas ? " ~" + r.horas + "h" : ""}`).join("\n");
+      facts = [
+        `Resumen: ${nsin} sin servicio, ${ncon} con servicio, ${nnd} sin noticias +24h, ${nasum} sin apagones reportados (de ${(cat.circuitos || []).length} totales).`,
+        top5 ? `Top 5 con más horas sin corriente:\n${top5}` : "",
+        ndList.length ? `Circuitos sin noticias +24h (${ndList.length}): ${ndList.map(c => c.cod).join(", ")}` : "",
+        reportes ? `Reportes vecinales:\n${reportes}` : "",
+      ].filter(Boolean).join("\n\n");
     }
 
-    const prompt = contexto
-      ? `Datos actuales de La Habana (la UNE reporta por circuito, no por bloque):\n${contexto}\n\nPregunta: ${consulta}\n\nResponde usando los datos. Si preguntan por un lugar que no aparece en los datos, dilo. Sé conciso.`
-      : `Pregunta: ${consulta}\n\nNo tengo datos del estado eléctrico ahora. Sugiere al usuario visitar el mapa en https://apagones-habana.pages.dev`;
+    const messages = [
+      { role: "system", content: `Eres un asistente que responde preguntas sobre el estado eléctrico de La Habana.
+Tienes estos DATOS PRECOMPUTADOS. NO calcules ni infieras nada: solo presenta los datos que te doy.
+Si te preguntan algo que no está en los datos, dilo honestamente.
+
+DATOS:
+${facts}` },
+      ...historial.slice(-6),
+      { role: "user", content: consulta },
+    ];
 
     const genResp = await fetch(`${NAN_BASE(env)}/chat/completions`, {
       method: "POST",
       headers: { authorization: `Bearer ${env.NAN_API_KEY}`, "content-type": "application/json" },
       body: JSON.stringify({
         model: "deepseek-v4-flash",
-        messages: [
-          { role: "system", content: "Eres el asistente de Apagones Habana, un mapa del estado eléctrico de La Habana. La UNE reporta por circuito, no por bloque. Responde usando los datos proporcionados. Sé conciso e informal." },
-          { role: "user", content: prompt },
-        ],
-        temperature: 0.3, max_tokens: 4096, reasoning_effort: "low",
+        messages,
+        temperature: 0.3, max_tokens: 2048, reasoning_effort: "low",
       }),
     });
     const genData = await genResp.json();
     const texto = genData.choices?.[0]?.message?.content;
-    return { respuesta: texto || "No pude generar respuesta. " + JSON.stringify(genData).slice(0, 300) };
+    return { respuesta: texto || "No pude generar respuesta." };
   } catch (e) {
     return { respuesta: "Error: " + (e.message || e) };
   }
@@ -255,8 +272,7 @@ export default {
     }
     if (url.pathname === "/api/reportes") return listarReportes(env);
     if (url.pathname === "/api/chat" && request.method === "POST") {
-      const body = await request.json();
-      const resultado = await chatRAG(String(body.consulta || ""), env, request);
+      const resultado = await chatRAG("", env, request);
       return new Response(JSON.stringify(resultado), {
         headers: { "content-type": "application/json", "access-control-allow-origin": "*" },
       });

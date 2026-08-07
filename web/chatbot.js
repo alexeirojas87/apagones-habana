@@ -39,14 +39,16 @@
     '<div id="chatbot-widget">' +
       '<button id="chatbot-toggle" title="Pregunta sobre el estado eléctrico">💬</button>' +
       '<div id="chatbot-panel">' +
-        '<div id="chatbot-header">🤖 Apagones Bot <small>NaN deepseek · RAG</small><button id="chatbot-close">✕</button></div>' +
+        '<div id="chatbot-header">🤖 Apagones Bot <small>datos en vivo + histórico</small><button id="chatbot-close">✕</button></div>' +
         '<div id="chatbot-mensajes">' +
-          '<div class="cb-msg cb-bot">Hola! Pregúntame sobre el estado eléctrico de La Habana. Ej: "¿qué pasa en Marianao?" o "estado del bloque 3"</div>' +
+          '<div class="cb-msg cb-bot">Hola! Pregúntame sobre el estado eléctrico de La Habana. Ej: "¿qué pasa en Marianao?" o "¿cuándo quitan la corriente en 23 y 12?"</div>' +
         '</div>' +
+        // La Empresa dejó de reportar por bloque y ahora informa por circuito
+        // (ver aviso en app.js): las sugerencias apuntan a circuito/calle.
         '<div id="chatbot-sugerencias">' +
           '<span class="cb-sug">¿qué pasa en Marianao?</span>' +
-          '<span class="cb-sug">estado del bloque 3</span>' +
-          '<span class="cb-sug">últimas noticias</span>' +
+          '<span class="cb-sug">¿qué circuitos están afectados ahora?</span>' +
+          '<span class="cb-sug">¿cuáles son los peores circuitos del mes?</span>' +
         '</div>' +
         '<div id="chatbot-input">' +
           '<input id="cb-inp" type="text" placeholder="Escribe tu pregunta…" autocomplete="off">' +

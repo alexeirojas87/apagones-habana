@@ -1,3 +1,3 @@
-# Módulo RAG para el bot de Telegram de Apagones Habana.
-# Usa NaN Builders: qwen3-embedding para embeddings, rerank para precisión,
-# deepseek-v4-flash para generación de respuestas.
+# Indexador semántico del chat web de Apagones Habana.
+# embeddings.py mantiene el índice de partes y reportes en Supabase/pgvector
+# (qwen3-embedding de NaN Builders). Lo consulta web/_worker.js por RPC.

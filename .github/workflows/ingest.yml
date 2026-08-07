@@ -93,7 +93,13 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           NAN_API_KEY: ${{ secrets.NAN_API_KEY }}
 
-      # Genera embeddings para el chatbot (best-effort)
+      # Agregados compactos que consulta el chat (analitica.json son ~4 MB y el
+      # worker no puede descargarlos por mensaje). Depende de build_analitica.
+      - run: python scripts/build_bot_datos.py || echo "bot_datos falló, se continúa"
+
+      # Índice semántico del chat en Supabase/pgvector (best-effort).
+      # Incremental y acotado por reloj: solo indexa lo nuevo o lo que cambió.
+      # Si no se ha ejecutado ingestor/schema_chatbot.sql, avisa y sigue.
       - run: python scripts/chatbot/embeddings.py || echo "chatbot embeddings falló, se continúa"
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
@@ -116,7 +122,12 @@ jobs:
       # consultas a Nominatim/Overpass. Es BEST-EFFORT: si hay conflicto con otra
       # corrida (ambas tocan la caché), se resuelve tomando lo entrante y nunca
       # falla el job (la caché es regenerable) -> el deploy de abajo siempre corre.
-      - run: |
+      #
+      # always(): corre aunque un step anterior muera o el job sea cancelado. Sin
+      # esto, un timeout a mitad de la ingesta descartaba TODO el trabajo LLM ya
+      # hecho, y la corrida siguiente reprocesaba lo mismo para volver a morir.
+      - if: always()
+        run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
           git add data/geocache_averias.json data/geocache_circuitos_lineas.json data/partes_llm.json data/discrepancias_extraccion.json data/llm_cuota.json || true

@@ -3,3 +3,7 @@ __pycache__/
 .env
 docs/*.pdf
 .DS_Store
+
+# Herramientas locales de análisis de código (no forman parte del proyecto)
+.serena/
+.tokensave/

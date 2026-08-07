@@ -1,0 +1,170 @@
+"""Precomputa los agregados que el chatbot necesita para hablar del pasado.
+
+web/data/analitica.json pesa ~4 MB (42.930 eventos, 2.788 registros de
+circuitos): el worker no puede descargarlo por mensaje. Aquí se reduce a unos
+pocos KB con las respuestas ya calculadas — sumas y rankings hechos en Python,
+no por el LLM contando líneas a mano, que es donde estos modelos fallan callados.
+
+Deliberadamente NO se copian resumen_diario ni patrones de analitica.json:
+son textos generados que todavía razonan por bloque, y la Empresa dejó de
+reportar así. Aquí solo entran cifras derivadas de eventos reales.
+
+Entrada:  web/data/analitica.json
+Salida:   web/data/bot_datos.json
+"""
+
+import json
+import os
+import re
+import unicodedata
+from collections import defaultdict
+from datetime import datetime, timedelta, timezone
+
+RAIZ = os.path.join(os.path.dirname(__file__), "..")
+ANALITICA = os.path.join(RAIZ, "web", "data", "analitica.json")
+ESTADO = os.path.join(RAIZ, "web", "data", "estado.json")
+SALIDA = os.path.join(RAIZ, "web", "data", "bot_datos.json")
+
+DIAS = 30          # ventana de histórico que ofrece el bot
+TOP_CIRCUITOS = 40  # ranking de peores
+
+# Respaldo si estado.json no está disponible: los 15 municipios de La Habana.
+MUNICIPIOS_FALLBACK = [
+    "10 de Octubre", "Arroyo Naranjo", "Boyeros", "Centro Habana", "Cerro",
+    "Cotorro", "Guanabacoa", "Habana Vieja", "Habana del Este", "La Lisa",
+    "Marianao", "Playa", "Plaza", "Regla", "San Miguel del Padrón",
+]
+
+
+def _norm(s):
+    """Minúsculas, sin acentos y con los espacios colapsados (incluido NBSP)."""
+    s = unicodedata.normalize("NFD", str(s or ""))
+    s = "".join(c for c in s if unicodedata.category(c) != "Mn")
+    return re.sub(r"\s+", " ", s.replace("\xa0", " ")).strip().lower()
+
+
+def canonicos():
+    try:
+        with open(ESTADO) as fh:
+            nombres = list(json.load(fh).get("municipios") or {})
+    except Exception:
+        nombres = []
+    return [(n, _norm(n)) for n in (nombres or MUNICIPIOS_FALLBACK)]
+
+
+def resolver_municipios(bruto, canon):
+    """Mapea un municipio crudo a los canónicos que menciona.
+
+    Los partes traen variantes ("10 de octubre", "10  de Octubre") y también
+    compuestos que nombran DOS municipios ("Centro Habana - Habana Vieja",
+    "Plaza/Cerro"). Sin esto salían 29 municipios en una provincia que tiene 15,
+    con los conteos partidos entre variantes de la misma zona.
+    """
+    t = _norm(bruto)
+    if not t:
+        return []
+    hallados = [nombre for nombre, n in canon if n and n in t]
+    # "Plaza de la Revolución" contiene "Plaza": nos quedamos con lo hallado.
+    return hallados or [str(bruto).replace("\xa0", " ").strip()]
+
+
+def main():
+    with open(ANALITICA) as fh:
+        a = json.load(fh)
+
+    corte = (datetime.now(timezone.utc) - timedelta(days=DIAS)).strftime("%Y-%m-%dT%H:%M")
+    canon = canonicos()
+
+    # --- Actividad por municipio y por día, desde los eventos oficiales ---
+    municipios = defaultdict(lambda: {"afectaciones": 0, "restablecimientos": 0,
+                                      "averias": 0, "ultima_afectacion": None})
+    dias = defaultdict(lambda: {"afectaciones": 0, "restablecimientos": 0, "averias": 0})
+    causas = defaultdict(int)
+
+    for ev in a.get("eventos", []):
+        # [fecha, tipo, bloque(obsoleto), causa, municipios]
+        fecha, tipo = ev[0], ev[1]
+        if fecha < corte:
+            continue
+        causa = ev[3] if len(ev) > 3 else None
+        muns = ev[4] if len(ev) > 4 and isinstance(ev[4], list) else []
+        clave = "afectaciones" if tipo == "afectacion" else "restablecimientos"
+        dias[fecha[:10]][clave] += 1
+        if causa:
+            causas[causa] += 1
+        for bruto in muns:
+            for m in resolver_municipios(bruto, canon):
+                municipios[m][clave] += 1
+                if tipo == "afectacion":
+                    prev = municipios[m]["ultima_afectacion"]
+                    if not prev or fecha > prev:
+                        municipios[m]["ultima_afectacion"] = fecha
+
+    for av in a.get("averias", []):
+        fecha, _tipo, mun = av[0], av[1], (av[2] if len(av) > 2 else None)
+        if fecha < corte:
+            continue
+        dias[fecha[:10]]["averias"] += 1
+        for m in resolver_municipios(mun, canon):
+            municipios[m]["averias"] += 1
+
+    # --- Horas sin servicio por circuito ---
+    horas = defaultdict(list)
+    ultima = {}
+    for reg in a.get("circuitos_partes", []):
+        fecha, codigo, h = reg[0], reg[1], reg[2]
+        if fecha < corte or not codigo:
+            continue
+        try:
+            horas[codigo].append(float(h))
+        except (TypeError, ValueError):
+            continue
+        if codigo not in ultima or fecha > ultima[codigo]:
+            ultima[codigo] = fecha
+
+    circuitos = {}
+    for codigo, hs in horas.items():
+        circuitos[codigo] = {
+            "menciones": len(hs),
+            "horas_max": round(max(hs), 1),
+            "horas_media": round(sum(hs) / len(hs), 1),
+            "horas_total": round(sum(hs), 1),
+            "ultima": ultima.get(codigo),
+        }
+
+    # Peores por carga acumulada: más representativo que la media, que premia
+    # a un circuito con un único corte largo.
+    ranking = sorted(circuitos.items(), key=lambda kv: kv[1]["horas_total"], reverse=True)
+    ranking_peores = [{"codigo": c, **v} for c, v in ranking[:TOP_CIRCUITOS]]
+
+    # --- Déficit de generación ---
+    mw = [m for m in a.get("mw", []) if m[0] >= corte]
+    mw_serie = [{"fecha": m[0], "mw": m[1]} for m in mw[-60:]]
+    valores = [m[1] for m in mw if isinstance(m[1], (int, float))]
+
+    salida = {
+        "generado": datetime.now(timezone.utc).isoformat(),
+        "ventana_dias": DIAS,
+        "municipios": {k: v for k, v in sorted(municipios.items())},
+        "circuitos": circuitos,
+        "ranking_peores": ranking_peores,
+        "serie_diaria": [{"fecha": d, **v} for d, v in sorted(dias.items())],
+        "causas": dict(sorted(causas.items(), key=lambda kv: -kv[1])),
+        "deficit_mw": {
+            "reciente": mw_serie,
+            "max": max(valores) if valores else None,
+            "min": min(valores) if valores else None,
+            "media": round(sum(valores) / len(valores)) if valores else None,
+        },
+    }
+
+    with open(SALIDA, "w") as fh:
+        json.dump(salida, fh, ensure_ascii=False)
+
+    kb = os.path.getsize(SALIDA) / 1024
+    print(f"bot_datos: {len(circuitos)} circuitos, {len(municipios)} municipios, "
+          f"{len(salida['serie_diaria'])} días, {kb:.0f} KB")
+
+
+if __name__ == "__main__":
+    main()

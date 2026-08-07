@@ -176,6 +176,7 @@ async function chatRAG(env, request) {
   if (!env.NAN_API_KEY) return { respuesta: "El chat no está configurado." };
   try {
     const body = await request.json();
+    const consulta = String(body.consulta || "");
     const historial = body.historial || [];
     const baseUrl = `https://${request.url.split("/")[2]}`;
     const [estadoReq, circuitosReq] = await Promise.all([

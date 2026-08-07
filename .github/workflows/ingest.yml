@@ -2,12 +2,12 @@ name: Ingesta EELH
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # cada 10 min (GitHub puede demorarlo unos minutos más)
-  workflow_dispatch:          # permite lanzarlo a mano desde la pestaña Actions
+    - cron: "*/30 * * * *"   # cada 30 min para evitar acumulación de runs en cola
+  workflow_dispatch:
 
 concurrency:
   group: ingesta
-  cancel-in-progress: false
+  cancel-in-progress: true   # el nuevo mata al viejo, así siempre corre el último
 
 permissions:
   contents: write  # push de la caché de geocodificación de averías
@@ -15,8 +15,7 @@ permissions:
 jobs:
   ingest:
     runs-on: ubuntu-latest
-    timeout-minutes: 18  # la geocodificación con caché fría puede pasar de 10 min;
-                         # la concurrencia serializa, así que no se solapan corridas
+    timeout-minutes: 20  # NaN API puede tomar más tiempo; con cancel-in-progress no se solapan
     steps:
       - uses: actions/checkout@v4
 

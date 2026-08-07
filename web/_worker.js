@@ -234,7 +234,7 @@ async function chatRAG(consulta, env, request) {
     });
     const genData = await genResp.json();
     const texto = genData.choices?.[0]?.message?.content;
-    return { respuesta: texto || "No pude generar respuesta." };
+    return { respuesta: texto || "No pude generar respuesta. " + JSON.stringify(genData).slice(0, 300) };
   } catch (e) {
     return { respuesta: "Error: " + (e.message || e) };
   }

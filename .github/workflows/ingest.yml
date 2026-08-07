@@ -1,8 +1,14 @@
 name: Ingesta EELH
 
+# UN SOLO disparador: el cron-worker de Cloudflare, vía workflow_dispatch.
+#
+# Antes había también un "schedule" cada 30 min y los dos se pisaban: con
+# cancel-in-progress, cada disparo mata el run anterior, así que una ingesta que
+# necesita ~18 min nunca sobrevivía a una ventana con un disparo cada ~15.
+# Medido sobre 60 runs: el cron de GitHub llega 14.5 min tarde de media (peor
+# caso 26.6) sobre un intervalo de 30, mientras el dispatch del worker llega a
+# los 3.9. Quitar el impuntual es lo que permite que un run llegue al final.
 on:
-  schedule:
-    - cron: "*/30 * * * *"   # cada 30 min para evitar acumulación de runs en cola
   workflow_dispatch:
 
 concurrency:
@@ -15,7 +21,10 @@ permissions:
 jobs:
   ingest:
     runs-on: ubuntu-latest
-    timeout-minutes: 20  # NaN API puede tomar más tiempo; con cancel-in-progress no se solapan
+    # 25 min: sin el schedule pisando, la ventana real entre disparos es de 30.
+    # Una ingesta completa medida ronda los 18, así que 20 dejaba casi nada de
+    # margen para un proveedor LLM lento.
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 

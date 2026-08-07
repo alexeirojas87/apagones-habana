@@ -38,7 +38,13 @@ VALIDADOR_VERSION = 3
 # es lo que de verdad protege el timeout del workflow: 50 posts contra un
 # proveedor lento (timeout 120 s, tres en cadena) no caben en 20 minutos.
 MAX_LLM = int(os.environ.get("MAX_LLM_PARTES", "50"))
-MAX_SEGUNDOS = int(os.environ.get("MAX_SEGUNDOS_PARTES", "480"))
+MAX_SEGUNDOS = int(os.environ.get("MAX_SEGUNDOS_PARTES", "420"))
+
+# El presupuesto se comprueba ANTES de cada llamada, así que el paso puede
+# excederlo por lo que tarde la última: con 120 s y tres proveedores en cadena
+# eran hasta 6 min de más (medido: 10m25s con presupuesto de 8). Con 45 s el
+# desbordamiento máximo baja a ~2 min, que sí cabe en la ventana del job.
+TIMEOUT_LLM = int(os.environ.get("TIMEOUT_LLM_PARTES", "45"))
 
 PROMPT = (
     "Eres un analista de partes OFICIALES de la Empresa Eléctrica de La Habana "
@@ -84,7 +90,8 @@ def llm(texto):
     return llm_provider.extraer_json(
         [{"role": "system", "content": PROMPT},
          {"role": "user", "content": texto[:8000]}],
-        "partes", {"nan": MODELO_NAN, "nvidia": MODELO_NVIDIA, "cloudflare": MODELO}, timeout=120)
+        "partes", {"nan": MODELO_NAN, "nvidia": MODELO_NVIDIA, "cloudflare": MODELO},
+        timeout=TIMEOUT_LLM)
 
 
 def codigo_explicito_en(codigo, texto):

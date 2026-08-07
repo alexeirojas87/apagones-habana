@@ -1,6 +1,11 @@
 """Extractor LLM de PARTES OFICIALES con NaN Builders (deepseek-v4-flash).
 NaN elimina las restricciones de cuota y contexto del diseño anterior, así que
-procesamos todos los posts sin truncar, sin sleep y sin tope por corrida.
+procesamos los posts sin truncar y sin sleep.
+
+Sí hay tope por corrida: el canal genera ~7 posts/hora (pico 21), así que un
+tope de 50 nunca se alcanza en régimen normal y solo actúa al recuperar
+backlog, repartiéndolo entre corridas. Sin él, un bump de VALIDADOR_VERSION
+invalidaba la caché entera y la corrida agotaba el timeout del workflow.
 
 NVIDIA NIM y Cloudflare Workers AI quedan como respaldo (fallback) por si
 NaN no está disponible. La caché por message_id sigue vigente para no
@@ -11,6 +16,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 
 from supabase import create_client
@@ -27,6 +33,12 @@ MODELO = os.environ.get("MODELO_PARTES", "@cf/meta/llama-3.3-70b-instruct-fp8-fa
 MODELO_NVIDIA = os.environ.get("MODELO_NVIDIA_PARTES", "openai/gpt-oss-120b")
 VENTANA_H = 24
 VALIDADOR_VERSION = 3
+
+# Topes por corrida. MAX_LLM acota el trabajo; MAX_SEGUNDOS acota el reloj, que
+# es lo que de verdad protege el timeout del workflow: 50 posts contra un
+# proveedor lento (timeout 120 s, tres en cadena) no caben en 20 minutos.
+MAX_LLM = int(os.environ.get("MAX_LLM_PARTES", "50"))
+MAX_SEGUNDOS = int(os.environ.get("MAX_SEGUNDOS_PARTES", "480"))
 
 PROMPT = (
     "Eres un analista de partes OFICIALES de la Empresa Eléctrica de La Habana "
@@ -160,37 +172,65 @@ def main():
              .eq("chat", "canal").gte("fecha", desde)
              .order("fecha", desc=True).limit(200).execute().data)
 
-    nuevos = fallos = 0
-    for p in posts:
-        mid = str(p["message_id"])
-        if cache.get(mid, {}).get("validador_version") == VALIDADOR_VERSION:
-            continue
-        if not RELEVANTE.search(p["texto"] or ""):
-            cache[mid] = {"fecha": p["fecha"], "tipo": "otro", "circuitos": [],
-                          "por_confirmar": [], "bloques": [],
-                          "mw_deficit": None, "pct_restablecido": None,
-                          "via": "prefiltro", "validador_version": VALIDADOR_VERSION}
-            continue
-        crudo, uso = llm(p["texto"])
-        if crudo is None:
-            print(f"LLM falló en {mid}: {', '.join(uso['errores']) or 'sin proveedor disponible'}")
-            fallos += 1
-            if fallos >= 3:
-                break
-            continue
-        valido = validar(crudo, p["texto"])
-        if valido is None:
-            fallos += 1
-            continue
-        cache[mid] = {"fecha": p["fecha"], **valido, "via": "llm",
-                      "proveedor": uso["proveedor"], "modelo": uso["modelo"],
-                      "validador_version": VALIDADOR_VERSION}
-        nuevos += 1
+    def guardar():
+        # Escritura atómica: un job cancelado a mitad de volcado dejaría un
+        # JSON truncado que la próxima corrida descartaría entera.
+        tmp = CACHE_FILE + ".tmp"
+        json.dump(cache, open(tmp, "w"), ensure_ascii=False)
+        os.replace(tmp, CACHE_FILE)
 
-    json.dump(cache, open(CACHE_FILE, "w"), ensure_ascii=False)
+    inicio = time.monotonic()
+    nuevos = fallos = 0
+    corte = None
+    try:
+        for p in posts:
+            mid = str(p["message_id"])
+            if cache.get(mid, {}).get("validador_version") == VALIDADOR_VERSION:
+                continue
+            if not RELEVANTE.search(p["texto"] or ""):
+                cache[mid] = {"fecha": p["fecha"], "tipo": "otro", "circuitos": [],
+                              "por_confirmar": [], "bloques": [],
+                              "mw_deficit": None, "pct_restablecido": None,
+                              "via": "prefiltro", "validador_version": VALIDADOR_VERSION}
+                continue
+            if nuevos >= MAX_LLM:
+                corte = f"tope de {MAX_LLM} posts"
+                break
+            if time.monotonic() - inicio > MAX_SEGUNDOS:
+                corte = f"presupuesto de {MAX_SEGUNDOS}s agotado"
+                break
+            crudo, uso = llm(p["texto"])
+            if crudo is None:
+                print(f"LLM falló en {mid}: {', '.join(uso['errores']) or 'sin proveedor disponible'}")
+                fallos += 1
+                if fallos >= 3:
+                    corte = "3 fallos consecutivos de proveedor"
+                    break
+                continue
+            valido = validar(crudo, p["texto"])
+            if valido is None:
+                fallos += 1
+                continue
+            cache[mid] = {"fecha": p["fecha"], **valido, "via": "llm",
+                          "proveedor": uso["proveedor"], "modelo": uso["modelo"],
+                          "validador_version": VALIDADOR_VERSION}
+            nuevos += 1
+            # Incremental: el step que commitea la caché va después de este
+            # script, así que sin esto un fallo tardío tira toda la corrida.
+            if nuevos % 10 == 0:
+                guardar()
+    finally:
+        guardar()
+
+    pendientes = sum(
+        1 for p in posts
+        if cache.get(str(p["message_id"]), {}).get("validador_version") != VALIDADOR_VERSION)
     tot_circ = sum(len(v.get("circuitos") or []) for v in cache.values())
     print(f"partes_llm: {nuevos} posts nuevos procesados, {len(cache)} en caché, "
           f"{tot_circ} circuitos extraídos, {fallos} fallos")
+    if corte:
+        print(f"partes_llm: corte por {corte}; {pendientes} pendientes "
+              f"para la próxima corrida")
 
 
 if __name__ == "__main__":

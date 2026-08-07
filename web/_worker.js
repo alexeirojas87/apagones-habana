@@ -184,13 +184,41 @@ async function chatRAG(consulta, env, request) {
     if (estadoReq && estadoReq.ok && circuitosReq && circuitosReq.ok) {
       const est = await estadoReq.json();
       const cat = await circuitosReq.json();
-      const circuitos = (cat.circuitos || []).filter(c => c.estado === "sin servicio").slice(0, 20);
-      const circs = circuitos.map(c => `${c.codigo}: ${c.calles ? c.calles.slice(0, 60) : ""}${c.municipio ? " (" + c.municipio + ")" : ""}`).join("\n");
+      // Misma regla que app.js circuitoVigente(): el estado eléctrico de un circuito
+      // se computa combinando el SEN, su bloque y la antigüedad de la noticia.
+      const en = est.evento_nacional;
+      const vigente = (c) => {
+        const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
+        if (en) return (c.estado === "con servicio" && t && t > new Date(en.desde)) ? "con" : "sin";
+        if (c.estado === "con servicio") {
+          const b = c.bloque && est.bloques ? est.bloques[c.bloque] : null;
+          if (t && b && b.estado === "afectado" && b.desde && t < new Date(b.desde)) return "sin";
+          return "con";
+        }
+        if (c.estado === "sin servicio") {
+          if (t && (Date.now() - t) > 24 * 3600000) return "nd";
+          return "sin";
+        }
+        return "asum";
+      };
+      let ncon = 0, nsin = 0, nasum = 0, nnd = 0;
+      const sinList = [];
+      for (const c of (cat.circuitos || [])) {
+        const v = vigente(c);
+        if (v === "sin") { nsin++; sinList.push(c); }
+        else if (v === "con") ncon++;
+        else if (v === "nd") nnd++;
+        else nasum++;
+      }
+      const circs = sinList.slice(0, 15)
+        .map(c => `${c.codigo}: ${c.calles ? c.calles.replace(/\s+/g, " ").slice(0, 50) : ""}${c.municipio ? " (" + c.municipio + ")" : ""}`).join("\n");
       const muns = Object.entries(est.municipios || {}).slice(0, 8)
         .map(([m, v]) => `${m}: ${v.reportes_sin || 0} reportes sin luz`).join("\n");
       const reportes = (est.reportes_llm || []).slice(0, 10)
         .map(r => `${r.lugar}: ${r.tipo === "sin_corriente" ? "sin luz" : "con luz"}`).join("\n");
-      const partes = [circs ? "Circuitos sin servicio:\n" + circs : "",
+      const resumen = `Resumen: ${nsin} circuitos sin servicio, ${ncon} con servicio, ${nnd} sin noticias +24h, ${nasum} sin apagones reportados (de ${(cat.circuitos || []).length} totales).`;
+      const partes = [resumen,
+                     circs ? "Circuitos sin servicio:\n" + circs : "",
                      muns ? "Reportes por municipio:\n" + muns : "",
                      reportes ? "Reportes vecinales recientes:\n" + reportes : ""].filter(Boolean).join("\n\n");
       contexto = partes || "(sin datos ahora)";

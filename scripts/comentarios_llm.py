@@ -30,6 +30,7 @@ BBOX_HABANA = (-82.70, 22.90, -81.90, 23.35)
 MODELO_NAN = os.environ.get("MODELO_NAN_COMENTARIOS", "deepseek-v4-flash")
 MODELO = os.environ.get("MODELO", "@cf/meta/llama-3.3-70b-instruct-fp8-fast")
 MODELO_NVIDIA = os.environ.get("MODELO_NVIDIA_COMENTARIOS", "openai/gpt-oss-20b")
+MAX_LLM = int(os.environ.get("MAX_LLM_COMENTARIOS", "50"))
 VENTANA_H = 4
 CACHE = os.path.join(os.path.dirname(__file__), "..", "data", "geocache_averias.json")
 
@@ -100,14 +101,15 @@ def main():
     cache = json.load(open(CACHE)) if os.path.exists(CACHE) else {}
 
     pendientes = [m for m in recientes if m["message_id"] not in ya and prometedor(m["texto"])]
-    filas, llm_ok = [], True
+    filas, llm_ok, procesados = [], True, 0
     for m in pendientes:
-        if not llm_ok:
+        if not llm_ok or procesados >= MAX_LLM:
             continue
         r, uso = llm(m["texto"])
         if r is None:
             llm_ok = False
             continue
+        procesados += 1
         fila = {
             "message_id": m["message_id"], "fecha": m["fecha"],
             "reporta": r.get("reporta"),
@@ -124,7 +126,7 @@ def main():
     if filas:
         sb.table("comentarios_llm").upsert(filas, on_conflict="message_id").execute()
     ubicados = sum(1 for f in filas if f["lat"])
-    print(f"Comentarios: {len(filas)} guardados, {ubicados} ubicados")
+    print(f"Comentarios: {len(filas)} guardados (max {MAX_LLM} por corrida), {ubicados} ubicados")
 
 
 if __name__ == "__main__":

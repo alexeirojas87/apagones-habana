@@ -227,9 +227,11 @@ async function chatRAG(env, request) {
 
     const messages = [
       { role: "system", content: `Eres un analista de datos eléctricos de La Habana.
-Tienes acceso a TODOS los circuitos con su estado actual y horas sin luz computadas.
-Puedes analizar, comparar, buscar patrones y responder preguntas específicas.
-Sé analítico pero conciso. Usa los datos que te doy, no inventes nada.
+Cada circuito tiene: codigo, estado (sin|con|nd|asum), horas sin luz, calles/zonas que cubre, municipio y ultima_fecha.
+Cuando te pregunten por un lugar (barrio, reparto, calle, zona), BUSCA ese nombre en el campo "calles" de cada circuito — no solo en los códigos.
+Por ejemplo, si preguntan por "Aldabó", busca "Aldabó" en las calles de todos los circuitos.
+Si preguntan por "Marianao", busca "Marianao" en el campo municipio y en calles.
+Sé analítico pero conciso. Usa los datos, no inventes nada.
 
 DATOS COMPLETOS:
 ${dataBlock}` },

@@ -31,6 +31,13 @@ MODELO_NAN = os.environ.get("MODELO_NAN_COMENTARIOS", "deepseek-v4-flash")
 MODELO = os.environ.get("MODELO", "@cf/meta/llama-3.3-70b-instruct-fp8-fast")
 MODELO_NVIDIA = os.environ.get("MODELO_NVIDIA_COMENTARIOS", "openai/gpt-oss-20b")
 MAX_LLM = int(os.environ.get("MAX_LLM_COMENTARIOS", "50"))
+
+# El tope de 50 acota el trabajo pero no el reloj: cada iteración puede sumar
+# la llamada al LLM más una geocodificación contra Nominatim. Medido en CI, el
+# paso llegó a 6m57s y se comió la ventana del job. Igual que en partes_llm, lo
+# que de verdad protege la ingesta es el presupuesto de tiempo.
+MAX_SEGUNDOS = int(os.environ.get("MAX_SEGUNDOS_COMENTARIOS", "300"))
+TIMEOUT_LLM = int(os.environ.get("TIMEOUT_LLM_COMENTARIOS", "45"))
 VENTANA_H = 4
 CACHE = os.path.join(os.path.dirname(__file__), "..", "data", "geocache_averias.json")
 
@@ -62,7 +69,8 @@ def llm(texto):
     return llm_provider.extraer_json(
         [{"role": "system", "content": PROMPT},
          {"role": "user", "content": texto[:2000]}],
-        "comentarios", {"nan": MODELO_NAN, "nvidia": MODELO_NVIDIA, "cloudflare": MODELO}, timeout=90)
+        "comentarios", {"nan": MODELO_NAN, "nvidia": MODELO_NVIDIA, "cloudflare": MODELO},
+        timeout=TIMEOUT_LLM)
 
 
 def geocodificar_lugar(lugar, osm, cache):
@@ -102,13 +110,20 @@ def main():
 
     pendientes = [m for m in recientes if m["message_id"] not in ya and prometedor(m["texto"])]
     filas, llm_ok, procesados = [], True, 0
+    inicio, corte = time.monotonic(), None
     for m in pendientes:
-        if not llm_ok or procesados >= MAX_LLM:
-            continue
+        if procesados >= MAX_LLM:
+            corte = f"tope de {MAX_LLM} comentarios"
+            break
+        if time.monotonic() - inicio > MAX_SEGUNDOS:
+            corte = f"presupuesto de {MAX_SEGUNDOS}s agotado"
+            break
         r, uso = llm(m["texto"])
         if r is None:
+            # Sin proveedor no tiene sentido seguir iterando la lista entera.
             llm_ok = False
-            continue
+            corte = "sin proveedor LLM disponible"
+            break
         procesados += 1
         fila = {
             "message_id": m["message_id"], "fecha": m["fecha"],
@@ -127,6 +142,9 @@ def main():
         sb.table("comentarios_llm").upsert(filas, on_conflict="message_id").execute()
     ubicados = sum(1 for f in filas if f["lat"])
     print(f"Comentarios: {len(filas)} guardados (max {MAX_LLM} por corrida), {ubicados} ubicados")
+    if corte:
+        print(f"Comentarios: corte por {corte}; "
+              f"{len(pendientes) - procesados} quedan para la próxima corrida")
 
 
 if __name__ == "__main__":

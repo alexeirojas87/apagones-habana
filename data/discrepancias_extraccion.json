@@ -353,5 +353,14 @@
    "SR840"
   ],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 am se afecta 433 MW distribuidos en 135 circuitos de distribución. A continuación, "
+ },
+ "73024": {
+  "fecha": "2026-08-07T13:32:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 08:12am quedó restablecido el servicio de los siguientes circuitos: 👉OP411/OP420/OP424/OP318/OP406/OP306/OP410:/"
  }
 }

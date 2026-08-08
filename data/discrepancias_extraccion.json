@@ -381,5 +381,16 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 8:24 am comenzó el restablecimiento del servicio en los siguientes circuitos: 👉OP411,OP320,OP424,OP318: Soterrad"
+ },
+ "73267": {
+  "fecha": "2026-08-08T14:08:59+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1246",
+   "D1140",
+   "PZ13"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 9:50 am se afecta 270 MW distribuidos en 76 circuitos de distribución. A continuación, se"
  }
 }

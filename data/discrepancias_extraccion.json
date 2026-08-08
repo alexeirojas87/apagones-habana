@@ -361,5 +361,14 @@
   ],
   "solo_regex": [],
   "extracto": "Informamos a la población que a partir de las 12:55 am quedó restablecido el servicio del siguiente circuito: A1520:Reparto Revoledo, Vista Alegre, La Prosperid"
+ },
+ "73228": {
+  "fecha": "2026-08-08T10:21:47+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1075"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Averías Primarias 📌Municipio: Guanabacoa 👉Dirección: Monumental Km 11 ½ ⚠️Afe"
  }
 }

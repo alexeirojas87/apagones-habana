@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import date, datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -24,6 +25,14 @@ from extract import bloques_en, municipios_en, causa_en, normalizar  # noqa: E40
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE_LINEAS = os.path.join(RAIZ, "data", "geocache_circuitos_lineas.json")
+CACHE_INTENTOS = os.path.join(RAIZ, "data", "geocache_lineas_intentos.json")
+
+# Resolución de geometría (Overpass). El tope anterior de 8 por corrida dejaba
+# 108 circuitos pendientes a 13 ingestas de distancia; con el presupuesto de
+# reloj se puede subir sin arriesgar el timeout del job.
+MAX_GEO = int(os.environ.get("MAX_GEO_CIRCUITOS", "40"))
+MAX_SEGUNDOS_GEO = int(os.environ.get("MAX_SEGUNDOS_GEO", "240"))
+REINTENTOS = int(os.environ.get("REINTENTOS_GEO", "3"))
 RECORD_FILE = os.path.join(RAIZ, "data", "record_circuitos.json")
 OFICIAL_FILE = os.path.join(RAIZ, "data", "circuitos_oficial.json")  # tablas oficiales UNE
 
@@ -444,44 +453,97 @@ def main():
     # dibujarlas en el mapa. Cacheada por código (la geometría no cambia) y acotada
     # por corrida (Overpass es lento). Los que no resuelven quedan sin líneas (el
     # frontend cae a una bolita grande que engloba la zona).
-    from build_lineas import overpass as _overpass, norm as _norm  # noqa: E402
+    from build_lineas import (overpass as _overpass, overpass_lugares as _lugares,
+                              norm as _norm)  # noqa: E402
     cache_l = json.load(open(CACHE_LINEAS)) if os.path.exists(CACHE_LINEAS) else {}
+    # Cuántas veces se intentó resolver cada código. Antes, un [] en la caché
+    # era definitivo: un timeout de Overpass condenaba al circuito a no tener
+    # geometría nunca. Se reintenta hasta REINTENTOS veces y luego se deja.
+    intentos = json.load(open(CACHE_INTENTOS)) if os.path.exists(CACHE_INTENTOS) else {}
+
+    # Barrios con polígono que ya están en el repo: para un circuito descrito
+    # por reparto, la geometría correcta ya la tenemos y no hace falta red.
+    try:
+        barrios_poly = {_norm(k): v for k, v in
+                        json.load(open(os.path.join(RAIZ, "web", "data",
+                                                    "barrios_poligonos.json"))).items()}
+    except Exception:
+        barrios_poly = {}
+
+    # Preposiciones y genéricos que preceden al topónimo ("en Luyanó",
+    # "reparto Fontanar") y que hay que quitar para que el nombre case.
+    _STOP = r"^(?:en|el|la|los|las|de|del|reparto|rpto\.?|zona|zonas|barrio)\s+"
 
     def _nombres_calles(calles):
-        nombres = []
-        for seg in re.split(r";", calles):
-            seg = re.sub(r"\(.*?\)", "", seg)
-            primero = re.split(r"\s+(?:desde|de|entre|hasta|a)\s+", seg.strip(), flags=re.I)[0]
-            n = _norm(primero)
-            if n and 1 <= len(n) <= 24 and n not in nombres:
-                nombres.append(n)
-        return nombres[:8]
+        """Trocea la descripción del parte en topónimos individuales.
 
-    nuevas = 0
+        Parte también por ',' y ' y ': antes solo se partía por ';', así que
+        "D´Beche, Nalón" viajaba como un único topónimo inexistente.
+        """
+        nombres = []
+        for seg in re.split(r"[;,]|\s+y\s+", calles):
+            seg = re.sub(r"\(.*?\)", "", seg)
+            primero = re.split(r"\s+(?:desde|entre|hasta)\s+", seg.strip(), flags=re.I)[0]
+            primero = re.sub(_STOP, "", primero.strip(), flags=re.I)
+            n = _norm(primero)
+            if n and 1 <= len(n) <= 30 and n not in nombres:
+                nombres.append(n)
+        return nombres[:10]
+
+    def _geoms(elementos, nset):
+        return [[[round(p["lon"], 5), round(p["lat"], 5)] for p in e["geometry"]]
+                for e in elementos
+                if e.get("geometry") and _norm(e.get("tags", {}).get("name", "")) in nset]
+
+    nuevas, inicio_geo = 0, time.monotonic()
     for c in circuitos:
         cod = c["codigo"]
-        if cod in cache_l:
-            if cache_l[cod]:
-                c["lineas"] = cache_l[cod]
+        if cache_l.get(cod):                 # ya resuelto: se reutiliza
+            c["lineas"] = cache_l[cod]
             continue
-        if "lat" not in c or not c.get("calles") or nuevas >= 8:
+        if intentos.get(cod, 0) >= REINTENTOS:
             continue
+        if "lat" not in c or not c.get("calles") or nuevas >= MAX_GEO:
+            continue
+        if time.monotonic() - inicio_geo > MAX_SEGUNDOS_GEO:
+            break
         nombres = _nombres_calles(c["calles"])
         if not nombres:
+            intentos[cod] = REINTENTOS      # sin nombres no hay nada que reintentar
             continue
-        caja = (c["lat"] - 0.018, c["lon"] - 0.022, c["lat"] + 0.018, c["lon"] + 0.022)  # s,w,n,e
-        try:
-            vias = _overpass(nombres, caja)
-        except Exception:
-            vias = []
         nset = set(nombres)
-        lineas = [[[round(p["lon"], 5), round(p["lat"], 5)] for p in v["geometry"]]
-                  for v in vias if v.get("geometry") and _norm(v.get("tags", {}).get("name", "")) in nset]
+
+        # 1) Polígono de barrio que ya tenemos en casa: gratis y sin red.
+        lineas = []
+        for n in nombres:
+            entrada = barrios_poly.get(n) or {}
+            anillo = entrada.get("anillo") if isinstance(entrada, dict) else None
+            if anillo:
+                lineas.append([[round(p[0], 5), round(p[1], 5)] for p in anillo])
+                break
+
+        # 2) Calles reales en OSM.
+        if not lineas:
+            caja = (c["lat"] - 0.018, c["lon"] - 0.022,
+                    c["lat"] + 0.018, c["lon"] + 0.022)  # s,w,n,e
+            try:
+                lineas = _geoms(_overpass(nombres, caja), nset)
+            except Exception:
+                lineas = []
+            # 3) Si ninguna casa como vía, puede ser un reparto: se busca como lugar.
+            if not lineas:
+                try:
+                    lineas = _geoms(_lugares(nombres, caja), nset)
+                except Exception:
+                    lineas = []
+
         cache_l[cod] = lineas
+        intentos[cod] = intentos.get(cod, 0) + 1
         if lineas:
             c["lineas"] = lineas
         nuevas += 1
     json.dump(cache_l, open(CACHE_LINEAS, "w"), ensure_ascii=False)
+    json.dump(intentos, open(CACHE_INTENTOS, "w"), ensure_ascii=False)
     con_lineas = sum(1 for c in circuitos if c.get("lineas"))
 
     salida = {

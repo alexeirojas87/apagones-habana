@@ -27,9 +27,40 @@ UA = {"User-Agent": "apagones-habana/0.1 (proyecto comunitario)"}
 
 
 def norm(t):
-    t = "".join(c for c in unicodedata.normalize("NFD", t.lower()) if unicodedata.category(c) != "Mn")
-    t = re.sub(r"\b(calle|calles|avenida|ave\.?|calzada)\b", " ", t)
-    return re.sub(r"\s+", " ", t).strip(" .")
+    """Forma canónica de un topónimo: sin acentos, sin genérico de vía, sin
+    puntuación. Se aplica a AMBOS lados de la comparación —al texto del parte y
+    al nombre que devuelve OSM—; compararlas asimétricamente hacía que
+    "penas altas" no casara nunca con "Peñas Altas"."""
+    t = "".join(c for c in unicodedata.normalize("NFD", str(t).lower())
+                if unicodedata.category(c) != "Mn")
+    t = re.sub(r"\b(calle|calles|avenida|avda|ave|calzada|carretera|ctra)\b\.?", " ", t)
+    t = re.sub(r"[^\w\s]", " ", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+# Clases de vocal/ñ para que la regex de Overpass encuentre el nombre acentuado
+# a partir del normalizado ("penas altas" -> "Peñas Altas").
+_ACENTOS = (("a", "[aáà]"), ("e", "[eé]"), ("i", "[ií]"),
+            ("o", "[oó]"), ("u", "[uúü]"), ("n", "[nñ]"))
+
+
+def patron_nombres(nombres):
+    """Regex para name~ que tolera acentos y el genérico de vía delante.
+
+    El patrón se construye sobre el nombre YA normalizado (sin "calzada",
+    "avenida"...) y vuelve a permitirlos como prefijo OPCIONAL. Antes se
+    quitaba el genérico y luego se anteponía uno fijo, de modo que
+    "Calzada del Cerro" se buscaba como "calzada del del cerro".
+    """
+    partes = []
+    for n in nombres:
+        e = re.escape(n).replace("\\ ", " ")
+        for plano, clase in _ACENTOS:
+            e = e.replace(plano, clase)
+        partes.append(f"(calle |avenida |avda\\.? |ave\\.? |calzada (de |del )?|carretera )?{e}")
+        if re.fullmatch(r"\d+", n):      # "35" también como "Calle 35"
+            partes.append(f"(calle|avenida) {n}")
+    return "|".join(f"^({p})$" for p in partes)
 
 
 def bboxes():
@@ -51,21 +82,34 @@ def bboxes():
     return cajas
 
 
-def overpass(nombres, caja):
-    """Vías con highway y nombre en la lista, dentro del bbox del municipio."""
-    partes = []
-    for n in nombres:
-        esc = re.escape(n).replace("\\ ", " ")
-        partes.append(f"^(calle |avenida |ave\\.? |calzada de |calzada del )?{esc}$")
-    regex = "|".join(partes)
-    s, w, nn, e = caja
-    q = f'[out:json][timeout:90];way[highway][name~"{regex}",i]({s},{w},{nn},{e});out geom;'
+def _consultar(q):
     req = urllib.request.Request(
         "https://overpass-api.de/api/interpreter",
         data=urllib.parse.urlencode({"data": q}).encode(),
         headers=UA,
     )
     return json.load(urllib.request.urlopen(req, timeout=120)).get("elements", [])
+
+
+def overpass(nombres, caja):
+    """Vías con highway y nombre en la lista, dentro del bbox del municipio."""
+    s, w, nn, e = caja
+    return _consultar(f'[out:json][timeout:90];way[highway]'
+                      f'[name~"{patron_nombres(nombres)}",i]({s},{w},{nn},{e});out geom;')
+
+
+def overpass_lugares(nombres, caja):
+    """Barrios y repartos con geometría de área.
+
+    Muchos partes describen la zona por reparto ("Fontanar", "Peñas Altas"),
+    no por calle. Buscando solo way[highway] esos circuitos no podían resolver
+    nunca, por construcción.
+    """
+    s, w, nn, e = caja
+    rx = patron_nombres(nombres)
+    return _consultar(f'[out:json][timeout:90];('
+                      f'way[place][name~"{rx}",i]({s},{w},{nn},{e});'
+                      f'relation[place][name~"{rx}",i]({s},{w},{nn},{e}););out geom;')
 
 
 def main():

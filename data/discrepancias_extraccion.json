@@ -343,5 +343,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Averías Primarias 📌Municipio: Guanabacoa 👉Dirección: Monumental Km 11 ½ ⚠️Afe"
+ },
+ "73178": {
+  "fecha": "2026-08-08T04:03:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "230"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Lisa , queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba : 👉 230 / 27 y 29 , Coronela.🟢☑️"
  }
 }

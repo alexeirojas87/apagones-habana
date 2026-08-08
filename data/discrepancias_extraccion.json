@@ -1,13 +1,4 @@
 {
- "71992": {
-  "fecha": "2026-07-31T23:49:54+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2202"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 7:13 pm se afecta el servicio eléctrico en los siguientes circuitos: 👉2074:67 hasta 87 por 218, 216 hasta 192, 5"
- },
  "72336": {
   "fecha": "2026-08-02T15:09:19+00:00",
   "tipo_llm": "afectacion",

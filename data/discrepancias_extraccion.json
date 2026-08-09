@@ -1,13 +1,4 @@
 {
- "72336": {
-  "fecha": "2026-08-02T15:09:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A815"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 09:47am se afectó el servicio eléctrico del siguiente circuito: 👉A 815: Alrededores de calles calzada de Vento d"
- },
  "72385": {
   "fecha": "2026-08-02T20:10:43+00:00",
   "tipo_llm": "afectacion",

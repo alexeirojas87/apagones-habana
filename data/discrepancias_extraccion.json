@@ -692,5 +692,30 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Averías Primarias 📌Municipio: Guanabacoa 👉Dirección: Monumental Km 11 ½ ⚠️Afe"
+ },
+ "73429": {
+  "fecha": "2026-08-09T11:05:45+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:49 am se afectó el servicio eléctrico en los siguientes circuitos: 👉OP318: Soterrado Habana Vieja 👉OP410: Sot"
+ },
+ "73428": {
+  "fecha": "2026-08-09T11:04:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 6:55 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉D1050:Barreras 👉 D1055:Repartos "
  }
 }

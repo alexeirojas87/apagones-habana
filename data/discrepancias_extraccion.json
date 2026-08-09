@@ -498,5 +498,21 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 08:40 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉D1195: Reparto Lutgardita. 👉A820:Repartos"
+ },
+ "73380": {
+  "fecha": "2026-08-09T04:19:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 11:57 pm comenzó el restablecimiento del servicio en los siguientes circuitos: 👉 OP329,OP304,OP411,OP320,OP424,O"
  }
 }

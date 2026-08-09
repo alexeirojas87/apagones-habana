@@ -651,5 +651,46 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 06:23 am se afectó el servicio eléctrico en los siguientes circuitos: 👉C7: Alrededores del cuadrante desde calle"
+ },
+ "73426": {
+  "fecha": "2026-08-09T10:57:54+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:43 am se afectó el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de calles avenida 409 "
+ },
+ "73425": {
+  "fecha": "2026-08-09T10:54:31+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "M609",
+   "M700"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:43 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A1328: Carretera de la Rodo y Zona del Ce"
+ },
+ "73424": {
+  "fecha": "2026-08-09T10:49:18+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1538",
+   "A1550",
+   "A708",
+   "A940",
+   "A945"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:38 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A800: Repartos Mazorra y Panamerica 👉A708"
+ },
+ "73423": {
+  "fecha": "2026-08-09T10:39:32+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1075"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Averías Primarias 📌Municipio: Guanabacoa 👉Dirección: Monumental Km 11 ½ ⚠️Afe"
  }
 }

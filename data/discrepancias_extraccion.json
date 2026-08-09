@@ -780,5 +780,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 💥Dirección: Finca Buenos Aires "
+ },
+ "73546": {
+  "fecha": "2026-08-09T18:59:30+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Centro Habana, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Tenerife / Carmen y Figura.🛑⚡️"
  }
 }

@@ -606,5 +606,17 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 4:15 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉OP304,OP411,OP320,OP424,OP318,OP"
+ },
+ "73414": {
+  "fecha": "2026-08-09T08:52:13+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1856",
+   "A1430",
+   "D1280",
+   "OP319"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:46 am se afectó el servicio eléctrico en los siguientes circuitos: 👉OP319: Alrededores de calles del cuadrant"
  }
 }

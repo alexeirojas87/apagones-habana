@@ -630,5 +630,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:48 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A1443:Repartos Río Verde y Calixto Sánche"
+ },
+ "73421": {
+  "fecha": "2026-08-09T09:49:07+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S516",
+   "SR850"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:55 am se afectó el servicio eléctrico en los siguientes circuitos: 👉S516: Reparto Las Piedras, Bella Vista, A"
  }
 }

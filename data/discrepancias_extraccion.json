@@ -489,5 +489,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 08:45 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A1545: Repartos Gran Boulevar, Nueva Fort"
+ },
+ "73376": {
+  "fecha": "2026-08-09T02:06:31+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1100"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 08:40 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉D1195: Reparto Lutgardita. 👉A820:Repartos"
  }
 }

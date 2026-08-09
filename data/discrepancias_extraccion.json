@@ -618,5 +618,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:46 am se afectó el servicio eléctrico en los siguientes circuitos: 👉OP319: Alrededores de calles del cuadrant"
+ },
+ "73415": {
+  "fecha": "2026-08-09T09:04:35+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1443",
+   "D1372",
+   "D1380",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:48 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A1443:Repartos Río Verde y Calixto Sánche"
  }
 }

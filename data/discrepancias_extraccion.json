@@ -514,5 +514,38 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 11:57 pm comenzó el restablecimiento del servicio en los siguientes circuitos: 👉 OP329,OP304,OP411,OP320,OP424,O"
+ },
+ "73391": {
+  "fecha": "2026-08-09T04:55:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:38 am se afectó el servicio eléctrico en los siguientes circuitos: 👉P319: Alrededores de calles Castillejo de"
+ },
+ "73389": {
+  "fecha": "2026-08-09T04:50:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1246"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:19 am se afectó el servicio eléctrico en los siguientes circuitos: 👉1175:Calle 82 desde avenida 49 hasta aven"
+ },
+ "73385": {
+  "fecha": "2026-08-09T04:41:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1465",
+   "A1547",
+   "A1690",
+   "A170",
+   "A928",
+   "D1290",
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:11 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A845: Alrededores de las 4 Esquinas (Mana"
  }
 }

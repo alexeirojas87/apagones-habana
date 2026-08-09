@@ -547,5 +547,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:11 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A845: Alrededores de las 4 Esquinas (Mana"
+ },
+ "73401": {
+  "fecha": "2026-08-09T07:25:51+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP8"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:19 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A1520: Reparto Revoledo, Vista Alegre, La"
  }
 }

@@ -745,5 +745,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 9:00 AM se afectan 413 MW distribuidos en 131 circuitos de distribución. A continuación, "
+ },
+ "73456": {
+  "fecha": "2026-08-09T13:31:17+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "134",
+   "251",
+   "257"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉134 / 257 y 251.🛑⚡️"
  }
 }

@@ -471,5 +471,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 07:37 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉D1140: Repartos Peñas Altas y Brisas del "
+ },
+ "73374": {
+  "fecha": "2026-08-09T01:29:13+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC15"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 08:52 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉1241: Avenida 1ra desde calle 38 hasta ca"
+ },
+ "73373": {
+  "fecha": "2026-08-09T01:29:11+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1190"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 08:45 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A1545: Repartos Gran Boulevar, Nueva Fort"
  }
 }

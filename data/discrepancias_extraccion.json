@@ -747,5 +747,15 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉134 / 257 y 251.🛑⚡️"
+ },
+ "73486": {
+  "fecha": "2026-08-09T16:03:58+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "318",
+   "320"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Lisa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉31 / 318 y 320.🛑⚡️"
  }
 }

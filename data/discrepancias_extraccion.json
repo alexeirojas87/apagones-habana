@@ -736,5 +736,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes de los municipios Cerro y 10 de Octubre pertenecientes al circuito C8, que se ha transferido temporalmente la carga al circuito OP40"
+ },
+ "73455": {
+  "fecha": "2026-08-09T13:24:17+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 9:00 AM se afectan 413 MW distribuidos en 131 circuitos de distribución. A continuación, "
  }
 }

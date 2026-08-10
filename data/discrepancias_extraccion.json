@@ -867,5 +867,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio 10 de Octubre pertenecientes al circuito A980, que se ha transferido temporalmente la carga al circuito A1009 la zona "
+ },
+ "73755": {
+  "fecha": "2026-08-10T22:00:10+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Plaza, se localiza avería por poste partido en calle N entre Línea y 17, Vedado🚨"
  }
 }

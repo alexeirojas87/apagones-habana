@@ -813,5 +813,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00am se afectan 531MW distribuidos en 181circuitos de distribución. A continuación, se"
+ },
+ "73677": {
+  "fecha": "2026-08-10T16:00:43+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380",
+   "PZ5"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00pm se afectan 454MW distribuidos en 140circuitos de distribución. A continuación, se"
  }
 }

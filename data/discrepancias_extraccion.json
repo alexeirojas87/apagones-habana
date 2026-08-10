@@ -857,5 +857,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00pm se afectan 441MW distribuidos en 132circuitos de distribución. A continuación, se"
+ },
+ "73705": {
+  "fecha": "2026-08-10T19:44:29+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1009",
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio 10 de Octubre pertenecientes al circuito A980, que se ha transferido temporalmente la carga al circuito A1009 la zona "
  }
 }

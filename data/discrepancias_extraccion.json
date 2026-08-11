@@ -898,5 +898,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30 pm se afectan 328MW distribuidos en 104circuitos de distribución. A continuación, s"
+ },
+ "73934": {
+  "fecha": "2026-08-11T17:43:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C11"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Consumidores del municipio Plaza , queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba: 👉Cañongo entre Infanta y Santa Teresa . 📣✅"
  }
 }

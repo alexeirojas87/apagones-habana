@@ -1,13 +1,4 @@
 {
- "72501": {
-  "fecha": "2026-08-04T19:59:43+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C7"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Cerro,por una avería primaria en calle Albear / 1ra y Palatino se encuentra afectado el circuito : 👉-C7: Alrededores del cuadrante d"
- },
  "72524": {
   "fecha": "2026-08-04T21:08:41+00:00",
   "tipo_llm": "afectacion",
@@ -77,15 +68,6 @@
    "R456"
   ],
   "extracto": "📣🚨Informamos a la población que a partir de las 07:29 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉A1007: Alrededores de calles: -Alegría, M"
- },
- "72500": {
-  "fecha": "2026-08-04T19:55:35+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "T41"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:54 pm se afectan 503 MW distribuidos en 151 circuitos de distribución. A continuación,"
  },
  "72584": {
   "fecha": "2026-08-05T04:11:58+00:00",

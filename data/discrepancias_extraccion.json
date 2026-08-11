@@ -1,16 +1,4 @@
 {
- "72478": {
-  "fecha": "2026-08-04T16:47:49+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1470",
-   "D1380",
-   "D836",
-   "VC100"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12: 23 pm comienza el restablecimiento del servicio eléctrico en los siguiente circuitos: 👉D1372:Las Cañas, Cala"
- },
  "72484": {
   "fecha": "2026-08-04T18:10:50+00:00",
   "tipo_llm": "afectacion",
@@ -901,5 +889,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Consumidores del municipio Arroyo Naranjo ,se encuentran afectados por Avería Primaria en el siguiente circuito: 👉Carretera de Managua a Lechuga . (A170)🚨📣"
+ },
+ "73923": {
+  "fecha": "2026-08-11T16:35:26+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30 pm se afectan 328MW distribuidos en 104circuitos de distribución. A continuación, s"
  }
 }

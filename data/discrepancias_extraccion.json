@@ -8,22 +8,6 @@
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 04:50 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉D860:Repartos Wajay, INAV, Ampliación del"
  },
- "72522": {
-  "fecha": "2026-08-04T21:01:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP329",
-   "OP406",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 04:40 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉OP 318: Soterrado Habana Vieja. 👉 OP410 👉"
- },
  "72538": {
   "fecha": "2026-08-04T22:07:38+00:00",
   "tipo_llm": "restablecimiento",

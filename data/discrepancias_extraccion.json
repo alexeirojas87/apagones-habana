@@ -900,5 +900,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 11:51pm se afectó el servicio eléctrico en el siguiente circuito: 👉Repartos: Comodoro, El Volpe, Rosario, Güiner"
+ },
+ "73845": {
+  "fecha": "2026-08-11T07:00:10+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00am se afectan 556MW distribuidos en 172circuitos de distribución. A continuación, se"
  }
 }

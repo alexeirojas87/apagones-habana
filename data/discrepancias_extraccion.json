@@ -1015,5 +1015,14 @@
   ],
   "solo_regex": [],
   "extracto": "Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires ("
+ },
+ "74125": {
+  "fecha": "2026-08-12T19:11:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ16"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Informamos a la población que a partir de las 1:14 pm comienza el restablecimiento del servicio en los siguientes circuitos: 👉D640:La Concepción, XX Aniversari"
  }
 }

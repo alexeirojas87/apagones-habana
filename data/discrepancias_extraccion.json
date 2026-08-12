@@ -1,13 +1,4 @@
 {
- "72738": {
-  "fecha": "2026-08-05T21:06:10+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D640"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:12 PM se afectó el servicio eléctrico en los siguientes circuitos: D640: La Concepción, Villapol, Ampliación "
- },
  "72798": {
   "fecha": "2026-08-06T03:06:12+00:00",
   "tipo_llm": "averia",
@@ -1043,5 +1034,20 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio San Miguel del Padrón queda reparada la AVERÍA Secundaria por Transformador en : 👉Palma y Bella Vista .✅"
+ },
+ "74165": {
+  "fecha": "2026-08-12T21:13:37+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 05:02 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP304,OP411,OP320,OP424,OP406,OP306,OP318"
  }
 }

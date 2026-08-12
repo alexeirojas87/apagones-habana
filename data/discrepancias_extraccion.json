@@ -1,13 +1,4 @@
 {
- "72547": {
-  "fecha": "2026-08-04T23:41:51+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1223"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Informamos a los consumidores de los municipios Marianao-Lisa-Playa que por un disparo por 110KV en la subestación Victoria de Girón se encuentran afectados lo"
- },
  "72552": {
   "fecha": "2026-08-05T00:05:37+00:00",
   "tipo_llm": "afectacion",

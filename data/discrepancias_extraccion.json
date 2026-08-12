@@ -975,5 +975,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 10:57 am comenzó el restablecimiento del servicio en los siguientes circuitos: 👉OP304,OP411,OP320,OP424:Prado de"
+ },
+ "74086": {
+  "fecha": "2026-08-12T15:46:36+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP306",
+   "OP406",
+   "OP410"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 11:36 am comenzó el restablecimiento del servicio en los siguientes circuitos: 👉OP318,OP410,OP406,OP306,:Prado d"
  }
 }

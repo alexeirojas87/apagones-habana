@@ -872,5 +872,34 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Playa , se encuentra reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaban: 👉Dirección: 240 A y 3ra C, Jaimanitas. (S"
+ },
+ "74037": {
+  "fecha": "2026-08-12T04:27:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1249",
+   "581",
+   "A1042",
+   "A1216",
+   "A1380",
+   "A1590",
+   "A318",
+   "A425",
+   "A845",
+   "A960",
+   "GC11",
+   "GC15",
+   "GC19",
+   "L326",
+   "PG970",
+   "PZ20",
+   "R464",
+   "S513",
+   "S514",
+   "SF581",
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires "
  }
 }

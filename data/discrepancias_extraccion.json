@@ -853,5 +853,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 06:17 pm se afectó el servicio eléctrico en el siguiente circuito: 👉 VC100 : Repartos: Managua, Molinet y El Vol"
+ },
+ "74021": {
+  "fecha": "2026-08-12T01:32:16+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30pm se afectan 700MW distribuidos en 213circuitos de distribución. A continuación, se"
  }
 }

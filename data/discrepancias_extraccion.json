@@ -1,13 +1,4 @@
 {
- "72584": {
-  "fecha": "2026-08-05T04:11:58+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A960"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Averías existentes hasta el momento: 🚨Circuito disparado por posible avería: 📌Municipio: Boyeros 👉Dirección: Reparto Ciudad de la Construcción Alrededores de c"
- },
  "72593": {
   "fecha": "2026-08-05T05:51:47+00:00",
   "tipo_llm": "averia",

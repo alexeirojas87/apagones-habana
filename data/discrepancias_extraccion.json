@@ -1,13 +1,4 @@
 {
- "72614": {
-  "fecha": "2026-08-05T10:14:02+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a la población que a partir de las 5:01 am comenzó el restablecimiento del servicio en los siguientes circuitos: 👉 A 980: Alrededores de las calles "
- },
  "72624": {
   "fecha": "2026-08-05T11:07:06+00:00",
   "tipo_llm": "averia",
@@ -901,5 +892,32 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires "
+ },
+ "74044": {
+  "fecha": "2026-08-12T10:30:49+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:30am se afectan 623MW distribuidos en 209circuitos de distribución. A continuación, se"
+ },
+ "74042": {
+  "fecha": "2026-08-12T10:27:30+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30am se afectan 733MW distribuidos en 214circuitos de distribución. A continuación, se"
+ },
+ "74043": {
+  "fecha": "2026-08-12T10:27:30+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30am se afectan 706MW distribuidos en 221circuitos de distribución. A continuación, se"
  }
 }

@@ -907,5 +907,34 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30am se afectan 706MW distribuidos en 221circuitos de distribución. A continuación, se"
+ },
+ "74053": {
+  "fecha": "2026-08-12T11:15:48+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1249",
+   "581",
+   "A1042",
+   "A1216",
+   "A1380",
+   "A1590",
+   "A318",
+   "A425",
+   "A845",
+   "GC11",
+   "GC15",
+   "GC19",
+   "L326",
+   "PG970",
+   "PZ20",
+   "R464",
+   "S513",
+   "S514",
+   "SF581",
+   "SF583",
+   "SF584"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires "
  }
 }

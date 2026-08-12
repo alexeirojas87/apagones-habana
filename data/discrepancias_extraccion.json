@@ -1,13 +1,4 @@
 {
- "72685": {
-  "fecha": "2026-08-05T16:46:14+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1247"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:12 PM comenzó el restablecimiento del servicio en los siguientes circuitos: 👉 L317:Alrededores de calles 70 d"
- },
  "72738": {
   "fecha": "2026-08-05T21:06:10+00:00",
   "tipo_llm": "afectacion",
@@ -986,5 +977,43 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 11:36 am comenzó el restablecimiento del servicio en los siguientes circuitos: 👉OP318,OP410,OP406,OP306,:Prado d"
+ },
+ "74094": {
+  "fecha": "2026-08-12T16:59:55+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 12:15 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A845:Alrededores de las 4 Esquinas (Manag"
+ },
+ "74090": {
+  "fecha": "2026-08-12T16:07:26+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1249",
+   "581",
+   "A1042",
+   "A1216",
+   "A1380",
+   "A1590",
+   "A318",
+   "A425",
+   "A845",
+   "GC11",
+   "GC15",
+   "GC19",
+   "L326",
+   "PG970",
+   "PZ20",
+   "R464",
+   "S513",
+   "S514",
+   "SF581",
+   "SF583",
+   "SF584"
+  ],
+  "solo_regex": [],
+  "extracto": "Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires ("
  }
 }

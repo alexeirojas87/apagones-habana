@@ -1,13 +1,4 @@
 {
- "72593": {
-  "fecha": "2026-08-05T05:51:47+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP319"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️Consumidores del municipio Centro Habana , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉San Lazaro / Aramburu y Hospi"
- },
  "72614": {
   "fecha": "2026-08-05T10:14:02+00:00",
   "tipo_llm": "restablecimiento",

@@ -1092,5 +1092,24 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 05:55 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉2073Calle 256 hasta 51 y 234 hasta 51 ent"
+ },
+ "74174": {
+  "fecha": "2026-08-12T22:58:12+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por Disparo por DAF (Disparo Automático por Frecuencia) el siguiente circuito: 👉 MB 950 :Ampliació"
+ },
+ "74172": {
+  "fecha": "2026-08-12T22:31:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1160",
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 06:02 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A1380:Reparto Cambute.Presa del Cacao y P"
  }
 }

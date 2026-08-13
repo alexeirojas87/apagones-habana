@@ -195,6 +195,27 @@ def estado_de(plano):
     return None
 
 
+def usar_extraccion_llm(v):
+    """¿Esta entrada de la caché de partes_llm puede modificar el catálogo?
+
+    El criterio es la EVIDENCIA que trae la entrada, no un número de versión.
+    Antes se exigía `validador_version == 2` y, cuando partes_llm.py pasó a la
+    v3, el refuerzo del LLM quedó desconectado en silencio: 1.316 extracciones
+    válidas descartadas durante semanas, con circuitos publicando un estado
+    viejo (p. ej. AL53 el 12-ago). Una igualdad exacta convierte cualquier
+    mejora del validador en una regresión callada.
+
+    Lo que v2 introdujo y aquí se comprueba es `codigos_estado`: la lista de
+    códigos realmente escritos en el parte, sin la cual no se puede saber si el
+    LLM tenía derecho a cambiar el estado.
+    """
+    if not v or v.get("via") != "llm":
+        return False
+    if (v.get("validador_version") or 0) < 2:
+        return False
+    return all("codigos_estado" in item for item in (v.get("circuitos") or []))
+
+
 def limpiar_calles(texto):
     return re.sub(r"[📉🚧✅📣📌🔔‼️⚡️👉💥📈🔹]+", "", texto).strip(" .-–")
 
@@ -310,13 +331,7 @@ def main():
         v = llm_cache.get(str(f.get("message_id")))
         # Las cachés anteriores a v2 no registran evidencia del código original;
         # no deben modificar ni estado ni metadatos hasta ser revalidadas.
-        #
-        # Comparar por >= y NO por ==: con "== 2", subir VALIDADOR_VERSION en
-        # partes_llm.py desconectaba en silencio todo el refuerzo del LLM. Pasó
-        # con la v3 y dejó 1.316 extracciones válidas sin aplicar, entre ellas
-        # la del parte 74171 (AL53 y OP408, que el regex no ve por ir segundos
-        # en su línea). Un validador más nuevo es más estricto, no menos.
-        if v and v.get("via") == "llm" and (v.get("validador_version") or 0) >= 2:
+        if usar_extraccion_llm(v):
             dudosos = set(v.get("por_confirmar") or [])
             for item in v.get("circuitos") or []:
                 for cod in item.get("codigos") or []:

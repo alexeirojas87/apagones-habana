@@ -35,6 +35,14 @@ jobs:
 
       - run: pip install -r ingestor/requirements.txt
 
+      # Tests de regresión ANTES de tocar nada. Sin "|| echo": si fallan, el job
+      # se detiene y NO se publica. Es deliberado: más vale no actualizar la web
+      # que publicar estado equivocado, que es justo lo que pasó cuando el
+      # refuerzo del LLM quedó desconectado y nadie se enteró en semanas.
+      # Son unittest puros, sin red ni credenciales: tardan menos de un segundo.
+      - name: Tests de regresión
+        run: python -m unittest discover -s tests
+
       - run: python ingestor/ingest.py
         env:
           TELEGRAM_API_ID: ${{ secrets.TELEGRAM_API_ID }}

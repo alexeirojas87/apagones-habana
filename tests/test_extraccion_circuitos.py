@@ -97,3 +97,40 @@ class AplicarExtraccionLlmTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AsignacionDesdeCacheTest(unittest.TestCase):
+    """Agotar el presupuesto de geometría no puede perder trazos ya cacheados.
+
+    Regresión de producción: con un `break` al agotar MAX_SEGUNDOS_GEO, los
+    circuitos posteriores se quedaban sin sus líneas de caché. La web publicó
+    22 trazos cuando la caché tenía 129, porque Overpass responde lento desde
+    los runners y el corte saltaba en el primer circuito sin resolver.
+    """
+
+    def _simular(self, circuitos, cache, presupuesto_agotado):
+        """Reproduce el bucle de asignación de build_circuitos."""
+        nuevas, sin_presupuesto = 0, False
+        for c in circuitos:
+            cod = c["codigo"]
+            if cache.get(cod):
+                c["lineas"] = cache[cod]
+                continue
+            if sin_presupuesto:
+                continue
+            if presupuesto_agotado:
+                sin_presupuesto = True
+                continue
+            nuevas += 1
+        return circuitos
+
+    def test_los_trazos_cacheados_se_asignan_aunque_no_quede_presupuesto(self):
+        circuitos = [{"codigo": "SIN_CACHE"},          # dispara el corte
+                     {"codigo": "A1"}, {"codigo": "A2"}, {"codigo": "A3"}]
+        cache = {"A1": [[[0, 0]]], "A2": [[[1, 1]]], "A3": [[[2, 2]]]}
+
+        r = self._simular(circuitos, cache, presupuesto_agotado=True)
+
+        con_lineas = [c["codigo"] for c in r if c.get("lineas")]
+        self.assertEqual(con_lineas, ["A1", "A2", "A3"],
+                         "los circuitos tras el corte perdieron sus líneas cacheadas")

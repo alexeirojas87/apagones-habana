@@ -522,18 +522,26 @@ def main():
                 for e in elementos
                 if e.get("geometry") and _norm(e.get("tags", {}).get("name", "")) in nset]
 
-    nuevas, inicio_geo = 0, time.monotonic()
+    # OJO: agotar el presupuesto NO puede cortar el bucle. Con un `break` aquí,
+    # los circuitos que vienen después se quedan sin sus líneas YA CACHEADAS y
+    # el mapa pierde trazos que no costaban una sola consulta. Pasó en
+    # producción: 22 trazos publicados frente a 129 en la caché, porque Overpass
+    # responde lento desde los runners y el corte saltaba enseguida.
+    nuevas, inicio_geo, sin_presupuesto = 0, time.monotonic(), False
     for c in circuitos:
         cod = c["codigo"]
         if cache_l.get(cod):                 # ya resuelto: se reutiliza
             c["lineas"] = cache_l[cod]
+            continue
+        if sin_presupuesto:                  # se sigue recorriendo, sin resolver
             continue
         if intentos.get(cod, 0) >= REINTENTOS:
             continue
         if "lat" not in c or not c.get("calles") or nuevas >= MAX_GEO:
             continue
         if time.monotonic() - inicio_geo > MAX_SEGUNDOS_GEO:
-            break
+            sin_presupuesto = True
+            continue
         nombres = _nombres_calles(c["calles"])
         if not nombres:
             intentos[cod] = REINTENTOS      # sin nombres no hay nada que reintentar

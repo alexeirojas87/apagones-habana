@@ -7,3 +7,6 @@ docs/*.pdf
 # Herramientas locales de análisis de código (no forman parte del proyecto)
 .serena/
 .tokensave/
+
+# Artefactos locales de wrangler
+web/.wrangler/

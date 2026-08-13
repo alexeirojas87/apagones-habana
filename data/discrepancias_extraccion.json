@@ -1317,5 +1317,14 @@
   ],
   "solo_regex": [],
   "extracto": "Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires ("
+ },
+ "74270": {
+  "fecha": "2026-08-13T13:41:42+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC18"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:05 AM se afectan 401 MW distribuidos en 121 circuitos de distribución. A continuación,"
  }
 }

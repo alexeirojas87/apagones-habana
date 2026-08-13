@@ -1290,5 +1290,32 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 6:14 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉D1300:Águila Hatuey, Purísima y "
+ },
+ "74231": {
+  "fecha": "2026-08-13T10:05:33+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1249",
+   "581",
+   "A1042",
+   "A1216",
+   "A1380",
+   "A318",
+   "A425",
+   "A845",
+   "GC11",
+   "GC15",
+   "GC19",
+   "L326",
+   "PG970",
+   "PZ20",
+   "R464",
+   "S513",
+   "SF581",
+   "SF583",
+   "SF584"
+  ],
+  "solo_regex": [],
+  "extracto": "Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires ("
  }
 }

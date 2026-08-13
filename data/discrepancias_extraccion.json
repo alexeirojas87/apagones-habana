@@ -1277,5 +1277,32 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 05:41 am se afectó el servicio eléctrico en los siguientes circuitos: 👉GC12: Centro de Cojimar 👉GC7:Cojimar call"
+ },
+ "74238": {
+  "fecha": "2026-08-13T11:00:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 6:49 am comienza el restablecimiento del servicio en el siguiente circuito: 👉 P327:Desagüe desde Infanta hasta A"
+ },
+ "74237": {
+  "fecha": "2026-08-13T10:57:57+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1042"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 6:36 am comienza el restablecimiento del servicio en el siguiente circuito: 👉A1042:Alturas de Lotería y Alberro."
+ },
+ "74236": {
+  "fecha": "2026-08-13T10:56:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1300"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 6:14 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉D1300:Águila Hatuey, Purísima y "
  }
 }

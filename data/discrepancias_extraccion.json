@@ -1240,5 +1240,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 03:48 am se afectó el servicio eléctrico en los siguientes circuitos: 👉SR820:Reparto Alturas de Lotería 👉PZ4:Cal"
+ },
+ "74228": {
+  "fecha": "2026-08-13T09:59:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL52"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 05:24 am se afectó el servicio eléctrico en los siguientes circuitos: 👉AL57:Colina Villa Real, Celimar, Villa Ba"
  }
 }

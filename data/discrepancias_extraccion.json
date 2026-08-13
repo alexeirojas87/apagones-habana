@@ -1,14 +1,4 @@
 {
- "72933": {
-  "fecha": "2026-08-06T19:19:27+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP318",
-   "OP410"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:14PM se afectó el servicio eléctrico en los siguientes circuitos: 👉OP424, OP318, OP410 Prado desde Monte hast"
- },
  "73027": {
   "fecha": "2026-08-07T13:38:01+00:00",
   "tipo_llm": "deficit",

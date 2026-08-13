@@ -49,9 +49,15 @@ _COD = r"(?:[A-Za-z]{1,3}\d{1,4}|\d{2,4})"  # letra+dígitos (C7, A1443) o núme
 _SEP = r"(?:\s*[,/]\s*|\s+[yeYE]\s+)"
 RE_CIRC = re.compile(
     # la viñeta puede traer modificador de tono de piel ("👉🏼", jul/2026)
-    r"(?m)^\s*👉[\U0001F3FB-\U0001F3FF]?\s*"
+    #
+    # La viñeta NO se ancla a inicio de línea: la Empresa mete varios circuitos
+    # en la misma línea separados por espacios ("👉2073Calle 256... Arroyo
+    # Arenas    👉AL53:Zonas: 1, 2, 3..."), y con "^\s*👉" el segundo se perdía
+    # y además su texto quedaba pegado a las calles del primero. La descripción
+    # termina en la siguiente viñeta o al final de la línea.
+    r"(?m)👉[\U0001F3FB-\U0001F3FF]?\s*"
     rf"({_COD}(?:{_SEP}{_COD})*)"
-    r"\s*([-–:])?\s*(.+?)\s*$"
+    r"\s*([-–:])?\s*(.+?)\s*(?=👉|$)"
 )
 # Respaldo para el parte semanal DAF: ocasionalmente la Empresa omite la viñeta
 # en una línea (p. ej. ``AL53 : Zonas...``). Se exige prefijo alfabético y un
@@ -304,7 +310,13 @@ def main():
         v = llm_cache.get(str(f.get("message_id")))
         # Las cachés anteriores a v2 no registran evidencia del código original;
         # no deben modificar ni estado ni metadatos hasta ser revalidadas.
-        if v and v.get("via") == "llm" and v.get("validador_version") == 2:
+        #
+        # Comparar por >= y NO por ==: con "== 2", subir VALIDADOR_VERSION en
+        # partes_llm.py desconectaba en silencio todo el refuerzo del LLM. Pasó
+        # con la v3 y dejó 1.316 extracciones válidas sin aplicar, entre ellas
+        # la del parte 74171 (AL53 y OP408, que el regex no ve por ir segundos
+        # en su línea). Un validador más nuevo es más estricto, no menos.
+        if v and v.get("via") == "llm" and (v.get("validador_version") or 0) >= 2:
             dudosos = set(v.get("por_confirmar") or [])
             for item in v.get("circuitos") or []:
                 for cod in item.get("codigos") or []:

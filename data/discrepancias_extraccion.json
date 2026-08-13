@@ -1121,5 +1121,23 @@
   ],
   "solo_regex": [],
   "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por Disparo por DAF (Disparo Automático por Frecuencia) los siguientes circuitos: 👉 H343: Reparto "
+ },
+ "74182": {
+  "fecha": "2026-08-13T00:30:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D870"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 08:24 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉PZ1:Cuadrantes calle Línea hasta calle 27"
+ },
+ "74180": {
+  "fecha": "2026-08-13T00:06:46+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1075"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 07:57 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A318:Alecrín, Peñalver, Carretera Monumen"
  }
 }

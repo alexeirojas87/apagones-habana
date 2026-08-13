@@ -1174,5 +1174,35 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 10:23 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A1380:Reparto Cambute.Presa del Cacao y P"
+ },
+ "74207": {
+  "fecha": "2026-08-13T05:00:07+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "MB950",
+   "SF581"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por Disparo por DAF (Disparo Automático por Frecuencia) los siguientes circuitos: 👉H343: Reparto M"
+ },
+ "74202": {
+  "fecha": "2026-08-13T04:39:21+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP318",
+   "OP410"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 12:26 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉PZ7:Cuadrante desde calle 4 has"
+ },
+ "74200": {
+  "fecha": "2026-08-13T04:31:42+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1372",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 12:19 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A1470: Repartos Ponce, Juan Antonio Saco,"
  }
 }

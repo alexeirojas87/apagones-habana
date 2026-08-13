@@ -1204,5 +1204,24 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 12:19 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A1470: Repartos Ponce, Juan Antonio Saco,"
+ },
+ "74215": {
+  "fecha": "2026-08-13T05:57:55+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ19"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 01:52 am se afectó el servicio eléctrico en los siguientes circuitos: 👉PZ14: Calles 14 desde Zapata hasta 23, 23"
+ },
+ "74212": {
+  "fecha": "2026-08-13T05:42:57+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1328",
+   "M609"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 01:32 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A960:Reparto Ciudad de la Construcción Al"
  }
 }

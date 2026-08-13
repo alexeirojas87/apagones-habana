@@ -1,18 +1,4 @@
 {
- "72869": {
-  "fecha": "2026-08-06T13:20:59+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP406",
-   "OP410",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 09:02am quedó restablecido el servicio del siguiente circuito: 👉OP411, OP424, OP406, OP318, OP410, OP306, OP304:"
- },
  "72933": {
   "fecha": "2026-08-06T19:19:27+00:00",
   "tipo_llm": "afectacion",

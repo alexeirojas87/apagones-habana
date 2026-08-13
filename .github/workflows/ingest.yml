@@ -130,6 +130,12 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
+      # Última red antes de publicar: si el catálogo contradice lo que el LLM
+      # extrajo (evidencia del código escrito en el parte), se corrige aquí.
+      # Con el pipeline sano no corrige nada; si empieza a corregir, es que algo
+      # aguas arriba se rompió y el contador del log lo dice.
+      - run: python scripts/coherencia_catalogo.py
+
       - run: python scripts/build_partes.py
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}

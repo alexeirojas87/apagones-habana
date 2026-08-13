@@ -1326,5 +1326,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:20 PM se afectan 201 MW distribuidos en 57 circuitos de distribución. A continuación, "
+ },
+ "74358": {
+  "fecha": "2026-08-13T19:55:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "204",
+   "206"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Lisa, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 51 / 204 y 206 .🟢☑️"
  }
 }

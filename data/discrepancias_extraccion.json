@@ -1139,5 +1139,42 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 07:57 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A318:Alecrín, Peñalver, Carretera Monumen"
+ },
+ "74183": {
+  "fecha": "2026-08-13T00:50:32+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A219"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 08:39 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A219Repartos El Morado, Valle Grande -Rep"
+ },
+ "74173": {
+  "fecha": "2026-08-12T22:52:03+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1249",
+   "581",
+   "A1042",
+   "A1216",
+   "A1380",
+   "A1590",
+   "A318",
+   "A425",
+   "A845",
+   "GC11",
+   "GC15",
+   "GC19",
+   "L326",
+   "PG970",
+   "PZ20",
+   "R464",
+   "S513",
+   "SF581",
+   "SF583",
+   "SF584"
+  ],
+  "solo_regex": [],
+  "extracto": "Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires ("
  }
 }

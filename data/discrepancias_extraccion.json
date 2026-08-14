@@ -1350,5 +1350,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣Averías existentes hasta el momento 🛑Subestación Apolo: (continúan las labores) 🛑Avería Primaria: 📌Municipio: Lisa 💥Afectando: Villa Poll (D640) 📌Municipio: Gu"
+ },
+ "74610": {
+  "fecha": "2026-08-14T19:24:55+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H344"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Subestación Melones (Puente Partido) 👉H341: Alrededores de calles Agua Dulce"
  }
 }

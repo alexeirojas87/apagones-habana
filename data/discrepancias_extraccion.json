@@ -1395,5 +1395,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣Averías existentes hasta el momento 🛑Subestación Apolo: (continúan las labores) 🛑Avería Primaria: 📌Municipio: Lisa 💥Afectando: 243 / 12 y 14, Villa Poll (D640)"
+ },
+ "74647": {
+  "fecha": "2026-08-14T22:01:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG314",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00PM se afectan 452MW distribuidos en 136circuitos de distribución. A continuación, se"
  }
 }

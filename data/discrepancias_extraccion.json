@@ -1338,5 +1338,53 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Lisa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉169 /318 y 320.🛑⚡️"
+ },
+ "74445": {
+  "fecha": "2026-08-14T06:40:18+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉51 /124 y 128.🛑⚡️"
+ },
+ "74349": {
+  "fecha": "2026-08-13T19:03:08+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1249",
+   "2076",
+   "2203",
+   "A1217",
+   "A1380",
+   "A1440",
+   "A318",
+   "A425",
+   "A845",
+   "D640",
+   "GC11",
+   "GC13",
+   "GC15",
+   "GC19",
+   "H342",
+   "H446",
+   "L315",
+   "L326",
+   "OP402",
+   "OP408",
+   "PG940",
+   "PG970",
+   "PZ20",
+   "R464",
+   "S513",
+   "SF581",
+   "SF583",
+   "SF584",
+   "SG312",
+   "T42",
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Averías existentes hasta el momento 🛑Subestación Apolo: (continúan las labores) 🛑Avería Primaria: 📌Municipio: Lisa 💥Afectando: Villa Poll (D640) 📌Municipio: Gu"
  }
 }

@@ -1,15 +1,4 @@
 {
- "73246": {
-  "fecha": "2026-08-08T12:41:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP318",
-   "OP320",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 8:24 am comenzó el restablecimiento del servicio en los siguientes circuitos: 👉OP411,OP320,OP424,OP318: Soterrad"
- },
  "73267": {
   "fecha": "2026-08-08T14:08:59+00:00",
   "tipo_llm": "afectacion",
@@ -1420,5 +1409,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Cable Fallo: (H341) Afecta los municipios: Cerro: Alrededores de calles Agua"
+ },
+ "74756": {
+  "fecha": "2026-08-15T12:45:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 08:37 am quedó restablecido el servicio en los siguientes circuitos: 👉2073: Calle 256 hasta 51 y 234 hasta 51 en"
  }
 }

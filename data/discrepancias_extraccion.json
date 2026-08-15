@@ -1,13 +1,4 @@
 {
- "73184": {
-  "fecha": "2026-08-08T05:14:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1520"
-  ],
-  "solo_regex": [],
-  "extracto": "Informamos a la población que a partir de las 12:55 am quedó restablecido el servicio del siguiente circuito: A1520:Reparto Revoledo, Vista Alegre, La Prosperid"
- },
  "73228": {
   "fecha": "2026-08-08T10:21:47+00:00",
   "tipo_llm": "averia",

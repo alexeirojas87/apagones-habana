@@ -1,13 +1,4 @@
 {
- "73176": {
-  "fecha": "2026-08-08T03:59:31+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1075"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Averías Primarias 📌Municipio: Guanabacoa 👉Dirección: Monumental Km 11 ½ ⚠️Afe"
- },
  "73178": {
   "fecha": "2026-08-08T04:03:14+00:00",
   "tipo_llm": "averia",
@@ -1438,5 +1429,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería por Puente Partido en Monumental y Carretera Peñalver, afectando el servicio eléctrico del siguiente "
+ },
+ "74704": {
+  "fecha": "2026-08-15T03:34:52+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Cerro, se localiza avería secundaria por transformador dañado en las calles Blanquita entre Aranguren y 8va.🚨"
  }
 }

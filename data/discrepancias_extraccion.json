@@ -1443,5 +1443,14 @@
   ],
   "solo_regex": [],
   "extracto": "🟢✔️Consumidores del municipio Arroyo Naranjo queda reparadas las AVERÍAS SECUNDARIAS por TRANSFORMADOR DAÑADO que afectaban : 👉Menocal entre Calzada de bejucal "
+ },
+ "74829": {
+  "fecha": "2026-08-15T18:12:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H341"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Cable Fallo: (H341) Afecta los municipios: Cerro: Alrededores de calles Agua"
  }
 }

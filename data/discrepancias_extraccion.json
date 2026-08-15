@@ -1,16 +1,4 @@
 {
- "73357": {
-  "fecha": "2026-08-08T22:22:54+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP20",
-   "CPP8",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:33 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉CPP17: Alrededores de calles Puerta Cerra"
- },
  "73366": {
   "fecha": "2026-08-09T00:28:35+00:00",
   "tipo_llm": "afectacion",

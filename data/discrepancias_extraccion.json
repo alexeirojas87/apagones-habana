@@ -1,13 +1,4 @@
 {
- "73322": {
-  "fecha": "2026-08-08T18:47:29+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1075"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Averías Primarias 📌Municipio: Guanabacoa 👉Dirección: Monumental Km 11 ½ ⚠️Afe"
- },
  "73357": {
   "fecha": "2026-08-08T22:22:54+00:00",
   "tipo_llm": "afectacion",

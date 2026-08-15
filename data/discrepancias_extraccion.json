@@ -1443,5 +1443,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Cable Fallo: (H341) Afecta los municipios: Cerro: Alrededores de calles Agua"
+ },
+ "74846": {
+  "fecha": "2026-08-15T19:34:25+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1372"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de la 03:26 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A318: Alecrín, P"
  }
 }

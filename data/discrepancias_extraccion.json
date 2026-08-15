@@ -1409,5 +1409,30 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 08:37 am quedó restablecido el servicio en los siguientes circuitos: 👉2073: Calle 256 hasta 51 y 234 hasta 51 en"
+ },
+ "74786": {
+  "fecha": "2026-08-15T14:58:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:26am quedó restablecido el servicio en los siguientes circuitos: 👉OP304; OP411; OP320; OP424; OP406; OP306; O"
+ },
+ "74785": {
+  "fecha": "2026-08-15T14:57:11+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "250",
+   "252"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Lisa se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO afectando: 👉 31 / 250 y 252 , San Agustín . 🛑⚡️"
  }
 }

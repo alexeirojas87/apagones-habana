@@ -1429,5 +1429,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Subestación Melones (Puente Partido) 👉H341: Alrededores de calles Agua Dulce"
+ },
+ "74698": {
+  "fecha": "2026-08-15T02:41:23+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A318"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería por Puente Partido en Monumental y Carretera Peñalver, afectando el servicio eléctrico del siguiente "
  }
 }

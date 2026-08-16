@@ -1,18 +1,4 @@
 {
- "73413": {
-  "fecha": "2026-08-09T08:27:42+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 4:15 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉OP304,OP411,OP320,OP424,OP318,OP"
- },
  "73414": {
   "fecha": "2026-08-09T08:52:13+00:00",
   "tipo_llm": "afectacion",

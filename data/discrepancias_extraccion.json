@@ -1,13 +1,4 @@
 {
- "73435": {
-  "fecha": "2026-08-09T12:17:56+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "PG980"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito PG980, que se ha transferido temporalmente la carga al circuito D632 el sigu"
- },
  "73447": {
   "fecha": "2026-08-09T12:51:23+00:00",
   "tipo_llm": "otro",

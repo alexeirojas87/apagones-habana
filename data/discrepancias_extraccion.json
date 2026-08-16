@@ -1,22 +1,4 @@
 {
- "73374": {
-  "fecha": "2026-08-09T01:29:13+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC15"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 08:52 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉1241: Avenida 1ra desde calle 38 hasta ca"
- },
- "73373": {
-  "fecha": "2026-08-09T01:29:11+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1190"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 08:45 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A1545: Repartos Gran Boulevar, Nueva Fort"
- },
  "73376": {
   "fecha": "2026-08-09T02:06:31+00:00",
   "tipo_llm": "afectacion",
@@ -1397,5 +1379,16 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de la 07:21 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP304; OP411; OP"
+ },
+ "74903": {
+  "fecha": "2026-08-16T01:22:45+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1050",
+   "GC15",
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario : 📌Municipio: Guanabacoa - Regla 👉Dirección: Chivas y parte del Repa"
  }
 }

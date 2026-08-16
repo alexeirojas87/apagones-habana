@@ -1,20 +1,4 @@
 {
- "73366": {
-  "fecha": "2026-08-09T00:28:35+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 07:29 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP329: Soterrado Habana Vieja 👉OP318:Sote"
- },
  "73371": {
   "fecha": "2026-08-09T00:59:24+00:00",
   "tipo_llm": "afectacion",

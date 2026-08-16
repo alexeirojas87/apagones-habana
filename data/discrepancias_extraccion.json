@@ -1,13 +1,4 @@
 {
- "73546": {
-  "fecha": "2026-08-09T18:59:30+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Centro Habana, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Tenerife / Carmen y Figura.🛑⚡️"
- },
  "73611": {
   "fecha": "2026-08-10T02:03:11+00:00",
   "tipo_llm": "averia",

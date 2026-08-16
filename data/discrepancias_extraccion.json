@@ -1176,5 +1176,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 08:33 am quedó restablecido el servicio de los siguientes circuitos: 👉 A1695: Reparto Eléctrico 👉 2074: 67 hasta"
+ },
+ "74997": {
+  "fecha": "2026-08-16T14:37:29+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1280"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:11 am se afectó el servicio eléctrico en los siguientes circuitos: 👉1856: Calle 130 desde avenida 37 hasta av"
  }
 }

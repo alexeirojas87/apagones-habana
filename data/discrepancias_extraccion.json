@@ -1,40 +1,4 @@
 {
- "73407": {
-  "fecha": "2026-08-09T07:51:18+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:45 am se afectó el servicio eléctrico en los siguientes circuitos: 👉OP318: Soterrado Habana Vieja 👉OP410: Sot"
- },
- "73406": {
-  "fecha": "2026-08-09T07:44:12+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP329",
-   "SR860"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:23 am se afectó el servicio eléctrico en los siguientes circuitos: 👉1249: Tropical desde Baire hasta San Pedr"
- },
- "73404": {
-  "fecha": "2026-08-09T07:34:52+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1328",
-   "M609"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:21 am se afectó el servicio eléctrico en los siguientes circuitos: 👉M700: Repartos Santa Amelia y La Portada "
- },
  "73413": {
   "fecha": "2026-08-09T08:27:42+00:00",
   "tipo_llm": "restablecimiento",

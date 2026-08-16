@@ -1,13 +1,4 @@
 {
- "73490": {
-  "fecha": "2026-08-09T16:40:07+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 296 MW distribuidos en 93 circuitos de distribución. A continuación, "
- },
  "73537": {
   "fecha": "2026-08-09T18:27:43+00:00",
   "tipo_llm": "averia",
@@ -1175,5 +1166,32 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:11 am se afectó el servicio eléctrico en los siguientes circuitos: 👉1856: Calle 130 desde avenida 37 hasta av"
+ },
+ "75026": {
+  "fecha": "2026-08-16T16:57:30+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:34 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A845: Alrededores de las 4 Esquinas (Mana"
+ },
+ "75022": {
+  "fecha": "2026-08-16T16:44:38+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1125"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:29 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉PG920: Repartos: Ciudad Jardín y Parcelac"
+ },
+ "75019": {
+  "fecha": "2026-08-16T16:35:07+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1202"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:15 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉1175: Calle 82 desde avenida 41 hasta ave"
  }
 }

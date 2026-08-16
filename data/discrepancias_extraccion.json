@@ -1179,5 +1179,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 01:49 pm quedó restablecido el servicio en los siguientes circuitos: 👉D1280: Repartos Coco Solo, Los Pocitos, Lo"
+ },
+ "75067": {
+  "fecha": "2026-08-16T20:11:34+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1545"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉Arday/F y G,El Trigal."
  }
 }

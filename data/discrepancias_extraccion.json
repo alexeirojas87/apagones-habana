@@ -1,15 +1,4 @@
 {
- "73422": {
-  "fecha": "2026-08-09T10:27:36+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "C10",
-   "C13",
-   "GC13"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:23 am se afectó el servicio eléctrico en los siguientes circuitos: 👉C7: Alrededores del cuadrante desde calle"
- },
  "73426": {
   "fecha": "2026-08-09T10:57:54+00:00",
   "tipo_llm": "afectacion",

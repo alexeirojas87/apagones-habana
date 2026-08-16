@@ -1,14 +1,4 @@
 {
- "73447": {
-  "fecha": "2026-08-09T12:51:23+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "C8",
-   "OP402"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes de los municipios Cerro y 10 de Octubre pertenecientes al circuito C8, que se ha transferido temporalmente la carga al circuito OP40"
- },
  "73455": {
   "fecha": "2026-08-09T13:24:17+00:00",
   "tipo_llm": "deficit",

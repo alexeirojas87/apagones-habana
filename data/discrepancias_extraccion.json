@@ -1332,5 +1332,30 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario : 📌Municipio: Guanabacoa - Regla 👉Dirección: Chivas y parte del Repa"
+ },
+ "74928": {
+  "fecha": "2026-08-16T05:54:46+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A815",
+   "GC15"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario : 📌Municipio: Guanabacoa - Regla 👉Dirección: Chivas y parte del Repa"
+ },
+ "74927": {
+  "fecha": "2026-08-16T05:53:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 1:36 am quedó restablecido el servicio de los siguientes circuitos: 👉OP304; OP411; OP320; OP424; OP406; OP306; O"
  }
 }

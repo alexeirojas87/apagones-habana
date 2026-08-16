@@ -1,46 +1,4 @@
 {
- "73371": {
-  "fecha": "2026-08-09T00:59:24+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "R454"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 08:35 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉R464:Reparto Modelo.Alturas de Vía Blanca"
- },
- "73370": {
-  "fecha": "2026-08-09T00:54:31+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1538",
-   "A1550",
-   "A1565",
-   "A1570",
-   "A945",
-   "D1050",
-   "D631"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 08:17 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉D634: Alrededores de los cuadrantes: -Des"
- },
- "73368": {
-  "fecha": "2026-08-09T00:45:29+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1075"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Averías Primarias 📌Municipio: Guanabacoa 👉Dirección: Monumental Km 11 ½ ⚠️Afe"
- },
- "73367": {
-  "fecha": "2026-08-09T00:34:05+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D740"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 07:37 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉D1140: Repartos Peñas Altas y Brisas del "
- },
  "73374": {
   "fecha": "2026-08-09T01:29:13+00:00",
   "tipo_llm": "afectacion",

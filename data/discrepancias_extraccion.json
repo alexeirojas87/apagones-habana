@@ -1,24 +1,4 @@
 {
- "73455": {
-  "fecha": "2026-08-09T13:24:17+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 9:00 AM se afectan 413 MW distribuidos en 131 circuitos de distribución. A continuación, "
- },
- "73456": {
-  "fecha": "2026-08-09T13:31:17+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "134",
-   "251",
-   "257"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉134 / 257 y 251.🛑⚡️"
- },
  "73486": {
   "fecha": "2026-08-09T16:03:58+00:00",
   "tipo_llm": "averia",
@@ -1168,5 +1148,33 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 1:36 am quedó restablecido el servicio de los siguientes circuitos: 👉OP304; OP411; OP320; OP424; OP406; OP306; O"
+ },
+ "74973": {
+  "fecha": "2026-08-16T13:27:29+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 9:25 am se afectan 355 MW distribuidos en 117 circuitos de distribución. A continuación, "
+ },
+ "74971": {
+  "fecha": "2026-08-16T13:19:42+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 08:38 am quedó restablecido el servicio de los siguientes circuitos: 👉 D1050: Barreras. 👉 D1055: Repartos Las Mi"
+ },
+ "74970": {
+  "fecha": "2026-08-16T13:06:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1203",
+   "D1125"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 08:33 am quedó restablecido el servicio de los siguientes circuitos: 👉 A1695: Reparto Eléctrico 👉 2074: 67 hasta"
  }
 }

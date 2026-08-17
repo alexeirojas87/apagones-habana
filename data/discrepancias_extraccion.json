@@ -1234,5 +1234,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 06:21 am se afectó el servicio eléctrico en los siguientes circuitos: 👉L315: Avenida 21 desde calle 84 hasta cal"
+ },
+ "75203": {
+  "fecha": "2026-08-17T12:16:11+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "D1125",
+   "PG930"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito PG930, que se ha transferido temporalmente la carga al circuito D1125 los si"
  }
 }

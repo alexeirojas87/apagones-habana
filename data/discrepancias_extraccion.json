@@ -1213,5 +1213,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:08 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A1202: Avenida 33B, avenida 35 y avenida "
+ },
+ "75143": {
+  "fecha": "2026-08-17T07:30:35+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "2203",
+   "SG316"
+  ],
+  "solo_regex": [
+   "ERO91"
+  ],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 3:28 AM se afectan 438 MW distribuidos en 112 circuitos de distribución. A continuación, "
  }
 }

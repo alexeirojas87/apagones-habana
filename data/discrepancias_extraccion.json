@@ -1188,5 +1188,14 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉Arday/F y G,El Trigal."
+ },
+ "75094": {
+  "fecha": "2026-08-17T00:08:24+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:53 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A845: Alrededores de las 4 Esquinas (Mana"
  }
 }

@@ -1,23 +1,4 @@
 {
- "73704": {
-  "fecha": "2026-08-10T19:09:17+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D1100"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Avería Primaria: Afecta: Parque Lenin (D1100) 🚨 Transformadores Dañados: 📌Mun"
- },
- "73703": {
-  "fecha": "2026-08-10T19:06:00+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "1247",
-   "PZ5"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00pm se afectan 441MW distribuidos en 132circuitos de distribución. A continuación, se"
- },
  "73705": {
   "fecha": "2026-08-10T19:44:29+00:00",
   "tipo_llm": "otro",

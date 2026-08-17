@@ -1209,5 +1209,27 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito PG930, que se ha transferido temporalmente la carga al circuito D1125 los si"
+ },
+ "75259": {
+  "fecha": "2026-08-17T16:58:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "136",
+   "293",
+   "295"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 136 / 293 y 295.🟢☑️"
+ },
+ "75261": {
+  "fecha": "2026-08-17T16:58:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "204",
+   "401",
+   "403"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉204 / 403 y 401.🛑⚡️"
  }
 }

@@ -1,14 +1,4 @@
 {
- "73705": {
-  "fecha": "2026-08-10T19:44:29+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1009",
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio 10 de Octubre pertenecientes al circuito A980, que se ha transferido temporalmente la carga al circuito A1009 la zona "
- },
  "73755": {
   "fecha": "2026-08-10T22:00:10+00:00",
   "tipo_llm": "averia",
@@ -1221,5 +1211,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA PRIMARIA en 88 B Y 65 que afecta el servicio en los siguientes cuadrantes de direcciones: 👉desde 9"
+ },
+ "75309": {
+  "fecha": "2026-08-17T19:41:29+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:05 PM se afectan 204 MW distribuidos en 67 circuitos de distribución. A continuación, "
  }
 }

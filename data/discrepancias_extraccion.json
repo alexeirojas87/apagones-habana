@@ -1177,5 +1177,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 07:53 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A845: Alrededores de las 4 Esquinas (Mana"
+ },
+ "75123": {
+  "fecha": "2026-08-17T04:40:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢✔️Consumidores del municipio 10 de octubre queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba la siguiente dirección: 👉Patrocinio/Saco y"
  }
 }

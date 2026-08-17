@@ -1204,5 +1204,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 01:30 am se afectó el servicio eléctrico en los siguientes circuitos: 👉D1280: Repartos Coco Solo, Los Pocitos, L"
+ },
+ "75139": {
+  "fecha": "2026-08-17T07:02:34+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1246"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:08 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A1202: Avenida 33B, avenida 35 y avenida "
  }
 }

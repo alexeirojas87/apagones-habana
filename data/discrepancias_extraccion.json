@@ -1216,5 +1216,14 @@
    "ERO91"
   ],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 3:28 AM se afectan 438 MW distribuidos en 112 circuitos de distribución. A continuación, "
+ },
+ "75152": {
+  "fecha": "2026-08-17T09:38:14+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:17 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A928: Repartos El Globo, La Chivera y Esp"
  }
 }

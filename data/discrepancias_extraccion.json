@@ -1231,5 +1231,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉204 / 403 y 401.🛑⚡️"
+ },
+ "75274": {
+  "fecha": "2026-08-17T17:27:58+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1227"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA PRIMARIA en 88 B Y 65 que afecta el servicio en los siguientes cuadrantes de direcciones: 👉desde 9"
  }
 }

@@ -1229,5 +1229,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Lisa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 250 / 37 y 39.⚡️🛑"
+ },
+ "75331": {
+  "fecha": "2026-08-17T21:24:50+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1227"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Marianao, quedan reparada las AVERÍA Primaria en: 88 B y 65 que afectó el servicio en los siguientes cuadrantes de direcciones: 👉 "
  }
 }

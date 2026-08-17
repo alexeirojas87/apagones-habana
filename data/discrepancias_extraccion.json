@@ -1,13 +1,4 @@
 {
- "73611": {
-  "fecha": "2026-08-10T02:03:11+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "242"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉242 / 1ra B y 238.🛑⚡️"
- },
  "73627": {
   "fecha": "2026-08-10T04:09:49+00:00",
   "tipo_llm": "restablecimiento",

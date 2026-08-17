@@ -1,13 +1,4 @@
 {
- "73755": {
-  "fecha": "2026-08-10T22:00:10+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Plaza, se localiza avería por poste partido en calle N entre Línea y 17, Vedado🚨"
- },
  "73759": {
   "fecha": "2026-08-10T22:32:11+00:00",
   "tipo_llm": "afectacion",

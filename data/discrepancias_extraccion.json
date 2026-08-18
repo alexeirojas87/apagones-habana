@@ -1,13 +1,4 @@
 {
- "73903": {
-  "fecha": "2026-08-11T14:19:02+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:40 am se afectan 367MW distribuidos en 117circuitos de distribución. A continuación, s"
- },
  "73911": {
   "fecha": "2026-08-11T15:21:08+00:00",
   "tipo_llm": "averia",
@@ -43,41 +34,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Arroyo Naranjo ,se encuentra reparada la Avería Primaria que afectaba el siguiente circuito: 👉Carretera de Managua a Lechuga . (A170"
- },
- "73902": {
-  "fecha": "2026-08-11T14:17:17+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1249",
-   "A1042",
-   "A1216",
-   "A1380",
-   "A1565",
-   "A1590",
-   "A318",
-   "A327",
-   "A425",
-   "A465",
-   "AL57",
-   "C8",
-   "GC11",
-   "GC12",
-   "GC15",
-   "GC19",
-   "H442",
-   "H446",
-   "MB920",
-   "OP402",
-   "PG970",
-   "PZ20",
-   "R464",
-   "S513",
-   "S514",
-   "SF581",
-   "SF583"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Poste Partido 📌Municipio: Plaza 👉Dirección: N entre Línea y 17 🚨Avería primar"
  },
  "73947": {
   "fecha": "2026-08-11T19:15:41+00:00",

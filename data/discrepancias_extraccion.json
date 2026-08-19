@@ -1,23 +1,4 @@
 {
- "74174": {
-  "fecha": "2026-08-12T22:58:12+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "MB950"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por Disparo por DAF (Disparo Automático por Frecuencia) el siguiente circuito: 👉 MB 950 :Ampliació"
- },
- "74172": {
-  "fecha": "2026-08-12T22:31:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "1160",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 06:02 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A1380:Reparto Cambute.Presa del Cacao y P"
- },
  "74176": {
   "fecha": "2026-08-12T23:22:01+00:00",
   "tipo_llm": "daf",
@@ -54,34 +35,6 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 08:39 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A219Repartos El Morado, Valle Grande -Rep"
- },
- "74173": {
-  "fecha": "2026-08-12T22:52:03+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1249",
-   "581",
-   "A1042",
-   "A1216",
-   "A1380",
-   "A1590",
-   "A318",
-   "A425",
-   "A845",
-   "GC11",
-   "GC15",
-   "GC19",
-   "L326",
-   "PG970",
-   "PZ20",
-   "R464",
-   "S513",
-   "SF581",
-   "SF583",
-   "SF584"
-  ],
-  "solo_regex": [],
-  "extracto": "Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires ("
  },
  "74194": {
   "fecha": "2026-08-13T02:32:58+00:00",

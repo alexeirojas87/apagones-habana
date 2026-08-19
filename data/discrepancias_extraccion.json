@@ -1,13 +1,4 @@
 {
- "74094": {
-  "fecha": "2026-08-12T16:59:55+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "VC100"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 12:15 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A845:Alrededores de las 4 Esquinas (Manag"
- },
  "74125": {
   "fecha": "2026-08-12T19:11:00+00:00",
   "tipo_llm": "restablecimiento",
@@ -975,5 +966,34 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S513, que se ha transferido temporalmente la carga al circuito MR450 "
+ },
+ "75809": {
+  "fecha": "2026-08-19T16:24:07+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Consumidores del los municipios Centro Habana - Habana Vieja se encuentra DISPARADO el CIRCUITO quedando afectados : 👉 CPP8 : Alrededores de calles Cristina"
+ },
+ "75761": {
+  "fecha": "2026-08-19T14:14:45+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A495",
+   "S512"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S512, que se ha transferido temporalmente la carga al circuito A495 d"
+ },
+ "75758": {
+  "fecha": "2026-08-19T14:13:41+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A490",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S513, que se ha transferido temporalmente la carga al circuito A490 d"
  }
 }

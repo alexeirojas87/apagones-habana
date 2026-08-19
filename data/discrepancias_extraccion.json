@@ -984,5 +984,14 @@
   ],
   "solo_regex": [],
   "extracto": "👷‍♂️⚡️Consumidores del municipio 10 de Octubre, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Gómez / Santo Suárez y Vía Blanca.👷‍♂️⚡️"
+ },
+ "75677": {
+  "fecha": "2026-08-19T07:10:12+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 445MW distribuidos en 121 circuitos de distribución. A continuación, "
  }
 }

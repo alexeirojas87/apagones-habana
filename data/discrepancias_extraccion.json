@@ -9,17 +9,6 @@
   "solo_regex": [],
   "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF los siguientes circuitos: 👉 PG940:Repartos: Comodoro, El Volpe, Rosario, Gü"
  },
- "74079": {
-  "fecha": "2026-08-12T15:05:19+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP320",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 10:57 am comenzó el restablecimiento del servicio en los siguientes circuitos: 👉OP304,OP411,OP320,OP424:Prado de"
- },
  "74086": {
   "fecha": "2026-08-12T15:46:36+00:00",
   "tipo_llm": "restablecimiento",

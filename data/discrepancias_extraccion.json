@@ -1,14 +1,4 @@
 {
- "74176": {
-  "fecha": "2026-08-12T23:22:01+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "L315",
-   "SF581"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por Disparo por DAF (Disparo Automático por Frecuencia) los siguientes circuitos: 👉 H343: Reparto "
- },
  "74182": {
   "fecha": "2026-08-13T00:30:03+00:00",
   "tipo_llm": "afectacion",
@@ -903,5 +893,25 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 PM se afectan 244 MW distribuidos en 70 circuitos de distribución. A continuación, "
+ },
+ "75894": {
+  "fecha": "2026-08-19T23:27:50+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2202"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢✔️Consumidores del municipio Cerro queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba : 👉Camagüey y Canal, Canal🟢✔️"
+ },
+ "75893": {
+  "fecha": "2026-08-19T23:23:07+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "205",
+   "285",
+   "399"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Boyeros se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉 399 / 196 y 194 Santiago de las Vegas 👉 205 ,Finca Los Po"
  }
 }

@@ -1,36 +1,4 @@
 {
- "74170": {
-  "fecha": "2026-08-12T21:50:41+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1217",
-   "GC15",
-   "R464"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 05:28 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A1202:Avenida 33B, avenida 35 y avenida 3"
- },
- "74169": {
-  "fecha": "2026-08-12T21:43:28+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP8",
-   "P319"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 05:26 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉CPP20:Alrededores de calles Ensenada de A"
- },
- "74168": {
-  "fecha": "2026-08-12T21:42:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SF581",
-   "SF583"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por (DAF) los siguientes circuitos: 👉 L315:Avenida 21 desde calle 84 hasta calle 74"
- },
  "74171": {
   "fecha": "2026-08-12T22:22:48+00:00",
   "tipo_llm": "afectacion",

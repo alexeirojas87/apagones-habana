@@ -1,14 +1,4 @@
 {
- "74137": {
-  "fecha": "2026-08-12T19:37:35+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP17",
-   "CPP20"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a la población que a partir de las 2:55 pm comienza el restablecimiento del servicio en los siguientes circuitos: 👉CPP8:Alrededores de calles Cristi"
- },
  "74163": {
   "fecha": "2026-08-12T20:54:10+00:00",
   "tipo_llm": "restablecimiento",

@@ -1,15 +1,4 @@
 {
- "74086": {
-  "fecha": "2026-08-12T15:46:36+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP306",
-   "OP406",
-   "OP410"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 11:36 am comenzó el restablecimiento del servicio en los siguientes circuitos: 👉OP318,OP410,OP406,OP306,:Prado d"
- },
  "74094": {
   "fecha": "2026-08-12T16:59:55+00:00",
   "tipo_llm": "afectacion",
@@ -18,35 +7,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 12:15 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A845:Alrededores de las 4 Esquinas (Manag"
- },
- "74090": {
-  "fecha": "2026-08-12T16:07:26+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1249",
-   "581",
-   "A1042",
-   "A1216",
-   "A1380",
-   "A1590",
-   "A318",
-   "A425",
-   "A845",
-   "GC11",
-   "GC15",
-   "GC19",
-   "L326",
-   "PG970",
-   "PZ20",
-   "R464",
-   "S513",
-   "S514",
-   "SF581",
-   "SF583",
-   "SF584"
-  ],
-  "solo_regex": [],
-  "extracto": "Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires ("
  },
  "74125": {
   "fecha": "2026-08-12T19:11:00+00:00",
@@ -975,5 +935,45 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S515, que se ha transferido temporalmente la carga al circuito 3228 y"
+ },
+ "75776": {
+  "fecha": "2026-08-19T14:28:24+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1050",
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito D1050, que se ha transferido temporalmente la carga al circuito MB930 de los sig"
+ },
+ "75764": {
+  "fecha": "2026-08-19T14:15:19+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "S516",
+   "SR850"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S516, que se ha transferido temporalmente la carga al circuito SR850 "
+ },
+ "75762": {
+  "fecha": "2026-08-19T14:14:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A490",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S514, que se ha transferido temporalmente la carga al circuito A490 d"
+ },
+ "75760": {
+  "fecha": "2026-08-19T14:13:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "MR450",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S513, que se ha transferido temporalmente la carga al circuito MR450 "
  }
 }

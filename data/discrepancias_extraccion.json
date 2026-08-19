@@ -1,13 +1,4 @@
 {
- "74163": {
-  "fecha": "2026-08-12T20:54:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "S516"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio San Miguel del Padrón queda reparada la AVERÍA Secundaria por Transformador en : 👉Palma y Bella Vista .✅"
- },
  "74165": {
   "fecha": "2026-08-12T21:13:37+00:00",
   "tipo_llm": "afectacion",
@@ -998,5 +989,24 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 1:30 am se afecta 216 MW distribuidos en 65 circuitos de distribución. A continuación, se"
+ },
+ "75866": {
+  "fecha": "2026-08-19T20:36:42+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10",
+   "CPP10"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Melones(continúa en avería) 🚨Circuito Disparado : 📌Municipio: Cen"
+ },
+ "75857": {
+  "fecha": "2026-08-19T20:00:30+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 PM se afectan 244 MW distribuidos en 70 circuitos de distribución. A continuación, "
  }
 }

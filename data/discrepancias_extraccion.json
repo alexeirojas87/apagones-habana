@@ -1,31 +1,4 @@
 {
- "74044": {
-  "fecha": "2026-08-12T10:30:49+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:30am se afectan 623MW distribuidos en 209circuitos de distribución. A continuación, se"
- },
- "74042": {
-  "fecha": "2026-08-12T10:27:30+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30am se afectan 733MW distribuidos en 214circuitos de distribución. A continuación, se"
- },
- "74043": {
-  "fecha": "2026-08-12T10:27:30+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30am se afectan 706MW distribuidos en 221circuitos de distribución. A continuación, se"
- },
  "74053": {
   "fecha": "2026-08-12T11:15:48+00:00",
   "tipo_llm": "averia",

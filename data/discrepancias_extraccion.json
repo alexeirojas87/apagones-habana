@@ -995,5 +995,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S513, que se ha transferido temporalmente la carga al circuito A490 d"
+ },
+ "75832": {
+  "fecha": "2026-08-19T18:17:11+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H343",
+   "R451",
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Se le informa a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343, que se ha transferido temporalmente la carga al circuito R46"
  }
 }

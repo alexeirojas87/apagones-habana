@@ -1,13 +1,4 @@
 {
- "74072": {
-  "fecha": "2026-08-12T14:17:45+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "107"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Consumidores del municipio Marianao , se encuentran afectados por una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉107 / 100 A y 100 B . 📣🚨"
- },
  "74081": {
   "fecha": "2026-08-12T15:14:49+00:00",
   "tipo_llm": "daf",
@@ -984,5 +975,26 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 445MW distribuidos en 121 circuitos de distribución. A continuación, "
+ },
+ "75765": {
+  "fecha": "2026-08-19T14:15:35+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1055",
+   "MB910"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito D1055, que se ha transferido temporalmente la carga al circuito MB910 de los sig"
+ },
+ "75763": {
+  "fecha": "2026-08-19T14:15:10+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "3228",
+   "H343",
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S515, que se ha transferido temporalmente la carga al circuito 3228 y"
  }
 }

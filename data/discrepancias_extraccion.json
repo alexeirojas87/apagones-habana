@@ -1,32 +1,4 @@
 {
- "74234": {
-  "fecha": "2026-08-13T10:11:41+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "R466"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 5:33 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉 R466:Calle 10 de Octubre desde "
- },
- "74233": {
-  "fecha": "2026-08-13T10:10:26+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1425",
-   "MR450"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 05:56 am se afectó el servicio eléctrico en los siguientes circuitos: 👉PZ15:Calles 35 desde 4 hasta 6, 6 desde 3"
- },
- "74230": {
-  "fecha": "2026-08-13T10:02:13+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC7"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 05:41 am se afectó el servicio eléctrico en los siguientes circuitos: 👉GC12: Centro de Cojimar 👉GC7:Cojimar call"
- },
  "74238": {
   "fecha": "2026-08-13T11:00:14+00:00",
   "tipo_llm": "restablecimiento",
@@ -53,33 +25,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 6:14 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉D1300:Águila Hatuey, Purísima y "
- },
- "74231": {
-  "fecha": "2026-08-13T10:05:33+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1249",
-   "581",
-   "A1042",
-   "A1216",
-   "A1380",
-   "A318",
-   "A425",
-   "A845",
-   "GC11",
-   "GC15",
-   "GC19",
-   "L326",
-   "PG970",
-   "PZ20",
-   "R464",
-   "S513",
-   "SF581",
-   "SF583",
-   "SF584"
-  ],
-  "solo_regex": [],
-  "extracto": "Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Transformadores Dañados: 📌Municipio: Cotorro 👉Dirección: Finca Buenos Aires ("
  },
  "74270": {
   "fecha": "2026-08-13T13:41:42+00:00",

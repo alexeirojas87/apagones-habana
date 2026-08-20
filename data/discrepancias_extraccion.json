@@ -872,5 +872,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:58 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A960: Reparto Ciudad de la Construcción A"
+ },
+ "76077": {
+  "fecha": "2026-08-20T22:08:54+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "GC13"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Guanabacoa, se encuentra afectado por un disparo del circuito por posible avería el siguiente circuito: 👉GC13: Mambí, Garrido y Ce"
  }
 }

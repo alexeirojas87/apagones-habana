@@ -892,5 +892,20 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 05:53 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉SG312:Alrededores de calles: Calle 206 de"
+ },
+ "76091": {
+  "fecha": "2026-08-20T23:07:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 06:35 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP318, OP410, OP320, OP306, OP424,OP304, "
  }
 }

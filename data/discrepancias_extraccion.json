@@ -878,5 +878,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:24 PM se afectan 277 MW distribuidos en 81 circuitos de distribución. A continuación, "
+ },
+ "76031": {
+  "fecha": "2026-08-20T18:18:19+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC13"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣 Consumidores del municipio Guanabacoa, se encuentra afectado por un disparo del circuito el siguiente circuito : 👉GC13: Mambi, Garrido y Centro de Guanabacoa"
  }
 }

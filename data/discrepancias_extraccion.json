@@ -857,5 +857,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343, que se ha transferido temporalmente la carga a los circuitos R4"
+ },
+ "76046": {
+  "fecha": "2026-08-20T19:22:27+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": " 🛑⚡️Consumidores del municipio Habana del Este, se encuentra afectado por un disparo del circuito por sobrecarga el siguiente circuito: 👉AL55: Zonas: 12; 13; 14"
  }
 }

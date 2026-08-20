@@ -879,5 +879,14 @@
   ],
   "solo_regex": [],
   "extracto": "⚠️⚡️Informamos a los clientes pertenecientes al municipio Centro Habana que continúa el proceso de rotación : 🛑Circuitos afectados : 👉 CPP8: Alrededores de call"
+ },
+ "76011": {
+  "fecha": "2026-08-20T16:26:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P317"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:24 PM se afectan 277 MW distribuidos en 81 circuitos de distribución. A continuación, "
  }
 }

@@ -863,5 +863,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:07 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉1856: Calle 130 desde avenida 37 hasta av"
+ },
+ "76073": {
+  "fecha": "2026-08-20T21:27:01+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ13"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:58 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A960: Reparto Ciudad de la Construcción A"
  }
 }

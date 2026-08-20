@@ -1,14 +1,4 @@
 {
- "74358": {
-  "fecha": "2026-08-13T19:55:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "204",
-   "206"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Lisa, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 51 / 204 y 206 .🟢☑️"
- },
  "74366": {
   "fecha": "2026-08-13T20:24:45+00:00",
   "tipo_llm": "averia",
@@ -866,5 +856,23 @@
   ],
   "solo_regex": [],
   "extracto": " 🛑⚡️Consumidores del municipio Habana del Este, se encuentra afectado por un disparo del circuito por sobrecarga el siguiente circuito: 👉AL55: Zonas: 12; 13; 14"
+ },
+ "76051": {
+  "fecha": "2026-08-20T19:51:53+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2073"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Lisa, se encuentra afectado por un disparo del circuito el siguiente circuito: 👉2073: Calle 256 hasta 51 y 234 hasta 51 entre 244 "
+ },
+ "76048": {
+  "fecha": "2026-08-20T19:34:12+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1280"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:07 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉1856: Calle 130 desde avenida 37 hasta av"
  }
 }

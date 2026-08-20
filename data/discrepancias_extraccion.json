@@ -19,16 +19,6 @@
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 12:26 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉PZ7:Cuadrante desde calle 4 has"
  },
- "74200": {
-  "fecha": "2026-08-13T04:31:42+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1372",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 12:19 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A1470: Repartos Ponce, Juan Antonio Saco,"
- },
  "74215": {
   "fecha": "2026-08-13T05:57:55+00:00",
   "tipo_llm": "afectacion",
@@ -907,5 +897,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Melones(continúa en avería) 🚨Circuito Disparado : 📌Municipio: Cen"
+ },
+ "75920": {
+  "fecha": "2026-08-20T04:23:56+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉 51 / 124 y 128 .🛑⚡️"
  }
 }

@@ -1,13 +1,4 @@
 {
- "74218": {
-  "fecha": "2026-08-13T06:33:37+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PG930"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 02:22 am se afectó el servicio eléctrico en los siguientes circuitos: 👉PG920:Repartos: Ciudad Jardín y Parcelaci"
- },
  "74222": {
   "fecha": "2026-08-13T07:36:52+00:00",
   "tipo_llm": "averia",

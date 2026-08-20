@@ -1,15 +1,4 @@
 {
- "74366": {
-  "fecha": "2026-08-13T20:24:45+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "169",
-   "318",
-   "320"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Lisa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉169 /318 y 320.🛑⚡️"
- },
  "74445": {
   "fecha": "2026-08-14T06:40:18+00:00",
   "tipo_llm": "averia",

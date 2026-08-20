@@ -889,5 +889,23 @@
   ],
   "solo_regex": [],
   "extracto": "⚠️⚡️Consumidores del municipio Centro Habana debido a una posible AVERÍA se encuentran afectados y en un proceso de rotación cada 4h los siguientes circuitos : "
+ },
+ "75916": {
+  "fecha": "2026-08-20T03:53:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1545"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Boyeros queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba : 👉 Arday entre F y G, Trigal.🟢☑️"
+ },
+ "75915": {
+  "fecha": "2026-08-20T03:51:36+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Melones(continúa en avería) 🚨Circuito Disparado : 📌Municipio: Cen"
  }
 }

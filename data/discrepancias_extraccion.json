@@ -942,5 +942,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 02:07 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP304,OP411,OP320,OP424 :Soterrado Habana "
+ },
+ "76147": {
+  "fecha": "2026-08-21T07:44:31+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:07 am se afectó el servicio eléctrico en los siguientes circuitos: 👉2204Repartos: Alturas del Sevillano, Miraf"
  }
 }

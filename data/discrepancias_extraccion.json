@@ -933,5 +933,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: Centro Habana 👉Dirección: Peñalver/Oquendo y Fr"
+ },
+ "76222": {
+  "fecha": "2026-08-21T16:28:19+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:10 PM se afectan 334 MW distribuidos en 105 circuitos de distribución. A continuación,"
  }
 }

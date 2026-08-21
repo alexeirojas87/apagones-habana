@@ -942,5 +942,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: Centro Habana 👉Dirección: Peñalver/Oquendo y Fr"
+ },
+ "76284": {
+  "fecha": "2026-08-21T21:13:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "161",
+   "290"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 161 / 290 y Autopista San Antonio.🟢☑️"
  }
 }

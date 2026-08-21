@@ -907,5 +907,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 06:35 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP318, OP410, OP320, OP306, OP424,OP304, "
+ },
+ "76098": {
+  "fecha": "2026-08-20T23:49:26+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "GC13",
+   "R451"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Circuito Disparado : 📌Municipio: Guanabacoa 👉Dirección: Mambí, Garrido y Cent"
  }
 }

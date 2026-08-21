@@ -917,5 +917,17 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Circuito Disparado : 📌Municipio: Guanabacoa 👉Dirección: Mambí, Garrido y Cent"
+ },
+ "76116": {
+  "fecha": "2026-08-21T02:25:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢⚡️Informamos a los clientes pertenecientes a los municipios Centro Habana-Habana Vieja que ya no se encuentran en el proceso de rotación cada 4 horas los sigui"
  }
 }

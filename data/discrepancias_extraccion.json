@@ -929,5 +929,27 @@
   ],
   "solo_regex": [],
   "extracto": "🟢⚡️Informamos a los clientes pertenecientes a los municipios Centro Habana-Habana Vieja que ya no se encuentran en el proceso de rotación cada 4 horas los sigui"
+ },
+ "76140": {
+  "fecha": "2026-08-21T06:27:42+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP306",
+   "OP406",
+   "OP410"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 02:11 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP318,OP410,OP406,OP306: Soterrado Habana "
+ },
+ "76139": {
+  "fecha": "2026-08-21T06:23:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP320",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 02:07 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP304,OP411,OP320,OP424 :Soterrado Habana "
  }
 }

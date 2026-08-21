@@ -1,13 +1,4 @@
 {
- "74445": {
-  "fecha": "2026-08-14T06:40:18+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "L326"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉51 /124 y 128.🛑⚡️"
- },
  "74610": {
   "fecha": "2026-08-14T19:24:55+00:00",
   "tipo_llm": "averia",

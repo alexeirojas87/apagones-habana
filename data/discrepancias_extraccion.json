@@ -1,13 +1,4 @@
 {
- "74610": {
-  "fecha": "2026-08-14T19:24:55+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H344"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Subestación Melones (Puente Partido) 👉H341: Alrededores de calles Agua Dulce"
- },
  "74647": {
   "fecha": "2026-08-14T22:01:03+00:00",
   "tipo_llm": "afectacion",
@@ -942,5 +933,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:10 PM se afectan 334 MW distribuidos en 105 circuitos de distribución. A continuación,"
+ },
+ "76260": {
+  "fecha": "2026-08-21T19:12:28+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "P322"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: Centro Habana 👉Dirección: Peñalver/Oquendo y Fr"
  }
 }

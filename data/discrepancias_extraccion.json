@@ -8,42 +8,6 @@
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Subestación Melones (Puente Partido) 👉H341: Alrededores de calles Agua Dulce"
  },
- "74466": {
-  "fecha": "2026-08-14T10:44:11+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2076",
-   "A1203",
-   "A1440",
-   "A219",
-   "A318",
-   "A425",
-   "A845",
-   "D640",
-   "GC11",
-   "GC15",
-   "H342",
-   "H344",
-   "L315",
-   "L326",
-   "OP402",
-   "OP408",
-   "PG940",
-   "PG970",
-   "PZ20",
-   "R464",
-   "S513",
-   "SF581",
-   "SF583",
-   "SF584",
-   "SG312",
-   "T42",
-   "T44",
-   "VC100"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Averías existentes hasta el momento 🛑Subestación Apolo: (continúan las labores) 🛑Avería Primaria: 📌Municipio: Lisa 💥Afectando: 243 / 12 y 14, Villa Poll (D640)"
- },
  "74647": {
   "fecha": "2026-08-14T22:01:03+00:00",
   "tipo_llm": "afectacion",
@@ -960,5 +924,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:33 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A845: Alrededores de las 4 Esquinas (Mana"
+ },
+ "76157": {
+  "fecha": "2026-08-21T10:35:26+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "P322"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: Centro Habana 👉Dirección: Peñalver/Oquendo y Fr"
  }
 }

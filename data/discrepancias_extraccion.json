@@ -1,13 +1,4 @@
 {
- "74813": {
-  "fecha": "2026-08-15T17:41:22+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG940"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢✔️Consumidores del municipio Arroyo Naranjo queda reparadas las AVERÍAS SECUNDARIAS por TRANSFORMADOR DAÑADO que afectaban : 👉Menocal entre Calzada de bejucal "
- },
  "74829": {
   "fecha": "2026-08-15T18:12:57+00:00",
   "tipo_llm": "averia",
@@ -909,5 +900,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: 10 de Octubre 👉Dirección: 15 y Concepción. 👉Afe"
+ },
+ "76476": {
+  "fecha": "2026-08-22T16:07:49+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 211 MW distribuidos en 66 circuitos de distribución. A continuación, "
  }
 }

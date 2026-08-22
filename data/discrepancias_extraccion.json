@@ -918,5 +918,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:15 PM se afectan 461 MW distribuidos en 137 circuitos de distribución. A continuación,"
+ },
+ "76366": {
+  "fecha": "2026-08-22T06:26:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ15"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Plaza, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: Loma / Tulipán y Lombillo.🟢☑️"
  }
 }

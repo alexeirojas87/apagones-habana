@@ -1,13 +1,4 @@
 {
- "74829": {
-  "fecha": "2026-08-15T18:12:57+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨 Cable Fallo: (H341) Afecta los municipios: Cerro: Alrededores de calles Agua"
- },
  "74846": {
   "fecha": "2026-08-15T19:34:25+00:00",
   "tipo_llm": "afectacion",

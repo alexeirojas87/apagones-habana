@@ -891,5 +891,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: 10 de Octubre 💥Dirección: 15 y Concepción . 👉Af"
+ },
+ "76463": {
+  "fecha": "2026-08-22T15:05:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "L323"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Consumidores de los municipios Playa y Marianao , se autoriza VÍA LIBRE DE EMERGENCIA para realizar labores en la Subestación de Ciudad Libertad afectando el s"
  }
 }

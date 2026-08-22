@@ -900,5 +900,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣Consumidores de los municipios Playa y Marianao , se autoriza VÍA LIBRE DE EMERGENCIA para realizar labores en la Subestación de Ciudad Libertad afectando el s"
+ },
+ "76486": {
+  "fecha": "2026-08-22T16:22:30+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A465"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: 10 de Octubre 👉Dirección: 15 y Concepción. 👉Afe"
  }
 }

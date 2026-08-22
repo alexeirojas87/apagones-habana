@@ -1,13 +1,4 @@
 {
- "74704": {
-  "fecha": "2026-08-15T03:34:52+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C10"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Cerro, se localiza avería secundaria por transformador dañado en las calles Blanquita entre Aranguren y 8va.🚨"
- },
  "74737": {
   "fecha": "2026-08-15T09:55:39+00:00",
   "tipo_llm": "averia",

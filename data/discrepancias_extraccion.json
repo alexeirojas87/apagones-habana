@@ -1,13 +1,4 @@
 {
- "74846": {
-  "fecha": "2026-08-15T19:34:25+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1372"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de la 03:26 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A318: Alecrín, P"
- },
  "74890": {
   "fecha": "2026-08-15T23:29:41+00:00",
   "tipo_llm": "deficit",

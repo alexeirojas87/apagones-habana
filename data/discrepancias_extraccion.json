@@ -1,19 +1,4 @@
 {
- "74890": {
-  "fecha": "2026-08-15T23:29:41+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de la 07:21 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP304; OP411; OP"
- },
  "74903": {
   "fecha": "2026-08-16T01:22:45+00:00",
   "tipo_llm": "averia",

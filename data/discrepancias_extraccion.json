@@ -890,5 +890,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 03:09 AM quedó restablecido el servicio en los siguientes circuitos: 👉 OP411;OP424; OP406; OP306; OP318; OP410; "
+ },
+ "76649": {
+  "fecha": "2026-08-23T10:00:04+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ1"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: Arroyo Naranjo 👉Dirección: Camilo Cienfuegos en"
  }
 }

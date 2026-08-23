@@ -1,15 +1,4 @@
 {
- "74903": {
-  "fecha": "2026-08-16T01:22:45+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D1050",
-   "GC15",
-   "MB930"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario : 📌Municipio: Guanabacoa - Regla 👉Dirección: Chivas y parte del Repa"
- },
  "74928": {
   "fecha": "2026-08-16T05:54:46+00:00",
   "tipo_llm": "averia",

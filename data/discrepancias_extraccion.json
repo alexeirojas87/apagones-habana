@@ -1,13 +1,4 @@
 {
- "75067": {
-  "fecha": "2026-08-16T20:11:34+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1545"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉Arday/F y G,El Trigal."
- },
  "75094": {
   "fecha": "2026-08-17T00:08:24+00:00",
   "tipo_llm": "afectacion",
@@ -913,5 +904,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de la 03:30 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SG313: Alrededo"
+ },
+ "76755": {
+  "fecha": "2026-08-23T20:05:54+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "T41"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:40 PM se afectan 454MW distribuidos en 133 circuitos de distribución. A continuación, "
  }
 }

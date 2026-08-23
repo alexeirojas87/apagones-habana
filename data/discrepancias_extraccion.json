@@ -1,31 +1,4 @@
 {
- "75026": {
-  "fecha": "2026-08-16T16:57:30+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "VC100"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:34 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A845: Alrededores de las 4 Esquinas (Mana"
- },
- "75022": {
-  "fecha": "2026-08-16T16:44:38+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1125"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:29 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉PG920: Repartos: Ciudad Jardín y Parcelac"
- },
- "75019": {
-  "fecha": "2026-08-16T16:35:07+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1202"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:15 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉1175: Calle 82 desde avenida 41 hasta ave"
- },
  "75043": {
   "fecha": "2026-08-16T18:04:04+00:00",
   "tipo_llm": "restablecimiento",
@@ -916,5 +889,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Habana del Este por DISPARO DEL CIRCUITO se afecta el servicio en: 👉GC 17: Camilo Cienfuegos , Hospital Naval ‼️🚨"
+ },
+ "76706": {
+  "fecha": "2026-08-23T16:52:23+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:40 PM se afectan 413MW distribuidos en 127circuitos de distribución. A continuación, s"
  }
 }

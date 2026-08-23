@@ -1,32 +1,4 @@
 {
- "74973": {
-  "fecha": "2026-08-16T13:27:29+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 9:25 am se afectan 355 MW distribuidos en 117 circuitos de distribución. A continuación, "
- },
- "74971": {
-  "fecha": "2026-08-16T13:19:42+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 08:38 am quedó restablecido el servicio de los siguientes circuitos: 👉 D1050: Barreras. 👉 D1055: Repartos Las Mi"
- },
- "74970": {
-  "fecha": "2026-08-16T13:06:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1203",
-   "D1125"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 08:33 am quedó restablecido el servicio de los siguientes circuitos: 👉 A1695: Reparto Eléctrico 👉 2074: 67 hasta"
- },
  "74997": {
   "fecha": "2026-08-16T14:37:29+00:00",
   "tipo_llm": "afectacion",

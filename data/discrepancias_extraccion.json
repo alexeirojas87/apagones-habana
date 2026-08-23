@@ -913,5 +913,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de este momento se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 OP411;OP424; O"
+ },
+ "76661": {
+  "fecha": "2026-08-23T12:02:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1075"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 07:52AM quedó restablecido el servicio en los siguientes circuitos: 👉 👉 A1075: Repartos Ricabal, La Lima, Santa "
  }
 }

@@ -1,13 +1,4 @@
 {
- "75043": {
-  "fecha": "2026-08-16T18:04:04+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1430"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 01:49 pm quedó restablecido el servicio en los siguientes circuitos: 👉D1280: Repartos Coco Solo, Los Pocitos, Lo"
- },
  "75067": {
   "fecha": "2026-08-16T20:11:34+00:00",
   "tipo_llm": "averia",

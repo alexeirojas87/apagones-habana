@@ -899,5 +899,19 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: Arroyo Naranjo 👉Dirección: Camilo Cienfuegos en"
+ },
+ "76655": {
+  "fecha": "2026-08-23T11:01:30+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP406",
+   "OP410",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de este momento se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 OP411;OP424; O"
  }
 }

@@ -913,5 +913,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:40 PM se afectan 454MW distribuidos en 133 circuitos de distribución. A continuación, "
+ },
+ "76767": {
+  "fecha": "2026-08-23T21:57:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC17"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Consumidores del municipio Habana del Este , queda restablecido el servicio en el siguiente circuito : 👉GC 17: Camilo Cienfuegos , Hospital Naval ✅"
  }
 }

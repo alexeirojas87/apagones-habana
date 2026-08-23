@@ -898,5 +898,19 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉A1228: Monte Barreto. 👉1244:Avenida 5"
+ },
+ "76594": {
+  "fecha": "2026-08-22T23:34:08+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP406",
+   "OP410",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:15 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 OP411;OP424; O"
  }
 }

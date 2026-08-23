@@ -53,6 +53,10 @@ create table if not exists comentarios_llm (
   bloque     int,
   horas      int,
   lat        double precision,
-  lon        double precision
+  lon        double precision,
+  codigos    text[]                   -- códigos de circuito extraídos del texto (verdad local)
 );
 create index if not exists comentarios_llm_fecha on comentarios_llm (fecha desc);
+
+-- Migración: añadir 'codigos' a tablas existentes (idempotente).
+-- Ejecutar una vez: alter table comentarios_llm add column if not exists codigos text[];

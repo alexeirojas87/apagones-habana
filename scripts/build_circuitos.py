@@ -21,11 +21,17 @@ from zoneinfo import ZoneInfo
 from supabase import create_client
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "extractor"))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from extract import bloques_en, municipios_en, causa_en, normalizar  # noqa: E402
+from circuitos_id import _tokens  # noqa: E402
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE_LINEAS = os.path.join(RAIZ, "data", "geocache_circuitos_lineas.json")
 CACHE_INTENTOS = os.path.join(RAIZ, "data", "geocache_lineas_intentos.json")
+CAMBIOS_FILE = os.path.join(RAIZ, "data", "cambios_direccion.json")
+CONTEO_USUARIO_FILE = os.path.join(RAIZ, "data", "conteo_usuario.json")
+ESTADO_FILE = os.path.join(RAIZ, "web", "data", "estado.json")
+CATALOGO_SALIDA = os.path.join(RAIZ, "web", "data", "circuitos.json")
 
 # Resolución de geometría (Overpass). El tope anterior de 8 por corrida dejaba
 # 108 circuitos pendientes a 13 ingestas de distancia; con el presupuesto de
@@ -67,6 +73,17 @@ RE_CIRC_DAF_SIN_VINETA = re.compile(
     r"\s*[-–:]\s*(.+?)\s*$"
 )
 RE_UN_CODIGO = re.compile(rf"^{_COD}$")
+
+
+def _cobertura(nuevo, viejo):
+    """Solapamiento de tokens entre dos descripciones de calles (0-1).
+    < 0.25 indica que son zonas diferentes (cambio de dirección del circuito)."""
+    if not viejo or not nuevo:
+        return 0.0
+    tn, tv = _tokens(nuevo), _tokens(viejo)
+    if not tn or not tv:
+        return 0.0
+    return len(tn & tv) / min(len(tn), len(tv))
 
 MESES = {
     "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
@@ -237,6 +254,13 @@ def main():
         oficial = json.load(open(OFICIAL_FILE))
     except Exception:
         oficial = {}
+    # Baseline: catálogo de la corrida anterior (para detectar cambios de dirección)
+    prev_circuitos = {}
+    try:
+        for c in json.load(open(CATALOGO_SALIDA)).get("circuitos", []):
+            prev_circuitos[c["codigo"]] = c.get("calles", "")
+    except Exception:
+        pass
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import correcciones  # noqa: E402
     falsos = set(correcciones.circuitos_falsos())  # 'L2' = calle L, no circuito
@@ -287,8 +311,12 @@ def main():
                 r["veces"] += 1
                 r["ultima"] = fecha
                 r["ultima_message_id"] = f["message_id"]
-                # nos quedamos con la lista de calles más completa vista
-                if len(calles) > len(r["calles"]):
+                # Actualización de calles: si la nueva dirección solapa poco
+                # con la conocida (< 0.25 de cobertura de tokens), es un CAMBIO
+                # de dirección y la nueva gana. Si solapa bien, gana la más
+                # completa (comportamiento original "longest wins").
+                if not r["calles"] or _cobertura(calles, r["calles"]) < 0.25 \
+                        or len(calles) > len(r["calles"]):
                     r["calles"] = calles
                 if bloque is not None:
                     r["bloque"] = bloque          # último bloque conocido gana
@@ -348,7 +376,9 @@ def main():
                     if (r["ultima"] or "") <= fecha:
                         r["ultima"] = fecha
                         r["ultima_message_id"] = f["message_id"]
-                    if item.get("calles") and len(item["calles"]) > len(r["calles"]):
+                    if item.get("calles") and (not r["calles"]
+                            or _cobertura(item["calles"], r["calles"]) < 0.25
+                            or len(item["calles"]) > len(r["calles"])):
                         r["calles"] = item["calles"]
                     if item.get("municipio") and not r["municipio"]:
                         r["municipio"] = (municipios_en(item["municipio"]) or [None])[0]
@@ -375,13 +405,65 @@ def main():
         r["oficial"] = True
         r["municipios"] = info.get("municipios") or []  # lista oficial (puede ser >1: feeders de frontera)
         calles_of = " · ".join(v for v in (info.get("calles") or {}).values() if v)
-        if calles_of:
-            r["calles"] = calles_of  # las calles oficiales ganan (más completas)
+        if calles_of and not r["calles"]:
+            r["calles"] = calles_of  # respaldo: solo si Telegram no trajo nada
 
     circuitos = sorted(cat.values(), key=lambda r: r["ultima"] or "", reverse=True)
 
+    # --- Detección de cambios de dirección ---
+    # Compara el catálogo final contra el de la corrida anterior. Si la cobertura
+    # de tokens de calles es < 0.25, el circuito se mudó de zona.
+    try:
+        prev_cambios = json.load(open(CAMBIOS_FILE))
+    except Exception:
+        prev_cambios = []
+    ahora_c = datetime.now(timezone.utc)
+    for c in circuitos:
+        base = prev_circuitos.get(c["codigo"])
+        if base and c.get("calles") and _cobertura(c["calles"], base) < 0.25:
+            # ya reportado con el mismo 'ahora'? no duplicar
+            ya = next((pc for pc in prev_cambios if pc["codigo"] == c["codigo"]
+                       and pc.get("ahora") == c["calles"]), None)
+            if not ya:
+                prev_cambios = [pc for pc in prev_cambios if pc["codigo"] != c["codigo"]]
+                prev_cambios.insert(0, {
+                    "codigo": c["codigo"], "antes": base, "ahora": c["calles"],
+                    "solapamiento": round(_cobertura(c["calles"], base), 2),
+                    "detectado": ahora_c.isoformat(),
+                })
+    # podar > 7 días
+    corte_cambios = (ahora_c - timedelta(days=7)).isoformat()
+    prev_cambios = [c for c in prev_cambios if c.get("detectado", "") >= corte_cambios]
+    json.dump(prev_cambios, open(CAMBIOS_FILE, "w"), ensure_ascii=False)
+    codigos_cambiados = {c["codigo"] for c in prev_cambios
+                         if c.get("detectado", "") >= (ahora_c - timedelta(days=1)).isoformat()}
+
+    # --- Conteo de usuario (discrepancia UNE vs vecinos) ---
+    # Lee el conteo producido por estado.py. Cuando la UNE dice "con servicio",
+    # resetea el contador de usuario (ultima_reset persiste para que estado.py
+    # ignore los "sin" reportes anteriores al reset).
+    try:
+        conteo_usuario = json.load(open(CONTEO_USUARIO_FILE))
+    except Exception:
+        conteo_usuario = {}
+    for c in circuitos:
+        cu = conteo_usuario.get(c["codigo"])
+        if not cu:
+            c["discrepado"] = False
+            continue
+        if c.get("estado") == "con servicio" and cu.get("desde"):
+            cu["desde"] = None
+            cu["ultimo_reset"] = ahora_c.isoformat()
+            cu.pop("horas", None)
+        # discrepancia: usuario dice sin (desde not null) y UNE dice con (o nada)
+        c["discrepado"] = bool(cu.get("desde") and c.get("estado") in ("con servicio", None))
+        c["conteo_usuario"] = cu
+    # persistir los resets de UNE para que estado.py los respete
+    json.dump(conteo_usuario, open(CONTEO_USUARIO_FILE, "w"), ensure_ascii=False)
+
     # Récord de circuitos apagados A LA VEZ: contamos cuántos están sin servicio
     # AHORA (no los ~10 que muestra un parte) y guardamos el pico histórico.
+    # Los discrepados no suman: son una categoría separada (cuenta como con).
     sin_ahora = sum(1 for c in circuitos if c.get("estado") == "sin servicio")
     record = {}
     try:
@@ -488,6 +570,12 @@ def main():
     # geometría nunca. Se reintenta hasta REINTENTOS veces y luego se deja.
     intentos = json.load(open(CACHE_INTENTOS)) if os.path.exists(CACHE_INTENTOS) else {}
 
+    # Purgar caché de líneas para circuitos que cambiaron de dirección: las
+    # líneas viejas corresponden a la ubicación anterior y hay que re-resolverlas.
+    for cod in codigos_cambiados:
+        cache_l.pop(cod, None)
+        intentos.pop(cod, None)
+
     # Barrios con polígono que ya están en el repo: para un circuito descrito
     # por reparto, la geometría correcta ya la tenemos y no hace falta red.
     try:
@@ -588,10 +676,12 @@ def main():
         "daf_oficial": daf_oficial,
         "circuitos": circuitos,
     }
-    destino = os.path.join(RAIZ, "web", "data", "circuitos.json")
+    destino = CATALOGO_SALIDA
     json.dump(salida, open(destino, "w"), ensure_ascii=False)
+    discrepados = sum(1 for c in circuitos if c.get("discrepado"))
     print(f"circuitos.json: {len(circuitos)} circuitos, {ubicados} geolocalizados, "
-          f"{con_lineas} con calles dibujadas ({os.path.getsize(destino) // 1024} KB)")
+          f"{con_lineas} con calles dibujadas, {discrepados} discrepados, "
+          f"{len(prev_cambios)} cambios de dirección ({os.path.getsize(destino) // 1024} KB)")
 
 
 if __name__ == "__main__":

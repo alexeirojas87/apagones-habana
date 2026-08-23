@@ -164,6 +164,9 @@ async function iniciar() {
   //  - "nd": sin servicio con >24 h sin noticias -> estado real desconocido (la
   //    UNE no siempre anuncia el restablecimiento); gris, no rojo.
   function circuitoVigente(c) {
+    // Discrepado: usuarios reportan sin corriente pero la UNE dice "con".
+    // Tiene prioridad sobre los demás estados (es la señal más accionable).
+    if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "discrepado";
     const en = estado.evento_nacional;
     const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
     if (en) return (c.estado === "con servicio" && t && t > new Date(en.desde)) ? "con" : "sin";
@@ -188,13 +191,14 @@ async function iniciar() {
   function resumenCircuitos() {
     const cont = document.getElementById("resumen-circuitos");
     const cat = catCircuitos.circuitos || [];
-    let ncon = 0, nsin = 0, nasum = 0, nnd = 0;
+    let ncon = 0, nsin = 0, nasum = 0, nnd = 0, ndisc = 0;
     const perMuni = {};  // municipio -> {sin, tot}; "asum" cuenta como con corriente,
                          // "nd" (sin noticias) queda FUERA del estimado: estado desconocido
+                         // "discrepado" cuenta como con (la UNE dice con) pero se muestra aparte
     for (const c of cat) {
       const v = circuitoVigente(c);
       if (v === "sin") nsin++; else if (v === "con") ncon++;
-      else if (v === "nd") nnd++; else nasum++;
+      else if (v === "discrepado") ndisc++; else if (v === "nd") nnd++; else nasum++;
       if (c.municipio && POB_MUNI[c.municipio] && v !== "nd") {
         const o = perMuni[c.municipio] || (perMuni[c.municipio] = { sin: 0, tot: 0 });
         o.tot++; if (v === "sin") o.sin++;
@@ -229,6 +233,7 @@ async function iniciar() {
     const pw = (n) => (n / tot * 100).toFixed(1);
     const tipAsum = "Nunca han aparecido afectados en los partes: por descarte se asume que tienen corriente";
     const tipNd = "Reportados sin servicio hace más de 24 h y la UNE no los menciona desde entonces: estado real desconocido";
+    const tipDisc = "La UNE reporta 'con servicio' pero los vecinos reportan sin corriente: discrepancia entre el parte oficial y la realidad";
     const pob = sinP != null ? `
       <div class="rc-box">
         <div class="rc-box-t">Personas afectadas
@@ -281,11 +286,13 @@ async function iniciar() {
     const mini = `<button id="rc-toggle" class="rc-toggle" aria-expanded="${rcAbierto}">
         <span class="rc-mini-barra">
           <span class="seg sin" style="width:${pw(nsin)}%"></span>
+          <span class="seg discrepado" style="width:${pw(ndisc)}%"></span>
           <span class="seg nd" style="width:${pw(nnd)}%"></span>
           <span class="seg con" style="width:${pw(ncon)}%"></span>
           <span class="seg asum" style="width:${pw(nasum)}%"></span>
         </span>
         <span class="rc-mini-txt"><b class="sin">${nsin}</b> sin luz · <b class="con">${ncon}</b> con luz${
+          ndisc > 0 ? ` · <b class="discrepado">${ndisc}</b> discrepantes` : ""}${
           sinP != null ? ` · <b class="sin">~${nf(sinP / 1000)}k</b> personas sin corriente` : ""}</span>
         <span class="rc-flecha">${rcAbierto ? "▲" : "▼"}</span>
       </button>`;
@@ -294,8 +301,9 @@ async function iniciar() {
       <div class="rc-box">
         <div class="rc-box-t">Circuitos <span class="rc-n">${cat.length}</span>
           <a class="rc-mas" href="circuitos.html">ver todos →</a></div>
-        <div class="rc-barra" role="img" aria-label="${ncon} con servicio, ${nsin} sin servicio, ${nnd} sin noticias, ${nasum} sin apagones reportados">
+        <div class="rc-barra" role="img" aria-label="${ncon} con servicio, ${nsin} sin servicio, ${ndisc} discrepantes, ${nnd} sin noticias, ${nasum} sin apagones reportados">
           <span class="seg sin" style="width:${pw(nsin)}%"></span>
+          <span class="seg discrepado" style="width:${pw(ndisc)}%"></span>
           <span class="seg nd" style="width:${pw(nnd)}%"></span>
           <span class="seg con" style="width:${pw(ncon)}%"></span>
           <span class="seg asum" style="width:${pw(nasum)}%"></span>
@@ -303,6 +311,7 @@ async function iniciar() {
         <div class="rc-chips">
           <span class="rc-chip sin">${nsin} sin servicio</span>
           <span class="rc-chip con">${ncon} con servicio</span>
+          ${ndisc > 0 ? `<span class="rc-chip discrepado" tabindex="0" title="${tipDisc}">${ndisc} discrepancias</span>` : ""}
           ${nnd > 0 ? `<span class="rc-chip nd" tabindex="0" title="${tipNd}">${nnd} sin noticias +24h</span>` : ""}
           ${nasum > 0 ? `<span class="rc-chip asum" tabindex="0" title="${tipAsum}">${nasum} sin apagones reportados</span>` : ""}
         </div>
@@ -566,6 +575,7 @@ async function iniciar() {
     const COL_CIRC = {
       sin: { l: "#e5484d", b: "#8b0000", e: "🔴", txt: "sin corriente" },
       con: { l: "#46a758", b: "#1c5f2b", e: "🟢", txt: "con servicio" },
+      discrepado: { l: "#f5a623", b: "#c47e0a", e: "🟠", txt: "usuarios reportan sin corriente" },
       asum: { l: "#4a90d9", b: "#2b5c94", e: "🔵", txt: "sin apagones reportados" },
       nd: { l: "#6b7686", b: "#4a525e", e: "⚪", txt: "sin noticias hace +24 h" },
     };
@@ -576,11 +586,17 @@ async function iniciar() {
       const h = horasDef[c.codigo];
       const calles = c.calles ? esc(c.calles) : "sin información de calles por parte de la UNE";
       const fmtDia = (iso) => new Date(iso).toLocaleDateString("es-CU", { day: "numeric", month: "short", timeZone: "America/Havana" });
-      const detalle = v === "asum"
-        ? "Nunca ha aparecido afectado en los partes: por descarte se asume con corriente."
-        : v === "nd"
-          ? `Se reportó sin servicio el ${fmtDia(c.estado_fecha)} y la UNE no lo menciona desde entonces: estado real desconocido.`
-          : `${h != null ? "Lleva " + h + "h de afectación. " : ""}Último dato oficial: ${fmtDia(c.ultima)}.`;
+      let detalle;
+      if (v === "discrepado") {
+        const hu = c.conteo_usuario ? Math.round((Date.now() - new Date(c.conteo_usuario.desde)) / 3600000 * 10) / 10 : null;
+        detalle = `La UNE reporta "con servicio" pero los vecinos reportan sin corriente${hu != null ? " (llevan " + hu + "h)" : ""}.`;
+      } else if (v === "asum") {
+        detalle = "Nunca ha aparecido afectado en los partes: por descarte se asume con corriente.";
+      } else if (v === "nd") {
+        detalle = `Se reportó sin servicio el ${fmtDia(c.estado_fecha)} y la UNE no lo menciona desde entonces: estado real desconocido.`;
+      } else {
+        detalle = `${h != null ? "Lleva " + h + "h de afectación. " : ""}Último dato oficial: ${fmtDia(c.ultima)}.`;
+      }
       const popup = `<div class="popup"><h3>${col.e} Circuito ${esc(c.codigo)} — ${col.txt}</h3>
          <p>${calles}${c.bloque ? " · (B" + c.bloque + ")" : ""}</p>
          <p class="hora">${detalle} Ubicación aproximada.</p>
@@ -966,9 +982,9 @@ async function iniciar() {
   leyenda.onAdd = () => {
     const div = L.DomUtil.create("div", "leyenda");
     div.innerHTML = movil
-      ? "🔴 sin luz · 🟢 con luz · ⚪ sin noticias · 🔵 sin apagones<br>🟣 avería · 🟡 DAF · 🟠 reporte"
-      : "Circuitos: 🔴 sin corriente · 🟢 con servicio · ⚪ sin noticias hace +24 h · " +
-        "🔵 sin apagones reportados (se asume con corriente).<br>" +
+      ? "🔴 sin luz · 🟢 con luz · 🟠 usuarios sin luz · ⚪ sin noticias · 🔵 sin apagones<br>🟣 avería · 🟡 DAF · 🟠 reporte"
+      : "Circuitos: 🔴 sin corriente · 🟢 con servicio · 🟠 usuarios reportan sin corriente · " +
+        "⚪ sin noticias hace +24 h · 🔵 sin apagones reportados (se asume con corriente).<br>" +
         "🟣 averías/roturas · 🟡 circuitos DAF (microcortes).<br>" +
         "🟠 reporte vecinal (se confirma en rojo con 10+ vecinos).<br>" +
         "Ubicaciones aproximadas, datos no oficiales.";

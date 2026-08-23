@@ -23,6 +23,7 @@ from supabase import create_client
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from geocode_zonas import nominatim, normalizar, resolver_zonas_numeradas  # noqa: E402
+from circuitos_id import es_conocido  # noqa: E402
 import llm_provider  # noqa: E402
 
 BBOX_HABANA = (-82.70, 22.90, -81.90, 23.35)
@@ -56,6 +57,22 @@ PROMPT = (
 )
 
 RUIDO = re.compile(r"^@|configura tu @username|bienvenid|para evitar ser silenciad", re.IGNORECASE)
+
+# Código de circuito en texto libre: prefijo de letras + 1-4 dígitos (NX4, AL56).
+# Los números puros son ambiguos en lenguaje libre ("300" puede ser cualquier cosa),
+# así que solo se aceptan con prefijo alfabético.
+RE_COD_COMENT = re.compile(r"\b([A-Za-z]{1,3})\s*(\d{1,4})\b")
+
+
+def extraer_codigos(texto):
+    """Códigos de circuito conocidos que aparecen en el texto de un comentario.
+    Filtra por catálogo (es_conocido) para descartar ruido."""
+    codigos = []
+    for m in RE_COD_COMENT.finditer(texto or ""):
+        cod = (m.group(1) + m.group(2)).upper().replace(" ", "")
+        if es_conocido(cod) and cod not in codigos:
+            codigos.append(cod)
+    return codigos
 
 
 def prometedor(texto):
@@ -132,6 +149,7 @@ def main():
             "bloque": r.get("bloque") if isinstance(r.get("bloque"), int) else None,
             "horas": r.get("horas_sin_luz") if isinstance(r.get("horas_sin_luz"), int) else None,
             "lat": None, "lon": None,
+            "codigos": extraer_codigos(m["texto"]),
         }
         if fila["reporta"] in ("sin_corriente", "con_corriente") and fila["lugar"]:
             fila["lat"], fila["lon"] = geocodificar_lugar(fila["lugar"], osm, cache)

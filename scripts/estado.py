@@ -35,7 +35,9 @@ import circuitos_id  # noqa: E402
 LUGARES_MANUAL = {normalizar(k): v for k, v in correcciones.lugares_manual().items()}
 
 CACHE_AVERIAS = os.path.join(os.path.dirname(__file__), "..", "data", "geocache_averias.json")
+CONTEO_USUARIO_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "conteo_usuario.json")
 BBOX_HABANA = (-82.70, 22.90, -81.90, 23.35)
+RADIO_JOIN_M = 500  # radio de unión spatial reporte→circuito
 
 RE_HORAS = re.compile(
     r"llev(?:amos|o|an?|a)\s+(?:ya\s+|m[aá]s de\s+|casi\s+)?(\d{1,2})\s*(horas?|h\b|d[ií]as?)",
@@ -588,6 +590,119 @@ def estimar_poblacion(sb, ahora, deficit):
     return None
 
 
+def _dist_m(lat1, lon1, lat2, lon2):
+    """Distancia aproximada en metros entre dos puntos lat/lon."""
+    return math.hypot((lat2 - lat1) * 111000, (lon2 - lon1) * 102000)
+
+
+def procesar_conteo_usuario(sb, ahora):
+    """Mantiene un conteo persistente de 'usuarios reportan sin corriente' por
+    circuito, alimentado por reportes web (tabla reportes) y comentarios de
+    Telegram (comentarios_llm). Devuelve {codigo: {desde, ultima_sin,
+    ultimo_con, horas}} para incluir en estado.json.
+
+    Unión reporte→circuito:
+      1. Si el reporte trae códigos (comentarios_llm.codigos o
+         circuitos_id.resolver(direccion)) → asignación directa.
+      2. Si no, spatial join al circuito más cercano dentro de RADIO_JOIN_M.
+      3. Si no resuelve → se desecha.
+
+    Reset del contador:
+      - Usuario reporta 'con' → desde = null (reinicia).
+      - UNE reporta 'con servicio' → se resetea en build_circuitos.py.
+    """
+    try:
+        conteo = json.load(open(CONTEO_USUARIO_FILE))
+    except Exception:
+        conteo = {}
+
+    # Catálogo de circuitos con coords (corrida anterior) para el spatial join
+    cat = {}
+    try:
+        ruta_cat = os.path.join(os.path.dirname(__file__), "..", "web", "data", "circuitos.json")
+        for c in json.load(open(ruta_cat)).get("circuitos", []):
+            if c.get("lat") is not None and c.get("lon") is not None:
+                cat[c["codigo"]] = {"lat": c["lat"], "lon": c["lon"]}
+    except Exception:
+        pass
+    if not cat:
+        return conteo
+
+    # Señales: codigo -> [(fecha, 'sin'|'con'), ...]
+    senales = {}
+
+    def asignar(codigos, lat, lon, fecha, tipo):
+        if codigos:
+            for cod in codigos:
+                if cod in cat:
+                    senales.setdefault(cod, []).append((fecha, tipo))
+        elif lat is not None and lon is not None:
+            mejor, mejor_d = None, RADIO_JOIN_M
+            for cod, info in cat.items():
+                d = _dist_m(lat, lon, info["lat"], info["lon"])
+                if d < mejor_d:
+                    mejor, mejor_d = cod, d
+            if mejor:
+                senales.setdefault(mejor, []).append((fecha, tipo))
+
+    # Reportes web (últimas 48h — la purga ya corrió al inicio de main)
+    for r in (sb.table("reportes").select("fecha,lat,lon,direccion,tipo")
+              .gte("fecha", (ahora - timedelta(hours=48)).isoformat()).execute().data):
+        tipo = "sin" if r.get("tipo") == "sin" else "con"
+        cods = circuitos_id.resolver(r.get("direccion") or "").get("codigos", [])
+        asignar(cods, r.get("lat"), r.get("lon"), r["fecha"], tipo)
+
+    # Comentarios LLM de Telegram (últimas 48h)
+    try:
+        cols = "fecha,lat,lon,reporta,codigos,lugar"
+        com_q = (sb.table("comentarios_llm").select(cols)
+                 .gte("fecha", (ahora - timedelta(hours=48)).isoformat())
+                 .in_("reporta", ["sin_corriente", "con_corriente"]))
+        com_data = com_q.execute().data
+    except Exception:
+        com_data = (sb.table("comentarios_llm").select("fecha,lat,lon,reporta,lugar")
+                    .gte("fecha", (ahora - timedelta(hours=48)).isoformat())
+                    .in_("reporta", ["sin_corriente", "con_corriente"]).execute().data)
+    for c in com_data:
+        tipo = "sin" if c.get("reporta") == "sin_corriente" else "con"
+        asignar(c.get("codigos") or [], c.get("lat"), c.get("lon"), c["fecha"], tipo)
+
+    # Actualizar cache con las señales (ordenadas por fecha)
+    for cod, lista in senales.items():
+        lista.sort(key=lambda x: x[0])
+        entry = conteo.get(cod, {"desde": None, "ultima_sin": None, "ultimo_con": None})
+        ultimo_reset = entry.get("ultimo_reset")
+        for fecha, tipo in lista:
+            if tipo == "sin":
+                # Ignorar 'sin' reportes anteriores al último reset de la UNE
+                # (build_circuitos reseteó el contador cuando la UNE dijo "con")
+                if ultimo_reset and fecha < ultimo_reset:
+                    continue
+                if entry["desde"] is None:
+                    entry["desde"] = fecha
+                entry["ultima_sin"] = fecha
+            else:
+                entry["desde"] = None
+                entry["ultimo_con"] = fecha
+        conteo[cod] = entry
+
+    # Podar entradas sin actividad en los últimos 7 días
+    corte_podar = (ahora - timedelta(days=7)).isoformat()
+    conteo = {cod: e for cod, e in conteo.items()
+              if (e.get("ultima_sin") or e.get("ultimo_con") or "") >= corte_podar}
+
+    # Calcular horas para los activos
+    for entry in conteo.values():
+        if entry.get("desde"):
+            h = (ahora - datetime.fromisoformat(entry["desde"])).total_seconds() / 3600
+            entry["horas"] = round(h, 1)
+        else:
+            entry.pop("horas", None)
+
+    json.dump(conteo, open(CONTEO_USUARIO_FILE, "w"), ensure_ascii=False)
+    return conteo
+
+
 def main():
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
     ahora = datetime.now(timezone.utc)
@@ -878,6 +993,9 @@ def main():
             b["desde"] = b["desde"] if ya_apagado_antes else f_desc
             b.pop("parcial", None)
 
+    # --- Conteo de usuario por circuito (discrepancia UNE vs vecinos) ---
+    conteo_usuario = procesar_conteo_usuario(sb, ahora)
+
     salida = {
         "generado": ahora.isoformat(),
         "evento_nacional": evento_nacional,
@@ -895,6 +1013,7 @@ def main():
         "parciales": parciales,
         "zonas_verdes": zonas_verdes,
         "reportes_llm": reportes_llm,
+        "conteo_usuario": conteo_usuario,
         "municipios": municipios,
     }
     os.makedirs(os.path.dirname(SALIDA), exist_ok=True)

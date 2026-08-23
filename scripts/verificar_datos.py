@@ -221,6 +221,29 @@ def main():
                 except ValueError:
                     problemas.append(("fecha inválida", f"{c['codigo']}.{campo}: {v!r}"))
 
+    # 8: cambios de dirección detectados por build_circuitos (últimas 24h)
+    try:
+        cambios = json.load(open(os.path.join(RAIZ, "data", "cambios_direccion.json")))
+    except Exception:
+        cambios = []
+    corte_cambios = (ahora - timedelta(hours=24)).isoformat()
+    for c in cambios:
+        if (c.get("detectado") or "") >= corte_cambios:
+            problemas.append(("cambio de dirección",
+                              f"{c['codigo']}: '{(c.get('antes') or '')[:40]}' → "
+                              f"'{(c.get('ahora') or '')[:40]}' "
+                              f"(solapamiento {c.get('solapamiento', 0)})"))
+            purgar_lineas.add(c["codigo"])
+
+    # 9: discrepancias UNE vs usuarios (circuitos marcados discrepado)
+    for c in circuitos:
+        if c.get("discrepado") and c.get("conteo_usuario"):
+            cu = c["conteo_usuario"]
+            problemas.append(("discrepancia UNE/usuarios",
+                              f"{c['codigo']}: UNE dice 'con servicio' pero "
+                              f"usuarios reportan sin corriente"
+                              f"{' (' + str(cu.get('horas', '?')) + 'h)' if cu.get('horas') else ''}"))
+
     # Reparación: purgar cachés para que el cron re-geocodifique acotado
     reparados = []
     if args.reparar and (purgar_geo or purgar_lineas):

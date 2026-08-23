@@ -16,6 +16,10 @@ let ESTADO = null;  // estado.json: para aplicar la realidad actual al catálogo
 //  - Un "con servicio" anterior al apagón vigente de su bloque ya no vale.
 //  - Sin dato: circuitos del catálogo oficial nunca vistos en un parte.
 function estadoVigente(c) {
+  // Discrepado: usuarios reportan sin corriente pero la UNE dice "con".
+  if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde)
+    return { clase: "discrepado", txt: "usuarios reportan sin corriente",
+             desde: c.conteo_usuario.desde, obsoleto: false };
   const en = ESTADO && ESTADO.evento_nacional;
   const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
   if (en) {
@@ -109,7 +113,9 @@ function render(filtro = "") {
     for (const d of ESTADO.deficit.circuitos) horasDef[d.codigo] = d.horas;
   cont.innerHTML = cs.map((c) => {
     const e = estadoVigente(c);
-    const lleva = e.clase === "sin" && horasDef[c.codigo] != null
+    const lleva = e.clase === "discrepado"
+      ? (c.conteo_usuario ? `llevan ${Math.round((Date.now() - new Date(c.conteo_usuario.desde)) / 3600000 * 10) / 10}h sin luz (según vecinos)` : "")
+      : e.clase === "sin" && horasDef[c.codigo] != null
       ? `lleva ${horasDef[c.codigo]}h (según la UNE)`
       : e.clase === "nd"
         ? `se afectó el ${fechaHabana(e.desde)}; sin noticias desde entonces`

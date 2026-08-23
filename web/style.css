@@ -60,6 +60,7 @@ h1 { font-size: 1.15rem; margin: 0; }
 .rc-barra .seg { transition: width .6s ease; }
 .rc-barra .seg.sin { background: #e5484d; }
 .rc-barra .seg.con { background: #46a758; }
+.rc-barra .seg.discrepado { background: #f5a623; }
 .rc-barra .seg.asum { background: #3d6fb4; }
 .rc-barra .seg.nd { background: #6b7686; }
 .rc-chips { display: flex; gap: 6px; flex-wrap: wrap; }
@@ -70,6 +71,7 @@ h1 { font-size: 1.15rem; margin: 0; }
 .rc-chip::before { content: "●"; margin-right: 5px; font-size: .6rem; vertical-align: 1px; }
 .rc-chip.sin { color: #ff8a8e; } .rc-chip.sin::before { color: #e5484d; }
 .rc-chip.con { color: #7fd08c; } .rc-chip.con::before { color: #46a758; }
+.rc-chip.discrepado { color: #f5c576; cursor: help; } .rc-chip.discrepado::before { color: #f5a623; }
 .rc-chip.asum { color: #9db9e8; cursor: help; } .rc-chip.asum::before { color: #3d6fb4; }
 .rc-chip.nd { color: #a8b2bf; cursor: help; } .rc-chip.nd::before { color: #6b7686; }
 .rc-pnums { display: flex; gap: 14px; flex-wrap: wrap; }
@@ -118,6 +120,7 @@ a.bloque:hover { outline: 1px solid #37414f; }
   }
   .rc-mini-barra .seg.sin { background: #e5484d; }
   .rc-mini-barra .seg.con { background: #46a758; }
+  .rc-mini-barra .seg.discrepado { background: #f5a623; }
   .rc-mini-barra .seg.asum { background: #3d6fb4; }
   .rc-mini-barra .seg.nd { background: #6b7686; }
   .rc-mini-txt { font-size: .74rem; color: #b9c2cd; white-space: nowrap;
@@ -312,11 +315,13 @@ footer a { color: #8ab4f8; }
 .circ-est { font-size: .7rem; border-radius: 999px; padding: 2px 9px; font-weight: 600; }
 .circ-est.con { background: #14351d; color: #7fd08c; }
 .circ-est.sin { background: #3a0d10; color: #ff8a8e; }
+.circ-est.discrepado { background: #3a2a08; color: #f5c576; }
 .circ-est.nd { background: #26303d; color: #8a95a5; }
 .circ-est.asum { background: #14283d; color: #8ab4f8; }
 .circ-lleva { font-size: .7rem; font-weight: 600; }
 .circ-lleva.sin { color: #ff8a8e; }
 .circ-lleva.con { color: #7fd08c; }
+.circ-lleva.discrepado { color: #f5c576; }
 .circ-lleva.nd { color: #8a95a5; }
 .circ-meta { font-size: .7rem; color: #8a95a5; margin-left: auto; }
 .circ-calles { font-size: .82rem; line-height: 1.35; color: #c4ccd6; }

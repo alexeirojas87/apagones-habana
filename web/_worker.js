@@ -193,6 +193,7 @@ function sinAcentos(s) {
 // Estado vigente de un circuito. "nd" = sin noticias hace más de 24 h, que no
 // es lo mismo que "con servicio": no lo afirmamos si no lo sabemos.
 function estadoVigente(c, est) {
+  if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "discrepado";
   const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
   const en = est && est.evento_nacional;
   if (en) return (c.estado === "con servicio" && t && t > new Date(en.desde)) ? "con" : "sin";
@@ -211,10 +212,13 @@ function horasSin(c) {
 
 function describirCircuito(c, est) {
   const v = estadoVigente(c, est);
-  const etiqueta = { con: "con servicio", sin: "sin servicio", nd: "sin noticias hace +24h",
-                     asum: "sin cortes reportados" }[v];
+  const etiqueta = { con: "con servicio", sin: "sin servicio", discrepado: "usuarios reportan sin corriente",
+                     nd: "sin noticias hace +24h", asum: "sin cortes reportados" }[v];
   const out = { codigo: c.codigo, estado: etiqueta, municipio: c.municipio || null };
   if (v === "sin") out.horas_sin_luz = horasSin(c);
+  if (v === "discrepado" && c.conteo_usuario) {
+    out.horas_sin_luz_usuario = Math.round(((Date.now() - new Date(c.conteo_usuario.desde)) / 3600000) * 10) / 10;
+  }
   if (c.calles) out.zonas = String(c.calles).replace(/\s+/g, " ").slice(0, 300);
   if (c.estado_fecha) out.ultima_actualizacion = c.estado_fecha.slice(0, 16).replace("T", " ");
   if (c.causa) out.causa = c.causa;

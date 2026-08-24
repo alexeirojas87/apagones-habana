@@ -1129,5 +1129,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Varona : 👉Afecta A 425 : Sólita ,Central , Cuervo,Vera Cruz , Bue"
+ },
+ "76862": {
+  "fecha": "2026-08-24T15:12:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D631"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 11:00 am quedó restablecido el servicio en los siguientes circuitos: 👉A1008:Alrededores de los cuadrantes: -Desd"
  }
 }

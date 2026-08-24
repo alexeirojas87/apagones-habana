@@ -952,5 +952,88 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de la 04:57 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PZ1: Cuadrantes "
+ },
+ "76791": {
+  "fecha": "2026-08-24T00:54:59+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "2075",
+   "AL52",
+   "AL57",
+   "C10",
+   "C13",
+   "C7",
+   "L315",
+   "PZ16"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:36 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉L322:Cuadrante "
+ },
+ "76790": {
+  "fecha": "2026-08-24T00:48:46+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2075",
+   "2202",
+   "M1603",
+   "M2044",
+   "PZ13",
+   "PZ5"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:22 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉D1190: Repartos"
+ },
+ "76787": {
+  "fecha": "2026-08-24T00:42:22+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A960"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:22 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR840: Centro d"
+ },
+ "76786": {
+  "fecha": "2026-08-24T00:39:52+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1075"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:20 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A318:A318: Alec"
+ },
+ "76785": {
+  "fecha": "2026-08-24T00:37:12+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1328",
+   "M609",
+   "M700"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:39 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG315:Repartos "
+ },
+ "76784": {
+  "fecha": "2026-08-24T00:34:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1565",
+   "D1050",
+   "D1055",
+   "H442"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:36 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB920: Alturas "
+ },
+ "76779": {
+  "fecha": "2026-08-24T00:27:23+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1425",
+   "A1516",
+   "MR450",
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de la 05:17 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos:👉A1516: Casa Blanc"
  }
 }

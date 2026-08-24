@@ -1,14 +1,4 @@
 {
- "75203": {
-  "fecha": "2026-08-17T12:16:11+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "D1125",
-   "PG930"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito PG930, que se ha transferido temporalmente la carga al circuito D1125 los si"
- },
  "75259": {
   "fecha": "2026-08-17T16:58:14+00:00",
   "tipo_llm": "restablecimiento",

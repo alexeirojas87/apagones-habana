@@ -1035,5 +1035,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de la 05:17 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos:👉A1516: Casa Blanc"
+ },
+ "76793": {
+  "fecha": "2026-08-24T01:54:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC11"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Guanabacoa, quedan reparadas las AVERÍAS PRIMARIAS en las siguientes direcciones : 👉 Calixto García y Amargura 👉Calixto García y Pep"
  }
 }

@@ -1044,5 +1044,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Guanabacoa, quedan reparadas las AVERÍAS PRIMARIAS en las siguientes direcciones : 👉 Calixto García y Amargura 👉Calixto García y Pep"
+ },
+ "76795": {
+  "fecha": "2026-08-24T02:08:54+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Varona : 👉Afecta A 425 : Sólita ,Central , Vera Cruz , Buenos Air"
  }
 }

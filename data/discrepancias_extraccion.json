@@ -1,14 +1,4 @@
 {
- "75346": {
-  "fecha": "2026-08-17T22:51:25+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "1851",
-   "A1219"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Marianao pertenecientes al circuito 1851, que se ha transferido temporalmente la carga al circuito A1219 del siguiente"
- },
  "75379": {
   "fecha": "2026-08-18T02:45:30+00:00",
   "tipo_llm": "averia",

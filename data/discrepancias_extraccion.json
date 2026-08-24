@@ -1,13 +1,4 @@
 {
- "75331": {
-  "fecha": "2026-08-17T21:24:50+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1227"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Marianao, quedan reparada las AVERÍA Primaria en: 88 B y 65 que afectó el servicio en los siguientes cuadrantes de direcciones: 👉 "
- },
  "75346": {
   "fecha": "2026-08-17T22:51:25+00:00",
   "tipo_llm": "otro",
@@ -1144,5 +1135,16 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Boyero se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉247/236 y234 Abel Santamaria.🛑⚡️"
+ },
+ "76922": {
+  "fecha": "2026-08-24T21:18:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 05:00 pm quedó restablecido el servicio en los siguientes circuitos: 👉CPP 20: Alrededores de calles Ensenada de "
  }
 }

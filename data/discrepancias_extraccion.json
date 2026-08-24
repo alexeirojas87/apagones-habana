@@ -1138,5 +1138,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:00 am quedó restablecido el servicio en los siguientes circuitos: 👉A1008:Alrededores de los cuadrantes: -Desd"
+ },
+ "76869": {
+  "fecha": "2026-08-24T15:53:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A223"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 11:45 am quedó restablecido el servicio en los siguientes circuitos: 👉 A219:Repartos El Morado, Valle Grande - R"
  }
 }

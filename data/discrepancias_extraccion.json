@@ -1,13 +1,4 @@
 {
- "75274": {
-  "fecha": "2026-08-17T17:27:58+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1227"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA PRIMARIA en 88 B Y 65 que afecta el servicio en los siguientes cuadrantes de direcciones: 👉desde 9"
- },
  "75309": {
   "fecha": "2026-08-17T19:41:29+00:00",
   "tipo_llm": "afectacion",
@@ -1134,5 +1125,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:44 pm quedó restablecido el servicio en los siguientes circuitos: 👉 CPP9: Alrededores de calles Águila hasta "
+ },
+ "76890": {
+  "fecha": "2026-08-24T17:31:05+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "S512"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Informamos a los clientes asociados al circuito S512 se encuentran afectados por disparo porn33KV S512: Calzada de Güines desde La Rosita hasta calle Emilio Re"
  }
 }

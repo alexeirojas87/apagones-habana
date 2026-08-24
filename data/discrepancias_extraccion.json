@@ -1033,5 +1033,32 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30 AM se afectan 631MW distribuidos en 172circuitos de distribución. A continuación, s"
+ },
+ "76827": {
+  "fecha": "2026-08-24T09:30:20+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "1170"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:09 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SF581: Reparto:"
+ },
+ "76826": {
+  "fecha": "2026-08-24T09:14:15+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "RA56"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Regla, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Adriano entre Céspedes y Agramonte.🛑⚡️"
+ },
+ "76825": {
+  "fecha": "2026-08-24T09:07:08+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "GC12"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Guanabacoa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Rosalina entre Abravanel y Carretera de Cojimar .🛑⚡️"
  }
 }

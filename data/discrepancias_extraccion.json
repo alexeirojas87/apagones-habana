@@ -1,13 +1,4 @@
 {
- "75123": {
-  "fecha": "2026-08-17T04:40:00+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢✔️Consumidores del municipio 10 de octubre queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba la siguiente dirección: 👉Patrocinio/Saco y"
- },
  "75135": {
   "fecha": "2026-08-17T06:48:00+00:00",
   "tipo_llm": "restablecimiento",
@@ -1062,5 +1053,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:40 PM se afectan 652MW distribuidos en 183circuitos de distribución. A continuación, s"
+ },
+ "76812": {
+  "fecha": "2026-08-24T04:47:58+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉AL56: Zonas: 13; 15; 16; 17; 18; 21 y"
  }
 }

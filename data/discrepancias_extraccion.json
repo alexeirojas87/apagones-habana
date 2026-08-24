@@ -1062,5 +1062,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉AL56: Zonas: 13; 15; 16; 17; 18; 21 y"
+ },
+ "76813": {
+  "fecha": "2026-08-24T04:56:13+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380",
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30 AM se afectan 631MW distribuidos en 172circuitos de distribución. A continuación, s"
  }
 }

@@ -1,13 +1,4 @@
 {
- "75094": {
-  "fecha": "2026-08-17T00:08:24+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "VC100"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 07:53 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A845: Alrededores de las 4 Esquinas (Mana"
- },
  "75123": {
   "fecha": "2026-08-17T04:40:00+00:00",
   "tipo_llm": "restablecimiento",
@@ -932,5 +923,34 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:45 PM se afectan 561MW distribuidos en 177 circuitos de distribución. A continuación, "
+ },
+ "76778": {
+  "fecha": "2026-08-24T00:25:52+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC12",
+   "GC18"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de la 05:15 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC12: Centro de "
+ },
+ "76777": {
+  "fecha": "2026-08-24T00:24:57+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:12 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉A425: Avenida del "
+ },
+ "76776": {
+  "fecha": "2026-08-24T00:23:34+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ1",
+   "SR830"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de la 04:57 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PZ1: Cuadrantes "
  }
 }

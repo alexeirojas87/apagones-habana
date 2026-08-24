@@ -1,26 +1,4 @@
 {
- "75259": {
-  "fecha": "2026-08-17T16:58:14+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "136",
-   "293",
-   "295"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 136 / 293 y 295.🟢☑️"
- },
- "75261": {
-  "fecha": "2026-08-17T16:58:14+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "204",
-   "401",
-   "403"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉204 / 403 y 401.🛑⚡️"
- },
  "75274": {
   "fecha": "2026-08-17T17:27:58+00:00",
   "tipo_llm": "averia",
@@ -1147,5 +1125,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:45 am quedó restablecido el servicio en los siguientes circuitos: 👉 A219:Repartos El Morado, Valle Grande - R"
+ },
+ "76879": {
+  "fecha": "2026-08-24T16:54:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP17"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:44 pm quedó restablecido el servicio en los siguientes circuitos: 👉 CPP9: Alrededores de calles Águila hasta "
  }
 }

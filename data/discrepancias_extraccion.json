@@ -1051,5 +1051,17 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Guanabacoa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Rosalina entre Abravanel y Carretera de Cojimar .🛑⚡️"
+ },
+ "76828": {
+  "fecha": "2026-08-24T09:33:58+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "1248",
+   "GC14",
+   "MB910",
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:16 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 T41: Alrededor"
  }
 }

@@ -1,22 +1,4 @@
 {
- "75135": {
-  "fecha": "2026-08-17T06:48:00+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1203"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 2:14 AM quedó restablecido el servicio en los siguientes circuitos: 👉2076:Calle 81 hasta 101 (Alturas de La Lisa"
- },
- "75132": {
-  "fecha": "2026-08-17T06:43:18+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1430"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 01:30 am se afectó el servicio eléctrico en los siguientes circuitos: 👉D1280: Repartos Coco Solo, Los Pocitos, L"
- },
  "75139": {
   "fecha": "2026-08-17T07:02:34+00:00",
   "tipo_llm": "afectacion",

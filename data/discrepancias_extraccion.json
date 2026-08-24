@@ -1,13 +1,4 @@
 {
- "75163": {
-  "fecha": "2026-08-17T10:33:07+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1050"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:21 am se afectó el servicio eléctrico en los siguientes circuitos: 👉L315: Avenida 21 desde calle 84 hasta cal"
- },
  "75203": {
   "fecha": "2026-08-17T12:16:11+00:00",
   "tipo_llm": "otro",
@@ -1063,5 +1054,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:16 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 T41: Alrededor"
+ },
+ "76831": {
+  "fecha": "2026-08-24T10:39:18+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Varona : 👉Afecta A 425 : Sólita ,Central , Vera Cruz , Buenos Air"
+ },
+ "76830": {
+  "fecha": "2026-08-24T10:37:08+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:30 AM se afectan 488MW distribuidos en 167circuitos de distribución. A continuación, s"
  }
 }

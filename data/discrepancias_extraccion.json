@@ -1134,5 +1134,24 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Informamos a los clientes asociados al circuito S512 se encuentran afectados por disparo porn33KV S512: Calzada de Güines desde La Rosita hasta calle Emilio Re"
+ },
+ "76900": {
+  "fecha": "2026-08-24T18:42:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A465"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 02:00 pm quedó restablecido el servicio en los siguientes circuitos: 👉A1006: Repartos: Santa Amalia y Barrio Azu"
+ },
+ "76885": {
+  "fecha": "2026-08-24T17:04:13+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "C8",
+   "L317"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:47 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 A1203:Alrededo"
  }
 }

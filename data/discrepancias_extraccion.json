@@ -1053,5 +1053,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Varona : 👉Afecta A 425 : Sólita ,Central , Vera Cruz , Buenos Air"
+ },
+ "76805": {
+  "fecha": "2026-08-24T03:28:40+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:40 PM se afectan 652MW distribuidos en 183circuitos de distribución. A continuación, s"
  }
 }

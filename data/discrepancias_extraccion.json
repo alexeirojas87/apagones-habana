@@ -1299,5 +1299,16 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 04:00 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP 304,OP411,OP320,OP424,OP318,OP410,OP406"
+ },
+ "77057": {
+  "fecha": "2026-08-25T09:38:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:30 am se afectó el servicio eléctrico en los siguientes circuitos: 👉CPP 20: Alrededores de calles Ensenada de"
  }
 }

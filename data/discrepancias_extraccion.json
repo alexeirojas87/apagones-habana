@@ -1153,5 +1153,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 05:19 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP410, OP320, OP306, OP424, OP424"
+ },
+ "76950": {
+  "fecha": "2026-08-25T00:39:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢✅Consumidores del municipio Arroyo Naranjo, queda reparada la AVERÍA PRIMARIA por un incendio en la Subestación Varona que afectaba el servicio en los repartos"
  }
 }

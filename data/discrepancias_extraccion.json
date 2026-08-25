@@ -1265,5 +1265,39 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:55 pm quedó restablecido el servicio en los siguientes circuitos: 👉P322:Alrededores de calles Sitios desde Xi"
+ },
+ "77046": {
+  "fecha": "2026-08-25T08:50:56+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ16"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 04:42 AM quedó restablecido el servicio en los siguientes circuitos: 👉 H443: Reparto Los Ángeles, Rocafort, La R"
+ },
+ "77044": {
+  "fecha": "2026-08-25T08:40:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SF581"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 04:35 AM quedó restablecido el servicio en los siguientes circuitos: 👉 SF583: Reparto El Roble. Cuadrante calle "
+ },
+ "77032": {
+  "fecha": "2026-08-25T08:06:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 04:00 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP 304,OP411,OP320,OP424,OP318,OP410,OP406"
  }
 }

@@ -379,6 +379,8 @@ footer a { color: #8ab4f8; }
 
 .fila { display: grid; grid-template-columns: 130px minmax(0,1fr) 62px; align-items: center; gap: 8px; margin-bottom: 5px; }
 .fila .etq { font-size: .74rem; color: #b9c2cd; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fila .etq a { color: inherit; text-decoration: none; }
+.fila .etq a:hover { text-decoration: underline; }
 .fila .barra { background: #10141a; border-radius: 4px; height: 15px; overflow: hidden; }
 .fila .barra span { display: block; height: 100%; border-radius: 4px; }
 .fila .val { font-size: .76rem; text-align: right; color: #e8e8e8; }

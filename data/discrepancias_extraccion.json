@@ -1319,5 +1319,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 3:20 am se afectan 519 MW distribuidos en 162 circuitos de distribución. A continuación, "
+ },
+ "77066": {
+  "fecha": "2026-08-25T10:52:44+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1249",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Primario Partido: 📌Municipio: Plaza (1249) 👉Dirección: Tropical desde Baire hasta San Pedro, Tropical de Rizo hasta 31, C"
  }
 }

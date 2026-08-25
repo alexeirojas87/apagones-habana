@@ -1365,5 +1365,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:25 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉 MB920: Alturas de Boca Ciega, Santa Marí"
+ },
+ "77171": {
+  "fecha": "2026-08-25T19:31:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1520"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Avería Primaria: 📌Municipio: San Miguel Del Padrón(A1520) 👉Dirección: Reparto Revoledo, Vista Alegre, La Prosperidad, Las"
  }
 }

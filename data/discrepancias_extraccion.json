@@ -1329,5 +1329,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Primario Partido: 📌Municipio: Plaza (1249) 👉Dirección: Tropical desde Baire hasta San Pedro, Tropical de Rizo hasta 31, C"
+ },
+ "77092": {
+  "fecha": "2026-08-25T14:02:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 09:23 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉 A845: Alrededores de las 4 Esquinas (Man"
  }
 }

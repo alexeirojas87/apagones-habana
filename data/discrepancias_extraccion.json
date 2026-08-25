@@ -1338,5 +1338,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 09:23 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉 A845: Alrededores de las 4 Esquinas (Man"
+ },
+ "77117": {
+  "fecha": "2026-08-25T15:50:39+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ9"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Panorama / Colón y Lombillo.🛑⚡️"
  }
 }

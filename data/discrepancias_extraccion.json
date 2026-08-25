@@ -1229,5 +1229,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:18 pm quedó restablecido el servicio en los siguientes circuitos: 👉 A980: Alrededores de calles Fábrica desde"
+ },
+ "76996": {
+  "fecha": "2026-08-25T05:00:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1248"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 11:49 pm quedó restablecido el servicio en los siguientes circuitos: 👉 1246: Avenida 51 hasta 58 C . - Cuadrante"
  }
 }

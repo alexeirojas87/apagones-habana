@@ -1447,5 +1447,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:29 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉 D1300: Águila Hatuey, Purísima y Magdale"
+ },
+ "77299": {
+  "fecha": "2026-08-26T08:17:21+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 AM se afectan 359 MW distribuidos en 99 circuitos de distribución. A continuación, "
  }
 }

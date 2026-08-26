@@ -1394,5 +1394,14 @@
   ],
   "solo_regex": [],
   "extracto": "‼️Consumidores del municipio Marianao, del circuito 1249 se encuentran afectados por una vía libre de emergencia por cable fallo.‼️"
+ },
+ "77481": {
+  "fecha": "2026-08-26T22:05:28+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP402"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Avería Primaria: 📌Municipio: Plaza(Op402) 👉Dirección: Alrededores de calles calzada del Cerro desde Cruz del Padre hasta "
  }
 }

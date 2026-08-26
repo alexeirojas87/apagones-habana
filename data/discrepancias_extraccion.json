@@ -1,15 +1,4 @@
 {
- "75832": {
-  "fecha": "2026-08-19T18:17:11+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H343",
-   "R451",
-   "R466"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Se le informa a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343, que se ha transferido temporalmente la carga al circuito R46"
- },
  "75847": {
   "fecha": "2026-08-19T18:54:08+00:00",
   "tipo_llm": "deficit",

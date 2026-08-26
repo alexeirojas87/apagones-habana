@@ -1469,5 +1469,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Avería Primaria: 📌Municipio: Plaza(Op402) 👉Dirección: Alrededores de calles calzada del Cerro desde Cruz del Padre hasta "
+ },
+ "77329": {
+  "fecha": "2026-08-26T11:08:19+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "T41",
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:53 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉R466: Calle 10 de Octubre desde 1ra hasta"
  }
 }

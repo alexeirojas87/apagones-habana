@@ -1383,5 +1383,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:05 PM se afectan 429 MW distribuidos en 128 circuitos de distribución. A continuación,"
+ },
+ "77213": {
+  "fecha": "2026-08-26T00:09:51+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A820"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Habana del Este , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 3ra entre 4ta y 6ta .⚡️🛑"
  }
 }

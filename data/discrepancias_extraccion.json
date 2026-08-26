@@ -1,13 +1,4 @@
 {
- "75809": {
-  "fecha": "2026-08-19T16:24:07+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Consumidores del los municipios Centro Habana - Habana Vieja se encuentra DISPARADO el CIRCUITO quedando afectados : 👉 CPP8 : Alrededores de calles Cristina"
- },
  "75832": {
   "fecha": "2026-08-19T18:17:11+00:00",
   "tipo_llm": "averia",
@@ -1407,5 +1398,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:39 AM quedó restablecido el servicio en los siguientes circuitos: 👉 D1125: Averoff, El Retiro, El Calvario, M"
+ },
+ "77395": {
+  "fecha": "2026-08-26T16:03:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ19"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 11:47 AM quedó restablecido el servicio en los siguientes circuitos: 👉 PZ 19: Calles 21 desde 2 hasta K, J desde"
  }
 }

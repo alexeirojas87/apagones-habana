@@ -1,24 +1,4 @@
 {
- "75894": {
-  "fecha": "2026-08-19T23:27:50+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2202"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢✔️Consumidores del municipio Cerro queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba : 👉Camagüey y Canal, Canal🟢✔️"
- },
- "75893": {
-  "fecha": "2026-08-19T23:23:07+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "205",
-   "285",
-   "399"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Boyeros se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉 399 / 196 y 194 Santiago de las Vegas 👉 205 ,Finca Los Po"
- },
  "75897": {
   "fecha": "2026-08-20T00:06:48+00:00",
   "tipo_llm": "averia",

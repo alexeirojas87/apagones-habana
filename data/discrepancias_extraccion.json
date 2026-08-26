@@ -1401,5 +1401,23 @@
   ],
   "solo_regex": [],
   "extracto": "⭕️⚡️Consumidores del municipio Plaza, Marianao se encuentran afectados por DISPARO DE CIRCUITO los siguientes repartos: 👉(Plaza)1249: Tropical desde Baire hasta"
+ },
+ "77224": {
+  "fecha": "2026-08-26T01:26:25+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:20 PM se afectan 479 MW distribuidos en 127 circuitos de distribución. A continuación,"
+ },
+ "77222": {
+  "fecha": "2026-08-26T01:17:52+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ4"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Avenida entre 27 y 29.⚡️🛑"
  }
 }

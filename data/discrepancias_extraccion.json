@@ -1456,5 +1456,18 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 AM se afectan 359 MW distribuidos en 99 circuitos de distribución. A continuación, "
+ },
+ "77324": {
+  "fecha": "2026-08-26T10:38:18+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A820",
+   "D836",
+   "M1603",
+   "M2044",
+   "OP402"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Avería Primaria: 📌Municipio: Plaza(Op402) 👉Dirección: Alrededores de calles calzada del Cerro desde Cruz del Padre hasta "
  }
 }

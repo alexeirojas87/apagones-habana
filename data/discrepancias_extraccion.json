@@ -1,14 +1,4 @@
 {
- "75866": {
-  "fecha": "2026-08-19T20:36:42+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C10",
-   "CPP10"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Melones(continúa en avería) 🚨Circuito Disparado : 📌Municipio: Cen"
- },
  "75894": {
   "fecha": "2026-08-19T23:27:50+00:00",
   "tipo_llm": "restablecimiento",

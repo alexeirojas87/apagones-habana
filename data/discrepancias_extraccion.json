@@ -1,13 +1,4 @@
 {
- "75677": {
-  "fecha": "2026-08-19T07:10:12+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 445MW distribuidos en 121 circuitos de distribución. A continuación, "
- },
  "75765": {
   "fecha": "2026-08-19T14:15:35+00:00",
   "tipo_llm": "averia",
@@ -1447,5 +1438,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 01:02 AM quedó restablecido el servicio en los siguientes circuitos: 👉 MB920: Alturas de Boca Ciega, Santa María"
+ },
+ "77286": {
+  "fecha": "2026-08-26T07:14:39+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:29 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉 D1300: Águila Hatuey, Purísima y Magdale"
  }
 }

@@ -1392,5 +1392,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Habana del Este , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 3ra entre 4ta y 6ta .⚡️🛑"
+ },
+ "77217": {
+  "fecha": "2026-08-26T00:51:43+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1249"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Consumidores del municipio Plaza, Marianao se encuentran afectados por DISPARO DE CIRCUITO los siguientes repartos: 👉(Plaza)1249: Tropical desde Baire hasta"
  }
 }

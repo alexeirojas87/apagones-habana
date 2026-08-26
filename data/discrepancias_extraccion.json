@@ -1407,5 +1407,33 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:47 AM quedó restablecido el servicio en los siguientes circuitos: 👉 PZ 19: Calles 21 desde 2 hasta K, J desde"
+ },
+ "77432": {
+  "fecha": "2026-08-26T17:56:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 01:43pm quedó restablecido el servicio en el siguiente circuito: 👉 MB 930: Mirador de Marbella, Santa María Loma"
+ },
+ "77421": {
+  "fecha": "2026-08-26T17:44:02+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1249",
+   "OP402"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Avería Primaria: 📌Municipio: Plaza(Op402) 👉Dirección: Alrededores de calles calzada del Cerro desde Cruz del Padre hasta "
+ },
+ "77420": {
+  "fecha": "2026-08-26T17:43:47+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1249"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Marianao, del circuito 1249 se encuentran afectados por una vía libre de emergencia por cable fallo.‼️"
  }
 }

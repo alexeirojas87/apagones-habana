@@ -1,13 +1,4 @@
 {
- "75952": {
-  "fecha": "2026-08-20T11:29:39+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación : 📌Municipio: Guanabacoa 👉GC13: Villa 2 y Nalón. 🚨Circuito Dispar"
- },
  "75976": {
   "fecha": "2026-08-20T13:42:05+00:00",
   "tipo_llm": "averia",

@@ -1,22 +1,4 @@
 {
- "76051": {
-  "fecha": "2026-08-20T19:51:53+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2073"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Lisa, se encuentra afectado por un disparo del circuito el siguiente circuito: 👉2073: Calle 256 hasta 51 y 234 hasta 51 entre 244 "
- },
- "76048": {
-  "fecha": "2026-08-20T19:34:12+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1280"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:07 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉1856: Calle 130 desde avenida 37 hasta av"
- },
  "76073": {
   "fecha": "2026-08-20T21:27:01+00:00",
   "tipo_llm": "afectacion",
@@ -1239,5 +1221,28 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Plaza, se detectaron AVERÍAS SECUNDARIAS por TRANSFORMADORES DAÑADOS en: 👉Zapata entre Avenida Carlos Manuel de Céspedes y C . 🛑⚡️"
+ },
+ "77762": {
+  "fecha": "2026-08-27T19:35:07+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Se le informa a los clientes del municipio Regla pertenecientes al circuito R466, que se ha transferido temporalmente la carga al circuito R451 el siguiente c"
+ },
+ "77755": {
+  "fecha": "2026-08-27T18:24:00+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2203",
+   "2210",
+   "A815",
+   "D836",
+   "H466",
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: 10 de Octubre (H466) 👉Dirección: Guasabacoa entre Herrera y Compromiso 👉Dirección:María d"
  }
 }

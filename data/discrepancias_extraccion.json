@@ -1,24 +1,4 @@
 {
- "76077": {
-  "fecha": "2026-08-20T22:08:54+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "GC13"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Guanabacoa, se encuentra afectado por un disparo del circuito por posible avería el siguiente circuito: 👉GC13: Mambí, Garrido y Ce"
- },
- "76076": {
-  "fecha": "2026-08-20T22:05:16+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A980",
-   "GC7",
-   "SG314"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:53 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉SG312:Alrededores de calles: Calle 206 de"
- },
  "76091": {
   "fecha": "2026-08-20T23:07:48+00:00",
   "tipo_llm": "afectacion",
@@ -1244,5 +1224,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA PRIMARIA que afecta el servicio en los siguientes repartos : 👉Camilo Cienfuegos y El chico🛑⚡️"
+ },
+ "77810": {
+  "fecha": "2026-08-27T22:28:58+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A708"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Boyeros, por DISPARO DEL CIRCUITO se afecta el servicio en: 👉D1190: Lutgardita, Villena, Mulgoba. 👉D1195: Lutgardita 👉A1538: Aveni"
  }
 }

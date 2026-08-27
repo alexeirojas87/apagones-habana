@@ -1357,5 +1357,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (A945) 👉Dirección: Afecta Reparto Colonia, alrededores de avenida 243, avenida 26"
+ },
+ "77568": {
+  "fecha": "2026-08-27T04:40:53+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SG312"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Boyeros, se localiza avería secundaria por transformador dañado en las calles 204 entre 397 y Final🚨"
  }
 }

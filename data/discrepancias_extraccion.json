@@ -1,22 +1,4 @@
 {
- "76031": {
-  "fecha": "2026-08-20T18:18:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC13"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣 Consumidores del municipio Guanabacoa, se encuentra afectado por un disparo del circuito el siguiente circuito : 👉GC13: Mambi, Garrido y Centro de Guanabacoa"
- },
- "76040": {
-  "fecha": "2026-08-20T18:52:27+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "H343"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343, que se ha transferido temporalmente la carga a los circuitos R4"
- },
  "76046": {
   "fecha": "2026-08-20T19:22:27+00:00",
   "tipo_llm": "afectacion",

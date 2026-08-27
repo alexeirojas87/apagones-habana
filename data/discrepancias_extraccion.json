@@ -1257,5 +1257,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉39B entre 84 y 86.🛑⚡️"
+ },
+ "77751": {
+  "fecha": "2026-08-27T17:35:03+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ10"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza, se detectaron AVERÍAS SECUNDARIAS por TRANSFORMADORES DAÑADOS en: 👉Zapata entre Avenida Carlos Manuel de Céspedes y C . 🛑⚡️"
  }
 }

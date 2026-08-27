@@ -1,13 +1,4 @@
 {
- "76011": {
-  "fecha": "2026-08-20T16:26:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P317"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:24 PM se afectan 277 MW distribuidos en 81 circuitos de distribución. A continuación, "
- },
  "76031": {
   "fecha": "2026-08-20T18:18:19+00:00",
   "tipo_llm": "afectacion",
@@ -1257,5 +1248,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 📌Municipio: Boyeros (D1195) Circuito Disparado que no se sostiene 👉Afecta Lutgatdita. 🚨Primarios Partidos: 📌Municipio: 10 "
+ },
+ "77733": {
+  "fecha": "2026-08-27T16:25:42+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1227"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉39B entre 84 y 86.🛑⚡️"
  }
 }

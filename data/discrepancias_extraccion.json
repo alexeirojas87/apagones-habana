@@ -1347,5 +1347,23 @@
    "AZA1"
   ],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 337MW distribuidos en 90circuitos de distribución. A continuación, se"
+ },
+ "77619": {
+  "fecha": "2026-08-27T09:54:45+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2203",
+   "A820",
+   "A945",
+   "D1195",
+   "D836",
+   "H466",
+   "PG930",
+   "PG970",
+   "R456",
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 📌Municipio: Boyeros (D1195) Circuito Disparado que no se sostiene 👉Afecta Lutgatdita. 🚨Primarios Partidos: 📌Municipio: 10 "
  }
 }

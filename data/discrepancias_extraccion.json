@@ -1,13 +1,4 @@
 {
- "76152": {
-  "fecha": "2026-08-21T10:11:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "VC100"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:33 am se afectó el servicio eléctrico en los siguientes circuitos: 👉A845: Alrededores de las 4 Esquinas (Mana"
- },
  "76157": {
   "fecha": "2026-08-21T10:35:26+00:00",
   "tipo_llm": "averia",
@@ -1239,5 +1230,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:53 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉C8(OP408): Alrededores del cuadrante comp"
+ },
+ "77939": {
+  "fecha": "2026-08-28T10:19:30+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H466",
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: 10 de Octubre (H466) 👉Dirección: Guasabacoa entre Herrera y Compromiso 👉Dirección:María d"
  }
 }

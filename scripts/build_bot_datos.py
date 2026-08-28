@@ -24,6 +24,7 @@ from zoneinfo import ZoneInfo
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 ANALITICA = os.path.join(RAIZ, "web", "data", "analitica.json")
 ESTADO = os.path.join(RAIZ, "web", "data", "estado.json")
+CATALOGO = os.path.join(RAIZ, "web", "data", "circuitos.json")
 SALIDA = os.path.join(RAIZ, "web", "data", "bot_datos.json")
 
 DIAS = 30          # ventana de histórico que ofrece el bot
@@ -132,6 +133,29 @@ def horas_por_dia(cortes, tz=ZoneInfo("America/Havana")):
     return {d: round(h, 1) for d, h in sorted(por_dia.items())}
 
 
+def declaracion_corte_abierto(estado, estado_fecha, ahora, max_h=24):
+    """(fecha, horas) sintética si el catálogo marca el circuito SIN servicio.
+
+    Los partes de déficit declaran horas, pero llegan tarde: un circuito puede
+    estar caído desde hace horas (eventos de afectación, lo que la ficha de la
+    web muestra como 'lleva Nh') sin declaración nueva. Sin esta cola, el bot
+    respondía '0.2 h hoy' mientras la web decía 'sin servicio hace 1.5 h'.
+    Devuelve None si no está sin servicio, sin fecha o hace más de max_h.
+    """
+    if estado != "sin servicio" or not estado_fecha:
+        return None
+    try:
+        t = datetime.fromisoformat(estado_fecha)
+    except (TypeError, ValueError):
+        return None
+    if t.tzinfo is None:
+        t = t.replace(tzinfo=timezone.utc)
+    horas = (ahora - t).total_seconds() / 3600
+    if not 0 < horas <= max_h:
+        return None
+    return (ahora.isoformat(), horas)
+
+
 def resolver_municipios(bruto, canon):
     """Mapea un municipio crudo a los canónicos que menciona.
 
@@ -207,6 +231,14 @@ def main():
     # referencia para el corte abierto: el builder corre recién hecho el volcado,
     # así que now() es el mejor "ahora" disponible
     ahora = datetime.now(timezone.utc)
+    # estado por circuito del catálogo (en CI es el de la corrida anterior:
+    # build_circuitos corre después; como mucho va atrasado un ciclo de ingesta)
+    estado_cat = {}
+    try:
+        for c in json.load(open(CATALOGO)).get("circuitos", []):
+            estado_cat[c.get("codigo")] = (c.get("estado"), c.get("estado_fecha"))
+    except Exception:
+        estado_cat = {}
     for codigo, regs in horas.items():
         eps = episodios(regs)
         if not eps:
@@ -220,9 +252,14 @@ def main():
         }
         # serie diaria (días habaneros): lo que consume el bot para
         # "¿cuántas horas lleva sin corriente HOY?" — suma la cola del
-        # corte abierto, por eso puede diferir un pelín de horas_total
-        # (que solo cuenta lo declarado por la UNE).
-        serie = horas_por_dia(cortes_intervalos(regs, ahora))
+        # corte abierto (declarada o por estado del catálogo), por eso
+        # puede diferir de horas_total (que solo cuenta lo declarado).
+        regs_serie = list(regs)
+        sintetica = declaracion_corte_abierto(*estado_cat.get(codigo, (None, None)),
+                                              ahora)
+        if sintetica:
+            regs_serie.append(sintetica)
+        serie = horas_por_dia(cortes_intervalos(regs_serie, ahora))
         if serie:
             horas_dia[codigo] = serie
 

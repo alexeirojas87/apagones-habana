@@ -90,5 +90,44 @@ class HorasPorDiaTest(unittest.TestCase):
         self.assertEqual(list(h), ["2026-08-18"])
 
 
+class CortePorEstadoTest(unittest.TestCase):
+    """La ficha de la web dice 'sin servicio, lleva Nh' por los EVENTOS de
+    afectación; horas_dia solo contaba horas DECLARADAS en partes de déficit.
+    El caso real: catálogo 'sin servicio hace 1.5h' y el bot respondiendo
+    '0.2h hoy' — dos fuentes, dos verdades. La cola sintética las une."""
+
+    def test_sin_servicio_reciente_genera_cola(self):
+        ahora = f("2026-08-28T23:00")
+        d = MOD.declaracion_corte_abierto("sin servicio", "2026-08-28T21:30+00:00", ahora)
+        self.assertEqual(d, (ahora.isoformat(), 1.5))
+
+    def test_con_servicio_o_sin_fecha_no_genera_nada(self):
+        ahora = f("2026-08-28T23:00")
+        self.assertIsNone(MOD.declaracion_corte_abierto("con servicio", "2026-08-28T21:30+00:00", ahora))
+        self.assertIsNone(MOD.declaracion_corte_abierto("sin servicio", None, ahora))
+        self.assertIsNone(MOD.declaracion_corte_abierto("sin servicio", "fecha-mala", ahora))
+
+    def test_estado_viejo_no_genera_cola(self):
+        ahora = f("2026-08-28T23:00")
+        self.assertIsNone(
+            MOD.declaracion_corte_abierto("sin servicio", "2026-08-27T21:30+00:00", ahora))
+
+    def test_estado_naive_se_trata_como_utc(self):
+        ahora = f("2026-08-28T23:00")
+        d = MOD.declaracion_corte_abierto("sin servicio", "2026-08-28T21:30", ahora)
+        self.assertEqual(d, (ahora.isoformat(), 1.5))
+
+    def test_horas_hoy_suma_declarado_mas_eventos(self):
+        # el caso del usuario: 0.2h declaradas de madrugada + circuito caído
+        # desde hace 1.5h por eventos -> hoy >= 1.5h, no 0.2h
+        ahora = f("2026-08-28T23:00")
+        regs = [("2026-08-28T08:10", 0.2)]
+        sintetica = MOD.declaracion_corte_abierto(
+            "sin servicio", "2026-08-28T21:30+00:00", ahora)
+        h = MOD.horas_por_dia(MOD.cortes_intervalos(regs + [sintetica], ahora))
+        self.assertGreaterEqual(h.get("2026-08-28", 0), 1.5)
+        self.assertAlmostEqual(h["2026-08-28"], 1.7, places=1)
+
+
 if __name__ == "__main__":
     unittest.main()

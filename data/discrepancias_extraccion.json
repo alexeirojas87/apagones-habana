@@ -1,13 +1,4 @@
 {
- "76222": {
-  "fecha": "2026-08-21T16:28:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:10 PM se afectan 334 MW distribuidos en 105 circuitos de distribución. A continuación,"
- },
  "76260": {
   "fecha": "2026-08-21T19:12:28+00:00",
   "tipo_llm": "averia",
@@ -1273,5 +1264,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:30 am se afectó el servicio eléctrico en los siguientes circuitos: 👉GC13: Mambi, Garrido y Centro de Guanabac"
+ },
+ "78009": {
+  "fecha": "2026-08-28T16:05:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SR830"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢✔️Consumidores del municipio 10 de octubre,queda reparada la AVERÍA PRIMARIA que afectaba la siguiente dirección: 👉Marquez de la Torre/Princesa y Delicias."
  }
 }

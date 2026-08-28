@@ -1229,5 +1229,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:24 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉1242: Cuadrante de avenida 25 desde calle"
+ },
+ "77926": {
+  "fecha": "2026-08-28T09:18:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2202",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:53 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉C8(OP408): Alrededores del cuadrante comp"
  }
 }

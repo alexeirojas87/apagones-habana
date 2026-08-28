@@ -1208,5 +1208,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Boyeros, por DISPARO DEL CIRCUITO se afecta el servicio en: 👉D1190: Lutgardita, Villena, Mulgoba. 👉D1195: Lutgardita 👉A1538: Aveni"
+ },
+ "77839": {
+  "fecha": "2026-08-28T00:04:37+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ5"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉27 entre 2 y 4 , Vedado.🛑⚡️"
+ },
+ "77838": {
+  "fecha": "2026-08-28T00:04:02+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:35 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de calles avenida 409 "
  }
 }

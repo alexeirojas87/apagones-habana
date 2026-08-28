@@ -60,6 +60,45 @@ class RegexCircuitosTest(unittest.TestCase):
         self.assertEqual(self._codigos("👉🏼A1443- Rio Verde"), ["A1443"])
 
 
+class AvisoInstitucionalTest(unittest.TestCase):
+    """La Empresa pega el aviso '📣Usted puede, aún siendo cliente...' en la
+    MISMA línea de las viñetas (posts 70244, 70323, 70329): el regex lo captura
+    como parte de la descripción y las calles dejan de resolver en OSM."""
+
+    AVISO = ("📣Usted puede, aún siendo cliente de {de}, continuar afectado por "
+             "avería en acometida o transformador. En esos casos le pedimos "
+             "contactarnos por las vías alternativas{punto}")
+
+    def _texto(self, de, punto="."):
+        return ("👉PG980: Fraternidad, Calleja, San Agustín, El Mamey.   "
+                + self.AVISO.format(de=de, punto=punto))
+
+    def test_limpia_el_aviso_de_las_calles(self):
+        for de in ("estos circuitos", "este circuito"):
+            with self.subTest(de=de):
+                m = MOD.RE_CIRC.search(self._texto(de))
+                self.assertEqual(
+                    MOD.limpiar_calles(m.group(3)),
+                    "Fraternidad, Calleja, San Agustín, El Mamey")
+
+    def test_aviso_sin_punto_final(self):
+        m = MOD.RE_CIRC.search(self._texto("este circuito", punto=""))
+        self.assertEqual(
+            MOD.limpiar_calles(m.group(3)),
+            "Fraternidad, Calleja, San Agustín, El Mamey")
+
+    def test_zonas_en_del_extractor_tampoco_lo_incluye(self):
+        from extract import zonas_en
+        zonas = zonas_en(self._texto("estos circuitos"))
+        self.assertEqual(zonas, ["PG980: Fraternidad, Calleja, San Agustín, El Mamey."])
+
+    def test_no_recorta_descripciones_que_solo_parecen_el_aviso(self):
+        texto = "👉GC11: Reparto Garrido, calles Soledad y La Palma"
+        m = MOD.RE_CIRC.search(texto)
+        self.assertEqual(MOD.limpiar_calles(m.group(3)),
+                         "Reparto Garrido, calles Soledad y La Palma")
+
+
 class AplicarExtraccionLlmTest(unittest.TestCase):
     """La caché del LLM debe aplicarse sin depender de un número de versión."""
 

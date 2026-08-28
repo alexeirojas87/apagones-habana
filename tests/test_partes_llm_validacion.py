@@ -65,6 +65,32 @@ class ValidacionPartesLlmTest(unittest.TestCase):
         self.assertEqual(item["codigos_estado"], ["AL53"])
         self.assertEqual(item["estado"], "con servicio")
 
+    def test_calles_sin_el_aviso_institucional(self):
+        # Aunque el LLM copie el aviso del parte (pese a la regla del prompt),
+        # la validación no debe dejarlo pasar como dirección del circuito.
+        extraccion = {
+            "tipo": "afectacion",
+            "circuitos": [{
+                "codigo": "GC11",
+                "estado": "sin servicio",
+                "calles": (
+                    "Reparto Garrido, Alrededores de calles Soledad, La Palma, "
+                    "Santo Domingo, Pepe Antonio, División, Padilla y Quintín. "
+                    "Usted puede, aún siendo cliente de este circuito, continuar "
+                    "afectado por avería en acometida o transformador. En esos "
+                    "casos le pedimos contactarnos por las vías alternativas"
+                ),
+            }],
+        }
+
+        item = MOD.validar(extraccion)["circuitos"][0]
+
+        self.assertEqual(
+            item["calles"],
+            "Reparto Garrido, Alrededores de calles Soledad, La Palma, "
+            "Santo Domingo, Pepe Antonio, División, Padilla y Quintín.",
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

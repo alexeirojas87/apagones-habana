@@ -22,8 +22,10 @@ from datetime import datetime, timedelta, timezone
 from supabase import create_client
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "extractor"))
 import circuitos_id  # noqa: E402
 import llm_provider  # noqa: E402
+from extract import quitar_avisos  # noqa: E402
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE_FILE = os.path.join(RAIZ, "data", "partes_llm.json")
@@ -32,7 +34,7 @@ MODELO_NAN = os.environ.get("MODELO_NAN_PARTES", "deepseek-v4-flash")
 MODELO = os.environ.get("MODELO_PARTES", "@cf/meta/llama-3.3-70b-instruct-fp8-fast")
 MODELO_NVIDIA = os.environ.get("MODELO_NVIDIA_PARTES", "openai/gpt-oss-120b")
 VENTANA_H = 24
-VALIDADOR_VERSION = 3
+VALIDADOR_VERSION = 4
 
 # Topes por corrida. MAX_LLM acota el trabajo; MAX_SEGUNDOS acota el reloj, que
 # es lo que de verdad protege el timeout del workflow: 50 posts contra un
@@ -68,7 +70,11 @@ PROMPT = (
     "de 3-4 cifras pegado a las calles (1243). Los números de una lista de ZONAS "
     "(Zonas: 13; 15...) NO son códigos. 'tipo' refleja el propósito principal del "
     "parte. En restablecimientos, estado='con servicio'; en afectaciones/averías/"
-    "déficit, estado='sin servicio'. Incluye TODOS los circuitos mencionados."
+    "déficit, estado='sin servicio'. En 'calles' escribe SOLO calles/zonas/repartos: "
+    "NUNCA copies avisos al cliente ni frases institucionales (por ejemplo 'Usted "
+    "puede, aún siendo cliente de este circuito, continuar afectado...', 'En esos "
+    "casos le pedimos contactarnos por las vías alternativas'). Incluye TODOS los "
+    "circuitos mencionados."
 )
 
 # Pre-filtro: solo posts que parecen partes con datos (evita gastar en saludos).
@@ -142,7 +148,9 @@ def validar(extraccion, texto=""):
         if not isinstance(c, dict):
             continue
         cods = circuitos_id.normalizar_codigo(c.get("codigo") or "")
-        calles = (c.get("calles") or "").strip() or None
+        # Backstop por si el LLM copia el aviso institucional del parte a pesar
+        # de la regla del prompt: no es una dirección y ensucia el matching.
+        calles = quitar_avisos((c.get("calles") or "").strip()) or None
         if not cods and calles:
             cod, conf = circuitos_id.casar_por_calles(calles)
             if cod:

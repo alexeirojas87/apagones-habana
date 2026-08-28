@@ -22,7 +22,7 @@ from supabase import create_client
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "extractor"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from extract import bloques_en, municipios_en, causa_en, normalizar  # noqa: E402
+from extract import bloques_en, municipios_en, causa_en, normalizar, quitar_avisos  # noqa: E402
 from circuitos_id import _tokens  # noqa: E402
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
@@ -234,7 +234,10 @@ def usar_extraccion_llm(v):
 
 
 def limpiar_calles(texto):
-    return re.sub(r"[📉🚧✅📣📌🔔‼️⚡️👉💥📈🔹]+", "", texto).strip(" .-–")
+    # quitar_avisos suelta el aviso institucional que la Empresa pega en la misma
+    # línea ("...El Mamey.  📣Usted puede, aún siendo cliente..."): sin esto las
+    # calles del circuito se contaminaban y no resolvían contra OpenStreetMap.
+    return quitar_avisos(re.sub(r"[📉🚧✅📣📌🔔‼️⚡️👉💥📈🔹]+", "", texto)).strip(" .-–")
 
 
 def main():

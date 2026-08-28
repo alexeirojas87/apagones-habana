@@ -123,6 +123,25 @@ def bloques_en(texto: str) -> list:
     return sorted(nums)
 
 
+# Aviso institucional que la Empresa pega EN LA MISMA línea de las viñetas de
+# circuitos ("👉PG980: Fraternidad...  📣Usted puede, aún siendo cliente de estos
+# circuitos, continuar afectado por avería en acometida o transformador. En esos
+# casos le pedimos contactarnos por las vías alternativas"). No es una dirección:
+# contaminaba las calles del circuito y luego no resolvía contra OpenStreetMap.
+RE_AVISO_CLIENTE = re.compile(
+    r"\s*[📣📢]?\s*Usted puede,?\s*aún siendo cliente de (?:este|estos) circuitos?,?\s*"
+    r"continuar afectado.{0,240}?v[ií]as alternativas\s*\.?",
+    re.IGNORECASE,
+)
+
+
+def quitar_avisos(texto: str) -> str:
+    """Suelta los avisos institucionales pegados a la descripción de zonas."""
+    if not texto:
+        return texto
+    return re.sub(r"\s{2,}", " ", RE_AVISO_CLIENTE.sub(" ", texto)).strip()
+
+
 def zonas_en(texto: str) -> list:
     """Líneas de bullet ('👉 Municipio: zonas', '💥Dirección: ...') de posts oficiales."""
     zonas = []
@@ -143,6 +162,7 @@ def zonas_en(texto: str) -> list:
             if not (claven.startswith("zona")
                     or re.match(r"(?:[a-z]{1,3}\d{1,4}|\d{2,4})\b", claven)):
                 contenido = resto.strip()
+        contenido = quitar_avisos(contenido)
         if contenido:
             zonas.append(contenido)
     return zonas

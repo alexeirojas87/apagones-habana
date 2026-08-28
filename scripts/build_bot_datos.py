@@ -19,6 +19,7 @@ import re
 import unicodedata
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 ANALITICA = os.path.join(RAIZ, "web", "data", "analitica.json")
@@ -72,6 +73,63 @@ def episodios(regs):
     if actual is not None:
         eps.append(actual)
     return eps
+
+
+HUECO_MAX_H = 12  # sin parte nuevo en 12 h, asumimos que el corte terminó
+
+
+def cortes_intervalos(regs, ahora):
+    """Tramos (inicio, fin) de cada corte, en UTC, a partir de las declaraciones.
+
+    Cada parte (fecha t, horas h) dice que el corte estuvo vivo durante
+    [t - h, t]. Declaraciones consecutivas del MISMO corte se solapan (el
+    contador crece menos rápido que el reloj), así que se fusionan; un contador
+    que baja significa que el corte anterior terminó y empezó otro: NUNCA se
+    fusiona con el anterior, ni aunque el nuevo empiece cerca (una
+    restablecida de minutos entre dos partes no borra el corte cerrado).
+    Si el último tramo termina a menos de HUECO_MAX_H de *ahora*, el corte
+    sigue abierto y se extiende hasta ahora: el apagón continúa aunque la UNE
+    no haya publicado el parte de la hora en curso.
+    """
+    tramos = []
+    prev_h = None
+    for fecha, h in sorted(regs):
+        # fechas de analitica.json son naive en UTC (sin segundos)
+        t = datetime.fromisoformat(fecha).replace(tzinfo=timezone.utc)
+        tramos.append((prev_h is not None and h < prev_h, t - timedelta(hours=h), t))
+        prev_h = h
+    cortes = []
+    for reinicio, ini, fin in tramos:
+        if (cortes and not reinicio
+                and ini <= cortes[-1][1] + timedelta(hours=1)):
+            cortes[-1] = (cortes[-1][0], max(cortes[-1][1], fin))
+        else:
+            cortes.append((ini, fin))
+    if cortes and ahora - cortes[-1][1] < timedelta(hours=HUECO_MAX_H):
+        cortes[-1] = (cortes[-1][0], max(cortes[-1][1], ahora))
+    return cortes
+
+
+def horas_por_dia(cortes, tz=ZoneInfo("America/Havana")):
+    """Reparte las horas de cada corte en días LOCALES habaneros.
+
+    Un corte que cruza la medianoche cuenta a cada día sus horas: es la serie
+    que responde '¿cuántas horas sin corriente lleva el circuito X hoy?'.
+    Devuelve {dia: horas} con solo los días con >0.05 h.
+    """
+    por_dia = defaultdict(float)
+    for ini, fin in cortes:
+        t = ini.astimezone(tz)
+        while t < fin:
+            dia = t.date()
+            medianoche = (datetime.combine(dia, datetime.min.time(), tzinfo=tz)
+                          + timedelta(days=1))
+            tramo_fin = min(fin.astimezone(tz), medianoche)
+            h = (tramo_fin - t).total_seconds() / 3600
+            if h > 0.05:
+                por_dia[dia.isoformat()] += h
+            t = tramo_fin
+    return {d: round(h, 1) for d, h in sorted(por_dia.items())}
 
 
 def resolver_municipios(bruto, canon):
@@ -145,6 +203,10 @@ def main():
             ultima[codigo] = fecha
 
     circuitos = {}
+    horas_dia = {}
+    # referencia para el corte abierto: el builder corre recién hecho el volcado,
+    # así que now() es el mejor "ahora" disponible
+    ahora = datetime.now(timezone.utc)
     for codigo, regs in horas.items():
         eps = episodios(regs)
         if not eps:
@@ -156,6 +218,13 @@ def main():
             "horas_total": round(sum(eps), 1),
             "ultima": ultima.get(codigo),
         }
+        # serie diaria (días habaneros): lo que consume el bot para
+        # "¿cuántas horas lleva sin corriente HOY?" — suma la cola del
+        # corte abierto, por eso puede diferir un pelín de horas_total
+        # (que solo cuenta lo declarado por la UNE).
+        dias = horas_por_dia(cortes_intervalos(regs, ahora))
+        if dias:
+            horas_dia[codigo] = dias
 
     # Peores por horas acumuladas reales: más representativo que la media, que
     # premia a un circuito con un único corte largo.
@@ -172,6 +241,7 @@ def main():
         "ventana_dias": DIAS,
         "municipios": {k: v for k, v in sorted(municipios.items())},
         "circuitos": circuitos,
+        "horas_dia": horas_dia,
         "ranking_peores": ranking_peores,
         "serie_diaria": [{"fecha": d, **v} for d, v in sorted(dias.items())],
         "causas": dict(sorted(causas.items(), key=lambda kv: -kv[1])),

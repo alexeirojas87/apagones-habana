@@ -1211,5 +1211,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:36 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de calles avenida 409 "
+ },
+ "77924": {
+  "fecha": "2026-08-28T09:03:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP319"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:30 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉OP408: Alrededores del cuadrante desde Ví"
+ },
+ "77922": {
+  "fecha": "2026-08-28T08:42:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:24 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉1242: Cuadrante de avenida 25 desde calle"
  }
 }

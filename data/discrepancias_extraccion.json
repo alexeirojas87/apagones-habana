@@ -1211,5 +1211,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Se le informa a los clientes del municipio Centro Habana pertenecientes al circuito A980, que se ha transferido temporalmente la carga los circuitos H342 y H3"
+ },
+ "77918": {
+  "fecha": "2026-08-28T07:24:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:36 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de calles avenida 409 "
  }
 }

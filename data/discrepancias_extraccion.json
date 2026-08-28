@@ -1231,5 +1231,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: 10 de Octubre (H466) 👉Dirección: Guasabacoa entre Herrera y Compromiso 👉Dirección:María d"
+ },
+ "77949": {
+  "fecha": "2026-08-28T11:07:47+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 06:56 AM queda restablecido el servicio en el siguiente circuito: 👉P327 (P325): Desagüe desde Infanta hasta Ayes"
  }
 }

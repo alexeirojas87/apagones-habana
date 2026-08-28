@@ -1249,5 +1249,20 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Consumidores de los municipios Boyeros-Arroyo Naranjo por una avería por 33KV se encuentran afectados los siguientes circuitos: 👉D1372: Las Cañas, Calabazar 👉"
+ },
+ "77981": {
+  "fecha": "2026-08-28T13:42:43+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 9:10 AM queda restablecido el servicio en los siguientes circuitos: 👉SG313:Alrededores de calles avenida 409 y c"
  }
 }

@@ -9,15 +9,6 @@
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 161 / 290 y Autopista San Antonio.🟢☑️"
  },
- "76266": {
-  "fecha": "2026-08-21T19:47:21+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:15 PM se afectan 321 MW distribuidos en 93 circuitos de distribución. A continuación, "
- },
  "76296": {
   "fecha": "2026-08-21T22:32:21+00:00",
   "tipo_llm": "afectacion",

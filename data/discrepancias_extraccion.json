@@ -1305,5 +1305,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros 👉Afecta: Reparto Camilo Cienfuegos y el Chico 👉Afecta: Finca Ojo de Agua 📌Municip"
+ },
+ "78073": {
+  "fecha": "2026-08-28T20:59:53+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1223"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:52 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A425: Avenida del Río desde Dolores hasta"
  }
 }

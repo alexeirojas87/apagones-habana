@@ -161,8 +161,10 @@ async function iniciar() {
   //  - Un "con servicio" anterior al apagón vigente de su bloque ya no vale.
   //  - "asum": nunca ha aparecido afectado en un parte -> por descarte se asume
   //    con corriente (azul, no verde: es deducción, no dato oficial).
-  //  - "nd": sin servicio con >24 h sin noticias -> estado real desconocido (la
-  //    UNE no siempre anuncia el restablecimiento); gris, no rojo.
+  //  - "nd": sin servicio con 24-48 h sin noticias -> estado real desconocido
+  //    (la UNE no siempre anuncia el restablecimiento); gris, no rojo.
+  //  - >48 h sin noticias: se asume restablecido y se cuenta como "con"
+  //    (regla del "no se apagan": silencio de 48 h = evidencia de retorno).
   function circuitoVigente(c) {
     // Discrepado: usuarios reportan sin corriente pero la UNE dice "con".
     // Tiene prioridad sobre los demás estados (es la señal más accionable).
@@ -176,7 +178,11 @@ async function iniciar() {
       return "con";
     }
     if (c.estado === "sin servicio") {
-      if (t && (Date.now() - t) > 24 * 3600000) return "nd";
+      const horas = t ? (Date.now() - t) / 3600000 : 0;
+      // >48 h sin salir en partes: se asume restablecido (se suma a los que
+      // no se apagan); si reaparece en un parte, el catálogo lo reactiva solo.
+      if (horas > 48) return "con";
+      if (horas > 24) return "nd";
       return "sin";
     }
     return "asum";

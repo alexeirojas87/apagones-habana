@@ -35,9 +35,15 @@ function estadoVigente(c) {
     return { clase: "con", txt: "con servicio", desde: c.estado_fecha, obsoleto: false };
   }
   if (c.estado === "sin servicio") {
-    // >24 h sin noticias: la UNE no siempre anuncia el restablecimiento ->
+    const h = t ? (Date.now() - t.getTime()) / 3600000 : 0;
+    // >48 h sin salir en partes: se asume restablecido (se suma a los que no
+    // se apagan). Si reaparece en un parte, estado_fecha se refresca y el
+    // circuito vuelve solo al estado que corresponda.
+    if (h > 48)
+      return { clase: "con", txt: "con servicio", desde: c.estado_fecha, obsoleto: false };
+    // 24-48 h sin noticias: la UNE no siempre anuncia el restablecimiento ->
     // estado real desconocido (gris), misma regla que el mapa y la portada
-    if (t && (Date.now() - t) > 24 * 3600000)
+    if (h > 24)
       return { clase: "nd", txt: "sin noticias +24h", desde: c.estado_fecha, obsoleto: false };
     return { clase: "sin", txt: "sin servicio", desde: c.estado_fecha, obsoleto: false };
   }

@@ -199,7 +199,11 @@ function estadoVigente(c, est) {
   if (en) return (c.estado === "con servicio" && t && t > new Date(en.desde)) ? "con" : "sin";
   if (c.estado === "con servicio") return "con";
   if (c.estado === "sin servicio") {
-    if (t && (Date.now() - t) > 24 * 3600000) return "nd";
+    const horas = t ? (Date.now() - t) / 3600000 : 0;
+    // >48 h sin salir en partes: se asume restablecido (regla del "no se
+    // apagan"); si reaparece en un parte, el catálogo lo reactiva solo.
+    if (horas > 48) return "con";
+    if (horas > 24) return "nd";
     return "sin";
   }
   return "asum";
@@ -574,7 +578,7 @@ Tienes herramientas para consultar los datos. Úsalas siempre antes de responder
 - Si preguntan por tendencias o los peores circuitos, usa tendencia o peores_circuitos.
 Puedes usar varias herramientas antes de contestar.
 
-"sin noticias hace +24h" significa que no hay parte reciente, NO que haya corriente: no afirmes que hay servicio si no consta.
+"sin noticias hace +24h" (24-48 h sin salir en partes) significa que no hay parte reciente, NO que haya corriente: no afirmes que hay servicio si no consta. Un circuito sin servicio con MÁS de 48 h sin salir en partes se considera con servicio (regla del "no se apagan": silencio de 48 h = restablecimiento no anunciado); si vuelven a mencionarlo, vuelve a su estado real.
 
 buscar_historico devuelve un campo "relevancia" (0 a 1). Si es baja (<0.4), di que no encontraste nada claro en vez de forzar una respuesta con eso.
 

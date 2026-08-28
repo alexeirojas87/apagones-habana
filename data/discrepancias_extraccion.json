@@ -1,16 +1,4 @@
 {
- "76116": {
-  "fecha": "2026-08-21T02:25:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP20",
-   "CPP8",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢⚡️Informamos a los clientes pertenecientes a los municipios Centro Habana-Habana Vieja que ya no se encuentran en el proceso de rotación cada 4 horas los sigui"
- },
  "76140": {
   "fecha": "2026-08-21T06:27:42+00:00",
   "tipo_llm": "restablecimiento",
@@ -1226,5 +1214,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 07:35 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de calles avenida 409 "
+ },
+ "77854": {
+  "fecha": "2026-08-28T02:11:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:06 PM quedó restablecido el servicio en los siguientes circuitos: 👉SG313: Alrededores de calles avenida 409 y"
  }
 }

@@ -1,13 +1,4 @@
 {
- "76260": {
-  "fecha": "2026-08-21T19:12:28+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "P322"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: Centro Habana 👉Dirección: Peñalver/Oquendo y Fr"
- },
  "76284": {
   "fecha": "2026-08-21T21:13:02+00:00",
   "tipo_llm": "restablecimiento",
@@ -1291,5 +1282,20 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:09 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉2075: Calle 250 desde avenida 51 hasta ca"
+ },
+ "78052": {
+  "fecha": "2026-08-28T19:09:49+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:01 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP304,OP411,OP320,OP424,OP318,OP410,OP406"
  }
 }

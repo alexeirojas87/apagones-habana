@@ -110,10 +110,6 @@ jobs:
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           NAN_API_KEY: ${{ secrets.NAN_API_KEY }}
 
-      # Agregados compactos que consulta el chat (analitica.json son ~4 MB y el
-      # worker no puede descargarlos por mensaje). Depende de build_analitica.
-      - run: python scripts/build_bot_datos.py || echo "bot_datos falló, se continúa"
-
       # Índice semántico del chat en Supabase/pgvector (best-effort).
       # Incremental y acotado por reloj: solo indexa lo nuevo o lo que cambió.
       # Si no se ha ejecutado ingestor/schema_chatbot.sql, avisa y sigue.
@@ -135,6 +131,13 @@ jobs:
       # Con el pipeline sano no corrige nada; si empieza a corregir, es que algo
       # aguas arriba se rompió y el contador del log lo dice.
       - run: python scripts/coherencia_catalogo.py
+
+      # Agregados compactos que consulta el chat (analitica.json son ~4 MB y el
+      # worker no puede descargarlos por mensaje). Va DESPUÉS de
+      # build_circuitos porque necesita el estado/estado_fecha por circuito del
+      # catálogo recién hecho (la cola del corte abierto de horas_dia); si corre
+      # antes, lee el circuitos.json commiteado, que puede tener semanas.
+      - run: python scripts/build_bot_datos.py || echo "bot_datos falló, se continúa"
 
       - run: python scripts/build_partes.py
         env:

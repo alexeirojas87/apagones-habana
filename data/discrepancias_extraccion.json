@@ -1240,5 +1240,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 06:56 AM queda restablecido el servicio en el siguiente circuito: 👉P327 (P325): Desagüe desde Infanta hasta Ayes"
+ },
+ "77966": {
+  "fecha": "2026-08-28T13:01:45+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1470"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Consumidores de los municipios Boyeros-Arroyo Naranjo por una avería por 33KV se encuentran afectados los siguientes circuitos: 👉D1372: Las Cañas, Calabazar 👉"
  }
 }

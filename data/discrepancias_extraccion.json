@@ -1,14 +1,4 @@
 {
- "76098": {
-  "fecha": "2026-08-20T23:49:26+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "GC13",
-   "R451"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Circuito Disparado : 📌Municipio: Guanabacoa 👉Dirección: Mambí, Garrido y Cent"
- },
  "76116": {
   "fecha": "2026-08-21T02:25:15+00:00",
   "tipo_llm": "restablecimiento",

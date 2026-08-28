@@ -210,6 +210,31 @@ function horasSin(c) {
   return Math.round(((Date.now() - new Date(c.estado_fecha)) / 3600000) * 10) / 10;
 }
 
+// Día LOCAL habanero (la serie horas_dia de bot_datos.json usa días locales,
+// no UTC: sin esto "hoy" cambió a las 19:00 de Cuba, no a medianoche).
+function hoyHabana(offsetDias = 0) {
+  const fmt = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Havana", year: "numeric", month: "2-digit", day: "2-digit",
+  });
+  return fmt.format(new Date(Date.now() + offsetDias * 86400000));
+}
+
+// Suma la serie diaria de horas sin corriente de un circuito en los últimos
+// *dias* días habaneros. Devuelve el total y el desglose por día.
+function horasEnRango(bot, codigo, dias) {
+  const serie = ((bot && bot.horas_dia) || {})[codigo] || {};
+  let total = 0;
+  const detalle = [];
+  for (let i = 0; i < dias; i++) {
+    const dia = hoyHabana(-i);
+    if (serie[dia] != null) {
+      total += serie[dia];
+      detalle.push({ dia, horas: serie[dia] });
+    }
+  }
+  return { horas: Math.round(total * 10) / 10, detalle };
+}
+
 function describirCircuito(c, est) {
   const v = estadoVigente(c, est);
   const etiqueta = { con: "con servicio", sin: "sin servicio", discrepado: "usuarios reportan sin corriente",
@@ -286,6 +311,21 @@ const HERRAMIENTAS = [
       parameters: {
         type: "object",
         properties: { codigo: { type: "string" } },
+        required: ["codigo"],
+      },
+    },
+  },
+  {
+    type: "function",
+    function: {
+      name: "horas_circuito",
+      description: "Horas sin corriente TOTALES de un circuito en un período (hoy, ayer, 7 o 30 días), a partir de los partes de la Empresa. Para '¿cuántas horas lleva sin luz X?' — horas_sin_luz del estado actual es otra cosa: solo cuenta desde la última actualización del parte, no el total acumulado del día.",
+      parameters: {
+        type: "object",
+        properties: {
+          codigo: { type: "string", description: "Código del circuito, ej: AL53" },
+          periodo: { type: "string", enum: ["hoy", "ayer", "7d", "30d"], description: "Período consultado (por defecto hoy)" },
+        },
         required: ["codigo"],
       },
     },
@@ -405,6 +445,12 @@ async function buscarHistorico(env, consulta, soloReportes) {
 
 async function ejecutarHerramienta(nombre, args, ctx, env) {
   const { est, circuitos, bot } = ctx;
+
+  function buscarCircuito(codigo) {
+    const cod = sinAcentos(codigo).replace(/[^a-z0-9]/g, "");
+    return circuitos.find((x) => sinAcentos(x.codigo).replace(/[^a-z0-9]/g, "") === cod) || null;
+  }
+
   switch (nombre) {
     case "buscar_zona": {
       const q = sinAcentos(args.lugar);
@@ -429,9 +475,36 @@ async function ejecutarHerramienta(nombre, args, ctx, env) {
       };
     }
     case "estado_circuito": {
-      const cod = sinAcentos(args.codigo).replace(/[^a-z0-9]/g, "");
-      const c = circuitos.find((x) => sinAcentos(x.codigo).replace(/[^a-z0-9]/g, "") === cod);
+      const c = buscarCircuito(args.codigo);
       return c ? describirCircuito(c, est) : { error: `no existe el circuito ${args.codigo}` };
+    }
+    case "horas_circuito": {
+      if (!bot) return { sin_datos: true, nota: "el histórico de horas no está disponible" };
+      const c = buscarCircuito(args.codigo);
+      if (!c) return { error: `no existe el circuito ${args.codigo}` };
+      const agg = (bot.circuitos || {})[c.codigo] || null;
+      const periodo = args.periodo || "hoy";
+      if (periodo === "30d") {
+        return {
+          codigo: c.codigo, periodo,
+          horas: agg ? agg.horas_total : 0,
+          cortes: agg ? agg.cortes : 0,
+          fuente: "partes de la Empresa, últimos 30 días",
+        };
+      }
+      const r = horasEnRango(bot, c.codigo, periodo === "7d" ? 7 : 1);
+      const out = { codigo: c.codigo, periodo, horas: r.horas };
+      if (periodo !== "7d") out.detalle = r.detalle;
+      if (periodo === "hoy") {
+        // contexto para que el modelo sepa si el corte sigue abierto
+        out.estado_ahora = describirCircuito(c, est).estado;
+        if (agg) {
+          out.acumulado_30d = agg.horas_total;
+          out.ultima_declaracion = agg.ultima;
+        }
+        out.fuente = "partes de la Empresa repartidos por día habanero; si el corte sigue abierto, suma hasta ahora";
+      }
+      return out;
     }
     case "historico_municipio": {
       if (!bot) return { sin_datos: true, nota: "el histórico no está disponible" };
@@ -496,6 +569,7 @@ La Empresa Eléctrica reporta por CIRCUITO, no por bloques: los bloques ya no ex
 
 Tienes herramientas para consultar los datos. Úsalas siempre antes de responder algo concreto — no inventes ni estimes.
 - Si preguntan por un lugar (barrio, reparto, calle, municipio), usa buscar_zona.
+- Si preguntan cuántas horas lleva sin corriente un circuito (hoy, esta semana, etc.), usa horas_circuito: es el TOTAL acumulado del período. El "horas_sin_luz" del estado actual solo cuenta desde el último parte y NO es el total del día.
 - Si preguntan qué pasó antes o qué reporta la gente, usa buscar_historico.
 - Si preguntan por tendencias o los peores circuitos, usa tendencia o peores_circuitos.
 Puedes usar varias herramientas antes de contestar.

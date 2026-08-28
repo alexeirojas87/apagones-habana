@@ -1,7 +1,0 @@
-name = "apagones-bot"
-main = "bot-worker.js"
-compatibility_date = "2024-11-01"
-
-# Necesita URL pública: Telegram le manda los mensajes por webhook a
-# https://apagones-bot.<subdominio>.workers.dev/webhook/{BOT_WEBHOOK_SECRET}
-workers_dev = true

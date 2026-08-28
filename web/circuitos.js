@@ -36,11 +36,11 @@ function estadoVigente(c) {
   }
   if (c.estado === "sin servicio") {
     const h = t ? (Date.now() - t.getTime()) / 3600000 : 0;
-    // >48 h sin salir en partes: se asume restablecido (se suma a los que no
-    // se apagan). Si reaparece en un parte, estado_fecha se refresca y el
-    // circuito vuelve solo al estado que corresponda.
+    // >48 h sin salir en partes: se suma a los "sin apagones reportados"
+    // (azules: se asume con corriente). Sin 'desde' para que no salga el
+    // contador de horas. Si reaparece en un parte, el catálogo lo reactiva.
     if (h > 48)
-      return { clase: "con", txt: "con servicio", desde: c.estado_fecha, obsoleto: false };
+      return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };
     // 24-48 h sin noticias: la UNE no siempre anuncia el restablecimiento ->
     // estado real desconocido (gris), misma regla que el mapa y la portada
     if (h > 24)

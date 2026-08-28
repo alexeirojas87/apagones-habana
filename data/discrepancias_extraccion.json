@@ -1288,5 +1288,22 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:01 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP304,OP411,OP320,OP424,OP318,OP410,OP406"
+ },
+ "78064": {
+  "fecha": "2026-08-28T20:08:30+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1227",
+   "A223",
+   "A820",
+   "C14",
+   "OP329",
+   "PZ10",
+   "PZ16",
+   "PZ5",
+   "SG312"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros 👉Afecta: Reparto Camilo Cienfuegos y el Chico 👉Afecta: Finca Ojo de Agua 📌Municip"
  }
 }

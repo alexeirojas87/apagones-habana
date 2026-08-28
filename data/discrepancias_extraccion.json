@@ -1173,7 +1173,9 @@
    "2202",
    "OP408"
   ],
-  "solo_regex": [],
+  "solo_regex": [
+   "C8"
+  ],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:53 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉C8(OP408): Alrededores del cuadrante comp"
  },
  "77939": {
@@ -1368,5 +1370,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:53 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉D1380: Repartos: Berenguer, Altura de Cal"
+ },
+ "77899": {
+  "fecha": "2026-08-28T04:58:42+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP408"
+  ],
+  "solo_regex": [
+   "C8"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:53 AM queda restablecido el servicio en el siguiente circuito: 👉C8 (OP408): Alrededores del cuadrante desde c"
  }
 }

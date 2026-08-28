@@ -1273,5 +1273,14 @@
   ],
   "solo_regex": [],
   "extracto": "🟢✔️Consumidores del municipio 10 de octubre,queda reparada la AVERÍA PRIMARIA que afectaba la siguiente dirección: 👉Marquez de la Torre/Princesa y Delicias."
+ },
+ "78018": {
+  "fecha": "2026-08-28T16:59:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1219"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:48 pm quedó restablecido el servicio en los siguientes circuitos: 👉1851: Reparto Zamora 👉1856: Calle 130 desd"
  }
 }

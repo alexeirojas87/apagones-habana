@@ -1282,5 +1282,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:48 pm quedó restablecido el servicio en los siguientes circuitos: 👉1851: Reparto Zamora 👉1856: Calle 130 desd"
+ },
+ "78042": {
+  "fecha": "2026-08-28T18:26:56+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1430"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:09 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉2075: Calle 250 desde avenida 51 hasta ca"
  }
 }

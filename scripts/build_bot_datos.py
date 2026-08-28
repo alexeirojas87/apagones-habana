@@ -222,9 +222,9 @@ def main():
         # "¿cuántas horas lleva sin corriente HOY?" — suma la cola del
         # corte abierto, por eso puede diferir un pelín de horas_total
         # (que solo cuenta lo declarado por la UNE).
-        dias = horas_por_dia(cortes_intervalos(regs, ahora))
-        if dias:
-            horas_dia[codigo] = dias
+        serie = horas_por_dia(cortes_intervalos(regs, ahora))
+        if serie:
+            horas_dia[codigo] = serie
 
     # Peores por horas acumuladas reales: más representativo que la media, que
     # premia a un circuito con un único corte largo.

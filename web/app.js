@@ -37,9 +37,9 @@ function avisoNacional(ev) {
   el.hidden = false;
   const pct = ev.restablecido_pct != null
     ? ` Restablecido ~${ev.restablecido_pct}% de la ciudad (parte de las ${horaHabana(ev.pct_fecha)}).` : "";
-  el.innerHTML = `🔴 <b>Desconexión total del SEN</b> — apagón nacional: todos los bloques sin corriente
+  el.innerHTML = `🔴 <b>Desconexión total del SEN</b> — apagón nacional: toda la ciudad sin corriente
     desde las ${horaHabana(ev.desde)} (lleva ${duracion(ev.desde)}).${pct} El servicio se restablece de forma
-    gradual; el estado por bloque se irá actualizando con los avisos oficiales.`;
+    gradual; el estado por circuito se irá actualizando con los avisos oficiales.`;
 }
 
 // Aclaración: la Empresa dejó de reportar por bloque y ahora informa por circuito.
@@ -113,25 +113,8 @@ const MOSTRAR_PROTEGIDAS = true;
 // desde otro host (github.io), se apunta al dominio principal.
 const API_BASE = location.hostname.endsWith("pages.dev") ? "" : "https://apagones-habana.pages.dev";
 
-function popupMunicipio(nombre, d, bloquesMun, estadoBloques, sinUbicar) {
-  const faltantes = (sinUbicar || {})[nombre] || [];
-  const filas = Object.entries(bloquesMun[nombre] || {}).map(([b, zonas]) => {
-    const e = estadoBloques[b] || { estado: "desconocido" };
-    const icono = { afectado: "🔴", restablecido: "🟢", desconocido: "⚪" }[e.estado];
-    const txt = { afectado: "sin corriente", restablecido: "con servicio", desconocido: "sin datos" }[e.estado];
-    const desde = e.desde ? ` desde ${horaHabana(e.desde)}` : "";
-    const detalle = esc(zonas.slice(0, 2).join(" · "));
-    return `<li>${icono} <b>B${b}</b> ${txt}${desde}<br>
-      <span class="hora">${detalle}${zonas.length > 2 ? ` (+${zonas.length - 2} zonas)` : ""}</span></li>`;
-  });
-  const rep = d?.reportes_sin
-    ? `<p class="rep">⚠ ${d.reportes_sin} usuarios reportan estar sin corriente</p>` : "";
-  const pendientes = faltantes.length
-    ? `<p class="rep">📍 ${faltantes.length} zona(s) de este municipio aún sin ubicar en el mapa,
-       p. ej.: <span class="hora">${faltantes.slice(0, 2).map((z) => `B${z.bloque}: ${esc(z.zona.slice(0, 60))}…`).join(" · ")}</span></p>`
-    : "";
-  return `<div class="popup"><h3>${nombre}</h3>${rep}<ul>${filas.join("")}</ul>${pendientes}</div>`;
-}
+// (el popup de municipio se construye dentro de iniciar: necesita
+// circuitoVigente y el catálogo, que viven en ese scope)
 
 async function iniciar() {
   const [geo, estadoIni, bloquesMun, zonas, barrios, lineas, poligonos, cuadrantes, sinUbicar, barriosPoly, noRota, catInicial] = await Promise.all([
@@ -187,6 +170,44 @@ async function iniciar() {
       return "sin";
     }
     return "asum";
+  }
+
+  // Popup de municipio: resumen POR CIRCUITO (la UNE ya no reporta por
+  // bloques). Se pasa a bindPopup como función para que Leaflet lo recalcule
+  // cada vez que se abre, con el catálogo fresco del auto-refresco.
+  function popupMunicipio(nombre, d, circuitos, sinUbicar) {
+    const faltantes = (sinUbicar || {})[nombre] || [];
+    const conteo = { sin: [], nd: 0, con: 0, asum: 0, discrepado: 0 };
+    for (const c of circuitos) {
+      const v = circuitoVigente(c);
+      if (v === "sin") conteo.sin.push(c);
+      else if (v === "nd") conteo.nd++;
+      else if (v === "asum") conteo.asum++;
+      else if (v === "discrepado") conteo.discrepado++;
+      else conteo.con++;
+    }
+    const filas = conteo.sin
+      .sort((a, b) => new Date(a.estado_fecha) - new Date(b.estado_fecha))
+      .slice(0, 6)
+      .map((c) => {
+        const hDef = ((estado.deficit || {}).circuitos || []).find((x) => x.codigo === c.codigo);
+        const lleva = hDef && hDef.horas != null ? ` (lleva ${hDef.horas}h)` : "";
+        return `<li>🔴 <a href="circuitos.html?c=${encodeURIComponent(c.codigo)}"><b>${esc(c.codigo)}</b></a> sin corriente${c.estado_fecha ? " desde " + horaHabana(c.estado_fecha) : ""}${lleva}</li>`;
+      });
+    if (conteo.sin.length > 6) {
+      filas.push(`<li class="hora">…y ${conteo.sin.length - 6} circuitos más (ver la pestaña Circuitos)</li>`);
+    }
+    const rep = d?.reportes_sin
+      ? `<p class="rep">⚠ ${d.reportes_sin} usuarios reportan estar sin corriente</p>` : "";
+    const resumen = circuitos.length
+      ? `<p class="hora">${circuitos.length} circuitos: ${conteo.sin.length} sin corriente · ${conteo.nd} sin noticias ·
+         ${conteo.con} con servicio · ${conteo.asum} sin apagones reportados${conteo.discrepado ? ` · ${conteo.discrepado} discrepado(s)` : ""}</p>`
+      : `<p class="hora">Sin circuitos registrados en este municipio.</p>`;
+    const pendientes = faltantes.length
+      ? `<p class="rep">📍 ${faltantes.length} zona(s) de este municipio aún sin ubicar en el mapa,
+         p. ej.: <span class="hora">${faltantes.slice(0, 2).map((z) => `${esc(z.zona.slice(0, 60))}…`).join(" · ")}</span></p>`
+      : "";
+    return `<div class="popup"><h3>${nombre}</h3>${rep}${resumen}<ul>${filas.join("")}</ul>${pendientes}</div>`;
   }
 
   // ¿Resumen expandido? Solo aplica en móvil (en escritorio siempre abierto por
@@ -413,7 +434,13 @@ async function iniciar() {
     onEachFeature: (f, capa) => {
       const nombre = f.properties.municipio;
       capa.bindPopup(
-        popupMunicipio(nombre, estado.municipios[nombre], bloquesMun, estado.bloques, sinUbicar),
+        () => popupMunicipio(
+          nombre,
+          estado.municipios[nombre],
+          (catCircuitos.circuitos || []).filter((c) =>
+            (c.municipios || (c.municipio ? [c.municipio] : [])).includes(nombre)),
+          sinUbicar,
+        ),
         { maxWidth: 320 }
       );
       capa.bindTooltip(nombre, { sticky: true });
@@ -547,10 +574,10 @@ async function iniciar() {
       .bindTooltip(nb)
       .bindPopup(
         b.cat === "daf"
-          ? `<div class="popup"><h3>${nb}</h3><p>Circuito DAF: sufre microcortes por Disparo Automático de Frecuencia, pero no rota en los bloques.</p></div>`
+          ? `<div class="popup"><h3>${nb}</h3><p>Circuito DAF: sufre microcortes por Disparo Automático de Frecuencia.</p></div>`
           : b.confirmada
             ? `<div class="popup"><h3>${nb}</h3><p>✔ Zona sin apagón confirmada por vecinos.</p></div>`
-            : `<div class="popup"><h3>${nb}</h3><p>No aparece en ningún bloque ni en los disparos DAF: candidata a zona que no rota (dato por exclusión, no oficial).</p></div>`
+            : `<div class="popup"><h3>${nb}</h3><p>Sin circuito de rotación asociado y fuera de los disparos DAF: candidata a zona que no se afecta (dato por exclusión, no oficial).</p></div>`
       )
       .addTo(capas[b.cat]);
   }
@@ -605,7 +632,7 @@ async function iniciar() {
         detalle = `${h != null ? "Lleva " + h + "h de afectación. " : ""}Último dato oficial: ${fmtDia(c.ultima)}.`;
       }
       const popup = `<div class="popup"><h3>${col.e} Circuito ${esc(c.codigo)} — ${col.txt}</h3>
-         <p>${calles}${c.bloque ? " · (B" + c.bloque + ")" : ""}</p>
+         <p>${calles}</p>
          <p class="hora">${detalle} Ubicación aproximada.</p>
          <p><a href="circuitos.html?c=${encodeURIComponent(c.codigo)}">📋 ver ${esc(c.codigo)} en Circuitos →</a></p></div>`;
       const tip = `${col.e} Circuito ${esc(c.codigo)} (${col.txt})`;
@@ -630,7 +657,7 @@ async function iniciar() {
         .bindPopup(
           `<div class="popup"><h3>🚧 ${esc(a.tipo)}</h3>
            <p>${esc(a.direccion)}${a.municipio ? " — " + esc(a.municipio) : ""}</p>
-           <p class="hora">Interrupción por rotura (no es rotación de bloque).
+           <p class="hora">Interrupción por rotura.
            Parte oficial de las ${horaHabana(estado.averias.fecha)}.</p></div>`,
           { maxWidth: 300 }
         )
@@ -665,7 +692,7 @@ async function iniciar() {
             : `<div class="popup"><h3>⚠ Corte de emergencia</h3>
                <p>${nz}${z.aproximado ? " (ubicación aproximada)" : ""}</p>
                <p class="hora">Afectado por emergencia en la generación nacional
-               (circuito fuera de la rotación de bloques). Aviso oficial de las
+               Aviso oficial de las
                ${horaHabana(estado.emergencia.fecha)}.</p></div>`,
           { maxWidth: 300 }
         )
@@ -679,18 +706,15 @@ async function iniciar() {
       const t = new Date(c.fecha), en = estado.evento_nacional, est = estado.bloques[c.bloque];
       if ((en && t < new Date(en.desde)) ||
           (est && est.estado === "afectado" && est.desde && t < new Date(est.desde))) continue;
-      const etqB = c.bloque ? ` (B${c.bloque})` : "";
-      const detalleB = c.bloque
-        ? `El B${c.bloque} sigue en apagón, pero la Empresa reportó este circuito
-           restablecido a las ${horaHabana(c.fecha)}. Puede volver a cortarse en la próxima rotación.`
-        : `La Empresa reportó este circuito restablecido a las ${horaHabana(c.fecha)}.`;
+      const detalleB = `La Empresa reportó este circuito restablecido a las
+        ${horaHabana(c.fecha)}. Puede volver a cortarse si hay nuevas afectaciones.`;
       const cod = c.codigo ? ` ${esc(c.codigo)}` : "";
       const verC = c.codigo
         ? `<p><a href="circuitos.html?c=${encodeURIComponent(c.codigo)}">📋 ver ${esc(c.codigo)} en Circuitos →</a></p>` : "";
       L.circleMarker([c.lat, c.lon], {
         radius: 6, weight: 2, color: "#1c5f2b", fillColor: "#46a758", fillOpacity: 0.9,
       })
-        .bindTooltip(`✅${cod ? cod + " con" : " Con"} servicio${etqB}: ${esc(c.direccion)}`)
+        .bindTooltip(`✅${cod ? cod + " con" : " Con"} servicio: ${esc(c.direccion)}`)
         .bindPopup(
           `<div class="popup"><h3>✅ Circuito${cod} con servicio</h3>
            <p>${esc(c.direccion)}${c.municipio ? " — " + esc(c.municipio) : ""}</p>
@@ -820,21 +844,28 @@ async function iniciar() {
   }
   setInterval(refrescar, 90000);
 
-  // Diagnóstico de una dirección buscada: no solo el bloque, también QUÉ tipo de
-  // afectación tiene (avería/interrupción, corte de emergencia, bloque apagado,
-  // microcortes DAF, o con corriente). Se decide de lo más específico a lo más
-  // general y se añaden notas secundarias (avería cercana, DAF) cuando aplican.
+  // Diagnóstico de una dirección buscada: el estado del CIRCUITO más cercano
+  // (afectado, sin noticias, asumido con corriente), más notas secundarias
+  // (avería cercana, microcortes DAF, corte de emergencia) cuando aplican.
   function diagnostico(lat, lon) {
     const dist = (la, lo) => Math.hypot((la - lat) * 111000, (lo - lon) * 102000);
 
-    // ¿Dentro de un circuito DAF? (microcortes, no rota en los bloques)
+    // Circuito más cercano con posición conocida (círculo o líneas de calles)
+    let circ = null, circD = Infinity;
+    for (const c of catCircuitos.circuitos || []) {
+      if (!(c.lineas && c.lineas.length) && c.lat === undefined) continue;
+      const d = dist(c.lat, c.lon);
+      if (d < circD) { circD = d; circ = c; }
+    }
+
+    // ¿Dentro de un circuito DAF? (microcortes por Disparo Automático de Frecuencia)
     let enDaf = false;
     for (const b of barrios) {
       if (b.cat !== "daf") continue;
       const lim = polyDe(b.nombre);
       if (lim ? dentroPoly(lat, lon, lim.anillo) : dist(b.lat, b.lon) < 400) { enDaf = true; break; }
     }
-    // Avería/rotura más cercana (interrupción puntual, no rotación)
+    // Avería/rotura más cercana (interrupción puntual)
     let av = null, avD = 500;
     for (const a of estado.averias.items) {
       if (a.lat === undefined) continue;
@@ -848,55 +879,48 @@ async function iniciar() {
       const lim = polyDe(z.nombre);
       if (lim ? dentroPoly(lat, lon, lim.anillo) : dist(z.lat, z.lon) < 450) { emg = z; break; }
     }
-    // ¿Circuito con servicio dentro de un bloque afectado (restablecimiento parcial)?
-    let par = null, parD = 350;
-    for (const c of estado.parciales || []) {
-      const d = dist(c.lat, c.lon);
-      if (d < parD && (estado.bloques[c.bloque] || {}).estado === "afectado") { parD = d; par = c; }
-    }
-    // Bloque más cercano
-    let mejor = null, dMin = Infinity;
-    for (const [la, lo, b] of muestraBloques) {
-      const d = dist(la, lo);
-      if (d < dMin) { dMin = d; mejor = b; }
-    }
-    const e = mejor !== null ? (estado.bloques[mejor] || { estado: "desconocido" }) : { estado: "desconocido" };
 
     const notaDaf = enDaf
-      ? `<p class="hora">🟡 <b>Circuito DAF</b>: no rota en los bloques, pero sufre microcortes por Disparo Automático de Frecuencia.</p>`
+      ? `<p class="hora">🟡 <b>Circuito DAF</b>: esta zona sufre microcortes por Disparo Automático de Frecuencia.</p>`
       : "";
     const notaAv = av
-      ? `<p class="hora">🚧 <b>Avería</b> a ~${Math.round(avD)} m (${esc(av.tipo)})${av.direccion ? " — " + esc(av.direccion) : ""}: interrupción por rotura, no rotación del bloque. Parte de las ${horaHabana(estado.averias.fecha)}.</p>`
+      ? `<p class="hora">🚧 <b>Avería</b> a ~${Math.round(avD)} m (${esc(av.tipo)})${av.direccion ? " — " + esc(av.direccion) : ""}: interrupción por rotura. Parte de las ${horaHabana(estado.averias.fecha)}.</p>`
       : "";
 
     if (emg) {
-      return `<p class="hora">⚠️ <b>Corte de emergencia</b> — ${esc(emg.nombre)}. Circuito fuera de la rotación
-        de bloques, afectado por emergencia en la generación. Aviso de las ${horaHabana(estado.emergencia.fecha)}.</p>${notaAv}${notaDaf}`;
+      return `<p class="hora">⚠️ <b>Corte de emergencia</b> — ${esc(emg.nombre)}, afectado por emergencia en la
+        generación. Aviso de las ${horaHabana(estado.emergencia.fecha)}.</p>${notaAv}${notaDaf}`;
     }
-    if (av && avD < 250) {  // avería prácticamente encima: es la causa
-      return `${notaAv}${notaDaf}`;
-    }
-    if (par) {
-      return `<p class="hora">🟢 <b>Con corriente</b>: aunque el <b>B${par.bloque}</b> sigue apagado, la Empresa
-        reportó este circuito restablecido a las ${horaHabana(par.fecha)}. Puede volver a cortarse en la próxima rotación.</p>${notaAv}${notaDaf}`;
-    }
-    if (mejor !== null && dMin <= 350) {
-      const cab = e.estado === "afectado"
-        ? `🔴 <b>Sin corriente</b> — Bloque B${mejor} apagado${e.desde ? " (lleva " + duracion(e.desde) + ")" : ""}.`
-        : e.estado === "restablecido"
-          ? `🟢 <b>Con corriente</b> — zona del Bloque B${mejor} con servicio${e.desde ? " desde " + horaHabana(e.desde) : ""}.`
-          : `⚪ Zona del Bloque B${mejor}: sin datos de estado ahora mismo.`;
-      return `<p class="hora">${cab}</p>${notaAv}${notaDaf}`;
-    }
-    if (mejor !== null && dMin <= 900) {
-      const txt = { afectado: "sin corriente", restablecido: "con servicio", desconocido: "sin datos" }[e.estado];
-      return `<p class="hora">La zona de bloque más cercana es del <b>B${mejor}</b> (${txt}), a ~${Math.round(dMin)} m.
-        Podría rotar con ese bloque o no — sin datos exactos.</p>${notaAv}${notaDaf}`;
+    if (av && avD < 250) return `${notaAv}${notaDaf}`;  // avería prácticamente encima: es la causa
+
+    if (circ) {
+      const v = circuitoVigente(circ);
+      const cerca = circD > 350 ? ` (a ~${Math.round(circD)} m)` : "";
+      const cod = `Circuito <b>${esc(circ.codigo)}</b>${cerca}`;
+      const fmtDia = (iso) => new Date(iso).toLocaleDateString("es-CU", { day: "numeric", month: "short", timeZone: "America/Havana" });
+      const hDef = ((estado.deficit || {}).circuitos || []).find((x) => x.codigo === circ.codigo);
+      let cab;
+      if (v === "sin") {
+        cab = `🔴 <b>Sin corriente</b> — ${cod} está afectado${hDef && hDef.horas != null
+          ? ` (lleva ${hDef.horas}h)`
+          : circ.estado_fecha ? ` desde las ${horaHabana(circ.estado_fecha)}` : ""}.`;
+      } else if (v === "discrepado") {
+        cab = `🟠 <b>Sin corriente (según vecinos)</b> — la UNE reporta ${cod} "con servicio",
+          pero los vecinos reportan sin corriente.`;
+      } else if (v === "nd") {
+        cab = `⚪ <b>Sin noticias</b> — ${cod} se reportó sin servicio el ${fmtDia(circ.estado_fecha)}
+          y la UNE no lo menciona desde entonces: estado real desconocido.`;
+      } else if (v === "asum") {
+        cab = `🔵 <b>Sin apagones reportados</b> — ${cod} no aparece en los partes: se asume con corriente.`;
+      } else {
+        cab = `🟢 <b>Con corriente</b> — ${cod} no figura afectado${circ.ultima ? ` (última mención: ${fmtDia(circ.ultima)})` : ""}.`;
+      }
+      const enlace = ` <a href="circuitos.html?c=${encodeURIComponent(circ.codigo)}">ver ${esc(circ.codigo)} →</a>`;
+      return `<p class="hora">${cab}${enlace}</p>${notaAv}${notaDaf}`;
     }
     if (notaAv || notaDaf) return `${notaAv}${notaDaf}`;
-    return `<p class="hora">✅ Sin registro de afectaciones: no aparece en ningún bloque de apagón,
-      así que lo más probable es que esta zona <b>no rote</b> (no se afecta). Salvedad: podría ser
-      un vacío de información — si sabes que sí le quitan la corriente, repórtalo.</p>`;
+    return `<p class="hora">✅ Sin registro de afectaciones en esta zona. Salvedad: podría ser un vacío de
+      información — si sabes que sí le quitan la corriente, repórtalo.</p>`;
   }
 
   // --- Buscador de calles y repartos (índice local, sin servicios externos) ---

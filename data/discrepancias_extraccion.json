@@ -1,13 +1,4 @@
 {
- "76366": {
-  "fecha": "2026-08-22T06:26:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ15"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Plaza, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: Loma / Tulipán y Lombillo.🟢☑️"
- },
  "76391": {
   "fecha": "2026-08-22T10:17:01+00:00",
   "tipo_llm": "averia",

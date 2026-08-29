@@ -1432,5 +1432,14 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 283 / 102 y 104, Calabazar.🟢☑️"
+ },
+ "78247": {
+  "fecha": "2026-08-29T17:12:16+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Cerro se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Aranguren / 3ra y Blanquita.🛑⚡️"
  }
 }

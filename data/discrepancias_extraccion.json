@@ -1387,5 +1387,20 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 04:37 am quedó restablecido el servicio en los siguientes circuitos: 👉OP410,OP411,OP320,OP424,OP318,OP406,OP306,"
+ },
+ "78159": {
+  "fecha": "2026-08-29T10:40:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:34 am se afectó el servicio eléctrico en los siguientes circuitos: 👉OP304,OP411,OP320,OP424,OP318,OP410,OP406"
  }
 }

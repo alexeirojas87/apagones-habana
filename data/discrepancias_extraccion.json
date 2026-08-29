@@ -1411,5 +1411,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: Continúan las labores 🚨Subestación Arroyo: Avería 📌Afecta: 👉D836: Repartos: Trigal, Parajón, García, C"
+ },
+ "78199": {
+  "fecha": "2026-08-29T13:53:18+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D631",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "⚠️⚡️Informamos a los clientes de los municipios 10 de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, debido a una avería que afecta los circuit"
  }
 }

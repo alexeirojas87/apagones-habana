@@ -1421,5 +1421,16 @@
   ],
   "solo_regex": [],
   "extracto": "📣 Consumidores del municipio Cotorro, por Trabajos Operativos se encuentra afectado el servicio en el siguiente circuito: 👉SR-850: Repartos La Torre, Paraíso, L"
+ },
+ "78234": {
+  "fecha": "2026-08-29T16:34:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "102",
+   "104",
+   "283"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 283 / 102 y 104, Calabazar.🟢☑️"
  }
 }

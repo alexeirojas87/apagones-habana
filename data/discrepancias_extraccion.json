@@ -1421,5 +1421,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Habana del Este, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉3ra / 4ta y 6ta.🛑⚡️"
+ },
+ "78220": {
+  "fecha": "2026-08-29T15:55:18+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C7"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Cerro, por DISPARO DEL CIRCUITO por POSIBLE AVERÍA se afecta el servicio en: 👉C-7: Alrededores del cuadrante desde calles Fomento "
  }
 }

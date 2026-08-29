@@ -1,22 +1,4 @@
 {
- "76486": {
-  "fecha": "2026-08-22T16:22:30+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A465"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: 10 de Octubre 👉Dirección: 15 y Concepción. 👉Afe"
- },
- "76476": {
-  "fecha": "2026-08-22T16:07:49+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 211 MW distribuidos en 66 circuitos de distribución. A continuación, "
- },
  "76541": {
   "fecha": "2026-08-22T19:02:04+00:00",
   "tipo_llm": "deficit",
@@ -1430,5 +1412,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Cerro, por DISPARO DEL CIRCUITO por POSIBLE AVERÍA se afecta el servicio en: 👉C-7: Alrededores del cuadrante desde calles Fomento "
+ },
+ "78225": {
+  "fecha": "2026-08-29T16:24:28+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR850"
+  ],
+  "solo_regex": [],
+  "extracto": "📣 Consumidores del municipio Cotorro, por Trabajos Operativos se encuentra afectado el servicio en el siguiente circuito: 👉SR-850: Repartos La Torre, Paraíso, L"
  }
 }

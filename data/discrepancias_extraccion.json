@@ -1419,5 +1419,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Cerro se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Aranguren / 3ra y Blanquita.🛑⚡️"
+ },
+ "78293": {
+  "fecha": "2026-08-29T21:11:30+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SG312"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Cerro"
  }
 }

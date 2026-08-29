@@ -1428,5 +1428,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Cerro"
+ },
+ "78299": {
+  "fecha": "2026-08-29T22:45:52+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:05 PM se afectan 563 MW distribuidos en 167 circuitos de distribución. A continuación,"
  }
 }

@@ -1,13 +1,4 @@
 {
- "76692": {
-  "fecha": "2026-08-23T14:37:33+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "GC17"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Habana del Este por DISPARO DEL CIRCUITO se afecta el servicio en: 👉GC 17: Camilo Cienfuegos , Hospital Naval ‼️🚨"
- },
  "76706": {
   "fecha": "2026-08-23T16:52:23+00:00",
   "tipo_llm": "afectacion",

@@ -1,13 +1,4 @@
 {
- "76661": {
-  "fecha": "2026-08-23T12:02:29+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1075"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 07:52AM quedó restablecido el servicio en los siguientes circuitos: 👉 👉 A1075: Repartos Ricabal, La Lima, Santa "
- },
  "76678": {
   "fecha": "2026-08-23T13:45:34+00:00",
   "tipo_llm": "deficit",
@@ -1454,5 +1445,20 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Guana"
+ },
+ "78407": {
+  "fecha": "2026-08-30T12:24:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 08:22 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP304; OP411; OP320; OP424; OP318; OP410; "
  }
 }

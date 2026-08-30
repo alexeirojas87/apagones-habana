@@ -1,17 +1,4 @@
 {
- "76685": {
-  "fecha": "2026-08-23T14:09:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP306",
-   "OP318",
-   "OP406",
-   "OP410",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:01 AM quedó restablecido el servicio en los siguientes circuitos: 👉 OP411;OP424; OP406; OP306; OP318; OP410 y"
- },
  "76692": {
   "fecha": "2026-08-23T14:37:33+00:00",
   "tipo_llm": "averia",

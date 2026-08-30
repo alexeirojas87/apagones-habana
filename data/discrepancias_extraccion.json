@@ -1462,5 +1462,23 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:23 PM quedó restablecido el servicio en los siguientes circuitos: T41/T44: Alrededores del cuadrante comprend"
+ },
+ "78366": {
+  "fecha": "2026-08-30T04:30:48+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:15 AM se afectan 558 MW distribuidos en 150 circuitos de distribución. A continuación,"
+ },
+ "78361": {
+  "fecha": "2026-08-30T04:15:02+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SG312"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Arroy"
  }
 }

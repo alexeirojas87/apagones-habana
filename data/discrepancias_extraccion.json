@@ -1423,5 +1423,34 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:05 PM se afectan 563 MW distribuidos en 167 circuitos de distribución. A continuación,"
+ },
+ "78331": {
+  "fecha": "2026-08-30T01:59:48+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1470",
+   "PG970"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Se le informa a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1470, que se ha transferido temporalmente la carga al circuito PG970 los"
+ },
+ "78329": {
+  "fecha": "2026-08-30T01:59:06+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1470",
+   "D1100"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Se le informa a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1470, que se ha transferido temporalmente la carga al circuito D1100 los"
+ },
+ "78327": {
+  "fecha": "2026-08-30T01:52:13+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 PM se afectan 527 MW distribuidos en 150 circuitos de distribución. A continuación,"
  }
 }

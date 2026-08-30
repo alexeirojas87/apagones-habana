@@ -1443,5 +1443,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Arroy"
+ },
+ "78397": {
+  "fecha": "2026-08-30T11:05:38+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A318",
+   "MB910",
+   "SG312"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Guana"
  }
 }

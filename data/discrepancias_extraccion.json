@@ -1,13 +1,4 @@
 {
- "76749": {
-  "fecha": "2026-08-23T19:11:35+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "GC11"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Guanabacoa, se detectaron AVERÍAS PRIMARIAS en las siguientes direcciones : 👉 Calixto García y Amargura 👉Calixto García y Pepe Ant"
- },
  "76752": {
   "fecha": "2026-08-23T19:39:50+00:00",
   "tipo_llm": "afectacion",

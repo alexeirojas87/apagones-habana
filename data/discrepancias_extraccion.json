@@ -1,19 +1,4 @@
 {
- "76752": {
-  "fecha": "2026-08-23T19:39:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP410",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de la 03:30 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SG313: Alrededo"
- },
  "76755": {
   "fecha": "2026-08-23T20:05:54+00:00",
   "tipo_llm": "deficit",

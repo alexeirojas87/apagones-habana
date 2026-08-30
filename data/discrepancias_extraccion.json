@@ -1,13 +1,4 @@
 {
- "76649": {
-  "fecha": "2026-08-23T10:00:04+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "PZ1"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Primario Partido: 📌Municipio: Arroyo Naranjo 👉Dirección: Camilo Cienfuegos en"
- },
  "76655": {
   "fecha": "2026-08-23T11:01:30+00:00",
   "tipo_llm": "afectacion",

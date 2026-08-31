@@ -1,13 +1,4 @@
 {
- "76793": {
-  "fecha": "2026-08-24T01:54:32+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "GC11"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Guanabacoa, quedan reparadas las AVERÍAS PRIMARIAS en las siguientes direcciones : 👉 Calixto García y Amargura 👉Calixto García y Pep"
- },
  "76795": {
   "fecha": "2026-08-24T02:08:54+00:00",
   "tipo_llm": "averia",

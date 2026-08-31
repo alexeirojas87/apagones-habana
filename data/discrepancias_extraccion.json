@@ -1174,5 +1174,14 @@
    "SR860"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 12:49 PM quedó restablecido el servicio en los siguientes circuitos: 👉PZ9: La Timba, calle 4 desde 37 a Hidalgo,"
+ },
+ "78681": {
+  "fecha": "2026-08-31T17:37:30+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30 PM se afectan 286 MW distribuidos en 88 circuitos de distribución. A continuación, "
  }
 }

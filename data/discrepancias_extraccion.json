@@ -1183,5 +1183,35 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30 PM se afectan 286 MW distribuidos en 88 circuitos de distribución. A continuación, "
+ },
+ "78688": {
+  "fecha": "2026-08-31T18:09:06+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1222",
+   "A500"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Marianao pertenecientes al circuito A500 , que se ha transferido temporalmente la carga al circuito A1222 la zona de: "
+ },
+ "78686": {
+  "fecha": "2026-08-31T18:07:13+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "1851",
+   "A1219"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Marianao pertenecientes al circuito 1851 , que se ha transferido temporalmente la carga al circuito A1219 la zona de: "
+ },
+ "78684": {
+  "fecha": "2026-08-31T18:06:00+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "1175",
+   "1245"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1245 , que se ha transferido temporalmente la carga al circuito 1175 la zona de: 👉Ave"
  }
 }

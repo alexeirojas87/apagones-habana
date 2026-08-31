@@ -1232,5 +1232,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Cotorro (M700) 👉Dirección: Carretera Palo Jorobado. 📌Municipio: Habana del Este (MB910) 👉"
+ },
+ "78616": {
+  "fecha": "2026-08-31T12:47:15+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A465"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Consumidores del municipio 10 de Octubre se encuentra DISPARADO el CIRCUITO (A465) quedando afectado : 👉 parte de Lawton . ⭕️⚡️"
+ },
+ "78615": {
+  "fecha": "2026-08-31T12:46:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Consumidores del municipio Boyeros se encuentra DISPARADO el CIRCUITO (2205) quedando afectado : 👉 Altahabana , Residencial Almendares . ⭕️⚡️"
  }
 }

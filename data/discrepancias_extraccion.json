@@ -1248,5 +1248,25 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 567 MW distribuidos en 165 circuitos de distribución. A continuación,"
+ },
+ "78601": {
+  "fecha": "2026-08-31T10:26:20+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:25 AM se afectan 524MW distribuidos en 163 circuitos de distribución. A continuación, "
+ },
+ "78600": {
+  "fecha": "2026-08-31T10:20:57+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2072",
+   "M700",
+   "MB910"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Cotorro (M700) 👉Dirección: Carretera Palo Jorobado. 📌Municipio: Habana del Este (MB910) 👉"
  }
 }

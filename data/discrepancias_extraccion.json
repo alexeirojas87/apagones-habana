@@ -1,13 +1,4 @@
 {
- "76910": {
-  "fecha": "2026-08-24T19:58:03+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A708"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Boyero se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉247/236 y234 Abel Santamaria.🛑⚡️"
- },
  "76922": {
   "fecha": "2026-08-24T21:18:51+00:00",
   "tipo_llm": "restablecimiento",

@@ -1204,5 +1204,19 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1245 , que se ha transferido temporalmente la carga al circuito 1175 la zona de: 👉Ave"
+ },
+ "78700": {
+  "fecha": "2026-08-31T19:14:40+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1244",
+   "A1520",
+   "D632",
+   "D633",
+   "PG930",
+   "PZ10"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación : 📌Municipio: San Miguel del Padrón (A1520) 💥Afecta : Repartos Revoledo, Vista Alegre, La Prosperidad, Las Me"
  }
 }

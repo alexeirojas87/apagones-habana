@@ -1,14 +1,4 @@
 {
- "76843": {
-  "fecha": "2026-08-24T14:06:04+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP304",
-   "OP410"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 09:20 am quedó restablecido el servicio en los siguientes circuitos: 👉OP318, OP304, OP410: Soterrado Habana Viej"
- },
  "76853": {
   "fecha": "2026-08-24T14:57:11+00:00",
   "tipo_llm": "restablecimiento",

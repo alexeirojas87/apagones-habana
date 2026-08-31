@@ -1286,5 +1286,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:20PM se afectó el servicio eléctrico en el siguiente circuito: 👉OP304; OP411; OP320; OP424; OP318; OP410; OP4"
+ },
+ "78574": {
+  "fecha": "2026-08-31T04:00:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A980",
+   "MB960"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 676 MW distribuidos en 179 circuitos de distribución. A continuación,"
  }
 }

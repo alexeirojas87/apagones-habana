@@ -1,21 +1,4 @@
 {
- "76927": {
-  "fecha": "2026-08-24T21:32:48+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP329",
-   "OP406",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:19 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP410, OP320, OP306, OP424, OP424"
- },
  "76950": {
   "fecha": "2026-08-25T00:39:31+00:00",
   "tipo_llm": "restablecimiento",
@@ -1217,5 +1200,15 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Plaza queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba : 👉 25 entre E y D. Vedado. 🟢☑️"
+ },
+ "78733": {
+  "fecha": "2026-08-31T21:54:56+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Boyeros pertenecientes al circuito D836 , que se ha transferido temporalmente la carga al circuito A820 la zona de: 👉 "
  }
 }

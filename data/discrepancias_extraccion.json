@@ -1,43 +1,4 @@
 {
- "76853": {
-  "fecha": "2026-08-24T14:57:11+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1075"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:05 AM quedó restablecido el servicio en los siguientes circuitos: 👉A318: Alecrín, Peñalver, Carretera Monumen"
- },
- "76852": {
-  "fecha": "2026-08-24T14:52:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A800"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 09:56 AM quedó restablecido el servicio en los siguientes circuitos: 👉A708:Reparto Abel Santa maría. 👉 A800:Repa"
- },
- "76850": {
-  "fecha": "2026-08-24T14:47:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP306",
-   "OP320",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 09:28 am quedó restablecido el servicio en los siguientes circuitos: 👉OP406, OP306, OP411, OP320, OP424: Soterra"
- },
- "76849": {
-  "fecha": "2026-08-24T14:38:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación Varona : 👉Afecta A 425 : Sólita ,Central , Cuervo,Vera Cruz , Bue"
- },
  "76862": {
   "fecha": "2026-08-24T15:12:49+00:00",
   "tipo_llm": "restablecimiento",

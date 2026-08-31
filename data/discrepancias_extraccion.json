@@ -1209,5 +1209,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación : 📌Municipio: San Miguel del Padrón (A1520) 💥Afecta : Repartos Revoledo, Vista Alegre, La Prosperidad, Las Me"
+ },
+ "78706": {
+  "fecha": "2026-08-31T19:51:53+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380",
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 3:40 PM se afectan 119MW distribuidos en 406 circuitos de distribución. A continuación, s"
  }
 }

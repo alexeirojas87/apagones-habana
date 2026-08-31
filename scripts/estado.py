@@ -245,17 +245,22 @@ def _punto_interior(anillo):
     return {"lat": lat, "lon": max(tramos)[1]}
 
 
-def _geocode_mediana_calles(dire, caja, dentro=None):
+def _geocode_mediana_calles(dire, caja, dentro=None, saltear=None):
     """Ubica un circuito por sus CALLES cuando no hay barrio: geocodifica varias y
     toma el centroide del grupo mayoritario (mediana, robusta a outliers). Las calles
     de un circuito están juntas, así que aunque 'Washington' aparezca en varios sitios,
-    el grupo que coincide marca la zona. Ej.: '21 desde 2 hasta K, J...' -> Vedado."""
+    el grupo que coincide marca la zona. Ej.: '21 desde 2 hasta K, J...' -> Vedado.
+    saltear: primer token que NO cuenta (p. ej. el POI que ganó la consulta de
+    lugar: no puede validar con la misma evidencia que lo produjo)."""
     import time
+    sal = saltear.strip().lower() if saltear else None
     parts = re.split(r"\s+(?:desde|hasta|entre|y|e|a)\s+|[;,]", dire, flags=re.I)
     toks, seen = [], set()
     for p in parts:
         p = re.sub(r"\(.*?\)", "", p).strip()
         if len(p) < 1 or p.lower() in seen or re.match(r"^\d{4,}$", p):
+            continue
+        if sal and p.lower() == sal:
             continue
         seen.add(p.lower())
         toks.append(p)
@@ -274,6 +279,35 @@ def _geocode_mediana_calles(dire, caja, dentro=None):
     mla, mlo = statistics.median([p[0] for p in pts]), statistics.median([p[1] for p in pts])
     cerca = [p for p in pts if math.hypot((p[0] - mla) * 111000, (p[1] - mlo) * 102000) < 2000] or pts
     return {"lat": sum(p[0] for p in cerca) / len(cerca), "lon": sum(p[1] for p in cerca) / len(cerca)}
+
+
+_BARRIOS_OSM = None
+
+
+def _barrio_local(dire, excluir=None):
+    """Evidencia local SIN red: primer barrio de data/barrios_osm.json cuyo nombre
+    case con una palabra de la dirección (prefijo, para tolerar variantes como
+    'Ataré' ~ 'Atarés'). Devuelve (lat, lon) o None. excluir: palabras del token
+    que ganó la consulta (su propio nombre no es evidencia de nada)."""
+    global _BARRIOS_OSM
+    if _BARRIOS_OSM is None:
+        try:
+            with open(os.path.join(os.path.dirname(__file__), "..", "data",
+                                   "barrios_osm.json")) as f:
+                _BARRIOS_OSM = {normalizar(b["nombre"]): (b["lat"], b["lon"])
+                                for b in json.load(f)}
+        except Exception:
+            _BARRIOS_OSM = {}
+    excl = set((excluir or "").lower().split())
+    for seg in re.split(r"[;,]|\s+y\s+", dire):
+        for w in re.sub(r"\(.*?\)", "", seg).split():
+            w = w.strip(" .:,;()").lower()
+            if len(w) < 5 or w in excl:
+                continue
+            for bn, pt in _BARRIOS_OSM.items():
+                if bn == w or (len(bn) >= 5 and (bn.startswith(w) or w.startswith(bn))):
+                    return pt
+    return None
 
 
 def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
@@ -363,18 +397,36 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
             # de al lado aun con la búsqueda acotada).
             polys = it.get("polys") or []
             dentro = (lambda la, lo: any(_en_anillo(la, lo, p) for p in polys)) if polys else None
-            hit = None
-            for q in consultas:
+            hit, q_gana = None, None
+            for i, q in enumerate(consultas):
                 hit = nominatim(q, caja)
                 time.sleep(1.1)
                 if hit and dentro and not dentro(hit["lat"], hit["lon"]):
                     hit = None
                     continue
                 if hit:
+                    q_gana = i
                     break
             # circuito sin barrio -> ubicar por sus calles (mediana de varias)
             if not hit and solo_lugar:
                 hit = _geocode_mediana_calles(dire, caja, dentro)
+            # control cruzado POI vs. evidencia INDEPENDIENTE: sin polígono
+            # oficial que valide el hit (circuito fuera de la tabla UNE), un POI
+            # homónimo puede mandarlo al otro extremo de la ciudad (CCP20 quedó
+            # pintado en Santa Fe por un 'Terminal de trenes' de taxis). El token
+            # que ganó NO puede validar su propio hit: la mediana salta ese
+            # primer lugar y se añade la verdad local de barrios_osm.json. Si la
+            # evidencia contradice al hit por >5 km, gana la evidencia.
+            if hit and solo_lugar and not dentro and q_gana == len(consultas) - 1:
+                ref = _geocode_mediana_calles(dire, caja, saltear=primer)
+                if not ref:
+                    pt = _barrio_local(dire, excluir=primer)
+                    if pt:
+                        ref = {"lat": pt[0], "lon": pt[1], "match": "barrio local"}
+                if ref and math.hypot((hit["lat"] - ref["lat"]) * 111000,
+                                      (hit["lon"] - ref["lon"]) * 102000) > 5000:
+                    ref["match"] = ref.get("match", "mediana de calles") + " (descarta POI lejano)"
+                    hit = ref
             # respaldo: punto representativo del municipio oficial. Peor precisión,
             # pero en el municipio CORRECTO. No vale promediar vértices (en
             # polígonos cóncavos cae FUERA): se toma el punto medio del tramo

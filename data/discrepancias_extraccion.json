@@ -1,22 +1,4 @@
 {
- "76834": {
-  "fecha": "2026-08-24T11:08:53+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "L323"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 07:03 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318: Alrededor"
- },
- "76833": {
-  "fecha": "2026-08-24T11:03:22+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1430"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉1246: Avenida 5"
- },
  "76843": {
   "fecha": "2026-08-24T14:06:04+00:00",
   "tipo_llm": "restablecimiento",

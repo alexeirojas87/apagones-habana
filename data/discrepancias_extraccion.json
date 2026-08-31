@@ -1,15 +1,4 @@
 {
- "76922": {
-  "fecha": "2026-08-24T21:18:51+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP20",
-   "CPP8"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 05:00 pm quedó restablecido el servicio en los siguientes circuitos: 👉CPP 20: Alrededores de calles Ensenada de "
- },
  "76927": {
   "fecha": "2026-08-24T21:32:48+00:00",
   "tipo_llm": "afectacion",
@@ -1219,5 +1208,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 3:40 PM se afectan 119MW distribuidos en 406 circuitos de distribución. A continuación, s"
+ },
+ "78725": {
+  "fecha": "2026-08-31T21:08:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P329"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Plaza queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba : 👉 25 entre E y D. Vedado. 🟢☑️"
  }
 }

@@ -289,33 +289,46 @@ function horasDiaUnico(d, codigo, offset) {
 async function embedConsulta(texto, env) {
   const r = await callNan("embeddings", {
     model: "qwen3-embedding", input: texto.slice(0, 512),
+    // dimensions: 1024 debe coincidir con lo indexado por embeddings.py; sin
+    // este parámetro el modelo devuelve 4096 y el vector no es comparable
+    dimensions: 1024,
   }, env);
   return r.data?.[0]?.embedding;
 }
 
-function coseno(a, b) {
-  let dot = 0, na = 0, nb = 0;
-  for (let i = 0; i < a.length; i++) { dot += a[i] * b[i]; na += a[i] * a[i]; nb += b[i] * b[i]; }
-  return dot / (Math.sqrt(na) * Math.sqrt(nb));
-}
+// Búsqueda semántica vía la función SQL buscar_fragmentos (pgvector, igual que
+// la web). Antes consultaba las tablas chatbot_metadata/chatbot_embeddings, que
+// no existen (el índice vive en chatbot_fragmentos), y la herramienta siempre
+// respondía "buscador no disponible".
+// La similitud absoluta de qwen3-embedding varía mucho según la pregunta, así
+// que se usa un corte bajo + un corte RELATIVO al mejor resultado (calibrado en
+// web/_worker.js) y se deja al LLM leer la relevancia.
+const SIM_MINIMA = 0.25;
+const SIM_RELATIVA = 0.75;
 
 async function buscarPartes(consulta, env) {
   const vec = await embedConsulta(consulta, env);
   if (!vec) return { error: "buscador no disponible" };
-  const meta = await (await supa(env, `chatbot_metadata?select=*&limit=500`)).json();
-  if (!Array.isArray(meta)) return { error: "buscador no disponible" };
-  const embeddings = await (await supa(env, `chatbot_embeddings?select=*&limit=500`)).json();
-  if (!Array.isArray(embeddings)) return { error: "buscador no disponible" };
-  const idx = {};
-  for (const e of embeddings) idx[e.id] = e.embedding;
-  const scores = meta.map((m) => ({ id: m.id, sim: coseno(vec, idx[m.id] || []), meta: m }));
-  scores.sort((a, b) => b.sim - a.sim);
-  const docs = scores.slice(0, 5).map((t) => `[${t.meta.fecha?.slice(0, 16) || ""}] ${t.meta.texto || ""}`).filter((x) => x.length > 20);
-  if (!docs.length) return { resultados: [] };
-  const rerank = await callNan("rerank", { model: "rerank", query: consulta, documents: docs }, env);
-  const top = (rerank.results || []).sort((a, b) => b.relevance_score - a.relevance_score).slice(0, 3)
-    .map((r) => docs[r.index]);
-  return { resultados: top };
+  let filas;
+  try {
+    const r = await supa(env, "rpc/buscar_fragmentos", {
+      method: "POST",
+      body: JSON.stringify({ query_embedding: vec, match_count: 6, tipos: null }),
+    });
+    if (!r.ok) return { sin_indice: true, nota: "el histórico todavía no está indexado" };
+    filas = await r.json();
+  } catch (e) {
+    return { sin_indice: true, nota: "el histórico todavía no está indexado" };
+  }
+  if (!Array.isArray(filas)) return { sin_indice: true, nota: "el histórico todavía no está indexado" };
+  const validas = filas.filter((f) => (f.similitud || 0) >= SIM_MINIMA);
+  if (!validas.length) return { resultados: [] };
+  const mejor = validas[0].similitud || 0;
+  const resultados = validas
+    .filter((f) => (f.similitud || 0) >= mejor * SIM_RELATIVA)
+    .map((f) => `[${(f.fecha || "").slice(0, 16).replace("T", " ")}] ${f.texto || ""}`)
+    .filter((x) => x.length > 20);
+  return { resultados };
 }
 
 // ---------------------------------------------------------------------------

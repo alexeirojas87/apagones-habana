@@ -2,6 +2,11 @@
 También genera resumen diario y análisis de patrones con deepseek-v4-flash de NaN.
 
 Se corre en el cron después de estado.py (los datos del día ya están completos).
+
+La lectura de la DB es INCREMENTAL: lo ya leído vive en data/analitica_raw.json
+(commiteado), y cada corrida solo baja lo nuevo desde el último id + una ventana
+de mensajes recientes para recoger ediciones de la Empresa. Ese caché es también
+la copia de seguridad del histórico que scripts/purga.py borra de la DB.
 """
 
 import json
@@ -19,6 +24,13 @@ NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nan.builders/v1")
 MODELO_NAN = os.environ.get("MODELO_NAN_PARTES", "deepseek-v4-flash")
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
+CACHE_RAW = os.path.join(RAIZ, "data", "analitica_raw.json")
+# La Empresa edita partes ya publicados (ingest.py re-sub los DAF editados):
+# los últimos N mensajes del canal se re-leen SIEMPRE para recoger la versión final.
+VENTANA_EDICIONES = 50
+# comentarios_llm se re-procesa (upsert) durante 48 h (VENTANA_H de comentarios_llm.py,
+# que re-encuadra o mejora la geocodificación): esa ventana se re-lee y sobreescribe.
+HORAS_RE_LEER_COMENTARIOS = 48
 
 RE_MW = re.compile(r"(\d{2,4})\s*MW")
 RE_BLOQUE_H = re.compile(r"Bloque\s*(\d)\s*(\d{1,3})\s*horas?(?:\s*y\s*(\d{1,2})\s*minutos?)?")
@@ -30,15 +42,98 @@ RE_AV_TIPO = re.compile(r"[🚨🛑]\s*(.+?)\s*:")
 RE_AV_DIR = re.compile(r"(?:[👉💥]\s*Direcci[oó]n|📈\s*Afecta)\s*:\s*(.+)")
 
 
-def todos(sb, tabla, cols):
-    """Pagina toda la tabla (Supabase corta en 1000 por consulta)."""
-    filas, desde = [], 0
+def _paginar_query(hacer_query):
+    """Página una consulta (Supabase corta en 1000 por página)."""
+    filas, off = [], 0
     while True:
-        lote = sb.table(tabla).select(cols).order("fecha").range(desde, desde + 999).execute().data
+        lote = hacer_query(off)
         filas += lote
         if len(lote) < 1000:
             return filas
-        desde += 1000
+        off += 1000
+
+
+def _cargar_cache():
+    try:
+        c = json.load(open(CACHE_RAW))
+        if isinstance(c.get("eventos"), dict) and isinstance(c.get("comentarios"), dict) \
+                and isinstance(c.get("canal"), dict):
+            return c
+    except Exception:
+        pass
+    # caché nuevo o corrupto: se reconstruye leyendo todo el histórico una vez
+    return {"version": 1, "cursor_eventos": 0, "cursor_comentarios": 0,
+            "cursor_canal": 0, "eventos": {}, "comentarios": {}, "canal": {}}
+
+
+def _guardar_cache(cache):
+    tmp = CACHE_RAW + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(cache, f, ensure_ascii=False)
+    os.replace(tmp, CACHE_RAW)
+
+
+def refrescar_cache(sb, cache):
+    """Baja solo las filas nuevas y las fusiona en el caché. Devuelve el conteo."""
+    n = 0
+
+    # eventos: extract.py solo INSERTA (nunca edita): el cursor por id basta
+    nuevos = _paginar_query(lambda off: sb.table("eventos")
+                            .select("id,tipo,bloque,causa,municipios,fecha")
+                            .gt("id", cache["cursor_eventos"]).order("id")
+                            .range(off, off + 999).execute().data)
+    for e in nuevos:
+        cache["eventos"][str(e["id"])] = e
+    if nuevos:
+        cache["cursor_eventos"] = max(e["id"] for e in nuevos)
+    n += len(nuevos)
+
+    # comentarios_llm: delta por message_id + ventana de re-lectura (upserts)
+    nuevos = _paginar_query(lambda off: sb.table("comentarios_llm")
+                            .select("message_id,reporta,lugar,bloque,horas,fecha")
+                            .gt("message_id", cache["cursor_comentarios"])
+                            .order("message_id")
+                            .range(off, off + 999).execute().data)
+    desde_re = (datetime.now(timezone.utc)
+                - timedelta(hours=HORAS_RE_LEER_COMENTARIOS)).isoformat()
+    re_leidos = _paginar_query(lambda off: sb.table("comentarios_llm")
+                               .select("message_id,reporta,lugar,bloque,horas,fecha")
+                               .gte("fecha", desde_re).order("message_id")
+                               .range(off, off + 999).execute().data)
+    for c in nuevos + re_leidos:
+        cache["comentarios"][str(c["message_id"])] = c
+    if nuevos:
+        cache["cursor_comentarios"] = max(c["message_id"] for c in nuevos)
+    n += len(nuevos) + len(re_leidos)
+
+    # canal: delta por message_id + ventana de ediciones recientes
+    nuevos = _paginar_query(lambda off: sb.table("mensajes")
+                            .select("message_id,fecha,texto").eq("chat", "canal")
+                            .gt("message_id", cache["cursor_canal"]).order("message_id")
+                            .range(off, off + 999).execute().data)
+    recientes = (sb.table("mensajes").select("message_id,fecha,texto")
+                 .eq("chat", "canal").order("message_id", desc=True)
+                 .limit(VENTANA_EDICIONES).execute().data)
+    for m in nuevos + recientes:
+        cache["canal"][str(m["message_id"])] = m
+    if nuevos:
+        cache["cursor_canal"] = max(m["message_id"] for m in nuevos)
+    n += len(nuevos) + len(recientes)
+
+    return n
+
+
+def canal_ordenado(cache):
+    """Mensajes del canal en orden cronológico (el orden importa: las averías se
+    deduplican y los estados de circuito ganan en orden)."""
+    return sorted(cache["canal"].values(),
+                  key=lambda m: (m.get("fecha") or "", m.get("message_id") or 0))
+
+
+def posts_en(canal, patron):
+    """El ilike de PostgREST, aplicado en memoria sobre el caché del canal."""
+    p = patron.strip("%").lower()
+    return [f for f in canal if p in (f.get("texto") or "").lower()]
 
 
 try:
@@ -149,17 +244,6 @@ def normalizar_tipo_averia(t):
     return t.capitalize()[:28]
 
 
-def posts_like(sb, patron):
-    filas, desde = [], 0
-    while True:
-        lote = (sb.table("mensajes").select("fecha,texto").eq("chat", "canal")
-                .ilike("texto", patron).order("fecha").range(desde, desde + 999).execute().data)
-        filas += lote
-        if len(lote) < 1000:
-            return filas
-        desde += 1000
-
-
 def _nan_chat(messages, api_key):
     body = json.dumps({
         "model": MODELO_NAN, "messages": messages,
@@ -248,8 +332,15 @@ def generar_alertas(parte_horas, eventos, api_key):
 def main():
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
 
+    cache = _cargar_cache()
+    leidas = refrescar_cache(sb, cache)
+    _guardar_cache(cache)
+    total_cache = sum(len(v) for v in
+                      (cache["eventos"], cache["comentarios"], cache["canal"]))
+    print(f"analitica: caché con {total_cache} filas, {leidas} leídas de la DB")
+
     eventos = []
-    for e in todos(sb, "eventos", "tipo,bloque,causa,municipios,fecha"):
+    for e in sorted(cache["eventos"].values(), key=lambda x: x.get("fecha") or ""):
         if not e.get("fecha"):
             continue
         eventos.append([
@@ -261,14 +352,15 @@ def main():
         ])
 
     comentarios = []
-    for c in todos(sb, "comentarios_llm", "reporta,lugar,bloque,horas,fecha"):
+    for c in sorted(cache["comentarios"].values(), key=lambda x: x.get("fecha") or ""):
         if c.get("reporta") in ("sin_corriente", "con_corriente") and c.get("lugar"):
             comentarios.append([c["fecha"][:16], c["reporta"], c["lugar"], c.get("bloque"), c.get("horas")])
 
     # Partes de "Actualización de afectaciones": MW del déficit, horas por bloque,
     # y un SNAPSHOT del estado de los 6 bloques (listados = sin luz) por instante.
+    canal = canal_ordenado(cache)
     mw, parte_horas, snapshots, circuitos_partes = [], [], [], []
-    for p in posts_like(sb, "%Actualización de afectaciones%"):
+    for p in posts_en(canal, "%Actualización de afectaciones%"):
         f = p["fecha"][:16]
         m = RE_MW.search(p["texto"])
         if m:
@@ -291,7 +383,7 @@ def main():
     # aunque reaparezca en cada parte hasta que la reparen (una avería sin arreglar
     # NO es una avería nueva cada día). Guardamos fecha (primera vez), tipo y municipio.
     vistas, averias = set(), []
-    for p in posts_like(sb, "%Averías existentes%"):
+    for p in posts_en(canal, "%Averías existentes%"):
         tipo, municipio = None, ""
         for linea in p["texto"].split("\n"):
             li = linea.strip()

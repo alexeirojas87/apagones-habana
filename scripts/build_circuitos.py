@@ -4,8 +4,11 @@ Rio Verde…", "PG940- Comodoro…"). El código es el prefijo de la subestació
 número del circuito; es un identificador estable de un tramo físico de red que
 alimenta un conjunto fijo de calles.
 
-No acumula un fichero propio: reconstruye desde TODO el histórico del canal en
-Supabase (que ya es la fuente de verdad). Para cada código guarda las calles que
+No acumula un fichero propio: reconstruye desde el histórico del canal en
+data/canal_cache.json (commiteado). Ese caché se llena INCREMENTALMENTE desde
+Supabase (solo mensajes nuevos por message_id + una ventana reciente para
+recoger partes editados por la Empresa), así que la corrida ya no re-lee las
+~12 mil filas del canal en cada paso. Para cada código guarda las calles que
 sirve, el municipio, el bloque en que rota (inferido del post), cuántas veces se
 ha visto, cuándo, y su último estado conocido (con/sin servicio).
 """
@@ -32,6 +35,10 @@ CAMBIOS_FILE = os.path.join(RAIZ, "data", "cambios_direccion.json")
 CONTEO_USUARIO_FILE = os.path.join(RAIZ, "data", "conteo_usuario.json")
 ESTADO_FILE = os.path.join(RAIZ, "web", "data", "estado.json")
 CATALOGO_SALIDA = os.path.join(RAIZ, "web", "data", "circuitos.json")
+CANAL_CACHE = os.path.join(RAIZ, "data", "canal_cache.json")
+# La Empresa edita partes ya publicados (ingest.py re-sub los DAF editados):
+# los últimos N mensajes del canal se re-leen SIEMPRE para recoger la versión final.
+VENTANA_EDICIONES = 50
 
 # Resolución de geometría (Overpass). El tope anterior de 8 por corrida dejaba
 # 108 circuitos pendientes a 13 ingestas de distancia; con el presupuesto de
@@ -240,16 +247,57 @@ def limpiar_calles(texto):
     return quitar_avisos(re.sub(r"[📉🚧✅📣📌🔔‼️⚡️👉💥📈🔹]+", "", texto)).strip(" .-–")
 
 
-def main():
-    sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
+def _cargar_cache_canal():
+    try:
+        c = json.load(open(CANAL_CACHE))
+        if isinstance(c.get("filas"), dict):
+            return c
+    except Exception:
+        pass
+    # caché nuevo o corrupto: se reconstruye leyendo todo el canal una vez
+    return {"version": 1, "cursor": 0, "filas": {}}
+
+
+def _guardar_cache_canal(cache):
+    tmp = CANAL_CACHE + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(cache, f, ensure_ascii=False)
+    os.replace(tmp, CANAL_CACHE)
+
+
+def cargar_canal(sb):
+    """Histórico del canal desde el caché local, refrescado incrementalmente.
+
+    Baja solo los mensajes nuevos (message_id > cursor) y re-lee la ventana de
+    ediciones recientes. Devuelve las filas en orden cronológico.
+    """
+    cache = _cargar_cache_canal()
     filas, off = [], 0
     while True:
         lote = (sb.table("mensajes").select("message_id,fecha,texto").eq("chat", "canal")
-                .order("fecha").range(off, off + 999).execute().data)
+                .gt("message_id", cache["cursor"]).order("message_id")
+                .range(off, off + 999).execute().data)
         filas += lote
         if len(lote) < 1000:
             break
         off += 1000
+    recientes = (sb.table("mensajes").select("message_id,fecha,texto")
+                 .eq("chat", "canal").order("message_id", desc=True)
+                 .limit(VENTANA_EDICIONES).execute().data)
+    for m in filas + recientes:
+        cache["filas"][str(m["message_id"])] = m
+    if filas:
+        cache["cursor"] = max(m["message_id"] for m in filas)
+    _guardar_cache_canal(cache)
+    return sorted(cache["filas"].values(),
+                  key=lambda m: (m.get("fecha") or "", m.get("message_id") or 0)), \
+        len(filas), len(cache["filas"])
+
+
+def main():
+    sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
+    filas, n_nuevos, n_total = cargar_canal(sb)
+    print(f"canal_cache: {n_total} mensajes, {n_nuevos} nuevos de la DB")
 
     # catálogo oficial (se usa para validar códigos numéricos ambiguos y, más
     # abajo, para la fusión de municipios/calles oficiales)

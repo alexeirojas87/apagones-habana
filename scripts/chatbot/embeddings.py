@@ -23,12 +23,14 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+from postgrest import ReturnMethod
 from supabase import create_client
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..", "..")
 CACHE_FILE = os.path.join(RAIZ, "data", "partes_llm.json")
+HASHES_FILE = os.path.join(RAIZ, "data", "chatbot_hashes.json")
 
 NAN_BASE_URL = os.environ.get("NAN_BASE_URL", "https://api.nan.builders/v1")
 MODELO_EMBED = os.environ.get("MODELO_EMBED", "qwen3-embedding")
@@ -147,18 +149,35 @@ def fragmentos_comentarios(sb):
     return fragmentos
 
 
-def hashes_existentes(sb):
-    """id -> hash de lo ya indexado, para no re-embeber lo que no cambió."""
-    out, desde = {}, 0
-    while True:
-        filas = (sb.table("chatbot_fragmentos").select("id,hash")
-                 .range(desde, desde + 999).execute().data)
-        if not filas:
-            break
-        out.update({f["id"]: f["hash"] for f in filas})
-        if len(filas) < 1000:
-            break
-        desde += 1000
+def hashes_existentes(sb, ids_candidatos):
+    """id -> hash de lo ya indexado, para no re-embeber lo que no cambió.
+
+    La fuente primaria es la caché local (data/chatbot_hashes.json): releer los
+    ~20k id+hash del índice completo en cada corrida era el 3er generador de
+    egress del proyecto. De la DB solo se consulta lo CANDIDATO de esta corrida
+    (los fragmentos que pueden estar nuevos o cambiados), que además es el caso
+    en que un cambio externo se detecta.
+    """
+    try:
+        out = json.load(open(HASHES_FILE))
+    except Exception:
+        out = {}
+    if not isinstance(out, dict):
+        out = {}
+    remotos, desde = {}, 0
+    ids = list(ids_candidatos)
+    # todos los lotes: que un lote devuelva pocas filas solo quiere decir que
+    # muchos candidatos no existen aún en la índice, no que se acabaron
+    while desde < len(ids):
+        lote = (sb.table("chatbot_fragmentos").select("id,hash")
+                .in_("id", ids[desde:desde + 100]).execute().data)
+        remotos.update({f["id"]: f["hash"] for f in lote})
+        desde += 100
+    out.update(remotos)
+    tmp = HASHES_FILE + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(out, f, ensure_ascii=False)
+    os.replace(tmp, HASHES_FILE)
     return out
 
 
@@ -170,16 +189,16 @@ def main():
 
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
 
+    fragmentos = fragmentos_partes() + fragmentos_comentarios(sb)
+    for f in fragmentos:
+        f["hash"] = _sha1(f["texto"])
+
     try:
-        previos = hashes_existentes(sb)
+        previos = hashes_existentes(sb, [f["id"] for f in fragmentos])
     except Exception as e:
         print(f"chatbot_embeddings: no se pudo leer el índice ({e}). "
               "¿Ejecutaste ingestor/schema_chatbot.sql? Se omite.")
         return
-
-    fragmentos = fragmentos_partes() + fragmentos_comentarios(sb)
-    for f in fragmentos:
-        f["hash"] = _sha1(f["texto"])
     pendientes = [f for f in fragmentos if previos.get(f["id"]) != f["hash"]]
 
     print(f"chatbot_embeddings: {len(fragmentos)} fragmentos, "
@@ -219,11 +238,20 @@ def main():
                   "hash": f["hash"], "embedding": v}
                  for f, v in zip(lote, vectores)]
         try:
-            sb.table("chatbot_fragmentos").upsert(filas).execute()
+            # return=minimal: sin esto el upsert devuelve las filas subidas, con
+            # su embedding en JSON (~13 KB cada una) y eso es egress gratis.
+            sb.table("chatbot_fragmentos").upsert(
+                filas, returning=ReturnMethod.minimal).execute()
         except Exception as e:
             print(f"  fallo al subir lote {i // LOTE}: {e}")
             fallos += 1
             continue
+        # la caché local se persiste con cada lote subido: si el job muere a
+        # mitad, la próxima corrida no re-embebe lo ya cobrado
+        previos.update({fila["id"]: fila["hash"] for fila in filas})
+        with open(HASHES_FILE + ".tmp", "w") as fh:
+            json.dump(previos, fh, ensure_ascii=False)
+        os.replace(HASHES_FILE + ".tmp", HASHES_FILE)
         fallos = 0
         subidos += len(filas)
 

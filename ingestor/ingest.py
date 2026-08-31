@@ -12,6 +12,7 @@ import asyncio
 import os
 import sys
 
+from postgrest import ReturnMethod
 from supabase import create_client
 from telethon import TelegramClient
 from telethon.sessions import StringSession
@@ -72,7 +73,8 @@ async def ingerir_chat(client, sb, entidad, chat: str) -> int:
 
     for i in range(0, len(filas), 100):
         sb.table("mensajes").upsert(
-            filas[i : i + 100], on_conflict="chat,message_id"
+            filas[i : i + 100], on_conflict="chat,message_id",
+            returning=ReturnMethod.minimal,
         ).execute()
     return len(filas)
 
@@ -90,7 +92,7 @@ async def refrescar_partes_daf(client, sb, canal) -> int:
             filas.append(a_fila("canal", msg))
     if filas:
         sb.table("mensajes").upsert(
-            filas, on_conflict="chat,message_id"
+            filas, on_conflict="chat,message_id", returning=ReturnMethod.minimal
         ).execute()
     return len(filas)
 

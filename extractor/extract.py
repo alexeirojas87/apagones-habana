@@ -18,6 +18,7 @@ import os
 import re
 import unicodedata
 
+from postgrest import ReturnMethod
 from supabase import create_client
 
 LOTE = 500
@@ -277,11 +278,13 @@ def main():
                 )
 
         if eventos:
-            sb.table("eventos").insert(eventos).execute()
+            # return=minimal: el insert devuelve las filas insertadas y nadie las
+            # usa (egress gratis: eventos con municipios/zonas son KB por fila)
+            sb.table("eventos").insert(eventos, returning=ReturnMethod.minimal).execute()
         # marcar procesados en bloque, por chat
         for chat in {m["chat"] for m in res.data}:
             ids = [m["message_id"] for m in res.data if m["chat"] == chat]
-            sb.table("mensajes").update({"procesado": True}).eq("chat", chat).in_(
+            sb.table("mensajes").update({"procesado": True}, returning=ReturnMethod.minimal).eq("chat", chat).in_(
                 "message_id", ids
             ).execute()
 

@@ -144,6 +144,16 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
+      # Purga de datos viejos (retenciones en scripts/purga.py). Va al FINAL:
+      # los cachés incrementales (analitica_raw, canal_cache) son la copia del
+      # histórico que la DB va a borrar, y si no están frescos la purga se
+      # auto-deshabilita. PURGA_DRY_RUN=1 en el primer despliegue si se quiere
+      # ver solo los conteos.
+      - run: python scripts/purga.py || echo "purga falló, se continúa"
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+
       # Persiste las cachés de geocodificación (averías + circuitos) para no repetir
       # consultas a Nominatim/Overpass. Es BEST-EFFORT: si hay conflicto con otra
       # corrida (ambas tocan la caché), se resuelve tomando lo entrante y nunca
@@ -156,7 +166,7 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "actions@users.noreply.github.com"
-          git add data/geocache_averias.json data/geocache_circuitos_lineas.json data/geocache_lineas_intentos.json data/partes_llm.json data/discrepancias_extraccion.json data/llm_cuota.json data/cambios_direccion.json data/conteo_usuario.json || true
+          git add data/geocache_averias.json data/geocache_circuitos_lineas.json data/geocache_lineas_intentos.json data/partes_llm.json data/discrepancias_extraccion.json data/llm_cuota.json data/cambios_direccion.json data/conteo_usuario.json data/analitica_raw.json data/canal_cache.json data/chatbot_hashes.json || true
           if ! git diff --cached --quiet; then
             git commit -m "caché de geocodificación [skip ci]"
             git pull --rebase --autostash -X theirs || git rebase --abort || true

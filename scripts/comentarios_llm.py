@@ -19,6 +19,7 @@ import sys
 import time
 from datetime import datetime, timedelta, timezone
 
+from postgrest import ReturnMethod
 from supabase import create_client
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -157,7 +158,9 @@ def main():
 
     json.dump(cache, open(CACHE, "w"), ensure_ascii=False)
     if filas:
-        sb.table("comentarios_llm").upsert(filas, on_conflict="message_id").execute()
+        # return=minimal: el upsert devuelve las filas subidas y nadie las usa
+        sb.table("comentarios_llm").upsert(
+            filas, on_conflict="message_id", returning=ReturnMethod.minimal).execute()
     ubicados = sum(1 for f in filas if f["lat"])
     print(f"Comentarios: {len(filas)} guardados (max {MAX_LLM} por corrida), {ubicados} ubicados")
     if corte:

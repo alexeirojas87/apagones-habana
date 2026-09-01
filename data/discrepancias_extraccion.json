@@ -1,22 +1,4 @@
 {
- "77046": {
-  "fecha": "2026-08-25T08:50:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ16"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 04:42 AM quedó restablecido el servicio en los siguientes circuitos: 👉 H443: Reparto Los Ángeles, Rocafort, La R"
- },
- "77044": {
-  "fecha": "2026-08-25T08:40:49+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SF581"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 04:35 AM quedó restablecido el servicio en los siguientes circuitos: 👉 SF583: Reparto El Roble. Cuadrante calle "
- },
  "77057": {
   "fecha": "2026-08-25T09:38:06+00:00",
   "tipo_llm": "afectacion",

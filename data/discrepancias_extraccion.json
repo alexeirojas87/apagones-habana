@@ -1,22 +1,4 @@
 {
- "76965": {
-  "fecha": "2026-08-25T02:28:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "MB930"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:08 pm quedó restablecido el servicio en los siguientes circuitos: 👉A1443:Repartos Río Verde y Calixto Sánchez"
- },
- "76963": {
-  "fecha": "2026-08-25T02:25:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:07 pm quedó restablecido el servicio en los siguientes circuitos: 👉A1470: Repartos Ponce, Juan Antonio Saco, "
- },
  "76970": {
   "fecha": "2026-08-25T02:42:25+00:00",
   "tipo_llm": "restablecimiento",
@@ -1227,5 +1209,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 PM se afectan 642 MW distribuidos en 178 circuitos de distribución. A continuación,"
+ },
+ "78765": {
+  "fecha": "2026-09-01T02:21:23+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Consumidores del municipio Boyeros se encuentra DISPARADO el CIRCUITO (2205) quedando afectado : 👉 Altahabana , Residencial Almendares . ⭕️⚡️"
  }
 }

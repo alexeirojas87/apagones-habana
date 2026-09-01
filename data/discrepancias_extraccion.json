@@ -1098,5 +1098,27 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Arroyo Naranjo 💥Afecta : 👉 A1008 : Alrededores de los cuadrantes:Desde calle C a Portocar"
+ },
+ "78823": {
+  "fecha": "2026-09-01T12:08:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP306",
+   "OP320",
+   "OP406",
+   "OP411"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 7:38 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉 OP304,OP411,OP320,OP406,OP306: "
+ },
+ "78821": {
+  "fecha": "2026-09-01T12:02:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP318",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 7:08 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉OP410,OP424,OP318:Prado desde Mo"
  }
 }

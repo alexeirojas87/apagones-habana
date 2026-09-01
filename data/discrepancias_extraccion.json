@@ -1123,5 +1123,21 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:07 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1219: Avenida "
+ },
+ "78935": {
+  "fecha": "2026-09-01T20:35:36+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:26 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 304,OP411,OP"
  }
 }

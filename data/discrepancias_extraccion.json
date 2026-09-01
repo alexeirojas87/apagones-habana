@@ -1102,5 +1102,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 7:08 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉OP410,OP424,OP318:Prado desde Mo"
+ },
+ "78874": {
+  "fecha": "2026-09-01T16:06:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC7"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 11:54 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉MB920:Alturas de Boca Ciega, Sa"
  }
 }

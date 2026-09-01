@@ -1,13 +1,4 @@
 {
- "77117": {
-  "fecha": "2026-08-25T15:50:39+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "PZ9"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Plaza se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Panorama / Colón y Lombillo.🛑⚡️"
- },
  "77142": {
   "fecha": "2026-08-25T17:14:04+00:00",
   "tipo_llm": "averia",

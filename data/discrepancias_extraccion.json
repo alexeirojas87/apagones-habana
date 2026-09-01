@@ -1,13 +1,4 @@
 {
- "76950": {
-  "fecha": "2026-08-25T00:39:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢✅Consumidores del municipio Arroyo Naranjo, queda reparada la AVERÍA PRIMARIA por un incendio en la Subestación Varona que afectaba el servicio en los repartos"
- },
  "76955": {
   "fecha": "2026-08-25T01:28:45+00:00",
   "tipo_llm": "afectacion",
@@ -1229,5 +1220,14 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Marianao queda reparada la AVERÍA PRIMARIA en el circuito (1244) que afectaba la siguiente dirección : 👉 28 / 5ta y 7ma 🟢☑️"
+ },
+ "78751": {
+  "fecha": "2026-09-01T00:47:36+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Consumidores del municipio Boyeros se encuentra DISPARADO el CIRCUITO (2205) quedando afectado : 👉 Altahabana , Residencial Almendares . ⭕️⚡️"
  }
 }

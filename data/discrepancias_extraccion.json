@@ -1099,5 +1099,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30 AM se afectan 634 MW distribuidos en 172 circuitos de distribución. A continuación,"
+ },
+ "78815": {
+  "fecha": "2026-09-01T10:24:36+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1008"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Arroyo Naranjo 💥Afecta : 👉 A1008 : Alrededores de los cuadrantes:Desde calle C a Portocar"
  }
 }

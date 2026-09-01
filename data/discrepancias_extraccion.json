@@ -17,22 +17,6 @@
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 04:35 AM quedó restablecido el servicio en los siguientes circuitos: 👉 SF583: Reparto El Roble. Cuadrante calle "
  },
- "77032": {
-  "fecha": "2026-08-25T08:06:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 04:00 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP 304,OP411,OP320,OP424,OP318,OP410,OP406"
- },
  "77057": {
   "fecha": "2026-08-25T09:38:06+00:00",
   "tipo_llm": "afectacion",

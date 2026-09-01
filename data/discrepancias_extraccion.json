@@ -1,31 +1,4 @@
 {
- "77003": {
-  "fecha": "2026-08-25T05:17:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "GC19"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:01 AM quedó restablecido el servicio en los siguientes circuitos: 👉GC7: Cojimar calle 80 desde 1era hasta 7ma"
- },
- "76999": {
-  "fecha": "2026-08-25T05:09:35+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "R466"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:57 pm quedó restablecido el servicio en los siguientes circuitos: 👉SR820: Reparto Alturas de Lotería. 👉R466: "
- },
- "76997": {
-  "fecha": "2026-08-25T05:04:28+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP321"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:55 pm quedó restablecido el servicio en los siguientes circuitos: 👉P322:Alrededores de calles Sitios desde Xi"
- },
  "77046": {
   "fecha": "2026-08-25T08:50:56+00:00",
   "tipo_llm": "restablecimiento",
@@ -1171,5 +1144,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación : 📌Municipio: Boyeros Subestación Calabazar 💥Afecta : 👉D1380: Repartos: Berenguer, Altura de Calabazar y El R"
+ },
+ "78780": {
+  "fecha": "2026-09-01T04:41:59+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:30 AM se afectan 634 MW distribuidos en 172 circuitos de distribución. A continuación,"
  }
 }

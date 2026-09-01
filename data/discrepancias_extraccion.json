@@ -1102,5 +1102,17 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:54 am comienza el restablecimiento del servicio en los siguientes circuitos: 👉MB920:Alturas de Boca Ciega, Sa"
+ },
+ "78894": {
+  "fecha": "2026-09-01T17:35:19+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2072",
+   "C10",
+   "PZ1",
+   "SG314"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento: 🚨 Transformadores Dañados: 📌Municipio: Guanabacoa 👉Dirección: Estrada Palma entre Apodaca y Calixto García. Villa 2 👉Direc"
  }
 }

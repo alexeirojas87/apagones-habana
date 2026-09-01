@@ -1,13 +1,4 @@
 {
- "77162": {
-  "fecha": "2026-08-25T18:45:29+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR830"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:25 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉 MB920: Alturas de Boca Ciega, Santa Marí"
- },
  "77171": {
   "fecha": "2026-08-25T19:31:57+00:00",
   "tipo_llm": "averia",

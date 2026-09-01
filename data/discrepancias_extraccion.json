@@ -1,13 +1,4 @@
 {
- "77171": {
-  "fecha": "2026-08-25T19:31:57+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1520"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Avería Primaria: 📌Municipio: San Miguel Del Padrón(A1520) 👉Dirección: Reparto Revoledo, Vista Alegre, La Prosperidad, Las"
- },
  "77206": {
   "fecha": "2026-08-25T22:26:30+00:00",
   "tipo_llm": "deficit",

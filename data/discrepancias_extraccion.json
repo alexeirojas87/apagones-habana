@@ -1114,5 +1114,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:19 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC14:Guiteras, "
+ },
+ "78932": {
+  "fecha": "2026-09-01T20:25:29+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "2074"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:07 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1219: Avenida "
  }
 }

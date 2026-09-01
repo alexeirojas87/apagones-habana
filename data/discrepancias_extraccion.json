@@ -1096,5 +1096,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías existentes hasta el momento: 🚨 Transformadores Dañados: 📌Municipio: Guanabacoa 👉Dirección: Estrada Palma entre Apodaca y Calixto García. Villa 2 👉Direc"
+ },
+ "78919": {
+  "fecha": "2026-09-01T19:56:43+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "GC18"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:27 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB910:Justi, Ag"
+ },
+ "78915": {
+  "fecha": "2026-09-01T19:49:25+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC19"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:19 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC14:Guiteras, "
  }
 }

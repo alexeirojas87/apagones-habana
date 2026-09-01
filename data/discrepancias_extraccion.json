@@ -1220,5 +1220,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 6:30 PM se afectan 168MW distribuidos en 572 circuitos de distribución. A continuación, s"
+ },
+ "78744": {
+  "fecha": "2026-08-31T23:44:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1244"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Marianao queda reparada la AVERÍA PRIMARIA en el circuito (1244) que afectaba la siguiente dirección : 👉 28 / 5ta y 7ma 🟢☑️"
  }
 }

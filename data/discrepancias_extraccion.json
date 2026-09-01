@@ -44,15 +44,6 @@
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 05:30 am se afectó el servicio eléctrico en los siguientes circuitos: 👉CPP 20: Alrededores de calles Ensenada de"
  },
- "77025": {
-  "fecha": "2026-08-25T07:26:26+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ15"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 3:20 am se afectan 519 MW distribuidos en 162 circuitos de distribución. A continuación, "
- },
  "77066": {
   "fecha": "2026-08-25T10:52:44+00:00",
   "tipo_llm": "averia",

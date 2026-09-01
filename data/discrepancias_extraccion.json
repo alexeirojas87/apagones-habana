@@ -1,41 +1,4 @@
 {
- "76984": {
-  "fecha": "2026-08-25T03:51:32+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C14"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:29 pm quedó restablecido el servicio en los siguientes circuitos: 👉 L315: Avenida 21 desde calle 84 hasta cal"
- },
- "76982": {
-  "fecha": "2026-08-25T03:47:59+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL55"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:25 pm quedó restablecido el servicio en los siguientes circuitos: 👉 AL57: Colina Villa Real, Celimar, Villa B"
- },
- "76981": {
-  "fecha": "2026-08-25T03:44:58+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C13",
-   "C7"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:22 pm quedó restablecido el servicio en los siguientes circuitos: 👉 PZ5: Calles 2 desde 27 hasta 25, 25 desde"
- },
- "76979": {
-  "fecha": "2026-08-25T03:37:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2075"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:18 pm quedó restablecido el servicio en los siguientes circuitos: 👉 A980: Alrededores de calles Fábrica desde"
- },
  "76996": {
   "fecha": "2026-08-25T05:00:33+00:00",
   "tipo_llm": "restablecimiento",

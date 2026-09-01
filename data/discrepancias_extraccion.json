@@ -1,15 +1,4 @@
 {
- "77057": {
-  "fecha": "2026-08-25T09:38:06+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP20",
-   "CPP8"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:30 am se afectó el servicio eléctrico en los siguientes circuitos: 👉CPP 20: Alrededores de calles Ensenada de"
- },
  "77066": {
   "fecha": "2026-08-25T10:52:44+00:00",
   "tipo_llm": "averia",

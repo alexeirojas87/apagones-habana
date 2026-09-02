@@ -1,13 +1,4 @@
 {
- "77391": {
-  "fecha": "2026-08-26T15:49:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG920"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:39 AM quedó restablecido el servicio en los siguientes circuitos: 👉 D1125: Averoff, El Retiro, El Calvario, M"
- },
  "77395": {
   "fecha": "2026-08-26T16:03:09+00:00",
   "tipo_llm": "restablecimiento",

@@ -44,6 +44,7 @@ CACHE_LINEAS = os.path.join(RAIZ, "data", "geocache_circuitos_lineas.json")
 CACHE_INTENTOS = os.path.join(RAIZ, "data", "geocache_lineas_intentos.json")
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import circuitos_id  # noqa: E402
 import evidencia_calles as evc  # noqa: E402
 
 
@@ -113,7 +114,10 @@ def chequeo_evidencia_calles(circuitos, autoridad, cache_geo, cache_lineas):
     diseño: exige >=MIN_CONCORDANTES puntos concordantes y que el racimo
     contrario gane al que coincide con el punto (por eso callan los homónimos
     de una sola familia —'El Trébol', 'Embalse La Coca'— y los twins que se
-    acusan entre sí cuando el mayoritario coincide con el punto).
+    acusan entre sí cuando el mayoritario coincide con el punto). Desde el
+    caso SG316, la familia va más lejos que el gate: hermanos 'circ|' con el
+    MISMO match de POI son una sola evidencia (evidencia_calles deduplica por
+    valor de match), no 30 votos clonados que se auto-certifican.
 
     Devuelve (problemas, purgar_geo, purgar_lineas, purgar_intentos)."""
     entradas = evc.entradas_hermanas(cache_geo)
@@ -169,6 +173,27 @@ def chequeo_evidencia_calles(circuitos, autoridad, cache_geo, cache_lineas):
             purgar_lineas.add(c["codigo"])
             purgar_intentos.add(c["codigo"])
     return problemas, purgar_geo, purgar_lineas, purgar_intentos
+
+
+def candidatos_por_confirmar(llm_cache, umbral=3):
+    """Códigos 'por_confirmar' recurrentes (chequeo 9): el LLM los ve en los
+    partes pero el catálogo no los registra. Con `umbral`+ apariciones son
+    candidatos a promover, no alucinaciones. Se filtra SIEMPRE contra
+    es_conocido del momento —la lista `por_confirmar` del caché se congeló a
+    la fecha de la extracción—: SR850 se recomendaba a diario estando ya en
+    el catálogo servido, y los códigos que aprende el mismo cron
+    (aprende_circuitos) deben dejar de recomendersen el día que entran."""
+    conteo_pc = {}
+    for v in (llm_cache or {}).values():
+        for cod in v.get("por_confirmar") or []:
+            conteo_pc[cod] = conteo_pc.get(cod, 0) + 1
+    out = []
+    for cod, n in sorted(conteo_pc.items(), key=lambda x: -x[1]):
+        if n >= umbral and not circuitos_id.es_conocido(cod):
+            out.append(("código por confirmar recurrente",
+                        f"{cod}: visto {n} veces por el LLM y no está en el catálogo "
+                        "— candidato a añadir"))
+    return out
 
 
 def main():
@@ -252,9 +277,10 @@ def main():
             problemas.append(("código duplicado", c["codigo"]))
         vistos.add(c["codigo"])
 
-    # 5: déficit con circuitos fuera del catálogo
+    # 5: déficit con circuitos fuera del catálogo (un alias o código aprendido
+    # del día ya es conocido: canonico/es_conocido, no solo la clave literal).
     for d in (estado.get("deficit") or {}).get("circuitos", []):
-        if d["codigo"] not in vistos:
+        if d["codigo"] not in vistos and not circuitos_id.es_conocido(d["codigo"]):
             problemas.append(("déficit sin catálogo",
                               f"{d['codigo']} aparece en el parte pero no en circuitos.json"))
 
@@ -291,15 +317,7 @@ def main():
         llm_cache = json.load(open(os.path.join(RAIZ, "data", "partes_llm.json")))
     except Exception:
         llm_cache = {}
-    conteo_pc = {}
-    for v in llm_cache.values():
-        for cod in v.get("por_confirmar") or []:
-            conteo_pc[cod] = conteo_pc.get(cod, 0) + 1
-    for cod, n in sorted(conteo_pc.items(), key=lambda x: -x[1]):
-        if n >= 3:
-            problemas.append(("código por confirmar recurrente",
-                              f"{cod}: visto {n} veces por el LLM y no está en el catálogo "
-                              "— candidato a añadir"))
+    problemas += candidatos_por_confirmar(llm_cache)
 
     # 7: estados/fechas inválidos
     for c in circuitos:

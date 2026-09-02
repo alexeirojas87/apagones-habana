@@ -8,6 +8,7 @@ API:
   identificar("AL56 - Zonas: 13...") -> (["AL56"], "Zonas: 13...")  # o ([], texto)
   casar_por_calles("Zonas: 13; 15 y Micro X") -> ("AL56", 0.83)     # o (None, 0)
   es_conocido("AL56") -> True (catálogo oficial o aprendido de Telegram)
+  canonico("581") -> "SF581" (alias aprendido resuelve al código canónico)
 """
 
 import json
@@ -18,6 +19,9 @@ import unicodedata
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 OFICIAL_FILE = os.path.join(RAIZ, "data", "circuitos_oficial.json")
 CATALOGO_FILE = os.path.join(RAIZ, "web", "data", "circuitos.json")
+# Aprendizaje de partes recurrentes (aprende_circuitos.py): precedent
+# bloques_aprendidos.json — commiteado y editable a mano.
+APRENDIDOS_FILE = os.path.join(RAIZ, "data", "circuitos_aprendidos.json")
 
 # Código: letras+dígitos siempre (P318, AL56, CPP20); números puros son ambiguos
 # (calles "23", zonas "13") -> solo 3-4 dígitos y NUNCA sueltos dentro del texto.
@@ -72,6 +76,44 @@ def _tokens(texto):
 
 
 _CATALOGO = None  # {codigo: tokens de calles} — se carga una vez
+_APRENDIDOS = None  # {codigo: registro} de data/circuitos_aprendidos.json (una vez)
+
+
+def _aprendidos():
+    """Registros aprendidos de partes recurrentes (aprende_circuitos.py).
+    Best effort: sin archivo o roto = nada aprendido (el pipeline regex sigue)."""
+    global _APRENDIDOS
+    if _APRENDIDOS is None:
+        try:
+            _APRENDIDOS = json.load(open(APRENDIDOS_FILE))
+        except Exception:
+            _APRENDIDOS = {}
+    return _APRENDIDOS
+
+
+def recargar():
+    """Olvida las cachés de catálogo y aprendidos. build_circuitos la llama
+    después de que el aprendiz escribe el archivo, para que los códigos
+    promovidos en ESTA corrida cuenten ya como conocidos."""
+    global _CATALOGO, _APRENDIDOS
+    _CATALOGO = None
+    _APRENDIDOS = None
+
+
+def canonico(codigo):
+    """Resuelve un alias aprendido hacia su código canónico. '581' (bare) ->
+    'SF581' si el aprendiz aprendió que son el mismo circuito. Un código que no
+    es alias se devuelve tal cual. La cadena de alias se sigue un máximo corto
+    de saltos para no loops si alguien edita el JSON a mano."""
+    ap = _aprendidos()
+    c = str(codigo or "").strip().upper()
+    for _ in range(4):
+        reg = ap.get(c)
+        destino = (reg or {}).get("alias_de")
+        if not destino or destino == c:
+            break
+        c = destino
+    return c
 
 
 def _catalogo_tokens():
@@ -90,6 +132,12 @@ def _catalogo_tokens():
                 _CATALOGO[c["codigo"]] = _tokens(c["calles"])
     except Exception:
         pass
+    # no alias aprendidos: ya son circuitos del catálogo (aún no en el JSON de
+    # web hasta que build_circuitos los siembre). Los alias NO se añaden aquí:
+    # resuelven a su canónico y no deben generar gemelos en el matching.
+    for cod, reg in _aprendidos().items():
+        if not reg.get("alias_de") and cod not in _CATALOGO:
+            _CATALOGO[cod] = _tokens(reg.get("calles") or "")
     return _CATALOGO
 
 
@@ -127,15 +175,22 @@ def casar_por_calles(texto, umbral=0.6):
 
 
 def es_conocido(codigo):
-    """¿Está en el catálogo (oficial o aprendido de Telegram)?"""
-    return codigo in _catalogo_tokens()
+    """¿Está en el catálogo (oficial, de la web o aprendido de partes)? Los
+    alias aprendidos cuentan como conocidos porque resuelven a su canónico:
+    así el validador de partes_llm deja de marcarlos 'por_confirmar' y el
+    embudo de códigos recurrentes se vacía solo ('581' -> SF581)."""
+    return canonico(codigo) in _catalogo_tokens()
 
 
 def resolver(texto):
     """Todo junto: código explícito si lo hay (validado), si no matching por
-    calles. Devuelve {codigos, direccion, via, confianza, por_confirmar}."""
+    calles. Devuelve {codigos, direccion, via, confianza, por_confirmar}.
+    Los códigos conocidos salen en su forma CANÓNICA (un alias aprendido
+    routing-a a su registro: '581' -> 'SF581'); los dudosos se devuelven tal
+    cual para no inventar identidades."""
     codigos, resto = identificar(texto)
     if codigos:
+        codigos = [canonico(c) if es_conocido(c) else c for c in codigos]
         return {"codigos": codigos, "direccion": resto, "via": "codigo",
                 "confianza": 1.0,
                 "por_confirmar": [c for c in codigos if not es_conocido(c)]}
@@ -143,7 +198,7 @@ def resolver(texto):
     # si ya es un circuito conocido del catálogo (si no, sería una calle).
     m = re.match(r"(\d{3,4})\s+(.+)", (texto or "").strip())
     if m and es_conocido(m.group(1)):
-        return {"codigos": [m.group(1)], "direccion": m.group(2).strip(),
+        return {"codigos": [canonico(m.group(1))], "direccion": m.group(2).strip(),
                 "via": "codigo_catalogo", "confianza": 1.0, "por_confirmar": []}
     cod, conf = casar_por_calles(texto)
     if cod:

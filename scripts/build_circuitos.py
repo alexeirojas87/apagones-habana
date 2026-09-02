@@ -26,7 +26,7 @@ from supabase import create_client
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "extractor"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from extract import bloques_en, municipios_en, causa_en, normalizar, quitar_avisos  # noqa: E402
-from circuitos_id import _tokens  # noqa: E402
+from circuitos_id import _tokens, canonico, es_conocido  # noqa: E402
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE_LINEAS = os.path.join(RAIZ, "data", "geocache_circuitos_lineas.json")
@@ -295,6 +295,13 @@ def cargar_canal(sb):
 
 
 def main():
+    # 0) Aprende los circuitos recurrentes que el LLM ve pero el catálogo no
+    #    registra (embudo 'por_confirmar'). Sin red, desde partes_llm.json; es
+    #    el paso que cierra el ciclo para que sus códigos entren solos. Debe ir
+    #    ANTES de todo consumo del catálogo (es_conocido y canonico ya lo ven).
+    import aprende_circuitos  # noqa: E402
+    aprende_circuitos.main()
+
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
     filas, n_nuevos, n_total = cargar_canal(sb)
     print(f"canal_cache: {n_total} mensajes, {n_nuevos} nuevos de la DB")
@@ -344,6 +351,7 @@ def main():
                 cod = cod.strip().upper()
                 if not RE_UN_CODIGO.match(cod):
                     continue
+                cod = canonico(cod)  # alias aprendido ('581') -> registro canónico
                 # número puro: ambiguo con direcciones ("👉206 y 210, Plaza" es la
                 # CALLE 206). Solo se acepta con separador explícito ("1243 - ...")
                 # o si está en las tablas oficiales de la UNE.
@@ -386,7 +394,10 @@ def main():
             for cod, mun_p in re.findall(
                     r"([A-Za-z]{1,3}\d{1,4}|\d{3,4})\s*(?:\(([^)]{2,30})\))?\s*-?\s*\d+\s*horas?", texto):
                 cod = cod.strip().upper()
-                if not RE_UN_CODIGO.match(cod) or cod in falsos:
+                if not RE_UN_CODIGO.match(cod):
+                    continue
+                cod = canonico(cod)  # alias aprendido -> canónico (sin gemelos)
+                if cod in falsos:
                     continue
                 # municipio entre paréntesis (formato UNE jul/2026): dato directo
                 mun_cod = (municipios_en(mun_p) or [None])[0] if mun_p else None
@@ -412,9 +423,18 @@ def main():
         # no deben modificar ni estado ni metadatos hasta ser revalidadas.
         if usar_extraccion_llm(v):
             dudosos = set(v.get("por_confirmar") or [])
+            codes_estado = set()
+            for item in v.get("circuitos") or []:
+                codes_estado |= {canonico(x) for x in (item.get("codigos_estado") or [])}
             for item in v.get("circuitos") or []:
                 for cod in item.get("codigos") or []:
-                    if cod in dudosos or cod in falsos or not RE_UN_CODIGO.match(cod):
+                    cod = canonico(cod)  # '581' -> SF581: un solo registro, sin gemelo
+                    # Un código que el aprendiz ya registró (directo o por alias)
+                    # dejó de ser dudoso aunque el caché viejo lo marcara: se
+                    # re-valida contra es_conocido, no contra la lista congelada.
+                    if cod in falsos or not RE_UN_CODIGO.match(cod):
+                        continue
+                    if cod in dudosos and not es_conocido(cod):
                         continue
                     _pre = re.match(r"^[A-Z]+", cod)
                     r = cat.setdefault(cod, {
@@ -435,7 +455,7 @@ def main():
                         r["municipio"] = (municipios_en(item["municipio"]) or [None])[0]
                     # Solo un código escrito explícitamente en el parte puede
                     # cambiar estado; casar un nombre por calles es auxiliar.
-                    if cod in (item.get("codigos_estado") or []) and \
+                    if cod in codes_estado and \
                             item.get("estado") and (r["estado_fecha"] or "") <= fecha:
                         r["estado"] = item["estado"]
                         r["estado_fecha"] = fecha
@@ -458,6 +478,30 @@ def main():
         calles_of = " · ".join(v for v in (info.get("calles") or {}).values() if v)
         if calles_of and not r["calles"]:
             r["calles"] = calles_of  # respaldo: solo si Telegram no trajo nada
+
+    # --- Semilla APRENDIDA (aprende_circuitos.py): códigos que la UNE no tabla
+    # pero los partes repiten. Entran como registros base —las calles las
+    # aportan sus propios partes—, SIN autoridad de municipio (no la inventamos:
+    # el pipeline las ubica por geocodificación y point-in-polygon). Los alias
+    # no se siembran: su evidencia ya se enruta al canónico arriba.
+    try:
+        aprendidos = json.load(open(os.path.join(RAIZ, "data", "circuitos_aprendidos.json")))
+    except Exception:
+        aprendidos = {}
+    for cod, info in aprendidos.items():
+        if info.get("alias_de") or cod in falsos:
+            continue
+        r = cat.get(cod)
+        if not r:
+            _pre = re.match(r"^[A-Z]+", cod)
+            r = cat[cod] = {"codigo": cod, "prefijo": _pre.group(0) if _pre else "",
+                            "calles": "", "municipio": None, "bloque": None, "causa": None,
+                            "veces": 0, "primera": None, "ultima": None,
+                            "ultima_message_id": None,
+                            "estado": None, "estado_fecha": None}
+        r["aprendido"] = True
+        if info.get("calles") and not r["calles"]:
+            r["calles"] = info["calles"]  # respaldo: Telegram/LLM no trajeron nada
 
     circuitos = sorted(cat.values(), key=lambda r: r["ultima"] or "", reverse=True)
 

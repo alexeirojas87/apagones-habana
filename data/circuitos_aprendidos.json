@@ -1,0 +1,58 @@
+{
+ "3228": {
+  "calles": "Reparto Alturas del Mirador, Residencial San Miguel, San Juan de los Pinos, Mirta, Las Granjas, carretera San Miguel, calle 5ta",
+  "municipio": "San Miguel del Padrón",
+  "alias_de": null,
+  "posts": 9,
+  "ejemplo_mensaje": "78079"
+ },
+ "581": {
+  "calles": "1ra B entre 290 y 292 Santa Fe",
+  "municipio": "Playa",
+  "alias_de": "SF581",
+  "posts": 5,
+  "ejemplo_mensaje": "74231"
+ },
+ "A1216": {
+  "calles": "51 entre 204 y 206",
+  "municipio": "La Lisa",
+  "alias_de": null,
+  "posts": 6,
+  "ejemplo_mensaje": "74231"
+ },
+ "A1328": {
+  "calles": "Carretera de la Rodo y Zona del Centro Izótopo",
+  "municipio": null,
+  "alias_de": null,
+  "posts": 65,
+  "ejemplo_mensaje": "78824"
+ },
+ "H446": {
+  "calles": "Alrededores de los cuadrantes: Desde Calzada de Luyanó hasta Enna y desde Villa Nueva hasta Melones. Calzada de Luyanó hasta Tres Palacios y desde Nuestra Señora de los Ángeles hasta Regla.",
+  "municipio": "10 de Octubre",
+  "alias_de": null,
+  "posts": 22,
+  "ejemplo_mensaje": "78221"
+ },
+ "H466": {
+  "calles": "Guasabacoa entre Herrera y Compromiso",
+  "municipio": "10 de Octubre",
+  "alias_de": null,
+  "posts": 3,
+  "ejemplo_mensaje": "77939"
+ },
+ "P325": {
+  "calles": "Alrededores de calles San Benigno hasta Macedonia, Vía Blanca hasta calzada de Buenos Aires, Agua Dulce desde San Indalecio hasta Carbajal, calzada de Buenos Aires desde Agua Dulce hasta Macedonia, calzada de Vía Blanca hasta Resguardo, avenida Albear hasta Cerezo",
+  "municipio": null,
+  "alias_de": "OP325",
+  "posts": 4,
+  "ejemplo_mensaje": "79069"
+ },
+ "PZ20": {
+  "calles": "I entre 23 y 25, Vedado",
+  "municipio": "Plaza",
+  "alias_de": null,
+  "posts": 9,
+  "ejemplo_mensaje": "74466"
+ }
+}

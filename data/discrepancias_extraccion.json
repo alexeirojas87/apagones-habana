@@ -1,13 +1,4 @@
 {
- "77217": {
-  "fecha": "2026-08-26T00:51:43+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "1249"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Consumidores del municipio Plaza, Marianao se encuentran afectados por DISPARO DE CIRCUITO los siguientes repartos: 👉(Plaza)1249: Tropical desde Baire hasta"
- },
  "77224": {
   "fecha": "2026-08-26T01:26:25+00:00",
   "tipo_llm": "afectacion",

@@ -1,17 +1,4 @@
 {
- "77324": {
-  "fecha": "2026-08-26T10:38:18+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A820",
-   "D836",
-   "M1603",
-   "M2044",
-   "OP402"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Avería Primaria: 📌Municipio: Plaza(Op402) 👉Dirección: Alrededores de calles calzada del Cerro desde Cruz del Padre hasta "
- },
  "77329": {
   "fecha": "2026-08-26T11:08:19+00:00",
   "tipo_llm": "afectacion",
@@ -1086,5 +1073,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅ ☑️Consumidores del municipio Plaza, ha quedado reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉10 / línea y Calzada.✅ ☑️"
+ },
+ "79018": {
+  "fecha": "2026-09-02T10:49:19+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "AL53"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑🚧 Informamos a los clientes pertenecientes al municipio de Habana del Este que se encuentran afectados por Disparo por DAF AL53 :Zonas: 1, 2, 3, 5, 24, 8, 7."
  }
 }

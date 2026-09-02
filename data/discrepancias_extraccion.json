@@ -1026,5 +1026,16 @@
   ],
   "solo_regex": [],
   "extracto": "🛑🚧 Informamos a los clientes pertenecientes al municipio de Habana del Este que se encuentran afectados por Disparo por DAF AL53 :Zonas: 1, 2, 3, 5, 24, 8, 7."
+ },
+ "79069": {
+  "fecha": "2026-09-02T15:38:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚧⚡️Consumidores de los municipios Plaza y Cerro, se autoriza VÍA LIBRE DE EMERGENCIA por MANTENIMIENTO en el siguiente circuito: 👉P325: Desagüe desde Infanta ha"
  }
 }

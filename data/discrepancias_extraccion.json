@@ -1077,5 +1077,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅ ☑️Consumidores del municipio Boyeros, ha quedado reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉421 / 196 A y 196 B Reparto Especial Santiago .✅ "
+ },
+ "79013": {
+  "fecha": "2026-09-02T10:07:23+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP329"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ ☑️Consumidores del municipio Plaza, ha quedado reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉10 / línea y Calzada.✅ ☑️"
  }
 }

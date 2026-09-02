@@ -1037,5 +1037,15 @@
    "OP325"
   ],
   "extracto": "🚧⚡️Consumidores de los municipios Plaza y Cerro, se autoriza VÍA LIBRE DE EMERGENCIA por MANTENIMIENTO en el siguiente circuito: 👉P325: Desagüe desde Infanta ha"
+ },
+ "79106": {
+  "fecha": "2026-09-02T18:33:05+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "1245",
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito 1245, que se ha transferido temporalmente la carga al circuito PZ7 del siguiente cuad"
  }
 }

@@ -244,9 +244,15 @@ class SmokeRealTest(unittest.TestCase):
         alias = {c: r["alias_de"] for c, r in nuevos.items() if r["alias_de"]}
         self.assertEqual(set(promos), {"A1328", "H446", "PZ20", "3228", "A1216", "H466"})
         self.assertEqual(alias, {"581": "SF581", "P325": "OP325"})
-        self.assertEqual({c: r["posts"] for c, r in nuevos.items()},
-                         {"A1328": 65, "H446": 22, "PZ20": 9, "3228": 9,
-                          "A1216": 6, "H466": 3, "581": 5, "P325": 4})
+        # Los conteos exactos no se pueden fijar: el cron añade partes cada día
+        # (P325 pasó de 4 a 5 solo entre el audit y este rebase). Lo estable es
+        # el conjunto de arriba más el mínimo observado: el histórico cacheado
+        # no mengua, y si el smoke viera menos posts que la auditoría, la caché
+        # se podó mal.
+        for cod, minimo in {"A1328": 65, "H446": 22, "PZ20": 9, "3228": 9,
+                            "A1216": 6, "H466": 3, "581": 5, "P325": 4}.items():
+            self.assertGreaterEqual(nuevos[cod]["posts"], minimo,
+                                    f"{cod}: el histórico de partes no puede tener menos posts que en la audit")
         # H466 NO es el R466 de Avenida del Puerto (Regla): cifras iguales,
         # prefijo incompatible y calles sin un solo token común.
         self.assertIsNone(nuevos["H466"]["alias_de"])

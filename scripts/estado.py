@@ -212,17 +212,21 @@ def partes_llm_cache():
 
 
 def circuitos_llm(message_id):
-    """Circuitos validados que el LLM extrajo de un post (sin los por_confirmar)."""
+    """Circuitos validados que el LLM extrajo de un post (sin los por_confirmar).
+    Un código que desde la extracción se volvió conocido (aprende_circuitos lo
+    promovió o lo resolvió como alias) deja de ser dudoso aunque el caché viejo
+    lo tenga congelado en por_confirmar, y sale en su forma canónica."""
     v = partes_llm_cache().get(str(message_id))
     if not v or v.get("via") != "llm" or v.get("validador_version") != 2:
         return []
-    dudosos = set(v.get("por_confirmar") or [])
+    dudosos = {c for c in (v.get("por_confirmar") or [])
+               if not circuitos_id.es_conocido(c)}
     out = []
     for item in v.get("circuitos") or []:
         con_evidencia = set(item.get("codigos_estado") or [])
         for cod in item.get("codigos") or []:
             if cod not in dudosos and cod in con_evidencia:
-                out.append({**item, "codigo": cod})
+                out.append({**item, "codigo": circuitos_id.canonico(cod)})
     return out
 
 
@@ -433,19 +437,29 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
             # control cruzado POI vs. evidencia INDEPENDIENTE: sin polígono
             # oficial que valide el hit (circuito fuera de la tabla UNE), un POI
             # homónimo puede mandarlo al otro extremo de la ciudad (CCP20 quedó
-            # pintado en Santa Fe por un 'Terminal de trenes' de taxis). El token
-            # que ganó NO puede validar su propio hit: la mediana salta ese
-            # primer lugar y se añade la verdad local de barrios_osm.json. Si la
-            # evidencia contradice al hit por >5 km, gana la evidencia.
-            if hit and solo_lugar and not dentro and q_gana == len(consultas) - 1:
-                ref = _geocode_mediana_calles(dire, caja, saltear=primer)
+            # pintado en Santa Fe por un 'Terminal de trenes' de taxis). El
+            # control corre SIN IMPORTAR qué consulta ganó: solo corría cuando
+            # ganaba el último token y SG316 se pintó 7 km al norte porque ganó
+            # la pista entre paréntesis '(La Unión)' con el POI 'Centro
+            # Hispano-Americano de la Cultura' (sus calles 194-202 × av 405-411
+            # están en Vento, al sur). El token que ganó NO puede validar su
+            # propio hit: la mediana salta ese token y se añade la verdad local
+            # de barrios_osm.json. Si la evidencia contradice al hit por >5 km,
+            # gana la evidencia; si las calles no resuelven, la intención del
+            # autor (la pista) queda en pie.
+            if hit and solo_lugar and not dentro and q_gana is not None:
+                gana_pista = q_gana == 0 and bool(barrio)
+                tok_gana = barrio if gana_pista else primer
+                ref = _geocode_mediana_calles(dire, caja, saltear=tok_gana)
                 if not ref:
-                    pt = _barrio_local(dire, excluir=primer)
+                    pt = _barrio_local(dire, excluir=tok_gana)
                     if pt:
                         ref = {"lat": pt[0], "lon": pt[1], "match": "barrio local"}
                 if ref and math.hypot((hit["lat"] - ref["lat"]) * 111000,
                                       (hit["lon"] - ref["lon"]) * 102000) > 5000:
-                    ref["match"] = ref.get("match", "mediana de calles") + " (descarta POI lejano)"
+                    ref["match"] = (ref.get("match", "mediana de calles") +
+                                    (" (descarta pista lejana)" if gana_pista
+                                     else " (descarta POI lejano)"))
                     hit = ref
             # respaldo: punto representativo del municipio oficial. Peor precisión,
             # pero en el municipio CORRECTO. No vale promediar vértices (en
@@ -535,11 +549,15 @@ def circuitos_parciales(sb, eventos, ahora, cajas, sen_desde=None):
             continue
         if (v.get("fecha") or "") < corte:
             continue
-        dudosos = set(v.get("por_confirmar") or [])
+        dudosos = {c for c in (v.get("por_confirmar") or [])
+                   if not circuitos_id.es_conocido(c)}
         for item in v.get("circuitos") or []:
             con_evidencia = set(item.get("codigos_estado") or [])
             for cod in item.get("codigos") or []:
-                if cod in dudosos or cod in ya_cod or cod not in con_evidencia:
+                if cod in dudosos or cod not in con_evidencia:
+                    continue
+                cod = circuitos_id.canonico(cod)  # '581' -> SF581: un solo registro
+                if cod in ya_cod:
                     continue
                 ya_cod.add(cod)
                 info = cat_coords.get(cod) or {}

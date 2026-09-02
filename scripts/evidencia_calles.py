@@ -5,7 +5,9 @@ está en caché en el repo:
 
   (a) hits cacheados 'circ|...' de OTROS circuitos que comparten >=2 nombres de
       calle distintivos con las suyas (los hermanos de un mismo reparto viven
-      cerca);
+      cerca). N variantes del mismo parte geocodificadas por la MISMA consulta
+      POI comparten el match y no son N evidencias: cuentan como UNA (la
+      familia SG316: 12 claves sobre 'Centro Hispano' se auto-certificaban);
   (b) el centroide de su geometría de líneas ya resuelta
       (data/geocache_circuitos_lineas.json);
   (c) los puntos de data/barrios_osm.json cuyo nombre aparece en sus calles.
@@ -89,13 +91,21 @@ def dist_m(a, b):
 
 
 def entradas_hermanas(cache_geo):
-    """[(tokens_distintivos, (lat, lon), clave)] de todos los hits 'circ|'."""
+    """[(tokens_distintivos, (lat, lon), clave, match)] de todos los hits 'circ|'."""
     out = []
     for k, v in cache_geo.items():
         if not k.startswith("circ|") or not v:
             continue
-        out.append((tokens_distintivos(k[5:]), (v["lat"], v["lon"]), k))
+        out.append((tokens_distintivos(k[5:]), (v["lat"], v["lon"]), k, v.get("match")))
     return out
+
+
+def match_generica(m):
+    """Match que no apunta a un POI concreto: derivado de evidencia propia de
+    la dirección (mediana, barrio local, centroide) o legacy sin nombre. Esas
+    entradas las geocodificó cada clave por separado, no es la huella de una
+    familia: cada una vota como punto independiente."""
+    return not m or m.startswith(("mediana", "barrio local", "centroide", "centro municipio"))
 
 
 _BARRIOS = None
@@ -168,13 +178,24 @@ def evidencia_de_calles(codigo, calles, punto, entradas, cache_lineas):
       n_coincide       tamaño del racimo mayoritario entre los puntos que SÍ
                        caen cerca del punto pintado (su escaño de defensa);
       n_hermanos, tiene_lineas, puntos_barrio  contadores para el informe.
-    El punto pintado nunca vota: la clave 'circ|' propia se excluye del pool."""
+    El punto pintado nunca vota: la clave 'circ|' propia se excluye del pool.
+    Auto-certificación (SG316): N variantes del mismo parte geocodificadas por
+    el MISMO POI homónimo comparten el match; no son N evidencias concordantes
+    sino UNA, así que los hermanos con match no-genérico se deduplican por ese
+    valor. Los genéricos (mediana/barrio local/centroide) sí son triangulación
+    independiente y cada uno vota. SG314 conserva su racimo porque sus
+    hermanos traen matches DISTINTOS ('Santiago' y 'Antón Rocío'), no una
+    familia clonada."""
     ck = clave_cache(calles)
     ctoks = tokens_distintivos(calles)
-    pool, n_hermanos = [], 0
-    for toks, pt, k in entradas:
+    pool, n_hermanos, vistos = [], 0, set()
+    for toks, pt, k, match in entradas:
         if k == ck or len(ctoks & toks) < 2:
             continue
+        if not match_generica(match):
+            if match in vistos:
+                continue  # familia: otra copia del mismo POI no añade voto
+            vistos.add(match)
         pool.append(pt)
         n_hermanos += 1
     lc = centro_lineas(cache_lineas, codigo)

@@ -1094,5 +1094,15 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️🔴Consumidores del municipio San Miguel del Padrón, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en las siguientes direcciones: 👉 Callejón Obrapia"
+ },
+ "78976": {
+  "fecha": "2026-09-02T02:51:54+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "D1372",
+   "D1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Boyeros pertenecientes al circuito D1372, que se ha transferido temporalmente la carga al circuito D1380 la zona de: 👉"
  }
 }

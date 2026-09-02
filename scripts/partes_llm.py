@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "extractor"))
 import circuitos_id  # noqa: E402
 import llm_provider  # noqa: E402
-from extract import quitar_avisos  # noqa: E402
+from extract import quitar_avisos, texto_degenerado  # noqa: E402
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE_FILE = os.path.join(RAIZ, "data", "partes_llm.json")
@@ -151,6 +151,14 @@ def validar(extraccion, texto=""):
         # Backstop por si el LLM copia el aviso institucional del parte a pesar
         # de la regla del prompt: no es una dirección y ensucia el matching.
         calles = quitar_avisos((c.get("calles") or "").strip()) or None
+        # Basura del LLM (bucle de repetición: el parte 78278 devolvió la
+        # dirección del L316 con 'uda' cientos de veces, 3014 chars, y la
+        # validadora v2 la dejó pasar hasta el catálogo). El ítem se descarta
+        # ENTERO, como los códigos inválidos: ni se cachea ni casa por calles
+        # ni alimenta por_confirmar. Si el parte era legible, el regex de
+        # build_circuitos re-deriva la dirección limpia del mensaje crudo.
+        if texto_degenerado(calles, texto):
+            continue
         if not cods and calles:
             cod, conf = circuitos_id.casar_por_calles(calles)
             if cod:

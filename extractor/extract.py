@@ -143,6 +143,36 @@ def quitar_avisos(texto: str) -> str:
     return re.sub(r"\s{2,}", " ", RE_AVISO_CLIENTE.sub(" ", texto)).strip()
 
 
+# Basura del extractor LLM: en el parte 78278 (29-ago-2026) el modelo cayó en un
+# bucle de repetición y devolvió la dirección del L316 con 'uda' repetido cientos
+# de veces (3014 chars). El validador la aceptó y el constructor del catálogo la
+# adoptó por "longest wins", publicando la basura en circuitos.html. Calibrado
+# contra el corpus entero (12.816 mensajes del canal y toda la caché de LLM): el
+# único ítem que casaba es ese; las direcciones largas legítimas no pasan de 1056
+# chars (A980, jul-2026; PZ16 y 2210 rondan 500-600), y en los partes humanos
+# nunca hay tres palabras idénticas seguidas — repeticiones estilo "Avenida 7ma
+# hasta Avenida 1ra" no casan porque exigen que sean CONSECUTIVAS.
+RE_REPETICION_TOKEN = re.compile(r"\b(\w+)(?:\s+\1\b){2,}", re.IGNORECASE)
+LARGO_MAX_CALLES = 1200
+
+
+def texto_degenerado(texto: str, fuente=None) -> bool:
+    """True si una dirección de calles es basura: bucle de repetición de tokens
+    o longitud imposible (más larga que el parte que la contiene, o que el
+    máximo observado legítimo). *fuente* es el texto del mensaje de origen,
+    cuando se tiene a mano. Compartida por partes_llm.py (no la cachea) y
+    build_circuitos.py (no la adopta); la implementación vive en un solo
+    lugar para que las dos defensas no puedan divergir."""
+    if not texto:
+        return False
+    if len(texto) > LARGO_MAX_CALLES:
+        return True
+    # Sin fuente a mano (None o "") no se puede aplicar la regla relativa.
+    if fuente and len(texto) > len(fuente):
+        return True  # una dirección no puede medir más que el post que la nombra
+    return bool(RE_REPETICION_TOKEN.search(texto))
+
+
 def zonas_en(texto: str) -> list:
     """Líneas de bullet ('👉 Municipio: zonas', '💥Dirección: ...') de posts oficiales."""
     zonas = []

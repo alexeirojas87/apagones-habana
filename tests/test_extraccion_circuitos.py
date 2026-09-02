@@ -173,3 +173,64 @@ class AsignacionDesdeCacheTest(unittest.TestCase):
         con_lineas = [c["codigo"] for c in r if c.get("lineas")]
         self.assertEqual(con_lineas, ["A1", "A2", "A3"],
                          "los circuitos tras el corte perdieron sus líneas cacheadas")
+
+
+class AdopcionCallesDegeneradasTest(unittest.TestCase):
+    """Defensa en profundidad en el consumidor (build_circuitos._adoptar_calles).
+
+    Regresión del parte 78278 (29-ago-2026): el LLM devolvió la dirección del
+    L316 con 'uda' repetido cientos de veces (3014 chars); la regla "longest
+    wins" la habría adoptado sobre el texto bueno aunque la caché llegara
+    sucia (entradas anteriores al guard de partes_llm.py). El guard comparte
+    la implementación de extract.texto_degenerado con el productor.
+    """
+
+    # dirección limpia del L316 en ese mismo parte (re-derivada por el regex)
+    LIMPIA = ("Alrededores de calle 70 desde Avenida 13 hasta Avenida 29C con "
+              "Avenida 21 (Reparto Buenavista). Calle 64 desde Avenida 17 "
+              "hasta Avenida 7maB(Almendares).")
+    BUCLE = ("Alrededores de calle 70 desde Avenida uda " + "uda " * 300).strip()
+    # muestra real recortada de la caché (74883/PZ16, 606 chars legítimos;
+    # corrida de espacios de relleno colapsada)
+    PZ16 = ("Alrededores de calles 37 desde 4 hasta 6, 6 desde 37 hasta San "
+            "Pedro, San Pedro desde Marino hasta Mariano, Ayestarán desde San "
+            "Pedro hasta 20 de Mayo, 20 de Mayo desde Ayestarán hasta "
+            "Amenidad, Amenidad hasta calzada del Cerro y edificios de la "
+            "Esquina de Tejas. Calle 6 desde 37 hasta Hidalgo")
+    FUENTE_LARGA = "Informamos afectación en los circuitos: " + "zona. " * 200
+
+    def _registro(self, calles):
+        return {"codigo": "L316", "calles": calles}
+
+    def test_no_adopta_bucle_de_repeticion_aunque_sea_la_mas_larga(self):
+        r = self._registro(self.LIMPIA)
+
+        MOD._adoptar_calles(r, self.BUCLE, self.LIMPIA + self.PZ16)
+
+        self.assertEqual(r["calles"], self.LIMPIA,
+                         "el texto degenerado ganó por longitud: se publicó basura")
+
+    def test_no_adopta_direccion_mas_larga_que_el_parte(self):
+        r = self._registro(self.LIMPIA)
+
+        MOD._adoptar_calles(r, self.PZ16, "parte breve")
+
+        self.assertEqual(r["calles"], self.LIMPIA)
+
+    def test_adopta_direccion_larga_legitima(self):
+        # la calibración no puede matar el comportamiento original: la más
+        # completa gana cuando solapa bien (y PZ16 <1200, cabría en su parte).
+        r = self._registro("Calle 37 desde 4 hasta 6")
+
+        MOD._adoptar_calles(r, self.PZ16, self.FUENTE_LARGA)
+
+        self.assertEqual(r["calles"], self.PZ16)
+
+    def test_adopta_repeticiones_no_consecutivas(self):
+        # "Avenida 7ma hasta Avenida 1ra ... Avenida 7maB hasta Avenida 3ra":
+        # 'Avenida' se repite, nunca tres palabras idénticas seguidas.
+        r = self._registro("")
+
+        MOD._adoptar_calles(r, self.LIMPIA, self.LIMPIA)
+
+        self.assertEqual(r["calles"], self.LIMPIA)

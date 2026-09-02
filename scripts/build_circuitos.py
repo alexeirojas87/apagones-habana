@@ -25,7 +25,8 @@ from supabase import create_client
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "extractor"))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from extract import bloques_en, municipios_en, causa_en, normalizar, quitar_avisos  # noqa: E402
+from extract import (bloques_en, municipios_en, causa_en, normalizar,  # noqa: E402
+                     quitar_avisos, texto_degenerado)
 from circuitos_id import _tokens, canonico, es_conocido  # noqa: E402
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
@@ -91,6 +92,23 @@ def _cobertura(nuevo, viejo):
     if not tn or not tv:
         return 0.0
     return len(tn & tv) / min(len(tn), len(tv))
+
+
+def _adoptar_calles(r, nuevo, fuente=None):
+    """Actualiza la dirección del registro con la última lectura del parte
+    (regex o LLM), compartiendo la regla para que las dos vías no diverjan.
+
+    Primero descarta basura del LLM (bucle de repetición / longitud imposible:
+    el parte 78278 dio al L316 una dirección de 3014 chars repitiendo 'uda'
+    que la regla "longest wins" habría publicado en circuitos.html). Sobre
+    texto sano: si la nueva dirección solapa poco con la conocida (< 0.25 de
+    cobertura de tokens), es un CAMBIO de dirección y la nueva gana; si
+    solapa bien, gana la más completa."""
+    if not nuevo or texto_degenerado(nuevo, fuente):
+        return
+    if (not r["calles"] or _cobertura(nuevo, r["calles"]) < 0.25
+            or len(nuevo) > len(r["calles"])):
+        r["calles"] = nuevo
 
 MESES = {
     "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
@@ -370,13 +388,7 @@ def main():
                 r["veces"] += 1
                 r["ultima"] = fecha
                 r["ultima_message_id"] = f["message_id"]
-                # Actualización de calles: si la nueva dirección solapa poco
-                # con la conocida (< 0.25 de cobertura de tokens), es un CAMBIO
-                # de dirección y la nueva gana. Si solapa bien, gana la más
-                # completa (comportamiento original "longest wins").
-                if not r["calles"] or _cobertura(calles, r["calles"]) < 0.25 \
-                        or len(calles) > len(r["calles"]):
-                    r["calles"] = calles
+                _adoptar_calles(r, calles, texto)
                 if bloque is not None:
                     r["bloque"] = bloque          # último bloque conocido gana
                 if muni:
@@ -447,10 +459,9 @@ def main():
                     if (r["ultima"] or "") <= fecha:
                         r["ultima"] = fecha
                         r["ultima_message_id"] = f["message_id"]
-                    if item.get("calles") and (not r["calles"]
-                            or _cobertura(item["calles"], r["calles"]) < 0.25
-                            or len(item["calles"]) > len(r["calles"])):
-                        r["calles"] = item["calles"]
+                    # El texto degenerado del LLM no se adopta ni aunque sea el
+                    # más largo: la defensa en profundidad vive en _adoptar_calles.
+                    _adoptar_calles(r, item.get("calles"), texto)
                     if item.get("municipio") and not r["municipio"]:
                         r["municipio"] = (municipios_en(item["municipio"]) or [None])[0]
                     # Solo un código escrito explícitamente en el parte puede

@@ -365,6 +365,16 @@
    "lat": 23.106,
    "lon": -82.44481,
    "nota": "Hotel Comodoro, 3ra Ave, Miramar (Playa)"
+  },
+  "chivas": {
+   "lat": 23.13502,
+   "lon": -82.3085,
+   "nota": "Reparto Chivás (también escrito Chibás), costado oeste de Habana del Este junto a Vía Blanca. Sin esto, GC15 caía en el 'centroide municipio' 11 km al este."
+  },
+  "reparto chivas": {
+   "lat": 23.13502,
+   "lon": -82.3085,
+   "nota": "Reparto Chivás (también escrito Chibás), costado oeste de Habana del Este junto a Vía Blanca. Sin esto, GC15 caía en el 'centroide municipio' 11 km al este."
   }
  },
  "circuitos_municipio": {
@@ -398,7 +408,13 @@
   "OP410": "Habana Vieja",
   "OP411": "Habana Vieja",
   "OP424": "Habana Vieja",
-  "R454": "Regla"
+  "R454": "Regla",
+  "CCP20": "Habana Vieja",
+  "CPP20": "Habana Vieja",
+  "SF584": "Playa",
+  "C11": "Cerro",
+  "L322": "Playa",
+  "L323": "Playa"
  },
  "circuitos_falsos": [
   "L2"

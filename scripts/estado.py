@@ -29,6 +29,7 @@ from extract import bloques_en, es_inicio_desconexion_total, municipios_en, zona
 from geocode_zonas import nominatim, bbox_municipios, normalizar, resolver_zonas_numeradas  # noqa: E402
 import correcciones  # noqa: E402
 import circuitos_id  # noqa: E402
+import evidencia_calles  # noqa: E402
 
 # Lugares con coords corregidas a mano (verdad local): Nominatim ubica mal muchos
 # barrios cubanos. clave normalizada -> {lat, lon}.
@@ -310,6 +311,19 @@ def _barrio_local(dire, excluir=None):
     return None
 
 
+def _manual_contradicho(punto, direccion, cache):
+    """Guardia del atajo LUGARES_MANUAL de primer segmento (solo circuitos):
+    'Comodoro' es verdad local CUANDO el parte se refiere al reparto de Vedado,
+    pero el parte de PG940 lo escribía como CALLE de Ciudad Popular. Se
+    triangula sin red la dirección contra la evidencia ya cachada (hermanos
+    'circ|', geometría en caché, barrios OSM): si un racimo concordante cae a
+    más de 5 km del punto manual, el atajo no puede saltarse la geocodificación
+    validada. Coste acotado: solo corre cuando un nombre pisa LUGARES_MANUAL."""
+    cache_lin = evidencia_calles.cargar_caches()[1]
+    return evidencia_calles.contradice_evidencia(
+        punto, direccion, evidencia_calles.entradas_hermanas(cache), cache_lin)
+
+
 def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
     """Añade lat/lon usando Nominatim con caché persistente.
 
@@ -331,16 +345,22 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
             continue
         # Corrección manual de lugar (verdad local): la pista entre paréntesis o el
         # primer nombre. Gana a Nominatim, que ubica mal barrios como Guiteras/Comodoro.
+        # La pista del autor pasa sin más; el primer nombre se frena si la evidencia
+        # de las calles hermanas lo contradice (PG940: 'Comodoro' era una calle).
         cands = []
         mh0 = re.search(r"\(([^)]+)\)", it["direccion"])
         if mh0:
-            cands.append(mh0.group(1))
-        cands.append(re.split(r"[;,]", it["direccion"])[0])
-        for cand in cands:
+            cands.append((mh0.group(1), False))
+        cands.append((re.split(r"[;,]", it["direccion"])[0], True))
+        for cand, primer_nombre in cands:
             lm = LUGARES_MANUAL.get(normalizar(cand).strip(" ."))
-            if lm:
-                it["lat"], it["lon"] = lm["lat"], lm["lon"]
-                break
+            if not lm:
+                continue
+            if (solo_lugar and primer_nombre and
+                    _manual_contradicho((lm["lat"], lm["lon"]), it["direccion"], cache)):
+                continue
+            it["lat"], it["lon"] = lm["lat"], lm["lon"]
+            break
         if "lat" in it:
             continue
         if solo_lugar:

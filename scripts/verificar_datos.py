@@ -13,7 +13,16 @@ Chequeos:
   5. Circuitos del déficit vigente que no existen en el catálogo.
   6. Frescura: estado.json con más de 2 h (el cron de 10 min está caído) o
      analitica.json con más de 26 h.
-  7. Estados/fechas inválidos en el catálogo.
+   7. Estados/fechas inválidos en el catálogo.
+  10. Punto pintado lejos de la evidencia de sus propias calles (sin red) ->
+      REPARABLE si la entrada 'circ|' de la caché conserva el hit malo: el
+      control cruzado de estado.py ('descarta POI lejano') solo corre en
+      geocodificaciones NUEVAS, así que aquí se re-triangula retroactivamente
+      con lo ya cachado (hermanos 'circ|', geometría de líneas, barrios OSM —
+      ver evidencia_calles.py) y se purga para que el cron re-geocodifique.
+      Con el punto respaldado por autoridad pero la GEOMETRÍA en caché lejos,
+      se purga la geometría (y sus intentos) para que se rebusque junto al
+      punto bueno.
 
 Uso: python scripts/verificar_datos.py [--reparar] [--informe informe.md]
 Sale con código 1 si encontró problemas (reparados o no), 0 si todo bien.
@@ -32,6 +41,10 @@ RAIZ = os.path.join(os.path.dirname(__file__), "..")
 BASE = os.environ.get("APAGONES_URL", "https://apagones-habana.pages.dev")
 CACHE_GEO = os.path.join(RAIZ, "data", "geocache_averias.json")
 CACHE_LINEAS = os.path.join(RAIZ, "data", "geocache_circuitos_lineas.json")
+CACHE_INTENTOS = os.path.join(RAIZ, "data", "geocache_lineas_intentos.json")
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import evidencia_calles as evc  # noqa: E402
 
 
 def vivo(nombre):
@@ -85,7 +98,77 @@ def dist_a_cualquiera(munis, lat, lon):
 
 
 def clave_cache(calles):
-    return "circ|" + re.sub(r"\s+", " ", calles or "").strip(" .;,")
+    return evc.clave_cache(calles)
+
+
+def chequeo_evidencia_calles(circuitos, autoridad, cache_geo, cache_lineas):
+    """Chequeo 10: triangulación retroactiva punto-vs-calles, SIN red.
+
+    El control cruzado de estado.py ('descarta POI lejano', dd13548) solo corre
+    en geocodificaciones NUEVAS: una entrada envenenada antes de ese commit
+    nunca se re-valida (CCP20 y 15 casos más). Aquí se vuelve a preguntar a la
+    evidencia ya cachada —hermanos 'circ|' con >=2 calles distintivas, geometría
+    en caché, barrios OSM— y si el racimo mayoritario niega el punto pintado, se
+    purga la clave propia para que el cron la re-geocodifique. Conservador por
+    diseño: exige >=MIN_CONCORDANTES puntos concordantes y que el racimo
+    contrario gane al que coincide con el punto (por eso callan los homónimos
+    de una sola familia —'El Trébol', 'Embalse La Coca'— y los twins que se
+    acusan entre sí cuando el mayoritario coincide con el punto).
+
+    Devuelve (problemas, purgar_geo, purgar_lineas, purgar_intentos)."""
+    entradas = evc.entradas_hermanas(cache_geo)
+    problemas, purgar_geo, purgar_lineas, purgar_intentos = [], set(), set(), set()
+    for c in circuitos:
+        lat, lon = c.get("lat"), c.get("lon")
+        calles = c.get("calles") or ""
+        if lat is None or not calles or evc.ALAMAR.search(calles):
+            continue
+        punto = (lat, lon)
+        ev = evc.evidencia_de_calles(c["codigo"], calles, punto, entradas, cache_lineas)
+        hit = cache_geo.get(clave_cache(calles))
+        lc = evc.centro_lineas(cache_lineas, c["codigo"]) if ev["tiene_lineas"] else None
+        d_ev = evc.dist_m(punto, ev["centro"]) if ev["centro"] else None
+        d_lin = evc.dist_m(punto, lc) if lc else None
+        mayoritario = (d_ev and ev["n"] >= evc.MIN_CONCORDANTES
+                       and d_ev > evc.DIST_MINIMA_M and ev["n_coincide"] < ev["n"])
+        # sin autoridad (los cheques 1-2 ya la vigilan) y con hit-POI: las
+        # líneas propias, buscadas por nombres de calle reales, valen aunque
+        # no formen racimo (el caso L323: líneas en Almendares, punto en
+        # Arroyo Naranjo por un homónimo 'Almendares').
+        geometria_negando = (d_lin and d_lin > evc.DIST_MINIMA_M and not autoridad(c)
+                             and hit and hit.get("match") and not mayoritario
+                             and not ev["puntos_barrio"])
+        if mayoritario or geometria_negando:
+            d = d_ev if mayoritario else d_lin
+            detalle = (f"{c['codigo']}: pintado a {d/1000:.1f} km de la evidencia de sus "
+                       f"propias calles ({ev['n']} puntos concordantes)"
+                       if mayoritario else
+                       f"{c['codigo']}: pintado a {d/1000:.1f} km de sus calles dibujadas "
+                       f"en caché, sin autoridad de municipio")
+            if hit and hit.get("match"):
+                detalle += f" — hit '{hit['match'][:60]}'"
+            problemas.append(("punto lejos de sus calles", detalle))
+            # Purga solo si la caché guarda el punto Y el hit conservado es el
+            # que discrepa de la evidencia; sin clave 'circ|' el punto vino de
+            # un atajo (manual/centroide/legacy) y purgar no re-geocodifica
+            # nada (PG940, SF584, C11 -> se reportan, no se purgan).
+            ref = ev["centro"] if mayoritario else lc
+            if hit and ref and evc.dist_m((hit["lat"], hit["lon"]), ref) > evc.DIST_MINIMA_M:
+                purgar_geo.add(c["codigo"])
+        elif d_lin and d_lin > evc.DIST_MINIMA_M and autoridad(c):
+            # El punto manda (autoridad lo respalda, cheques 1-2 OK): la
+            # geometría en caché es la envenenada (homónimos lejanos: L317,
+            # PZ13). Se purga junto con sus intentos para que build_circuitos
+            # la rebusque alrededor del punto bueno. Gate de 5 km (no los 3
+            # del chequeo 3 sobre líneas SERVIDAS): aquí la geometría está sin
+            # publicar, y un 3.3 km legítimo de una calle larga no debe
+            # gastar presupuesto de Overpass todos los días.
+            problemas.append(("líneas de caché lejos del punto",
+                              f"{c['codigo']}: geometría en caché a {d_lin/1000:.1f} km del "
+                              "punto (respaldado por su municipio); se purga para rebuscarla"))
+            purgar_lineas.add(c["codigo"])
+            purgar_intentos.add(c["codigo"])
+    return problemas, purgar_geo, purgar_lineas, purgar_intentos
 
 
 def main():
@@ -104,7 +187,7 @@ def main():
     analitica = vivo("analitica.json")
 
     problemas = []   # (chequeo, detalle)
-    purgar_geo, purgar_lineas = set(), set()
+    purgar_geo, purgar_lineas, purgar_intentos = set(), set(), set()
     circuitos = cat.get("circuitos", [])
     ahora = datetime.now(timezone.utc)
 
@@ -152,6 +235,15 @@ def main():
             problemas.append(("líneas lejos de su punto",
                               f"{c['codigo']}: calles dibujadas a {d/1000:.1f} km del punto"))
             purgar_lineas.add(c["codigo"])
+
+    # 10: punto pintado lejos de la evidencia de sus propias calles (sin red):
+    # la revisión retroactiva de las cachés envenenadas antes de dd13548.
+    cache_geo, cache_lin = evc.cargar_caches()
+    p10, g10, l10, i10 = chequeo_evidencia_calles(circuitos, autoridad, cache_geo, cache_lin)
+    problemas += p10
+    purgar_geo |= g10
+    purgar_lineas |= l10
+    purgar_intentos |= i10
 
     # 4: códigos duplicados
     vistos = set()
@@ -259,6 +351,14 @@ def main():
             if cod in lin:
                 del lin[cod]
                 reparados.append(f"{cod}: líneas purgadas (se rebuscan junto al punto bueno)")
+        if purgar_intentos:
+            intentos = (json.load(open(CACHE_INTENTOS)) if os.path.exists(CACHE_INTENTOS)
+                        else {})
+            for cod in sorted(purgar_intentos):
+                if cod in intentos:
+                    del intentos[cod]  # mismo trato que un cambio de dirección:
+                    reparados.append(f"{cod}: contador de intentos reiniciado (reintenta Overpass)")
+            json.dump(intentos, open(CACHE_INTENTOS, "w"), ensure_ascii=False)
         json.dump(g, open(CACHE_GEO, "w"), ensure_ascii=False)
         json.dump(lin, open(CACHE_LINEAS, "w"), ensure_ascii=False)
 

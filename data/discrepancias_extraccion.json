@@ -1,13 +1,4 @@
 {
- "77262": {
-  "fecha": "2026-08-26T05:09:01+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SR830"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 01:02 AM quedó restablecido el servicio en los siguientes circuitos: 👉 MB920: Alturas de Boca Ciega, Santa María"
- },
  "77286": {
   "fecha": "2026-08-26T07:14:39+00:00",
   "tipo_llm": "afectacion",
@@ -1094,5 +1085,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Boyeros pertenecientes al circuito D1372, que se ha transferido temporalmente la carga al circuito D1380 la zona de: 👉"
+ },
+ "78991": {
+  "fecha": "2026-09-02T05:27:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "421",
+   "SG314"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ ☑️Consumidores del municipio Boyeros, ha quedado reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉421 / 196 A y 196 B Reparto Especial Santiago .✅ "
  }
 }

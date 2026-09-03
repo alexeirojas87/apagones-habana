@@ -937,19 +937,6 @@
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito 1245, que se ha transferido temporalmente la carga al circuito PZ7 del siguiente cuad"
  },
- "79181": {
-  "fecha": "2026-09-02T22:34:19+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "OP318",
-   "OP320",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 06:15 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 OP304, OP318, "
- },
  "79179": {
   "fecha": "2026-09-02T22:15:53+00:00",
   "tipo_llm": "afectacion",
@@ -1036,18 +1023,5 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 AM se afectan 591 MW distribuidos en 170 circuitos de distribución. A continuación,"
- },
- "79301": {
-  "fecha": "2026-09-03T14:25:34+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP318",
-   "OP320",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:21AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉OP304,OP320,OP411,OP424,OP318 y OP41"
  }
 }

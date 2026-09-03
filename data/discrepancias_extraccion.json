@@ -1,16 +1,4 @@
 {
- "77586": {
-  "fecha": "2026-08-27T07:13:41+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "PZ24",
-   "S516"
-  ],
-  "solo_regex": [
-   "AZA1"
-  ],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 337MW distribuidos en 90circuitos de distribución. A continuación, se"
- },
  "77619": {
   "fecha": "2026-08-27T09:54:45+00:00",
   "tipo_llm": "averia",

@@ -20,9 +20,15 @@ Chequeos:
       geocodificaciones NUEVAS, así que aquí se re-triangula retroactivamente
       con lo ya cachado (hermanos 'circ|', geometría de líneas, barrios OSM —
       ver evidencia_calles.py) y se purga para que el cron re-geocodifique.
-      Con el punto respaldado por autoridad pero la GEOMETRÍA en caché lejos,
-      se purga la geometría (y sus intentos) para que se rebusque junto al
-      punto bueno.
+       Con el punto respaldado por autoridad pero la GEOMETRÍA en caché lejos,
+       se purga la geometría (y sus intentos) para que se rebusque junto al
+       punto bueno.
+   10b. Fila servida con hit 'centro municipio' cuyo texto ya resuelve la gaceta
+       de barrios bajo su autoridad -> REPARABLE: el respaldo del centroide en
+       estado.py se jubiló, pero las cachés viejas siguen pintando la cabecera
+       del municipio; se purga la clave para que la Ingesta la reubique en el
+       reparto. Sin gaceta para ese texto (D1050, VC100) solo se reporta: purgar
+       no mejoraría el punto.
 
 Uso: python scripts/verificar_datos.py [--reparar] [--informe informe.md]
 Sale con código 1 si encontró problemas (reparados o no), 0 si todo bien.
@@ -175,6 +181,44 @@ def chequeo_evidencia_calles(circuitos, autoridad, cache_geo, cache_lineas):
     return problemas, purgar_geo, purgar_lineas, purgar_intentos
 
 
+def chequeo_gaceta_centroides(circuitos, autoridad, cache_geo, munis, gazetteer=None):
+    """Chequeo 10b: centroides 'centro municipio' que la gaceta sabe resolver.
+
+    El respaldo del centroide en estado.py se jubiló: pintaba la cabecera del
+    municipio en vez del reparto que el parte nombraba. Las entradas ya
+    cachadas así siguen servidas hasta que alguien las purgue; aquí se pregunta
+    a cada fila con hit de centroide si SU texto resuelve hoy por gaceta bajo su
+    propia autoridad (mismo gazetteer que usará la re-geocodificación). Lo que
+    resuelve se flaggea Y se purga (el --reparar borra la clave 'circ|' y la
+    próxima Ingesta la pinta en el punto de la gaceta). Lo que no (D1050
+    'Barreras', VC100 'Managua') se flaggea solo: purgar un centroide sin
+    gaceta solo consigue volver a pintar el centroide.
+
+    Devuelve (problemas, purgar_geo)."""
+    if gazetteer is None:
+        gazetteer = evc._lugar_gazetteer
+    problemas, purgar_geo = [], set()
+    for c in circuitos:
+        calles = c.get("calles") or ""
+        hit = cache_geo.get(clave_cache(calles))
+        if not hit or hit.get("match") != "centro municipio":
+            continue
+        ms = autoridad(c)
+        anillos = [a for nom, ans in munis if nom in ms for a in ans]
+        dentro = (lambda la, lo: any(_en_poly(la, lo, a) for a in anillos)) \
+            if anillos else None
+        if gazetteer(calles, dentro):
+            problemas.append(("centro municipio con gaceta",
+                              f"{c['codigo']}: '{calles[:60]}' resuelve por gaceta; "
+                              "se purga el centroide para re-geocodificar"))
+            purgar_geo.add(c["codigo"])
+        else:
+            problemas.append(("centro municipio con gaceta",
+                              f"{c['codigo']}: '{calles[:60]}' pintado en el centro "
+                              "del municipio y sin nombre resoluble en la gaceta"))
+    return problemas, purgar_geo
+
+
 def candidatos_por_confirmar(llm_cache, umbral=3):
     """Códigos 'por_confirmar' recurrentes (chequeo 9): el LLM los ve en los
     partes pero el catálogo no los registra. Con `umbral`+ apariciones son
@@ -269,6 +313,12 @@ def main():
     purgar_geo |= g10
     purgar_lineas |= l10
     purgar_intentos |= i10
+
+    # 10b: tras jubilar el respaldo del centroide, las filas que siguen pintadas
+    # en la cabecera del municipio con texto que la gaceta ya resuelve.
+    p10b, g10b = chequeo_gaceta_centroides(circuitos, autoridad, cache_geo, munis)
+    problemas += p10b
+    purgar_geo |= g10b
 
     # 4: códigos duplicados
     vistos = set()

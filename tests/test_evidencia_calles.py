@@ -573,5 +573,57 @@ class ValidacionPistaGanadoraTest(unittest.TestCase):
         self.assertEqual(guardado["match"], "Centro Farsante")
 
 
+class GacetaCentroidesTest(unittest.TestCase):
+    """#10b: filas servidas con hit 'centro municipio' que la gaceta ya sabe
+    resolver. Se flaggan siempre; SOLO se purgan las resolubles (las demás —
+    D1050 'Barreras', VC100— esperan el cambio de datos de la gaceta, decisión 4)."""
+
+    def _chk(self, circuitos, cache, autoridad=None, gaz=None):
+        return VD.chequeo_gaceta_centroides(
+            circuitos, autoridad or (lambda c: ["Cotorro"]), cache,
+            VD.cargar_municipios(), gazetteer=gaz)
+
+    def test_centroide_resoluble_por_gaceta_se_flaggea_y_se_purga(self):
+        calles = "Altura de Lotería."
+        c = circ("SR820", 23.05, -82.30, calles)
+        cache = {evc.clave_cache(calles): {"lat": 23.05, "lon": -82.30,
+                                       "match": "centro municipio"}}
+        probs, purgar = self._chk([c], cache)
+        self.assertEqual([p[0] for p in probs], ["centro municipio con gaceta"])
+        self.assertEqual(purgar, {"SR820"}, "resolvable -> re-geocodifica en la Ingesta")
+
+    def test_centroide_sin_gaceta_se_flaggea_pero_no_se_purga(self):
+        calles = "Managua, Molinet y El Volcán"
+        c = circ("VC100", 23.00, -82.32, calles)
+        cache = {evc.clave_cache(calles): {"lat": 23.00, "lon": -82.32,
+                                       "match": "centro municipio"}}
+        probs, purgar = self._chk([c], cache, autoridad=lambda c: ["Arroyo Naranjo"])
+        self.assertEqual([p[0] for p in probs], ["centro municipio con gaceta"])
+        self.assertEqual(purgar, set(), "sin gaceta purgar solo re-centroidea: flag")
+
+    def test_gazette_inyectable_y_no_centroides_ignorados(self):
+        calles = "Barreras"
+        c = circ("D1050", 23.10, -82.29, calles)
+        cache = {evc.clave_cache(calles): {"lat": 23.10, "lon": -82.29,
+                                       "match": "centro municipio"},
+                 "circ|Otra Cosa": {"lat": 1, "lon": 1, "match": "gaceta de barrios"}}
+        called = []
+        def gaz(dire, dentro):
+            called.append((dire, dentro is not None))
+            return None
+        probs, purgar = self._chk([c], cache, autoridad=lambda c: ["Guanabacoa"], gaz=gaz)
+        self.assertEqual(called, [("Barreras", True)], "inyectada y con gate real")
+        self.assertEqual(len(probs), 1)  # la clave 'gaceta de barrios' no se toca
+        self.assertEqual(purgar, set())
+
+    def test_sin_hit_centro_municipio_no_inmiscuible(self):
+        calles = "Altura de Lotería."
+        c = circ("SR820", 23.0376, -82.2518, calles)
+        self.assertEqual(self._chk([c], {evc.clave_cache(calles): {"lat": 23.0376,
+                                     "lon": -82.2518, "match": "gaceta de barrios"}}),
+                         ([], set()))
+        self.assertEqual(self._chk([c], {}), ([], set()), "sin hit tampoco: nada que jubilar")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1071,5 +1071,24 @@
    "OP325"
   ],
   "extracto": "✅🟢Consumidores de los municipios Plaza y Cerro, quedó restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, Ayestarán"
+ },
+ "79198": {
+  "fecha": "2026-09-03T00:05:37+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1160"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 6 / 1ra y 3ra. 🛑⚡️"
+ },
+ "79190": {
+  "fecha": "2026-09-02T23:24:57+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1008",
+   "PG970"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1008, que se ha transferido temporalmente la carga al circuito PG970 del si"
  }
 }

@@ -449,14 +449,12 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
                                     (" (descarta pista lejana)" if gana_pista
                                      else " (descarta POI lejano)"))
                     hit = ref
-            # respaldo: punto representativo del municipio oficial. Peor precisión,
-            # pero en el municipio CORRECTO. No vale promediar vértices (en
-            # polígonos cóncavos cae FUERA): se toma el punto medio del tramo
-            # interior más ancho a la latitud del centroide.
+            # respaldo: gaceta de barrios — nombres del propio parte, gateados
+            # por la caja de autoridad. El centroide municipal se JUBILA: pintar
+            # la cabecera del municipio con match 'centro municipio' mentía más
+            # que 'sin ubicar' (None cacheado), que es lo que muestra el mapa.
             if not hit and polys:
-                hit = evidencia_calles.punto_interior(polys[0])
-                if hit:
-                    hit["match"] = "centro municipio"
+                hit = evidencia_calles._lugar_gazetteer(dire, dentro)
             cache[clave] = hit
             nuevos += 1
             if nuevos % 15 == 0:  # guardado parcial: no perder progreso si se corta

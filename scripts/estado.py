@@ -339,7 +339,11 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
         mh0 = re.search(r"\(([^)]+)\)", it["direccion"])
         if mh0:
             cands.append((mh0.group(1), False))
-        cands.append((re.split(r"[;,]", it["direccion"])[0], True))
+        # En circuitos (solo_lugar) los DOS PUNTOS también cierran la pista de
+        # lugar: 'Cojímar: calles 32 hasta Victoria…' debe intentar 'Cojímar',
+        # no el rango entero (GC12). Las averías conservan el troceo de siempre.
+        cands.append((re.split(r"[;,:]" if solo_lugar else r"[;,]",
+                               it["direccion"])[0], True))
         for cand, primer_nombre in cands:
             lm = LUGARES_MANUAL.get(normalizar(cand).strip(" ."))
             if not lm:
@@ -383,7 +387,7 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
                 caja = it.get("caja") or BBOX_HABANA
                 if barrio:
                     consultas.append(f"{barrio}, La Habana, Cuba")
-                primer = re.split(r"[;,]", dire)[0].strip()
+                primer = re.split(r"[;,:]", dire)[0].strip()
                 if not re.match(r"(calle|avenida|ave\.?|cuadrante|\d|desde|hasta|entre|parte)\b", primer, re.I):
                     lugar = re.sub(r"^(reparto|rpto\.?)\s+", "", primer, flags=re.I).strip()
                     consultas.append(f"{lugar}, La Habana, Cuba")

@@ -230,6 +230,78 @@ class FlujoEstadoTest(unittest.TestCase):
                          "solo_lugar=False conserva el comportamiento original")
 
 
+class TestSeparadorDospuntos(unittest.TestCase):
+    """GC12: el parte dice 'Cojímar: calles 32 hasta Victoria…' y los DOS PUNTOS
+    no cerraban la pista de lugar: se geocodificaba el rango entero de calles y
+    el circuito caía en el centroide. Con ':' como separador (solo en el camino
+    de circuitos), 'Cojímar' viaja como candidato por su cuenta; las averías
+    conservan el troceo original (pinned por test_averias_sin_solo_lugar_no_cambian)."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.cache_path = os.path.join(self.tmp.name, "geocache.json")
+        json.dump({}, open(self.cache_path, "w"))
+        import estado
+        self.E = estado
+        self.queries = []
+
+        def _nom(q, caja):
+            self.queries.append(q)
+            return None
+
+        for p in (
+            mock.patch.object(estado, "CACHE_AVERIAS", self.cache_path),
+            mock.patch.object(estado, "nominatim", _nom),
+            mock.patch("time.sleep", lambda s: None),
+        ):
+            p.start()
+            self.addCleanup(p.stop)
+
+    def test_dos_puntos_cierran_la_pista_de_lugar(self):
+        it = {"municipio": "Habana del Este", "direccion":
+              "Cojímar: calles 32 hasta Victoria y desde Calixto García"}
+        self.E.geocodificar_averias([it], {}, solo_lugar=True)
+        # La pista viaja sola; el rango entero NO pudo ser candidato de lugar
+        # (era la consulta literal de antes del arreglo; la mediana busca otra cosa).
+        self.assertIn("Cojímar, La Habana, Cuba", self.queries,
+                      "la pista antes de ':' debe geocodificarse sola")
+        self.assertNotIn(it["direccion"] + ", La Habana, Cuba", self.queries,
+                         "el rango de calles no puede viajar pegado al topónimo")
+
+    def test_paridad_de_acento(self):
+        # 'circ|Cojímar:' y 'circ|Cojimar:' cerraban igual de mal: ambas variantes
+        # tienen que producir el MISMO candidato y la misma ubicación.
+        def _nom(q, caja):
+            self.queries.append(q)
+            if q in ("Cojímar, La Habana, Cuba", "Cojimar, La Habana, Cuba"):
+                return {"lat": 23.1624, "lon": -82.3001, "match": "Cojímar"}
+            return None
+
+        with mock.patch.object(self.E, "nominatim", _nom):
+            a = self.E.geocodificar_averias(
+                [{"municipio": "Habana del Este",
+                  "direccion": "Cojímar: calles 32 hasta Victoria"}], {},
+                solo_lugar=True)[0]
+            b = self.E.geocodificar_averias(
+                [{"municipio": "Habana del Este",
+                  "direccion": "Cojimar: calles 32 hasta Victoria"}], {},
+                solo_lugar=True)[0]
+        self.assertEqual((a.get("lat"), a.get("lon")), (b.get("lat"), b.get("lon")),
+                         "acento y ausencia de acento deben ubicar igual")
+        self.assertIsNotNone(a.get("lat"), "ambas variantes deben resolver")
+
+    def test_averias_no_adoptan_el_separador_nuevo(self):
+        # Camino de averías (solo_lugar=False): byte-idéntico a hoy — ':' NO
+        # cierra el candidato. El pino complementario es
+        # FlujoEstadoTest.test_averias_sin_solo_lugar_no_cambian.
+        it = {"municipio": "X", "direccion": "Cojímar: calles 32 hasta Victoria"}
+        self.E.geocodificar_averias([it], {}, solo_lugar=False)
+        self.assertFalse(any(q == "Cojímar, La Habana, Cuba" for q in self.queries),
+                         "las averías no trocean por ':'")
+        self.assertTrue(any(q.startswith("Cojímar: ") for q in self.queries))
+
+
 class TestChivasVerdadLocal(unittest.TestCase):
     """GC15: el reparto Chivás (oeste de Habana del Este) queda envenenado por el
     fallback 'centroide municipio' 11 km al este. La verdad local de

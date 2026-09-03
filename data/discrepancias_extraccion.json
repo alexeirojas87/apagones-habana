@@ -1,17 +1,4 @@
 {
- "77553": {
-  "fecha": "2026-08-27T04:01:04+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A820",
-   "A945",
-   "PG930",
-   "PG970",
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (A945) 👉Dirección: Afecta Reparto Colonia, alrededores de avenida 243, avenida 26"
- },
  "77568": {
   "fecha": "2026-08-27T04:40:53+00:00",
   "tipo_llm": "averia",
@@ -1109,5 +1096,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 604 MW distribuidos en 176 circuitos de distribución. A continuación,"
+ },
+ "79230": {
+  "fecha": "2026-09-03T04:00:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425",
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 687 MW distribuidos en 181 circuitos de distribución. A continuación,"
  }
 }

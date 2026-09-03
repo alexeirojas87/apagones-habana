@@ -8,27 +8,6 @@ header { padding: 10px 16px 4px; display: flex; align-items: baseline; gap: 12px
 h1 { font-size: 1.15rem; margin: 0; }
 #actualizado { margin: 0; color: #8a95a5; font-size: .8rem; }
 
-#bloques {
-  display: grid; grid-template-columns: repeat(8, 1fr);
-  gap: 6px; padding: 8px 16px;
-}
-
-.bloque {
-  border-radius: 8px; padding: 8px 6px; text-align: center;
-  background: #1b222c; border-top: 4px solid #555;
-}
-.bloque .n { font-weight: 700; font-size: 1.05rem; }
-.bloque .estado { font-size: .72rem; display: block; margin-top: 2px; }
-.bloque .detalle { font-size: .66rem; color: #8a95a5; display: block; margin-top: 2px; }
-.bloque.afectado { border-top-color: #e5484d; }
-.bloque.afectado .estado { color: #ff8a8e; }
-.bloque.restablecido { border-top-color: #46a758; }
-.bloque.restablecido .estado { color: #7fd08c; }
-.bloque.desconocido { border-top-color: #555; }
-.bloque.desconocido .estado { color: #8a95a5; }
-.bloque.restableciendose { border-top-color: #e6a817; }
-.bloque.restableciendose .estado { color: #f2c14e; font-size: .66rem; }
-
 /* ---------- portada: resumen por circuito ---------- */
 #resumen-circuitos { padding: 8px 16px 4px; }
 #resumen-circuitos:empty { display: none; }
@@ -85,8 +64,6 @@ h1 { font-size: 1.15rem; margin: 0; }
   font-size: .74rem; font-weight: 700; margin: 12px 0 6px; color: #9aa6b5;
   text-transform: uppercase; letter-spacing: .04em;
 }
-a.bloque { text-decoration: none; color: inherit; display: block; }
-a.bloque:hover { outline: 1px solid #37414f; }
 .rc-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 8px; }
 .rc-card {
   display: flex; flex-direction: column; gap: 3px; text-decoration: none; color: inherit;
@@ -215,15 +192,6 @@ footer a { color: #8ab4f8; }
   #actualizado { font-size: .7rem; }
   #buscador { min-width: 100%; max-width: none; margin: 0; order: 3; }
   #busqueda { font-size: 16px; /* evita el auto-zoom de iOS al enfocar */ }
-
-  /* tarjetas: tira horizontal deslizable */
-  #bloques {
-    display: flex; overflow-x: auto; gap: 6px; padding: 6px 10px;
-    scrollbar-width: none; -webkit-overflow-scrolling: touch;
-  }
-  #bloques::-webkit-scrollbar { display: none; }
-  .bloque { flex: 0 0 auto; min-width: 118px; padding: 6px 8px; }
-  .bloque .detalle { max-width: 130px; }
 
   #mapa { min-height: 0; }
   footer { padding: 4px 10px; font-size: .6rem; }

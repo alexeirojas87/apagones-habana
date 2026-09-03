@@ -1,5 +1,11 @@
 {
   "generado": "2026-07-03T15:10:50+00:00",
+  "poblacion_municipio": {
+    "Playa": 142245, "Plaza": 104629, "Centro Habana": 105713, "Habana Vieja": 64104,
+    "Regla": 36181, "Habana del Este": 141392, "Guanabacoa": 109066, "San Miguel del Padrón": 134978,
+    "10 de Octubre": 158569, "Cerro": 101381, "Marianao": 111744, "La Lisa": 126593,
+    "Boyeros": 170577, "Arroyo Naranjo": 174298, "Cotorro": 68494
+  },
   "daf": {"estado": "activo", "desde": "2026-07-03T11:09:50+00:00"},
   "municipios": {
     "Playa": {

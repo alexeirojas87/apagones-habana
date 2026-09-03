@@ -656,7 +656,18 @@ def detectar_evento_nacional(sb, ahora):
     return ev
 
 
-POBLACION_HABANA = 1_749_964   # suma de población por municipio de La Habana (tabla)
+# Población aprox. por municipio de La Habana (claves = nombres canónicos del
+# extractor). ÚNICA fuente del dato: se emite siempre en estado.json como
+# `poblacion_municipio` y de ahí la consumen web/app.js (la constante POB_MUNI
+# queda solo de respaldo para JSON commiteado viejo) y scripts/build_seo.py.
+POBLACION_MUNICIPIO = {
+    "Playa": 142245, "Plaza": 104629, "Centro Habana": 105713, "Habana Vieja": 64104,
+    "Regla": 36181, "Habana del Este": 141392, "Guanabacoa": 109066,
+    "San Miguel del Padrón": 134978, "10 de Octubre": 158569, "Cerro": 101381,
+    "Marianao": 111744, "La Lisa": 126593, "Boyeros": 170577,
+    "Arroyo Naranjo": 174298, "Cotorro": 68494,
+}
+POBLACION_HABANA = sum(POBLACION_MUNICIPIO.values())   # suma exacta de la tabla
 
 
 def estimar_poblacion(sb, ahora, deficit):
@@ -1097,6 +1108,7 @@ def main():
         "bloques": bloques,
         "deficit": deficit,
         "poblacion": estimar_poblacion(sb, ahora, deficit),
+        "poblacion_municipio": POBLACION_MUNICIPIO,
         "daf": daf,
         "averias": averias,
         "emergencia": emergencia,

@@ -1,5 +1,3 @@
-const ETIQUETA = { afectado: "SIN CORRIENTE", restablecido: "CON SERVICIO", desconocido: "SIN DATOS" };
-
 function horaHabana(iso) {
   return new Date(iso).toLocaleTimeString("es-CU", {
     hour: "2-digit", minute: "2-digit", timeZone: "America/Havana",
@@ -51,62 +49,20 @@ function avisoDeficit(d) {
     informa la afectación <b>por circuito</b>. Los que podemos ubicar se muestran en el mapa.`;
 }
 
-function pintarBloques(bloques, daf) {
-  const cont = document.getElementById("bloques");
-  cont.innerHTML = "";
-  const orden = ["1", "2", "3", "4", "5", "6", "0"];
-  for (const n of orden) {
-    const b = bloques[n];
-    if (!b) continue;
-    const div = document.createElement("div");
-    // Afectado + restablecimiento reciente en curso = estado intermedio "restableciéndose"
-    // (ámbar): la corriente está volviendo de forma gradual, no es un corte pleno.
-    const restableciendose = b.estado === "afectado" && b.parcial;
-    div.className = `bloque ${restableciendose ? "restableciendose" : b.estado}`;
-    const detalle = [];
-    if (b.desde && b.estado === "afectado") detalle.push(`lleva ${duracion(b.desde)}`);
-    else if (b.desde) detalle.push(`desde ${horaHabana(b.desde)}`);
-    if (b.horas_reportadas)
-      detalle.push(`usuarios: ~${b.horas_reportadas}h sin luz (${b.n_reportes_horas})`);
-    else if (b.reportes_sin) detalle.push(`${b.reportes_sin} reportes sin luz`);
-    const etiqueta = restableciendose ? "RESTABLECIÉNDOSE" : ETIQUETA[b.estado];
-    div.innerHTML = `<span class="n">${n === "0" ? "CE" : "B" + n}</span>
-      <span class="estado">${etiqueta}</span>
-      <span class="detalle">${detalle.join(" · ") || (b.causa || "")}</span>`;
-    div.title = n === "0" ? "Circuitos de Emergencia" : b.causa || "";
-    cont.appendChild(div);
-  }
-  // Tarjeta DAF (microcortes)
-  const div = document.createElement("div");
-  const claseDaf = { activo: "afectado", restablecido: "restablecido", sin_eventos: "desconocido" }[daf.estado];
-  const txtDaf = { activo: "DISPARO ACTIVO", restablecido: "RESTABLECIDO", sin_eventos: "SIN EVENTOS" }[daf.estado];
-  div.className = `bloque ${claseDaf}`;
-  div.innerHTML = `<span class="n">DAF</span>
-    <span class="estado">${txtDaf}</span>
-    <span class="detalle">${daf.desde ? "desde " + horaHabana(daf.desde) : "microcortes"}</span>`;
-  div.title = "Disparo Automático por Frecuencia: circuitos con microcortes";
-  cont.appendChild(div);
-}
-
-const COLOR_ESTADO = { afectado: "#e5484d", restablecido: "#46a758", desconocido: "#6b7686" };
-
 // Población aprox. por municipio de La Habana (claves = nombres canónicos que usa
-// el extractor). Permite estimar los afectados ponderando por municipio.
+// el extractor). RESPALDO del estimado ponderado por municipio: la fuente viva es
+// estado.json (`poblacion_municipio`, emitida por scripts/estado.py).
 const POB_MUNI = {
   "Playa": 142245, "Plaza": 104629, "Centro Habana": 105713, "Habana Vieja": 64104,
   "Regla": 36181, "Habana del Este": 141392, "Guanabacoa": 109066, "San Miguel del Padrón": 134978,
   "10 de Octubre": 158569, "Cerro": 101381, "Marianao": 111744, "La Lisa": 126593,
   "Boyeros": 170577, "Arroyo Naranjo": 174298, "Cotorro": 68494,
 };
-const POB_TOTAL = Object.values(POB_MUNI).reduce((a, b) => a + b, 0);
 
-// La UNE reporta por CIRCUITO, no por bloque. Dejamos todo el pintado por bloque
-// latente (sin borrar código) por si vuelve a bloques: con false no se pinta nada
-// de bloques en el mapa y la portada muestra el resumen por circuito.
-const MOSTRAR_BLOQUES = false;
 // Las zonas azules "posibles zonas sin apagón" (espacio sin cobertura de la red que
-// rota) SÍ se mantienen: no dependen del formato bloque/circuito y marcan dónde no
-// se va la corriente. También los circuitos DAF (amarillo).
+// rota) se mantienen: no dependen del formato bloque/circuito y marcan dónde no
+// se va la corriente. También los circuitos DAF (amarillo). La UNE reporta por
+// CIRCUITO: el pintado por bloque latente se borró (decisión del owner, 2026-09).
 const MOSTRAR_PROTEGIDAS = true;
 
 // La API de reportes vive en el worker de Cloudflare Pages; si la web se sirve
@@ -124,15 +80,12 @@ async function iniciar() {
   const seoResumen = document.getElementById("seo-resumen");
   if (seoResumen) seoResumen.remove();
 
-  const [geo, estadoIni, bloquesMun, zonas, barrios, lineas, poligonos, cuadrantes, sinUbicar, barriosPoly, noRota, catInicial] = await Promise.all([
+  // zonas/barrios/sin_ubicar/no_rota alimentan popups, diagnósticos y la capa azul.
+  // Las geozonas por bloque (zonas_lineas/poligonos/cuadrantes) se fueron con el pintado.
+  const [geo, estadoIni, barrios, sinUbicar, barriosPoly, noRota, catInicial] = await Promise.all([
     fetch("data/municipios.geojson").then((r) => r.json()),
     fetch(`data/estado.json?t=${Date.now()}`).then((r) => r.json()),
-    fetch("data/bloques_por_municipio.json").then((r) => r.json()),
-    fetch("data/zonas.geojson").then((r) => r.json()),
     fetch("data/barrios.json").then((r) => r.json()),
-    fetch("data/zonas_lineas.geojson").then((r) => r.json()).catch(() => ({ features: [] })),
-    fetch("data/zonas_poligonos.geojson").then((r) => r.json()).catch(() => ({ features: [] })),
-    fetch("data/zonas_cuadrantes.geojson").then((r) => r.json()).catch(() => ({ features: [] })),
     fetch("data/sin_ubicar.json").then((r) => r.json()).catch(() => ({})),
     fetch("data/barrios_poligonos.json").then((r) => r.json()).catch(() => ({})),
     fetch("data/no_rota.geojson").then((r) => r.json()).catch(() => ({ features: [] })),
@@ -226,6 +179,11 @@ async function iniciar() {
   function resumenCircuitos() {
     const cont = document.getElementById("resumen-circuitos");
     const cat = catCircuitos.circuitos || [];
+    // Fuente única (estado.py → estado.json): la constante POB_MUNI queda solo
+    // como respaldo cuando el JSON commiteado aún no trae la clave.
+    const PM = (estado.poblacion_municipio && Object.keys(estado.poblacion_municipio).length)
+      ? estado.poblacion_municipio : POB_MUNI;
+    const PT = Object.values(PM).reduce((a, b) => a + b, 0);
     let ncon = 0, nsin = 0, nasum = 0, nnd = 0, ndisc = 0;
     const perMuni = {};  // municipio -> {sin, tot}; "asum" cuenta como con corriente,
                          // "nd" (sin noticias) queda FUERA del estimado: estado desconocido
@@ -234,7 +192,7 @@ async function iniciar() {
       const v = circuitoVigente(c);
       if (v === "sin") nsin++; else if (v === "con") ncon++;
       else if (v === "discrepado") ndisc++; else if (v === "nd") nnd++; else nasum++;
-      if (c.municipio && POB_MUNI[c.municipio] && v !== "nd") {
+      if (c.municipio && PM[c.municipio] && v !== "nd") {
         const o = perMuni[c.municipio] || (perMuni[c.municipio] = { sin: 0, tot: 0 });
         o.tot++; if (v === "sin") o.sin++;
       }
@@ -247,17 +205,17 @@ async function iniciar() {
     const of = estado.poblacion;
     let sinP, conP, sinPct, fuente;
     if (of && of.fuente === "oficial") {
-      sinPct = of.sin_pct; sinP = POB_TOTAL * of.sin_pct / 100; conP = POB_TOTAL - sinP;
+      sinPct = of.sin_pct; sinP = PT * of.sin_pct / 100; conP = PT - sinP;
       fuente = "según cifras de la Empresa";
     } else if (cat.length > 0) {
       const sinCity = nsin / cat.length;  // los "asum" cuentan como con corriente
       sinP = 0;
-      for (const [m, pob] of Object.entries(POB_MUNI)) {
+      for (const [m, pob] of Object.entries(PM)) {
         const o = perMuni[m];
         sinP += (o && o.tot >= 2 ? o.sin / o.tot : sinCity) * pob;
       }
-      conP = POB_TOTAL - sinP;
-      sinPct = Math.round((sinP / POB_TOTAL) * 100);
+      conP = PT - sinP;
+      sinPct = Math.round((sinP / PT) * 100);
       fuente = "estimado por circuitos y población por municipio (aprox.)";
     }
     const explic = (of && of.fuente === "oficial")
@@ -367,47 +325,15 @@ async function iniciar() {
   avisoDeficit(estado.deficit);
   resumenCircuitos();
 
-  // Muestra de puntos con bloque conocido (para diagnosticar direcciones y filtrar
-  // reportes obsoletos). Se construye pronto porque varias capas la necesitan.
-  const muestraBloques = [];
-  for (const f of lineas.features) {
-    const coords = f.geometry.type === "MultiLineString" ? f.geometry.coordinates.flat() : f.geometry.coordinates;
-    for (let i = 0; i < coords.length; i += 4) {
-      muestraBloques.push([coords[i][1], coords[i][0], f.properties.bloque]);
-    }
-  }
-  for (const f of poligonos.features) {
-    const pts = f.geometry.type === "Polygon" ? f.geometry.coordinates[0] : [f.geometry.coordinates];
-    for (let i = 0; i < pts.length; i += 3) {
-      muestraBloques.push([pts[i][1], pts[i][0], f.properties.bloque]);
-    }
-  }
-  for (const f of zonas.features) {
-    const [lon, lat] = f.geometry.coordinates;
-    muestraBloques.push([lat, lon, f.properties.bloque]);
-  }
-
-  function bloqueEn(lat, lon) {  // bloque más cercano dentro de ~600 m, o null
-    let mejor = null, dMin = 600;
-    for (const [la, lo, b] of muestraBloques) {
-      const d = Math.hypot((la - lat) * 111000, (lo - lon) * 102000);
-      if (d < dMin) { dMin = d; mejor = b; }
-    }
-    return mejor;
-  }
-
-  // Un reporte "hay luz" (con corriente) queda OBSOLETO si es ANTERIOR al apagón
-  // vigente del bloque (o a la caída del SEN): son puntos verdes de antes del corte
-  // que confunden. Excepción: si lo confirman >=10 vecinos, se respeta (puede ser un
-  // restablecimiento real). Los reportes "sin corriente" no se filtran.
-  function reporteConObsoleto(fechaISO, lat, lon, confirmado) {
+  // Un reporte "hay luz" (con corriente) queda OBSOLETO si es ANTERIOR a la caída
+  // del SEN: son puntos verdes de antes del corte que confunden. Excepción: si lo
+  // confirman >=10 vecinos, se respeta (puede ser un restablecimiento real). Los
+  // reportes "sin corriente" no se filtran. (El filtro adicional por bloque vigente
+  // se fue con el pintado por bloque: la UNE hoy informa solo por circuito.)
+  function reporteConObsoleto(fechaISO, confirmado) {
     if (confirmado) return false;
-    const t = new Date(fechaISO);
     const en = estado.evento_nacional;
-    if (en && t < new Date(en.desde)) return true;  // caída del SEN: todos apagados
-    const b = bloqueEn(lat, lon);
-    const est = b == null ? null : estado.bloques[b];
-    return !!(est && est.estado === "afectado" && est.desde && t < new Date(est.desde));
+    return !!(en && new Date(fechaISO) < new Date(en.desde));
   }
 
   // preferCanvas: miles de tramos de calle se dibujan en un solo canvas en vez
@@ -454,106 +380,6 @@ async function iniciar() {
       capa.bindTooltip(nombre, { sticky: true });
     },
   }).addTo(mapa);
-
-  if (MOSTRAR_BLOQUES) {
-  const zonasConLinea = new Set();
-
-  // Zonas restablecidas dentro de un bloque afectado (parcial): se tiñen de verde
-  // aunque su bloque siga rojo. Identidad = "municipio|nombre" (p. ej. Zona N Alamar).
-  const zonasVerdes = new Set(estado.zonas_verdes || []);
-
-  // Barrios/repartos con polígono o punto propio en OSM (Alamar, Cojímar...),
-  // rellenos con el estado de su bloque. Tienen prioridad sobre líneas y círculos.
-  for (const f of poligonos.features) {
-    const p = f.properties;
-    zonasConLinea.add(`${p.municipio}|${p.zona}`);
-    const e = estado.bloques[p.bloque] || { estado: "desconocido" };
-    const verde = zonasVerdes.has(`${p.municipio}|${p.nombre}`);
-    const color = verde ? COLOR_ESTADO.restablecido : COLOR_ESTADO[e.estado];
-    const desde = e.desde ? ` desde ${horaHabana(e.desde)}` : "";
-    const cabecera = verde
-      ? `✅ Con servicio (B${p.bloque} en apagón)`
-      : `B${p.bloque} — ${ETIQUETA[e.estado]}${desde}`;
-    const popup = `<div class="popup"><h3>${cabecera}</h3>
-      <p>${esc(p.nombre)} (${esc(p.municipio)})</p><p class="hora">${esc(p.zona)}</p></div>`;
-    let capa;
-    if (f.geometry.type === "Polygon") {
-      capa = L.polygon(
-        f.geometry.coordinates[0].map(([lon, lat]) => [lat, lon]),
-        { color, weight: 1.5, fillColor: color, fillOpacity: verde ? 0.5 : 0.4 }
-      );
-    } else {
-      const [lon, lat] = f.geometry.coordinates;
-      capa = L.circle([lat, lon], {
-        radius: 260, weight: 1.5, color, fillColor: color, fillOpacity: verde ? 0.55 : 0.45,
-      });
-    }
-    capa.bindTooltip(`B${p.bloque} · ${esc(p.nombre)}`).bindPopup(popup, { maxWidth: 300 }).addTo(mapa);
-  }
-
-  // Cuadrantes: relleno del área encerrada por las calles frontera de la zona.
-  for (const f of cuadrantes.features) {
-    const p = f.properties;
-    const e = estado.bloques[p.bloque] || { estado: "desconocido" };
-    L.polygon(
-      f.geometry.coordinates[0].map(([lon, lat]) => [lat, lon]),
-      { stroke: false, fillColor: COLOR_ESTADO[e.estado], fillOpacity: 0.22, interactive: false }
-    ).addTo(mapa);
-  }
-
-  // Calles reales de cada zona (geometría OSM), pintadas con el estado del bloque.
-  // Se construyen por lotes cediendo el control al navegador entre lote y lote,
-  // para no bloquear el hilo principal ("Page Unresponsive") en equipos lentos.
-  for (const f of lineas.features) {
-    zonasConLinea.add(`${f.properties.municipio}|${f.properties.zona}`);
-  }
-  const pausa = () => new Promise((r) => setTimeout(r, 0));
-  (async () => {
-    let i = 0;
-    for (const f of lineas.features) {
-      const p = f.properties;
-      const e = estado.bloques[p.bloque] || { estado: "desconocido" };
-      const coords =
-        f.geometry.type === "MultiLineString"
-          ? f.geometry.coordinates.map((l) => l.map(([lon, lat]) => [lat, lon]))
-          : f.geometry.coordinates.map(([lon, lat]) => [lat, lon]);
-      const linea = L.polyline(coords, {
-        color: COLOR_ESTADO[e.estado], weight: 5,
-        opacity: e.estado === "desconocido" ? 0.4 : 0.75,
-      }).addTo(mapa);
-      const desde = e.desde ? ` desde ${horaHabana(e.desde)}` : "";
-      linea.bindTooltip(`B${p.bloque} · ${esc(p.calle)}`, { sticky: true });
-      linea.bindPopup(
-        `<div class="popup"><h3>B${p.bloque} — ${ETIQUETA[e.estado]}${desde}</h3>
-         <p>${esc(p.calle)} (${esc(p.municipio)})</p><p class="hora">${esc(p.zona)}</p></div>`,
-        { maxWidth: 300 }
-      );
-      if (++i % 150 === 0) await pausa();
-    }
-  })();
-
-  // Zonas sin geometría de calles: círculo aproximado en el centroide.
-  for (const f of zonas.features) {
-    const p = f.properties;
-    if (zonasConLinea.has(`${p.municipio}|${p.zona.slice(0, 160)}`)) continue;
-    const e = estado.bloques[p.bloque] || { estado: "desconocido" };
-    const [lon, lat] = f.geometry.coordinates;
-    const circulo = L.circle([lat, lon], {
-      radius: 320,
-      stroke: false,
-      fillColor: COLOR_ESTADO[e.estado],
-      fillOpacity: e.estado === "desconocido" ? 0.35 : 0.6,
-    }).addTo(mapa);
-    const desde = e.desde ? ` desde ${horaHabana(e.desde)}` : "";
-    circulo.bindTooltip(`B${p.bloque} · ${esc(p.match)}`);
-    circulo.bindPopup(
-      `<div class="popup"><h3>B${p.bloque} — ${ETIQUETA[e.estado]}${desde}</h3>
-       <p>${esc(p.municipio)}</p><p class="hora">${esc(p.zona)}</p></div>`,
-      { maxWidth: 300 }
-    );
-  }
-
-  }  // fin MOSTRAR_BLOQUES (pintado por bloque, latente)
 
   // Busca el límite real del barrio en el catálogo OSM (nombres canónicos).
   const canonJS = (t) =>
@@ -738,7 +564,7 @@ async function iniciar() {
     for (const c of estado.reportes_llm || []) {
       const con = c.tipo === "con_corriente";
       // comentario "ya hay luz" anterior al apagón vigente = obsoleto (no hay 10+ aquí)
-      if (con && reporteConObsoleto(c.fecha, c.lat, c.lon, false)) continue;
+      if (con && reporteConObsoleto(c.fecha, false)) continue;
       const horas = c.horas ? ` · ~${c.horas}h sin luz` : "";
       const popup = `<div class="popup"><h3>💬 ${con ? "🟢 Vecino: ya llegó la corriente" : "🔴 Vecino: sin corriente"}</h3>
            <p>${esc(c.lugar)}${horas}</p>
@@ -792,7 +618,7 @@ async function iniciar() {
   }
 
   // El control se crea una vez; las capas dinámicas (circuitos, averías, etc.)
-  // siempre están. Las capas de BLOQUE solo si MOSTRAR_BLOQUES (hoy latentes).
+  // siempre están.
   const capasControl = {
     "🔴 Circuitos afectados (déficit)": capaCircuitos,
     "⚠️ Cortes de emergencia": capaEmergencia,
@@ -819,7 +645,7 @@ async function iniciar() {
       for (const p of r.puntos || []) {
         const esCon = p.tipo === "con";
         // ocultar "hay luz" anteriores al apagón vigente (salvo confirmados)
-        if (esCon && reporteConObsoleto(p.fecha, p.lat, p.lon, p.confirmado)) continue;
+        if (esCon && reporteConObsoleto(p.fecha, p.confirmado)) continue;
         const colores = esCon
           ? { borde: p.confirmado ? "#1c5f2b" : "#4f9e60", relleno: p.confirmado ? "#46a758" : "#8fd39b" }
           : { borde: p.confirmado ? "#8b0000" : "#e07b00", relleno: p.confirmado ? "#e5484d" : "#ffa733" };

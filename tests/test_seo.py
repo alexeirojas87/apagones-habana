@@ -15,6 +15,7 @@ import shutil
 import tempfile
 import unittest
 from pathlib import Path
+from urllib.parse import urljoin
 
 RAIZ = Path(__file__).parents[1]
 RUTA = RAIZ / "scripts" / "build_seo.py"
@@ -120,7 +121,7 @@ class JsonLdTest(unittest.TestCase):
 
 
 class CapaMetadatosTest(unittest.TestCase):
-    """Fase 2: frases SERP en las 5 páginas y región de HEAD generable."""
+    """Fase 2: frases SERP en las 6 páginas (5 raíces + hub) y HEAD generable."""
 
     def _head(self, archivo):
         html = (RAIZ / "web" / archivo).read_text(encoding="utf-8")
@@ -146,9 +147,9 @@ class CapaMetadatosTest(unittest.TestCase):
             self.assertEqual((titulo, desc), (esperado_t, esperado_d),
                              "%s: el head difiere del mapa del generador" % archivo)
             vistos[archivo] = titulo
-        self.assertEqual(len(set(vistos.values())), 5)  # títulos únicos
+        self.assertEqual(len(set(vistos.values())), 6)  # títulos únicos
 
-    def test_las_cinco_paginas_tienen_pares_de_marcadores_de_head(self):
+    def test_las_seis_paginas_tienen_pares_de_marcadores_de_head(self):
         for archivo in MOD.PAGINAS:
             html = (RAIZ / "web" / archivo).read_text(encoding="utf-8")
             self.assertEqual(html.count(MOD.MARCA_HEAD_INICIO), 1, archivo)
@@ -183,7 +184,9 @@ class BaseArbol(unittest.TestCase):
         self.web = os.path.join(self.tmp, "web")
         os.makedirs(os.path.join(self.web, "data"))
         for archivo in MOD.PAGINAS:
-            shutil.copyfile(str(RAIZ / "web" / archivo), os.path.join(self.web, archivo))
+            destino = os.path.join(self.web, archivo)
+            os.makedirs(os.path.dirname(destino) or self.web, exist_ok=True)
+            shutil.copyfile(str(RAIZ / "web" / archivo), destino)
 
     def correr(self, coleccion_datos=None):
         MOD.generar(self.web, coleccion_datos or coleccion())
@@ -209,6 +212,7 @@ class CorridaCompletaTest(BaseArbol):
         self.correr()
         primera = self._arbol()
         self.correr()
+        self.assertIn("municipios/index.html", primera)  # el hub entra al árbol idempotente
         self.assertEqual(primera, self._arbol())  # idempotencia total del árbol
 
     def test_region_de_head_rellenada_sin_duplicar_marcadores(self):
@@ -259,11 +263,23 @@ class PaginasMunicipioTest(BaseArbol):
         for s in self.slugs15:  # cada slug es directorio con su index.html
             self.assertTrue(os.path.isfile(os.path.join(self.web, "municipio", s, "index.html")))
 
+    def _h1(self, pagina):
+        """Contrato conductual del h1 (spec: ya no es match literal de markup):
+        el texto «Apagones en {nombre} hoy» va contenido en un <h1> ubicado
+        dentro del <header>, con el prefijo ⚡ del patrón del sitio permitido."""
+        dentro = re.search(r"<header>(.*?)</header>", pagina, re.DOTALL)
+        self.assertIsNotNone(dentro, "la página no tiene <header>")
+        m = re.search(r"<h1>(.*?)</h1>", dentro.group(1), re.DOTALL)
+        self.assertIsNotNone(m, "el <h1> debe vivir dentro del <header>")
+        return m.group(1)
+
     def test_contenido_contrato_de_playa(self):
         p = self.pagina("Playa")
-        self.assertIn("<h1>Apagones en Playa hoy</h1>", p)
+        h1 = self._h1(p)
+        self.assertIn("Apagones en Playa hoy", h1)  # texto verbatim conservado
+        self.assertIn("⚡", h1)  # patrón de header del sitio
         self.assertIn("2 de 3 circuitos", p)  # estado actual desde mini_circuitos
-        self.assertIn("A1443", p)  # tabla de circuitos sin servicio
+        self.assertIn("A1443", p)  # listado de circuitos sin servicio
         self.assertIn("Kohly", p)  # calles + rotación por bloque
         self.assertIn('href="/?municipio=Playa"', p)  # deep link al mapa
         self.assertIn('<link rel="canonical" href="%s/municipio/playa/">' % MOD.SITE_BASE, p)
@@ -284,9 +300,34 @@ class PaginasMunicipioTest(BaseArbol):
         for nombre in ("Boyeros", "Marianao"):  # sin circuitos / solo con servicio
             p = self.pagina(nombre)
             self.assertIn("sin afectaciones registradas", p)
-            self.assertIn("<h1>Apagones en " + nombre + " hoy</h1>", p)
+            self.assertIn("Apagones en " + nombre + " hoy", self._h1(p))
             self.assertTrue(len(p) > 600, "%s quedó demasiado flaco" % nombre)
         self.assertIn("Reparto Sierra", self.pagina("Boyeros"))  # la rotación salva
+
+    def test_playa_lista_styled(self):
+        """U3: el listado usa la tarjeta .circ del sitio (nunca <table>)."""
+        p = self.pagina("Playa")
+        self.assertEqual(len(re.findall(r'<article class="circ">', p)), 2)
+        self.assertIn('class="circ-est sin"', p)  # chip de estado por circuito
+        self.assertNotIn("<table", p)
+        self.assertNotIn("<th>", p)
+
+    def test_cero_sin_contenedor_vacio(self):
+        """N=0: copy de reposo, cero tarjetas y ningún contenedor de lista vacío."""
+        for nombre in ("Boyeros", "Marianao"):
+            p = self.pagina(nombre)
+            self.assertIn("sin afectaciones", p)
+            self.assertEqual(len(re.findall(r'<article class="circ"', p)), 0, nombre)
+            self.assertNotIn("<table", p)
+
+    def test_stamp_tiene_regla_css(self):
+        css = (RAIZ / "web" / "style.css").read_text(encoding="utf-8")
+        self.assertRegex(css, r"\.stamp\s*\{")
+        self.assertRegex(css, r"#seo-resumen\s*\{")  # mismo defecto de la era SEO
+        bloque = re.search(r"\.pagina-municipio\s*\{[^}]*\}", css)
+        self.assertIsNotNone(bloque, "falta la columna de contenido de páginas hijas")
+        self.assertIn("max-width", bloque.group(0))
+        self.assertNotRegex(bloque.group(0), r"(?<!max-)width:\s*\d+px")  # mobile-readable
 
     def test_jsonld_de_todas_las_paginas_parsea_y_apunta_al_index(self):
         for s in self.slugs15:
@@ -297,6 +338,102 @@ class PaginasMunicipioTest(BaseArbol):
             self.assertEqual(doc["@type"], "Service")
             self.assertEqual(doc["isPartOf"]["url"], MOD.site_url(""))
             self.assertIn('content="es_CU"', p)  # metadata completa en cada página
+
+
+class HubPaginaTest(BaseArbol):
+    """U1: hub /municipios/ — grilla de 15 tarjetas generada en cada despliegue.
+
+    Las cuentas de cada tarjeta salen del MISMO recorrido de datos que usan
+    las páginas hijas (MOD.conteo_municipio, compartido con pagina_municipio),
+    con semántica de instantánea: congeladas hasta el próximo despliegue.
+    """
+
+    def hub(self):
+        return self._leer("municipios", "index.html")
+
+    def _tarjetas(self, html):
+        return re.findall(r'<div class="rc-card(?:\s[^"]*)?">.*?</div>', html, re.DOTALL)
+
+    def _por_slug(self, html):
+        mapa = {}
+        for t in self._tarjetas(html):
+            m = re.search(r'href="/municipio/([a-z0-9-]+)/"', t)
+            if m:
+                mapa[m.group(1)] = t
+        return mapa
+
+    def _texto(self, tarjeta):
+        return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", tarjeta))
+
+    def test_esqueleto_comiteado_con_marcadores_y_recursos(self):
+        # El esqueleto vive commiteado: sus pares de marcadores y el CSS
+        # raíz-relativo (vive en subdirectorio) no pueden depender del build.
+        html = (RAIZ / "web" / "municipios" / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(html.count(MOD.MARCA_INICIO), 1)
+        self.assertEqual(html.count(MOD.MARCA_FIN), 1)
+        self.assertEqual(html.count(MOD.MARCA_HEAD_INICIO), 1)
+        self.assertEqual(html.count(MOD.MARCA_HEAD_FIN), 1)
+        self.assertIn('<link rel="stylesheet" href="/style.css">', html)
+
+    def test_grilla_de_15_tarjetas_sin_huerfanos(self):
+        self.correr()
+        hub = self.hub()
+        self.assertEqual(len(self._tarjetas(hub)), 15)
+        esperados = {MOD.slug(n) for n in MUNICIPIOS_15}
+        self.assertEqual(set(self._por_slug(hub)), esperados)
+
+    def test_cada_tarjeta_nombre_cuenta_y_dos_enlaces(self):
+        self.correr()
+        hub = self.hub()
+        _, circ, _ = coleccion()
+        from urllib.parse import quote
+        for nombre in MUNICIPIOS_15:
+            t = self._por_slug(hub)[MOD.slug(nombre)]
+            self.assertIn(nombre + "</a>", t)  # nombre visible en el enlace
+            texto = self._texto(t)
+            sin_n, total_n = MOD.conteo_municipio(nombre, circ)
+            self.assertIn("%d de %d circuitos sin servicio" % (sin_n, total_n), texto)
+            self.assertIn('href="/municipio/%s/"' % MOD.slug(nombre), t)
+            self.assertIn('href="/?municipio=' + quote(nombre), t)
+
+    def test_cuentas_de_n_mayor_y_cero_coinciden_con_la_hija(self):
+        self.correr()
+        tarjetas = self._por_slug(self.hub())
+        # Playa (N>0): el string de la tarjeta es el que lee la hija en su parte.
+        self.assertIn("2 de 3 circuitos sin servicio", self._texto(tarjetas["playa"]))
+        self.assertIn("2 de 3 circuitos", self._leer("municipio", "playa", "index.html"))
+        # Marianao (N=0 con catálogo) y Boyeros (N=0 sin catálogo): cuenta 0
+        # en la tarjeta y refuerzo "sin afectaciones" en la hija.
+        self.assertIn("0 de 1 circuitos sin servicio", self._texto(tarjetas["marianao"]))
+        self.assertIn("0 de 0 circuitos sin servicio", self._texto(tarjetas["boyeros"]))
+        for s in ("marianao", "boyeros"):
+            self.assertIn("sin afectaciones registradas",
+                          self._leer("municipio", s, "index.html"))
+
+    def test_hub_byte_identico_y_region_idempotente(self):
+        self.correr()
+        primera = self.hub()
+        self.correr()
+        segunda = self.hub()
+        self.assertEqual(primera, segunda)
+        self.assertEqual(segunda.count(MOD.MARCA_INICIO), 1)  # sin duplicar marcadores
+        self.assertIn('class="rc-card', segunda)
+
+    def test_hub_canonical_titulo_descripcion_y_jsonld_parseable(self):
+        self.correr()
+        hub = self.hub()
+        ruta, titulo, desc = MOD.PAGINAS["municipios/index.html"]
+        self.assertEqual(ruta, "municipios/")
+        self.assertIn('<link rel="canonical" href="%s">' % MOD.site_url("municipios/"), hub)
+        self.assertEqual(re.search(r"<title>(.*?)</title>", hub).group(1), titulo)
+        self.assertIn('<meta name="description" content="%s">' % desc, hub)
+        m = re.search(r'<script type="application/ld\+json">(.*?)</script>', hub, re.DOTALL)
+        self.assertIsNotNone(m)
+        doc = json.loads(m.group(1))
+        self.assertEqual(doc["@type"], "ItemList")
+        self.assertEqual(len(doc["itemListElement"]), 15)
+        for e in doc["itemListElement"]:
+            self.assertTrue(e["url"].startswith(MOD.site_url("municipio/")), e["url"])
 
 
 class EndpointsCrawlingTest(BaseArbol):
@@ -316,11 +453,12 @@ class EndpointsCrawlingTest(BaseArbol):
         self.assertIn("Disallow: /api/", r)
         self.assertIn("Sitemap: %s/sitemap.xml" % MOD.SITE_BASE, r)
 
-    def test_sitemap_con_20_urls_absolutas(self):
+    def test_sitemap_con_21_urls_absolutas(self):
         urls = self._urls()
-        self.assertEqual(len(urls), 20)  # 5 páginas estáticas + 15 municipios
+        self.assertEqual(len(urls), 21)  # 5 páginas raíz + hub + 15 municipios
         self.assertIn(MOD.site_url(""), urls)
         self.assertIn(MOD.site_url("analitica.html"), urls)
+        self.assertIn(MOD.site_url("municipios/"), urls)  # el hub /municipios/
         self.assertIn(MOD.site_url("municipio/san-miguel-del-padron/"), urls)  # dir form
         for u in urls:
             self.assertTrue(u.startswith(MOD.SITE_BASE + "/"), u)
@@ -349,25 +487,131 @@ class EndpointsCrawlingTest(BaseArbol):
             self.assertEqual(f.read(), MOD.robots_txt())
 
 
-class TestEnlacesMunicipiosEnIndex(unittest.TestCase):
-    """La sección estática #municipios de index.html debe enlazar exactamente
-    los 15 slugs que genera build_seo — ni faltantes ni huérfanos. Es el
-    enlace interno PERMANENTE para usuarios y rastreadores: la lista inyectada
-    del snapshot solo menciona municipios con afectaciones en ese momento."""
+class NavInvarianteTest(BaseArbol):
+    """U2: la nav canónica de 6 destinos no puede volver a divergir (anti-drift).
 
-    def test_los_15_slugs_estan_enlazados(self):
-        with open(RAIZ / "web" / "index.html", encoding="utf-8") as f:
-            html = f.read()
+    Invariante sobre los 21 sitios (6 páginas commiteadas + 15 hijas generadas
+    con fixtures): el mismo orden de etiquetas, destinos iguales tras
+    normalizar con urljoin (relativas commiteadas vs absolutas generadas),
+    cada nav generada byte-idéntica a la fuente única nav_tabs(), y exactamente
+    un .activo por página en su propio destino."""
+
+    CANONICO = [("🗺 Mapa", ""), ("📊 Análisis", "analitica.html"),
+                ("📢 Partes", "partes.html"), ("🔌 Circuitos", "circuitos.html"),
+                ("🏘️ Municipios", "municipios/"), ("💡 Sugerencias", "sugerencias.html")]
+
+    # Página commiteada -> (etiqueta .activo esperado, destino propio normalizado)
+    ACTIVO = {
+        "index.html": ("🗺 Mapa", ""),
+        "analitica.html": ("📊 Análisis", "analitica.html"),
+        "partes.html": ("📢 Partes", "partes.html"),
+        "circuitos.html": ("🔌 Circuitos", "circuitos.html"),
+        "sugerencias.html": ("💡 Sugerencias", "sugerencias.html"),
+        "municipios/index.html": ("🏘️ Municipios", "municipios/"),
+    }
+
+    def setUp(self):
+        BaseArbol.setUp(self)
+        self.correr()
+
+    def _normaliza(self, href, fuente):
+        url = urljoin(MOD.SITE_BASE + "/", href)
+        self.assertTrue(url.startswith(MOD.SITE_BASE + "/"), "%s: %s" % (fuente, href))
+        rel = url[len(MOD.SITE_BASE):].lstrip("/")
+        return "" if rel == "index.html" else rel  # / y /index.html son el mismo sitio
+
+    def _nav(self, html, fuente):
+        navs = re.findall(r'<nav class="tabs">.*?</nav>', html, re.DOTALL)
+        self.assertEqual(len(navs), 1, fuente)
+        return navs[0]
+
+    def _tabs(self, nav):
+        """[(etiqueta, href|None)] en orden de aparición."""
+        salida = []
+        for m in re.finditer(r'<a href="([^"]+)">([^<]+)</a>|<span class="activo">([^<]+)</span>', nav):
+            href, etiqueta, activo = m.group(1), m.group(2), m.group(3)
+            salida.append((etiqueta or activo, href))
+        return salida
+
+    def _fuentes(self):
+        for archivo in sorted(self.ACTIVO):
+            yield archivo, (RAIZ / "web" / archivo).read_text(encoding="utf-8"), self.ACTIVO[archivo][1]
         for nombre in MUNICIPIOS_15:
-            self.assertIn('href="/municipio/%s/"' % MOD.slug(nombre), html,
-                          "falta enlace a %s en #municipios" % nombre)
+            s = MOD.slug(nombre)
+            yield ("municipio/%s/index.html" % s,
+                   self._leer("municipio", s, "index.html"), "municipios/")
 
-    def test_sin_enlaces_huerfanos(self):
-        with open(RAIZ / "web" / "index.html", encoding="utf-8") as f:
-            html = f.read()
-        hrefs = set(re.findall(r'href="(/municipio/[a-z0-9-]+/)"', html))
-        esperados = {"/municipio/%s/" % MOD.slug(n) for n in MUNICIPIOS_15}
-        self.assertEqual(hrefs, esperados)
+    def test_destinos_canonicos_iguales_en_los_21_sitios(self):
+        esperado = {d for _, d in self.CANONICO}
+        etiquetas = [e for e, _ in self.CANONICO]
+        can = dict(self.CANONICO)
+        for fuente, html, propio in self._fuentes():
+            tabs = self._tabs(self._nav(html, fuente))
+            self.assertEqual([e for e, _ in tabs], etiquetas, fuente)
+            destinos = set()
+            for etiqueta, href in tabs:
+                destino = self._normaliza(href, fuente) if href is not None else propio
+                self.assertEqual(destino, can[etiqueta], "%s: tab %s" % (fuente, etiqueta))
+                destinos.add(destino)
+            self.assertEqual(destinos, esperado, fuente)  # igualdad de conjuntos
+
+    def test_activo_unico_y_en_su_propio_destino(self):
+        for archivo in sorted(self.ACTIVO):
+            etiqueta, _ = self.ACTIVO[archivo]
+            nav = self._nav((RAIZ / "web" / archivo).read_text(encoding="utf-8"), archivo)
+            self.assertEqual(nav.count('class="activo"'), 1, archivo)
+            self.assertIn('<span class="activo">%s</span>' % etiqueta, nav)
+        for nombre in MUNICIPIOS_15:  # las hijas resaltan Municipios, no Mapa
+            s = MOD.slug(nombre)
+            nav = self._nav(self._leer("municipio", s, "index.html"), s)
+            self.assertEqual(nav.count('class="activo"'), 1, s)
+            self.assertIn('<span class="activo">🏘️ Municipios</span>', nav)
+
+    def test_navs_generadas_byte_identicas_a_la_fuente_unica(self):
+        fuente = MOD.nav_tabs("municipios/")
+        for nombre in MUNICIPIOS_15:
+            s = MOD.slug(nombre)
+            html = self._leer("municipio", s, "index.html")
+            self.assertEqual(self._nav(html, s), fuente)
+
+    def test_nav_tabs_usa_hrefs_absolutos_bajo_site_base(self):
+        nav = MOD.nav_tabs("municipios/")
+        self.assertEqual(nav.count('class="activo"'), 1)
+        for etiqueta, destino in self.CANONICO:
+            if destino == "municipios/":
+                self.assertIn('<span class="activo">%s</span>' % etiqueta, nav)
+            else:
+                self.assertIn('<a href="%s">%s</a>' % (MOD.site_url(destino), etiqueta), nav)
+
+
+class TestIndexEstaticoSinLista(BaseArbol):
+    """U4: el markup estático de index (excluyendo la región SEO:INICIO..FIN)
+    no conserva la lista de municipios de d4a0b46. El enlace interno permanente
+    es la pestaña Municipios del nav hacia el hub; los enlaces de municipios
+    viven solo en la instantánea dinámica, que los conserva por decisión."""
+
+    def _estatico(self, html):
+        return re.sub(re.escape(MOD.MARCA_INICIO) + r".*?" + re.escape(MOD.MARCA_FIN),
+                      "", html, flags=re.DOTALL)
+
+    def test_index_estatico_sin_lista_ni_ancla_de_municipios(self):
+        html = (RAIZ / "web" / "index.html").read_text(encoding="utf-8")
+        estatico = self._estatico(html)
+        self.assertNotIn("/municipio/", estatico)
+        self.assertNotIn('href="#municipios"', estatico)
+        self.assertNotIn("municipios-lista", estatico)
+        css = (RAIZ / "web" / "style.css").read_text(encoding="utf-8")
+        self.assertNotIn("#municipios", css)
+        self.assertNotIn("municipios-lista", css)
+
+    def test_snapshot_dinamica_conserva_enlaces(self):
+        self.correr()
+        html = self._leer("index.html")
+        m = re.search(re.escape(MOD.MARCA_INICIO) + r"(.*?)" + re.escape(MOD.MARCA_FIN),
+                      html, re.DOTALL)
+        self.assertIsNotNone(m)
+        self.assertIn('href="/municipio/playa/"', m.group(1))  # municipios afectados
+        self.assertIn('href="/municipio/regla/"', m.group(1))
 
 
 if __name__ == "__main__":

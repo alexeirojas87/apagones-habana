@@ -1090,5 +1090,24 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1008, que se ha transferido temporalmente la carga al circuito PG970 del si"
+ },
+ "79222": {
+  "fecha": "2026-09-03T02:24:17+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: Avenida la Ceiba, esquina Avenida del Este. 🛑⚡️"
+ },
+ "79210": {
+  "fecha": "2026-09-03T01:00:26+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425",
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 604 MW distribuidos en 176 circuitos de distribución. A continuación,"
  }
 }

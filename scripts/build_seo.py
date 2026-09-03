@@ -4,10 +4,11 @@ Lo ejecuta ingest.yml justo antes del deploy de wrangler con `|| echo`
 (best-effort): si revienta, se despliega el último HTML bueno. Escribe en el
 árbol de trabajo web/:
 
-  - rellena la región <!-- SEO:HEAD:INICIO/FIN --> de las 5 páginas estáticas
-    (canonical, Open Graph, Twitter, favicon, theme-color y JSON-LD del index),
-    la región <!-- SEO:INICIO/FIN --> del body de index.html con una instantánea
-    del estado, y deja las regiones de HEAD de las 4 páginas restantes;
+  - rellena la región <!-- SEO:HEAD:INICIO/FIN --> de las 6 páginas estáticas
+    (canonical, Open Graph, Twitter, favicon, theme-color y JSON-LD del index y
+    del hub), la región <!-- SEO:INICIO/FIN --> del body de index.html con una
+    instantánea del estado y la del hub web/municipios/index.html con la grilla
+    de tarjetas por municipio, y deja las regiones de HEAD de las 4 restantes;
   - genera web/municipio/<slug>/index.html para los 15 municipios;
   - emite web/sitemap.xml (paridad exacta con las páginas generadas) y
     web/robots.txt (esta última también vive commiteada; la corrida solo la
@@ -57,6 +58,8 @@ PAGINAS = {
                        "Catálogo de circuitos eléctricos de La Habana con su estado actual (sin servicio o restablecidos), calles que abarca, causa y horas afectadas."),
     "sugerencias.html": ("sugerencias.html", "Sugerencias y bugs — Apagones La Habana",
                          "Envía sugerencias de mejoras o reporta errores de la web de apagones en La Habana."),
+    "municipios/index.html": ("municipios/", "Apagones por municipio en La Habana — los 15 municipios",
+                              "Cuántos circuitos hay sin servicio en cada municipio de La Habana según el último parte, con enlace a la página de apagones de cada municipio y al mapa interactivo."),
 }
 
 
@@ -113,13 +116,18 @@ def etiquetas_head(url_absoluta, titulo, descripcion, ld=None):
     return "\n".join(lineas)
 
 
-def head_estaticas(archivo):
+def head_estaticas(archivo, nombres=None):
     """Contenido que build_seo inyecta en la región HEAD de una página estática:
     los tags con host derivan de SITE_BASE; el <title> y la description viven a
     mano en el HTML (y la prueba de paridad evita deriva con el mapa PAGINAS)."""
     ruta, titulo, desc = PAGINAS[archivo]
-    return etiquetas_head(site_url(ruta), titulo, desc,
-                          ld=ld_index() if archivo == "index.html" else None)
+    if archivo == "index.html":
+        ld = ld_index()
+    elif archivo == "municipios/index.html":
+        ld = ld_municipios(nombres or [])
+    else:
+        ld = None
+    return etiquetas_head(site_url(ruta), titulo, desc, ld=ld)
 
 
 def ld_index():
@@ -151,6 +159,17 @@ def ld_municipio(nombre):
             "isPartOf": {"@type": "WebSite", "url": site_url("")}}
 
 
+def ld_municipios(nombres):
+    """ItemList de las 15 páginas de municipio para el head del hub."""
+    return {"@context": "https://schema.org", "@type": "ItemList",
+            "name": "Municipios de La Habana con apagones", "inLanguage": "es",
+            "itemListElement": [
+                {"@type": "ListItem", "position": i + 1,
+                 "name": "Apagones en %s hoy" % n,
+                 "url": site_url("municipio/%s/" % slug(n))}
+                for i, n in enumerate(nombres)]}
+
+
 def robots_txt():
     """Robots bajo SITE_BASE: permite las páginas, reserva /api/ para el worker."""
     return "\n".join([
@@ -173,6 +192,20 @@ def sitemap_xml(urls):
 
 def _circ_sin(circ):
     return [c for c in (circ or {}).get("circuitos", []) if c.get("estado") == "sin servicio"]
+
+
+def circuitos_del_municipio(nombre, circ):
+    """Recorrido canónico de circuitos de un municipio: ÚNICA fuente para las
+    cuentas de la página hija y de la tarjeta del hub (paridad por construcción)."""
+    return [c for c in (circ or {}).get("circuitos", [])
+            if nombre in (c.get("municipios") or
+                          ([c["municipio"]] if c.get("municipio") else []))]
+
+
+def conteo_municipio(nombre, circ):
+    """(sin_servicio, total) de un municipio según el recorrido canónico."""
+    del_muni = circuitos_del_municipio(nombre, circ)
+    return sum(1 for c in del_muni if c.get("estado") == "sin servicio"), len(del_muni)
 
 
 def esc_html(texto):
@@ -245,14 +278,57 @@ def _hora_cuba(iso):
     return utc.astimezone(HORA_CUBA).strftime("%H:%M")
 
 
+def region_hub(estado, circ, bloques):
+    """Contenido de la región SEO:INICIO del hub: grilla .rc-card, una tarjeta
+    por municipio con nombre, cuenta (recorrido compartido con la hija), enlace
+    a /municipio/<slug>/ y deep link ?municipio= al mapa."""
+    tarjetas = []
+    for nombre in municipios_de(estado, circ, bloques):
+        s = slug(nombre)
+        sin_n, total_n = conteo_municipio(nombre, circ)
+        clase = "rc-card" if sin_n else "rc-card sin-afect"
+        tarjetas.append(
+            '<div class="%s">\n'
+            '<a class="rc-card-cab" href="/municipio/%s/">%s</a>\n'
+            '<span class="rc-card-h">%d <small>de %d circuitos sin servicio</small></span>\n'
+            '<a class="rc-card-det" href="/?municipio=%s">🗺️ Ver en el mapa</a>\n'
+            "</div>" % (clase, s, esc_html(nombre), sin_n, total_n, quote(nombre)))
+    return ('<h2>Apagones por municipio</h2>\n'
+            '<div class="rc-cards">' + "\n".join(tarjetas) + "</div>\n"
+            '<p class="stamp">Instantánea del despliegue — %s; el estado en vivo '
+            'se ve al abrir cada página.</p>' % esc_html(hora_estampado(estado.get("generado"))))
+
+
+# Nav canónica: orden y destinos únicos de los 6 destinos del sitio, compartida
+# por las 7 superficies de render (5 raíces commiteadas, hub y páginas hijas).
+DESTINOS_NAV = (
+    ("", "🗺 Mapa"),
+    ("analitica.html", "📊 Análisis"),
+    ("partes.html", "📢 Partes"),
+    ("circuitos.html", "🔌 Circuitos"),
+    ("municipios/", "🏘️ Municipios"),
+    ("sugerencias.html", "💡 Sugerencias"),
+)
+
+
+def nav_tabs(activo):
+    """La nav canónica con hrefs absolutos (única fuente de las páginas
+    generadas); el destino `activo` se renderiza <span class="activo">."""
+    piezas = []
+    for destino, etiqueta in DESTINOS_NAV:
+        if destino == activo:
+            piezas.append('<span class="activo">%s</span>' % etiqueta)
+        else:
+            piezas.append('<a href="%s">%s</a>' % (site_url(destino), etiqueta))
+    return '<nav class="tabs">%s</nav>' % " ".join(piezas)
+
+
 def pagina_municipio(nombre, estado, circ, bloques):
     """Página estática completa de un municipio (forma /municipio/<slug>/)."""
     s = slug(nombre)
     url = site_url("municipio/%s/" % s)
     stamp = hora_estampado(estado.get("generado"))
-    del_muni = [c for c in circ.get("circuitos", [])
-                if nombre in (c.get("municipios") or
-                              ([c["municipio"]] if c.get("municipio") else []))]
+    del_muni = circuitos_del_municipio(nombre, circ)
     sin = [c for c in del_muni if c.get("estado") == "sin servicio"]
     titulo = "Apagones en %s hoy — horario y estado actual" % nombre
     descripcion = ("Estado de los apagones en %s (La Habana) hoy: circuitos sin servicio según "
@@ -267,15 +343,30 @@ def pagina_municipio(nombre, estado, circ, bloques):
         parrafo_estado = ("<p>%s aparece <b>sin afectaciones registradas</b> en el último parte; "
                           "aún no tiene circuitos catalogados. La rotación por bloque sigue activa.</p>"
                           % esc_html(nombre))
-    filas = "".join(
-        "<tr><td><a href=\"/circuitos.html?c=%s\">%s</a></td><td>%s</td><td>%s</td><td>%s</td></tr>"
-        % (esc_html(c["codigo"]), esc_html(c["codigo"]),
-           esc_html((c.get("calles") or "—")[:120]), esc_html(c.get("causa") or "—"),
-           _hora_cuba(c.get("estado_fecha")))
-        for c in sorted(sin, key=lambda c: (c.get("estado_fecha") or "", c["codigo"]), reverse=True))
-    tabla = ("<h2>Circuitos sin servicio ahora</h2><table><thead><tr><th>Código</th>"
-             "<th>Calles</th><th>Causa</th><th>Desde (hora de La Habana)</th></tr></thead>"
-             "<tbody>%s</tbody></table>" % filas) if sin else ""
+    # Listado en tarjetas .circ (vocabulario del sitio, nunca <table>): una por
+    # circuito sin servicio, ordenada por antigüedad del estado (más nuevo antes).
+    def _tarjeta(c):
+        chips = ""
+        if c.get("bloque"):
+            chips += '<span class="circ-b">Bloque %s</span>' % esc_html(c["bloque"])
+        if c.get("causa"):
+            chips += '<span class="circ-b">Causa: %s</span>' % esc_html(c["causa"])
+        hora = _hora_cuba(c.get("estado_fecha"))
+        meta = ("desde %s (La Habana)" % hora) if hora != "—" else "hora sin publicar"
+        return ('<article class="circ">\n'
+                '<div class="circ-cab">'
+                '<a class="circ-cod" href="/circuitos.html?c=%s">%s</a>'
+                '<span class="circ-est sin">sin servicio</span>%s'
+                '<span class="circ-meta">%s</span>'
+                '</div>\n'
+                '<div class="circ-calles">%s</div>\n'
+                '</article>' % (esc_html(c["codigo"]), esc_html(c["codigo"]), chips,
+                                esc_html(meta),
+                                esc_html((c.get("calles") or "Sin información de calles")[:120])))
+    listado = ("<h2>Circuitos sin servicio ahora</h2>\n"
+               + "".join(_tarjeta(c) for c in sorted(
+                     sin, key=lambda c: (c.get("estado_fecha") or "", c["codigo"]), reverse=True))
+               ) if sin else ""
     rot = (bloques or {}).get(nombre) or {}
     bloques_html = "".join("<p><b>Bloque %s</b> — %s</p>" % (b, esc_html(" · ".join(z)))
                            for b, z in sorted(rot.items(), key=lambda kv: int(kv[0])))
@@ -291,8 +382,7 @@ def pagina_municipio(nombre, estado, circ, bloques):
         for e in eventos)
     historial = ("<h2>Historial reciente (partes)</h2><ul>%s</ul>" % hist) if eventos else ""
     cuerpo = "\n".join(filter(None, [
-        "<h1>Apagones en %s hoy</h1>" % esc_html(nombre),
-        parrafo_estado, tabla,
+        parrafo_estado, listado,
         '<p><a href="/?municipio=%s">Ver %s en el mapa interactivo</a></p>' % (quote(nombre), esc_html(nombre)),
         rotacion, historial,
         '<p class="stamp">Instantánea del despliegue — %s; el mapa muestra el estado en vivo al cargar.</p>'
@@ -301,22 +391,29 @@ def pagina_municipio(nombre, estado, circ, bloques):
             "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
             "<title>%s</title>\n<meta name=\"description\" content=\"%s\">\n"
             "<link rel=\"stylesheet\" href=\"/style.css\">\n%s\n</head>\n<body>\n"
-            "<header><p><a href=\"/\">⚡ Apagones La Habana</a></p>\n"
-            "<nav class=\"tabs\"><a href=\"/\">🗺 Mapa</a> <a href=\"/analitica.html\">📊 Análisis</a> "
-            "<a href=\"/partes.html\">📢 Partes</a> <a href=\"/circuitos.html\">🔌 Circuitos</a> "
-            "<a href=\"/sugerencias.html\">💡 Sugerencias</a></nav></header>\n<main>\n%s\n</main>\n"
+            "<header><h1>\u26a1 Apagones en %s hoy</h1>\n%s</header>\n"
+            "<main class=\"pagina-municipio\">\n%s\n</main>\n"
             "<footer><p>Fuente: canal de Telegram de la <a href=\"https://t.me/EmpresaElectricaDeLaHabana\">"
             "Empresa Eléctrica de La Habana</a> y comentarios de usuarios. Datos no oficiales, "
             "pueden contener errores.</p></footer>\n</body>\n</html>\n"
             % (esc_html(titulo), esc_html(descripcion),
-               etiquetas_head(url, titulo, descripcion, ld=ld_municipio(nombre)), cuerpo))
+               etiquetas_head(url, titulo, descripcion, ld=ld_municipio(nombre)),
+               esc_html(nombre), nav_tabs("municipios/"), cuerpo))
 
 
 def urls_del_sitemap(nombres):
-    """Las 20 URLs canónicas (5 páginas + 15 municipios, forma de directorio)."""
+    """Las 21 URLs canónicas (6 páginas + 15 municipios, forma de directorio)."""
     urls = [site_url(p[0]) for p in PAGINAS.values()]
     urls += [site_url("municipio/%s/" % slug(n)) for n in nombres]
     return urls
+
+
+# Regiones del body que generar() rellena por archivo (las no listadas solo
+# reciben su HEAD). Las dos comparten firma (estado, circ, bloques).
+REGIONES_CUERPO = {
+    "index.html": lambda estado, circ, bloques: instantanea_index(estado, circ),
+    "municipios/index.html": region_hub,
+}
 
 
 def generar(dir_web, datos):
@@ -327,18 +424,19 @@ def generar(dir_web, datos):
     salidas. Nunca se commitea lo que escribe aquí.
     """
     estado, circ, bloques = datos
+    nombres = municipios_de(estado, circ, bloques)
     for archivo in PAGINAS:
         ruta = os.path.join(dir_web, archivo)
         with open(ruta, encoding="utf-8") as f:
             texto = f.read()
         texto = reescribir_region(texto, MARCA_HEAD_INICIO, MARCA_HEAD_FIN,
-                                  head_estaticas(archivo))
-        if archivo == "index.html":
+                                  head_estaticas(archivo, nombres))
+        relleno = REGIONES_CUERPO.get(archivo)
+        if relleno is not None:
             texto = reescribir_region(texto, MARCA_INICIO, MARCA_FIN,
-                                      instantanea_index(estado, circ))
+                                      relleno(estado, circ, bloques))
         with open(ruta, "w", encoding="utf-8") as f:
             f.write(texto)
-    nombres = municipios_de(estado, circ, bloques)
     for nombre in nombres:
         destino = os.path.join(dir_web, "municipio", slug(nombre))
         os.makedirs(destino, exist_ok=True)

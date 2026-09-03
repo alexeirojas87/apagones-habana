@@ -32,11 +32,6 @@ h1 { font-size: 1.15rem; margin: 0; }
 /* ---------- portada: resumen por circuito ---------- */
 #resumen-circuitos { padding: 8px 16px 4px; }
 #resumen-circuitos:empty { display: none; }
-#municipios { padding: 8px 16px 4px; }
-#municipios h2 { font-size: .95rem; margin: 6px 0; }
-.municipios-lista { line-height: 1.9; }
-.municipios-lista a { color: #8ab4f8; text-decoration: none; white-space: nowrap; }
-.municipios-lista a:hover { text-decoration: underline; }
 .rc-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; }
 /* con tarjetas: Circuitos (recortado) | más horas (centro) | Personas (compacto) */
 .rc-grid.tres { grid-template-columns: minmax(240px, .85fr) minmax(0, 1.7fr) minmax(210px, .65fr); }
@@ -314,6 +309,9 @@ footer a { color: #8ab4f8; }
 .circ { background: #1b222c; border-radius: 10px; padding: 10px 13px; margin-bottom: 9px; }
 .circ-cab { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
 .circ-cod { font-weight: 700; font-size: .92rem; color: #e8e8e8; letter-spacing: .3px; }
+/* en las páginas de municipio el código es enlace: misma pinta que el span */
+a.circ-cod { text-decoration: none; }
+a.circ-cod:hover { text-decoration: underline; }
 .circ-b { font-size: .7rem; background: #10141a; border-radius: 999px; padding: 2px 9px; color: #cdd6e0; }
 .circ-daf { font-size: .7rem; background: #2a2410; border-radius: 999px; padding: 2px 9px; color: #ffce4d; }
 .circ-of { font-size: .7rem; background: #14351d; border-radius: 999px; padding: 2px 9px; color: #7fd08c; }
@@ -422,4 +420,30 @@ footer a { color: #8ab4f8; }
   .fila > * { min-width: 0; }
   .fila .val { font-size: .7rem; }
   .panel h2 .nota { display: block; }
+}
+
+/* ---------- páginas generadas: municipio, hub e instantánea SEO ---------- */
+/* Columna de contenido legible: max-width como en #feed/#lista/#paneles,
+   nada de anchos fijos en píxeles (mobile-readable). */
+.pagina-municipio { max-width: 820px; width: 100%; margin: 0 auto; padding: 8px 16px 40px; }
+.pagina-municipio h2 { font-size: .95rem; color: #cdd6e0; margin: 20px 0 8px; }
+.pagina-municipio p { line-height: 1.45; font-size: .86rem; }
+.pagina-municipio ul { padding-left: 18px; line-height: 1.7; font-size: .82rem; color: #c4ccd6; }
+.pagina-municipio .circ-meta { margin-left: 0; }
+.stamp { font-size: .72rem; color: #8a95a5; }
+#seo-resumen { max-width: 820px; width: 100%; margin: 0 auto; padding: 8px 16px 0; font-size: .86rem; }
+#seo-resumen h2 { font-size: .95rem; color: #cdd6e0; margin: 6px 0; }
+#seo-resumen ul { padding-left: 18px; line-height: 1.7; }
+#hub-municipios { max-width: 820px; width: 100%; margin: 0 auto; padding: 8px 16px 40px; }
+#hub-municipios h2 { font-size: 1.05rem; margin: 4px 0 12px; }
+#hub-municipios .rc-cards { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
+#hub-municipios .rc-card-h { font-size: 1rem; }
+#hub-municipios .rc-card-h small { font-size: .7rem; font-weight: 600; color: #8a95a5; }
+.rc-card.sin-afect { border-left-color: #46a758; }
+.rc-card.sin-afect .rc-card-h { color: #7fd08c; }
+@media (max-width: 720px) {
+  /* el hub es grilla también en móvil: 15 tarjetas no caben en una tira */
+  #hub-municipios .rc-cards { display: grid; overflow: visible; }
+  #hub-municipios .rc-card { width: auto; flex: none; }
+  .pagina-municipio { padding: 6px 10px 32px; }
 }

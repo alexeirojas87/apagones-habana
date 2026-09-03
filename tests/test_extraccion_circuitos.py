@@ -234,3 +234,70 @@ class AdopcionCallesDegeneradasTest(unittest.TestCase):
         MOD._adoptar_calles(r, self.LIMPIA, self.LIMPIA)
 
         self.assertEqual(r["calles"], self.LIMPIA)
+
+
+class MultiCodigoSplitTest(unittest.TestCase):
+    """Un parte que nombra VARIOS circuitos en la misma viñeta es de todos:
+    cada código debe recibir SOLO su segmento. Hoy el primer código absorbe
+    la descripción completa (o el resto de la línea, según la forma) y los
+    demás desaparecen del parte extraído."""
+
+    def _zonas(self, linea):
+        from extract import zonas_en
+        return zonas_en(linea)
+
+    def test_diez_codigos_comparten_la_direccion(self):
+        # Post real 68054.
+        zonas = self._zonas("👉OP310/OP417/OP304/OP306/OP318/OP320/OP406/OP410/"
+                            "OP411/OP424: Soterrado Habana Vieja.")
+        self.assertEqual(len(zonas), 10)
+        self.assertEqual({z.split(":")[0] for z in zonas},
+                         {"OP310", "OP417", "OP304", "OP306", "OP318", "OP320",
+                          "OP406", "OP410", "OP411", "OP424"})
+        for z in zonas:
+            self.assertEqual(z.split(": ", 1)[1], "Soterrado Habana Vieja.")
+            self.assertNotIn("/", z.split(": ", 1)[1],
+                             "ningún segmento puede traer códigos vecinos")
+
+    def test_punto_y_coma_y_la_y_tambien_listan(self):
+        zonas = self._zonas("👉OP304; OP411; OP424; OP318: Soterrados.")
+        self.assertEqual(zonas, ["OP304: Soterrados.", "OP411: Soterrados.",
+                                 "OP424: Soterrados.", "OP318: Soterrados."])
+        zonas = self._zonas("👉OP304 y OP306: Soterrado en Santa Fe.")
+        self.assertEqual(zonas, ["OP304: Soterrado en Santa Fe.",
+                                 "OP306: Soterrado en Santa Fe."])
+
+    def test_la_barra_reparte_segmentos_posicionales(self):
+        # Post real 75848: dos municipios, descripciones propias separadas por '/'.
+        zonas = self._zonas("👉 D1050/MB910: Barreras / Justi, Agromar, "
+                            "Bajurayabo, Campo Florido, La Coca.")
+        self.assertEqual(zonas, [
+            "D1050: Barreras",
+            "MB910: Justi, Agromar, Bajurayabo, Campo Florido, La Coca."])
+
+    def test_lista_con_doble_punto_extraño(self):
+        # Post real 73024: '.../OP410:/OP304: Prado...' — los ':' sobrantes
+        # entre códigos no son descripción.
+        zonas = self._zonas("👉OP411/OP420/OP424/OP318/OP406/OP306/OP410:/OP304: "
+                            "Prado desde Monte hasta Salud.")
+        self.assertEqual(len(zonas), 8)
+        self.assertTrue(all(z.endswith("Prado desde Monte hasta Salud.")
+                            for z in zonas))
+
+    def test_viñetas_de_un_codigo_sal_ilegibles(self):
+        # Invariante de no-división: un solo código jamás se toca, ni siquiera
+        # cuando el texto trae números o códigos sueltos en la descripción.
+        for linea, esperado in [
+            ("👉PG980: Fraternidad, Calleja, San Agustín, El Mamey.",
+             "PG980: Fraternidad, Calleja, San Agustín, El Mamey."),
+            ("👉AL56 - Zonas: 13; 15, 23 desde 53 hasta Boyera.",
+             "AL56 - Zonas: 13; 15, 23 desde 53 hasta Boyera."),
+            ("👉GC18", "GC18"),
+            ("👉MB910", "MB910"),
+            ("👉2073Calle 256 desde Arroyo Arenas hasta Final.",
+             "2073Calle 256 desde Arroyo Arenas hasta Final."),
+        ]:
+            with self.subTest(linea=linea):
+                self.assertEqual(self._zonas(linea), [esperado])
+
+

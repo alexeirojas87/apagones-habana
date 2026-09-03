@@ -8,20 +8,6 @@
   "solo_regex": [],
   "extracto": "🔔📣Se le informa a los clientes del municipio Regla pertenecientes al circuito R466, que se ha transferido temporalmente la carga al circuito R451 el siguiente c"
  },
- "77755": {
-  "fecha": "2026-08-27T18:24:00+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2203",
-   "2210",
-   "A815",
-   "D836",
-   "H466",
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: 10 de Octubre (H466) 👉Dirección: Guasabacoa entre Herrera y Compromiso 👉Dirección:María d"
- },
  "77785": {
   "fecha": "2026-08-27T20:57:00+00:00",
   "tipo_llm": "averia",

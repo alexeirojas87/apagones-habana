@@ -117,6 +117,13 @@ const API_BASE = location.hostname.endsWith("pages.dev") ? "" : "https://apagone
 // circuitoVigente y el catálogo, que viven en ese scope)
 
 async function iniciar() {
+  // La instantánea SEO que build_seo.py inyecta en el HTML desplegado (región
+  // #seo-resumen) se quita en cuanto arranca la app: estado en vivo y snapshot
+  // nunca se muestran a la vez; sin JS la región queda visible para el lector
+  // y para el crawler.
+  const seoResumen = document.getElementById("seo-resumen");
+  if (seoResumen) seoResumen.remove();
+
   const [geo, estadoIni, bloquesMun, zonas, barrios, lineas, poligonos, cuadrantes, sinUbicar, barriosPoly, noRota, catInicial] = await Promise.all([
     fetch("data/municipios.geojson").then((r) => r.json()),
     fetch(`data/estado.json?t=${Date.now()}`).then((r) => r.json()),
@@ -429,7 +436,8 @@ async function iniciar() {
     .addTo(mapa);
 
   // Municipios: solo contorno y popup de resumen; el color lo llevan las zonas.
-  L.geoJSON(geo, {
+  // Guardamos la capa para poder enfocar un municipio con ?municipio= abajo.
+  const capaMunicipios = L.geoJSON(geo, {
     style: () => ({ color: "#7a8699", weight: 1.2, fillColor: "#ffffff", fillOpacity: 0 }),
     onEachFeature: (f, capa) => {
       const nombre = f.properties.municipio;
@@ -756,6 +764,20 @@ async function iniciar() {
     const capa = codFoco && circuitoCapas[codFoco];
     if (capa) {
       mapa.setView(capa.getBounds ? capa.getBounds().getCenter() : capa.getLatLng(), 15);
+      setTimeout(() => capa.openPopup(), 300);
+    }
+  }
+
+  // Enfoque directo: index.html?municipio=NOMBRE (desde las páginas estáticas de
+  // municipio). Nombre válido = centra el contorno y abre su popup tras la carga
+  // normal; ausente o inválido, la página se comporta exactamente como siempre.
+  {
+    const muniFoco = (new URLSearchParams(location.search).get("municipio") || "").trim().toLowerCase();
+    const capa = muniFoco
+      ? capaMunicipios.getLayers().find((l) => (l.feature.properties.municipio || "").toLowerCase() === muniFoco)
+      : null;
+    if (capa) {
+      mapa.fitBounds(capa.getBounds(), { padding: [8, 8] });
       setTimeout(() => capa.openPopup(), 300);
     }
   }

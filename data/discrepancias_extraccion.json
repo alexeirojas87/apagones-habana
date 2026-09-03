@@ -1094,5 +1094,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Cerro, queda reparada la avería secundaria por TRANSFORMADOR DAÑADO que afectaba el servicio eléctrico en la siguiente dirección: Ar"
+ },
+ "79245": {
+  "fecha": "2026-09-03T07:54:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380",
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 AM se afectan 591 MW distribuidos en 170 circuitos de distribución. A continuación,"
  }
 }

@@ -1,13 +1,4 @@
 {
- "77762": {
-  "fecha": "2026-08-27T19:35:07+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "R466"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Se le informa a los clientes del municipio Regla pertenecientes al circuito R466, que se ha transferido temporalmente la carga al circuito R451 el siguiente c"
- },
  "77785": {
   "fecha": "2026-08-27T20:57:00+00:00",
   "tipo_llm": "averia",

@@ -336,6 +336,20 @@ class TestChivasVerdadLocal(unittest.TestCase):
         self.assertEqual((out["lat"], out["lon"]), (23.13502, -82.3085),
                          "'Chivás' debe fijarse por lugares_manual, no por red")
 
+    def test_alias_reparto_chibas_sin_red(self):
+        # GC15 en su forma real de parte: 'Reparto Chibás' — el alias debe
+        # llevar a la misma entrada de Chivás sin tocar la red.
+        it = {"municipio": "Habana del Este",
+              "direccion": "Reparto Chibás: calles 224 desde Cruz del Río hasta Panamericana"}
+        out = self.E.geocodificar_averias([it], {}, solo_lugar=True)[0]
+        self.assertEqual((out["lat"], out["lon"]), (23.13502, -82.3085),
+                         "'Reparto Chibás' debe resolver por alias, no por red")
+
+    def test_alias_chibas_solo_toponimo(self):
+        it = {"municipio": "Habana del Este", "direccion": "Reparto Chibás"}
+        out = self.E.geocodificar_averias([it], {}, solo_lugar=True)[0]
+        self.assertEqual((out["lat"], out["lon"]), (23.13502, -82.3085))
+
 
 # ---------------------------------------------------------------------------
 # Gap B (SG316): auto-certificación de familias. Mismas variantes del mismo

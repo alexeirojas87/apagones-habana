@@ -14,7 +14,7 @@
 <header>
   <h1>⚡ Apagones La Habana</h1>
   <p id="actualizado">cargando…</p>
-  <nav class="tabs"><span class="activo">🗺 Mapa</span> <a href="analitica.html">📊 Análisis</a> <a href="partes.html">📢 Partes</a> <a href="circuitos.html">🔌 Circuitos</a> <a href="sugerencias.html">💡 Sugerencias</a></nav>
+  <nav class="tabs"><span class="activo">🗺 Mapa</span> <a href="analitica.html">📊 Análisis</a> <a href="partes.html">📢 Partes</a> <a href="circuitos.html">🔌 Circuitos</a> <a href="#municipios">🏘️ Municipios</a> <a href="sugerencias.html">💡 Sugerencias</a></nav>
   <div id="buscador">
     <input id="busqueda" type="search" placeholder="🔍 Buscar calle o reparto…" autocomplete="off">
     <div id="resultados" hidden></div>
@@ -32,6 +32,31 @@
 <section id="bloques" aria-label="Estado por bloque" hidden></section>
 
 <div id="mapa"></div>
+
+<!-- Enlace interno PERMANENTE a las páginas de municipio (paridad con los
+     slugs que genera build_seo.py, fijada por test en tests/test_seo.py).
+     La lista inyectada de SEO:INICIO solo menciona los municipios con
+     afectaciones en este momento; esta sección enlaza las 15 SIEMPRE. -->
+<section id="municipios" aria-label="Apagones por municipio">
+  <h2>Apagones por municipio</h2>
+  <p class="municipios-lista">
+    <a href="/municipio/10-de-octubre/">10 de Octubre</a> ·
+    <a href="/municipio/arroyo-naranjo/">Arroyo Naranjo</a> ·
+    <a href="/municipio/boyeros/">Boyeros</a> ·
+    <a href="/municipio/centro-habana/">Centro Habana</a> ·
+    <a href="/municipio/cerro/">Cerro</a> ·
+    <a href="/municipio/cotorro/">Cotorro</a> ·
+    <a href="/municipio/guanabacoa/">Guanabacoa</a> ·
+    <a href="/municipio/habana-del-este/">Habana del Este</a> ·
+    <a href="/municipio/habana-vieja/">Habana Vieja</a> ·
+    <a href="/municipio/la-lisa/">La Lisa</a> ·
+    <a href="/municipio/marianao/">Marianao</a> ·
+    <a href="/municipio/playa/">Playa</a> ·
+    <a href="/municipio/plaza/">Plaza</a> ·
+    <a href="/municipio/regla/">Regla</a> ·
+    <a href="/municipio/san-miguel-del-padron/">San Miguel del Padrón</a>
+  </p>
+</section>
 
 <footer>
   <p>Fuente: canal de Telegram de la <a href="https://t.me/EmpresaElectricaDeLaHabana">Empresa Eléctrica de La Habana</a>

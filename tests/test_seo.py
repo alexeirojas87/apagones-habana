@@ -349,5 +349,26 @@ class EndpointsCrawlingTest(BaseArbol):
             self.assertEqual(f.read(), MOD.robots_txt())
 
 
+class TestEnlacesMunicipiosEnIndex(unittest.TestCase):
+    """La sección estática #municipios de index.html debe enlazar exactamente
+    los 15 slugs que genera build_seo — ni faltantes ni huérfanos. Es el
+    enlace interno PERMANENTE para usuarios y rastreadores: la lista inyectada
+    del snapshot solo menciona municipios con afectaciones en ese momento."""
+
+    def test_los_15_slugs_estan_enlazados(self):
+        with open(RAIZ / "web" / "index.html", encoding="utf-8") as f:
+            html = f.read()
+        for nombre in MUNICIPIOS_15:
+            self.assertIn('href="/municipio/%s/"' % MOD.slug(nombre), html,
+                          "falta enlace a %s en #municipios" % nombre)
+
+    def test_sin_enlaces_huerfanos(self):
+        with open(RAIZ / "web" / "index.html", encoding="utf-8") as f:
+            html = f.read()
+        hrefs = set(re.findall(r'href="(/municipio/[a-z0-9-]+/)"', html))
+        esperados = {"/municipio/%s/" % MOD.slug(n) for n in MUNICIPIOS_15}
+        self.assertEqual(hrefs, esperados)
+
+
 if __name__ == "__main__":
     unittest.main()

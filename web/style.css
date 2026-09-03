@@ -32,6 +32,11 @@ h1 { font-size: 1.15rem; margin: 0; }
 /* ---------- portada: resumen por circuito ---------- */
 #resumen-circuitos { padding: 8px 16px 4px; }
 #resumen-circuitos:empty { display: none; }
+#municipios { padding: 8px 16px 4px; }
+#municipios h2 { font-size: .95rem; margin: 6px 0; }
+.municipios-lista { line-height: 1.9; }
+.municipios-lista a { color: #8ab4f8; text-decoration: none; white-space: nowrap; }
+.municipios-lista a:hover { text-decoration: underline; }
 .rc-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 10px; }
 /* con tarjetas: Circuitos (recortado) | más horas (centro) | Personas (compacto) */
 .rc-grid.tres { grid-template-columns: minmax(240px, .85fr) minmax(0, 1.7fr) minmax(210px, .65fr); }

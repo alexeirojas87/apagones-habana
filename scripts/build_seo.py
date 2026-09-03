@@ -25,6 +25,7 @@ Decisiones fijadas por el spec:
 """
 
 import json
+import math
 import os
 import re
 import unicodedata
@@ -49,9 +50,9 @@ MARCA_HEAD_FIN = "<!-- SEO:HEAD:FIN -->"
 # alimenta los tags absolutos (og:title/og:description) y testea la paridad.
 PAGINAS = {
     "index.html": ("", "Apagones en La Habana hoy — estado y horario por municipio",
-                   "Mapa y estado del servicio eléctrico en La Habana hoy: circuitos sin corriente según los partes de la Empresa Eléctrica (UNE), horarios de rotación por bloque y apagones por municipio."),
+                   "Mapa y estado del servicio eléctrico en La Habana hoy: circuitos sin corriente según los partes de la Empresa Eléctrica (UNE), su horario y los apagones por municipio."),
     "analitica.html": ("analitica.html", "Horario de apagones en La Habana — análisis histórico",
-                       "Análisis de los apagones en La Habana: horario de los cortes por hora del día, bloques más afectados, causas, averías y municipios con más afectaciones."),
+                       "Análisis de los apagones en La Habana: horario de los cortes por hora del día, circuitos con más afectaciones, causas, averías y municipios más golpeados."),
     "partes.html": ("partes.html", "Partes oficiales de apagones — UNE / La Habana hoy",
                     "Los partes oficiales de la Empresa Eléctrica de La Habana (UNE) sobre apagones y horario de afectaciones de hoy, en un solo lugar."),
     "circuitos.html": ("circuitos.html", "Circuitos eléctricos de La Habana sin servicio — causas",
@@ -138,13 +139,12 @@ def ld_index():
          "url": site_url(""), "description": PAGINAS["index.html"][1]},
         {"@context": "https://schema.org", "@type": "Dataset",
          "name": "Afectaciones del servicio eléctrico en La Habana",
-         "description": "Series de partes oficiales de la UNE, estado por circuito y rotación por bloque, actualizadas cada ~25 minutos.",
+         "description": "Series de partes oficiales de la UNE y estado por circuito, actualizadas cada ~25 minutos.",
          "inLanguage": "es", "isAccessibleForFree": True,
          "creator": {"@type": "Organization", "name": "Apagones La Habana (proyecto comunitario)"},
          "distribution": [
              {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": site_url("data/estado.json")},
              {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": site_url("data/circuitos.json")},
-             {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": site_url("data/bloques_por_municipio.json")},
          ]},
     ]
 
@@ -255,35 +255,228 @@ def instantanea_index(estado, circ):
             "</div>")
 
 
-def municipios_de(estado, circ, bloques):
-    """Unión de nombres que aparecen en los tres JSON, en orden estable por slug.
+def nombres_de_geojson(dir_web):
+    """Los 15 nombres canónicos: la autoridad es properties.municipio del geojson
+    commiteado (web/data/municipios.geojson), que el pipeline usa literalmente."""
+    try:
+        geo = _cargar(os.path.join(dir_web, "data", "municipios.geojson"))
+    except (OSError, ValueError):
+        return None
+    nombres = {(f.get("properties") or {}).get("municipio") for f in geo.get("features", [])}
+    nombres = sorted((n for n in nombres if n), key=slug)
+    return nombres or None
 
-    La autoridad de los 15 nombres canónicos es el geojson de municipios; los
-    datos de_pipeline los usan literalmente, así que la unión los reproduce.
-    """
+
+def municipios_de(estado, circ):
+    """Respaldo de nombres: unión de los que aparecen en los JSON de pipeline,
+    en orden estable por slug (se usa solo si falta el geojson canónico)."""
     nombres = set((estado or {}).get("municipios", {}))
     for c in (circ or {}).get("circuitos", []):
         nombres.update(c.get("municipios") or ([c["municipio"]] if c.get("municipio") else []))
-    nombres.update((bloques or {}).keys())
     return sorted((n for n in nombres if n), key=slug)
 
 
 def _hora_cuba(iso):
     """HH:MM fijo (-4, sin tzdata) de un timestamp ISO de los datos; '—' si no hay."""
-    try:
-        dt = datetime.fromisoformat(iso)
-    except (TypeError, ValueError):
+    dt = _dt(iso)
+    if dt is None:
         return "—"
     utc = dt.astimezone(timezone.utc) if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
     return utc.astimezone(HORA_CUBA).strftime("%H:%M")
 
 
-def region_hub(estado, circ, bloques):
+def _dt(iso):
+    """datetime desde ISO de los datos o None (nunca lanza; nunca reloj real)."""
+    try:
+        return datetime.fromisoformat(iso)
+    except (TypeError, ValueError):
+        return None
+
+
+# Umbrales de vigencia compartidos con la regla del catálogo en web/app.js
+# (circuitoVigente): el reloj del builder es estado.generado, no la hora local.
+_UMBRAL_ND_H, _UMBRAL_ASUM_H = 24.0, 48.0
+_ESTADO_FILA = {"sin": ("sin", "sin servicio"), "nd": ("nd", "sin noticias"),
+                "con": ("con", "con servicio"), "asum": ("asum", "asumido")}
+_GRUPO = {"sin": 0, "nd": 1, "con": 2, "asum": 3}
+
+
+def _vigencia(c, gen):
+    """Clasificación estática del circuito (sin/nd/con/asum) con la antigüedad
+    medida contra `gen` (el generado de estado.json): sin noticias a 24 h,
+    asumido-con-corriente (silencio = evidencia de retorno) a 48 h."""
+    if c.get("estado") == "con servicio":
+        return "con"
+    if c.get("estado") != "sin servicio":
+        return "asum"
+    t = _dt(c.get("estado_fecha"))
+    h = (gen - t).total_seconds() / 3600.0 if (gen and t) else 0.0
+    if h > _UMBRAL_ASUM_H:
+        return "asum"
+    if h > _UMBRAL_ND_H:
+        return "nd"
+    return "sin"
+
+
+def _nf_es(n):
+    """Entero con separador de miles español: 71123 -> '71.123'."""
+    return "{:,}".format(n).replace(",", ".")
+
+
+def _estimado_afectados(nombre, estado, circ):
+    """Personas sin corriente en el municipio con el MISMO método del header de
+    la portada (resumenCircuitos en web/app.js): cifra oficial cuando el parte
+    del Capitalino la trae; si no, fracción de circuitos no-nd del municipio ×
+    su población (estado.poblacion_municipio, fuente única U-B), y promedio de
+    ciudad cuando tiene menos de 2 circuitos atribuibles. El redondeo replica
+    Math.round (floor(x + 0.5)). None = no estimable (sin población o sin datos).
+    """
+    p = ((estado or {}).get("poblacion_municipio") or {}).get(nombre)
+    if not p:
+        return None
+    of = (estado or {}).get("poblacion") or {}
+    if of.get("fuente") == "oficial" and of.get("sin_pct") is not None:
+        return int(math.floor(p * of["sin_pct"] / 100.0 + 0.5))
+    cat = (circ or {}).get("circuitos", [])
+    if not cat:
+        return None
+    gen = _dt((estado or {}).get("generado"))
+    nsin = sum(1 for c in cat if _vigencia(c, gen) == "sin")
+    sin_city = nsin / float(len(cat))
+    atribuibles = [c for c in circuitos_del_municipio(nombre, circ)
+                   if _vigencia(c, gen) != "nd"]
+    if len(atribuibles) >= 2:
+        fraccion = sum(1 for c in atribuibles if _vigencia(c, gen) == "sin") / float(len(atribuibles))
+    else:
+        fraccion = sin_city
+    return int(math.floor(fraccion * p + 0.5))
+
+
+def _fecha_corta(iso):
+    """'2026-01-10T09:00...' -> '10/01/2026' (formato corto español); '' si no hay."""
+    s = (iso or "")[:10]
+    return "%s/%s/%s" % (s[8:10], s[5:7], s[0:4]) if len(s) == 10 else ""
+
+
+def reincidentes_circuitos(nombre, estado, circ):
+    """Top 5 circuitos por `veces` (S13), desempate alfabético por código: cada
+    fila dice «caído N veces desde <primera>» y, si el último parte del circuito
+    tiene más de 24 h al momento del build, un aviso «sin noticias hace D días»
+    con D = días completos (S14). La fecha de referencia es estado.generado: el
+    builder no usa el reloj de la corrida."""
+    del_muni = [c for c in circuitos_del_municipio(nombre, circ)
+                if isinstance(c.get("veces"), int) and c["veces"] > 0]
+    if not del_muni:
+        return ""
+    gen = _dt((estado or {}).get("generado"))
+    top = sorted(del_muni, key=lambda c: (-c["veces"], c["codigo"]))[:5]
+    filas = []
+    for c in top:
+        desde = " desde %s" % _fecha_corta(c.get("primera")) if c.get("primera") else ""
+        aviso = ""
+        t = _dt(c.get("estado_fecha"))
+        if gen and t:
+            horas = (gen - t).total_seconds() / 3600.0
+            if horas > _UMBRAL_ND_H:
+                dias = int(horas // 24)
+                aviso = (' <span class="circ-b">sin noticias hace %s</span>'
+                         % ("1 día" if dias == 1 else "%d días" % dias))
+        filas.append('<li><a class="circ-cod" href="/circuitos.html?c=%s">%s</a>'
+                     ' — caído %d veces%s%s</li>'
+                     % (esc_html(c["codigo"]), esc_html(c["codigo"]), c["veces"], desde, aviso))
+    return ('<h2>Circuitos más reincidentes</h2>\n<ul class="reinc">'
+            + "".join(filas) + "</ul>")
+
+
+def ranking_poblacion(nombre, estado, circ, nombres):
+    """Líneas de contexto del municipio: puesto 'N de M' por circuitos sin
+    servicio del parte (empates, orden alfabético por slug — S12) y el estimado
+    de personas afectadas compartido con el header (S11)."""
+    puestos = sorted(nombres, key=lambda n: (
+        -sum(1 for c in circuitos_del_municipio(n, circ)
+             if c.get("estado") == "sin servicio"), slug(n)))
+    puesto = puestos.index(nombre) + 1
+    lineas = ["<p>📊 <b>%d de %d municipios más afectados hoy</b>, según los "
+              "circuitos sin servicio del último parte.</p>" % (puesto, len(nombres))]
+    est = _estimado_afectados(nombre, estado, circ)
+    if est is not None:
+        lineas.append("<p>👥 ~%s personas sin corriente (estimado).</p>" % _nf_es(est))
+    return "\n".join(lineas)
+
+
+def _averias_por_municipio(analitica):
+    """Averías agrupadas por municipio exacto desde analitica.json (`averias` =
+    [fecha, tipo, municipio], una entrada por avería física). Las «sin ubicación»
+    (municipio vacío) se excluyen por contrato; orden más-nuevo-primero."""
+    por_muni = {}
+    for a in (analitica or {}).get("averias") or []:
+        if not isinstance(a, (list, tuple)) or len(a) < 3 or not a[2]:
+            continue
+        por_muni.setdefault(a[2], []).append(a)
+    for filas in por_muni.values():
+        filas.sort(key=lambda a: (a[0], a[1]), reverse=True)
+    return por_muni
+
+
+def _fecha_hora_av(iso):
+    """'2026-07-03T15:10' (UTC truncado del canal) -> '03/07 11:10' La Habana."""
+    s = iso or ""
+    hora = _hora_cuba(s)
+    if len(s) < 10 or hora == "—":
+        return None
+    return "%s/%s %s" % (s[8:10], s[5:7], hora)
+
+
+def averias_municipio(nombre, averias):
+    """Hasta 8 averías recientes del municipio (S15); si no hay, estado vacío
+    explícito (S16) — nunca un hueco silencioso donde antes había rotación."""
+    filas = []
+    for a in ((averias or {}).get(nombre) or [])[:8]:  # S15: máximas 8, más nuevas
+        fh = _fecha_hora_av(a[0])
+        if fh:
+            filas.append('<li class="av-fila">%s · %s</li>' % (fh, esc_html(a[1])))
+    cuerpo = ("<ul>%s</ul>" % "".join(filas)) if filas else \
+        "<p>Sin averías registradas en el último parte.</p>"
+    return "<h2>Averías recientes</h2>\n" + cuerpo
+
+
+def catalogo_circuitos(nombre, estado, circ):
+    """Catálogo COMPLETO del municipio (reemplaza a la retirada rotación): todos
+    sus circuitos con su estado vigente, causa y hora, en el recorrido canónico
+    compartido con el hub (paridad de longitud por construcción). Orden: caídos
+    (más nuevo antes) -> sin noticias -> con servicio -> asumidos."""
+    filas_html = []
+    del_muni = circuitos_del_municipio(nombre, circ)
+    if not del_muni:
+        return ('<h2>Catálogo completo de circuitos</h2>\n'
+                '<p>Sin circuitos catalogados en el último parte.</p>')
+    gen = _dt((estado or {}).get("generado"))
+    grupos = {}
+    for c in del_muni:
+        grupos.setdefault(_GRUPO[_vigencia(c, gen)], []).append(c)
+    for g in sorted(grupos):  # cada grupo, del más reciente al más antiguo
+        for c in sorted(grupos[g], key=lambda c: (c.get("estado_fecha") or "", c["codigo"]),
+                        reverse=True):
+            clase, etiqueta = _ESTADO_FILA[_vigencia(c, gen)]
+            causa = " · Causa: %s" % esc_html(c["causa"]) if c.get("causa") else ""
+            hora = _hora_cuba(c.get("estado_fecha"))
+            desde = " · desde %s (La Habana)" % hora if hora != "—" else ""
+            filas_html.append(
+                '<li class="circ-fila">'
+                '<a class="circ-cod" href="/circuitos.html?c=%s">%s</a> '
+                '<span class="circ-est %s">%s</span>%s%s</li>'
+                % (esc_html(c["codigo"]), esc_html(c["codigo"]), clase, etiqueta,
+                   causa, desde))
+    return ('<h2>Catálogo completo de circuitos</h2>\n'
+            '<ul class="circ-filas">' + "".join(filas_html) + "</ul>")
+
+
+def region_hub(estado, circ, nombres):
     """Contenido de la región SEO:INICIO del hub: grilla .rc-card, una tarjeta
     por municipio con nombre, cuenta (recorrido compartido con la hija), enlace
     a /municipio/<slug>/ y deep link ?municipio= al mapa."""
     tarjetas = []
-    for nombre in municipios_de(estado, circ, bloques):
+    for nombre in nombres:
         s = slug(nombre)
         sin_n, total_n = conteo_municipio(nombre, circ)
         clase = "rc-card" if sin_n else "rc-card sin-afect"
@@ -323,7 +516,7 @@ def nav_tabs(activo):
     return '<nav class="tabs">%s</nav>' % " ".join(piezas)
 
 
-def pagina_municipio(nombre, estado, circ, bloques):
+def pagina_municipio(nombre, estado, circ, nombres, averias=None):
     """Página estática completa de un municipio (forma /municipio/<slug>/)."""
     s = slug(nombre)
     url = site_url("municipio/%s/" % s)
@@ -332,7 +525,7 @@ def pagina_municipio(nombre, estado, circ, bloques):
     sin = [c for c in del_muni if c.get("estado") == "sin servicio"]
     titulo = "Apagones en %s hoy — horario y estado actual" % nombre
     descripcion = ("Estado de los apagones en %s (La Habana) hoy: circuitos sin servicio según "
-                   "el último parte, rotación por bloque y horario. Actualización: %s." % (nombre, stamp))
+                   "el último parte, con su causa y horario. Actualización: %s." % (nombre, stamp))
     if sin:
         parrafo_estado = ("<p><b>%d de %d circuitos</b> del municipio están sin servicio "
                           "según el último parte.</p>" % (len(sin), len(del_muni)))
@@ -341,14 +534,12 @@ def pagina_municipio(nombre, estado, circ, bloques):
                           "sus %d circuitos catalogados tienen servicio.</p>" % (esc_html(nombre), len(del_muni)))
     else:
         parrafo_estado = ("<p>%s aparece <b>sin afectaciones registradas</b> en el último parte; "
-                          "aún no tiene circuitos catalogados. La rotación por bloque sigue activa.</p>"
+                          "aún no tiene circuitos catalogados.</p>"
                           % esc_html(nombre))
     # Listado en tarjetas .circ (vocabulario del sitio, nunca <table>): una por
     # circuito sin servicio, ordenada por antigüedad del estado (más nuevo antes).
     def _tarjeta(c):
         chips = ""
-        if c.get("bloque"):
-            chips += '<span class="circ-b">Bloque %s</span>' % esc_html(c["bloque"])
         if c.get("causa"):
             chips += '<span class="circ-b">Causa: %s</span>' % esc_html(c["causa"])
         hora = _hora_cuba(c.get("estado_fecha"))
@@ -367,11 +558,6 @@ def pagina_municipio(nombre, estado, circ, bloques):
                + "".join(_tarjeta(c) for c in sorted(
                      sin, key=lambda c: (c.get("estado_fecha") or "", c["codigo"]), reverse=True))
                ) if sin else ""
-    rot = (bloques or {}).get(nombre) or {}
-    bloques_html = "".join("<p><b>Bloque %s</b> — %s</p>" % (b, esc_html(" · ".join(z)))
-                           for b, z in sorted(rot.items(), key=lambda kv: int(kv[0])))
-    rotacion = ("<h2>Rotación por bloque</h2>"
-                + (bloques_html or "<p>Sin rotación publicada para este municipio.</p>"))
     eventos = sorted((estado.get("municipios", {}).get(nombre) or {}).get("eventos", []),
                      key=lambda e: e.get("fecha") or "", reverse=True)[:8]
     icono = {"afectacion": "🔴", "restablecimiento": "✅"}
@@ -382,9 +568,12 @@ def pagina_municipio(nombre, estado, circ, bloques):
         for e in eventos)
     historial = ("<h2>Historial reciente (partes)</h2><ul>%s</ul>" % hist) if eventos else ""
     cuerpo = "\n".join(filter(None, [
-        parrafo_estado, listado,
+        parrafo_estado, ranking_poblacion(nombre, estado, circ, nombres),
+        listado, catalogo_circuitos(nombre, estado, circ),
+        reincidentes_circuitos(nombre, estado, circ),
+        averias_municipio(nombre, averias),
         '<p><a href="/?municipio=%s">Ver %s en el mapa interactivo</a></p>' % (quote(nombre), esc_html(nombre)),
-        rotacion, historial,
+        historial,
         '<p class="stamp">Instantánea del despliegue — %s; el mapa muestra el estado en vivo al cargar.</p>'
         % esc_html(stamp)]))
     return ("<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"utf-8\">\n"
@@ -409,9 +598,9 @@ def urls_del_sitemap(nombres):
 
 
 # Regiones del body que generar() rellena por archivo (las no listadas solo
-# reciben su HEAD). Las dos comparten firma (estado, circ, bloques).
+# reciben su HEAD). Las dos comparten firma (estado, circ, nombres).
 REGIONES_CUERPO = {
-    "index.html": lambda estado, circ, bloques: instantanea_index(estado, circ),
+    "index.html": lambda estado, circ, nombres: instantanea_index(estado, circ),
     "municipios/index.html": region_hub,
 }
 
@@ -423,8 +612,12 @@ def generar(dir_web, datos):
     aleatoriedad), así que dos corridas con las mismas entradas dan las mismas
     salidas. Nunca se commitea lo que escribe aquí.
     """
-    estado, circ, bloques = datos
-    nombres = municipios_de(estado, circ, bloques)
+    estado, circ = datos
+    nombres = nombres_de_geojson(dir_web) or municipios_de(estado, circ)
+    try:
+        averias = _averias_por_municipio(_cargar(os.path.join(dir_web, "data", "analitica.json")))
+    except (OSError, ValueError):
+        averias = {}  # sin histórico (p. ej. árbol de prueba sin analitica): estados vacíos
     for archivo in PAGINAS:
         ruta = os.path.join(dir_web, archivo)
         with open(ruta, encoding="utf-8") as f:
@@ -434,14 +627,14 @@ def generar(dir_web, datos):
         relleno = REGIONES_CUERPO.get(archivo)
         if relleno is not None:
             texto = reescribir_region(texto, MARCA_INICIO, MARCA_FIN,
-                                      relleno(estado, circ, bloques))
+                                      relleno(estado, circ, nombres))
         with open(ruta, "w", encoding="utf-8") as f:
             f.write(texto)
     for nombre in nombres:
         destino = os.path.join(dir_web, "municipio", slug(nombre))
         os.makedirs(destino, exist_ok=True)
         with open(os.path.join(destino, "index.html"), "w", encoding="utf-8") as f:
-            f.write(pagina_municipio(nombre, estado, circ, bloques))
+            f.write(pagina_municipio(nombre, estado, circ, nombres, averias))
     # Endpoints de rastreo. robots.txt vive TAMBIÉN commiteado (si esta corrida
     # revienta, el deploy del último-good conserva reglas); el re-emitir aquí
     # solo lo alinea cuando SITE_BASE cambió. sitemap.xml es 100% generado.
@@ -458,8 +651,7 @@ def _cargar(ruta):
 
 def main():
     datos = (_cargar(os.path.join(DATOS, "estado.json")),
-             _cargar(os.path.join(DATOS, "circuitos.json")),
-             _cargar(os.path.join(DATOS, "bloques_por_municipio.json")))
+             _cargar(os.path.join(DATOS, "circuitos.json")))
     generar(WEB, datos)
     print("SEO regenerado en el árbol de trabajo (nada de esto se commitea)")
 

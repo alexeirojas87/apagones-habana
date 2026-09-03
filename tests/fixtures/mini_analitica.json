@@ -1,0 +1,75 @@
+{
+ "generado": "2026-07-03T15:20:00+00:00",
+ "averias": [
+  [
+   "2026-07-03T15:10",
+   "Transformador dañado",
+   "Playa"
+  ],
+  [
+   "2026-07-03T14:40",
+   "Primario/conductor partido",
+   "Playa"
+  ],
+  [
+   "2026-07-03T13:05",
+   "Puente partido",
+   "Playa"
+  ],
+  [
+   "2026-07-03T11:20",
+   "Soterrado",
+   "Playa"
+  ],
+  [
+   "2026-07-03T09:45",
+   "Circuito disparado",
+   "Playa"
+  ],
+  [
+   "2026-07-02T22:15",
+   "Avería secundaria",
+   "Playa"
+  ],
+  [
+   "2026-07-02T18:30",
+   "Avería primaria",
+   "Playa"
+  ],
+  [
+   "2026-07-02T12:00",
+   "Línea/combustión",
+   "Playa"
+  ],
+  [
+   "2026-07-02T08:00",
+   "Poste partido",
+   "Playa"
+  ],
+  [
+   "2026-07-01T20:00",
+   "Cable con fallo",
+   "Playa"
+  ],
+  [
+   "2026-07-03T10:00",
+   "Subestación",
+   "Regla"
+  ],
+  [
+   "2026-07-02T10:00",
+   "Avería sin municipio",
+   ""
+  ],
+  [
+   "2026-07-01T10:00",
+   "Avería sin municipio",
+   ""
+  ],
+  [
+   "2026-07-03T08:00",
+   "Transformador dañado",
+   "Marianao"
+  ]
+ ]
+}

@@ -40,8 +40,23 @@ def fixture(nombre):
 
 
 def coleccion():
-    """(estado, circuitos, bloques) desde los fixtures mini."""
-    return fixture("mini_estado.json"), fixture("mini_circuitos.json"), fixture("mini_bloques.json")
+    """(estado, circuitos) desde los fixtures mini."""
+    return fixture("mini_estado.json"), fixture("mini_circuitos.json")
+
+
+class ColeccionTest(unittest.TestCase):
+    def test_los_dos_lectores_canonicos_devuelven_los_mismos_15(self):
+        # El geojson commiteado es la autoridad de nombres: la corrida real y la
+        # de fixtures producen exactamente los 15 municipios canónicos ordenados.
+        nombres = MOD.nombres_de_geojson(str(RAIZ / "web"))
+        self.assertEqual(nombres, sorted(MUNICIPIOS_15, key=MOD.slug))
+        # y la unión de respaldo de los fixtures mini está contenida en los 15
+        self.assertTrue(set(MOD.municipios_de(*coleccion())) <= set(MUNICIPIOS_15))
+
+    def test_geojson_faltante_degrada_a_la_union_de_los_json(self):
+        vacio = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, vacio)
+        self.assertIsNone(MOD.nombres_de_geojson(vacio))
 
 
 class SlugTest(unittest.TestCase):
@@ -183,6 +198,9 @@ class BaseArbol(unittest.TestCase):
         self.addCleanup(shutil.rmtree, self.tmp)
         self.web = os.path.join(self.tmp, "web")
         os.makedirs(os.path.join(self.web, "data"))
+        # geojson canónico commiteado: única autoridad de los 15 nombres
+        shutil.copyfile(str(RAIZ / "web" / "data" / "municipios.geojson"),
+                        os.path.join(self.web, "data", "municipios.geojson"))
         for archivo in MOD.PAGINAS:
             destino = os.path.join(self.web, archivo)
             os.makedirs(os.path.dirname(destino) or self.web, exist_ok=True)
@@ -227,20 +245,20 @@ class CorridaCompletaTest(BaseArbol):
     def test_instantanea_del_index_trae_estado_y_estampado(self):
         self.correr()
         idx = self._leer("index.html")
-        self.assertIn("3 de 5 circuitos", idx)  # datos de mini_circuitos.json
+        self.assertIn("6 de 9 circuitos", idx)  # datos de mini_circuitos.json
         self.assertIn("datos al 15:10 (UTC) · 11:10 hora de La Habana", idx)
         self.assertIn('<a href="/municipio/playa/">', idx)
 
     def test_estado_anticuado_usa_su_propio_estampado_y_no_falla(self):
-        estado, circ, bloques = coleccion()
+        estado, circ = coleccion()
         estado["generado"] = "2020-01-01T00:00:00+00:00"  # snapshot vieja a propósito
-        self.correr((estado, circ, bloques))
+        self.correr((estado, circ))
         self.assertIn("datos al 00:00 (UTC) · 20:00 hora de La Habana", self._leer("index.html"))
 
     def test_generado_invalido_no_rompe_la_corrida(self):
-        estado, circ, bloques = coleccion()
+        estado, circ = coleccion()
         estado["generado"] = "no-es-fecha"
-        self.correr((estado, circ, bloques))  # no lanza; el stamp degrada legible
+        self.correr((estado, circ))  # no lanza; el stamp degrada legible
         self.assertIn("datos al", self._leer("index.html"))
 
 
@@ -278,9 +296,10 @@ class PaginasMunicipioTest(BaseArbol):
         h1 = self._h1(p)
         self.assertIn("Apagones en Playa hoy", h1)  # texto verbatim conservado
         self.assertIn("⚡", h1)  # patrón de header del sitio
-        self.assertIn("2 de 3 circuitos", p)  # estado actual desde mini_circuitos
+        self.assertIn("5 de 7 circuitos", p)  # estado actual desde mini_circuitos
         self.assertIn("A1443", p)  # listado de circuitos sin servicio
-        self.assertIn("Kohly", p)  # calles + rotación por bloque
+        self.assertIn("Calle 28 desde 41 hasta 47", p)  # calles del A1443 (contrato
+        # migra de la retirada rotación a las calles verbatim del circuito Kohly)
         self.assertIn('href="/?municipio=Playa"', p)  # deep link al mapa
         self.assertIn('<link rel="canonical" href="%s/municipio/playa/">' % MOD.SITE_BASE, p)
         self.assertIn("datos al 15:10 (UTC) · 11:10", p)
@@ -302,12 +321,11 @@ class PaginasMunicipioTest(BaseArbol):
             self.assertIn("sin afectaciones registradas", p)
             self.assertIn("Apagones en " + nombre + " hoy", self._h1(p))
             self.assertTrue(len(p) > 600, "%s quedó demasiado flaco" % nombre)
-        self.assertIn("Reparto Sierra", self.pagina("Boyeros"))  # la rotación salva
 
     def test_playa_lista_styled(self):
         """U3: el listado usa la tarjeta .circ del sitio (nunca <table>)."""
         p = self.pagina("Playa")
-        self.assertEqual(len(re.findall(r'<article class="circ">', p)), 2)
+        self.assertEqual(len(re.findall(r'<article class="circ">', p)), 5)
         self.assertIn('class="circ-est sin"', p)  # chip de estado por circuito
         self.assertNotIn("<table", p)
         self.assertNotIn("<th>", p)
@@ -385,7 +403,7 @@ class HubPaginaTest(BaseArbol):
     def test_cada_tarjeta_nombre_cuenta_y_dos_enlaces(self):
         self.correr()
         hub = self.hub()
-        _, circ, _ = coleccion()
+        _, circ = coleccion()
         from urllib.parse import quote
         for nombre in MUNICIPIOS_15:
             t = self._por_slug(hub)[MOD.slug(nombre)]
@@ -400,8 +418,8 @@ class HubPaginaTest(BaseArbol):
         self.correr()
         tarjetas = self._por_slug(self.hub())
         # Playa (N>0): el string de la tarjeta es el que lee la hija en su parte.
-        self.assertIn("2 de 3 circuitos sin servicio", self._texto(tarjetas["playa"]))
-        self.assertIn("2 de 3 circuitos", self._leer("municipio", "playa", "index.html"))
+        self.assertIn("5 de 7 circuitos sin servicio", self._texto(tarjetas["playa"]))
+        self.assertIn("5 de 7 circuitos", self._leer("municipio", "playa", "index.html"))
         # Marianao (N=0 con catálogo) y Boyeros (N=0 sin catálogo): cuenta 0
         # en la tarjeta y refuerzo "sin afectaciones" en la hija.
         self.assertIn("0 de 1 circuitos sin servicio", self._texto(tarjetas["marianao"]))

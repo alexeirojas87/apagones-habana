@@ -371,12 +371,22 @@
    "lon": -82.3085,
    "nota": "Reparto Chivás (también escrito Chibás), costado oeste de Habana del Este junto a Vía Blanca. Sin esto, GC15 caía en el 'centroide municipio' 11 km al este."
   },
-  "reparto chivas": {
-   "lat": 23.13502,
-   "lon": -82.3085,
-   "nota": "Reparto Chivás (también escrito Chibás), costado oeste de Habana del Este junto a Vía Blanca. Sin esto, GC15 caía en el 'centroide municipio' 11 km al este."
-  }
- },
+   "reparto chivas": {
+    "lat": 23.13502,
+    "lon": -82.3085,
+    "nota": "Reparto Chivás (también escrito Chibás), costado oeste de Habana del Este junto a Vía Blanca. Sin esto, GC15 caía en el 'centroide municipio' 11 km al este."
+   },
+   "chibas": {
+    "lat": 23.13502,
+    "lon": -82.3085,
+    "nota": "Alias de 'Chivás' escrito 'Chibás' (GC15): misma verdad local, sin red."
+   },
+   "reparto chibas": {
+    "lat": 23.13502,
+    "lon": -82.3085,
+    "nota": "Alias de 'Reparto Chivás' escrito 'Reparto Chibás' (GC15): misma verdad local, sin red."
+   }
+  },
  "circuitos_municipio": {
   "A1071": "Guanabacoa",
   "A1550": "Boyeros",

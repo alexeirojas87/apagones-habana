@@ -173,6 +173,51 @@ def texto_degenerado(texto: str, fuente=None) -> bool:
     return bool(RE_REPETICION_TOKEN.search(texto))
 
 
+_RE_COD = re.compile(r"\b[A-Za-z]{1,3}\d{1,4}\b")  # 'AL56', 'OP304', 'D1050';
+# nunca '2073Calle' (los códigos del SEN empiezan con letras) ni un trozo de un
+# código más largo ('P411' dentro de 'OP411')
+_SEP_LISTA = r"[;,:/\u2013\u2014-]|\s+[ye]\s+"
+_RE_PREFIJO = re.compile(
+    rf"^\s*{_RE_COD.pattern}\s*(?:{_SEP_LISTA})\s*{_RE_COD.pattern}")
+# ':' entra en los separadores ENTRE códigos, no como disparador: la línea solo
+# se parte si ARRANCA con CÓDIGO ':' CÓDIGO; 'AL53:Zonas: 1, 2...' y 'CPP20 :
+# Alrededores' siguen intactas porque lo que sigue al ':' no es un código.
+
+
+def _limpiar_lista(partes):
+    """El espacio entre dos códigos de la lista (no su descripción): separador
+    puro, o la conjunción ' y '. Cualquier otra cosa es texto propio."""
+    limpio = re.sub(rf"^(?:{_SEP_LISTA})+|(?:{_SEP_LISTA})+$", "", partes).strip()
+    return "" if limpio.lower() in ("", "y", "e") else limpio
+
+
+def _split_multicodigos(texto: str) -> list:
+    """Una viñeta que nombra VARIOS circuitos ('OP304; OP411; OP320: Soterrados')
+    es de todos: cada código sale con su propio segmento, y si la lista comparte
+    una descripción final se le replica a cada uno (o se reparte por posición si
+    los segmentos separados por '/' cuadran uno por uno). Con menos de dos
+    códigos —o si la línea no ARRANCA con la lista— el texto sale intacto:
+    ninguna descripción suelta ('...desde OP304 hasta...') dispara el corte."""
+    codigos = list(_RE_COD.finditer(texto))
+    if len(codigos) < 2 or not _RE_PREFIJO.match(texto):
+        return [texto]
+    trozos = []
+    for i, m in enumerate(codigos):
+        fin = codigos[i + 1].start() if i + 1 < len(codigos) else len(texto)
+        trozos.append((m.group(0), _limpiar_lista(texto[m.end():fin])))
+    compartido = ""
+    if all(not partes for _, partes in trozos[:-1]):
+        final = trozos[-1][1]
+        piezas = [p.strip() for p in final.split("/")] if final else []
+        if len(piezas) == len(trozos) and all(piezas):
+            trozos = [(cod, pie) for (cod, _), pie in zip(trozos, piezas)]
+        else:
+            compartido = final
+    out = [f"{cod}: {partes or compartido}"
+           for cod, partes in trozos if (partes or compartido)]
+    return list(dict.fromkeys(out)) or [texto]
+
+
 def zonas_en(texto: str) -> list:
     """Líneas de bullet ('👉 Municipio: zonas', '💥Dirección: ...') de posts oficiales."""
     zonas = []
@@ -195,7 +240,8 @@ def zonas_en(texto: str) -> list:
                 contenido = resto.strip()
         contenido = quitar_avisos(contenido)
         if contenido:
-            zonas.append(contenido)
+            # partes multi-código: cada circuito con su segmento desde aquí
+            zonas.extend(_split_multicodigos(contenido))
     return zonas
 
 

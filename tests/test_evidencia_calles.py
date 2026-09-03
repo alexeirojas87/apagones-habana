@@ -230,6 +230,78 @@ class FlujoEstadoTest(unittest.TestCase):
                          "solo_lugar=False conserva el comportamiento original")
 
 
+class TestSeparadorDospuntos(unittest.TestCase):
+    """GC12: el parte dice 'Cojímar: calles 32 hasta Victoria…' y los DOS PUNTOS
+    no cerraban la pista de lugar: se geocodificaba el rango entero de calles y
+    el circuito caía en el centroide. Con ':' como separador (solo en el camino
+    de circuitos), 'Cojímar' viaja como candidato por su cuenta; las averías
+    conservan el troceo original (pinned por test_averias_sin_solo_lugar_no_cambian)."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.cache_path = os.path.join(self.tmp.name, "geocache.json")
+        json.dump({}, open(self.cache_path, "w"))
+        import estado
+        self.E = estado
+        self.queries = []
+
+        def _nom(q, caja):
+            self.queries.append(q)
+            return None
+
+        for p in (
+            mock.patch.object(estado, "CACHE_AVERIAS", self.cache_path),
+            mock.patch.object(estado, "nominatim", _nom),
+            mock.patch("time.sleep", lambda s: None),
+        ):
+            p.start()
+            self.addCleanup(p.stop)
+
+    def test_dos_puntos_cierran_la_pista_de_lugar(self):
+        it = {"municipio": "Habana del Este", "direccion":
+              "Cojímar: calles 32 hasta Victoria y desde Calixto García"}
+        self.E.geocodificar_averias([it], {}, solo_lugar=True)
+        # La pista viaja sola; el rango entero NO pudo ser candidato de lugar
+        # (era la consulta literal de antes del arreglo; la mediana busca otra cosa).
+        self.assertIn("Cojímar, La Habana, Cuba", self.queries,
+                      "la pista antes de ':' debe geocodificarse sola")
+        self.assertNotIn(it["direccion"] + ", La Habana, Cuba", self.queries,
+                         "el rango de calles no puede viajar pegado al topónimo")
+
+    def test_paridad_de_acento(self):
+        # 'circ|Cojímar:' y 'circ|Cojimar:' cerraban igual de mal: ambas variantes
+        # tienen que producir el MISMO candidato y la misma ubicación.
+        def _nom(q, caja):
+            self.queries.append(q)
+            if q in ("Cojímar, La Habana, Cuba", "Cojimar, La Habana, Cuba"):
+                return {"lat": 23.1624, "lon": -82.3001, "match": "Cojímar"}
+            return None
+
+        with mock.patch.object(self.E, "nominatim", _nom):
+            a = self.E.geocodificar_averias(
+                [{"municipio": "Habana del Este",
+                  "direccion": "Cojímar: calles 32 hasta Victoria"}], {},
+                solo_lugar=True)[0]
+            b = self.E.geocodificar_averias(
+                [{"municipio": "Habana del Este",
+                  "direccion": "Cojimar: calles 32 hasta Victoria"}], {},
+                solo_lugar=True)[0]
+        self.assertEqual((a.get("lat"), a.get("lon")), (b.get("lat"), b.get("lon")),
+                         "acento y ausencia de acento deben ubicar igual")
+        self.assertIsNotNone(a.get("lat"), "ambas variantes deben resolver")
+
+    def test_averias_no_adoptan_el_separador_nuevo(self):
+        # Camino de averías (solo_lugar=False): byte-idéntico a hoy — ':' NO
+        # cierra el candidato. El pino complementario es
+        # FlujoEstadoTest.test_averias_sin_solo_lugar_no_cambian.
+        it = {"municipio": "X", "direccion": "Cojímar: calles 32 hasta Victoria"}
+        self.E.geocodificar_averias([it], {}, solo_lugar=False)
+        self.assertFalse(any(q == "Cojímar, La Habana, Cuba" for q in self.queries),
+                         "las averías no trocean por ':'")
+        self.assertTrue(any(q.startswith("Cojímar: ") for q in self.queries))
+
+
 class TestChivasVerdadLocal(unittest.TestCase):
     """GC15: el reparto Chivás (oeste de Habana del Este) queda envenenado por el
     fallback 'centroide municipio' 11 km al este. La verdad local de
@@ -263,6 +335,20 @@ class TestChivasVerdadLocal(unittest.TestCase):
         out = self.E.geocodificar_averias([it], {}, solo_lugar=True)[0]
         self.assertEqual((out["lat"], out["lon"]), (23.13502, -82.3085),
                          "'Chivás' debe fijarse por lugares_manual, no por red")
+
+    def test_alias_reparto_chibas_sin_red(self):
+        # GC15 en su forma real de parte: 'Reparto Chibás' — el alias debe
+        # llevar a la misma entrada de Chivás sin tocar la red.
+        it = {"municipio": "Habana del Este",
+              "direccion": "Reparto Chibás: calles 224 desde Cruz del Río hasta Panamericana"}
+        out = self.E.geocodificar_averias([it], {}, solo_lugar=True)[0]
+        self.assertEqual((out["lat"], out["lon"]), (23.13502, -82.3085),
+                         "'Reparto Chibás' debe resolver por alias, no por red")
+
+    def test_alias_chibas_solo_toponimo(self):
+        it = {"municipio": "Habana del Este", "direccion": "Reparto Chibás"}
+        out = self.E.geocodificar_averias([it], {}, solo_lugar=True)[0]
+        self.assertEqual((out["lat"], out["lon"]), (23.13502, -82.3085))
 
 
 # ---------------------------------------------------------------------------
@@ -485,6 +571,58 @@ class ValidacionPistaGanadoraTest(unittest.TestCase):
         out, guardado = self._geo()
         self.assertEqual((out["lat"], out["lon"]), PUNTO_LEJOS)
         self.assertEqual(guardado["match"], "Centro Farsante")
+
+
+class GacetaCentroidesTest(unittest.TestCase):
+    """#10b: filas servidas con hit 'centro municipio' que la gaceta ya sabe
+    resolver. Se flaggan siempre; SOLO se purgan las resolubles (las demás —
+    D1050 'Barreras', VC100— esperan el cambio de datos de la gaceta, decisión 4)."""
+
+    def _chk(self, circuitos, cache, autoridad=None, gaz=None):
+        return VD.chequeo_gaceta_centroides(
+            circuitos, autoridad or (lambda c: ["Cotorro"]), cache,
+            VD.cargar_municipios(), gazetteer=gaz)
+
+    def test_centroide_resoluble_por_gaceta_se_flaggea_y_se_purga(self):
+        calles = "Altura de Lotería."
+        c = circ("SR820", 23.05, -82.30, calles)
+        cache = {evc.clave_cache(calles): {"lat": 23.05, "lon": -82.30,
+                                       "match": "centro municipio"}}
+        probs, purgar = self._chk([c], cache)
+        self.assertEqual([p[0] for p in probs], ["centro municipio con gaceta"])
+        self.assertEqual(purgar, {"SR820"}, "resolvable -> re-geocodifica en la Ingesta")
+
+    def test_centroide_sin_gaceta_se_flaggea_pero_no_se_purga(self):
+        calles = "Managua, Molinet y El Volcán"
+        c = circ("VC100", 23.00, -82.32, calles)
+        cache = {evc.clave_cache(calles): {"lat": 23.00, "lon": -82.32,
+                                       "match": "centro municipio"}}
+        probs, purgar = self._chk([c], cache, autoridad=lambda c: ["Arroyo Naranjo"])
+        self.assertEqual([p[0] for p in probs], ["centro municipio con gaceta"])
+        self.assertEqual(purgar, set(), "sin gaceta purgar solo re-centroidea: flag")
+
+    def test_gazette_inyectable_y_no_centroides_ignorados(self):
+        calles = "Barreras"
+        c = circ("D1050", 23.10, -82.29, calles)
+        cache = {evc.clave_cache(calles): {"lat": 23.10, "lon": -82.29,
+                                       "match": "centro municipio"},
+                 "circ|Otra Cosa": {"lat": 1, "lon": 1, "match": "gaceta de barrios"}}
+        called = []
+        def gaz(dire, dentro):
+            called.append((dire, dentro is not None))
+            return None
+        probs, purgar = self._chk([c], cache, autoridad=lambda c: ["Guanabacoa"], gaz=gaz)
+        self.assertEqual(called, [("Barreras", True)], "inyectada y con gate real")
+        self.assertEqual(len(probs), 1)  # la clave 'gaceta de barrios' no se toca
+        self.assertEqual(purgar, set())
+
+    def test_sin_hit_centro_municipio_no_inmiscuible(self):
+        calles = "Altura de Lotería."
+        c = circ("SR820", 23.0376, -82.2518, calles)
+        self.assertEqual(self._chk([c], {evc.clave_cache(calles): {"lat": 23.0376,
+                                     "lon": -82.2518, "match": "gaceta de barrios"}}),
+                         ([], set()))
+        self.assertEqual(self._chk([c], {}), ([], set()), "sin hit tampoco: nada que jubilar")
 
 
 if __name__ == "__main__":

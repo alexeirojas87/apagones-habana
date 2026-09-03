@@ -230,24 +230,8 @@ def circuitos_llm(message_id):
     return out
 
 
-def _punto_interior(anillo):
-    """Punto garantizado DENTRO de un anillo [[lon, lat], ...]: a la latitud media
-    se cortan los cruces del polígono y se toma el centro del tramo más ancho.
-    (El promedio de vértices cae fuera en polígonos cóncavos.)"""
-    lat = sum(p[1] for p in anillo) / len(anillo)
-    cortes = []
-    n = len(anillo)
-    for i in range(n):
-        x1, y1 = anillo[i]
-        x2, y2 = anillo[(i + 1) % n]
-        if (y1 > lat) != (y2 > lat):
-            cortes.append(x1 + (x2 - x1) * (lat - y1) / (y2 - y1))
-    cortes.sort()
-    if len(cortes) < 2:
-        return None
-    tramos = [(cortes[i + 1] - cortes[i], (cortes[i] + cortes[i + 1]) / 2)
-              for i in range(0, len(cortes) - 1, 2)]
-    return {"lat": lat, "lon": max(tramos)[1]}
+# _punto_interior se movió a evidencia_calles.punto_interior (lo necesita el
+# gazetteer de circuitos, que vive en ese módulo sin dependencias de estado).
 
 
 def _geocode_mediana_calles(dire, caja, dentro=None, saltear=None):
@@ -355,7 +339,11 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
         mh0 = re.search(r"\(([^)]+)\)", it["direccion"])
         if mh0:
             cands.append((mh0.group(1), False))
-        cands.append((re.split(r"[;,]", it["direccion"])[0], True))
+        # En circuitos (solo_lugar) los DOS PUNTOS también cierran la pista de
+        # lugar: 'Cojímar: calles 32 hasta Victoria…' debe intentar 'Cojímar',
+        # no el rango entero (GC12). Las averías conservan el troceo de siempre.
+        cands.append((re.split(r"[;,:]" if solo_lugar else r"[;,]",
+                               it["direccion"])[0], True))
         for cand, primer_nombre in cands:
             lm = LUGARES_MANUAL.get(normalizar(cand).strip(" ."))
             if not lm:
@@ -399,7 +387,7 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
                 caja = it.get("caja") or BBOX_HABANA
                 if barrio:
                     consultas.append(f"{barrio}, La Habana, Cuba")
-                primer = re.split(r"[;,]", dire)[0].strip()
+                primer = re.split(r"[;,:]", dire)[0].strip()
                 if not re.match(r"(calle|avenida|ave\.?|cuadrante|\d|desde|hasta|entre|parte)\b", primer, re.I):
                     lugar = re.sub(r"^(reparto|rpto\.?)\s+", "", primer, flags=re.I).strip()
                     consultas.append(f"{lugar}, La Habana, Cuba")
@@ -461,14 +449,12 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
                                     (" (descarta pista lejana)" if gana_pista
                                      else " (descarta POI lejano)"))
                     hit = ref
-            # respaldo: punto representativo del municipio oficial. Peor precisión,
-            # pero en el municipio CORRECTO. No vale promediar vértices (en
-            # polígonos cóncavos cae FUERA): se toma el punto medio del tramo
-            # interior más ancho a la latitud del centroide.
+            # respaldo: gaceta de barrios — nombres del propio parte, gateados
+            # por la caja de autoridad. El centroide municipal se JUBILA: pintar
+            # la cabecera del municipio con match 'centro municipio' mentía más
+            # que 'sin ubicar' (None cacheado), que es lo que muestra el mapa.
             if not hit and polys:
-                hit = _punto_interior(polys[0])
-                if hit:
-                    hit["match"] = "centro municipio"
+                hit = evidencia_calles._lugar_gazetteer(dire, dentro)
             cache[clave] = hit
             nuevos += 1
             if nuevos % 15 == 0:  # guardado parcial: no perder progreso si se corta

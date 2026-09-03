@@ -1106,5 +1106,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 687 MW distribuidos en 181 circuitos de distribución. A continuación,"
+ },
+ "79231": {
+  "fecha": "2026-09-03T04:02:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Cerro, queda reparada la avería secundaria por TRANSFORMADOR DAÑADO que afectaba el servicio eléctrico en la siguiente dirección: Ar"
  }
 }

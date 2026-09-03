@@ -1,13 +1,4 @@
 {
- "77785": {
-  "fecha": "2026-08-27T20:57:00+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A223"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA PRIMARIA que afecta el servicio en los siguientes repartos : 👉Camilo Cienfuegos y El chico🛑⚡️"
- },
  "77810": {
   "fecha": "2026-08-27T22:28:58+00:00",
   "tipo_llm": "afectacion",

@@ -28,6 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from extract import (bloques_en, municipios_en, causa_en, normalizar,  # noqa: E402
                      quitar_avisos, texto_degenerado)
 from circuitos_id import _tokens, canonico, es_conocido  # noqa: E402
+from evidencia_calles import _nombres_calles  # noqa: E402
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE_LINEAS = os.path.join(RAIZ, "data", "geocache_circuitos_lineas.json")
@@ -691,26 +692,8 @@ def main():
     except Exception:
         barrios_poly = {}
 
-    # Preposiciones y genéricos que preceden al topónimo ("en Luyanó",
-    # "reparto Fontanar") y que hay que quitar para que el nombre case.
-    _STOP = r"^(?:en|el|la|los|las|de|del|reparto|rpto\.?|zona|zonas|barrio)\s+"
-
-    def _nombres_calles(calles):
-        """Trocea la descripción del parte en topónimos individuales.
-
-        Parte también por ',' y ' y ': antes solo se partía por ';', así que
-        "D´Beche, Nalón" viajaba como un único topónimo inexistente.
-        """
-        nombres = []
-        for seg in re.split(r"[;,]|\s+y\s+", calles):
-            seg = re.sub(r"\(.*?\)", "", seg)
-            primero = re.split(r"\s+(?:desde|entre|hasta)\s+", seg.strip(), flags=re.I)[0]
-            primero = re.sub(_STOP, "", primero.strip(), flags=re.I)
-            n = _norm(primero)
-            if n and 1 <= len(n) <= 30 and n not in nombres:
-                nombres.append(n)
-        return nombres[:10]
-
+    # _STOP y _nombres_calles viven ahora en evidencia_calles.py (los consume
+    # también el gazetteer de circuitos): mismo troceo, cero duplicación.
     def _geoms(elementos, nset):
         return [[[round(p["lon"], 5), round(p["lat"], 5)] for p in e["geometry"]]
                 for e in elementos

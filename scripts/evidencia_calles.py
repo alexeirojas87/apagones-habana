@@ -31,6 +31,7 @@ import re
 import statistics
 
 from geocode_zonas import normalizar
+from build_lineas import norm as _norm
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
 CACHE_GEO = os.path.join(RAIZ, "data", "geocache_averias.json")
@@ -79,6 +80,49 @@ def distintivo(t):
 
 def tokens_distintivos(calles):
     return {normalizar(t) for t in tokens(calles) if distintivo(normalizar(t))}
+
+
+# Preposiciones y genéricos que preceden al topónimo ("en Luyanó",
+# "reparto Fontanar") y que hay que quitar para que el nombre case.
+_STOP = r"^(?:en|el|la|los|las|de|del|reparto|rpto\.?|zona|zonas|barrio)\s+"
+
+
+def _nombres_calles(calles):
+    """Trocea la descripción del parte en topónimos individuales.
+
+    Parte también por ',' y ' y ': antes solo se partía por ';', así que
+    "D´Beche, Nalón" viajaba como un único topónimo inexistente.
+    (Movido desde build_circuitos.main(), donde no era importable: lo
+    consumen también el gazetteer de _lugar_gaceta.)"""
+    nombres = []
+    for seg in re.split(r"[;,]|\s+y\s+", calles):
+        seg = re.sub(r"\(.*?\)", "", seg)
+        primero = re.split(r"\s+(?:desde|entre|hasta)\s+", seg.strip(), flags=re.I)[0]
+        primero = re.sub(_STOP, "", primero.strip(), flags=re.I)
+        n = _norm(primero)
+        if n and 1 <= len(n) <= 30 and n not in nombres:
+            nombres.append(n)
+    return nombres[:10]
+
+
+def punto_interior(anillo):
+    """Punto garantizado DENTRO de un anillo [[lon, lat], ...]: a la latitud media
+    se cortan los cruces del polígono y se toma el centro del tramo más ancho.
+    (El promedio de vértices cae fuera en polígonos cóncavos.)"""
+    lat = sum(p[1] for p in anillo) / len(anillo)
+    cortes = []
+    n = len(anillo)
+    for i in range(n):
+        x1, y1 = anillo[i]
+        x2, y2 = anillo[(i + 1) % n]
+        if (y1 > lat) != (y2 > lat):
+            cortes.append(x1 + (x2 - x1) * (lat - y1) / (y2 - y1))
+    cortes.sort()
+    if len(cortes) < 2:
+        return None
+    tramos = [(cortes[i + 1] - cortes[i], (cortes[i] + cortes[i + 1]) / 2)
+              for i in range(0, len(cortes) - 1, 2)]
+    return {"lat": lat, "lon": max(tramos)[1]}
 
 
 # Regla Alamar: "Zonas: 1, 2, 3..." se resuelve por coords OSM, no por calles.

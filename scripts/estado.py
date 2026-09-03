@@ -230,24 +230,8 @@ def circuitos_llm(message_id):
     return out
 
 
-def _punto_interior(anillo):
-    """Punto garantizado DENTRO de un anillo [[lon, lat], ...]: a la latitud media
-    se cortan los cruces del polígono y se toma el centro del tramo más ancho.
-    (El promedio de vértices cae fuera en polígonos cóncavos.)"""
-    lat = sum(p[1] for p in anillo) / len(anillo)
-    cortes = []
-    n = len(anillo)
-    for i in range(n):
-        x1, y1 = anillo[i]
-        x2, y2 = anillo[(i + 1) % n]
-        if (y1 > lat) != (y2 > lat):
-            cortes.append(x1 + (x2 - x1) * (lat - y1) / (y2 - y1))
-    cortes.sort()
-    if len(cortes) < 2:
-        return None
-    tramos = [(cortes[i + 1] - cortes[i], (cortes[i] + cortes[i + 1]) / 2)
-              for i in range(0, len(cortes) - 1, 2)]
-    return {"lat": lat, "lon": max(tramos)[1]}
+# _punto_interior se movió a evidencia_calles.punto_interior (lo necesita el
+# gazetteer de circuitos, que vive en ese módulo sin dependencias de estado).
 
 
 def _geocode_mediana_calles(dire, caja, dentro=None, saltear=None):
@@ -466,7 +450,7 @@ def geocodificar_averias(items, cajas, solo_lugar=False, max_nuevos=None):
             # polígonos cóncavos cae FUERA): se toma el punto medio del tramo
             # interior más ancho a la latitud del centroide.
             if not hit and polys:
-                hit = _punto_interior(polys[0])
+                hit = evidencia_calles.punto_interior(polys[0])
                 if hit:
                     hit["match"] = "centro municipio"
             cache[clave] = hit

@@ -1,0 +1,10 @@
+{
+  "total": 5,
+  "circuitos": [
+    {"codigo": "A1443", "municipio": "Playa", "municipios": ["Playa"], "calles": "Calle 28 desde 41 hasta 47 (Kohly)", "causa": "DAF", "estado": "sin servicio", "estado_fecha": "2026-07-03T14:05:00+00:00", "bloque": "1", "veces": 9},
+    {"codigo": "PG940", "municipio": "Playa", "municipios": ["Playa"], "calles": "Soterrado desde San Benigno hasta Macedonia", "causa": "avería", "estado": "sin servicio", "estado_fecha": "2026-07-03T09:00:00+00:00", "bloque": "3", "veces": 4},
+    {"codigo": "L315", "municipio": "Playa", "municipios": ["Playa"], "calles": "Vía Blanca desde Resguardo hasta Agua Dulce", "causa": null, "estado": "con servicio", "estado_fecha": "2026-07-02T20:00:00+00:00", "bloque": null, "veces": 2},
+    {"codigo": "H341", "municipio": "Regla", "municipios": ["Regla"], "calles": "Casablanca desde 1ra hasta 3ra", "causa": "corte programado", "estado": "sin servicio", "estado_fecha": "2026-07-03T13:00:00+00:00", "bloque": "4", "veces": 1},
+    {"codigo": "C8", "municipio": "Marianao", "municipios": ["Marianao"], "calles": "Punta Brava desde 100 hasta 124", "causa": null, "estado": "con servicio", "estado_fecha": "2026-07-01T10:00:00+00:00", "bloque": "2", "veces": 3}
+  ]
+}

@@ -13,3 +13,8 @@ web/.wrangler/
 
 # graft's local graph cache — regenerable, not committed (run `graft build`).
 graft/
+
+# Superficie SEO generada por scripts/build_seo.py en cada despliegue:
+# vive solo en el árbol de trabajo (wrangler --commit-dirty), NUNCA en git.
+web/municipio/
+web/sitemap.xml

@@ -1,0 +1,18 @@
+{
+  "generado": "2026-07-03T15:10:50+00:00",
+  "daf": {"estado": "activo", "desde": "2026-07-03T11:09:50+00:00"},
+  "municipios": {
+    "Playa": {
+      "eventos": [
+        {"tipo": "afectacion", "bloque": null, "causa": "DAF", "zonas": ["Kohly", "Soterrado"], "fecha": "2026-07-03T14:05:00+00:00"},
+        {"tipo": "restablecimiento", "bloque": null, "causa": "avería", "zonas": [], "fecha": "2026-07-03T13:45:31+00:00"}
+      ]
+    },
+    "Regla": {
+      "eventos": [
+        {"tipo": "afectacion", "bloque": null, "causa": "corte programado", "zonas": ["Casablanca entre 1ra y 3ra"], "fecha": "2026-07-03T13:00:00+00:00"}
+      ]
+    },
+    "Plaza": {"eventos": []}
+  }
+}

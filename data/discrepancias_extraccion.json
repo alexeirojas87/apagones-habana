@@ -1014,5 +1014,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 AM se afectan 591 MW distribuidos en 170 circuitos de distribución. A continuación,"
+ },
+ "79468": {
+  "fecha": "2026-09-03T23:13:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚠️Consumidores del municipio San Miguel del Padrón, fue restablecido el servicio eléctrico en el circuito H343: Seccionalizando en las calles 15 entre 4ta y Av"
  }
 }

@@ -929,5 +929,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Habana del Este, se localiza avería secundaria por transformador dañado en la calle Real entre 30 y 31. Cojímar🚨"
+ },
+ "79754": {
+  "fecha": "2026-09-04T19:56:09+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "1245",
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito 1245, que se ha transferido temporalmente la carga al circuito PZ7 del siguiente cuad"
  }
 }

@@ -924,5 +924,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito 1245, que se ha transferido temporalmente la carga al circuito PZ7 del siguiente cuad"
+ },
+ "79561": {
+  "fecha": "2026-09-04T10:38:56+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 6:37AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Aye"
  }
 }

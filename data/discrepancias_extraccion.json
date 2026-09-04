@@ -1015,5 +1015,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que a causa de la avería por puente primar"
+ },
+ "79506": {
+  "fecha": "2026-09-04T02:38:05+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1372"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Informamos a la población que a partir de las 10:35 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: D1372: Repartos: La"
  }
 }

@@ -1,14 +1,4 @@
 {
- "77870": {
-  "fecha": "2026-08-28T03:23:31+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H342",
-   "H344"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Se le informa a los clientes del municipio Centro Habana pertenecientes al circuito A980, que se ha transferido temporalmente la carga los circuitos H342 y H3"
- },
  "77918": {
   "fecha": "2026-08-28T07:24:09+00:00",
   "tipo_llm": "afectacion",
@@ -1024,5 +1014,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨Informamos a la población que a partir de las 10:35 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: D1372: Repartos: La"
+ },
+ "79518": {
+  "fecha": "2026-09-04T03:29:48+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1851"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Marianao, se localiza avería secundaria por transformador dañado en las calles 33B entre 140 y 142, Zamora🚨"
  }
 }

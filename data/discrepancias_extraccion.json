@@ -1,13 +1,4 @@
 {
- "77854": {
-  "fecha": "2026-08-28T02:11:55+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:06 PM quedó restablecido el servicio en los siguientes circuitos: 👉SG313: Alrededores de calles avenida 409 y"
- },
  "77870": {
   "fecha": "2026-08-28T03:23:31+00:00",
   "tipo_llm": "averia",

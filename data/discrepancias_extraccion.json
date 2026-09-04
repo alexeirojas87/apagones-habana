@@ -1,19 +1,4 @@
 {
- "78052": {
-  "fecha": "2026-08-28T19:09:49+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:01 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP304,OP411,OP320,OP424,OP318,OP410,OP406"
- },
  "78073": {
   "fecha": "2026-08-28T20:59:53+00:00",
   "tipo_llm": "afectacion",
@@ -935,5 +920,14 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 6:37AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Aye"
+ },
+ "79537": {
+  "fecha": "2026-09-04T05:08:43+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "GC12"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Habana del Este, se localiza avería secundaria por transformador dañado en la calle Real entre 30 y 31. Cojímar🚨"
  }
 }

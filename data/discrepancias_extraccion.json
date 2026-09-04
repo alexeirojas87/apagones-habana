@@ -1,13 +1,4 @@
 {
- "78073": {
-  "fecha": "2026-08-28T20:59:53+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1223"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:52 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉A425: Avenida del Río desde Dolores hasta"
- },
  "78080": {
   "fecha": "2026-08-28T21:19:06+00:00",
   "tipo_llm": "averia",
@@ -948,5 +939,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB920: Alturas de Boca Ci"
+ },
+ "79771": {
+  "fecha": "2026-09-04T20:37:41+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H443"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨⚡ Consumidores del municipio San Miguel del Padrón se detectó una AVERÍA PRIMARIA afectando en el Circuito H443 el siguiente cuadrante : 👉Callejón D y Blumer R"
  }
 }

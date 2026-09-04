@@ -242,15 +242,6 @@
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 12:53 AM queda restablecido el servicio en el siguiente circuito: 👉C8 (OP408): Alrededores del cuadrante desde c"
  },
- "77889": {
-  "fecha": "2026-08-28T04:14:01+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ4"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Plaza queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: Avenida entre 27 y 29 .🟢☑️"
- },
  "78137": {
   "fecha": "2026-08-29T09:03:16+00:00",
   "tipo_llm": "restablecimiento",

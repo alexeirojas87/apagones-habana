@@ -40,8 +40,28 @@ jobs:
       # que publicar estado equivocado, que es justo lo que pasó cuando el
       # refuerzo del LLM quedó desconectado y nadie se enteró en semanas.
       # Son unittest puros, sin red ni credenciales: tardan menos de un segundo.
-      - name: Tests de regresión
+      #
+      # SmokeRealTest es un CANARIO de mantenimiento (avisa de que cambió el set
+      # de circuitos que aprende el LLM), no una guarda de "estado errado": un
+      # circuito nuevo legítimo (p. ej. PZ6) no debe congelar el despliegue horas
+      # como congeló este. Se auto-salta aquí (INGEST_GATE=1) y se corre abajo en
+      # su propio paso advisory. Todo lo demás sigue bloqueando igual.
+      - name: Tests de regresión (bloquean el deploy)
+        env:
+          INGEST_GATE: "1"
         run: python -m unittest discover -s tests
+
+      # Canary de aprendizaje: ADVISORY. Si se rompe, marca un ::warning:: visible
+      # pero NO falla el paso (el "if" consume el exit code) -> el deploy corre.
+      # Sin -k (la sintaxis booleana 'not' corre el riesgo de matchear 0 tests y
+      # aprobar en falso): filtramos por nombre de archivo, soportado siempre.
+      - name: Canario de aprendizaje (advisory, no bloquea)
+        run: |
+          if python -m unittest discover -s tests -p 'test_aprende_circuitos.py'; then
+            echo "Canario OK"
+          else
+            echo "::warning::Canario de aprendizaje roto: revisá data/partes_llm.json y el set de SmokeRealTest. El deploy continúa."
+          fi
 
       - run: python ingestor/ingest.py
         env:

@@ -1,113 +1,4 @@
 {
- "77918": {
-  "fecha": "2026-08-28T07:24:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:36 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de calles avenida 409 "
- },
- "77924": {
-  "fecha": "2026-08-28T09:03:03+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP319"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:30 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉OP408: Alrededores del cuadrante desde Ví"
- },
- "77922": {
-  "fecha": "2026-08-28T08:42:06+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:24 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉1242: Cuadrante de avenida 25 desde calle"
- },
- "77926": {
-  "fecha": "2026-08-28T09:18:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2202",
-   "OP408"
-  ],
-  "solo_regex": [
-   "C8"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:53 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉C8(OP408): Alrededores del cuadrante comp"
- },
- "77939": {
-  "fecha": "2026-08-28T10:19:30+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H466",
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: 10 de Octubre (H466) 👉Dirección: Guasabacoa entre Herrera y Compromiso 👉Dirección:María d"
- },
- "77949": {
-  "fecha": "2026-08-28T11:07:47+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 06:56 AM queda restablecido el servicio en el siguiente circuito: 👉P327 (P325): Desagüe desde Infanta hasta Ayes"
- },
- "77966": {
-  "fecha": "2026-08-28T13:01:45+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1470"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Consumidores de los municipios Boyeros-Arroyo Naranjo por una avería por 33KV se encuentran afectados los siguientes circuitos: 👉D1372: Las Cañas, Calabazar 👉"
- },
- "77981": {
-  "fecha": "2026-08-28T13:42:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 9:10 AM queda restablecido el servicio en los siguientes circuitos: 👉SG313:Alrededores de calles avenida 409 y c"
- },
- "78002": {
-  "fecha": "2026-08-28T15:43:32+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC15"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:30 am se afectó el servicio eléctrico en los siguientes circuitos: 👉GC13: Mambi, Garrido y Centro de Guanabac"
- },
- "78009": {
-  "fecha": "2026-08-28T16:05:16+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SR830"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢✔️Consumidores del municipio 10 de octubre,queda reparada la AVERÍA PRIMARIA que afectaba la siguiente dirección: 👉Marquez de la Torre/Princesa y Delicias."
- },
- "78018": {
-  "fecha": "2026-08-28T16:59:48+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1219"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:48 pm quedó restablecido el servicio en los siguientes circuitos: 👉1851: Reparto Zamora 👉1856: Calle 130 desd"
- },
  "78042": {
   "fecha": "2026-08-28T18:26:56+00:00",
   "tipo_llm": "afectacion",
@@ -1003,5 +894,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Marianao, se localiza avería secundaria por transformador dañado en las calles 33B entre 140 y 142, Zamora🚨"
+ },
+ "79685": {
+  "fecha": "2026-09-04T17:18:44+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:53 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325: Desagüe d"
  }
 }

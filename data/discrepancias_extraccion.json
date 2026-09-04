@@ -905,5 +905,33 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:53 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325: Desagüe d"
+ },
+ "79691": {
+  "fecha": "2026-09-04T17:48:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP306"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Plaza, queda reparada la avería secundaria por TRANSFORMADOR DAÑADO que afectaba el servicio eléctrico en la siguiente dirección: Ba"
+ },
+ "79626": {
+  "fecha": "2026-09-04T14:34:47+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "C16"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito C15, se ha transferido temporalmente la carga al circuito C16 del siguiente cuadrante"
+ },
+ "79617": {
+  "fecha": "2026-09-04T14:15:34+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "1245",
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito 1245, que se ha transferido temporalmente la carga al circuito PZ7 del siguiente cuad"
  }
 }

@@ -225,9 +225,12 @@ class Check9Test(unittest.TestCase):
 
 
 class SmokeRealTest(unittest.TestCase):
-    """El caché REAL de partes del repo tiene que producir exactamente los 6
-    promovidos + 2 alias verificados a mano el 2-sep-2026. Hermetic: solo
-    lectura de JSON del repo, sin red."""
+    """El caché REAL de partes del repo tiene que producir AL MENOS los 6
+    promovidos + 2 alias verificados a mano el 2-sep-2026. El conjunto es un
+    SUELO, no una igualdad exacta: el cron añade partes cada día y puede
+    promocionar circuitos nuevos legítimos (p. ej. PZ6). Lo que no puede pasar
+    es que falte alguno de los auditados. Hermetic: solo lectura de JSON del
+    repo, sin red."""
 
     def setUp(self):
         self._cat = ci._CATALOGO
@@ -242,8 +245,18 @@ class SmokeRealTest(unittest.TestCase):
         nuevos = AC.aprender(partes)
         promos = {c: r for c, r in nuevos.items() if not r["alias_de"]}
         alias = {c: r["alias_de"] for c, r in nuevos.items() if r["alias_de"]}
-        self.assertEqual(set(promos), {"A1328", "H446", "PZ20", "3228", "A1216", "H466"})
-        self.assertEqual(alias, {"581": "SF581", "P325": "OP325"})
+        # Suelo auditado (2-sep-2026): todos deben seguir promovidos. Las altas
+        # nuevas del cron se toleran; solo falta es señal de caché podada o
+        # regresión en el extractor.
+        esperados = {"A1328", "H446", "PZ20", "3228", "A1216", "H466"}
+        faltan = esperados - set(promos)
+        self.assertFalse(faltan,
+                         f"faltan promovidos de la audit: {sorted(faltan)} "
+                         f"(vistos: {sorted(promos)})")
+        # Mismos alias conocidos apuntando a lo mismo; nuevos alias se toleran.
+        for cod, alvo in {"581": "SF581", "P325": "OP325"}.items():
+            self.assertEqual(alias.get(cod), alvo,
+                             f"el alias {cod} debe seguir apuntando a {alvo} (obtuvo {alias.get(cod)!r})")
         # Los conteos exactos no se pueden fijar: el cron añade partes cada día
         # (P325 pasó de 4 a 5 solo entre el audit y este rebase). Lo estable es
         # el conjunto de arriba más el mínimo observado: el histórico cacheado

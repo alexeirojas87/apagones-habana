@@ -1,22 +1,4 @@
 {
- "77839": {
-  "fecha": "2026-08-28T00:04:37+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "PZ5"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Plaza, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉27 entre 2 y 4 , Vedado.🛑⚡️"
- },
- "77838": {
-  "fecha": "2026-08-28T00:04:02+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 07:35 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de calles avenida 409 "
- },
  "77854": {
   "fecha": "2026-08-28T02:11:55+00:00",
   "tipo_llm": "restablecimiento",
@@ -1023,5 +1005,24 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚠️Consumidores del municipio San Miguel del Padrón, fue restablecido el servicio eléctrico en el circuito H343: Seccionalizando en las calles 15 entre 4ta y Av"
+ },
+ "79484": {
+  "fecha": "2026-09-04T00:07:34+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D632"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes a la Subestación Apolo que se autoriza una Vía Libre por Emergencia para trabajar en la a"
+ },
+ "79456": {
+  "fecha": "2026-09-03T22:23:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D632",
+   "D633"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que a causa de la avería por puente primar"
  }
 }

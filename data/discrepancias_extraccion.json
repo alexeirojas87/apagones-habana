@@ -939,5 +939,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito 1245, que se ha transferido temporalmente la carga al circuito PZ7 del siguiente cuad"
+ },
+ "79757": {
+  "fecha": "2026-09-04T20:01:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB920: Alturas de Boca Ci"
  }
 }

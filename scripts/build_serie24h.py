@@ -14,6 +14,13 @@ de ✅ Restablecimiento; "sin" de las etiquetas de afectación; los partes del
 SEN se ignoran. "nd" (ambar) únicamente antes de la primera mención histórica
 del circuito: despues de eso, el último estado se arrastra a traves de los
 huecos.
+
+Sobre ese carry se superpone el ESTADO VIGENTE del catálogo (estado /
+estado_fecha), que es la fuente autoritativa que ya usa el titular "X h sin
+luz": muchos cortes no van etiquetados con "👉 CODE" en el parte, así que el
+carry de partes puede quedarse anclado en un ✅ antiguo y pintar de verde un
+circuito que hoy está apagado (el bug de PZ7). Los cubos con fin >=
+estado_fecha toman el estado actual; los anteriores conservan el carry.
 """
 
 import json
@@ -40,6 +47,9 @@ TAGS_SIN = {
 
 # Códigos en el texto del parte: "👉 CODE:" o "👉CODE(...)".
 CODE_RE = re.compile(r"👉\s*([A-Za-z0-9]+)")
+
+# Estado vigente del catálogo -> valor de cubo. Fuente autoritativa del titular.
+ESTADO_MAP = {"sin servicio": "sin", "con servicio": "con"}
 
 
 def cargar_eventos(known_codes, partes):
@@ -84,6 +94,33 @@ def serie_para(eventos, fines):
     return serie
 
 
+def aplicar_estado(serie, fines, estado, estado_fecha):
+    """Superpone el estado vigente sobre el carry de partes.
+
+    Los cubos cuyo fin cae en o despues de estado_fecha pasan al estado actual
+    (mismo fuente que el titular "X h sin luz"). Así un corte no anunciado con
+    "👉 CODE" (ausente del carry) no deja el sparkline verde mientras el circuito
+    figura apagado. Sin estado_fecha fiable, al menos el cubo actual (el último)
+    refleja el estado vigente.
+    """
+    st = ESTADO_MAP.get(estado)
+    if st is None:
+        return serie
+    desde = None
+    if estado_fecha:
+        try:
+            desde = datetime.fromisoformat(estado_fecha)
+        except ValueError:
+            desde = None
+    if desde is None:
+        serie[-1] = st
+        return serie
+    for i, fin in enumerate(fines):
+        if fin >= desde:
+            serie[i] = st
+    return serie
+
+
 def main():
     with open(CIRCUITOS_JSON, encoding="utf-8") as f:
         circuitos = json.load(f)
@@ -96,7 +133,9 @@ def main():
 
     con_serie = 0
     for c in circuitos["circuitos"]:
-        c["serie_24h"] = serie_para(eventos.get(c["codigo"], []), fines)
+        serie = serie_para(eventos.get(c["codigo"], []), fines)
+        serie = aplicar_estado(serie, fines, c.get("estado"), c.get("estado_fecha"))
+        c["serie_24h"] = serie
         if any(v != "nd" for v in c["serie_24h"]):
             con_serie += 1
 

@@ -126,6 +126,13 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
+      # Serie 24h de encendido por circuito para los sparklines: autónoma y
+      # offline, lee solo los JSON commiteados (partes.json + circuitos.json)
+      # y reescribe circuitos.json en el sitio. Va DESPUÉS de build_circuitos
+      # porque necesita el catálogo recién generado; coherencia_catalogo, que
+      # corre luego, conserva la clave al reescribir el JSON completo.
+      - run: python3 scripts/build_serie24h.py
+
       # Última red antes de publicar: si el catálogo contradice lo que el LLM
       # extrajo (evidencia del código escrito en el parte), se corrige aquí.
       # Con el pipeline sano no corrige nada; si empieza a corregir, es que algo

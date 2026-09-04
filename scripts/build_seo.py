@@ -108,7 +108,7 @@ def etiquetas_head(url_absoluta, titulo, descripcion, ld=None):
         '<meta name="twitter:description" content="%s">' % descripcion,
         '<meta name="twitter:image" content="%s">' % img,
         '<link rel="icon" href="favicon.ico">',
-        '<meta name="theme-color" content="#10141a">',
+        '<meta name="theme-color" content="#0c1322">',
     ]
     # og.png puede no existir en el despliegue: la etiqueta se queda válida e
     # inerte (los compartir solo no muestran imagen); nunca es error de build.

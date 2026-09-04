@@ -858,5 +858,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨⚡ Consumidores del municipio San Miguel del Padrón se detectó una AVERÍA PRIMARIA afectando en el Circuito H443 el siguiente cuadrante : 👉Callejón D y Blumer R"
+ },
+ "79802": {
+  "fecha": "2026-09-04T23:30:35+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "128"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉128 entre 33 y 35.🛑⚡️"
  }
 }

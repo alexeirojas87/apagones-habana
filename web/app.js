@@ -18,6 +18,10 @@ function duracion(desdeIso) {
   return min < 60 ? `${min}m` : `${Math.floor(min / 60)}h ${min % 60}m`;
 }
 
+// Sparkline de 24 h por circuito: 24 barritas, izq = −24 h, der = ahora.
+// Serie `serie_24h` (con|sin|nd) calculada por scripts/build_serie24h.py.
+function spark(s){ if(!s||!s.length) return ""; return '<span class="spark" title="últimas 24 h (izq = −24 h · der = ahora)">'+s.map(x=>'<i class="'+x+'"></i>').join("")+'</span>'; }
+
 // ¿El punto (lat, lon) cae dentro del anillo [[lon,lat],…]? Ray casting.
 function dentroPoly(lat, lon, anillo) {
   let dentro = false;
@@ -272,6 +276,7 @@ async function iniciar() {
           <span class="rc-card-cab"><span class="rc-dot"></span>${esc(c.codigo)}</span>
           <span class="rc-card-h">${h}<small>h sin luz${oficialH ? " · UNE" : ""}</small></span>
           <span class="rc-card-det">${c.calles ? esc(c.calles.slice(0, 42)) : "sin información de calles"}</span>
+          ${spark(c.serie_24h)}
         </a>`).join("") + `</div></div>`;
     }
     // En MÓVIL el mapa manda: el resumen se colapsa a una barrita compacta que

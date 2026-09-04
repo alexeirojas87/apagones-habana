@@ -11,7 +11,7 @@ function barras(cont, items, opts = {}) {
   const el = document.getElementById(cont);
   if (!items.length) { el.innerHTML = "<p class='vacio'>Sin datos en el rango.</p>"; return; }
   const max = Math.max(...items.map((i) => i.valor)) || 1;
-  const color = opts.color || "#e5484d";
+  const color = opts.color || "#ef4444";
   el.innerHTML = items.map((i) => `
     <div class="fila">
       <span class="etq" title="${esc(i.label)}">${opts.link
@@ -27,7 +27,7 @@ function tira(cont, items, color) {
   const max = Math.max(...items.map((i) => i.valor)) || 1;
   el.innerHTML = items.map((i) => `
     <div class="col" title="${esc(i.label)}: ${i.valor}">
-      <span class="cbarra" style="height:${Math.round((i.valor / max) * 100)}%;background:${color || "#e5484d"}"></span>
+      <span class="cbarra" style="height:${Math.round((i.valor / max) * 100)}%;background:${color || "#ef4444"}"></span>
       <span class="clabel">${esc(i.label)}</span>
     </div>`).join("");
 }
@@ -82,11 +82,11 @@ function render() {
   // Circuitos con más horas sin corriente (máx en el rango) — etiquetas enlazadas
   const linkCirc = (cod) => `circuitos.html?c=${encodeURIComponent(cod)}`;
   barras("c-circ-horas", [...maxH.entries()].map(([c, h]) => ({ label: c, valor: h }))
-    .sort((a, b) => b.valor - a.valor).slice(0, 15), { color: "#e5484d", fmt: (v) => v + " h", link: linkCirc });
+    .sort((a, b) => b.valor - a.valor).slice(0, 15), { color: "#ef4444", fmt: (v) => v + " h", link: linkCirc });
 
   // Circuitos más veces afectados (nº de partes en el rango)
   barras("c-circ-freq", [...freq.entries()].map(([c, n]) => ({ label: c, valor: n }))
-    .sort((a, b) => b.valor - a.valor).slice(0, 15), { color: "#e07b00", link: linkCirc });
+    .sort((a, b) => b.valor - a.valor).slice(0, 15), { color: "#f59e0b", link: linkCirc });
 
   // Causas de los avisos
   barras("c-causas", conteo(afect.filter((e) => e[3]), (e) => e[3]), { color: "#7b2d8e" });
@@ -94,7 +94,7 @@ function render() {
   // Municipios (avisos que nombran pocos municipios, los específicos)
   const muni = [];
   for (const e of afect) if ((e[4] || []).length && e[4].length <= 4) for (const m of e[4]) muni.push(m);
-  barras("c-municipios", conteo(muni, (m) => m).slice(0, 15), { color: "#e07b00" });
+  barras("c-municipios", conteo(muni, (m) => m).slice(0, 15), { color: "#f59e0b" });
 
   // Averías por municipio
   barras("c-averias", conteo(averias.filter((a) => a[2]), (a) => a[2]).slice(0, 15), { color: "#b455c8" });
@@ -106,10 +106,10 @@ function render() {
   // Hora del día en que salen los partes de déficit
   const horas = Array.from({ length: 24 }, (_, h) => ({ label: String(h), valor: 0 }));
   for (const [f] of circR) horas[+f.slice(11, 13)].valor++;
-  tira("c-horas", horas, "#1560d0");
+  tira("c-horas", horas, "#3b82f6");
 
   // Lugares reportados por vecinos
-  barras("c-lugares", conteo(com, (c) => c[2]).slice(0, 15), { color: "#c25a00" });
+  barras("c-lugares", conteo(com, (c) => c[2]).slice(0, 15), { color: "#d97706" });
 
   // Récords (dentro del rango)
   const cPorDia = [...porDiaC.entries()].map(([d, s]) => ({ label: d, valor: s.size })).sort((a, b) => b.valor - a.valor);
@@ -134,7 +134,7 @@ function render() {
   // MW del déficit en el tiempo (promedio diario)
   const mwDia = new Map();
   for (const [f, v] of mw) { const d = f.slice(0, 10); const a = mwDia.get(d) || { s: 0, n: 0 }; a.s += v; a.n++; mwDia.set(d, a); }
-  tira("c-mw", [...mwDia.entries()].sort().map(([d, a]) => ({ label: d.slice(5), valor: Math.round(a.s / a.n) })), "#e5484d");
+  tira("c-mw", [...mwDia.entries()].sort().map(([d, a]) => ({ label: d.slice(5), valor: Math.round(a.s / a.n) })), "#ef4444");
 
   // Tipos de avería
   barras("c-tipos", conteo(averias, (a) => a[1]), { color: "#b455c8" });
@@ -146,7 +146,7 @@ function render() {
   const semanas = [...sem.entries()].sort().map(([k, a]) => ({
     label: k, valor: a.af, sub: a.mwN ? `${Math.round(a.mwS / a.mwN)} MW medio` : "",
   }));
-  barras("c-semanas", semanas, { color: "#e07b00" });
+  barras("c-semanas", semanas, { color: "#f59e0b" });
 }
 
 function semanaDe(fechaMin) {

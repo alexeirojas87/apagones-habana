@@ -1,6 +1,10 @@
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+// Sparkline de 24 h por circuito: 24 barritas, izq = −24 h, der = ahora.
+// Serie `serie_24h` (con|sin|nd) calculada por scripts/build_serie24h.py.
+function spark(s){ if(!s||!s.length) return ""; return '<span class="spark" title="últimas 24 h (izq = −24 h · der = ahora)">'+s.map(x=>'<i class="'+x+'"></i>').join("")+'</span>'; }
+
 function fechaHabana(iso) {
   return new Date(iso).toLocaleDateString("es-CU", {
     day: "numeric", month: "short", timeZone: "America/Havana",
@@ -154,6 +158,7 @@ function render(filtro = "") {
         ${acciones}
       </div>
       <div class="circ-calles">${calles}</div>
+      ${spark(c.serie_24h)}
     </article>`;
   }).join("");
 }

@@ -182,9 +182,16 @@ def robots_txt():
     ])
 
 
-def sitemap_xml(urls):
-    """sitemap de protocolo: <urlset><url><loc> por URL absoluta, orden estable."""
-    cuerpo = "".join("  <url><loc>%s</loc></url>\n" % u for u in urls)
+def sitemap_xml(pares):
+    """sitemap de protocolo: <url><loc>[<lastmod>]</url> por par, orden estable.
+
+    Cada elemento es un par (url, lastmod|None); el <lastmod> se emite solo
+    cuando hay fecha. Se acepta también la URL a secas (equivale a None).
+    """
+    cuerpo = "".join(
+        "  <url><loc>%s</loc>%s</url>\n"
+        % (u, "<lastmod>%s</lastmod>" % f if f else "")
+        for u, f in ((p if isinstance(p, tuple) else (p, None)) for p in pares))
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
             + cuerpo + "</urlset>\n")
@@ -228,6 +235,21 @@ def hora_estampado(generado):
     utc = dt.astimezone(timezone.utc) if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
     return "datos al %s (UTC) · %s hora de La Habana" % (
         utc.strftime("%H:%M"), utc.astimezone(HORA_CUBA).strftime("%H:%M"))
+
+
+def fecha_sitemap(generado):
+    """'YYYY-MM-DD' (UTC) desde estado.generado para el <lastmod> del sitemap.
+
+    Se deriva SOLO del JSON de entrada (nunca del reloj): dos corridas con los
+    mismos datos escriben el mismo lastmod. Un generado ausente o inválido
+    devuelve None y la entrada sale sin <lastmod>, sin abortar la corrida.
+    """
+    try:
+        dt = datetime.fromisoformat(generado)
+    except (TypeError, ValueError):
+        return None
+    utc = dt.astimezone(timezone.utc) if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
+    return utc.strftime("%Y-%m-%d")
 
 
 def instantanea_index(estado, circ):
@@ -590,11 +612,14 @@ def pagina_municipio(nombre, estado, circ, nombres, averias=None):
                esc_html(nombre), nav_tabs("municipios/"), cuerpo))
 
 
-def urls_del_sitemap(nombres):
-    """Las 21 URLs canónicas (6 páginas + 15 municipios, forma de directorio)."""
-    urls = [site_url(p[0]) for p in PAGINAS.values()]
-    urls += [site_url("municipio/%s/" % slug(n)) for n in nombres]
-    return urls
+def urls_del_sitemap(nombres, generado=None):
+    """Las 21 URLs canónicas (6 páginas + 15 municipios) como pares
+    (url, lastmod): el lastmod es la fecha UTC del generado de entrada
+    (nunca del reloj) y None cuando no hay fecha verificable."""
+    ultima = fecha_sitemap(generado)
+    pares = [(site_url(p[0]), ultima) for p in PAGINAS.values()]
+    pares += [(site_url("municipio/%s/" % slug(n)), ultima) for n in nombres]
+    return pares
 
 
 # Regiones del body que generar() rellena por archivo (las no listadas solo
@@ -639,7 +664,7 @@ def generar(dir_web, datos):
     # revienta, el deploy del último-good conserva reglas); el re-emitir aquí
     # solo lo alinea cuando SITE_BASE cambió. sitemap.xml es 100% generado.
     with open(os.path.join(dir_web, "sitemap.xml"), "w", encoding="utf-8") as f:
-        f.write(sitemap_xml(urls_del_sitemap(nombres)))
+        f.write(sitemap_xml(urls_del_sitemap(nombres, estado.get("generado"))))
     with open(os.path.join(dir_web, "robots.txt"), "w", encoding="utf-8") as f:
         f.write(robots_txt())
 

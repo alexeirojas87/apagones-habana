@@ -1,13 +1,4 @@
 {
- "78247": {
-  "fecha": "2026-08-29T17:12:16+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C10"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Cerro se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Aranguren / 3ra y Blanquita.🛑⚡️"
- },
  "78293": {
   "fecha": "2026-08-29T21:11:30+00:00",
   "tipo_llm": "averia",
@@ -900,5 +891,23 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Playa , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉78 e/ 15 y 17.🛑⚡️"
+ },
+ "79996": {
+  "fecha": "2026-09-05T17:14:09+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2210"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Cerro , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Camagüey / Callejón de los Perros y Pastora.🛑⚡️"
+ },
+ "79993": {
+  "fecha": "2026-09-05T17:08:15+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP306"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Basarrate / Neptuno y San Miguel.🛑⚡️"
  }
 }

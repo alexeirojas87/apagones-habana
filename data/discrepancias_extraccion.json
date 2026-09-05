@@ -1,13 +1,4 @@
 {
- "78225": {
-  "fecha": "2026-08-29T16:24:28+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR850"
-  ],
-  "solo_regex": [],
-  "extracto": "📣 Consumidores del municipio Cotorro, por Trabajos Operativos se encuentra afectado el servicio en el siguiente circuito: 👉SR-850: Repartos La Torre, Paraíso, L"
- },
  "78234": {
   "fecha": "2026-08-29T16:34:01+00:00",
   "tipo_llm": "restablecimiento",
@@ -893,5 +884,23 @@
   ],
   "solo_regex": [],
   "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo Automático por Frecuencia ( DAF) en los siguientes circuitos: 👉 H343:Reparto Martín"
+ },
+ "79982": {
+  "fecha": "2026-09-05T16:25:00+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "MB920"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo Automático por Frecuencia ( DAF) en los siguientes circuitos: 👉 AL55:Zonas: 12; 13;"
+ },
+ "79981": {
+  "fecha": "2026-09-05T16:23:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF)en los siguientes circuitos: 👉H343:Reparto Martín Pérez,"
  }
 }

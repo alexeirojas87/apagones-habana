@@ -867,5 +867,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉128 entre 33 y 35.🛑⚡️"
+ },
+ "79850": {
+  "fecha": "2026-09-05T02:40:13+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB920: Alturas de Boca Ci"
  }
 }

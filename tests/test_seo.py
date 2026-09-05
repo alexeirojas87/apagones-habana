@@ -124,6 +124,29 @@ class JsonLdTest(unittest.TestCase):
         self.assertIn("WebSite", tipos)
         self.assertIn("Dataset", tipos)
 
+    def test_ld_index_incluye_organizacion_con_sameas_telegram(self):
+        doc = json.loads(MOD.guion_ld(MOD.ld_index()))
+        orgs = [x for x in doc if x.get("@type") == "Organization"]
+        self.assertEqual(len(orgs), 1)
+        org = orgs[0]
+        self.assertEqual(org["name"], "Apagones La Habana")
+        self.assertEqual(org["url"], MOD.site_url(""))
+        self.assertEqual(org["logo"], MOD.site_url("og.png"))
+        self.assertIn("https://t.me/EmpresaElectricaDeLaHabana", org["sameAs"])
+
+    def test_ld_index_datemodified_deriva_de_generado(self):
+        # R-jsonld: la fecha de datos viaja en WebSite y Dataset, derivada del
+        # generado del fixture (2026-07-03), NUNCA del día de la corrida.
+        doc = json.loads(MOD.guion_ld(MOD.ld_index("2026-07-03T15:10:50+00:00")))
+        por_tipo = {x["@type"]: x for x in doc}
+        self.assertEqual(por_tipo["WebSite"]["dateModified"], "2026-07-03")
+        self.assertEqual(por_tipo["Dataset"]["dateModified"], "2026-07-03")
+        # sin fecha verificable el campo se omite (nunca una fecha inventada)
+        doc_vacio = json.loads(MOD.guion_ld(MOD.ld_index("no-es-fecha")))
+        self.assertTrue(all("dateModified" not in x for x in doc_vacio))
+        doc_sin = json.loads(MOD.guion_ld(MOD.ld_index(None)))
+        self.assertTrue(all("dateModified" not in x for x in doc_sin))
+
     def test_guion_de_municipio_enlaza_a_index(self):
         doc = json.loads(MOD.guion_ld(MOD.ld_municipio("Playa")))
         self.assertEqual(doc["@type"], "Service")

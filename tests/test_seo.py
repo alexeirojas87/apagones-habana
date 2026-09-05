@@ -206,6 +206,38 @@ class CapaMetadatosTest(unittest.TestCase):
         self.assertIn("application/ld+json", idx)
 
 
+class VariantesLongtailTest(unittest.TestCase):
+    """U5: exactamente una variante long-tail veraz por página asignada, en la
+    descripción (los títulos conservan el head-term; cero amontonamiento).
+    R-metadata-copy: variantes solo donde los datos dan la razón."""
+
+    # Página -> variante long-tail asignada (grounded en el contenido real).
+    ASIGNADAS = {
+        "analitica.html": "cortes eléctricos",
+        "partes.html": "corte de luz",
+        "circuitos.html": "sin corriente",
+    }
+
+    def test_variantes_longtail_presentes_en_paginas_asignadas(self):
+        for archivo, variante in self.ASIGNADAS.items():
+            desc = MOD.PAGINAS[archivo][2].lower()
+            self.assertIn(variante, desc, archivo)
+            for otra in self.ASIGNADAS.values():  # las demás no invaden
+                if otra != variante:
+                    self.assertNotIn(otra, desc, "%s: %s" % (archivo, otra))
+        # el título conserva el head-term: ninguna variante añadida ahí
+        for archivo in MOD.PAGINAS:
+            titulo = MOD.PAGINAS[archivo][1].lower()
+            for variante in self.ASIGNADAS.values():
+                self.assertNotIn(variante, titulo, "%s: %s" % (archivo, variante))
+        # cero amontonamiento: como mucho UNA variante por descripción
+        # (index.html ya lleva «sin corriente» con veracidad propia)
+        for archivo in MOD.PAGINAS:
+            desc = MOD.PAGINAS[archivo][2].lower()
+            cuantas = sum(1 for v in self.ASIGNADAS.values() if v in desc)
+            self.assertLessEqual(cuantas, 1, archivo)
+
+
 class MarcadoresComiteadosTest(unittest.TestCase):
     def test_index_comiteado_contiene_el_par_de_marcadores_de_cuerpo(self):
         html = (RAIZ / "web" / "index.html").read_text(encoding="utf-8")

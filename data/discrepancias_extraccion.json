@@ -932,5 +932,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 14:06 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉CPP9:Águila hasta "
+ },
+ "80031": {
+  "fecha": "2026-09-05T20:26:01+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Ave La Ceiba Esq.- Ave del Este.🛑⚡️"
  }
 }

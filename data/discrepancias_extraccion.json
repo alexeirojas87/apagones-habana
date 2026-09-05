@@ -1,15 +1,4 @@
 {
- "78234": {
-  "fecha": "2026-08-29T16:34:01+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "102",
-   "104",
-   "283"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 283 / 102 y 104, Calabazar.🟢☑️"
- },
  "78247": {
   "fecha": "2026-08-29T17:12:16+00:00",
   "tipo_llm": "averia",
@@ -902,5 +891,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF)en los siguientes circuitos: 👉H343:Reparto Martín Pérez,"
+ },
+ "79986": {
+  "fecha": "2026-09-05T16:36:03+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉78 e/ 15 y 17.🛑⚡️"
  }
 }

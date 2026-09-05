@@ -172,7 +172,7 @@ class CapaMetadatosTest(unittest.TestCase):
 
     def test_region_de_head_generada_por_pagina(self):
         etiquetas = MOD.head_estaticas("circuitos.html")
-        self.assertIn('<link rel="canonical" href="%s/circuitos.html">' % MOD.SITE_BASE, etiquetas)
+        self.assertIn('<link rel="canonical" href="%s/circuitos">' % MOD.SITE_BASE, etiquetas)
         self.assertIn('property="og:type" content="website"', etiquetas)
         self.assertIn('content="es_CU"', etiquetas)
         self.assertIn('name="twitter:card" content="summary_large_image"', etiquetas)
@@ -471,18 +471,23 @@ class EndpointsCrawlingTest(BaseArbol):
         self.assertIn("Disallow: /api/", r)
         self.assertIn("Sitemap: %s/sitemap.xml" % MOD.SITE_BASE, r)
 
-    def test_sitemap_con_21_urls_absolutas(self):
+    def test_sitemap_con_21_urls_extensionless(self):
         urls = self._urls()
         self.assertEqual(len(urls), 21)  # 5 páginas raíz + hub + 15 municipios
         self.assertIn(MOD.site_url(""), urls)
-        self.assertIn(MOD.site_url("analitica.html"), urls)
         self.assertIn(MOD.site_url("municipios/"), urls)  # el hub /municipios/
         self.assertIn(MOD.site_url("municipio/san-miguel-del-padron/"), urls)  # dir form
         for u in urls:
             self.assertTrue(u.startswith(MOD.SITE_BASE + "/"), u)
+            self.assertNotIn(".html", u)  # R-sitemap: ninguna loc es un 308
+        for esperada in ("analitica", "circuitos", "partes", "sugerencias"):
+            self.assertIn(MOD.site_url(esperada), urls)
 
     def test_parcidad_sitemap_paginas_en_ambas_direcciones(self):
         # toda URL del sitemap apunta a un archivo generado que existe...
+        # (ruta de URL -> archivo commiteado vía el mapa inverso de PAGINAS:
+        # única fuente de verdad, las formas extensionless mapean a su .html)
+        rutas = {p[0]: archivo for archivo, p in MOD.PAGINAS.items()}
         for u in self._urls():
             rel = u[len(MOD.SITE_BASE):].lstrip("/")
             if rel == "":
@@ -490,13 +495,33 @@ class EndpointsCrawlingTest(BaseArbol):
             elif rel.endswith("/"):
                 archivo = os.path.join(rel, "index.html")
             else:
-                archivo = rel
+                archivo = rutas.get(rel, rel)
             self.assertTrue(os.path.isfile(os.path.join(self.web, archivo)), u)
         # ... y toda página del árbol (index + estáticas + municipios) está listada
         esperadas = {MOD.site_url(p[0]) for p in MOD.PAGINAS.values()}
         for s in sorted(os.listdir(os.path.join(self.web, "municipio"))):
             esperadas.add(MOD.site_url("municipio/%s/" % s))
         self.assertEqual(self._urls(), esperadas)
+
+    def test_todos_los_enlaces_profundos_c_son_extensionless(self):
+        # R-canonical: los deep-links ?c= hacia Circuitos usan /circuitos?c=,
+        # tanto en la salida del generador como en todo lo commiteado (navs y
+        # JS). Fuera de alcance (decisión D7): partes.html?id= e index.html?c=
+        # del JS, que no son deep-links de Circuitos.
+        patron = re.compile(r"circuitos\.html\?c=")
+        for raiz_dir, _, archivos in os.walk(self.web):
+            for a in archivos:
+                if not a.endswith((".html", ".xml")):
+                    continue
+                with open(os.path.join(raiz_dir, a), encoding="utf-8") as f:
+                    self.assertIsNone(patron.search(f.read()),
+                                      "deep-link con .html en la salida: %s" % a)
+        cometidos = sorted((RAIZ / "web").glob("*.html")) \
+            + sorted((RAIZ / "web").glob("*.js")) \
+            + [RAIZ / "web" / "municipios" / "index.html"]
+        for ruta in cometidos:
+            self.assertIsNone(patron.search(ruta.read_text(encoding="utf-8")),
+                              "deep-link con .html commiteado: %s" % ruta.name)
 
     def test_robots_comiteado_coincide_con_el_emisor(self):
         # paridad con el único estático commiteado de esta fase: si SITE_BASE
@@ -514,17 +539,18 @@ class NavInvarianteTest(BaseArbol):
     cada nav generada byte-idéntica a la fuente única nav_tabs(), y exactamente
     un .activo por página en su propio destino."""
 
-    CANONICO = [("🗺 Mapa", ""), ("📊 Análisis", "analitica.html"),
-                ("📢 Partes", "partes.html"), ("🔌 Circuitos", "circuitos.html"),
-                ("🏘️ Municipios", "municipios/"), ("💡 Sugerencias", "sugerencias.html")]
+    CANONICO = [("🗺 Mapa", ""), ("📊 Análisis", "analitica"),
+                ("📢 Partes", "partes"), ("🔌 Circuitos", "circuitos"),
+                ("🏘️ Municipios", "municipios/"), ("💡 Sugerencias", "sugerencias")]
 
     # Página commiteada -> (etiqueta .activo esperado, destino propio normalizado)
+    # (claves = archivos en disco; destinos = forma pública extensionless)
     ACTIVO = {
         "index.html": ("🗺 Mapa", ""),
-        "analitica.html": ("📊 Análisis", "analitica.html"),
-        "partes.html": ("📢 Partes", "partes.html"),
-        "circuitos.html": ("🔌 Circuitos", "circuitos.html"),
-        "sugerencias.html": ("💡 Sugerencias", "sugerencias.html"),
+        "analitica.html": ("📊 Análisis", "analitica"),
+        "partes.html": ("📢 Partes", "partes"),
+        "circuitos.html": ("🔌 Circuitos", "circuitos"),
+        "sugerencias.html": ("💡 Sugerencias", "sugerencias"),
         "municipios/index.html": ("🏘️ Municipios", "municipios/"),
     }
 

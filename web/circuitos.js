@@ -173,7 +173,7 @@ document.getElementById("daf-oficial").addEventListener("click", (ev) => {
   document.getElementById("lista").scrollIntoView({ behavior: "smooth" });
 });
 
-// Enlace directo a un circuito: circuitos.html?c=CÓDIGO -> prefiltra por ese código.
+// Enlace directo a un circuito: circuitos?c=CÓDIGO -> prefiltra por ese código.
 const _cParam = new URLSearchParams(location.search).get("c");
 if (_cParam) filtro.value = _cParam;
 

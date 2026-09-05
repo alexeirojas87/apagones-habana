@@ -24,7 +24,7 @@ RAIZ = test_seo.RAIZ
 def _filas(pagina):
     """Códigos del catálogo, en el orden en que salen."""
     m = re.search(r'<ul class="circ-filas">(.*?)</ul>', pagina, re.DOTALL)
-    return None if m is None else re.findall(r'href="/circuitos\.html\?c=([^"]+)"', m.group(1))
+    return None if m is None else re.findall(r'href="/circuitos\?c=([^"]+)"', m.group(1))
 
 
 def _fila_de(pagina, codigo):
@@ -52,7 +52,7 @@ class CatalogoTest(test_seo.BaseArbol):
                                      "B789", "L315",                 # con servicio
                                      "B456"])                        # asumido (>48 h)
         b246 = _fila_de(p, "B246")
-        self.assertIn('<a class="circ-cod" href="/circuitos.html?c=B246">B246</a>', b246)
+        self.assertIn('<a class="circ-cod" href="/circuitos?c=B246">B246</a>', b246)
         self.assertIn('<span class="circ-est sin">sin servicio</span>', b246)
         self.assertIn("Causa: corte programado", b246)
         self.assertIn("desde 09:10 (La Habana)", b246)   # 13:10 UTC -4
@@ -182,7 +182,7 @@ class ReincidentesTest(test_seo.BaseArbol):
     def test_s13_top_5_por_veces_con_desempate_por_codigo(self):
         r = self._reincidentes(self.pagina("Playa"))
         self.assertIsNotNone(r, "falta la sección de reincidentes")
-        codigos = re.findall(r'href="/circuitos\.html\?c=([^"]+)"', r)
+        codigos = re.findall(r'href="/circuitos\?c=([^"]+)"', r)
         # 15, 12, 9, 7, 7 (B456 antes que PG940 por código) — fuera: L315(2), B246(1)
         self.assertEqual(codigos, ["B789", "B123", "A1443", "B456", "PG940"])
         self.assertIn("caído 15 veces desde 10/01/2026", r)

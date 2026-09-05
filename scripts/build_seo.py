@@ -51,13 +51,13 @@ MARCA_HEAD_FIN = "<!-- SEO:HEAD:FIN -->"
 PAGINAS = {
     "index.html": ("", "Apagones en La Habana hoy — estado y horario por municipio",
                    "Mapa y estado del servicio eléctrico en La Habana hoy: circuitos sin corriente según los partes de la Empresa Eléctrica (UNE), su horario y los apagones por municipio."),
-    "analitica.html": ("analitica.html", "Horario de apagones en La Habana — análisis histórico",
+    "analitica.html": ("analitica", "Horario de apagones en La Habana — análisis histórico",
                        "Análisis de los apagones en La Habana: horario de los cortes por hora del día, circuitos con más afectaciones, causas, averías y municipios más golpeados."),
-    "partes.html": ("partes.html", "Partes oficiales de apagones — UNE / La Habana hoy",
+    "partes.html": ("partes", "Partes oficiales de apagones — UNE / La Habana hoy",
                     "Los partes oficiales de la Empresa Eléctrica de La Habana (UNE) sobre apagones y horario de afectaciones de hoy, en un solo lugar."),
-    "circuitos.html": ("circuitos.html", "Circuitos eléctricos de La Habana sin servicio — causas",
+    "circuitos.html": ("circuitos", "Circuitos eléctricos de La Habana sin servicio — causas",
                        "Catálogo de circuitos eléctricos de La Habana con su estado actual (sin servicio o restablecidos), calles que abarca, causa y horas afectadas."),
-    "sugerencias.html": ("sugerencias.html", "Sugerencias y bugs — Apagones La Habana",
+    "sugerencias.html": ("sugerencias", "Sugerencias y bugs — Apagones La Habana",
                          "Envía sugerencias de mejoras o reporta errores de la web de apagones en La Habana."),
     "municipios/index.html": ("municipios/", "Apagones por municipio en La Habana — los 15 municipios",
                               "Cuántos circuitos hay sin servicio en cada municipio de La Habana según el último parte, con enlace a la página de apagones de cada municipio y al mapa interactivo."),
@@ -381,7 +381,7 @@ def reincidentes_circuitos(nombre, estado, circ):
                 dias = int(horas // 24)
                 aviso = (' <span class="circ-b">sin noticias hace %s</span>'
                          % ("1 día" if dias == 1 else "%d días" % dias))
-        filas.append('<li><a class="circ-cod" href="/circuitos.html?c=%s">%s</a>'
+        filas.append('<li><a class="circ-cod" href="/circuitos?c=%s">%s</a>'
                      ' — caído %d veces%s%s</li>'
                      % (esc_html(c["codigo"]), esc_html(c["codigo"]), c["veces"], desde, aviso))
     return ('<h2>Circuitos más reincidentes</h2>\n<ul class="reinc">'
@@ -463,7 +463,7 @@ def catalogo_circuitos(nombre, estado, circ):
             desde = " · desde %s (La Habana)" % hora if hora != "—" else ""
             filas_html.append(
                 '<li class="circ-fila">'
-                '<a class="circ-cod" href="/circuitos.html?c=%s">%s</a> '
+                '<a class="circ-cod" href="/circuitos?c=%s">%s</a> '
                 '<span class="circ-est %s">%s</span>%s%s</li>'
                 % (esc_html(c["codigo"]), esc_html(c["codigo"]), clase, etiqueta,
                    causa, desde))
@@ -496,11 +496,11 @@ def region_hub(estado, circ, nombres):
 # por las 7 superficies de render (5 raíces commiteadas, hub y páginas hijas).
 DESTINOS_NAV = (
     ("", "🗺 Mapa"),
-    ("analitica.html", "📊 Análisis"),
-    ("partes.html", "📢 Partes"),
-    ("circuitos.html", "🔌 Circuitos"),
+    ("analitica", "📊 Análisis"),
+    ("partes", "📢 Partes"),
+    ("circuitos", "🔌 Circuitos"),
     ("municipios/", "🏘️ Municipios"),
-    ("sugerencias.html", "💡 Sugerencias"),
+    ("sugerencias", "💡 Sugerencias"),
 )
 
 
@@ -546,7 +546,7 @@ def pagina_municipio(nombre, estado, circ, nombres, averias=None):
         meta = ("desde %s (La Habana)" % hora) if hora != "—" else "hora sin publicar"
         return ('<article class="circ">\n'
                 '<div class="circ-cab">'
-                '<a class="circ-cod" href="/circuitos.html?c=%s">%s</a>'
+                '<a class="circ-cod" href="/circuitos?c=%s">%s</a>'
                 '<span class="circ-est sin">sin servicio</span>%s'
                 '<span class="circ-meta">%s</span>'
                 '</div>\n'

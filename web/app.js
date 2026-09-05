@@ -156,7 +156,7 @@ async function iniciar() {
       .map((c) => {
         const hDef = ((estado.deficit || {}).circuitos || []).find((x) => x.codigo === c.codigo);
         const lleva = hDef && hDef.horas != null ? ` (lleva ${hDef.horas}h)` : "";
-        return `<li>🔴 <a href="circuitos.html?c=${encodeURIComponent(c.codigo)}"><b>${esc(c.codigo)}</b></a> sin corriente${c.estado_fecha ? " desde " + horaHabana(c.estado_fecha) : ""}${lleva}</li>`;
+        return `<li>🔴 <a href="circuitos?c=${encodeURIComponent(c.codigo)}"><b>${esc(c.codigo)}</b></a> sin corriente${c.estado_fecha ? " desde " + horaHabana(c.estado_fecha) : ""}${lleva}</li>`;
       });
     if (conteo.sin.length > 6) {
       filas.push(`<li class="hora">…y ${conteo.sin.length - 6} circuitos más (ver la pestaña Circuitos)</li>`);
@@ -271,7 +271,7 @@ async function iniciar() {
       cards = `<div class="rc-box rc-box-cards">
         <div class="rc-box-t">Con más horas sin corriente</div>
         <div class="rc-cards">` + top.map(({ c, h, oficialH }) => `
-        <a class="rc-card" href="circuitos.html?c=${encodeURIComponent(c.codigo)}"
+        <a class="rc-card" href="circuitos?c=${encodeURIComponent(c.codigo)}"
            title="${oficialH ? "Horas declaradas por la UNE" : "Horas desde el último parte que lo afectó"} — ver ${esc(c.codigo)}">
           <span class="rc-card-cab"><span class="rc-dot"></span>${esc(c.codigo)}</span>
           <span class="rc-card-h">${h}<small>h sin luz${oficialH ? " · UNE" : ""}</small></span>
@@ -298,7 +298,7 @@ async function iniciar() {
       <div class="rc-grid${cards ? " tres" : ""}">
       <div class="rc-box">
         <div class="rc-box-t">Circuitos <span class="rc-n">${cat.length}</span>
-          <a class="rc-mas" href="circuitos.html">ver todos →</a></div>
+          <a class="rc-mas" href="circuitos">ver todos →</a></div>
         <div class="rc-barra" role="img" aria-label="${ncon} con servicio, ${nsin} sin servicio, ${ndisc} discrepantes, ${nnd} sin noticias, ${nasum} sin apagones reportados">
           <span class="seg sin" style="width:${pw(nsin)}%"></span>
           <span class="seg discrepado" style="width:${pw(ndisc)}%"></span>
@@ -473,7 +473,7 @@ async function iniciar() {
       const popup = `<div class="popup"><h3>${col.e} Circuito ${esc(c.codigo)} — ${col.txt}</h3>
          <p>${calles}</p>
          <p class="hora">${detalle} Ubicación aproximada.</p>
-         <p><a href="circuitos.html?c=${encodeURIComponent(c.codigo)}">📋 ver ${esc(c.codigo)} en Circuitos →</a></p></div>`;
+         <p><a href="circuitos?c=${encodeURIComponent(c.codigo)}">📋 ver ${esc(c.codigo)} en Circuitos →</a></p></div>`;
       const tip = `${col.e} Circuito ${esc(c.codigo)} (${col.txt})`;
       const capa = (c.lineas && c.lineas.length)
         ? L.polyline(c.lineas.map((l) => l.map(([lo, la]) => [la, lo])), {
@@ -549,7 +549,7 @@ async function iniciar() {
         ${horaHabana(c.fecha)}. Puede volver a cortarse si hay nuevas afectaciones.`;
       const cod = c.codigo ? ` ${esc(c.codigo)}` : "";
       const verC = c.codigo
-        ? `<p><a href="circuitos.html?c=${encodeURIComponent(c.codigo)}">📋 ver ${esc(c.codigo)} en Circuitos →</a></p>` : "";
+        ? `<p><a href="circuitos?c=${encodeURIComponent(c.codigo)}">📋 ver ${esc(c.codigo)} en Circuitos →</a></p>` : "";
       L.circleMarker([c.lat, c.lon], {
         radius: 6, weight: 2, color: "#1c5f2b", fillColor: "#46a758", fillOpacity: 0.9,
       })
@@ -768,7 +768,7 @@ async function iniciar() {
       } else {
         cab = `🟢 <b>Con corriente</b> — ${cod} no figura afectado${circ.ultima ? ` (última mención: ${fmtDia(circ.ultima)})` : ""}.`;
       }
-      const enlace = ` <a href="circuitos.html?c=${encodeURIComponent(circ.codigo)}">ver ${esc(circ.codigo)} →</a>`;
+      const enlace = ` <a href="circuitos?c=${encodeURIComponent(circ.codigo)}">ver ${esc(circ.codigo)} →</a>`;
       return `<p class="hora">${cab}${enlace}</p>${notaAv}${notaDaf}`;
     }
     if (notaAv || notaDaf) return `${notaAv}${notaDaf}`;

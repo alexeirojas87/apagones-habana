@@ -80,7 +80,7 @@ function render() {
     `<div class="kpi"><span class="num">${n}</span><span class="et">${t}</span></div>`).join("");
 
   // Circuitos con más horas sin corriente (máx en el rango) — etiquetas enlazadas
-  const linkCirc = (cod) => `circuitos.html?c=${encodeURIComponent(cod)}`;
+  const linkCirc = (cod) => `circuitos?c=${encodeURIComponent(cod)}`;
   barras("c-circ-horas", [...maxH.entries()].map(([c, h]) => ({ label: c, valor: h }))
     .sort((a, b) => b.valor - a.valor).slice(0, 15), { color: "#ef4444", fmt: (v) => v + " h", link: linkCirc });
 
@@ -124,7 +124,7 @@ function render() {
     ["🔴 Peor día del rango", recDia.n || "—", recDia.f ? `${recDia.f} · circuitos afectados` : ""],
     ["⚡ Mayor déficit", maxMw[1] ? `${maxMw[1]} MW` : "—", maxMw[0] ? maxMw[0].slice(0, 10) : ""],
     ["🕐 Más horas sin corriente", maxCirc.h ? `${maxCirc.h} h` : "—",
-      maxCirc.c ? `Circuito <a href="circuitos.html?c=${encodeURIComponent(maxCirc.c)}">${esc(maxCirc.c)}</a>` : ""],
+      maxCirc.c ? `Circuito <a href="circuitos?c=${encodeURIComponent(maxCirc.c)}">${esc(maxCirc.c)}</a>` : ""],
     ["🔧 Día de más averías", avPorDia[0] ? `${avPorDia[0].valor}` : "—", avPorDia[0] ? avPorDia[0].label : ""],
   ];
   // `s` puede traer un enlace ya escapado (código de circuito); el resto son cadenas propias.

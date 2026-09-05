@@ -837,5 +837,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB920: Alturas de Boca Ci"
+ },
+ "79929": {
+  "fecha": "2026-09-05T13:01:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 08:40 am se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉.MB950: Ampliac"
+ },
+ "79927": {
+  "fecha": "2026-09-05T12:56:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL55",
+   "H343"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF)en los siguientes circuitos: 👉MB920 ,H343,AL55"
  }
 }

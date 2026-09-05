@@ -4,11 +4,13 @@ Lo ejecuta ingest.yml justo antes del deploy de wrangler con `|| echo`
 (best-effort): si revienta, se despliega el último HTML bueno. Escribe en el
 árbol de trabajo web/:
 
-  - rellena la región <!-- SEO:HEAD:INICIO/FIN --> de las 6 páginas estáticas
-    (canonical, Open Graph, Twitter, favicon, theme-color y JSON-LD del index y
-    del hub), la región <!-- SEO:INICIO/FIN --> del body de index.html con una
-    instantánea del estado y la del hub web/municipios/index.html con la grilla
-    de tarjetas por municipio, y deja las regiones de HEAD de las 4 restantes;
+  - rellena la región <!-- SEO:HEAD:INICIO/FIN --> de las 7 páginas estáticas
+    (canonical, Open Graph, Twitter, favicon, theme-color y JSON-LD del index,
+    del hub y del FAQ), la región <!-- SEO:INICIO/FIN --> del body de index.html
+    con una instantánea del estado, la del hub web/municipios/index.html con la
+    grilla de tarjetas por municipio y la del FAQ
+    web/preguntas-frecuentes/index.html con las preguntas frecuentes, y deja
+    las regiones de HEAD de las 4 restantes;
   - genera web/municipio/<slug>/index.html para los 15 municipios;
   - emite web/sitemap.xml (paridad exacta con las páginas generadas) y
     web/robots.txt (esta última también vive commiteada; la corrida solo la
@@ -61,6 +63,9 @@ PAGINAS = {
                          "Envía sugerencias de mejoras o reporta errores de la web de apagones en La Habana."),
     "municipios/index.html": ("municipios/", "Apagones por municipio en La Habana — los 15 municipios",
                               "Cuántos circuitos hay sin servicio en cada municipio de La Habana según el último parte, con enlace a la página de apagones de cada municipio y al mapa interactivo."),
+    "preguntas-frecuentes/index.html": ("preguntas-frecuentes/",
+                                        "Preguntas frecuentes sobre los apagones en La Habana — FAQ",
+                                        "Respuestas a las preguntas frecuentes sobre los apagones en La Habana: qué es este sitio, de dónde salen los datos de la UNE, cómo ver si tu circuito está sin servicio, cada cuánto se actualiza y por qué hay cortes."),
 }
 
 
@@ -126,6 +131,8 @@ def head_estaticas(archivo, nombres=None, generado=None):
         ld = ld_index(generado)
     elif archivo == "municipios/index.html":
         ld = ld_municipios(nombres or [])
+    elif archivo == "preguntas-frecuentes/index.html":
+        ld = ld_faq()
     else:
         ld = None
     return etiquetas_head(site_url(ruta), titulo, desc, ld=ld)
@@ -523,14 +530,15 @@ def region_hub(estado, circ, nombres):
             'se ve al abrir cada página.</p>' % esc_html(hora_estampado(estado.get("generado"))))
 
 
-# Nav canónica: orden y destinos únicos de los 6 destinos del sitio, compartida
-# por las 7 superficies de render (5 raíces commiteadas, hub y páginas hijas).
+# Nav canónica: orden y destinos únicos de los 7 destinos del sitio, compartida
+# por las 8 superficies de render (6 raíces commiteadas, hub y páginas hijas).
 DESTINOS_NAV = (
     ("", "🗺 Mapa"),
     ("analitica", "📊 Análisis"),
     ("partes", "📢 Partes"),
     ("circuitos", "🔌 Circuitos"),
     ("municipios/", "🏘️ Municipios"),
+    ("preguntas-frecuentes/", "❓ Preguntas"),
     ("sugerencias", "💡 Sugerencias"),
 )
 
@@ -631,11 +639,73 @@ def urls_del_sitemap(nombres, generado=None):
     return pares
 
 
+# Las 8 preguntas frecuentes aprobadas (evergreen: sin fecha, sin estado
+# vigente, sin códigos de circuito del día). Es la ÚNICA fuente del cuerpo del
+# FAQ y del JSON-LD FAQPage: paridad por construcción (decisión D4 del design).
+# Las respuestas admiten HTML de confianza mínimo con enlaces extensionless.
+FAQ_PREGUNTAS = (
+    ("¿Qué es Apagones La Habana?",
+     "Es un sitio comunitario e independiente que reúne en un solo lugar la información pública sobre los apagones "
+     "en La Habana: el estado por circuito según el último parte, los partes oficiales de la UNE y un análisis del "
+     "horario de las afectaciones. No es un sitio oficial ni está afiliado a la Empresa Eléctrica de La Habana."),
+    ("¿Son los datos oficiales?",
+     "Los datos provienen del canal público de Telegram de la <a href=\"https://t.me/EmpresaElectricaDeLaHabana\">"
+     "Empresa Eléctrica de La Habana</a> y se procesan de forma automatizada. No son una fuente oficial: pueden "
+     "contener errores u omisiones, y el <a href=\"/partes\">detalle de cada parte</a> permite verificar el anuncio "
+     "original."),
+    ("¿Cómo sé si mi circuito está sin servicio hoy?",
+     "En la pestaña de <a href=\"/circuitos\">circuitos</a> puedes buscar tu circuito por código, calle o municipio "
+     "y ver su estado vigente. También puedes entrar a la página de tu <a href=\"/municipios/\">municipio</a> o "
+     "buscar tu calle directamente en el <a href=\"/\">mapa</a>."),
+    ("¿Cada cuánto se actualiza?",
+     "El estado se actualiza de forma automática con cada nuevo parte publicado por la UNE (en general, cada pocos "
+     "minutos). La hora de la última actualización aparece en la portada y en cada página de municipio."),
+    ('¿Qué significan "afectación" y "restablecimiento"?',
+     "Una afectación es un corte del servicio eléctrico que impide el suministro normal en un circuito; un "
+     "restablecimiento es el retorno del servicio después de ese corte. Los partes de la UNE anuncian ambos eventos "
+     "con su causa y las zonas involucradas."),
+    ("¿Por qué mi circuito no aparece?",
+     "El sitio solo publica lo que declaran los partes oficiales: si tu circuito no fue mencionado en el último "
+     "parte, o aún no está catalogado en el sistema, no puede mostrarse su estado. Si detectas un circuito que "
+     "falta, puedes reportarlo desde la página de sugerencias."),
+    ("¿Puedo aportar información?",
+     "Sí. La página de <a href=\"/sugerencias\">sugerencias</a> recibe correcciones de datos, circuitos sin "
+     "catalogar, reportes de errores y propuestas de mejora del sitio."),
+    ("¿Por qué hay apagones en La Habana?",
+     "Los apagones responden a la situación del sistema eléctrico nacional: déficit de generación, averías en las "
+     "plantas y fallas de transmisión o distribución. Este sitio no determina las causas: publica el horario y los "
+     "circuitos que anuncia la UNE, y el <a href=\"/analitica\">análisis histórico</a> muestra los patrones por hora "
+     "y municipio."),
+)
+
+
+def cuerpo_faq():
+    """Cuerpo del FAQ: las 8 preguntas evergreen de FAQ_PREGUNTAS (única fuente
+    compartida con el JSON-LD FAQPage — paridad por construcción)."""
+    secciones = []
+    for i, (pregunta, respuesta) in enumerate(FAQ_PREGUNTAS, 1):
+        secciones.append('<section class="faq" id="p%d">\n<h2>%s</h2>\n%s\n</section>'
+                         % (i, esc_html(pregunta), respuesta))
+    return "\n".join(secciones)
+
+
+def ld_faq():
+    """FAQPage JSON-LD del FAQ: mainEntity sale de FAQ_PREGUNTAS, la misma
+    fuente del cuerpo (spec R-faqpage: cero expectativa de rich results en
+    Google; el valor es la coincidencia de contenido y otros consumidores)."""
+    return {"@context": "https://schema.org", "@type": "FAQPage",
+            "inLanguage": "es",
+            "mainEntity": [{"@type": "Question", "name": pregunta,
+                            "acceptedAnswer": {"@type": "Answer", "text": respuesta}}
+                           for pregunta, respuesta in FAQ_PREGUNTAS]}
+
+
 # Regiones del body que generar() rellena por archivo (las no listadas solo
-# reciben su HEAD). Las dos comparten firma (estado, circ, nombres).
+# reciben su HEAD). Las dos primeras comparten firma (estado, circ, nombres).
 REGIONES_CUERPO = {
     "index.html": lambda estado, circ, nombres: instantanea_index(estado, circ),
     "municipios/index.html": region_hub,
+    "preguntas-frecuentes/index.html": lambda estado, circ, nombres: cuerpo_faq(),
 }
 
 

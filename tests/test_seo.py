@@ -14,6 +14,7 @@ import re
 import shutil
 import tempfile
 import unittest
+from html import unescape
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -185,9 +186,9 @@ class CapaMetadatosTest(unittest.TestCase):
             self.assertEqual((titulo, desc), (esperado_t, esperado_d),
                              "%s: el head difiere del mapa del generador" % archivo)
             vistos[archivo] = titulo
-        self.assertEqual(len(set(vistos.values())), 6)  # títulos únicos
+        self.assertEqual(len(set(vistos.values())), 7)  # títulos únicos
 
-    def test_las_seis_paginas_tienen_pares_de_marcadores_de_head(self):
+    def test_las_siete_paginas_tienen_pares_de_marcadores_de_head(self):
         for archivo in MOD.PAGINAS:
             html = (RAIZ / "web" / archivo).read_text(encoding="utf-8")
             self.assertEqual(html.count(MOD.MARCA_HEAD_INICIO), 1, archivo)
@@ -295,7 +296,7 @@ class CorridaCompletaTest(BaseArbol):
         # (2026-07-03T15:10:50+00:00), NUNCA el día de la corrida.
         self.correr()
         pares = self._pares_sitemap()
-        self.assertEqual(len(pares), 21)
+        self.assertEqual(len(pares), 22)
         for loc, lastmod in pares:
             self.assertEqual(lastmod, "2026-07-03", loc)
 
@@ -306,15 +307,15 @@ class CorridaCompletaTest(BaseArbol):
         self.correr((estado, circ))  # no lanza
         ET.fromstring(self._leer("sitemap.xml"))  # el XML sigue siendo válido
         pares = self._pares_sitemap()
-        self.assertEqual(len(pares), 21)
+        self.assertEqual(len(pares), 22)
         for loc, lastmod in pares:
             self.assertIsNone(lastmod, loc)  # sin fecha verificable: se omite
 
     def test_sitemap_lastmod_omitido_no_rompe_los_locales(self):
         self.correr()  # el lastmod convive con el resto de <url> del sitemap
         xml = self._leer("sitemap.xml")
-        self.assertEqual(xml.count("<url>"), 21)
-        self.assertEqual(xml.count("<lastmod>"), 21)
+        self.assertEqual(xml.count("<url>"), 22)
+        self.assertEqual(xml.count("<lastmod>"), 22)
         self.assertIn("<loc>%s/</loc><lastmod>2026-07-03</lastmod>" % MOD.SITE_BASE, xml)
 
 
@@ -527,11 +528,12 @@ class EndpointsCrawlingTest(BaseArbol):
         self.assertIn("Disallow: /api/", r)
         self.assertIn("Sitemap: %s/sitemap.xml" % MOD.SITE_BASE, r)
 
-    def test_sitemap_con_21_urls_extensionless(self):
+    def test_sitemap_con_22_urls_extensionless(self):
         urls = self._urls()
-        self.assertEqual(len(urls), 21)  # 5 páginas raíz + hub + 15 municipios
+        self.assertEqual(len(urls), 22)  # 5 páginas raíz + hub + FAQ + 15 municipios
         self.assertIn(MOD.site_url(""), urls)
         self.assertIn(MOD.site_url("municipios/"), urls)  # el hub /municipios/
+        self.assertIn(MOD.site_url("preguntas-frecuentes/"), urls)  # el FAQ
         self.assertIn(MOD.site_url("municipio/san-miguel-del-padron/"), urls)  # dir form
         for u in urls:
             self.assertTrue(u.startswith(MOD.SITE_BASE + "/"), u)
@@ -587,9 +589,10 @@ class EndpointsCrawlingTest(BaseArbol):
 
 
 class NavInvarianteTest(BaseArbol):
-    """U2: la nav canónica de 6 destinos no puede volver a divergir (anti-drift).
+    """U2/U4: la nav canónica de 7 destinos no puede volver a divergir
+    (anti-drift).
 
-    Invariante sobre los 21 sitios (6 páginas commiteadas + 15 hijas generadas
+    Invariante sobre los 22 sitios (7 páginas commiteadas + 15 hijas generadas
     con fixtures): el mismo orden de etiquetas, destinos iguales tras
     normalizar con urljoin (relativas commiteadas vs absolutas generadas),
     cada nav generada byte-idéntica a la fuente única nav_tabs(), y exactamente
@@ -597,7 +600,9 @@ class NavInvarianteTest(BaseArbol):
 
     CANONICO = [("🗺 Mapa", ""), ("📊 Análisis", "analitica"),
                 ("📢 Partes", "partes"), ("🔌 Circuitos", "circuitos"),
-                ("🏘️ Municipios", "municipios/"), ("💡 Sugerencias", "sugerencias")]
+                ("🏘️ Municipios", "municipios/"),
+                ("❓ Preguntas", "preguntas-frecuentes/"),
+                ("💡 Sugerencias", "sugerencias")]
 
     # Página commiteada -> (etiqueta .activo esperado, destino propio normalizado)
     # (claves = archivos en disco; destinos = forma pública extensionless)
@@ -606,6 +611,7 @@ class NavInvarianteTest(BaseArbol):
         "analitica.html": ("📊 Análisis", "analitica"),
         "partes.html": ("📢 Partes", "partes"),
         "circuitos.html": ("🔌 Circuitos", "circuitos"),
+        "preguntas-frecuentes/index.html": ("❓ Preguntas", "preguntas-frecuentes/"),
         "sugerencias.html": ("💡 Sugerencias", "sugerencias"),
         "municipios/index.html": ("🏘️ Municipios", "municipios/"),
     }
@@ -641,7 +647,7 @@ class NavInvarianteTest(BaseArbol):
             yield ("municipio/%s/index.html" % s,
                    self._leer("municipio", s, "index.html"), "municipios/")
 
-    def test_destinos_canonicos_iguales_en_los_21_sitios(self):
+    def test_destinos_canonicos_iguales_en_los_22_sitios(self):
         esperado = {d for _, d in self.CANONICO}
         etiquetas = [e for e, _ in self.CANONICO]
         can = dict(self.CANONICO)
@@ -682,6 +688,70 @@ class NavInvarianteTest(BaseArbol):
                 self.assertIn('<span class="activo">%s</span>' % etiqueta, nav)
             else:
                 self.assertIn('<a href="%s">%s</a>' % (MOD.site_url(destino), etiqueta), nav)
+
+
+class FaqPaginaTest(BaseArbol):
+    """U4: /preguntas-frecuentes/ — las 8 preguntas evergreen aprobadas, con el
+    cuerpo y el JSON-LD FAQPage saliendo de la MISMA fuente única del
+    generador (paridad por construcción, decisión D4)."""
+
+    # Lista aprobada del proposal, verbatim (R-faq).
+    PREGUNTAS = [
+        "¿Qué es Apagones La Habana?",
+        "¿Son los datos oficiales?",
+        "¿Cómo sé si mi circuito está sin servicio hoy?",
+        "¿Cada cuánto se actualiza?",
+        '¿Qué significan "afectación" y "restablecimiento"?',
+        "¿Por qué mi circuito no aparece?",
+        "¿Puedo aportar información?",
+        "¿Por qué hay apagones en La Habana?",
+    ]
+
+    def setUp(self):
+        BaseArbol.setUp(self)
+        self.correr()
+
+    def pagina(self):
+        return self._leer("preguntas-frecuentes", "index.html")
+
+    def cuerpo(self):
+        """Región generada del body (entre los marcadores SEO:INICIO/FIN)."""
+        p = self.pagina()
+        return re.search(re.escape(MOD.MARCA_INICIO) + r"(.*?)" + re.escape(MOD.MARCA_FIN),
+                         p, re.DOTALL).group(1)
+
+    def test_faq_muestra_las_8_preguntas_aprobadas(self):
+        texto = unescape(self.pagina())
+        for pregunta in self.PREGUNTAS:
+            self.assertIn(pregunta, texto, pregunta)
+
+    def test_faq_es_siempre_verde_sin_claims_perecederos(self):
+        # R-faq: el FAQ es evergreen — sin estampa de instantánea ni fecha de
+        # datos (claims de estado vigente) y sin códigos de circuito de hoy.
+        cuerpo = self.cuerpo()
+        self.assertNotIn("Instantánea del despliegue", cuerpo)
+        self.assertNotIn("datos al", cuerpo)
+        self.assertNotIn('class="stamp"', cuerpo)
+        self.assertNotRegex(cuerpo, r"\b[A-Z]{1,3}\d{3,4}\b")
+        # triangulación: la página sí existe y el cuerpo NO quedó vacío
+        self.assertGreater(len(re.findall(r"<h2", cuerpo)), 0)
+
+    def test_faq_jsonld_mainentity_coincide_con_body(self):
+        # R-faqpage: el FAQPage parsea con stdlib y su mainEntity refleja las
+        # mismas Q&A del cuerpo (misma fuente, misma cuenta).
+        p = self.pagina()
+        m = re.search(r'<script type="application/ld\+json">(.*?)</script>', p, re.DOTALL)
+        self.assertIsNotNone(m)
+        doc = json.loads(m.group(1))
+        self.assertEqual(doc["@type"], "FAQPage")
+        entidades = doc["mainEntity"]
+        texto = unescape(p)
+        self.assertEqual(len(entidades), 8)
+        self.assertEqual([e["name"] for e in entidades], self.PREGUNTAS)
+        for e in entidades:  # cada respuesta del JSON-LD está en el cuerpo
+            self.assertEqual(e["@type"], "Question")
+            self.assertEqual(e["acceptedAnswer"]["@type"], "Answer")
+            self.assertIn(e["acceptedAnswer"]["text"], texto)
 
 
 class TestIndexEstaticoSinLista(BaseArbol):

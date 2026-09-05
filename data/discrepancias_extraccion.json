@@ -909,5 +909,28 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Plaza , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Basarrate / Neptuno y San Miguel.🛑⚡️"
+ },
+ "80014": {
+  "fecha": "2026-09-05T18:44:31+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 14:06 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325:San Benigno h"
+ },
+ "80012": {
+  "fecha": "2026-09-05T18:36:37+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP17",
+   "CPP20",
+   "CPP8"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 14:06 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉CPP9:Águila hasta "
  }
 }

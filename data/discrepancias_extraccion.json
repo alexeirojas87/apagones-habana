@@ -1,14 +1,4 @@
 {
- "78199": {
-  "fecha": "2026-08-29T13:53:18+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D631",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "⚠️⚡️Informamos a los clientes de los municipios 10 de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, debido a una avería que afecta los circuit"
- },
  "78218": {
   "fecha": "2026-08-29T15:23:02+00:00",
   "tipo_llm": "averia",
@@ -856,5 +846,17 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF)en los siguientes circuitos: 👉MB920 ,H343,AL55"
+ },
+ "79946": {
+  "fecha": "2026-09-05T14:00:17+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 09:08 AM queda restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
  }
 }

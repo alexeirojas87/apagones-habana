@@ -117,13 +117,13 @@ def etiquetas_head(url_absoluta, titulo, descripcion, ld=None):
     return "\n".join(lineas)
 
 
-def head_estaticas(archivo, nombres=None):
+def head_estaticas(archivo, nombres=None, generado=None):
     """Contenido que build_seo inyecta en la región HEAD de una página estática:
     los tags con host derivan de SITE_BASE; el <title> y la description viven a
     mano en el HTML (y la prueba de paridad evita deriva con el mapa PAGINAS)."""
     ruta, titulo, desc = PAGINAS[archivo]
     if archivo == "index.html":
-        ld = ld_index()
+        ld = ld_index(generado)
     elif archivo == "municipios/index.html":
         ld = ld_municipios(nombres or [])
     else:
@@ -131,21 +131,30 @@ def head_estaticas(archivo, nombres=None):
     return etiquetas_head(site_url(ruta), titulo, desc, ld=ld)
 
 
-def ld_index():
-    """WebSite + Dataset del index (spec: ambos presentes y siempre parseables)."""
+def ld_index(generado=None):
+    """WebSite + Dataset + Organization del index (spec: todos presentes y
+    siempre parseables). dateModified deriva del generado de entrada (nunca
+    del reloj); sin fecha verificable el campo se omite en ambos bloques."""
+    fecha = fecha_sitemap(generado)
     return [
         {"@context": "https://schema.org", "@type": "WebSite",
          "name": "Apagones La Habana", "inLanguage": "es",
-         "url": site_url(""), "description": PAGINAS["index.html"][1]},
+         "url": site_url(""), "description": PAGINAS["index.html"][1],
+         **({"dateModified": fecha} if fecha else {})},
         {"@context": "https://schema.org", "@type": "Dataset",
          "name": "Afectaciones del servicio eléctrico en La Habana",
          "description": "Series de partes oficiales de la UNE y estado por circuito, actualizadas cada ~25 minutos.",
          "inLanguage": "es", "isAccessibleForFree": True,
+         **({"dateModified": fecha} if fecha else {}),
          "creator": {"@type": "Organization", "name": "Apagones La Habana (proyecto comunitario)"},
          "distribution": [
              {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": site_url("data/estado.json")},
              {"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": site_url("data/circuitos.json")},
          ]},
+        {"@context": "https://schema.org", "@type": "Organization",
+         "name": "Apagones La Habana", "url": site_url(""),
+         "logo": site_url("og.png"),
+         "sameAs": ["https://t.me/EmpresaElectricaDeLaHabana"]},
     ]
 
 
@@ -648,7 +657,8 @@ def generar(dir_web, datos):
         with open(ruta, encoding="utf-8") as f:
             texto = f.read()
         texto = reescribir_region(texto, MARCA_HEAD_INICIO, MARCA_HEAD_FIN,
-                                  head_estaticas(archivo, nombres))
+                                  head_estaticas(archivo, nombres,
+                                                 estado.get("generado")))
         relleno = REGIONES_CUERPO.get(archivo)
         if relleno is not None:
             texto = reescribir_region(texto, MARCA_INICIO, MARCA_FIN,

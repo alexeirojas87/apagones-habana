@@ -1,13 +1,4 @@
 {
- "78218": {
-  "fecha": "2026-08-29T15:23:02+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Habana del Este, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉3ra / 4ta y 6ta.🛑⚡️"
- },
  "78220": {
   "fecha": "2026-08-29T15:55:18+00:00",
   "tipo_llm": "averia",

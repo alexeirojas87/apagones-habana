@@ -261,6 +261,39 @@ class CorridaCompletaTest(BaseArbol):
         self.correr((estado, circ))  # no lanza; el stamp degrada legible
         self.assertIn("datos al", self._leer("index.html"))
 
+    def _pares_sitemap(self):
+        """[(loc, lastmod|None)] en orden de aparición dentro del sitemap."""
+        xml = self._leer("sitemap.xml")
+        return [(m.group(1), m.group(2)) for m in re.finditer(
+            r"<url><loc>(.*?)</loc>(?:<lastmod>(.*?)</lastmod>)?</url>", xml)]
+
+    def test_sitemap_lastmod_deriva_del_estado_generado(self):
+        # R-lastmod: cada <lastmod> es la fecha UTC del generado del fixture
+        # (2026-07-03T15:10:50+00:00), NUNCA el día de la corrida.
+        self.correr()
+        pares = self._pares_sitemap()
+        self.assertEqual(len(pares), 21)
+        for loc, lastmod in pares:
+            self.assertEqual(lastmod, "2026-07-03", loc)
+
+    def test_sitemap_sin_generado_valido_omite_lastmod_y_corre(self):
+        import xml.etree.ElementTree as ET
+        estado, circ = coleccion()
+        estado["generado"] = "no-es-fecha"
+        self.correr((estado, circ))  # no lanza
+        ET.fromstring(self._leer("sitemap.xml"))  # el XML sigue siendo válido
+        pares = self._pares_sitemap()
+        self.assertEqual(len(pares), 21)
+        for loc, lastmod in pares:
+            self.assertIsNone(lastmod, loc)  # sin fecha verificable: se omite
+
+    def test_sitemap_lastmod_omitido_no_rompe_los_locales(self):
+        self.correr()  # el lastmod convive con el resto de <url> del sitemap
+        xml = self._leer("sitemap.xml")
+        self.assertEqual(xml.count("<url>"), 21)
+        self.assertEqual(xml.count("<lastmod>"), 21)
+        self.assertIn("<loc>%s/</loc><lastmod>2026-07-03</lastmod>" % MOD.SITE_BASE, xml)
+
 
 class PaginasMunicipioTest(BaseArbol):
     """Fase 4: las 15 páginas de municipio en forma de directorio."""

@@ -30,19 +30,19 @@
 </div>
 
 <main id="paneles">
-  <section class="kpis" id="kpis"></section>
-  <section class="panel"><h2>Circuitos con más horas sin corriente <span class="nota">(máximo declarado en el rango)</span></h2><div id="c-circ-horas" class="chart"></div></section>
-  <section class="panel"><h2><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-trophy"></use></svg> Récords históricos</h2><div id="c-records" class="records"></div></section>
-  <section class="panel" style="grid-column:1/-1"><h2>Déficit de generación afectado (MW) en el tiempo</h2><div id="c-mw" class="chart chart-tira"></div></section>
-  <section class="panel"><h2>Circuitos más veces afectados <span class="nota">(nº de partes en el rango)</span></h2><div id="c-circ-freq" class="chart"></div></section>
-  <section class="panel"><h2>Tipos de avería (roturas)</h2><div id="c-tipos" class="chart"></div></section>
-  <section class="panel" style="grid-column:1/-1"><h2>Tendencia semanal: circuitos afectados y déficit medio</h2><div id="c-semanas" class="chart"></div></section>
-  <section class="panel"><h2>Causas de los avisos</h2><div id="c-causas" class="chart"></div></section>
-  <section class="panel"><h2>Municipios más mencionados <span class="nota">(en avisos específicos)</span></h2><div id="c-municipios" class="chart"></div></section>
-  <section class="panel"><h2>Averías (roturas) por municipio</h2><div id="c-averias" class="chart"></div></section>
-  <section class="panel"><h2>Cortes por día</h2><div id="c-dias" class="chart chart-tira"></div></section>
-  <section class="panel"><h2>¿A qué hora empiezan los cortes?</h2><div id="c-horas" class="chart chart-tira"></div></section>
-  <section class="panel"><h2>Lugares más reportados por vecinos</h2><div id="c-lugares" class="chart"></div></section>
+  <section class="kpis" id="kpis"><p class="chart-respaldo">Los 4 indicadores del rango (afectados, horas, déficit y partes) se cargan con JavaScript. Los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></section>
+  <section class="panel sec-circuitos"><h2>Circuitos con más horas sin corriente <span class="nota">(máximo declarado en el rango)</span></h2><div id="c-circ-horas" class="chart"><p class="chart-respaldo">Gráfico «circuitos con más horas sin corriente»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-records"><h2><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-trophy"></use></svg> Récords históricos</h2><div id="c-records" class="records"><p class="chart-respaldo">Gráfico «récords históricos»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-deficit panel-ancho"><h2>Déficit de generación afectado (MW) en el tiempo</h2><div id="c-mw" class="chart chart-tira"><p class="chart-respaldo">Gráfico «déficit de generación (MW) por día»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-circuitos"><h2>Circuitos más veces afectados <span class="nota">(nº de partes en el rango)</span></h2><div id="c-circ-freq" class="chart"><p class="chart-respaldo">Gráfico «circuitos más veces afectados»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-averias"><h2>Tipos de avería (roturas)</h2><div id="c-tipos" class="chart"><p class="chart-respaldo">Gráfico «tipos de avería»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-deficit panel-ancho"><h2>Tendencia semanal: circuitos afectados y déficit medio</h2><div id="c-semanas" class="chart"><p class="chart-respaldo">Gráfico «tendencia semanal»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-avisos"><h2>Causas de los avisos</h2><div id="c-causas" class="chart"><p class="chart-respaldo">Gráfico «causas de los avisos»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-avisos"><h2>Municipios más mencionados <span class="nota">(en avisos específicos)</span></h2><div id="c-municipios" class="chart"><p class="chart-respaldo">Gráfico «municipios más mencionados»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-averias"><h2>Averías (roturas) por municipio</h2><div id="c-averias" class="chart"><p class="chart-respaldo">Gráfico «averías por municipio»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-deficit"><h2>Cortes por día</h2><div id="c-dias" class="chart chart-tira"><p class="chart-respaldo">Gráfico «cortes por día»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-deficit"><h2>¿A qué hora empiezan los cortes?</h2><div id="c-horas" class="chart chart-tira"><p class="chart-respaldo">Gráfico «hora de inicio de los cortes»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
+  <section class="panel sec-reportes"><h2>Lugares más reportados por vecinos</h2><div id="c-lugares" class="chart"><p class="chart-respaldo">Gráfico «lugares más reportados por vecinos»: se carga con JavaScript. Sin JS, los datos completos están en <a href="data/analitica.json">data/analitica.json</a>.</p></div></section>
 </main>
 
 <footer>

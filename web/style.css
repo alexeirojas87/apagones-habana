@@ -481,10 +481,23 @@ details.faq[open] summary::before { transform: rotate(225deg); }
 .kpis { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
 @media (max-width: 720px) { .kpis { grid-template-columns: repeat(2, minmax(0,1fr)); } }
 .kpi { background: var(--surface-2); border-radius: 10px; padding: 12px; text-align: center; }
-.kpi .num { display: block; font-size: 1.7rem; font-weight: 700; color: var(--red-t); }
+/* Énfasis de KPI (R12/D11): --text-strong + escala tipográfica */
+.kpi .num { display: block; font-size: 2rem; font-weight: 800; color: var(--text-strong); letter-spacing: -.02em; }
 .kpi .et { font-size: .72rem; color: var(--text-muted); }
 
 .panel { background: var(--surface-2); border-radius: 10px; padding: 12px 14px; }
+/* Agrupación por sección (R12/D11): acento izquierdo por grupo con tokens */
+.sec-circuitos { border-left: 3px solid var(--red); }
+.sec-records { border-left: 3px solid var(--gold); }
+.sec-deficit { border-left: 3px solid var(--amber); }
+.sec-averias { border-left: 3px solid var(--blue); }
+.sec-avisos { border-left: 3px solid var(--accent); }
+.sec-reportes { border-left: 3px solid var(--green); }
+/* Paneles a lo ancho: clase de token en lugar del style= en línea */
+.panel-ancho { grid-column: 1 / -1; }
+/* Respaldo sin JavaScript (S16): descripción + enlace al JSON mismo-origen */
+.chart-respaldo { font-size: .8rem; color: var(--text-dim); margin: 0; line-height: 1.4; }
+.chart-respaldo a { color: var(--accent); }
 .panel h2 { font-size: .9rem; margin: 0 0 10px; color: var(--text-soft); }
 .vacio { color: var(--text-dim); font-size: .8rem; }
 

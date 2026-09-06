@@ -942,5 +942,24 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Habana del Este, se afectan por Disparo del Circuito por posible AVERIA . 👉MB910: Justi, Agromar, Bajurayabo, Campo Florido, La Co"
+ },
+ "80044": {
+  "fecha": "2026-09-05T21:22:23+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [],
+  "solo_regex": [
+   "A1006",
+   "A1008"
+  ],
+  "extracto": "⚠️⚡️Informamos a los clientes de los municipios 10 de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, la rotación se efectuó de la siguiente man"
+ },
+ "80040": {
+  "fecha": "2026-09-05T21:00:35+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:09 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 S515: Alturas del "
  }
 }

@@ -922,5 +922,25 @@
   ],
   "solo_regex": [],
   "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF en los siguientes circuitos: 👉 H343 :Martín Pérez, Ciudamar, Carolina, Altu"
+ },
+ "80176": {
+  "fecha": "2026-09-06T13:16:00+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425",
+   "CPP20",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 371 MW distribuidos en 111 circuitos de distribución. A continuación,"
+ },
+ "80056": {
+  "fecha": "2026-09-05T22:58:34+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Habana del Este, se afectan por Disparo del Circuito por posible AVERIA . 👉MB910: Justi, Agromar, Bajurayabo, Campo Florido, La Co"
  }
 }

@@ -937,5 +937,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 315 MW distribuidos en 88 circuitos de distribución. A continuación, "
+ },
+ "80277": {
+  "fecha": "2026-09-06T18:48:13+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:45 pm se afectó el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles San Benigno hast"
  }
 }

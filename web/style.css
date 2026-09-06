@@ -320,6 +320,10 @@ a.circ-cod:hover { text-decoration: underline; }
   .circ-acciones { margin-left: 0; }
 }
 
+/* ---------- página 404 ---------- */
+#error-404 { max-width: 640px; margin: 0 auto; padding: 24px 16px 40px; }
+#error-404 p { line-height: 1.45; font-size: .86rem; }
+
 /* ---------- pestaña de análisis ---------- */
 .tabs { font-size: .85rem; margin-left: auto; }
 .tabs a, .tabs .activo { color: var(--accent); text-decoration: none; padding: 4px 8px; border-radius: 6px; }

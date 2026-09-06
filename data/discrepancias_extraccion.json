@@ -951,5 +951,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Guanabacoa, se localizan Averías Secundarias por Transformador Dañado en las siguientes direcciones: 👉San Antonio entre Recio y Ca"
+ },
+ "80322": {
+  "fecha": "2026-09-06T22:09:09+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1430"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 429 MW distribuidos en 123 circuitos de distribución. A continuación,"
  }
 }

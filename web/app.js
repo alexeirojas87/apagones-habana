@@ -356,15 +356,23 @@ async function iniciar() {
   // Basemap de calles: tiles vectoriales de La Habana servidos como archivos
   // estáticos individuales (web/tiles/z/x/y.pbf) — mismo origen, sin CORS ni
   // range requests, funciona igual en Cloudflare y GitHub Pages.
-  protomapsL
-    .leafletLayer({
-      url: "tiles/{z}/{x}/{y}.pbf",
-      flavor: "light",
-      lang: "es",
-      maxDataZoom: 15,
-      attribution: "© OpenStreetMap",
-    })
-    .addTo(mapa);
+  // El flavor sale del tema resuelto (claro/oscuro, D8); al cambiar el tema el
+  // botón emite "cambio-tema" y aquí se repone SOLO esta capa — sin recrear
+  // el mapa ni tocar overlays/popups (mismo patrón de las capas dinámicas).
+  const temaActual = () =>
+    document.documentElement.dataset.theme === "light" ? "light" : "dark";
+  const opcionesBase = () => ({
+    url: "tiles/{z}/{x}/{y}.pbf",
+    flavor: temaActual(),
+    lang: "es",
+    maxDataZoom: 15,
+    attribution: "© OpenStreetMap",
+  });
+  let capaBase = protomapsL.leafletLayer(opcionesBase()).addTo(mapa);
+  document.addEventListener("cambio-tema", () => {
+    mapa.removeLayer(capaBase);
+    capaBase = protomapsL.leafletLayer(opcionesBase()).addTo(mapa);
+  });
 
   // Municipios: solo contorno y popup de resumen; el color lo llevan las zonas.
   // Guardamos la capa para poder enfocar un municipio con ?municipio= abajo.

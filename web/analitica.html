@@ -15,7 +15,7 @@
   <h1>📊 Análisis de apagones</h1>
   <p id="rango-info">cargando…</p>
   <!-- nav: generado por build_seo.py nav_tabs() — regenerar, no editar -->
-  <nav class="tabs"><a href="/">🗺 Mapa</a> <span class="activo">📊 Análisis</span> <a href="/partes">📢 Partes</a> <a href="/circuitos">🔌 Circuitos</a> <a href="/municipios/">🏘️ Municipios</a> <a href="/preguntas-frecuentes/">❓ Preguntas</a> <a href="/sugerencias">💡 Sugerencias</a></nav>
+  <nav class="tabs"><a href="/">🗺 Mapa</a> <span class="activo">📊 Análisis</span> <a href="/partes">📢 Partes</a> <a href="/circuitos">🔌 Circuitos</a> <a href="/municipios/">🏘️ Municipios</a> <a href="/preguntas-frecuentes/">❓ Preguntas</a> <a href="/sugerencias">💡 Sugerencias</a> <button id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema" onclick="var d=document.documentElement,t='light'===d.dataset.theme?'dark':'light';d.dataset.theme=t;try{localStorage.setItem('tema',t)}catch(e){};document.dispatchEvent(new CustomEvent('cambio-tema',{detail:t}))">◑</button></nav>
 </header>
 
 <div id="controles">

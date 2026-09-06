@@ -184,8 +184,8 @@ h1 { font-size: 1.15rem; margin: 0; }
 /* en móvil la nota informativa se oculta: el mapa manda (la info vive en Circuitos) */
 @media (max-width: 720px) { #aviso-deficit { display: none; } }
 
-#mapa { flex: 1; min-height: 420px; background: #dfe8ef; }
-.leaflet-container { background: #dfe8ef; }
+#mapa { flex: 1; min-height: 420px; background: var(--bg); }
+.leaflet-container { background: var(--bg); }
 
 footer { padding: 8px 16px; font-size: .7rem; color: var(--text-dim); }
 footer a { color: var(--accent); }
@@ -193,14 +193,35 @@ footer a { color: var(--accent); }
 .popup h3 { margin: 0 0 4px; font-size: .95rem; }
 .popup ul { margin: 4px 0 0; padding-left: 16px; max-height: 220px; overflow-y: auto; }
 .popup li { margin-bottom: 5px; font-size: .78rem; }
-.popup .hora { color: #666; }
-.popup .rep { font-size: .75rem; color: #a34545; margin: 2px 0 0; }
-.leaflet-popup-content-wrapper { background: #f5f5f5; color: #222; }
+.popup .hora { color: var(--text-muted); }
+.popup .rep { font-size: .75rem; color: var(--red-t); margin: 2px 0 0; }
+/* Leaflet tematizado con tokens (D8): popup, punta, atribución, barra y
+   leyenda consumen los mismos pares que el resto del sitio, en ambos temas. */
+.leaflet-popup-content-wrapper {
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px;
+}
+.leaflet-popup-tip { background: var(--surface); border: 1px solid var(--border); }
+.leaflet-container a.leaflet-popup-close-button { color: var(--text-muted); }
+.leaflet-control-attribution { background: var(--surface); color: var(--text-muted); }
+.leaflet-control-attribution a { color: var(--accent); }
+.leaflet-bar a { background: var(--surface); color: var(--text); border-bottom: 1px solid var(--border); }
+.leaflet-bar a:hover { background: var(--surface-2); }
 
 .leyenda {
-  background: rgba(12,19,34,.9); color: var(--text-muted);
+  background: var(--surface); color: var(--text-muted);
+  border: 1px solid var(--border);
   padding: 6px 10px; border-radius: 6px; font-size: .7rem; max-width: 230px;
 }
+
+/* Botón de tema (D2): píldora alineada con las pestañas, nombre accesible. */
+#boton-tema {
+  background: var(--surface); border: 1px solid var(--border); color: var(--text);
+  border-radius: 999px; padding: 0 14px; min-height: 44px; cursor: pointer;
+  font-size: 1rem; line-height: 1; display: inline-flex; align-items: center;
+  font-family: var(--mono);
+}
+#boton-tema:hover { border-color: var(--border-2); color: var(--accent); }
 
 #buscador { position: relative; flex: 1; min-width: 220px; max-width: 380px; margin-left: auto; }
 #busqueda {

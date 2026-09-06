@@ -555,15 +555,30 @@ DESTINOS_NAV = (
 )
 
 
+# Botón de tema (D1/D2): voltea data-theme en <html>, persiste la elección en
+# localStorage["tema"] y avisa a la página con el evento "cambio-tema" (el mapa
+# repone su basemap). Va dentro de nav_tabs() para que las 8 superficies lo
+# lleven idéntico sin JS adicional (el 404 no carga ningún script).
+BOTON_TEMA = ('<button id="boton-tema" type="button" '
+              'aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema" '
+              "onclick=\"var d=document.documentElement,"
+              "t='light'===d.dataset.theme?'dark':'light';"
+              "d.dataset.theme=t;"
+              "try{localStorage.setItem('tema',t)}catch(e){};"
+              "document.dispatchEvent(new CustomEvent('cambio-tema',{detail:t}))\">"
+              "◑</button>")
+
+
 def nav_tabs(activo):
-    """La nav canónica con hrefs raíz-relativos (única fuente de las páginas
-    generadas); el destino `activo` se renderiza <span class="activo">."""
+    """La nav canónica con hrefs raíz-relativos y el botón de tema (D2);
+    el destino `activo` se renderiza <span class="activo">."""
     piezas = []
     for destino, etiqueta in DESTINOS_NAV:
         if destino == activo:
             piezas.append('<span class="activo">%s</span>' % etiqueta)
         else:
             piezas.append('<a href="/%s">%s</a>' % (destino, etiqueta))
+    piezas.append(BOTON_TEMA)
     return '<nav class="tabs">%s</nav>' % " ".join(piezas)
 
 

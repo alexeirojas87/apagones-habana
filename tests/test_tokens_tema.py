@@ -189,17 +189,16 @@ class ContrasteTokensTest(unittest.TestCase):
             self.assertGreaterEqual(r, 3.0, "%s: ring %.2f" % (tema, r))
 
 
-class ContrastePopupViejoTest(unittest.TestCase):
-    """Mientras el popup siga en su fondo claro actual (se re-tematiza en U4),
-    .rep y .hora deben pasar 4.5:1 sobre #f5f5f5."""
+class ContrastePopupTest(unittest.TestCase):
+    """Desde U4 (D8) el popup sale de tokens: .rep y .hora llevan los mismos
+    pares ya verificados en ContrasteTokensTest; solo se exige que ya no
+    mantengan hex sueltos."""
 
-    def test_rep_y_hora_sobre_fondo_de_popup(self):
+    def test_rep_y_hora_usan_tokens_de_texto(self):
         rep = re.search(r"\.popup \.rep\s*\{[^}]*\}", CSS).group(0)
         hora = re.search(r"\.popup \.hora\s*\{[^}]*\}", CSS).group(0)
-        self.assertGreaterEqual(contraste("#A34545", "#f5f5f5"), 4.5)  # valor fijado
-        self.assertIn("#a34545", rep.lower(), ".rep sin el contraste corregido")
-        self.assertGreaterEqual(contraste("#666666", "#f5f5f5"), 4.5)
-        self.assertIn("#666", hora.lower())
+        self.assertIn("var(--red-t)", rep)
+        self.assertIn("var(--text-muted)", hora)
 
 
 if __name__ == "__main__":

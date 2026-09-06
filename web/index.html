@@ -16,7 +16,7 @@
   <h1>⚡ Apagones La Habana</h1>
   <p id="actualizado">cargando…</p>
   <!-- nav: generado por build_seo.py nav_tabs() — regenerar, no editar -->
-  <nav class="tabs"><span class="activo">🗺 Mapa</span> <a href="/analitica">📊 Análisis</a> <a href="/partes">📢 Partes</a> <a href="/circuitos">🔌 Circuitos</a> <a href="/municipios/">🏘️ Municipios</a> <a href="/preguntas-frecuentes/">❓ Preguntas</a> <a href="/sugerencias">💡 Sugerencias</a></nav>
+  <nav class="tabs"><span class="activo">🗺 Mapa</span> <a href="/analitica">📊 Análisis</a> <a href="/partes">📢 Partes</a> <a href="/circuitos">🔌 Circuitos</a> <a href="/municipios/">🏘️ Municipios</a> <a href="/preguntas-frecuentes/">❓ Preguntas</a> <a href="/sugerencias">💡 Sugerencias</a> <button id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema" onclick="var d=document.documentElement,t='light'===d.dataset.theme?'dark':'light';d.dataset.theme=t;try{localStorage.setItem('tema',t)}catch(e){};document.dispatchEvent(new CustomEvent('cambio-tema',{detail:t}))">◑</button></nav>
   <div id="buscador">
     <input id="busqueda" type="search" placeholder="🔍 Buscar calle o reparto…" autocomplete="off">
     <div id="resultados" hidden></div>

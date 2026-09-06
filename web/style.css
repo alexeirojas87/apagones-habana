@@ -338,6 +338,27 @@ footer a { color: var(--accent); }
 .sug-estado.ok { color: var(--green-t); }
 .sug-estado.err { color: var(--red-t); }
 .sug-estado a { color: var(--accent); }
+/* Resumen de errores enfocable (D7/R11): role=alert al inicio del form */
+.sug-resumen {
+  background: var(--red-bg); border: 1px solid var(--red); color: var(--red-t);
+  border-radius: 10px; padding: 12px 14px; font-size: .84rem; line-height: 1.4;
+  margin-bottom: 12px;
+}
+.sug-resumen:focus { outline: 3px solid var(--ring); }
+.sug-resumen p { margin: 0 0 6px; font-weight: 700; }
+.sug-resumen ul { margin: 0; padding-left: 18px; }
+.sug-resumen a { color: var(--red-t); }
+/* Validación en línea: pista estática, hueco de error y borde inválido */
+.sug-hint { color: var(--text-dim); font-style: normal; font-weight: 400; }
+.sug-error { color: var(--red-t); font-size: .78rem; margin: 0; }
+.sug-campo [aria-invalid="true"] { border-color: var(--red); }
+/* Caja de éxito (D7): sustituye al formulario tras un envío válido */
+.sug-exito {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: var(--green-bg); border: 1px solid var(--green); color: var(--green-t);
+  border-radius: 10px; padding: 14px 16px; font-size: .9rem; line-height: 1.4;
+}
+.sug-exito .ico { margin-top: 2px; }
 .sug-nota { font-size: .74rem; color: var(--text-dim); margin-top: 16px; line-height: 1.4; }
 .sug-nota a { color: var(--accent); }
 @media (max-width: 640px) {

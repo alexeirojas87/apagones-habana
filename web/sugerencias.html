@@ -19,25 +19,35 @@
 </header>
 
 <main id="sug-main">
+  <!-- Resumen de errores enfocable (D7/R11): role=alert, enlaces por campo -->
+  <div id="sug-resumen" class="sug-resumen" role="alert" tabindex="-1" hidden></div>
   <form id="sug-form" class="sug-form">
     <label class="sug-campo">
       <span>Tipo</span>
-      <select id="sug-tipo">
+      <select id="sug-tipo" aria-describedby="sug-error-tipo">
         <option value="sugerencia">Sugerencia / mejora</option>
         <option value="bug">Error (bug)</option>
       </select>
+      <p class="sug-error" id="sug-error-tipo" hidden></p>
     </label>
     <label class="sug-campo">
-      <span>Título</span>
-      <input id="sug-titulo" type="text" maxlength="120" placeholder="Resúmelo en una frase" autocomplete="off">
+      <span>Título <em class="sug-hint">mínimo 5 caracteres</em></span>
+      <input id="sug-titulo" type="text" maxlength="120" placeholder="Resúmelo en una frase" autocomplete="off" aria-describedby="sug-error-titulo">
+      <p class="sug-error" id="sug-error-titulo" hidden></p>
     </label>
     <label class="sug-campo">
       <span>Detalle <em>(opcional)</em></span>
-      <textarea id="sug-detalle" rows="5" maxlength="2000" placeholder="¿Qué mejorarías o qué falla? Si es un bug, cómo reproducirlo."></textarea>
+      <textarea id="sug-detalle" rows="5" maxlength="2000" placeholder="¿Qué mejorarías o qué falla? Si es un bug, cómo reproducirlo." aria-describedby="sug-error-detalle"></textarea>
+      <p class="sug-error" id="sug-error-detalle" hidden></p>
     </label>
     <button id="sug-enviar" type="submit">Enviar</button>
     <p id="sug-estado" class="sug-estado"></p>
   </form>
+  <!-- Éxito (D7): sustituye al formulario tras un envío válido -->
+  <div id="sug-exito" class="sug-exito" role="status" hidden>
+    <svg class="ico est-con" aria-hidden="true"><use href="/icons.svg#icon-check"></use></svg>
+    <div><b>¡Gracias!</b> Tu sugerencia quedó registrada para revisión.</div>
+  </div>
 </main>
 
 <footer>

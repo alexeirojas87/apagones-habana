@@ -1,13 +1,4 @@
 {
- "78443": {
-  "fecha": "2026-08-30T15:48:03+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "PZ1"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería secundaría por transformador dañado en las calles A entre 14 y 18.🚨"
- },
  "78448": {
   "fecha": "2026-08-30T16:09:32+00:00",
   "tipo_llm": "deficit",

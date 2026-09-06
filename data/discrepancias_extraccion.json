@@ -948,5 +948,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:45 pm se afectó el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles San Benigno hast"
+ },
+ "80280": {
+  "fecha": "2026-09-06T19:05:37+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1430"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 340 MW distribuidos en 100 circuitos de distribución. A continuación,"
  }
 }

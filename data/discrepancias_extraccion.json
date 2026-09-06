@@ -957,5 +957,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 340 MW distribuidos en 100 circuitos de distribución. A continuación,"
+ },
+ "80294": {
+  "fecha": "2026-09-06T20:02:44+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Guanabacoa, se localizan Averías Secundarias por Transformador Dañado en las siguientes direcciones: 👉San Antonio entre Recio y Ca"
  }
 }

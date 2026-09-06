@@ -1,105 +1,4 @@
 {
- "78293": {
-  "fecha": "2026-08-29T21:11:30+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "SG312"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Cerro"
- },
- "78299": {
-  "fecha": "2026-08-29T22:45:52+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:05 PM se afectan 563 MW distribuidos en 167 circuitos de distribución. A continuación,"
- },
- "78331": {
-  "fecha": "2026-08-30T01:59:48+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1470",
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Se le informa a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1470, que se ha transferido temporalmente la carga al circuito PG970 los"
- },
- "78329": {
-  "fecha": "2026-08-30T01:59:06+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1470",
-   "D1100"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Se le informa a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1470, que se ha transferido temporalmente la carga al circuito D1100 los"
- },
- "78327": {
-  "fecha": "2026-08-30T01:52:13+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 PM se afectan 527 MW distribuidos en 150 circuitos de distribución. A continuación,"
- },
- "78343": {
-  "fecha": "2026-08-30T03:31:16+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "T41",
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:23 PM quedó restablecido el servicio en los siguientes circuitos: T41/T44: Alrededores del cuadrante comprend"
- },
- "78366": {
-  "fecha": "2026-08-30T04:30:48+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:15 AM se afectan 558 MW distribuidos en 150 circuitos de distribución. A continuación,"
- },
- "78361": {
-  "fecha": "2026-08-30T04:15:02+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "SG312"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Arroy"
- },
- "78397": {
-  "fecha": "2026-08-30T11:05:38+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A318",
-   "MB910",
-   "SG312"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Guana"
- },
- "78407": {
-  "fecha": "2026-08-30T12:24:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 08:22 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP304; OP411; OP320; OP424; OP318; OP410; "
- },
  "78443": {
   "fecha": "2026-08-30T15:48:03+00:00",
   "tipo_llm": "averia",
@@ -941,5 +840,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Plaza, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Ave La Ceiba Esq.- Ave del Este.🛑⚡️"
+ },
+ "80134": {
+  "fecha": "2026-09-06T10:15:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:15 AM se afectan 389MW distribuidos en 117 circuitos de distribución. A continuación, "
  }
 }

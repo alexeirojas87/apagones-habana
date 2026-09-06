@@ -47,6 +47,15 @@ MARCA_FIN = "<!-- SEO:FIN -->"
 MARCA_HEAD_INICIO = "<!-- SEO:HEAD:INICIO -->"
 MARCA_HEAD_FIN = "<!-- SEO:HEAD:FIN -->"
 
+# Script inline anti-destello (FOUC, design D1): fija data-theme en <html>
+# ANTES del CSS. Va pegado a mano en las 8 raíces commiteadas y lo emite
+# pagina_municipio() en las páginas hijas generadas. Clave `tema` ∈
+# {"dark","light"}; ausente -> prefers-color-scheme.
+GUION_TEMA = ('<script>try{var t=localStorage.getItem("tema");'
+              'if("light"!==t&&"dark"!==t)'
+              't=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";'
+              'document.documentElement.dataset.theme=t}catch(e){}</script>')
+
 # Páginas estáticas commiteadas: archivo -> (ruta de URL, título, descripción).
 # El título/descripción reales viven en el <head> de cada HTML; este mapa solo
 # alimenta los tags absolutos (og:title/og:description) y testea la paridad.
@@ -113,7 +122,7 @@ def etiquetas_head(url_absoluta, titulo, descripcion, ld=None):
         '<meta name="twitter:description" content="%s">' % descripcion,
         '<meta name="twitter:image" content="%s">' % img,
         '<link rel="icon" href="favicon.ico">',
-        '<meta name="theme-color" content="#0c1322">',
+        '<meta name="theme-color" content="#0F172A">',
     ]
     # og.png puede no existir en el despliegue: la etiqueta se queda válida e
     # inerte (los compartir solo no muestran imagen); nunca es error de build.
@@ -621,13 +630,13 @@ def pagina_municipio(nombre, estado, circ, nombres, averias=None):
     return ("<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"utf-8\">\n"
             "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
             "<title>%s</title>\n<meta name=\"description\" content=\"%s\">\n"
-            "<link rel=\"stylesheet\" href=\"/style.css\">\n%s\n</head>\n<body>\n"
+            "%s\n<link rel=\"stylesheet\" href=\"/style.css\">\n%s\n</head>\n<body>\n"
             "<header><h1>\u26a1 Apagones en %s hoy</h1>\n%s</header>\n"
             "<main class=\"pagina-municipio\">\n%s\n</main>\n"
             "<footer><p>Fuente: canal de Telegram de la <a href=\"https://t.me/EmpresaElectricaDeLaHabana\">"
             "Empresa Eléctrica de La Habana</a> y comentarios de usuarios. Datos no oficiales, "
             "pueden contener errores.</p></footer>\n</body>\n</html>\n"
-            % (esc_html(titulo), esc_html(descripcion),
+            % (esc_html(titulo), esc_html(descripcion), GUION_TEMA,
                etiquetas_head(url, titulo, descripcion, ld=ld_municipio(nombre)),
                esc_html(nombre), nav_tabs("municipios/"), cuerpo))
 

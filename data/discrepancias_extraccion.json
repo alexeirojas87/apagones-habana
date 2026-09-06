@@ -943,5 +943,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 3:09 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 S515: Alturas del "
+ },
+ "80238": {
+  "fecha": "2026-09-06T16:39:51+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [],
+  "solo_regex": [
+   "PZ13"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:26 PM queda restablecido el servicio en el siguiente circuito: 👉Pz13: Zapata desde Carlos Manuel de Céspedes "
+ },
+ "80224": {
+  "fecha": "2026-09-06T16:10:31+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 315 MW distribuidos en 88 circuitos de distribución. A continuación, "
  }
 }

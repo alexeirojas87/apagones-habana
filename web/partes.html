@@ -12,12 +12,13 @@
 </head>
 <body>
 <header>
-  <h1>📢 Partes oficiales</h1>
+  <h1><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-megaphone"></use></svg> Partes oficiales</h1>
   <p id="parte-info">cargando…</p>
   <!-- nav: generado por build_seo.py nav_tabs() — regenerar, no editar -->
-  <nav class="tabs"><a href="/">🗺 Mapa</a> <a href="/analitica">📊 Análisis</a> <span class="activo">📢 Partes</span> <a href="/circuitos">🔌 Circuitos</a> <a href="/municipios/">🏘️ Municipios</a> <a href="/preguntas-frecuentes/">❓ Preguntas</a> <a href="/sugerencias">💡 Sugerencias</a> <button id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema" onclick="var d=document.documentElement,t='light'===d.dataset.theme?'dark':'light';d.dataset.theme=t;try{localStorage.setItem('tema',t)}catch(e){};document.dispatchEvent(new CustomEvent('cambio-tema',{detail:t}))">◑</button></nav>
+  <nav class="tabs"><a href="/"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-map"></use></svg> Mapa</a> <a href="/analitica"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-chart"></use></svg> Análisis</a> <span class="activo"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-megaphone"></use></svg> Partes</span> <a href="/circuitos"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-zap"></use></svg> Circuitos</a> <a href="/municipios/"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-buildings"></use></svg> Municipios</a> <a href="/preguntas-frecuentes/"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-help"></use></svg> Preguntas</a> <a href="/sugerencias"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-lightbulb"></use></svg> Sugerencias</a> <button id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema" onclick="var d=document.documentElement,t='light'===d.dataset.theme?'dark':'light';d.dataset.theme=t;try{localStorage.setItem('tema',t)}catch(e){};document.dispatchEvent(new CustomEvent('cambio-tema',{detail:t}))">◑</button></nav>
   <div id="buscador">
-    <input id="filtro" type="search" placeholder="🔍 Filtrar partes…" autocomplete="off">
+    <svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-search"></use></svg>
+    <input id="filtro" type="search" placeholder="Filtrar partes…" autocomplete="off">
   </div>
 </header>
 

@@ -1,5 +1,10 @@
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// Icono del sprite externo (R8/D4): decorativo (aria-hidden); el texto
+// adyacente da el nombre.
+const icono = (nombre, clase) =>
+  '<svg class="ico' + (clase ? " " + clase : "") + '" aria-hidden="true">' +
+  '<use href="/icons.svg#icon-' + nombre + '"></use></svg>';
 
 let DATOS = null;
 let RECORD = null;  // {max_apagados, fecha} — pico histórico de circuitos sin servicio a la vez
@@ -119,13 +124,13 @@ function render() {
   for (const [c, h] of maxH) if (h > maxCirc.h) maxCirc = { h, c };
   const recAla = RECORD && RECORD.max_apagados;  // pico histórico real (conteo de circuitos)
   const recs = [
-    ["🔴 Récord de apagados a la vez", recAla || recDia.n || "—",
+    [icono("trophy", "est-daf") + " Récord de apagados a la vez", recAla || recDia.n || "—",
       recAla ? `histórico · ${(RECORD.fecha || "").slice(0, 10)}` : (recDia.f ? `en el día ${recDia.f}` : "")],
-    ["🔴 Peor día del rango", recDia.n || "—", recDia.f ? `${recDia.f} · circuitos afectados` : ""],
-    ["⚡ Mayor déficit", maxMw[1] ? `${maxMw[1]} MW` : "—", maxMw[0] ? maxMw[0].slice(0, 10) : ""],
-    ["🕐 Más horas sin corriente", maxCirc.h ? `${maxCirc.h} h` : "—",
-      maxCirc.c ? `Circuito <a href="circuitos?c=${encodeURIComponent(maxCirc.c)}">${esc(maxCirc.c)}</a>` : ""],
-    ["🔧 Día de más averías", avPorDia[0] ? `${avPorDia[0].valor}` : "—", avPorDia[0] ? avPorDia[0].label : ""],
+    [icono("alert-circle", "est-sin") + " Peor día del rango", recDia.n || "—", recDia.f ? `${recDia.f} · circuitos afectados` : ""],
+    [icono("zap", "est-sin") + " Mayor déficit", maxMw[1] ? `${maxMw[1]} MW` : "—", maxMw[0] ? maxMw[0].slice(0, 10) : ""],
+    [icono("clock", "est-disc") + " Más horas sin corriente", maxCirc.h ? `${maxCirc.h} h` : "—",
+      maxCirc.c ? `Circuito <a href="/circuitos?c=${encodeURIComponent(maxCirc.c)}">${esc(maxCirc.c)}</a>` : ""],
+    [icono("wrench", "est-av") + " Día de más averías", avPorDia[0] ? `${avPorDia[0].valor}` : "—", avPorDia[0] ? avPorDia[0].label : ""],
   ];
   // `s` puede traer un enlace ya escapado (código de circuito); el resto son cadenas propias.
   document.getElementById("c-records").innerHTML = recs.map(([t, v, s]) =>

@@ -55,7 +55,7 @@ class NavTabsRaizRelativaTest(unittest.TestCase):
     """La fuente única nav_tabs() solo emite hrefs raíz-relativos (D3)."""
 
     def test_toda_salida_de_nav_tabs_usa_hrefs_raiz_relativos(self):
-        for activo, _ in MOD.DESTINOS_NAV:
+        for activo, _, _ in MOD.DESTINOS_NAV:
             nav = MOD.nav_tabs(activo)
             hrefs = hrefs_de(nav)
             self.assertEqual(len(hrefs), 6, activo)  # 7 pestañas - 1 activa
@@ -65,7 +65,7 @@ class NavTabsRaizRelativaTest(unittest.TestCase):
                 self.assertFalse(href.endswith(".html"), "%s: %s" % (activo, href))
 
     def test_nav_tabs_no_menciona_pages_dev_ni_urls_absolutas(self):
-        for activo, _ in MOD.DESTINOS_NAV:
+        for activo, _, _ in MOD.DESTINOS_NAV:
             nav = MOD.nav_tabs(activo)
             self.assertNotIn("pages.dev", nav, activo)
             self.assertNotIn('href="http', nav, activo)
@@ -73,8 +73,8 @@ class NavTabsRaizRelativaTest(unittest.TestCase):
     def test_el_mapa_enlaza_a_la_raiz_del_sitio(self):
         # triangulación: el destino "" (Mapa) se convierte en href="/" y no en "".
         nav = MOD.nav_tabs("analitica")
-        self.assertIn('<a href="/">🗺 Mapa</a>', nav)
-        self.assertIn('<a href="/preguntas-frecuentes/">❓ Preguntas</a>', nav)
+        self.assertRegex(nav, r'<a href="/"><svg class="ico" aria-hidden="true"><use href="/icons\.svg#icon-map"></use></svg> Mapa</a>')
+        self.assertRegex(nav, r'<a href="/preguntas-frecuentes/"><svg[^>]*><use href="/icons\.svg#icon-help"></use></svg> Preguntas</a>')
 
 
 class ShellsNavRaizRelativaTest(unittest.TestCase):
@@ -127,10 +127,12 @@ class NavMunicipioTest(unittest.TestCase):
         estado, circ = con_fixtures()
         html = MOD.pagina_municipio("Playa", estado, circ, ["Playa"])
         nav = nav_de(html, "municipio/playa/")
-        tabs = re.findall(r'<span class="activo">([^<]+)</span>|<a href="([^"]+)">([^<]+)</a>', nav)
+        tabs = re.findall(
+            r'<span class="activo">(?:<svg.*?</svg>)?\s*([^<]+)</span>'
+            r'|<a href="([^"]+)">(?:<svg.*?</svg>)?\s*([^<]+)</a>', nav)
         self.assertEqual(len(tabs), 7, nav)
         etiquetas = [t[0] or t[2] for t in tabs]
-        self.assertIn("❓ Preguntas", etiquetas)
+        self.assertIn("Preguntas", etiquetas)
         for href in hrefs_de(nav):
             self.assertTrue(href.startswith("/"), href)
 

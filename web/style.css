@@ -31,6 +31,19 @@
   --gold:#B45309; --accent:#047857; --cta:#15803D; --on-cta:#FFFFFF;
 }
 * { box-sizing: border-box; }
+/* Iconos del sprite (R8/D4): 1em alineado con el texto; el color sale de
+   currentColor. Los puntos de estado (.est-*) van sobre icon-dot-status con el
+   color del estado; averías (púrpura) y reportes (naranja) heredan el color
+   duro de sus barras/capas, que no tienen token. */
+.ico { width: 1em; height: 1em; vertical-align: -.125em; flex: none; }
+.est-sin { color: var(--red); }
+.est-con { color: var(--green); }
+.est-disc { color: var(--amber); }
+.est-asum { color: var(--blue); }
+.est-nd { color: var(--gray); }
+.est-daf { color: var(--gold); }
+.est-av { color: #b455c8; }
+.est-rep { color: #e07b00; }
 /* Foco visible global (R4): anillo con --ring, ≥3:1 en ambos temas. */
 :focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
 /* Movimiento reducido (R4/S5): sin transiciones ni animaciones si el sistema
@@ -224,8 +237,9 @@ footer a { color: var(--accent); }
 #boton-tema:hover { border-color: var(--border-2); color: var(--accent); }
 
 #buscador { position: relative; flex: 1; min-width: 220px; max-width: 380px; margin-left: auto; }
+#buscador > .ico { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
 #busqueda {
-  width: 100%; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border-2);
+  width: 100%; padding: 6px 10px 6px 32px; border-radius: 8px; border: 1px solid var(--border-2);
   background: var(--surface-2); color: var(--text); font-size: .85rem;
 }
 #resultados {
@@ -287,7 +301,7 @@ footer a { color: var(--accent); }
 .parte-tg { font-size: .72rem; color: var(--accent); text-decoration: none; margin-left: auto; }
 .parte-txt { font-size: .86rem; line-height: 1.4; color: var(--text-soft); white-space: normal; word-break: break-word; }
 #filtro {
-  width: 100%; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border-2);
+  width: 100%; padding: 6px 10px 6px 32px; border-radius: 8px; border: 1px solid var(--border-2);
   background: var(--surface-2); color: var(--text); font-size: .85rem;
 }
 @media (max-width: 640px) { #feed { padding: 6px 10px 32px; } #filtro { font-size: 16px; } }

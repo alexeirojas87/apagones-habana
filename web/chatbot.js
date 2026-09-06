@@ -37,9 +37,9 @@
 
   var html =
     '<div id="chatbot-widget">' +
-      '<button id="chatbot-toggle" title="Pregunta sobre el estado eléctrico">💬</button>' +
+      '<button id="chatbot-toggle" title="Pregunta sobre el estado eléctrico"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-chat"></use></svg></button>' +
       '<div id="chatbot-panel">' +
-        '<div id="chatbot-header">🤖 Apagones Bot <small>datos en vivo + histórico</small><button id="chatbot-close">✕</button></div>' +
+        '<div id="chatbot-header"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-bot"></use></svg> Apagones Bot <small>datos en vivo + histórico</small><button id="chatbot-close" aria-label="Cerrar el chatbot"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-x"></use></svg></button></div>' +
         '<div id="chatbot-mensajes">' +
           '<div class="cb-msg cb-bot">Hola! Pregúntame sobre el estado eléctrico de La Habana. Ej: "¿qué pasa en Marianao?" o "¿cuándo quitan la corriente en 23 y 12?"</div>' +
         '</div>' +

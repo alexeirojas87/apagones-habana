@@ -384,7 +384,7 @@ class PaginasMunicipioTest(BaseArbol):
         p = self.pagina("Playa")
         h1 = self._h1(p)
         self.assertIn("Apagones en Playa hoy", h1)  # texto verbatim conservado
-        self.assertIn("⚡", h1)  # patrón de header del sitio
+        self.assertIn("icon-zap", h1)  # patrón de header del sitio (sprite R8)
         self.assertIn("5 de 7 circuitos", p)  # estado actual desde mini_circuitos
         self.assertIn("A1443", p)  # listado de circuitos sin servicio
         self.assertIn("Calle 28 desde 41 hasta 47", p)  # calles del A1443 (contrato
@@ -630,22 +630,22 @@ class NavInvarianteTest(BaseArbol):
     cada nav generada byte-idéntica a la fuente única nav_tabs(), y exactamente
     un .activo por página en su propio destino."""
 
-    CANONICO = [("🗺 Mapa", ""), ("📊 Análisis", "analitica"),
-                ("📢 Partes", "partes"), ("🔌 Circuitos", "circuitos"),
-                ("🏘️ Municipios", "municipios/"),
-                ("❓ Preguntas", "preguntas-frecuentes/"),
-                ("💡 Sugerencias", "sugerencias")]
+    CANONICO = [("Mapa", ""), ("Análisis", "analitica"),
+                ("Partes", "partes"), ("Circuitos", "circuitos"),
+                ("Municipios", "municipios/"),
+                ("Preguntas", "preguntas-frecuentes/"),
+                ("Sugerencias", "sugerencias")]
 
     # Página commiteada -> (etiqueta .activo esperado, destino propio normalizado)
     # (claves = archivos en disco; destinos = forma pública extensionless)
     ACTIVO = {
-        "index.html": ("🗺 Mapa", ""),
-        "analitica.html": ("📊 Análisis", "analitica"),
-        "partes.html": ("📢 Partes", "partes"),
-        "circuitos.html": ("🔌 Circuitos", "circuitos"),
-        "preguntas-frecuentes/index.html": ("❓ Preguntas", "preguntas-frecuentes/"),
-        "sugerencias.html": ("💡 Sugerencias", "sugerencias"),
-        "municipios/index.html": ("🏘️ Municipios", "municipios/"),
+        "index.html": ("Mapa", ""),
+        "analitica.html": ("Análisis", "analitica"),
+        "partes.html": ("Partes", "partes"),
+        "circuitos.html": ("Circuitos", "circuitos"),
+        "preguntas-frecuentes/index.html": ("Preguntas", "preguntas-frecuentes/"),
+        "sugerencias.html": ("Sugerencias", "sugerencias"),
+        "municipios/index.html": ("Municipios", "municipios/"),
     }
 
     def setUp(self):
@@ -664,9 +664,12 @@ class NavInvarianteTest(BaseArbol):
         return navs[0]
 
     def _tabs(self, nav):
-        """[(etiqueta, href|None)] en orden de aparición."""
+        """[(etiqueta, href|None)] en orden de aparición (etiqueta = texto tras
+        el icono del sprite, R8)."""
         salida = []
-        for m in re.finditer(r'<a href="([^"]+)">([^<]+)</a>|<span class="activo">([^<]+)</span>', nav):
+        patron = (r'<a href="([^"]+)">(?:<svg.*?</svg>)?\s*([^<]+)</a>'
+                  r'|<span class="activo">(?:<svg.*?</svg>)?\s*([^<]+)</span>')
+        for m in re.finditer(patron, nav):
             href, etiqueta, activo = m.group(1), m.group(2), m.group(3)
             salida.append((etiqueta or activo, href))
         return salida
@@ -698,12 +701,12 @@ class NavInvarianteTest(BaseArbol):
             etiqueta, _ = self.ACTIVO[archivo]
             nav = self._nav((RAIZ / "web" / archivo).read_text(encoding="utf-8"), archivo)
             self.assertEqual(nav.count('class="activo"'), 1, archivo)
-            self.assertIn('<span class="activo">%s</span>' % etiqueta, nav)
+            self.assertRegex(nav, r'<span class="activo"><svg.*?</svg> %s</span>' % etiqueta)
         for nombre in MUNICIPIOS_15:  # las hijas resaltan Municipios, no Mapa
             s = MOD.slug(nombre)
             nav = self._nav(self._leer("municipio", s, "index.html"), s)
             self.assertEqual(nav.count('class="activo"'), 1, s)
-            self.assertIn('<span class="activo">🏘️ Municipios</span>', nav)
+            self.assertRegex(nav, r'<span class="activo"><svg.*?</svg> Municipios</span>')
 
     def test_navs_generadas_byte_identicas_a_la_fuente_unica(self):
         fuente = MOD.nav_tabs("municipios/")
@@ -715,11 +718,12 @@ class NavInvarianteTest(BaseArbol):
     def test_nav_tabs_usa_hrefs_raiz_relativos(self):
         nav = MOD.nav_tabs("municipios/")
         self.assertEqual(nav.count('class="activo"'), 1)
-        for etiqueta, destino in self.CANONICO:
+        for destino, etiqueta, icono in MOD.DESTINOS_NAV:
+            pieza = MOD.icono_svg(icono) + " " + etiqueta
             if destino == "municipios/":
-                self.assertIn('<span class="activo">%s</span>' % etiqueta, nav)
+                self.assertIn('<span class="activo">%s</span>' % pieza, nav)
             else:
-                self.assertIn('<a href="/%s">%s</a>' % (destino, etiqueta), nav)
+                self.assertIn('<a href="/%s">%s</a>' % (destino, pieza), nav)
 
 
 class FaqPaginaTest(BaseArbol):

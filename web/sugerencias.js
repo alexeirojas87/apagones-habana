@@ -1,4 +1,12 @@
 // El API vive en el worker de Cloudflare Pages (mismo origen en pages.dev).
+
+// Icono del sprite externo (R8/D4): decorativo (aria-hidden); el texto
+// adyacente da el nombre.
+const icono = (nombre, clase) =>
+  '<svg class="ico' + (clase ? " " + clase : "") + '" aria-hidden="true">' +
+  '<use href="/icons.svg#icon-' + nombre + '"></use></svg>';
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const API_BASE = location.hostname.endsWith("pages.dev") ? "" : "https://apagones-habana.pages.dev";
 
 const form = document.getElementById("sug-form");
@@ -30,14 +38,14 @@ form.addEventListener("submit", async (ev) => {
     if (r.ok) {
       form.reset();
       estado.className = "sug-estado ok";
-      estado.textContent = "✔ ¡Gracias! Tu sugerencia quedó registrada para revisión.";
+      estado.innerHTML = icono("check", "est-con") + " ¡Gracias! Tu sugerencia quedó registrada para revisión.";
     } else {
       estado.className = "sug-estado err";
-      estado.textContent = `✖ ${d.error || "No se pudo enviar."}`;
+      estado.innerHTML = icono("x", "est-sin") + " " + esc(d.error || "No se pudo enviar.");
     }
   } catch {
     estado.className = "sug-estado err";
-    estado.textContent = "✖ Sin conexión con el servidor. Inténtalo más tarde.";
+    estado.innerHTML = icono("x", "est-sin") + " Sin conexión con el servidor. Inténtalo más tarde.";
   } finally {
     btn.disabled = false;
     btn.textContent = antes;

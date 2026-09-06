@@ -46,7 +46,7 @@ def nav_de(html, fuente):
 
 class BotonTemaTest(unittest.TestCase):
     def test_nav_tabs_emite_el_boton_con_nombre_accesible(self):
-        for activo, _ in MOD.DESTINOS_NAV:
+        for activo, _, _ in MOD.DESTINOS_NAV:
             nav = MOD.nav_tabs(activo)
             m = re.search(r'<button id="boton-tema"[^>]*>', nav)
             self.assertIsNotNone(m, activo)

@@ -712,14 +712,14 @@ class NavInvarianteTest(BaseArbol):
             html = self._leer("municipio", s, "index.html")
             self.assertEqual(self._nav(html, s), fuente)
 
-    def test_nav_tabs_usa_hrefs_absolutos_bajo_site_base(self):
+    def test_nav_tabs_usa_hrefs_raiz_relativos(self):
         nav = MOD.nav_tabs("municipios/")
         self.assertEqual(nav.count('class="activo"'), 1)
         for etiqueta, destino in self.CANONICO:
             if destino == "municipios/":
                 self.assertIn('<span class="activo">%s</span>' % etiqueta, nav)
             else:
-                self.assertIn('<a href="%s">%s</a>' % (MOD.site_url(destino), etiqueta), nav)
+                self.assertIn('<a href="/%s">%s</a>' % (destino, etiqueta), nav)
 
 
 class FaqPaginaTest(BaseArbol):

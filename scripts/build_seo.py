@@ -531,7 +531,10 @@ def region_hub(estado, circ, nombres):
 
 
 # Nav canónica: orden y destinos únicos de los 7 destinos del sitio, compartida
-# por las 8 superficies de render (6 raíces commiteadas, hub y páginas hijas).
+# por las 8 superficies de render (7 raíces commiteadas + páginas hijas).
+# Hrefs raíz-relativos y extensionless (decisión D3): resuelven igual desde
+# cualquier profundidad —incluida /preguntas-frecuentes/— sin depender del
+# directorio de la página.
 DESTINOS_NAV = (
     ("", "🗺 Mapa"),
     ("analitica", "📊 Análisis"),
@@ -544,14 +547,14 @@ DESTINOS_NAV = (
 
 
 def nav_tabs(activo):
-    """La nav canónica con hrefs absolutos (única fuente de las páginas
+    """La nav canónica con hrefs raíz-relativos (única fuente de las páginas
     generadas); el destino `activo` se renderiza <span class="activo">."""
     piezas = []
     for destino, etiqueta in DESTINOS_NAV:
         if destino == activo:
             piezas.append('<span class="activo">%s</span>' % etiqueta)
         else:
-            piezas.append('<a href="%s">%s</a>' % (site_url(destino), etiqueta))
+            piezas.append('<a href="/%s">%s</a>' % (destino, etiqueta))
     return '<nav class="tabs">%s</nav>' % " ".join(piezas)
 
 

@@ -1,28 +1,4 @@
 {
- "78467": {
-  "fecha": "2026-08-30T17:27:58+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "MR450"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 01:22 PM quedó restablecido el servicio en el siguiente circuito: MR450: Reparto Monterrey, Luyanó Moderno y La "
- },
- "78465": {
-  "fecha": "2026-08-30T17:16:58+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A318",
-   "MB910",
-   "SG312"
-  ],
-  "solo_regex": [
-   "C10",
-   "C13",
-   "C7"
-  ],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Primarios Partidos: 📌Municipio: Boyeros (SG312) 👉Dirección: Finca Ojo de agua. 👉Dirección: Zona Franca. 📌Municipio: Guana"
- },
  "78518": {
   "fecha": "2026-08-30T20:36:50+00:00",
   "tipo_llm": "afectacion",

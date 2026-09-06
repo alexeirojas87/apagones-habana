@@ -770,7 +770,8 @@ class FaqPaginaTest(BaseArbol):
         self.assertNotIn('class="stamp"', cuerpo)
         self.assertNotRegex(cuerpo, r"\b[A-Z]{1,3}\d{3,4}\b")
         # triangulación: la página sí existe y el cuerpo NO quedó vacío
-        self.assertGreater(len(re.findall(r"<h2", cuerpo)), 0)
+        # (desde U7 el cuerpo es acordeón nativo details/summary, sin h2)
+        self.assertGreater(len(re.findall(r"<details", cuerpo)), 0)
 
     def test_faq_jsonld_mainentity_coincide_con_body(self):
         # R-faqpage: el FAQPage parsea con stdlib y su mainEntity refleja las

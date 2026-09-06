@@ -404,6 +404,29 @@ a.circ-cod:hover { text-decoration: underline; }
 #error-404 { max-width: 640px; margin: 0 auto; padding: 24px 16px 40px; }
 #error-404 p { line-height: 1.45; font-size: .86rem; }
 
+/* ---------- FAQ: acordeón nativo details/summary (D6/R10) ---------- */
+#faq-preguntas { max-width: 760px; width: 100%; margin: 0 auto; padding: 8px 16px 40px; }
+details.faq {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 0 14px; margin-bottom: 10px;
+}
+details.faq summary {
+  cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px;
+  min-height: 48px; font-weight: 700; color: var(--text); font-size: .92rem;
+}
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq summary::before {
+  content: ""; width: 8px; height: 8px; flex: none;
+  border-right: 2px solid var(--text-muted); border-bottom: 2px solid var(--text-muted);
+  transform: rotate(45deg); transition: transform .15s ease;
+}
+details.faq[open] summary::before { transform: rotate(225deg); }
+.faq-a {
+  padding: 10px 0 12px; line-height: 1.45; font-size: .86rem; color: var(--text-soft);
+  border-top: 1px solid var(--border);
+}
+.faq-a a { color: var(--accent); }
+
 /* ---------- pestaña de análisis ---------- */
 .tabs { font-size: .85rem; margin-left: auto; }
 .tabs a, .tabs .activo { color: var(--accent); text-decoration: none; padding: 10px 12px; border-radius: 6px; display: inline-flex; align-items: center; min-height: 44px; }

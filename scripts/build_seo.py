@@ -721,11 +721,14 @@ FAQ_PREGUNTAS = (
 
 def cuerpo_faq():
     """Cuerpo del FAQ: las 8 preguntas evergreen de FAQ_PREGUNTAS (única fuente
-    compartida con el JSON-LD FAQPage — paridad por construcción)."""
+    compartida con el JSON-LD FAQPage — paridad por construcción). Acordeón
+    nativo <details>/<summary> (D6): cero JS, teclado gratis (S13)."""
     secciones = []
     for i, (pregunta, respuesta) in enumerate(FAQ_PREGUNTAS, 1):
-        secciones.append('<section class="faq" id="p%d">\n<h2>%s</h2>\n%s\n</section>'
-                         % (i, esc_html(pregunta), respuesta))
+        secciones.append(
+            '<details class="faq" id="p%d">\n<summary>%s</summary>\n'
+            '<div class="faq-a">%s</div>\n</details>'
+            % (i, esc_html(pregunta), respuesta))
     return "\n".join(secciones)
 
 

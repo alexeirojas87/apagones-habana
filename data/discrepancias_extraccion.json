@@ -849,5 +849,78 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:15 AM se afectan 389MW distribuidos en 117 circuitos de distribución. A continuación, "
+ },
+ "80116": {
+  "fecha": "2026-09-06T07:14:04+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:14 AM se afectan 471MW distribuidos en 125 circuitos de distribución. A continuación, "
+ },
+ "80115": {
+  "fecha": "2026-09-06T07:01:00+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "AL55",
+   "MB920"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF los siguientes circuitos: 👉 MB910: Justi, Agromar, Bajurayabo, Campo Florid"
+ },
+ "80114": {
+  "fecha": "2026-09-06T06:54:26+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [],
+  "solo_regex": [
+   "PZ9"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 2:44 AM queda restablecido el servicio en los siguientes circuitos: 👉 PZ9:4 desde 35 hasta Hidalgo, Hidalgo hast"
+ },
+ "80107": {
+  "fecha": "2026-09-06T06:25:23+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SR820"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 1:57 AM queda restablecido el servicio en los siguientes circuitos: 👉GC15 :Chivas, Vía Blanca desde San Luis has"
+ },
+ "80104": {
+  "fecha": "2026-09-06T06:14:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [],
+  "solo_regex": [
+   "PZ4"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 1:43 AM queda restablecido el servicio en el siguiente circuito: 👉PZ4:27, 2 hasta B, B desde 27 hasta 21, 21 des"
+ },
+ "80095": {
+  "fecha": "2026-09-06T04:26:43+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1520"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:15 AM queda restablecido el servicio en el siguiente circuito: 👉A 1520 :Revoledo, Vista Alegre, La Prosperida"
+ },
+ "80090": {
+  "fecha": "2026-09-06T03:44:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF).✅ 👉H343:Martín Pérez, Ciudamar, Carolina, Altura de Luy"
+ },
+ "80088": {
+  "fecha": "2026-09-06T02:48:14+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF en los siguientes circuitos: 👉 H343 :Martín Pérez, Ciudamar, Carolina, Altu"
  }
 }

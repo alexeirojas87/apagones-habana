@@ -1,19 +1,4 @@
 {
- "78518": {
-  "fecha": "2026-08-30T20:36:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP410",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:20PM se afectó el servicio eléctrico en el siguiente circuito: 👉OP304; OP411; OP320; OP424; OP318; OP410; OP4"
- },
  "78574": {
   "fecha": "2026-08-31T04:00:09+00:00",
   "tipo_llm": "afectacion",

@@ -9,6 +9,7 @@ comentarios_llm llegan sin ip (None) y jamás se suprimen. py3.9, offline.
 
 import importlib.util
 import unittest
+from datetime import datetime
 from pathlib import Path
 
 RUTA = Path(__file__).parents[1] / "scripts" / "estado.py"
@@ -157,6 +158,33 @@ class S11VecinosTest(unittest.TestCase):
         (p,) = _agregar_puntos(filas)
         self.assertEqual(p["tipo"], "sin")
         self.assertEqual((p["reportes"], p["sin"], p["con"]), (2, 2, 1))
+
+
+def _obsoleto(fecha_iso, desde_evento):
+    """Espejo Python de reporteConObsoleto (app.js, D5): un 'con' es obsoleto
+    IFF su fecha es ANTERIOR al inicio del evento vigente; sin desde no hay
+    filtro. La firma ya no recibe confirmado: la exención de >=10 vecinos
+    desapareció (S13)."""
+    if not desde_evento:
+        return False
+    return datetime.fromisoformat(fecha_iso) < datetime.fromisoformat(desde_evento)
+
+
+class S13ObsolescenciaEdadTest(unittest.TestCase):
+    """S13 — obsolescencia por edad, sin exención por cantidad de vecinos."""
+
+    def test_con_anterior_al_evento_es_obsoleto_aunque_tenga_10_vecinos(self):
+        # Cualquier cantidad de reporteros: el conteo ya no exime (antes >=10).
+        desde = "2026-09-05T12:00:00+00:00"
+        self.assertTrue(_obsoleto("2026-09-05T06:00:00+00:00", desde))
+
+    def test_con_posterior_al_evento_se_muestra(self):
+        desde = "2026-09-05T12:00:00+00:00"
+        self.assertFalse(_obsoleto("2026-09-05T12:00:00+00:00", desde))
+        self.assertFalse(_obsoleto("2026-09-06T08:00:00+00:00", desde))
+
+    def test_sin_desde_no_hay_filtro(self):
+        self.assertFalse(_obsoleto("2026-08-07T00:00:00+00:00", None))
 
 
 if __name__ == "__main__":

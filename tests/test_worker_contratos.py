@@ -15,6 +15,7 @@ RAIZ = Path(__file__).parents[1]
 ESTADO_PY = (RAIZ / "scripts" / "estado.py").read_text(encoding="utf-8")
 WORKER_JS = (RAIZ / "web" / "_worker.js").read_text(encoding="utf-8")
 CHATBOT_JS = (RAIZ / "web" / "chatbot.js").read_text(encoding="utf-8")
+APP_JS = (RAIZ / "web" / "app.js").read_text(encoding="utf-8")
 
 
 class S15EstadoAstTest(unittest.TestCase):
@@ -115,6 +116,35 @@ class S1ChatbotTarjetaTest(unittest.TestCase):
         self.assertIn("dataset.done", CHATBOT_JS)
         self.assertIn('msgs.addEventListener("click"', CHATBOT_JS)
         self.assertNotIn("onclick=", CHATBOT_JS)
+
+
+class S12ProcedenciaUnicaTest(unittest.TestCase):
+    """S12 — app.js: procedencia única "Reportado por N vecino(s)", sin
+    confirmado/umbral (los niveles de confirmación se fueron de la UI)."""
+
+    def test_copia_de_reportado_por(self):
+        self.assertIn("Reportado por", APP_JS)
+        self.assertIn("vecino(s)", APP_JS)
+
+    def test_sin_tokens_de_tiers(self):
+        self.assertNotIn("confirmado", APP_JS)
+        self.assertNotIn("umbral", APP_JS)
+        self.assertNotIn("Se confirma con", APP_JS)
+
+    def test_obsolescencia_solo_para_con(self):
+        # El filtro por edad se aplica con guardia esCon: los 'sin' jamás se
+        # filtran; la firma nueva ya no recibe confirmado.
+        self.assertIn("esCon && reporteConObsoleto(p.fecha)", APP_JS)
+
+
+class S17FallbackViejoTest(unittest.TestCase):
+    """S17 — el estado.json comiteado (sin conteo_usuario) no rompe la UI."""
+
+    def test_guardas_de_los_nuevos_campos(self):
+        # snapshot municipal opcional, puntos vacíos tolerados, discrepado guardado
+        self.assertIn("d?.", APP_JS)
+        self.assertIn("r.puntos || []", APP_JS)
+        self.assertIn("c.conteo_usuario &&", APP_JS)
 
 
 class S16EmitCompatTest(unittest.TestCase):

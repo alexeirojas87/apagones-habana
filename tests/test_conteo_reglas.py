@@ -121,5 +121,43 @@ class ConteoReglasTest(unittest.TestCase):
         self.assertEqual(set(e.keys()) - CLAVES_VALIDAS, set())
 
 
+def _agregar_puntos(filas):
+    """Espejo Python de la agregación de listarReportes (S11): Sets de ip_hash
+    por tipo y por celda; gana el tipo con más vecinos distintos y `reportes`
+    es la base de "N vecino(s)"."""
+    celdas = {}
+    for f in filas:
+        k = (round(f["lat"], 3), round(f["lon"], 3))
+        c = celdas.setdefault(k, {"sin": set(), "con": set()})
+        c[f["tipo"]].add(f["ip_hash"])
+    puntos = []
+    for c in celdas.values():
+        tipo = "con" if len(c["con"]) > len(c["sin"]) else "sin"
+        puntos.append({"tipo": tipo, "reportes": len(c[tipo]),
+                       "sin": len(c["sin"]), "con": len(c["con"])})
+    return puntos
+
+
+class S11VecinosTest(unittest.TestCase):
+    """S11 — la base de vecinos son ip_hash DISTINTOS por tipo."""
+
+    def test_un_reporte_cuenta_un_vecino(self):
+        (p,) = _agregar_puntos([{"lat": 23.11, "lon": -82.41, "tipo": "sin", "ip_hash": "hA"}])
+        self.assertEqual(p["reportes"], 1)
+
+    def test_mismo_ip_repetido_sigue_siendo_un_vecino(self):
+        filas = [{"lat": 23.11, "lon": -82.41, "tipo": "sin", "ip_hash": "hA"}] * 3
+        (p,) = _agregar_puntos(filas)
+        self.assertEqual(p["reportes"], 1)
+
+    def test_vecinos_distintos_y_tipo_ganador(self):
+        filas = [{"lat": 23.11, "lon": -82.41, "tipo": "sin", "ip_hash": "hA"},
+                 {"lat": 23.11, "lon": -82.41, "tipo": "sin", "ip_hash": "hB"},
+                 {"lat": 23.11, "lon": -82.41, "tipo": "con", "ip_hash": "hA"}]
+        (p,) = _agregar_puntos(filas)
+        self.assertEqual(p["tipo"], "sin")
+        self.assertEqual((p["reportes"], p["sin"], p["con"]), (2, 2, 1))
+
+
 if __name__ == "__main__":
     unittest.main()

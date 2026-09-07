@@ -40,6 +40,51 @@ class S15EstadoAstTest(unittest.TestCase):
         self.assertIn("(x[0], x[1])", ESTADO_PY)
 
 
+def _caso_worker(nombre):
+    """Extrae el cuerpo del case `nombre` de ejecutarHerramienta (hasta el
+    siguiente case/default) para asserts de ausencia con ámbito real."""
+    i = WORKER_JS.index('case "%s"' % nombre)
+    j = WORKER_JS.find("\n    case ", i + 1)
+    k = WORKER_JS.find("\n    default:", i + 1)
+    fines = [x for x in (j, k) if x != -1]
+    return WORKER_JS[i:min(fines) if fines else len(WORKER_JS)]
+
+
+class S1WorkerReportarTest(unittest.TestCase):
+    """S1 (worker) — herramienta reportar de SOLO LECTURA + payload adjunto."""
+
+    def test_herramienta_reportar_existe(self):
+        self.assertIn('name: "reportar"', WORKER_JS)
+        self.assertIn("reporte_pendiente", WORKER_JS)
+
+    def test_el_caso_reportar_no_toca_supabase(self):
+        caso = _caso_worker("reportar")
+        self.assertNotIn("supa(", caso, "reportar debe ser de solo lectura")
+        self.assertNotIn('method: "POST"', caso)
+        self.assertNotIn("insert", caso)
+
+
+class S10ListarSinUmbralesTest(unittest.TestCase):
+    """S10 — listarReportes: sin umbral/CONFIRMADOS_MIN, con codigo."""
+
+    def test_sin_tokens_de_umbral(self):
+        self.assertNotIn("umbral", WORKER_JS)
+        self.assertNotIn("CONFIRMADOS_MIN", WORKER_JS)
+
+    def test_select_de_reportes_incluye_codigo(self):
+        self.assertIn("select=lat,lon,direccion,ip_hash,tipo,fecha,codigo", WORKER_JS)
+
+    def test_forma_de_respuesta_puntos_y_ventana(self):
+        self.assertIn("JSON.stringify({ puntos, ventana_h: VENTANA_H })", WORKER_JS)
+
+
+class S19WorkerInsertTest(unittest.TestCase):
+    """S19 (worker) — el insert escribe codigo SOLO cuando viene en el body."""
+
+    def test_insert_condicional_de_codigo(self):
+        self.assertIn("...(codigo ? { codigo } : {})", WORKER_JS)
+
+
 class S16EmitCompatTest(unittest.TestCase):
     """S16 — emit-compat (X2): describirCircuito/estadoVigente estables sin
     conteo_usuario y con holder_ip_hash extra; consumidores ignoran claves."""

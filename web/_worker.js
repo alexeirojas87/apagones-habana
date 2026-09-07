@@ -2,11 +2,9 @@
 // POST /api/reporte  {lat, lon, direccion}  -> guarda un reporte "sin corriente"
 // GET  /api/reportes                        -> puntos agregados de las últimas 6h
 //
-// Reglas: IP hasheada (nunca en claro), máx. 3 reportes por IP cada 2 horas,
-// un punto pasa a "confirmado" con >= 10 IPs distintas en la misma celda.
+// Reglas: IP hasheada (nunca en claro), máx. 3 reportes por IP cada 2 horas.
 
 const BBOX = { latMin: 22.9, latMax: 23.35, lonMin: -82.7, lonMax: -81.9 };
-const CONFIRMADOS_MIN = 10;
 const VENTANA_H = 6;
 const REPO = "alexeirojas87/apagones-habana";  // buzón de sugerencias/bugs -> issues
 const SUGERENCIAS_DIA = 5;                       // tope por IP cada 24 h
@@ -45,6 +43,10 @@ async function crearReporte(request, env) {
   const lat = Number(cuerpo.lat), lon = Number(cuerpo.lon);
   const direccion = String(cuerpo.direccion || "").slice(0, 140);
   const tipo = cuerpo.tipo === "con" ? "con" : "sin";
+  // Codigo de circuito opcional (viene del chat al confirmar el reporte):
+  // la columna solo se escribe cuando se aporta; los POST del mapa no la mandan.
+  const codigo = typeof cuerpo.codigo === "string" && cuerpo.codigo.trim()
+    ? cuerpo.codigo.trim().slice(0, 12) : null;
   if (!(lat >= BBOX.latMin && lat <= BBOX.latMax && lon >= BBOX.lonMin && lon <= BBOX.lonMax)) {
     return json({ error: "ubicación fuera de La Habana" }, 400);
   }
@@ -62,7 +64,8 @@ async function crearReporte(request, env) {
 
   const res = await supa(env, "reportes", {
     method: "POST",
-    body: JSON.stringify({ lat, lon, direccion, ip_hash: ipHash, tipo }),
+    body: JSON.stringify({ lat, lon, direccion, ip_hash: ipHash, tipo,
+                           ...(codigo ? { codigo } : {}) }),
     headers: { prefer: "return=minimal" },
   });
   if (!res.ok) return json({ error: "no se pudo guardar" }, 500);
@@ -72,7 +75,7 @@ async function crearReporte(request, env) {
 async function listarReportes(env) {
   const desde = new Date(Date.now() - VENTANA_H * 3600e3).toISOString();
   const filas = await (
-    await supa(env, `reportes?fecha=gte.${desde}&select=lat,lon,direccion,ip_hash,tipo,fecha&limit=5000`)
+    await supa(env, `reportes?fecha=gte.${desde}&select=lat,lon,direccion,ip_hash,tipo,fecha,codigo&limit=5000`)
   ).json();
   if (!Array.isArray(filas)) return json({ puntos: [] });
 
@@ -80,10 +83,11 @@ async function listarReportes(env) {
   const celdas = new Map();
   for (const f of filas) {
     const k = `${f.lat.toFixed(3)},${f.lon.toFixed(3)}`;
-    const c = celdas.get(k) || { lats: 0, lons: 0, n: 0, sin: new Set(), con: new Set(), direccion: f.direccion, fecha: f.fecha };
+    const c = celdas.get(k) || { lats: 0, lons: 0, n: 0, sin: new Set(), con: new Set(), direccion: f.direccion, fecha: f.fecha, codigo: null };
     c.lats += f.lat; c.lons += f.lon; c.n += 1;
     (f.tipo === "con" ? c.con : c.sin).add(f.ip_hash);
     if (f.direccion) c.direccion = f.direccion;
+    if (f.codigo) c.codigo = f.codigo;
     if (f.fecha > c.fecha) c.fecha = f.fecha;  // reporte más reciente de la celda
     celdas.set(k, c);
   }
@@ -97,12 +101,12 @@ async function listarReportes(env) {
       reportes: n,
       sin: c.sin.size,
       con: c.con.size,
-      confirmado: n >= CONFIRMADOS_MIN,
       fecha: c.fecha,
       direccion: c.direccion || "",
+      codigo: c.codigo,
     };
   });
-  return new Response(JSON.stringify({ puntos, ventana_h: VENTANA_H, umbral: CONFIRMADOS_MIN }), {
+  return new Response(JSON.stringify({ puntos, ventana_h: VENTANA_H }), {
     headers: {
       "content-type": "application/json",
       "access-control-allow-origin": "*",
@@ -384,6 +388,19 @@ const HERRAMIENTAS = [
       },
     },
   },
+  {
+    type: "function",
+    function: {
+      name: "reportar",
+      description: "Cuando el usuario dice que se fue (o volvió) la corriente en un lugar, busca el circuito más probable para registrar su reporte. Devuelve candidatos con código, dirección y confianza; el usuario confirma antes de registrar nada.",
+      parameters: { type: "object",
+        properties: {
+          direccion: { type: "string", description: "El lugar dicho por el usuario, tal cual" },
+          tipo: { type: "string", enum: ["sin", "con"], description: "sin = se fue la luz; con = volvió" },
+        },
+        required: ["direccion", "tipo"] },
+    },
+  },
 ];
 
 // La similitud absoluta de qwen3-embedding varía mucho según la pregunta
@@ -477,6 +494,62 @@ async function ejecutarHerramienta(nombre, args, ctx, env) {
         sin_cortes_reportados: cuenta("sin cortes reportados"),
         circuitos: desc.slice(0, 25),
         ...(hits.length > 25 ? { nota: `se listan 25 de ${hits.length}` } : {}),
+      };
+    }
+    case "reportar": {
+      // SOLO LECTURA: resuelve el circuito más probable; nada se registra
+      // aquí — el usuario confirma en el chat y el POST pasa por crearReporte.
+      if (args.tipo !== "sin" && args.tipo !== "con") {
+        return { error: "tipo debe ser 'sin' o 'con'" };
+      }
+      // Prefiltro de ruido: la dirección del usuario trae palabras que no
+      // ayudan a casar (mismo espíritu que circuitos_id.py).
+      const RUIDO = new Set(["calle", "carrera", "avenida", "av", "calzada", "y",
+                             "entre", "esquina", "reparto", "barrio", "habana",
+                             "la", "el", "de", "del", "los", "las"]);
+      const q = sinAcentos(args.direccion);
+      const tokens = q.split(/\s+/).filter((t) => t && !RUIDO.has(t));
+      if (!tokens.length) return { error: "falta una calle o barrio para ubicar el circuito" };
+      const qCod = q.replace(/[^a-z0-9]/g, "");
+      const scored = [];
+      for (const c of circuitos) {
+        if (qCod && sinAcentos(c.codigo).replace(/[^a-z0-9]/g, "") === qCod) {
+          scored.push({ c, conf: 0.95 });  // codigo exacto (convención buscarCircuito)
+          continue;
+        }
+        const ct = new Set((sinAcentos(c.calles) + " " + sinAcentos(c.municipio) +
+                            " " + sinAcentos(c.codigo)).split(/\s+/).filter(Boolean));
+        let hit = 0;
+        for (const t of tokens) if (ct.has(t)) hit += 1;
+        scored.push({ c, conf: Math.min(0.4 + 0.6 * (hit / tokens.length), 0.9) });
+      }
+      // Top ≤5 por confianza, empates por codigo; dominio 1.5× para la tarjeta
+      // (misma constante que casar_por_calles) y piso 0.6.
+      scored.sort((a, b) => b.conf - a.conf || (a.c.codigo < b.c.codigo ? -1 : a.c.codigo > b.c.codigo ? 1 : 0));
+      const top = scored.slice(0, 5);
+      const dir = (c) => String(c.calles || "").replace(/\s+/g, " ").trim() || args.direccion;
+      const t0 = top[0].conf;
+      const t1 = top[1] ? top[1].conf : 0;
+      let pendiente = null;
+      if (t0 >= 0.6 && (top.length === 1 || t0 >= 1.5 * t1) &&
+          top[0].c.lat != null && top[0].c.lon != null) {
+        pendiente = {
+          lat: +top[0].c.lat.toFixed(3),
+          lon: +top[0].c.lon.toFixed(3),
+          direccion: dir(top[0].c),
+          tipo: args.tipo,
+          codigo: top[0].c.codigo,
+          confianza: Math.round(t0 * 100) / 100,
+        };
+      }
+      return {
+        candidatos: top.map(({ c, conf }) => ({
+          codigo: c.codigo,
+          direccion: dir(c),
+          confianza: Math.round(conf * 100) / 100,
+          estado: describirCircuito(c, est).estado,
+        })),
+        ...(pendiente ? { pendiente } : {}),
       };
     }
     case "estado_circuito": {
@@ -577,6 +650,7 @@ Tienes herramientas para consultar los datos. Úsalas siempre antes de responder
 - Si preguntan cuántas horas lleva sin corriente un circuito (hoy, esta semana, etc.), usa horas_circuito: es el TOTAL acumulado del período. El "horas_sin_luz" del estado actual solo cuenta desde el último parte y NO es el total del día.
 - Si preguntan qué pasó antes o qué reporta la gente, usa buscar_historico.
 - Si preguntan por tendencias o los peores circuitos, usa tendencia o peores_circuitos.
+- Si el usuario dice que se fue o volvió la corriente en un lugar, usa reportar con lo que dijo: del candidato que devuelva, ofrece confirmar el reporte mostrando código, dirección y confianza; nunca digas que el reporte quedó registrado hasta que el usuario confirme.
 Puedes usar varias herramientas antes de contestar.
 
 "sin noticias hace +24h" (24-48 h sin salir en partes) significa que no hay parte reciente, NO que haya corriente: no afirmes que hay servicio si no consta. Un circuito sin servicio con MÁS de 48 h sin salir en partes pasa a "sin cortes reportados" (regla del "no se apagan": se asume con corriente); si vuelven a mencionarlo, vuelve a su estado real.
@@ -592,6 +666,7 @@ ${JSON.stringify(resumenActual(ctx))}`;
                       { role: "user", content: consulta }];
 
     let conHerramientas = true;
+    let pendiente = null;  // última llamada a reportar gana (MAX_PASOS acota)
     for (let paso = 0; paso < MAX_PASOS; paso++) {
       let data;
       try {
@@ -606,7 +681,7 @@ ${JSON.stringify(resumenActual(ctx))}`;
       if (!m) break;
       const llamadas = m.tool_calls || [];
       if (!llamadas.length) {
-        if (m.content) return { respuesta: m.content };
+        if (m.content) return { respuesta: m.content, ...(pendiente ? { reporte_pendiente: pendiente } : {}) };
         break;
       }
       messages.push(m);
@@ -619,6 +694,7 @@ ${JSON.stringify(resumenActual(ctx))}`;
         } catch (e) {
           resultado = { error: String((e && e.message) || e) };
         }
+        if (resultado && resultado.pendiente) pendiente = resultado.pendiente;
         messages.push({
           role: "tool", tool_call_id: lc.id, name: lc.function.name,
           content: JSON.stringify(resultado).slice(0, TOPE_RESULTADO),
@@ -631,7 +707,7 @@ ${JSON.stringify(resumenActual(ctx))}`;
     try {
       const data = await llamarModelo(env, messages, false);
       const texto = data.choices && data.choices[0] && data.choices[0].message.content;
-      if (texto) return { respuesta: texto };
+      if (texto) return { respuesta: texto, ...(pendiente ? { reporte_pendiente: pendiente } : {}) };
     } catch (e) { /* cae al mensaje de abajo */ }
     return { respuesta: "No pude armar una respuesta con los datos que tengo ahora." };
   } catch (e) {

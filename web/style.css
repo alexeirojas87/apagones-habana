@@ -368,24 +368,28 @@ footer a { color: var(--accent); }
 
 /* ---------- pestaña de circuitos ---------- */
 #daf-oficial { padding: 10px 16px 0; max-width: 820px; width: 100%; margin: 0 auto; }
+/* Card DAF: todo en tokens ámbar de doble tema — los hexes fijos de tema
+   oscuro eran ilegibles sobre claro (reporte del dueño desde el preview). */
 .daf-card {
-  background: linear-gradient(135deg, #26220f, var(--surface-2) 58%);
-  border: 1px solid #5b4b16; border-left: 4px solid var(--gold);
+  background: linear-gradient(135deg, var(--amber-bg), var(--surface-2) 58%);
+  border: 1px solid var(--border); border-left: 4px solid var(--gold);
   border-radius: 12px; padding: 13px 15px;
 }
-.daf-card.vencido { background: var(--surface-2); border-color: #4a4430; opacity: .88; }
+.daf-card.vencido { background: var(--surface-2); border-color: var(--border-2); opacity: .88; }
 .daf-cab { display: flex; align-items: flex-start; gap: 12px; justify-content: space-between; }
 .daf-titulo { color: var(--gold); font-size: .92rem; font-weight: 700; }
-.daf-periodo { color: #b9a86a; font-size: .72rem; margin-top: 3px; }
+.daf-periodo { color: var(--amber-t); font-size: .72rem; margin-top: 3px; }
 .daf-card p { color: var(--text-soft); font-size: .78rem; line-height: 1.4; margin: 9px 0; }
 .daf-fuente { color: var(--accent); font-size: .72rem; text-decoration: none; white-space: nowrap; }
 .daf-codigos { display: flex; flex-wrap: wrap; gap: 6px; }
 .daf-codigo {
-  border: 1px solid #6a581b; border-radius: 999px; padding: 10px 12px;
-  background: #2a2410; color: var(--gold); font-size: .72rem;
+  border: 1px solid var(--gold); border-radius: 999px; padding: 10px 12px;
+  background: var(--amber-bg); color: var(--gold); font-size: .72rem;
   font-weight: 600; font-family: inherit; cursor: pointer; min-height: 44px;
 }
-.daf-codigo:hover, .daf-codigo:focus-visible { background: #443814; outline: none; }
+.daf-codigo:hover, .daf-codigo:focus-visible {
+  background: var(--amber-t); color: var(--amber-bg); outline: none;
+}
 #lista { padding: 8px 16px 40px; max-width: 820px; width: 100%; margin: 0 auto; }
 .circ { background: var(--surface-2); border-radius: 10px; padding: 10px 13px; margin-bottom: 9px; }
 .circ-cab { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 5px; }
@@ -394,7 +398,7 @@ footer a { color: var(--accent); }
 a.circ-cod { text-decoration: none; }
 a.circ-cod:hover { text-decoration: underline; }
 .circ-b { font-size: .7rem; background: var(--bg); border-radius: 999px; padding: 2px 9px; color: var(--text-soft); }
-.circ-daf { font-size: .7rem; background: #2a2410; border-radius: 999px; padding: 2px 9px; color: var(--gold); }
+.circ-daf { font-size: .7rem; background: var(--amber-bg); border-radius: 999px; padding: 2px 9px; color: var(--gold); }
 .circ-of { font-size: .7rem; background: var(--green-bg); border-radius: 999px; padding: 2px 9px; color: var(--green-t); }
 .circ-est { font-size: .7rem; border-radius: 999px; padding: 2px 9px; font-weight: 600; }
 .circ-est.con { background: var(--green-bg); color: var(--green-t); }

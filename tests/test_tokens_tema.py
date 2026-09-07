@@ -56,6 +56,9 @@ PARES_TEXTO = (
     ("--amber-t", "--bg"), ("--amber-t", "--amber-bg"),
     ("--blue-t", "--bg"), ("--blue-t", "--blue-bg"),
     ("--gray-t", "--bg"), ("--accent", "--bg"), ("--text-strong", "--bg"),
+    # card DAF re-tokénizado (fondo ámbar, hover invertido)
+    ("--gold", "--amber-bg"), ("--text-soft", "--amber-bg"),
+    ("--amber-bg", "--amber-t"),
 )
 
 
@@ -133,6 +136,29 @@ class TokensSlateTest(unittest.TestCase):
             for hex_navy in NAVY:
                 self.assertNotIn(hex_navy.lower(), texto.lower(),
                                  "%s en superficie #%d" % (hex_navy, i))
+
+
+class DafCardTokensTest(unittest.TestCase):
+    """El card DAF era un islote de hexes de tema oscuro (fondo #26220f,
+    periodo #b9a86a, chips #2a2410): ilegible en el tema claro. Toda su
+    sección usa tokens de doble tema (fondo ámbar + hover invertido)."""
+
+    def test_seccion_circuitos_sin_hexes_sueltos(self):
+        ini = CSS.index("pestaña de circuitos")
+        fin = CSS.index("página 404")
+        sueltos = re.findall(r"#[0-9a-fA-F]{3,8}(?![0-9a-zA-Z-])", CSS[ini:fin])
+        self.assertEqual(sueltos, [],
+                         "hexes fijos en la sección de circuitos: %r" % sueltos)
+
+    def test_fondo_del_card_y_hover_usan_tokens_ambar(self):
+        self.assertIn("var(--amber-bg)", bloque(".daf-card"),
+                      "el degradado del card debe partir de --amber-bg")
+        hover = re.search(r"\.daf-codigo:hover[^{]*\{[^}]*\}", CSS)
+        self.assertIsNotNone(hover, "falta la regla hover del código DAF")
+        self.assertIn("var(--amber-t)", hover.group(0),
+                      "hover sin fondo --amber-t")
+        self.assertIn("var(--amber-bg)", hover.group(0),
+                      "hover sin texto --amber-bg")
 
 
 class GuionSinDestelloTest(unittest.TestCase):

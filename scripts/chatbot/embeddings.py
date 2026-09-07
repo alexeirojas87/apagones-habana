@@ -40,7 +40,7 @@ MODELO_EMBED = os.environ.get("MODELO_EMBED", "qwen3-embedding")
 # El worker debe pedir la MISMA dimensión o los vectores no serán comparables.
 DIM = int(os.environ.get("EMBED_DIM", "1024"))
 
-DIAS_HISTORICO = int(os.environ.get("DIAS_HISTORICO_BOT", "90"))
+DIAS_HISTORICO = int(os.environ.get("DIAS_HISTORICO_BOT", "30"))
 HORAS_COMENTARIOS = 48
 MAX_EMBEDS = int(os.environ.get("MAX_EMBEDS_BOT", "300"))
 MAX_SEGUNDOS = int(os.environ.get("MAX_SEGUNDOS_BOT", "240"))

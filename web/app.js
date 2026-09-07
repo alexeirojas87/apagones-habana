@@ -169,7 +169,7 @@ async function iniciar() {
       filas.push(`<li class="hora">…y ${conteo.sin.length - 6} circuitos más (ver la pestaña Circuitos)</li>`);
     }
     const rep = d?.reportes_sin
-      ? `<p class="rep">${icono("alert-triangle", "est-disc")} ${d.reportes_sin} usuarios reportan estar sin corriente</p>` : "";
+      ? `<p class="rep">${icono("alert-triangle", "est-disc")} ${d.reportes_sin} vecino(s) reportan estar sin corriente</p>` : "";
     const resumen = circuitos.length
       ? `<p class="hora">${circuitos.length} circuitos: ${conteo.sin.length} sin corriente · ${conteo.nd} sin noticias ·
          ${conteo.con} con servicio · ${conteo.asum} sin apagones reportados${conteo.discrepado ? ` · ${conteo.discrepado} discrepado(s)` : ""}</p>`
@@ -338,14 +338,12 @@ async function iniciar() {
   resumenCircuitos();
 
   // Un reporte "hay luz" (con corriente) queda OBSOLETO si es ANTERIOR a la caída
-  // del SEN: son puntos verdes de antes del corte que confunden. Excepción: si lo
-  // confirman >=10 vecinos, se respeta (puede ser un restablecimiento real). Los
-  // reportes "sin corriente" no se filtran. (El filtro adicional por bloque vigente
+  // del SEN: son puntos verdes de antes del corte que confunden. Los reportes
+  // "sin corriente" nunca se filtran. (El filtro adicional por bloque vigente
   // se fue con el pintado por bloque: la UNE hoy informa solo por circuito.)
-  function reporteConObsoleto(fechaISO, confirmado) {
-    if (confirmado) return false;
+  function reporteConObsoleto(fechaISO) {
     const en = estado.evento_nacional;
-    return !!(en && new Date(fechaISO) < new Date(en.desde));
+    return !!(en && en.desde && new Date(fechaISO) < new Date(en.desde));
   }
 
   // preferCanvas: miles de tramos de calle se dibujan en un solo canvas en vez
@@ -584,7 +582,7 @@ async function iniciar() {
     for (const c of estado.reportes_llm || []) {
       const con = c.tipo === "con_corriente";
       // comentario "ya hay luz" anterior al apagón vigente = obsoleto (no hay 10+ aquí)
-      if (con && reporteConObsoleto(c.fecha, false)) continue;
+      if (con && reporteConObsoleto(c.fecha)) continue;
       const horas = c.horas ? ` · ~${c.horas}h sin luz` : "";
       const popup = `<div class="popup"><h3>${icono("chat")} ${con ? icono("dot-status", "est-con") + " Vecino: ya llegó la corriente" : icono("dot-status", "est-sin") + " Vecino: sin corriente"}</h3>
            <p>${esc(c.lugar)}${horas}</p>
@@ -656,7 +654,9 @@ async function iniciar() {
     .layers(null, capasControl, { collapsed: window.innerWidth < 640 })
     .addTo(mapa);
 
-  // --- Reportes vecinales: naranja = posible, rojo intenso = confirmado (>=10 IPs) ---
+  // --- Reportes vecinales: naranja = sin corriente, verde = ya hay corriente ---
+  // (la procedencia es única: "Reportado por N vecino(s)"; sin niveles de
+  // confirmación — la edad manda en la obsolescencia de los "con".)
   const capaReportes = L.layerGroup().addTo(mapa);
   async function cargarReportes() {
     try {
@@ -664,24 +664,24 @@ async function iniciar() {
       capaReportes.clearLayers();
       for (const p of r.puntos || []) {
         const esCon = p.tipo === "con";
-        // ocultar "hay luz" anteriores al apagón vigente (salvo confirmados)
-        if (esCon && reporteConObsoleto(p.fecha, p.confirmado)) continue;
+        // ocultar "hay luz" anteriores al apagón vigente
+        if (esCon && reporteConObsoleto(p.fecha)) continue;
         const colores = esCon
-          ? { borde: p.confirmado ? "#1c5f2b" : "#4f9e60", relleno: p.confirmado ? "#46a758" : "#8fd39b" }
-          : { borde: p.confirmado ? "#8b0000" : "#e07b00", relleno: p.confirmado ? "#e5484d" : "#ffa733" };
+          ? { borde: "#4f9e60", relleno: "#8fd39b" }
+          : { borde: "#e07b00", relleno: "#ffa733" };
         const titulo = esCon
-          ? (p.confirmado ? icono("dot-status", "est-con") + " Corriente confirmada por vecinos" : icono("sprout") + " Posible regreso de la corriente")
-          : (p.confirmado ? icono("dot-status", "est-sin") + " Afectación confirmada" : icono("dot-status", "est-rep") + " Posible afectación");
-        const detalle = `${p.reportes} vecino(s) reportaron ${esCon ? "que ya hay" : "estar sin"} corriente en las últimas ${r.ventana_h}h` +
+          ? icono("sprout") + " Posible regreso de la corriente"
+          : icono("dot-status", "est-rep") + " Posible afectación";
+        const detalle = `Reportado por ${p.reportes} vecino(s) — reportaron ${esCon ? "que ya hay" : "estar sin"} corriente en las últimas ${r.ventana_h}h` +
           (p.sin && p.con ? ` (${p.sin} sin · ${p.con} con)` : "") + ".";
         L.circleMarker([p.lat, p.lon], {
-          radius: p.confirmado ? 10 : 7, weight: 2,
+          radius: 7, weight: 2,
           color: colores.borde, fillColor: colores.relleno, fillOpacity: 0.85,
         })
           .bindPopup(
             `<div class="popup"><h3>${titulo}</h3>
              <p>${esc(p.direccion) || "Reporte vecinal"}</p>
-             <p class="hora">${detalle} ${p.confirmado ? "" : `Se confirma con ${r.umbral} reportes.`}</p></div>`
+             <p class="hora">${detalle}</p></div>`
           )
           .addTo(capaReportes);
       }

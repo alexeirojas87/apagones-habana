@@ -9,9 +9,15 @@ Retenciones (días, configurables por env):
   PURGA_COMENTARIOS_DIAS=60       mensajes del grupo de comentarios (216k filas,
                                   la mayor parte de la DB; nada lee los viejos)
   PURGA_COMENTARIOS_LLM_DIAS=120  enriquecidos por LLM (analitica los tiene en caché)
-  PURGA_FRAGMENTOS_DIAS=90        índice semántico (coincide con DIAS_HISTORICO_BOT)
+  PURGA_FRAGMENTOS_DIAS=30        índice semántico (era 90d: la BD vivía en
+                                  335MB; el RAG vectorial es último recurso y
+                                  las herramientas deterministas leen los cachés)
   PURGA_EVENTOS_DIAS=365          eventos extraídos (analitica los tiene en caché)
   PURGA_CANAL_DIAS=365            mensajes del canal (canal_cache los conserva)
+  PURGA_REPORTES_DIAS=30          reportes comunitarios (los lectores miran ~48h;
+                                  el mapa usa una ventana de 6h)
+  PURGA_SUGERENCIAS_DIAS=14       sugerencias/bugs web (solo alimentan el
+                                  rate-limit de 24h; el issue queda en GitHub)
 
 Seguridad (por eso puede correr solo en cada ingesta):
   1. Los cachés incrementales deben existir y ser frescos (< 48 h): son la copia
@@ -47,7 +53,11 @@ TABLAS = [
     ("eventos", {}, "fecha",
      int(os.environ.get("PURGA_EVENTOS_DIAS", "365")), 30),
     ("chatbot_fragmentos", {}, "fecha",
-     int(os.environ.get("PURGA_FRAGMENTOS_DIAS", "90")), 30),
+     int(os.environ.get("PURGA_FRAGMENTOS_DIAS", "30")), 30),
+    ("reportes", {}, "fecha",
+     int(os.environ.get("PURGA_REPORTES_DIAS", "30")), 7),
+    ("sugerencias", {}, "fecha",
+     int(os.environ.get("PURGA_SUGERENCIAS_DIAS", "14")), 7),
 ]
 
 

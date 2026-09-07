@@ -113,6 +113,13 @@ class ConteoReglasTest(unittest.TestCase):
         self.assertIsNone(e["ultimo_con"])
         self.assertIsNone(e["holder_ip_hash"])
 
+    def test_el_reset_oficial_limpia_holder_ip_hash(self):
+        # build_circuitos.py debe hacer pop del holder junto a desde=null (S6 en
+        # el sistema: sin esto, el holder previo al reset suprimiría el reporte
+        # fresco posterior y rompería el reloj nuevo).
+        src = (Path(__file__).parents[1] / "scripts" / "build_circuitos.py").read_text(encoding="utf-8")
+        self.assertIn('cu.pop("holder_ip_hash", None)', src)
+
     def test_no_fija_horas_ni_claves_fuera_del_contrato(self):
         # La función pura no deriva horas (eso es del cron) y solo muta claves
         # conocidas (X2: consumidores ignoran claves extra).

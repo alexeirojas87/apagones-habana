@@ -104,10 +104,12 @@ class ParidadGeneradorTest(unittest.TestCase):
             self.assertEqual(html.count(MOD.MARCA_HEAD_INICIO), 1, archivo)
             if archivo in MOD.REGIONES_CUERPO:  # solo 3 páginas tienen cuerpo SEO
                 self.assertEqual(html.count(MOD.MARCA_INICIO), 1, archivo)
-            heads, ld = self._bloques(html)
-            for bloque in heads + ld:
-                # una segunda corrida sobre el mismo archivo no cambia ni head ni ld
-                self.assertEqual(self._bloques(html), self._bloques(html), archivo)
+            # una segunda corrida sobre el mismo archivo no cambia ni head ni ld
+            antes = self._bloques(html)
+            MOD.generar(self.web, MOD_generar_datos())
+            with open(os.path.join(self.web, archivo), encoding="utf-8") as f:
+                html2 = f.read()
+            self.assertEqual(antes, self._bloques(html2), archivo)
 
     def test_los_jsonld_parsean_y_son_deterministas(self):
         for archivo in MOD.PAGINAS:

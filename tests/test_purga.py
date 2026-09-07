@@ -52,7 +52,9 @@ class RetencionesTest(unittest.TestCase):
         self.assertEqual(tablas[("mensajes", (("chat", "eq.canal"),))], 365)
         self.assertEqual(tablas[("comentarios_llm", ())], 120)
         self.assertEqual(tablas[("eventos", ())], 365)
-        self.assertEqual(tablas[("chatbot_fragmentos", ())], 90)
+        self.assertEqual(tablas[("chatbot_fragmentos", ())], 30,
+                         "retención del índice semántico: corte de cuota "
+                         "(la BD vivía en 335MB con 90d; el RAG es último recurso)")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,12 @@
 const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
+// Icono del sprite externo (R8/D4): decorativo (aria-hidden); la clase .est-*
+// le da el color del estado (mismas clases que app.js).
+const icono = (nombre, clase) =>
+  '<svg class="ico' + (clase ? " " + clase : "") + '" aria-hidden="true">' +
+  '<use href="/icons.svg#icon-' + nombre + '"></use></svg>';
+
 // Sparkline de 24 h por circuito: 24 barritas, izq = −24 h, der = ahora.
 // Serie `serie_24h` (con|sin|nd) calculada por scripts/build_serie24h.py.
 function spark(s){ if(!s||!s.length) return ""; return '<span class="spark" title="últimas 24 h (izq = −24 h · der = ahora)">'+s.map(x=>'<i class="'+x+'"></i>').join("")+'</span>'; }
@@ -80,7 +86,7 @@ function renderDaf() {
   const d = DATOS && DATOS.daf_oficial;
   if (!d) {
     cont.innerHTML = `<div class="daf-card vencido">
-      <div class="daf-titulo">🟡 Rotación oficial DAF</div>
+      <div class="daf-titulo">${icono("dot-status", "est-daf")} Rotación oficial DAF</div>
       <p>No se ha identificado todavía un parte semanal de la Empresa Eléctrica.</p>
     </div>`;
     return;
@@ -93,11 +99,11 @@ function renderDaf() {
   cont.innerHTML = `<div class="daf-card ${d.vigente ? "" : "vencido"}">
     <div class="daf-cab">
       <div>
-        <div class="daf-titulo">🟡 Circuitos designados para DAF</div>
+        <div class="daf-titulo">${icono("dot-status", "est-daf")} Circuitos designados para DAF</div>
         <div class="daf-periodo">${estado} · ${fechaCompleta(d.desde)}–${fechaCompleta(d.hasta)}
           · ${codigos.length} circuito${codigos.length === 1 ? "" : "s"}</div>
       </div>
-      <a class="daf-fuente" href="partes.html?id=${encodeURIComponent(d.message_id)}">Ver parte oficial →</a>
+      <a class="daf-fuente" href="/partes?id=${encodeURIComponent(d.message_id)}">Ver parte oficial →</a>
     </div>
     <p>Son los circuitos asignados esta semana para proteger el SEN. Estar en esta lista
        no significa que estén apagados ahora: solo se afectan cuando se activa el DAF.</p>
@@ -130,8 +136,8 @@ function render(filtro = "") {
       : e.clase === "nd"
         ? `se afectó el ${fechaHabana(e.desde)}; sin noticias desde entonces`
         : llevaDesde(e.desde);
-    const of = c.oficial ? `<span class="circ-of" title="Verificado con la tabla oficial de la Empresa Eléctrica">✓ oficial</span>` : "";
-    const daf = c.daf ? `<span class="circ-daf" title="Circuito con microcortes por Disparo Automático de Frecuencia">🟡 DAF</span>` : "";
+    const of = c.oficial ? `<span class="circ-of" title="Verificado con la tabla oficial de la Empresa Eléctrica">${icono("check", "est-con")} oficial</span>` : "";
+    const daf = c.daf ? `<span class="circ-daf" title="Circuito con microcortes por Disparo Automático de Frecuencia">${icono("dot-status", "est-daf")} DAF</span>` : "";
     // municipio(s): usa la lista oficial si existe (puede ser más de uno)
     const munis = (c.municipios && c.municipios.length) ? c.municipios.join(" · ") : c.municipio;
     const muni = munis ? ` · ${esc(munis)}` : "";
@@ -141,10 +147,10 @@ function render(filtro = "") {
     const meta = c.ultima ? `${c.veces}× · visto ${fechaHabana(c.ultima)}` : "catálogo oficial";
     // enlace al mapa solo si el circuito está ubicado (punto o líneas de calles)
     const enMapa = (c.lat != null || (c.lineas && c.lineas.length))
-      ? `<a class="circ-mapa" href="index.html?c=${encodeURIComponent(c.codigo)}" title="Centrar el mapa en este circuito">🗺️ ver en el mapa</a>`
+      ? `<a class="circ-mapa" href="/?c=${encodeURIComponent(c.codigo)}" title="Centrar el mapa en este circuito">${icono("map")} ver en el mapa</a>`
       : "";
     const ultimoParte = c.ultima_message_id
-      ? `<a class="circ-parte" href="partes.html?id=${encodeURIComponent(c.ultima_message_id)}" title="Abrir la mención oficial más reciente de este circuito">📢 ver último parte</a>`
+      ? `<a class="circ-parte" href="/partes?id=${encodeURIComponent(c.ultima_message_id)}" title="Abrir la mención oficial más reciente de este circuito">${icono("megaphone")} ver último parte</a>`
       : "";
     const acciones = enMapa || ultimoParte
       ? `<span class="circ-acciones">${enMapa}${ultimoParte}</span>` : "";
@@ -191,11 +197,11 @@ function cargar() {
       }
       const nasum = d.circuitos.length - ncon - nsin - nnd;
       const sen = est && est.evento_nacional
-        ? " · ⚠️ SEN caído: los restablecidos antes del apagón cuentan como sin servicio" : "";
-      document.getElementById("circ-info").textContent =
-        `${d.circuitos.length} circuitos · 🟢 ${ncon} con servicio · 🔴 ${nsin} sin servicio` +
-        `${nnd > 0 ? ` · ⚪ ${nnd} sin noticias +24h` : ""}` +
-        `${nasum > 0 ? ` · 🔵 ${nasum} sin apagones reportados` : ""}${sen}`;
+        ? " · " + icono("alert-triangle", "est-sin") + " SEN caído: los restablecidos antes del apagón cuentan como sin servicio" : "";
+      document.getElementById("circ-info").innerHTML =
+        `${d.circuitos.length} circuitos · ${icono("dot-status", "est-con")} ${ncon} con servicio · ${icono("dot-status", "est-sin")} ${nsin} sin servicio` +
+        `${nnd > 0 ? ` · ${icono("dot-status", "est-nd")} ${nnd} sin noticias +24h` : ""}` +
+        `${nasum > 0 ? ` · ${icono("dot-status", "est-asum")} ${nasum} sin apagones reportados` : ""}${sen}`;
       renderDaf();
       render(filtro.value);  // conserva el filtro escrito
     })

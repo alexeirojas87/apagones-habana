@@ -47,6 +47,15 @@ MARCA_FIN = "<!-- SEO:FIN -->"
 MARCA_HEAD_INICIO = "<!-- SEO:HEAD:INICIO -->"
 MARCA_HEAD_FIN = "<!-- SEO:HEAD:FIN -->"
 
+# Script inline anti-destello (FOUC, design D1): fija data-theme en <html>
+# ANTES del CSS. Va pegado a mano en las 8 raíces commiteadas y lo emite
+# pagina_municipio() en las páginas hijas generadas. Clave `tema` ∈
+# {"dark","light"}; ausente -> prefers-color-scheme.
+GUION_TEMA = ('<script>try{var t=localStorage.getItem("tema");'
+              'if("light"!==t&&"dark"!==t)'
+              't=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";'
+              'document.documentElement.dataset.theme=t}catch(e){}</script>')
+
 # Páginas estáticas commiteadas: archivo -> (ruta de URL, título, descripción).
 # El título/descripción reales viven en el <head> de cada HTML; este mapa solo
 # alimenta los tags absolutos (og:title/og:description) y testea la paridad.
@@ -96,6 +105,14 @@ def guion_ld(objeto):
     return json.dumps(objeto, ensure_ascii=False).replace("</", "<\\/")
 
 
+def icono_svg(nombre, clase=""):
+    """Icono del sprite externo (D4/R8): <use> contra /icons.svg#icon-<nombre>.
+    Decorativo por defecto (aria-hidden); el texto adyacente da el nombre."""
+    clase_attr = (" " + clase) if clase else ""
+    return ('<svg class="ico%s" aria-hidden="true">'
+            '<use href="/icons.svg#icon-%s"></use></svg>' % (clase_attr, nombre))
+
+
 def etiquetas_head(url_absoluta, titulo, descripcion, ld=None):
     """Tags SEO absolutos de una página; todo host sale de site_url()."""
     img = site_url("og.png")
@@ -113,7 +130,7 @@ def etiquetas_head(url_absoluta, titulo, descripcion, ld=None):
         '<meta name="twitter:description" content="%s">' % descripcion,
         '<meta name="twitter:image" content="%s">' % img,
         '<link rel="icon" href="favicon.ico">',
-        '<meta name="theme-color" content="#0c1322">',
+        '<meta name="theme-color" content="#0F172A">',
     ]
     # og.png puede no existir en el despliegue: la etiqueta se queda válida e
     # inerte (los compartir solo no muestran imagen); nunca es error de build.
@@ -434,11 +451,13 @@ def ranking_poblacion(nombre, estado, circ, nombres):
         -sum(1 for c in circuitos_del_municipio(n, circ)
              if c.get("estado") == "sin servicio"), slug(n)))
     puesto = puestos.index(nombre) + 1
-    lineas = ["<p>📊 <b>%d de %d municipios más afectados hoy</b>, según los "
-              "circuitos sin servicio del último parte.</p>" % (puesto, len(nombres))]
+    lineas = ["<p>%s <b>%d de %d municipios más afectados hoy</b>, según los "
+              "circuitos sin servicio del último parte.</p>"
+              % (icono_svg("chart"), puesto, len(nombres))]
     est = _estimado_afectados(nombre, estado, circ)
     if est is not None:
-        lineas.append("<p>👥 ~%s personas sin corriente (estimado).</p>" % _nf_es(est))
+        lineas.append("<p>%s ~%s personas sin corriente (estimado).</p>"
+                      % (icono_svg("users"), _nf_es(est)))
     return "\n".join(lineas)
 
 
@@ -522,8 +541,9 @@ def region_hub(estado, circ, nombres):
             '<div class="%s">\n'
             '<a class="rc-card-cab" href="/municipio/%s/">%s</a>\n'
             '<span class="rc-card-h">%d <small>de %d circuitos sin servicio</small></span>\n'
-            '<a class="rc-card-det" href="/?municipio=%s">🗺️ Ver en el mapa</a>\n'
-            "</div>" % (clase, s, esc_html(nombre), sin_n, total_n, quote(nombre)))
+            '<a class="rc-card-det" href="/?municipio=%s">%s Ver en el mapa</a>\n'
+            "</div>" % (clase, s, esc_html(nombre), sin_n, total_n, quote(nombre),
+                        icono_svg("map")))
     return ('<h2>Apagones por municipio</h2>\n'
             '<div class="rc-cards">' + "\n".join(tarjetas) + "</div>\n"
             '<p class="stamp">Instantánea del despliegue — %s; el estado en vivo '
@@ -531,27 +551,46 @@ def region_hub(estado, circ, nombres):
 
 
 # Nav canónica: orden y destinos únicos de los 7 destinos del sitio, compartida
-# por las 8 superficies de render (6 raíces commiteadas, hub y páginas hijas).
+# por las 8 superficies de render (7 raíces commiteadas + páginas hijas).
+# Hrefs raíz-relativos y extensionless (decisión D3): resuelven igual desde
+# cualquier profundidad —incluida /preguntas-frecuentes/— sin depender del
+# directorio de la página. Etiquetas: icono del sprite + texto (R8).
 DESTINOS_NAV = (
-    ("", "🗺 Mapa"),
-    ("analitica", "📊 Análisis"),
-    ("partes", "📢 Partes"),
-    ("circuitos", "🔌 Circuitos"),
-    ("municipios/", "🏘️ Municipios"),
-    ("preguntas-frecuentes/", "❓ Preguntas"),
-    ("sugerencias", "💡 Sugerencias"),
+    ("", "Mapa", "map"),
+    ("analitica", "Análisis", "chart"),
+    ("partes", "Partes", "megaphone"),
+    ("circuitos", "Circuitos", "zap"),
+    ("municipios/", "Municipios", "buildings"),
+    ("preguntas-frecuentes/", "Preguntas", "help"),
+    ("sugerencias", "Sugerencias", "lightbulb"),
 )
 
 
+# Botón de tema (D1/D2): voltea data-theme en <html>, persiste la elección en
+# localStorage["tema"] y avisa a la página con el evento "cambio-tema" (el mapa
+# repone su basemap). Va dentro de nav_tabs() para que las 8 superficies lo
+# lleven idéntico sin JS adicional (el 404 no carga ningún script).
+BOTON_TEMA = ('<button id="boton-tema" type="button" '
+              'aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema" '
+              "onclick=\"var d=document.documentElement,"
+              "t='light'===d.dataset.theme?'dark':'light';"
+              "d.dataset.theme=t;"
+              "try{localStorage.setItem('tema',t)}catch(e){};"
+              "document.dispatchEvent(new CustomEvent('cambio-tema',{detail:t}))\">"
+              "◑</button>")
+
+
 def nav_tabs(activo):
-    """La nav canónica con hrefs absolutos (única fuente de las páginas
-    generadas); el destino `activo` se renderiza <span class="activo">."""
+    """La nav canónica con hrefs raíz-relativos y el botón de tema (D2);
+    el destino `activo` se renderiza <span class="activo">."""
     piezas = []
-    for destino, etiqueta in DESTINOS_NAV:
+    for destino, etiqueta, icono in DESTINOS_NAV:
+        pieza = icono_svg(icono) + " " + etiqueta
         if destino == activo:
-            piezas.append('<span class="activo">%s</span>' % etiqueta)
+            piezas.append('<span class="activo">%s</span>' % pieza)
         else:
-            piezas.append('<a href="%s">%s</a>' % (site_url(destino), etiqueta))
+            piezas.append('<a href="/%s">%s</a>' % (destino, pieza))
+    piezas.append(BOTON_TEMA)
     return '<nav class="tabs">%s</nav>' % " ".join(piezas)
 
 
@@ -599,7 +638,8 @@ def pagina_municipio(nombre, estado, circ, nombres, averias=None):
                ) if sin else ""
     eventos = sorted((estado.get("municipios", {}).get(nombre) or {}).get("eventos", []),
                      key=lambda e: e.get("fecha") or "", reverse=True)[:8]
-    icono = {"afectacion": "🔴", "restablecimiento": "✅"}
+    icono = {"afectacion": icono_svg("dot-status", "est-sin"),
+             "restablecimiento": icono_svg("check", "est-con")}
     hist = "".join(
         "<li>%s %s · %s · %s%s</li>" % (icono.get(e.get("tipo"), "•"), esc_html(e.get("tipo") or ""),
                                         esc_html(e.get("causa") or "—"), _hora_cuba(e.get("fecha")),
@@ -618,15 +658,15 @@ def pagina_municipio(nombre, estado, circ, nombres, averias=None):
     return ("<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n<meta charset=\"utf-8\">\n"
             "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
             "<title>%s</title>\n<meta name=\"description\" content=\"%s\">\n"
-            "<link rel=\"stylesheet\" href=\"/style.css\">\n%s\n</head>\n<body>\n"
-            "<header><h1>\u26a1 Apagones en %s hoy</h1>\n%s</header>\n"
+            "%s\n<link rel=\"stylesheet\" href=\"/style.css\">\n%s\n</head>\n<body>\n"
+            "<header><h1>%s Apagones en %s hoy</h1>\n%s</header>\n"
             "<main class=\"pagina-municipio\">\n%s\n</main>\n"
             "<footer><p>Fuente: canal de Telegram de la <a href=\"https://t.me/EmpresaElectricaDeLaHabana\">"
             "Empresa Eléctrica de La Habana</a> y comentarios de usuarios. Datos no oficiales, "
             "pueden contener errores.</p></footer>\n</body>\n</html>\n"
-            % (esc_html(titulo), esc_html(descripcion),
+            % (esc_html(titulo), esc_html(descripcion), GUION_TEMA,
                etiquetas_head(url, titulo, descripcion, ld=ld_municipio(nombre)),
-               esc_html(nombre), nav_tabs("municipios/"), cuerpo))
+               icono_svg("zap"), esc_html(nombre), nav_tabs("municipios/"), cuerpo))
 
 
 def urls_del_sitemap(nombres, generado=None):
@@ -681,11 +721,14 @@ FAQ_PREGUNTAS = (
 
 def cuerpo_faq():
     """Cuerpo del FAQ: las 8 preguntas evergreen de FAQ_PREGUNTAS (única fuente
-    compartida con el JSON-LD FAQPage — paridad por construcción)."""
+    compartida con el JSON-LD FAQPage — paridad por construcción). Acordeón
+    nativo <details>/<summary> (D6): cero JS, teclado gratis (S13)."""
     secciones = []
     for i, (pregunta, respuesta) in enumerate(FAQ_PREGUNTAS, 1):
-        secciones.append('<section class="faq" id="p%d">\n<h2>%s</h2>\n%s\n</section>'
-                         % (i, esc_html(pregunta), respuesta))
+        secciones.append(
+            '<details class="faq" id="p%d">\n<summary>%s</summary>\n'
+            '<div class="faq-a">%s</div>\n</details>'
+            % (i, esc_html(pregunta), respuesta))
     return "\n".join(secciones)
 
 

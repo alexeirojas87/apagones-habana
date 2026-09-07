@@ -13,6 +13,13 @@ function esc(s) {
   );
 }
 
+// Icono del sprite externo (R8/D4): decorativo (aria-hidden), el texto
+// adyacente da el nombre. La clase .est-* le da el color del estado.
+function icono(nombre, clase) {
+  return '<svg class="ico' + (clase ? " " + clase : "") + '" aria-hidden="true">' +
+    '<use href="/icons.svg#icon-' + nombre + '"></use></svg>';
+}
+
 function duracion(desdeIso) {
   const min = Math.max(0, Math.round((Date.now() - new Date(desdeIso)) / 60000));
   return min < 60 ? `${min}m` : `${Math.floor(min / 60)}h ${min % 60}m`;
@@ -39,7 +46,7 @@ function avisoNacional(ev) {
   el.hidden = false;
   const pct = ev.restablecido_pct != null
     ? ` Restablecido ~${ev.restablecido_pct}% de la ciudad (parte de las ${horaHabana(ev.pct_fecha)}).` : "";
-  el.innerHTML = `🔴 <b>Desconexión total del SEN</b> — apagón nacional: toda la ciudad sin corriente
+  el.innerHTML = `${icono("dot-status", "est-sin")} <b>Desconexión total del SEN</b> — apagón nacional: toda la ciudad sin corriente
     desde las ${horaHabana(ev.desde)} (lleva ${duracion(ev.desde)}).${pct} El servicio se restablece de forma
     gradual; el estado por circuito se irá actualizando con los avisos oficiales.`;
 }
@@ -156,19 +163,19 @@ async function iniciar() {
       .map((c) => {
         const hDef = ((estado.deficit || {}).circuitos || []).find((x) => x.codigo === c.codigo);
         const lleva = hDef && hDef.horas != null ? ` (lleva ${hDef.horas}h)` : "";
-        return `<li>🔴 <a href="circuitos?c=${encodeURIComponent(c.codigo)}"><b>${esc(c.codigo)}</b></a> sin corriente${c.estado_fecha ? " desde " + horaHabana(c.estado_fecha) : ""}${lleva}</li>`;
+        `<li>${icono("dot-status", "est-sin")} <a href="circuitos?c=${encodeURIComponent(c.codigo)}"><b>${esc(c.codigo)}</b></a> sin corriente${c.estado_fecha ? " desde " + horaHabana(c.estado_fecha) : ""}${lleva}</li>`;
       });
     if (conteo.sin.length > 6) {
       filas.push(`<li class="hora">…y ${conteo.sin.length - 6} circuitos más (ver la pestaña Circuitos)</li>`);
     }
     const rep = d?.reportes_sin
-      ? `<p class="rep">⚠ ${d.reportes_sin} usuarios reportan estar sin corriente</p>` : "";
+      ? `<p class="rep">${icono("alert-triangle", "est-disc")} ${d.reportes_sin} usuarios reportan estar sin corriente</p>` : "";
     const resumen = circuitos.length
       ? `<p class="hora">${circuitos.length} circuitos: ${conteo.sin.length} sin corriente · ${conteo.nd} sin noticias ·
          ${conteo.con} con servicio · ${conteo.asum} sin apagones reportados${conteo.discrepado ? ` · ${conteo.discrepado} discrepado(s)` : ""}</p>`
       : `<p class="hora">Sin circuitos registrados en este municipio.</p>`;
     const pendientes = faltantes.length
-      ? `<p class="rep">📍 ${faltantes.length} zona(s) de este municipio aún sin ubicar en el mapa,
+      ? `<p class="rep">${icono("pin")} ${faltantes.length} zona(s) de este municipio aún sin ubicar en el mapa,
          p. ej.: <span class="hora">${faltantes.slice(0, 2).map((z) => `${esc(z.zona.slice(0, 60))}…`).join(" · ")}</span></p>`
       : "";
     return `<div class="popup"><h3>${nombre}</h3>${rep}${resumen}<ul>${filas.join("")}</ul>${pendientes}</div>`;
@@ -356,15 +363,23 @@ async function iniciar() {
   // Basemap de calles: tiles vectoriales de La Habana servidos como archivos
   // estáticos individuales (web/tiles/z/x/y.pbf) — mismo origen, sin CORS ni
   // range requests, funciona igual en Cloudflare y GitHub Pages.
-  protomapsL
-    .leafletLayer({
-      url: "tiles/{z}/{x}/{y}.pbf",
-      flavor: "light",
-      lang: "es",
-      maxDataZoom: 15,
-      attribution: "© OpenStreetMap",
-    })
-    .addTo(mapa);
+  // El flavor sale del tema resuelto (claro/oscuro, D8); al cambiar el tema el
+  // botón emite "cambio-tema" y aquí se repone SOLO esta capa — sin recrear
+  // el mapa ni tocar overlays/popups (mismo patrón de las capas dinámicas).
+  const temaActual = () =>
+    document.documentElement.dataset.theme === "light" ? "light" : "dark";
+  const opcionesBase = () => ({
+    url: "tiles/{z}/{x}/{y}.pbf",
+    flavor: temaActual(),
+    lang: "es",
+    maxDataZoom: 15,
+    attribution: "© OpenStreetMap",
+  });
+  let capaBase = protomapsL.leafletLayer(opcionesBase()).addTo(mapa);
+  document.addEventListener("cambio-tema", () => {
+    mapa.removeLayer(capaBase);
+    capaBase = protomapsL.leafletLayer(opcionesBase()).addTo(mapa);
+  });
 
   // Municipios: solo contorno y popup de resumen; el color lo llevan las zonas.
   // Guardamos la capa para poder enfocar un municipio con ?municipio= abajo.
@@ -415,7 +430,7 @@ async function iniciar() {
         b.cat === "daf"
           ? `<div class="popup"><h3>${nb}</h3><p>Circuito DAF: sufre microcortes por Disparo Automático de Frecuencia.</p></div>`
           : b.confirmada
-            ? `<div class="popup"><h3>${nb}</h3><p>✔ Zona sin apagón confirmada por vecinos.</p></div>`
+            ? `<div class="popup"><h3>${nb}</h3><p>${icono("check", "est-con")} Zona sin apagón confirmada por vecinos.</p></div>`
             : `<div class="popup"><h3>${nb}</h3><p>Sin circuito de rotación asociado y fuera de los disparos DAF: candidata a zona que no se afecta (dato por exclusión, no oficial).</p></div>`
       )
       .addTo(capas[b.cat]);
@@ -446,11 +461,11 @@ async function iniciar() {
     if (estado.deficit && estado.deficit.circuitos)
       for (const c of estado.deficit.circuitos) horasDef[c.codigo] = c.horas;
     const COL_CIRC = {
-      sin: { l: "#e5484d", b: "#8b0000", e: "🔴", txt: "sin corriente" },
-      con: { l: "#46a758", b: "#1c5f2b", e: "🟢", txt: "con servicio" },
-      discrepado: { l: "#f5a623", b: "#c47e0a", e: "🟠", txt: "usuarios reportan sin corriente" },
-      asum: { l: "#4a90d9", b: "#2b5c94", e: "🔵", txt: "sin apagones reportados" },
-      nd: { l: "#6b7686", b: "#4a525e", e: "⚪", txt: "sin noticias hace +24 h" },
+      sin: { l: "#e5484d", b: "#8b0000", e: icono("dot-status", "est-sin"), txt: "sin corriente" },
+      con: { l: "#46a758", b: "#1c5f2b", e: icono("dot-status", "est-con"), txt: "con servicio" },
+      discrepado: { l: "#f5a623", b: "#c47e0a", e: icono("dot-status", "est-disc"), txt: "usuarios reportan sin corriente" },
+      asum: { l: "#4a90d9", b: "#2b5c94", e: icono("dot-status", "est-asum"), txt: "sin apagones reportados" },
+      nd: { l: "#6b7686", b: "#4a525e", e: icono("dot-status", "est-nd"), txt: "sin noticias hace +24 h" },
     };
     for (const c of (catCircuitos.circuitos || [])) {
       if (!(c.lineas && c.lineas.length) && c.lat === undefined) continue;  // sin ubicar
@@ -473,7 +488,7 @@ async function iniciar() {
       const popup = `<div class="popup"><h3>${col.e} Circuito ${esc(c.codigo)} — ${col.txt}</h3>
          <p>${calles}</p>
          <p class="hora">${detalle} Ubicación aproximada.</p>
-         <p><a href="circuitos?c=${encodeURIComponent(c.codigo)}">📋 ver ${esc(c.codigo)} en Circuitos →</a></p></div>`;
+         <p><a href="circuitos?c=${encodeURIComponent(c.codigo)}">${icono("clipboard")} ver ${esc(c.codigo)} en Circuitos →</a></p></div>`;
       const tip = `${col.e} Circuito ${esc(c.codigo)} (${col.txt})`;
       const capa = (c.lineas && c.lineas.length)
         ? L.polyline(c.lineas.map((l) => l.map(([lo, la]) => [la, lo])), {
@@ -492,9 +507,9 @@ async function iniciar() {
       L.circleMarker([a.lat, a.lon], {
         radius: 7, weight: 2, color: "#7b2d8e", fillColor: "#b455c8", fillOpacity: 0.85,
       })
-        .bindTooltip(`🚧 ${esc(a.tipo)}`)
+        .bindTooltip(`${icono("construction", "est-av")} ${esc(a.tipo)}`)
         .bindPopup(
-          `<div class="popup"><h3>🚧 ${esc(a.tipo)}</h3>
+          `<div class="popup"><h3>${icono("construction", "est-av")} ${esc(a.tipo)}</h3>
            <p>${esc(a.direccion)}${a.municipio ? " — " + esc(a.municipio) : ""}</p>
            <p class="hora">Interrupción por rotura.
            Parte oficial de las ${horaHabana(estado.averias.fecha)}.</p></div>`,
@@ -521,14 +536,14 @@ async function iniciar() {
           });
       const nz = esc(z.nombre);
       forma
-        .bindTooltip(z.restablecido ? `✅ En restablecimiento: ${nz}` : `⚠ Emergencia: ${nz}`)
+        .bindTooltip(z.restablecido ? `${icono("check", "est-con")} En restablecimiento: ${nz}` : `${icono("alert-triangle", "est-sin")} Emergencia: ${nz}`)
         .bindPopup(
           z.restablecido
-            ? `<div class="popup"><h3>✅ En restablecimiento</h3>
+            ? `<div class="popup"><h3>${icono("check", "est-con")} En restablecimiento</h3>
                <p>${nz}</p>
                <p class="hora">La Empresa anunció que se trabaja en restablecer este circuito
                tras el corte de emergencia de las ${horaHabana(estado.emergencia.fecha)}.</p></div>`
-            : `<div class="popup"><h3>⚠ Corte de emergencia</h3>
+            : `<div class="popup"><h3>${icono("alert-triangle", "est-sin")} Corte de emergencia</h3>
                <p>${nz}${z.aproximado ? " (ubicación aproximada)" : ""}</p>
                <p class="hora">Afectado por emergencia en la generación nacional
                Aviso oficial de las
@@ -549,13 +564,13 @@ async function iniciar() {
         ${horaHabana(c.fecha)}. Puede volver a cortarse si hay nuevas afectaciones.`;
       const cod = c.codigo ? ` ${esc(c.codigo)}` : "";
       const verC = c.codigo
-        ? `<p><a href="circuitos?c=${encodeURIComponent(c.codigo)}">📋 ver ${esc(c.codigo)} en Circuitos →</a></p>` : "";
+        ? `<p><a href="circuitos?c=${encodeURIComponent(c.codigo)}">${icono("clipboard")} ver ${esc(c.codigo)} en Circuitos →</a></p>` : "";
       L.circleMarker([c.lat, c.lon], {
         radius: 6, weight: 2, color: "#1c5f2b", fillColor: "#46a758", fillOpacity: 0.9,
       })
-        .bindTooltip(`✅${cod ? cod + " con" : " Con"} servicio: ${esc(c.direccion)}`)
+        .bindTooltip(`${icono("check", "est-con")}${cod ? cod + " con" : " Con"} servicio: ${esc(c.direccion)}`)
         .bindPopup(
-          `<div class="popup"><h3>✅ Circuito${cod} con servicio</h3>
+          `<div class="popup"><h3>${icono("check", "est-con")} Circuito${cod} con servicio</h3>
            <p>${esc(c.direccion)}${c.municipio ? " — " + esc(c.municipio) : ""}</p>
            <p class="hora">${detalleB}</p>${verC}</div>`,
           { maxWidth: 300 }
@@ -571,18 +586,18 @@ async function iniciar() {
       // comentario "ya hay luz" anterior al apagón vigente = obsoleto (no hay 10+ aquí)
       if (con && reporteConObsoleto(c.fecha, false)) continue;
       const horas = c.horas ? ` · ~${c.horas}h sin luz` : "";
-      const popup = `<div class="popup"><h3>💬 ${con ? "🟢 Vecino: ya llegó la corriente" : "🔴 Vecino: sin corriente"}</h3>
+      const popup = `<div class="popup"><h3>${icono("chat")} ${con ? icono("dot-status", "est-con") + " Vecino: ya llegó la corriente" : icono("dot-status", "est-sin") + " Vecino: sin corriente"}</h3>
            <p>${esc(c.lugar)}${horas}</p>
            <p class="hora">Reporte de un vecino en los comentarios del canal
            (${horaHabana(c.fecha)}). No verificado oficialmente.</p></div>`;
       if (con) {
         L.circleMarker([c.lat, c.lon], {
           radius: 6, weight: 1.5, color: "#2f7d3a", fillColor: "#7fd08c", fillOpacity: 0.8,
-        }).bindTooltip(`💬 ya hay luz: ${esc(c.lugar)}`).bindPopup(popup, { maxWidth: 300 }).addTo(capaComentarios);
+        }).bindTooltip(`${icono("chat")} ya hay luz: ${esc(c.lugar)}`).bindPopup(popup, { maxWidth: 300 }).addTo(capaComentarios);
       } else {
         L.circle([c.lat, c.lon], {
           radius: 350, weight: 2, color: "#8b0000", fillColor: "#e5484d", fillOpacity: 0.2, dashArray: "4",
-        }).bindTooltip(`💬 vecino sin luz: ${esc(c.lugar)}`).bindPopup(popup, { maxWidth: 300 }).addTo(capaComentarios);
+        }).bindTooltip(`${icono("chat")} vecino sin luz: ${esc(c.lugar)}`).bindPopup(popup, { maxWidth: 300 }).addTo(capaComentarios);
       }
     }
   }
@@ -625,17 +640,17 @@ async function iniciar() {
   // El control se crea una vez; las capas dinámicas (circuitos, averías, etc.)
   // siempre están.
   const capasControl = {
-    "🔴 Circuitos afectados (déficit)": capaCircuitos,
-    "⚠️ Cortes de emergencia": capaEmergencia,
-    "🟣 Averías/roturas": capaAverias,
-    "✅ Circuitos con servicio (restablecidos)": capaParciales,
-    "💬 Reportes de vecinos (comentarios)": capaComentarios,
+    [icono("dot-status", "est-sin") + " Circuitos afectados (déficit)"]: capaCircuitos,
+    [icono("alert-triangle", "est-sin") + " Cortes de emergencia"]: capaEmergencia,
+    [icono("dot-status", "est-av") + " Averías/roturas"]: capaAverias,
+    [icono("check", "est-con") + " Circuitos con servicio (restablecidos)"]: capaParciales,
+    [icono("chat") + " Reportes de vecinos (comentarios)"]: capaComentarios,
   };
   if (MOSTRAR_PROTEGIDAS) {
     capas.daf.addTo(mapa);
     capas.candidata_protegida.addTo(mapa);
-    capasControl["🟡 Circuitos DAF (microcortes)"] = capas.daf;
-    capasControl["🔵 Posibles zonas sin apagón"] = capas.candidata_protegida;
+    capasControl[icono("dot-status", "est-daf") + " Circuitos DAF (microcortes)"] = capas.daf;
+    capasControl[icono("dot-status", "est-asum") + " Posibles zonas sin apagón"] = capas.candidata_protegida;
   }
   L.control
     .layers(null, capasControl, { collapsed: window.innerWidth < 640 })
@@ -655,8 +670,8 @@ async function iniciar() {
           ? { borde: p.confirmado ? "#1c5f2b" : "#4f9e60", relleno: p.confirmado ? "#46a758" : "#8fd39b" }
           : { borde: p.confirmado ? "#8b0000" : "#e07b00", relleno: p.confirmado ? "#e5484d" : "#ffa733" };
         const titulo = esCon
-          ? (p.confirmado ? "🟢 Corriente confirmada por vecinos" : "🌿 Posible regreso de la corriente")
-          : (p.confirmado ? "🔴 Afectación confirmada" : "🟠 Posible afectación");
+          ? (p.confirmado ? icono("dot-status", "est-con") + " Corriente confirmada por vecinos" : icono("sprout") + " Posible regreso de la corriente")
+          : (p.confirmado ? icono("dot-status", "est-sin") + " Afectación confirmada" : icono("dot-status", "est-rep") + " Posible afectación");
         const detalle = `${p.reportes} vecino(s) reportaron ${esCon ? "que ya hay" : "estar sin"} corriente en las últimas ${r.ventana_h}h` +
           (p.sin && p.con ? ` (${p.sin} sin · ${p.con} con)` : "") + ".";
         L.circleMarker([p.lat, p.lon], {
@@ -734,14 +749,14 @@ async function iniciar() {
     }
 
     const notaDaf = enDaf
-      ? `<p class="hora">🟡 <b>Circuito DAF</b>: esta zona sufre microcortes por Disparo Automático de Frecuencia.</p>`
+      ? `<p class="hora">${icono("dot-status", "est-daf")} <b>Circuito DAF</b>: esta zona sufre microcortes por Disparo Automático de Frecuencia.</p>`
       : "";
     const notaAv = av
-      ? `<p class="hora">🚧 <b>Avería</b> a ~${Math.round(avD)} m (${esc(av.tipo)})${av.direccion ? " — " + esc(av.direccion) : ""}: interrupción por rotura. Parte de las ${horaHabana(estado.averias.fecha)}.</p>`
+      ? `<p class="hora">${icono("construction", "est-av")} <b>Avería</b> a ~${Math.round(avD)} m (${esc(av.tipo)})${av.direccion ? " — " + esc(av.direccion) : ""}: interrupción por rotura. Parte de las ${horaHabana(estado.averias.fecha)}.</p>`
       : "";
 
     if (emg) {
-      return `<p class="hora">⚠️ <b>Corte de emergencia</b> — ${esc(emg.nombre)}, afectado por emergencia en la
+      return `<p class="hora">${icono("alert-triangle", "est-sin")} <b>Corte de emergencia</b> — ${esc(emg.nombre)}, afectado por emergencia en la
         generación. Aviso de las ${horaHabana(estado.emergencia.fecha)}.</p>${notaAv}${notaDaf}`;
     }
     if (av && avD < 250) return `${notaAv}${notaDaf}`;  // avería prácticamente encima: es la causa
@@ -754,25 +769,25 @@ async function iniciar() {
       const hDef = ((estado.deficit || {}).circuitos || []).find((x) => x.codigo === circ.codigo);
       let cab;
       if (v === "sin") {
-        cab = `🔴 <b>Sin corriente</b> — ${cod} está afectado${hDef && hDef.horas != null
+        cab = `${icono("dot-status", "est-sin")} <b>Sin corriente</b> — ${cod} está afectado${hDef && hDef.horas != null
           ? ` (lleva ${hDef.horas}h)`
           : circ.estado_fecha ? ` desde las ${horaHabana(circ.estado_fecha)}` : ""}.`;
       } else if (v === "discrepado") {
-        cab = `🟠 <b>Sin corriente (según vecinos)</b> — la UNE reporta ${cod} "con servicio",
+        cab = `${icono("dot-status", "est-disc")} <b>Sin corriente (según vecinos)</b> — la UNE reporta ${cod} "con servicio",
           pero los vecinos reportan sin corriente.`;
       } else if (v === "nd") {
-        cab = `⚪ <b>Sin noticias</b> — ${cod} se reportó sin servicio el ${fmtDia(circ.estado_fecha)}
+        cab = `${icono("dot-status", "est-nd")} <b>Sin noticias</b> — ${cod} se reportó sin servicio el ${fmtDia(circ.estado_fecha)}
           y la UNE no lo menciona desde entonces: estado real desconocido.`;
       } else if (v === "asum") {
-        cab = `🔵 <b>Sin apagones reportados</b> — ${cod} no aparece en los partes: se asume con corriente.`;
+        cab = `${icono("dot-status", "est-asum")} <b>Sin apagones reportados</b> — ${cod} no aparece en los partes: se asume con corriente.`;
       } else {
-        cab = `🟢 <b>Con corriente</b> — ${cod} no figura afectado${circ.ultima ? ` (última mención: ${fmtDia(circ.ultima)})` : ""}.`;
+        cab = `${icono("dot-status", "est-con")} <b>Con corriente</b> — ${cod} no figura afectado${circ.ultima ? ` (última mención: ${fmtDia(circ.ultima)})` : ""}.`;
       }
       const enlace = ` <a href="circuitos?c=${encodeURIComponent(circ.codigo)}">ver ${esc(circ.codigo)} →</a>`;
       return `<p class="hora">${cab}${enlace}</p>${notaAv}${notaDaf}`;
     }
     if (notaAv || notaDaf) return `${notaAv}${notaDaf}`;
-    return `<p class="hora">✅ Sin registro de afectaciones en esta zona. Salvedad: podría ser un vacío de
+    return `<p class="hora">${icono("check", "est-con")} Sin registro de afectaciones en esta zona. Salvedad: podría ser un vacío de
       información — si sabes que sí le quitan la corriente, repórtalo.</p>`;
   }
 
@@ -788,8 +803,8 @@ async function iniciar() {
   // va por delegación (abajo), nunca por onclick interpolado (evita inyección).
   function reportarAqui(lat, lon, nombre) {
     const d = `data-lat="${lat}" data-lon="${lon}" data-dir="${esc(nombre)}"`;
-    return `<button class="btn-reporte" ${d} data-tipo="sin">🚨 No tengo corriente aquí</button>
-      <button class="btn-reporte con" ${d} data-tipo="con">✅ Ya llegó la corriente</button>`;
+    return `<button class="btn-reporte" ${d} data-tipo="sin">${icono("siren", "est-sin")} No tengo corriente aquí</button>
+      <button class="btn-reporte con" ${d} data-tipo="con">${icono("check", "est-con")} Ya llegó la corriente</button>`;
   }
   async function enviarReporte(btn) {
     btn.disabled = true;
@@ -804,10 +819,10 @@ async function iniciar() {
         }),
       });
       const d = await r.json();
-      btn.textContent = r.ok ? "✔ Reporte enviado, gracias" : `✖ ${d.error}`;
+      btn.innerHTML = r.ok ? icono("check", "est-con") + " Reporte enviado, gracias" : icono("x", "est-sin") + " " + esc(d.error);
       if (r.ok) cargarReportes();
     } catch {
-      btn.textContent = "✖ Sin conexión con el servidor";
+      btn.innerHTML = icono("x", "est-sin") + " Sin conexión con el servidor";
     }
   }
   document.addEventListener("click", (ev) => {
@@ -842,7 +857,7 @@ async function iniciar() {
         marcadorBusqueda = L.marker([lat, lon], {
           icon: L.divIcon({
             className: "pin-busqueda",
-            html: "📍",
+            html: icono("pin"),
             iconSize: [32, 32],
             iconAnchor: [16, 30],   // la punta del pin cae sobre el lugar
             popupAnchor: [0, -28],
@@ -865,12 +880,16 @@ async function iniciar() {
   const leyenda = L.control({ position: "bottomleft" });
   leyenda.onAdd = () => {
     const div = L.DomUtil.create("div", "leyenda");
+    const punto = (clase) => icono("dot-status", clase);
     div.innerHTML = movil
-      ? "🔴 sin luz · 🟢 con luz · 🟠 usuarios sin luz · ⚪ sin noticias · 🔵 sin apagones<br>🟣 avería · 🟡 DAF · 🟠 reporte"
-      : "Circuitos: 🔴 sin corriente · 🟢 con servicio · 🟠 usuarios reportan sin corriente · " +
-        "⚪ sin noticias hace +24 h · 🔵 sin apagones reportados (se asume con corriente).<br>" +
-        "🟣 averías/roturas · 🟡 circuitos DAF (microcortes).<br>" +
-        "🟠 reporte vecinal (se confirma en rojo con 10+ vecinos).<br>" +
+      ? punto("est-sin") + " sin luz · " + punto("est-con") + " con luz · " + punto("est-disc") +
+        " usuarios sin luz · " + punto("est-nd") + " sin noticias · " + punto("est-asum") + " sin apagones<br>" +
+        icono("construction", "est-av") + " avería · " + punto("est-daf") + " DAF · " + punto("est-rep") + " reporte"
+      : "Circuitos: " + punto("est-sin") + " sin corriente · " + punto("est-con") + " con servicio · " +
+        punto("est-disc") + " usuarios reportan sin corriente · " + punto("est-nd") +
+        " sin noticias hace +24 h · " + punto("est-asum") + " sin apagones reportados (se asume con corriente).<br>" +
+        icono("construction", "est-av") + " averías/roturas · " + punto("est-daf") + " circuitos DAF (microcortes).<br>" +
+        punto("est-rep") + " reporte vecinal (se confirma en rojo con 10+ vecinos).<br>" +
         "Ubicaciones aproximadas, datos no oficiales.";
     return div;
   };

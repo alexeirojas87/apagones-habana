@@ -5,37 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sugerencias y bugs — Apagones La Habana</title>
 <meta name="description" content="Envía sugerencias de mejoras o reporta errores de la web de apagones en La Habana.">
+<script>try{var t=localStorage.getItem("tema");if("light"!==t&&"dark"!==t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="style.css">
 <!-- SEO:HEAD:INICIO -->
 <!-- SEO:HEAD:FIN -->
 </head>
 <body>
 <header>
-  <h1>💡 Sugerencias y bugs</h1>
+  <h1><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-lightbulb"></use></svg> Sugerencias y bugs</h1>
   <p id="sug-info">Propón una mejora o reporta un error. Se anota como tarea en el proyecto.</p>
-  <nav class="tabs"><a href="index.html">🗺 Mapa</a> <a href="analitica">📊 Análisis</a> <a href="partes">📢 Partes</a> <a href="circuitos">🔌 Circuitos</a> <a href="municipios/">🏘️ Municipios</a> <a href="preguntas-frecuentes/">❓ Preguntas</a> <span class="activo">💡 Sugerencias</span></nav>
+  <!-- nav: generado por build_seo.py nav_tabs() — regenerar, no editar -->
+  <nav class="tabs"><a href="/"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-map"></use></svg> Mapa</a> <a href="/analitica"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-chart"></use></svg> Análisis</a> <a href="/partes"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-megaphone"></use></svg> Partes</a> <a href="/circuitos"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-zap"></use></svg> Circuitos</a> <a href="/municipios/"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-buildings"></use></svg> Municipios</a> <a href="/preguntas-frecuentes/"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-help"></use></svg> Preguntas</a> <span class="activo"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-lightbulb"></use></svg> Sugerencias</span> <button id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema" onclick="var d=document.documentElement,t='light'===d.dataset.theme?'dark':'light';d.dataset.theme=t;try{localStorage.setItem('tema',t)}catch(e){};document.dispatchEvent(new CustomEvent('cambio-tema',{detail:t}))">◑</button></nav>
 </header>
 
 <main id="sug-main">
+  <!-- Resumen de errores enfocable (D7/R11): role=alert, enlaces por campo -->
+  <div id="sug-resumen" class="sug-resumen" role="alert" tabindex="-1" hidden></div>
   <form id="sug-form" class="sug-form">
     <label class="sug-campo">
       <span>Tipo</span>
-      <select id="sug-tipo">
-        <option value="sugerencia">💡 Sugerencia / mejora</option>
-        <option value="bug">🐛 Error (bug)</option>
+      <select id="sug-tipo" aria-describedby="sug-error-tipo">
+        <option value="sugerencia">Sugerencia / mejora</option>
+        <option value="bug">Error (bug)</option>
       </select>
+      <p class="sug-error" id="sug-error-tipo" hidden></p>
     </label>
     <label class="sug-campo">
-      <span>Título</span>
-      <input id="sug-titulo" type="text" maxlength="120" placeholder="Resúmelo en una frase" autocomplete="off">
+      <span>Título <em class="sug-hint">mínimo 5 caracteres</em></span>
+      <input id="sug-titulo" type="text" maxlength="120" placeholder="Resúmelo en una frase" autocomplete="off" aria-describedby="sug-error-titulo">
+      <p class="sug-error" id="sug-error-titulo" hidden></p>
     </label>
     <label class="sug-campo">
       <span>Detalle <em>(opcional)</em></span>
-      <textarea id="sug-detalle" rows="5" maxlength="2000" placeholder="¿Qué mejorarías o qué falla? Si es un bug, cómo reproducirlo."></textarea>
+      <textarea id="sug-detalle" rows="5" maxlength="2000" placeholder="¿Qué mejorarías o qué falla? Si es un bug, cómo reproducirlo." aria-describedby="sug-error-detalle"></textarea>
+      <p class="sug-error" id="sug-error-detalle" hidden></p>
     </label>
     <button id="sug-enviar" type="submit">Enviar</button>
     <p id="sug-estado" class="sug-estado"></p>
   </form>
+  <!-- Éxito (D7): sustituye al formulario tras un envío válido -->
+  <div id="sug-exito" class="sug-exito" role="status" hidden>
+    <svg class="ico est-con" aria-hidden="true"><use href="/icons.svg#icon-check"></use></svg>
+    <div><b>¡Gracias!</b> Tu sugerencia quedó registrada para revisión.</div>
+  </div>
 </main>
 
 <footer>

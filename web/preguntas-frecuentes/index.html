@@ -5,14 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Preguntas frecuentes sobre los apagones en La Habana — FAQ</title>
 <meta name="description" content="Respuestas a las preguntas frecuentes sobre los apagones en La Habana: qué es este sitio, de dónde salen los datos de la UNE, cómo ver si tu circuito está sin servicio, cada cuánto se actualiza y por qué hay cortes.">
+<script>try{var t=localStorage.getItem("tema");if("light"!==t&&"dark"!==t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="stylesheet" href="/style.css">
 <!-- SEO:HEAD:INICIO -->
 <!-- SEO:HEAD:FIN -->
 </head>
 <body>
 <header>
-  <h1>❓ Preguntas frecuentes</h1>
-  <nav class="tabs"><a href="index.html">🗺 Mapa</a> <a href="analitica">📊 Análisis</a> <a href="partes">📢 Partes</a> <a href="circuitos">🔌 Circuitos</a> <a href="municipios/">🏘️ Municipios</a> <span class="activo">❓ Preguntas</span> <a href="sugerencias">💡 Sugerencias</a></nav>
+  <h1><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-help"></use></svg> Preguntas frecuentes</h1>
+  <!-- nav: generado por build_seo.py nav_tabs() — regenerar, no editar -->
+  <nav class="tabs"><a href="/"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-map"></use></svg> Mapa</a> <a href="/analitica"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-chart"></use></svg> Análisis</a> <a href="/partes"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-megaphone"></use></svg> Partes</a> <a href="/circuitos"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-zap"></use></svg> Circuitos</a> <a href="/municipios/"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-buildings"></use></svg> Municipios</a> <span class="activo"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-help"></use></svg> Preguntas</span> <a href="/sugerencias"><svg class="ico" aria-hidden="true"><use href="/icons.svg#icon-lightbulb"></use></svg> Sugerencias</a> <button id="boton-tema" type="button" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema" onclick="var d=document.documentElement,t='light'===d.dataset.theme?'dark':'light';d.dataset.theme=t;try{localStorage.setItem('tema',t)}catch(e){};document.dispatchEvent(new CustomEvent('cambio-tema',{detail:t}))">◑</button></nav>
 </header>
 
 <main id="faq-preguntas">

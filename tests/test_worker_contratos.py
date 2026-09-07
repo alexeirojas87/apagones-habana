@@ -16,6 +16,7 @@ ESTADO_PY = (RAIZ / "scripts" / "estado.py").read_text(encoding="utf-8")
 WORKER_JS = (RAIZ / "web" / "_worker.js").read_text(encoding="utf-8")
 CHATBOT_JS = (RAIZ / "web" / "chatbot.js").read_text(encoding="utf-8")
 APP_JS = (RAIZ / "web" / "app.js").read_text(encoding="utf-8")
+SCHEMA_SQL = (RAIZ / "ingestor" / "schema.sql").read_text(encoding="utf-8")
 
 
 class S15EstadoAstTest(unittest.TestCase):
@@ -145,6 +146,21 @@ class S17FallbackViejoTest(unittest.TestCase):
         self.assertIn("d?.", APP_JS)
         self.assertIn("r.puntos || []", APP_JS)
         self.assertIn("c.conteo_usuario &&", APP_JS)
+
+
+class S18S19SchemaTest(unittest.TestCase):
+    """S18/S19 — ALTER idempotente documentado; sin columna 'ignorado'."""
+
+    def test_alter_verbatim_idempotente(self):
+        # S18: re-ejecutar es no-op (add column if not exists), convención #61-62.
+        self.assertIn(
+            "alter table reportes add column if not exists codigo text;",
+            SCHEMA_SQL,
+        )
+
+    def test_sin_columna_ignorado(self):
+        # R4 §6 (#627.2): nada de shadow columns.
+        self.assertNotIn("ignorado", SCHEMA_SQL)
 
 
 class S16EmitCompatTest(unittest.TestCase):

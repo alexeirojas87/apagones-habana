@@ -1,22 +1,4 @@
 {
- "78616": {
-  "fecha": "2026-08-31T12:47:15+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A465"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Consumidores del municipio 10 de Octubre se encuentra DISPARADO el CIRCUITO (A465) quedando afectado : 👉 parte de Lawton . ⭕️⚡️"
- },
- "78615": {
-  "fecha": "2026-08-31T12:46:08+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Consumidores del municipio Boyeros se encuentra DISPARADO el CIRCUITO (2205) quedando afectado : 👉 Altahabana , Residencial Almendares . ⭕️⚡️"
- },
  "78646": {
   "fecha": "2026-08-31T15:34:56+00:00",
   "tipo_llm": "averia",
@@ -963,5 +945,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 159 MW distribuidos en 50 circuitos de distribución. A continuación, "
+ },
+ "80499": {
+  "fecha": "2026-09-07T12:46:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 08:38 AM quedó restablecido el servicio en el siguiente circuito: 👉 PZ24: Calles 2 desde 27 hasta 19, 19 desde 2"
  }
 }

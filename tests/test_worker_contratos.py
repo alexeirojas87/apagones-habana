@@ -14,6 +14,7 @@ from pathlib import Path
 RAIZ = Path(__file__).parents[1]
 ESTADO_PY = (RAIZ / "scripts" / "estado.py").read_text(encoding="utf-8")
 WORKER_JS = (RAIZ / "web" / "_worker.js").read_text(encoding="utf-8")
+CHATBOT_JS = (RAIZ / "web" / "chatbot.js").read_text(encoding="utf-8")
 
 
 class S15EstadoAstTest(unittest.TestCase):
@@ -83,6 +84,37 @@ class S19WorkerInsertTest(unittest.TestCase):
 
     def test_insert_condicional_de_codigo(self):
         self.assertIn("...(codigo ? { codigo } : {})", WORKER_JS)
+
+
+class S1ChatbotTarjetaTest(unittest.TestCase):
+    """S1 (chatbot) — tarjeta de confirmación con POST a /api/reporte."""
+
+    def test_post_al_endpoint_existente(self):
+        self.assertIn('API + "/api/reporte"', CHATBOT_JS)
+
+    def test_cuerpo_del_post_con_codigo(self):
+        # Forma del botón del mapa + codigo opcional (R4 §1).
+        for token in ("lat: +boton.dataset.lat", "lon: +boton.dataset.lon",
+                      "direccion: boton.dataset.dir", "tipo: boton.dataset.tipo",
+                      "codigo: boton.dataset.cod"):
+            self.assertIn(token, CHATBOT_JS)
+
+    def test_botones_confirmar_y_cancelar(self):
+        self.assertIn("cb-ok", CHATBOT_JS)
+        self.assertIn("cb-no", CHATBOT_JS)
+
+    def test_esc_en_los_valores_dinamicos(self):
+        for token in ("esc(p.codigo)", "esc(p.direccion)", "esc(p.tipo)",
+                      "esc(p.lat)", "esc(p.lon)", "esc(p.confianza)",
+                      "esc(boton.dataset.cod)", "esc(d && d.error)"):
+            self.assertIn(token, CHATBOT_JS)
+
+    def test_un_solo_uso_y_delegacion_sin_onclick(self):
+        # dataset.done impide el doble envío; escucha delegada en el contenedor
+        # (nunca onclick interpolado en HTML).
+        self.assertIn("dataset.done", CHATBOT_JS)
+        self.assertIn('msgs.addEventListener("click"', CHATBOT_JS)
+        self.assertNotIn("onclick=", CHATBOT_JS)
 
 
 class S16EmitCompatTest(unittest.TestCase):

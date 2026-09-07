@@ -33,6 +33,17 @@
     #chatbot-sugerencias { padding: 8px 12px; display: flex; gap: 6px; flex-wrap: wrap; border-top: 1px solid var(--border); }
     .cb-sug { background: var(--surface-2); border: 1px solid var(--border-2); border-radius: 14px; padding: 4px 10px; font-size: 11px; color: var(--text-muted); cursor: pointer; }
     .cb-sug:hover { background: var(--border); }
+    .cb-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; align-self: flex-start; max-width: 85%; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+    .cb-card-t { font-weight: 600; color: var(--text); }
+    .cb-card-l { color: var(--text); }
+    .cb-card-c { color: var(--text-muted); font-size: 11px; }
+    .cb-card-b { display: flex; gap: 8px; }
+    .cb-card button { flex: 1; border: none; border-radius: 14px; padding: 6px 10px; font-size: 12px; cursor: pointer; }
+    .cb-ok { background: var(--cta); color: var(--on-cta); }
+    .cb-no { background: var(--surface); color: var(--accent); border: 1px solid var(--border-2); }
+    .cb-card button:disabled { opacity: .5; cursor: default; }
+    .cb-card-ok { color: var(--accent); }
+    .cb-card-err { background: var(--red-bg); color: var(--red-t); }
     @media (max-width: 480px) { #chatbot-panel { right: 8px; bottom: 80px; width: calc(100vw - 16px); max-height: 70vh; } }
   `;
   document.head.appendChild(css);
@@ -82,6 +93,65 @@
     return d;
   }
 
+  // Tarjeta de confirmación del reporte pendiente (D3): los datos vienen del
+  // resultado determinista de la herramienta reportar (no del texto del LLM).
+  // Todos los valores dinámicos pasan por esc(); el envío real es el POST a
+  // /api/reporte al confirmar — Cancelar no hace ninguna petición.
+  function tarjetaReporte(p) {
+    var card = document.createElement("div");
+    card.className = "cb-card";
+    card.innerHTML =
+      '<div class="cb-card-t">' + (p.tipo === "con" ? "¿Ya volvió la corriente?" : "¿Se fue la luz?") + "</div>" +
+      '<div class="cb-card-l"><strong>' + esc(p.codigo) + "</strong> · " + esc(p.direccion) + "</div>" +
+      '<div class="cb-card-c">confianza ' + esc(p.confianza) + "</div>" +
+      '<div class="cb-card-b">' +
+      '<button class="cb-ok" data-lat="' + esc(p.lat) + '" data-lon="' + esc(p.lon) +
+        '" data-dir="' + esc(p.direccion) + '" data-tipo="' + esc(p.tipo) +
+        '" data-cod="' + esc(p.codigo) + '">Confirmar reporte</button>' +
+      '<button class="cb-no">Cancelar</button>' +
+      "</div>";
+    return card;
+  }
+
+  // Un solo listener delegado para todas las tarjetas (nada de onclick
+  // interpolado). dataset.done hace la confirmación de un solo uso y ambos
+  // botones quedan deshabilitados tras el primer clic.
+  msgs.addEventListener("click", function (e) {
+    var no = e.target.closest(".cb-no");
+    if (no) {
+      var suTarjeta = no.closest(".cb-card");
+      if (suTarjeta) suTarjeta.remove();
+      return;  // cancelar: sin petición
+    }
+    var boton = e.target.closest(".cb-ok");
+    if (!boton || boton.dataset.done) return;
+    boton.dataset.done = "1";
+    var card = boton.closest(".cb-card");
+    card.querySelectorAll("button").forEach(function (b) { b.disabled = true; });
+    fetch(API + "/api/reporte", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ lat: +boton.dataset.lat, lon: +boton.dataset.lon,
+                             direccion: boton.dataset.dir, tipo: boton.dataset.tipo,
+                             codigo: boton.dataset.cod }),
+    }).then(function (r) {
+      return r.json().then(function (d) { return { ok: r.ok, d: d }; });
+    }).then(function (res) {
+      var d = res.d;
+      if (res.ok) {
+        card.className = "cb-card cb-card-ok";
+        card.innerHTML = "tu reporte quedó registrado (circuito " + esc(boton.dataset.cod) + ")";
+      } else {
+        card.className = "cb-card cb-card-err";
+        card.innerHTML = esc(d && d.error) || "no se pudo registrar el reporte";
+      }
+      msgs.scrollTop = msgs.scrollHeight;
+    }).catch(function () {
+      card.className = "cb-card cb-card-err";
+      card.innerHTML = "Error de conexión. Intenta de nuevo.";
+    });
+  });
+
   function enviar() {
     var q = inp.value.trim();
     if (!q) return;
@@ -99,6 +169,10 @@
       if (d.respuesta) {
         agregar(esc(d.respuesta).replace(/\n/g, "<br>"), "cb-bot");
         historial.push({ role: "assistant", content: d.respuesta });
+        if (d.reporte_pendiente) {
+          msgs.appendChild(tarjetaReporte(d.reporte_pendiente));
+          msgs.scrollTop = msgs.scrollHeight;
+        }
       } else agregar("Lo siento, no pude procesar la consulta.", "cb-error");
     }).catch(function () {
       loading.remove();

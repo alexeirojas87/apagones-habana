@@ -1,13 +1,4 @@
 {
- "78646": {
-  "fecha": "2026-08-31T15:34:56+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1244"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨⚡️Consumidores del municipio Marianao se detectó una AVERÍA PRIMARIA en el circuito (1244) quedando afectada la siguiente dirección : 👉 28 / 5ta y 7ma .🚨⚡️"
- },
  "78676": {
   "fecha": "2026-08-31T17:01:49+00:00",
   "tipo_llm": "restablecimiento",

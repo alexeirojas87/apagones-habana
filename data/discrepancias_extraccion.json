@@ -907,5 +907,17 @@
    "PZ9"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 9:20 AM quedó restablecido el servicio en el siguiente circuito: 👉 PZ9:4 desde 35 hasta Hidalgo, Hidalgo hasta L"
+ },
+ "80596": {
+  "fecha": "2026-09-07T18:56:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 2:55 PM queda restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerrad"
  }
 }

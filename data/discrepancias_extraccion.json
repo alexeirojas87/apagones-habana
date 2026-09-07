@@ -1,14 +1,4 @@
 {
- "78739": {
-  "fecha": "2026-08-31T22:31:52+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 6:30 PM se afectan 168MW distribuidos en 572 circuitos de distribución. A continuación, s"
- },
  "78744": {
   "fecha": "2026-08-31T23:44:59+00:00",
   "tipo_llm": "restablecimiento",
@@ -887,5 +877,15 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 4:23PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325: Desagüe des"
+ },
+ "80661": {
+  "fecha": "2026-09-07T22:01:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2203",
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 330 MW distribuidos en 97 circuitos de distribución. A continuación, "
  }
 }

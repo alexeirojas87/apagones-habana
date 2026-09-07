@@ -956,5 +956,14 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 08:38 AM quedó restablecido el servicio en el siguiente circuito: 👉 PZ24: Calles 2 desde 27 hasta 19, 19 desde 2"
+ },
+ "80518": {
+  "fecha": "2026-09-07T13:21:34+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [],
+  "solo_regex": [
+   "PZ9"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 9:20 AM quedó restablecido el servicio en el siguiente circuito: 👉 PZ9:4 desde 35 hasta Hidalgo, Hidalgo hasta L"
  }
 }

@@ -1,18 +1,4 @@
 {
- "78700": {
-  "fecha": "2026-08-31T19:14:40+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1244",
-   "A1520",
-   "D632",
-   "D633",
-   "PG930",
-   "PZ10"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento: 🚨Subestación : 📌Municipio: San Miguel del Padrón (A1520) 💥Afecta : Repartos Revoledo, Vista Alegre, La Prosperidad, Las Me"
- },
  "78706": {
   "fecha": "2026-08-31T19:51:53+00:00",
   "tipo_llm": "deficit",

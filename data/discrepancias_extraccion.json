@@ -1,22 +1,4 @@
 {
- "78919": {
-  "fecha": "2026-09-01T19:56:43+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "GC18"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:27 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB910:Justi, Ag"
- },
- "78915": {
-  "fecha": "2026-09-01T19:49:25+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC19"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:19 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC14:Guiteras, "
- },
  "78932": {
   "fecha": "2026-09-01T20:25:29+00:00",
   "tipo_llm": "deficit",
@@ -876,5 +858,43 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 03:24 PM queda restablecido el servicio en los siguientes circuitos: 👉A490: Delicias, Altura del Mirador del Die"
+ },
+ "80963": {
+  "fecha": "2026-09-08T19:56:01+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:55 PM se afectó el servicio eléctrico en el siguiente circuito: 👉 P325: Desagüe desde Infanta hasta Ayestarán"
+ },
+ "80946": {
+  "fecha": "2026-09-08T19:38:05+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ24"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑💥Consumidores del municipio Plaza, por AVERÍA SECUNDARIA TRANSFORMADOR DAÑADO se afecta el servicio eléctrico en: 3ra entre Paseo y 2.💥🛑"
+ },
+ "80942": {
+  "fecha": "2026-09-08T19:34:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉AL55: Zonas: 12; 13; 14; "
+ },
+ "80941": {
+  "fecha": "2026-09-08T19:32:01+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉MB920: Alturas de Boca Ciega, Santa M"
  }
 }

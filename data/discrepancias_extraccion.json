@@ -866,5 +866,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉AL55: Zonas: 12; 13; 14; 19; 20; 21; "
+ },
+ "80939": {
+  "fecha": "2026-09-08T19:28:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "S512",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 03:24 PM queda restablecido el servicio en los siguientes circuitos: 👉A490: Delicias, Altura del Mirador del Die"
  }
 }

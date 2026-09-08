@@ -1,13 +1,4 @@
 {
- "78948": {
-  "fecha": "2026-09-01T23:07:53+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP329"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️🔴Consumidores del municipio San Miguel del Padrón, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en las siguientes direcciones: 👉 Callejón Obrapia"
- },
  "78976": {
   "fecha": "2026-09-02T02:51:54+00:00",
   "tipo_llm": "otro",

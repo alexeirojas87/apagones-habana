@@ -1,13 +1,4 @@
 {
- "78932": {
-  "fecha": "2026-09-01T20:25:29+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "2074"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:07 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1219: Avenida "
- },
  "78935": {
   "fecha": "2026-09-01T20:35:36+00:00",
   "tipo_llm": "afectacion",
@@ -896,5 +887,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉MB920: Alturas de Boca Ciega, Santa M"
+ },
+ "80971": {
+  "fecha": "2026-09-08T20:05:49+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC11",
+   "GC13"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📉Consumidores de los municipios Guanabacoa, por EMERGENCIA en la GENERACIÓN NACIONAL se interrumpió la rotación de los circuitos : GC11 Y GC13.📉🚨"
  }
 }

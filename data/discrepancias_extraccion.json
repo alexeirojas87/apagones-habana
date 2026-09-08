@@ -1,13 +1,4 @@
 {
- "78765": {
-  "fecha": "2026-09-01T02:21:23+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Consumidores del municipio Boyeros se encuentra DISPARADO el CIRCUITO (2205) quedando afectado : 👉 Altahabana , Residencial Almendares . ⭕️⚡️"
- },
  "78781": {
   "fecha": "2026-09-01T04:58:27+00:00",
   "tipo_llm": "averia",

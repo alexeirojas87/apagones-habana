@@ -860,5 +860,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Cotorro , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉91 / 34 y 36 ,Delicias . 🛑⚡️"
+ },
+ "80876": {
+  "fecha": "2026-09-08T15:43:07+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡AVERÍAS SECUNDARIAS por TRANSFORMADOR DAÑADO en los municipios Guanabacoa - Regla : 👉San Antonio / Recio y Calzada Vieja 👉Frente a ISOTOPO Finca la Rada 👉Calz"
  }
 }

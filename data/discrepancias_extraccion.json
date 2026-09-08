@@ -887,5 +887,17 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 413 MW distribuidos en 115 circuitos de distribución. A continuación,"
+ },
+ "80714": {
+  "fecha": "2026-09-08T01:05:56+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣Informamos a los clientes de los municipios Plaza, Cerro y Centro Habana pertenecientes al circuito P327, que producto a un interruptor dañado se integraron la"
  }
 }

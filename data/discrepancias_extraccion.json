@@ -1087,5 +1087,24 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:54 pm quedó restablecido el servicio en los siguientes circuitos: 👉GC15:Reparto Chibás. 👉 GC18:Zona Franca de"
+ },
+ "81248": {
+  "fecha": "2026-09-09T18:19:53+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "MB910",
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF los siguientes circuitos: 👉 MB920:Alturas de Boca Ciega, Santa María del Ma"
+ },
+ "81246": {
+  "fecha": "2026-09-09T18:03:01+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1300"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨💥Subestación : Subestación Loma de Tierra :Avería por transformador dañado. 📌Afecta : 👉D1300 : La Purísima, Águila - Hatuey , La Magdalena. 👉D1305 : Santa Ana,"
  }
 }

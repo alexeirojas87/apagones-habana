@@ -1132,5 +1132,33 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP304,OP310.OP323,OP324,OP325,OP318,C"
+ },
+ "81269": {
+  "fecha": "2026-09-09T19:14:36+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1175",
+   "1246"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:56 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉1170:Calle 42 de"
+ },
+ "81264": {
+  "fecha": "2026-09-09T19:04:24+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "L323"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:47 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1217: Reparto V"
+ },
+ "81263": {
+  "fecha": "2026-09-09T19:03:22+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H466"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio 10 de Octubre, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Fábrica e/ Herrera y compromiso.🛑⚡️"
  }
 }

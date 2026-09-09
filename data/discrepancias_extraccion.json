@@ -1,15 +1,4 @@
 {
- "79069": {
-  "fecha": "2026-09-02T15:38:48+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚧⚡️Consumidores de los municipios Plaza y Cerro, se autoriza VÍA LIBRE DE EMERGENCIA por MANTENIMIENTO en el siguiente circuito: 👉P325: Desagüe desde Infanta ha"
- },
  "79106": {
   "fecha": "2026-09-02T18:33:05+00:00",
   "tipo_llm": "otro",
@@ -1043,5 +1032,24 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:33 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉C14:Washinton desd"
+ },
+ "81216": {
+  "fecha": "2026-09-09T15:34:10+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "MB910",
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF los siguientes circuitos: 👉 MB920:Alturas de Boca Ciega, Santa María del Ma"
+ },
+ "81215": {
+  "fecha": "2026-09-09T15:34:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [],
+  "solo_regex": [
+   "PZ19"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:40 am quedó restablecido el servicio en el siguiente circuito: 👉PZ19:21 desde 2 hasta K, J desde 21 hasta 19,"
  }
 }

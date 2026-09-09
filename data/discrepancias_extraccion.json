@@ -8,17 +8,6 @@
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 471 MW distribuidos en 143 circuitos de distribución. A continuación,"
  },
- "79138": {
-  "fecha": "2026-09-02T19:58:21+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅🟢Consumidores de los municipios Plaza y Cerro, quedó restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, Ayestarán"
- },
  "79198": {
   "fecha": "2026-09-03T00:05:37+00:00",
   "tipo_llm": "averia",
@@ -1160,5 +1149,34 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio 10 de Octubre, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Fábrica e/ Herrera y compromiso.🛑⚡️"
+ },
+ "81285": {
+  "fecha": "2026-09-09T20:00:14+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:56 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R456:Alrededores"
+ },
+ "81280": {
+  "fecha": "2026-09-09T19:49:57+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P314",
+   "PZ13"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:36 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 OP321:Alrededores "
+ },
+ "81279": {
+  "fecha": "2026-09-09T19:48:12+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC12",
+   "GC7"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:36 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉GC14:Guiteras, Bahí"
  }
 }

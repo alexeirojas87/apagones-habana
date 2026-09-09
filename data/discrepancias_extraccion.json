@@ -909,5 +909,14 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías pendientes pertenecientes a los municipios: 📍Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 🚨💥Subestación : ✔️Municipio : Coto"
+ },
+ "81097": {
+  "fecha": "2026-09-09T04:08:56+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Boyeros pertenecientes al circuito 2205, se ha transferido temporalmente una parte de la carga al circuito A960 y la o"
  }
 }

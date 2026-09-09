@@ -1,13 +1,4 @@
 {
- "79018": {
-  "fecha": "2026-09-02T10:49:19+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "AL53"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑🚧 Informamos a los clientes pertenecientes al municipio de Habana del Este que se encuentran afectados por Disparo por DAF AL53 :Zonas: 1, 2, 3, 5, 24, 8, 7."
- },
  "79069": {
   "fecha": "2026-09-02T15:38:48+00:00",
   "tipo_llm": "afectacion",
@@ -911,5 +902,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 06:19 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerr"
+ },
+ "81126": {
+  "fecha": "2026-09-09T10:35:59+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SR830"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio San Miguel del Padrón,por AVERÍA SECUNDARIA de TRANSFORMADOR DAÑADO se afecta el servicio eléctrico en: 👉 1ra / Ave 1ra y 2da , De"
  }
 }

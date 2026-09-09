@@ -1078,5 +1078,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:32 pm quedó restablecido el servicio en los siguientes circuitos: 👉 A1516:Casa Blanca, carretera del Asilo. -"
+ },
+ "81235": {
+  "fecha": "2026-09-09T17:04:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC18"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:54 pm quedó restablecido el servicio en los siguientes circuitos: 👉GC15:Reparto Chibás. 👉 GC18:Zona Franca de"
  }
 }

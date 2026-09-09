@@ -1238,5 +1238,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 4:49 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1227: Calle 146"
+ },
+ "81316": {
+  "fecha": "2026-09-09T21:36:47+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC15",
+   "GC18"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R464:Alturas de"
  }
 }

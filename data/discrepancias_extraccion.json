@@ -911,5 +911,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio San Miguel del Padrón,por AVERÍA SECUNDARIA de TRANSFORMADOR DAÑADO se afecta el servicio eléctrico en: 👉 1ra / Ave 1ra y 2da , De"
+ },
+ "81162": {
+  "fecha": "2026-09-09T13:19:20+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PG920"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 08:55 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG930: Repartos"
  }
 }

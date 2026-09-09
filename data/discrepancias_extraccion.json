@@ -1178,5 +1178,35 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 3:36 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉GC14:Guiteras, Bahí"
+ },
+ "81302": {
+  "fecha": "2026-09-09T20:29:51+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1160"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:10 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1218:Cuadrante"
+ },
+ "81293": {
+  "fecha": "2026-09-09T20:14:51+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:50 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 CPP17:Alrededores "
+ },
+ "81291": {
+  "fecha": "2026-09-09T20:12:55+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF los siguientes circuitos: 👉MB920:Alturas de Boca Ciega, Santa María del Mar"
  }
 }

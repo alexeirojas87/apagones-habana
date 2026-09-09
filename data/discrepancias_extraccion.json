@@ -1051,5 +1051,14 @@
    "PZ19"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 10:40 am quedó restablecido el servicio en el siguiente circuito: 👉PZ19:21 desde 2 hasta K, J desde 21 hasta 19,"
+ },
+ "81229": {
+  "fecha": "2026-09-09T16:11:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ1"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:07 am quedó restablecido el servicio en el siguiente circuito: 👉PZ4: 27, 2 hasta B, B desde 27 hasta 21, 21 d"
  }
 }

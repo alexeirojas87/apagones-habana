@@ -901,5 +901,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅⚡️Consumidores del municipio 10 de Octubre, se restableció la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Fábrica e/ Compromiso y Herrera.✅⚡️"
+ },
+ "81062": {
+  "fecha": "2026-09-09T01:10:57+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Boyeros, por trabajos operativos se afecta el servicio eléctrico en los siguientes circuitos: 👉A820: Repartos 250, Miraflores Viejo"
  }
 }

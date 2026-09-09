@@ -892,5 +892,14 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 06:04 PM queda restablecido el servicio en los siguientes circuitos: 👉CPP20: Alrededores de calles Ensenada de A"
+ },
+ "81056": {
+  "fecha": "2026-09-09T00:27:36+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H466"
+  ],
+  "solo_regex": [],
+  "extracto": "✅⚡️Consumidores del municipio 10 de Octubre, se restableció la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Fábrica e/ Compromiso y Herrera.✅⚡️"
  }
 }

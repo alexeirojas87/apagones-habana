@@ -1060,5 +1060,23 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:07 am quedó restablecido el servicio en el siguiente circuito: 👉PZ4: 27, 2 hasta B, B desde 27 hasta 21, 21 d"
+ },
+ "81233": {
+  "fecha": "2026-09-09T16:59:46+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PG920"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:51 pm quedó restablecido el servicio en los siguientes circuitos: 👉 PG930:Repartos: Averoff, El Retiro, El Ca"
+ },
+ "81231": {
+  "fecha": "2026-09-09T16:43:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1425"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:32 pm quedó restablecido el servicio en los siguientes circuitos: 👉 A1516:Casa Blanca, carretera del Asilo. -"
  }
 }

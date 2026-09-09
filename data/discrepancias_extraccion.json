@@ -985,5 +985,33 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅ Informamos a la población que a partir de las 09:49 AM queda restablecido el servicio en los siguientes circuitos: 👉GC7:Cojimar calle 80 desde 1era hasta 7ma"
+ },
+ "81198": {
+  "fecha": "2026-09-09T14:41:37+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR830"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R454:Repartos "
+ },
+ "81194": {
+  "fecha": "2026-09-09T14:38:43+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL53"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC18:Zona Fran"
+ },
+ "81164": {
+  "fecha": "2026-09-09T13:31:13+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425",
+   "D1140"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 AM se afectan 147 MW distribuidos en 46 circuitos de distribución. A continuación, "
  }
 }

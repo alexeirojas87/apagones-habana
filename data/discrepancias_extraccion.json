@@ -920,5 +920,32 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 08:55 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG930: Repartos"
+ },
+ "81176": {
+  "fecha": "2026-09-09T13:59:27+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 09:28 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz9: 👉Pz7: Cuad"
+ },
+ "81171": {
+  "fecha": "2026-09-09T13:46:35+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1242"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅ Informamos a la población que a partir de las 08:55 AM queda restablecido el servicio en los siguientes circuitos: 👉2075: Calle 250 desde avenida 51 hasta ca"
+ },
+ "81170": {
+  "fecha": "2026-09-09T13:43:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "L316"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅ Informamos a la población que a partir de las 08:54 AM queda restablecido el servicio en los siguientes circuitos: 👉L322:Cuadrante de avenida 3raA desde call"
  }
 }

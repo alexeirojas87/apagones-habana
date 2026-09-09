@@ -1,14 +1,4 @@
 {
- "78976": {
-  "fecha": "2026-09-02T02:51:54+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "D1372",
-   "D1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Boyeros pertenecientes al circuito D1372, que se ha transferido temporalmente la carga al circuito D1380 la zona de: 👉"
- },
  "78991": {
   "fecha": "2026-09-02T05:27:07+00:00",
   "tipo_llm": "restablecimiento",
@@ -910,5 +900,14 @@
   ],
   "solo_regex": [],
   "extracto": "‼️Consumidores del municipio Boyeros, por trabajos operativos se afecta el servicio eléctrico en los siguientes circuitos: 👉A820: Repartos 250, Miraflores Viejo"
+ },
+ "81082": {
+  "fecha": "2026-09-09T02:58:30+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1300"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías pendientes pertenecientes a los municipios: 📍Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 🚨💥Subestación : ✔️Municipio : Coto"
  }
 }

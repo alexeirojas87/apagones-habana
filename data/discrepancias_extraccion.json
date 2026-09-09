@@ -1013,5 +1013,35 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 AM se afectan 147 MW distribuidos en 46 circuitos de distribución. A continuación, "
+ },
+ "81211": {
+  "fecha": "2026-09-09T15:17:08+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:25 am queda restablecido el servicio eléctrico en el siguiente circuito: 👉 CPP17: Alrededores de calles Puert"
+ },
+ "81208": {
+  "fecha": "2026-09-09T15:11:34+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1856"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:40 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉D1280:Repartos "
+ },
+ "81205": {
+  "fecha": "2026-09-09T15:11:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P15"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:33 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉C14:Washinton desd"
  }
 }

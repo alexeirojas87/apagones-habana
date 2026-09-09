@@ -947,5 +947,43 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅ Informamos a la población que a partir de las 08:54 AM queda restablecido el servicio en los siguientes circuitos: 👉L322:Cuadrante de avenida 3raA desde call"
+ },
+ "81189": {
+  "fecha": "2026-09-09T14:27:44+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:16 am queda restablecido el servicio eléctrico en el siguiente circuito: 👉 AL 56:Zonas: 13; 15; 16; 17; 18; 2"
+ },
+ "81183": {
+  "fecha": "2026-09-09T14:15:06+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "MB910",
+   "MB920",
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF los siguientes circuitos: 👉 AL55:Zonas: 12; 13; 14; 19; 20; 21; 23; 24 y 25"
+ },
+ "81181": {
+  "fecha": "2026-09-09T14:06:12+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ4"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 09:37 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz24: Hospitale"
+ },
+ "81180": {
+  "fecha": "2026-09-09T14:05:56+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC14"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅ Informamos a la población que a partir de las 09:49 AM queda restablecido el servicio en los siguientes circuitos: 👉GC7:Cojimar calle 80 desde 1era hasta 7ma"
  }
 }

@@ -1229,5 +1229,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R464:Alturas de"
+ },
+ "81341": {
+  "fecha": "2026-09-10T00:00:58+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL53"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:27 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR830:Reparto D"
  }
 }

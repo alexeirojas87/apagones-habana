@@ -1305,5 +1305,33 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio 10 de Octubre, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: Fábrica e/ Herrera y Compromi"
+ },
+ "81538": {
+  "fecha": "2026-09-10T16:55:59+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A940"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 221 e/ 206 y 227, Fontanar.⚡️🚧"
+ },
+ "81535": {
+  "fecha": "2026-09-10T16:46:22+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Guanabacoa, por Averías Secundarias por Transformador dañado se afecta el servicio eléctrico en las siguientes direcciones: 👉San A"
+ },
+ "81527": {
+  "fecha": "2026-09-10T16:34:06+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1243",
+   "A318"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Cotorro, por Averías Secundarias por Transformador dañado se afecta el servicio eléctrico en las siguientes direcciones: 👉20 entre"
  }
 }

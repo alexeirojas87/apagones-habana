@@ -1254,5 +1254,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 05:50 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC7:Cojimar ca"
+ },
+ "81460": {
+  "fecha": "2026-09-10T12:59:53+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 08:55 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerr"
  }
 }

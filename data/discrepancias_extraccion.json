@@ -1352,5 +1352,14 @@
    "OP325"
   ],
   "extracto": "📣 ‼️Consumidores del municipio Plaza, por DISPARO DEL CIRCUITO se afecta el servicio eléctrico en los siguientes circuitos: 👉P314: Alrededores de calles Xifre d"
+ },
+ "81615": {
+  "fecha": "2026-09-10T22:37:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Cotorro, queda repara la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección: 1"
  }
 }

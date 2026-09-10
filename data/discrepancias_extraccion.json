@@ -1284,5 +1284,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 09:35 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz9:Alrededores"
+ },
+ "81509": {
+  "fecha": "2026-09-10T15:58:47+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 11:57 am queda restablecido el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Pu"
  }
 }

@@ -1,13 +1,4 @@
 {
- "79468": {
-  "fecha": "2026-09-03T23:13:14+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H343"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚠️Consumidores del municipio San Miguel del Padrón, fue restablecido el servicio eléctrico en el circuito H343: Seccionalizando en las calles 15 entre 4ta y Av"
- },
  "79484": {
   "fecha": "2026-09-04T00:07:34+00:00",
   "tipo_llm": "averia",
@@ -1361,5 +1352,28 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Cotorro, queda repara la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección: 1"
+ },
+ "81633": {
+  "fecha": "2026-09-10T23:16:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:15 PM se afectó el servicio eléctrico en el siguiente circuito: 👉 P325: Desagüe desde Infanta hasta Ayestarán"
+ },
+ "81631": {
+  "fecha": "2026-09-10T23:14:20+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:13 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerr"
  }
 }

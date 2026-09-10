@@ -1,13 +1,4 @@
 {
- "79222": {
-  "fecha": "2026-09-03T02:24:17+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C10"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: Avenida la Ceiba, esquina Avenida del Este. 🛑⚡️"
- },
  "79230": {
   "fecha": "2026-09-03T04:00:48+00:00",
   "tipo_llm": "afectacion",
@@ -1228,5 +1219,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 07:35 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL57:Colina Vi"
+ },
+ "81365": {
+  "fecha": "2026-09-10T02:24:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ15"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 9:39PM queda restablecido el servicio en los siguientes circuitos: 👉PZ1: Cuadrantes calle Línea hasta calle 27 y"
  }
 }

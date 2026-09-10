@@ -17,16 +17,6 @@
   "solo_regex": [],
   "extracto": "📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes a la Subestación Apolo que se autoriza una Vía Libre por Emergencia para trabajar en la a"
  },
- "79456": {
-  "fecha": "2026-09-03T22:23:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D632",
-   "D633"
-  ],
-  "solo_regex": [],
-  "extracto": "📉✅Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que a causa de la avería por puente primar"
- },
  "79506": {
   "fecha": "2026-09-04T02:38:05+00:00",
   "tipo_llm": "afectacion",
@@ -1333,5 +1323,34 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Cotorro, por Averías Secundarias por Transformador dañado se afecta el servicio eléctrico en las siguientes direcciones: 👉20 entre"
+ },
+ "81613": {
+  "fecha": "2026-09-10T22:29:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del Municipio Centro Habana DISPARO DEL CIRCUITO , se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉CPP17: Alrededores de"
+ },
+ "81611": {
+  "fecha": "2026-09-10T22:22:48+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 261 MW distribuidos en 66 circuitos de distribución. A continuación, "
+ },
+ "81610": {
+  "fecha": "2026-09-10T22:22:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣 ‼️Consumidores del municipio Plaza, por DISPARO DEL CIRCUITO se afecta el servicio eléctrico en los siguientes circuitos: 👉P314: Alrededores de calles Xifre d"
  }
 }

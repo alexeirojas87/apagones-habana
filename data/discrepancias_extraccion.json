@@ -1296,5 +1296,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:57 am queda restablecido el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Pu"
+ },
+ "81521": {
+  "fecha": "2026-09-10T16:25:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H466"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio 10 de Octubre, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: Fábrica e/ Herrera y Compromi"
  }
 }

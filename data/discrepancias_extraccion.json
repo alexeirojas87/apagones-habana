@@ -1,13 +1,4 @@
 {
- "79198": {
-  "fecha": "2026-09-03T00:05:37+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1160"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 6 / 1ra y 3ra. 🛑⚡️"
- },
  "79222": {
   "fecha": "2026-09-03T02:24:17+00:00",
   "tipo_llm": "averia",
@@ -1238,5 +1229,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 07:27 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR830:Reparto D"
+ },
+ "81342": {
+  "fecha": "2026-09-10T00:02:28+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL52"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:35 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL57:Colina Vi"
  }
 }

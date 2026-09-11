@@ -1,13 +1,4 @@
 {
- "79691": {
-  "fecha": "2026-09-04T17:48:05+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP306"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Plaza, queda reparada la avería secundaria por TRANSFORMADOR DAÑADO que afectaba el servicio eléctrico en la siguiente dirección: Ba"
- },
  "79754": {
   "fecha": "2026-09-04T19:56:09+00:00",
   "tipo_llm": "otro",

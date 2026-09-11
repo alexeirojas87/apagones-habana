@@ -1437,5 +1437,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 07:47 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP307: Soterrado Habana Vieja. 👉"
+ },
+ "81773": {
+  "fecha": "2026-09-11T13:02:49+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 203 MW distribuidos en 65 circuitos de distribución. A continuación, "
  }
 }

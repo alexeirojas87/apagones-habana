@@ -28,16 +28,6 @@
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito C15, se ha transferido temporalmente la carga al circuito C16 del siguiente cuadrante"
  },
- "79617": {
-  "fecha": "2026-09-04T14:15:34+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "1245",
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito 1245, que se ha transferido temporalmente la carga al circuito PZ7 del siguiente cuad"
- },
  "79754": {
   "fecha": "2026-09-04T19:56:09+00:00",
   "tipo_llm": "otro",
@@ -1446,5 +1436,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 203 MW distribuidos en 65 circuitos de distribución. A continuación, "
+ },
+ "81809": {
+  "fecha": "2026-09-11T14:11:37+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "M1603"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Cotorro, se localiza avería secundaria por transformador dañado en las calles Tenería entre Final y 1ro de Mayo.🚨"
  }
 }

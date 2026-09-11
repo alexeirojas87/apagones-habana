@@ -1,13 +1,4 @@
 {
- "79518": {
-  "fecha": "2026-09-04T03:29:48+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1851"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Marianao, se localiza avería secundaria por transformador dañado en las calles 33B entre 140 y 142, Zamora🚨"
- },
  "79685": {
   "fecha": "2026-09-04T17:18:44+00:00",
   "tipo_llm": "afectacion",

@@ -1,13 +1,4 @@
 {
- "79771": {
-  "fecha": "2026-09-04T20:37:41+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H443"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨⚡ Consumidores del municipio San Miguel del Padrón se detectó una AVERÍA PRIMARIA afectando en el Circuito H443 el siguiente cuadrante : 👉Callejón D y Blumer R"
- },
  "79802": {
   "fecha": "2026-09-04T23:30:35+00:00",
   "tipo_llm": "averia",
@@ -1428,5 +1419,16 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 4:10 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325: Desagüe de"
+ },
+ "81914": {
+  "fecha": "2026-09-11T20:45:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "H341",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408, C8 Y H341✅"
  }
 }

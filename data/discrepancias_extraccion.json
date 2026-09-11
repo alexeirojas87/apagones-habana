@@ -19,15 +19,6 @@
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Plaza, queda reparada la avería secundaria por TRANSFORMADOR DAÑADO que afectaba el servicio eléctrico en la siguiente dirección: Ba"
  },
- "79626": {
-  "fecha": "2026-09-04T14:34:47+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "C16"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito C15, se ha transferido temporalmente la carga al circuito C16 del siguiente cuadrante"
- },
  "79754": {
   "fecha": "2026-09-04T19:56:09+00:00",
   "tipo_llm": "otro",

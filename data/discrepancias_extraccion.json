@@ -1,13 +1,4 @@
 {
- "79484": {
-  "fecha": "2026-09-04T00:07:34+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D632"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes a la Subestación Apolo que se autoriza una Vía Libre por Emergencia para trabajar en la a"
- },
  "79506": {
   "fecha": "2026-09-04T02:38:05+00:00",
   "tipo_llm": "afectacion",
@@ -1375,5 +1366,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 07:13 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerr"
+ },
+ "81655": {
+  "fecha": "2026-09-11T00:04:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Guanabacoa, queda repara la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección"
+ },
+ "81652": {
+  "fecha": "2026-09-11T00:01:47+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PG940"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚡️Consumidores del municipio Arroyo Naranjo, se localiza AVERÍA por PRIMARIO PARTIDO en: Cantera e/ Rosario y Final, Guinera.⚡️🚧"
  }
 }

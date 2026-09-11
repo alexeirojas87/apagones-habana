@@ -1430,5 +1430,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408, C8 Y H341✅"
+ },
+ "81920": {
+  "fecha": "2026-09-11T21:18:27+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Arroyo Naranjo, se han localizado averías secundarias por transformadores dañados en las siguientes direcciones: 👉B entre 4ta y 4taA"
  }
 }

@@ -1425,5 +1425,16 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:31pm quedó restablecido el servicio en los siguientes circuitos: 👉D:1125 Reparto Guiteras. 👉A1695: Reparto El"
+ },
+ "81879": {
+  "fecha": "2026-09-11T19:21:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "H341",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408, C8 Y H341✅"
  }
 }

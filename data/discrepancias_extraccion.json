@@ -1417,5 +1417,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408, C8 Y H341✅"
+ },
+ "81901": {
+  "fecha": "2026-09-11T20:15:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 4:10 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325: Desagüe de"
  }
 }

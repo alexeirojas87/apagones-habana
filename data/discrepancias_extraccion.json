@@ -1,15 +1,4 @@
 {
- "79685": {
-  "fecha": "2026-09-04T17:18:44+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:53 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325: Desagüe d"
- },
  "79691": {
   "fecha": "2026-09-04T17:48:05+00:00",
   "tipo_llm": "restablecimiento",
@@ -1436,5 +1425,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Cotorro, se localiza avería secundaria por transformador dañado en las calles Tenería entre Final y 1ro de Mayo.🚨"
+ },
+ "81857": {
+  "fecha": "2026-09-11T17:24:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1125"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:31pm quedó restablecido el servicio en los siguientes circuitos: 👉D:1125 Reparto Guiteras. 👉A1695: Reparto El"
  }
 }

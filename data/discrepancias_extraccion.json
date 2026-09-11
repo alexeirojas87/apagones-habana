@@ -49,15 +49,6 @@
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 6:37AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Aye"
  },
- "79537": {
-  "fecha": "2026-09-04T05:08:43+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "GC12"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Habana del Este, se localiza avería secundaria por transformador dañado en la calle Real entre 30 y 31. Cojímar🚨"
- },
  "79754": {
   "fecha": "2026-09-04T19:56:09+00:00",
   "tipo_llm": "otro",

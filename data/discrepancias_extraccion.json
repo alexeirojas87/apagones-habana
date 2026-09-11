@@ -1400,5 +1400,23 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 05:46 AM quedó restablecido el servicio en los siguientes circuitos: 👉 2202: Alrededores de calles Callejón de L"
+ },
+ "81733": {
+  "fecha": "2026-09-11T10:19:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 151 MW distribuidos en 51 circuitos de distribución. A continuación, "
+ },
+ "81728": {
+  "fecha": "2026-09-11T10:05:30+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "⚠️⚡️Informamos a los clientes de los municipios 10 de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, la rotación se efectuó de la siguiente man"
  }
 }

@@ -1384,5 +1384,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚡️Consumidores del municipio Arroyo Naranjo, se localiza AVERÍA por PRIMARIO PARTIDO en: Cantera e/ Rosario y Final, Guinera.⚡️🚧"
+ },
+ "81666": {
+  "fecha": "2026-09-11T01:00:42+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 552 MW distribuidos en 154 circuitos de distribución. A continuación,"
  }
 }

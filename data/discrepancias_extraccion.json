@@ -1416,5 +1416,26 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Cotorro, queda repara la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección: C"
+ },
+ "81751": {
+  "fecha": "2026-09-11T11:54:02+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores de municipio Regla, se localiza avería secundaria por transformador dañado en las calles Anillo del Puerto y Base Logística, Antiguo Campamento de"
+ },
+ "81749": {
+  "fecha": "2026-09-11T11:48:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 07:47 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP307: Soterrado Habana Vieja. 👉"
  }
 }

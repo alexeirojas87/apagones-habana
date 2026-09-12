@@ -1,13 +1,4 @@
 {
- "79986": {
-  "fecha": "2026-09-05T16:36:03+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "AL56"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Playa , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉78 e/ 15 y 17.🛑⚡️"
- },
  "79996": {
   "fecha": "2026-09-05T17:14:09+00:00",
   "tipo_llm": "averia",
@@ -1376,5 +1367,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️ Consumidores del municipio Boyeros, se encuentran afectados por AVERÍA SECUNDARIA DE TRANSFORMADOR DAÑADO en las siguientes direcciones: 👉Calle 180 entre 41"
+ },
+ "82168": {
+  "fecha": "2026-09-12T16:55:51+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑💥 Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉Palmar / Chaple y Suzarte.💥🛑"
  }
 }

@@ -1,13 +1,4 @@
 {
- "79850": {
-  "fecha": "2026-09-05T02:40:13+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "MB950"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB920: Alturas de Boca Ci"
- },
  "79929": {
   "fecha": "2026-09-05T13:01:04+00:00",
   "tipo_llm": "afectacion",

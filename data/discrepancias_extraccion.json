@@ -1393,5 +1393,35 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Boyeros, por DISPARO DEL CIRCUITO se afecta el servicio eléctrico en : 👉A820: Repartos 250, Miraflores Viejo, Embil, Altura de Emb"
+ },
+ "82222": {
+  "fecha": "2026-09-12T19:18:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️✅Consumidores del municipio Boyeros, se restableció el DISPARO DE CIRCUITO que afectaba el servicio eléctrico en : 👉A820: Repartos 250, Miraflores Viejo, Embi"
+ },
+ "82220": {
+  "fecha": "2026-09-12T19:16:40+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1465",
+   "A708"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías Secundarias por Transformadores Dañados existentes hasta el momento en los siguientes municipios: 📌Boyeros: 👉Calle 2da entre Embil y Pasaje B. 👉Calle 6"
+ },
+ "82217": {
+  "fecha": "2026-09-12T19:13:04+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 02:59 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta A"
  }
 }

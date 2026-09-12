@@ -1,15 +1,4 @@
 {
- "79978": {
-  "fecha": "2026-09-05T15:41:54+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "MB910",
-   "MB920",
-   "MB950"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo Automático por Frecuencia ( DAF) en los siguientes circuitos: 👉 H343:Reparto Martín"
- },
  "79982": {
   "fecha": "2026-09-05T16:25:00+00:00",
   "tipo_llm": "afectacion",

@@ -1367,5 +1367,45 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Playa y Marianao, se detectó una AVERÍA PRIMARIA en 120 y 15 que afecta el servicio en : 👉Zamora y Ampliación de Ciudad Libertad.🛑"
+ },
+ "82201": {
+  "fecha": "2026-09-12T18:27:55+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de la 01:42 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 P325: Desagüe desd"
+ },
+ "82200": {
+  "fecha": "2026-09-12T18:23:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408 Y H341✅"
+ },
+ "82197": {
+  "fecha": "2026-09-12T18:20:10+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:00 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos : 👉 CPP17: Alrede"
+ },
+ "82185": {
+  "fecha": "2026-09-12T18:03:22+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP306"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento en San Miguel del Padrón 🚨Averìas Secundarias por Transformador Dañado: 👉Dirección: Calzada de San Miguel y 8va. 👉Dirección"
  }
 }

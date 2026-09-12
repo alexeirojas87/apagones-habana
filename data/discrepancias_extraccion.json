@@ -1,22 +1,4 @@
 {
- "79996": {
-  "fecha": "2026-09-05T17:14:09+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2210"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Cerro , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉 Camagüey / Callejón de los Perros y Pastora.🛑⚡️"
- },
- "79993": {
-  "fecha": "2026-09-05T17:08:15+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP306"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Plaza , se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Basarrate / Neptuno y San Miguel.🛑⚡️"
- },
  "80014": {
   "fecha": "2026-09-05T18:44:31+00:00",
   "tipo_llm": "afectacion",
@@ -1376,5 +1358,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑💥 Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉Palmar / Chaple y Suzarte.💥🛑"
+ },
+ "82174": {
+  "fecha": "2026-09-12T17:16:04+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1851"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa y Marianao, se detectó una AVERÍA PRIMARIA en 120 y 15 que afecta el servicio en : 👉Zamora y Ampliación de Ciudad Libertad.🛑"
  }
 }

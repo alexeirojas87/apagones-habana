@@ -1404,5 +1404,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
+ },
+ "82295": {
+  "fecha": "2026-09-12T22:17:16+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "123"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉123 entre 100 y 100 C.🛑⚡️"
  }
 }

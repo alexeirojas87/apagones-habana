@@ -32,15 +32,6 @@
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:17 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉A940: Reparto Font"
  },
- "79960": {
-  "fecha": "2026-09-05T14:32:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1125"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:18 AM queda restablecido el servicio en los siguientes circuitos: 👉PG920: Repartos: Ciudad Jardín y Parcelaci"
- },
  "79978": {
   "fecha": "2026-09-05T15:41:54+00:00",
   "tipo_llm": "daf",
@@ -1438,5 +1429,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡ Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA que afecta el servicio eléctrico en: 👉Palmar / Chaple y Suzarte.⚡🛑"
+ },
+ "82125": {
+  "fecha": "2026-09-12T14:20:16+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A708"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️ Consumidores del municipio Boyeros, se encuentran afectados por AVERÍA SECUNDARIA DE TRANSFORMADOR DAÑADO en las siguientes direcciones: 👉Calle 180 entre 41"
  }
 }

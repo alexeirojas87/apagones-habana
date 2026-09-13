@@ -1368,5 +1368,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio San Miguel del Padrón, queda reparada la Avería Secundaria que afectaba la siguiente dirección: 👉 Carolina y San José.✅"
+ },
+ "82476": {
+  "fecha": "2026-09-13T21:57:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL53",
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:49 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉.🚨📣AL53: Zonas 1"
  }
 }

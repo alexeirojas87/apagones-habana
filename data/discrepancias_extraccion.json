@@ -1,15 +1,4 @@
 {
- "80277": {
-  "fecha": "2026-09-06T18:48:13+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:45 pm se afectó el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles San Benigno hast"
- },
  "80280": {
   "fecha": "2026-09-06T19:05:37+00:00",
   "tipo_llm": "afectacion",

@@ -1409,5 +1409,16 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 01:10 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Pu"
+ },
+ "82383": {
+  "fecha": "2026-09-13T05:33:46+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:50 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 P325: Desagüe des"
  }
 }

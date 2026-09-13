@@ -1,13 +1,4 @@
 {
- "80238": {
-  "fecha": "2026-09-06T16:39:51+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [],
-  "solo_regex": [
-   "PZ13"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:26 PM queda restablecido el servicio en el siguiente circuito: 👉Pz13: Zapata desde Carlos Manuel de Céspedes "
- },
  "80277": {
   "fecha": "2026-09-06T18:48:13+00:00",
   "tipo_llm": "afectacion",

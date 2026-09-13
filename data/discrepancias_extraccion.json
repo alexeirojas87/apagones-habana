@@ -54,15 +54,6 @@
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 1:43 AM queda restablecido el servicio en el siguiente circuito: 👉PZ4:27, 2 hasta B, B desde 27 hasta 21, 21 des"
  },
- "80095": {
-  "fecha": "2026-09-06T04:26:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1520"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:15 AM queda restablecido el servicio en el siguiente circuito: 👉A 1520 :Revoledo, Vista Alegre, La Prosperida"
- },
  "80176": {
   "fecha": "2026-09-06T13:16:00+00:00",
   "tipo_llm": "deficit",

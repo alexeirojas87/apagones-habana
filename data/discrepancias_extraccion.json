@@ -8,15 +8,6 @@
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 12:26 PM queda restablecido el servicio en el siguiente circuito: 👉Pz13: Zapata desde Carlos Manuel de Céspedes "
  },
- "80224": {
-  "fecha": "2026-09-06T16:10:31+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 315 MW distribuidos en 88 circuitos de distribución. A continuación, "
- },
  "80277": {
   "fecha": "2026-09-06T18:48:13+00:00",
   "tipo_llm": "afectacion",
@@ -1365,5 +1356,19 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 03:43 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta A"
+ },
+ "82425": {
+  "fecha": "2026-09-13T15:57:14+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP318",
+   "OP320",
+   "OP323",
+   "OP404",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentran afectado el servicio eléctrico en los siguientes circuitos: 👉OP304,OP320,OP323,OP411,"
  }
 }

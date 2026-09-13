@@ -63,15 +63,6 @@
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:15 AM queda restablecido el servicio en el siguiente circuito: 👉A 1520 :Revoledo, Vista Alegre, La Prosperida"
  },
- "80090": {
-  "fecha": "2026-09-06T03:44:59+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL55"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF).✅ 👉H343:Martín Pérez, Ciudamar, Carolina, Altura de Luy"
- },
  "80176": {
   "fecha": "2026-09-06T13:16:00+00:00",
   "tipo_llm": "deficit",

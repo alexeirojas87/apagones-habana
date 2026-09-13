@@ -1,13 +1,4 @@
 {
- "80280": {
-  "fecha": "2026-09-06T19:05:37+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1430"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 340 MW distribuidos en 100 circuitos de distribución. A continuación,"
- },
  "80294": {
   "fecha": "2026-09-06T20:02:44+00:00",
   "tipo_llm": "averia",
@@ -1359,5 +1350,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡ Consumidores del municipio Guanabacoa se detectó una Avería Primaria que afecta el servicio eléctrico en la siguiente dirección: 👉 Callejón las Flores y Líne"
+ },
+ "82448": {
+  "fecha": "2026-09-13T19:24:33+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "009"
+  ],
+  "solo_regex": [],
+  "extracto": "💥⚡️Consumidores del municipio Arroyo Naranjo por DISPARO DEL CIRCUITO por posible avería se afecta el servicio eléctrico en: 👉 A1006: Repartos Santa Amalia y Ba"
  }
 }

@@ -1,13 +1,4 @@
 {
- "80322": {
-  "fecha": "2026-09-06T22:09:09+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1430"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 429 MW distribuidos en 123 circuitos de distribución. A continuación,"
- },
  "80332": {
   "fecha": "2026-09-06T23:06:30+00:00",
   "tipo_llm": "averia",
@@ -1378,5 +1369,32 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:49 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉.🚨📣AL53: Zonas 1"
+ },
+ "82485": {
+  "fecha": "2026-09-13T22:17:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "MB920"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06: 18PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉.MB920: Alturas de"
+ },
+ "82479": {
+  "fecha": "2026-09-13T22:04:05+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR840"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:58 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R451: Calles Pe"
+ },
+ "82478": {
+  "fecha": "2026-09-13T22:01:17+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR830"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:50 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR 830: Reparto"
  }
 }

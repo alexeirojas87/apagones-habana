@@ -1361,5 +1361,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentran afectado el servicio eléctrico en los siguientes circuitos: 👉OP304,OP320,OP323,OP411,"
+ },
+ "82437": {
+  "fecha": "2026-09-13T18:01:58+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2210"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡ Consumidores del municipio Guanabacoa se detectó una Avería Primaria que afecta el servicio eléctrico en la siguiente dirección: 👉 Callejón las Flores y Líne"
  }
 }

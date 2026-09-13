@@ -1,13 +1,4 @@
 {
- "80294": {
-  "fecha": "2026-09-06T20:02:44+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Guanabacoa, se localizan Averías Secundarias por Transformador Dañado en las siguientes direcciones: 👉San Antonio entre Recio y Ca"
- },
  "80322": {
   "fecha": "2026-09-06T22:09:09+00:00",
   "tipo_llm": "deficit",

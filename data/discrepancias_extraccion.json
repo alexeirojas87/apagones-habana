@@ -17,25 +17,6 @@
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:14 AM se afectan 471MW distribuidos en 125 circuitos de distribución. A continuación, "
  },
- "80115": {
-  "fecha": "2026-09-06T07:01:00+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "AL55",
-   "MB920"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF los siguientes circuitos: 👉 MB910: Justi, Agromar, Bajurayabo, Campo Florid"
- },
- "80114": {
-  "fecha": "2026-09-06T06:54:26+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [],
-  "solo_regex": [
-   "PZ9"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 2:44 AM queda restablecido el servicio en los siguientes circuitos: 👉 PZ9:4 desde 35 hasta Hidalgo, Hidalgo hast"
- },
  "80176": {
   "fecha": "2026-09-06T13:16:00+00:00",
   "tipo_llm": "deficit",

@@ -1414,5 +1414,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 06:51 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos : 👉 CPP17: Alrede"
+ },
+ "82322": {
+  "fecha": "2026-09-12T23:44:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408 Y H341✅"
  }
 }

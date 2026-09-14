@@ -1500,5 +1500,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Regla, debido a una Avería por Primario Partido se afecta el servicio eléctrico en la siguiente dirección: Calixto García entre Ag"
+ },
+ "82704": {
+  "fecha": "2026-09-14T18:28:19+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1280"
+  ],
+  "solo_regex": [],
+  "extracto": "⚠️🚧Consumidores del municipio Marianao, se encuentran afectados por una VÍA LIBRE DE EMERGENCIA en la Subestación que afecta el servicio eléctrico en el siguien"
  }
 }

@@ -1460,5 +1460,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 23:05pm quedó restablecido el servicio en los siguientes circuitos: 👉CPP 20: Alrededores de calles Ensenada de A"
+ },
+ "82568": {
+  "fecha": "2026-09-14T04:27:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ15"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 00:21 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito : 👉PZ15: 35 desde 4 "
  }
 }

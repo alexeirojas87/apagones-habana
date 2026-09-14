@@ -1460,5 +1460,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 9: 09pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 Mb950: Ampliación "
+ },
+ "82557": {
+  "fecha": "2026-09-14T03:23:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP20",
+   "CPP8"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 23:05pm quedó restablecido el servicio en los siguientes circuitos: 👉CPP 20: Alrededores de calles Ensenada de A"
  }
 }

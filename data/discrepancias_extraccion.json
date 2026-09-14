@@ -1,15 +1,4 @@
 {
- "80631": {
-  "fecha": "2026-09-07T20:26:26+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:23PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325: Desagüe des"
- },
  "80661": {
   "fecha": "2026-09-07T22:01:06+00:00",
   "tipo_llm": "afectacion",

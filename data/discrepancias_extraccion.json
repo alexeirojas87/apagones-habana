@@ -1515,5 +1515,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚡️Consumidores del municipio Arroyo Naranjo, se detecta AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: Callejón Gutiérrez y Avenida de L"
+ },
+ "82748": {
+  "fecha": "2026-09-14T22:14:22+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 134 MW distribuidos en 32 circuitos de distribución. A continuación, "
  }
 }

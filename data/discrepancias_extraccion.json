@@ -1456,5 +1456,33 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 00:21 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito : 👉PZ15: 35 desde 4 "
+ },
+ "82593": {
+  "fecha": "2026-09-14T06:45:52+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:28AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos : 👉 CPP17: Alreded"
+ },
+ "82592": {
+  "fecha": "2026-09-14T06:39:00+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población, que a partir de las 02:10AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos : 👉.AL56 :Zonas 1"
+ },
+ "82590": {
+  "fecha": "2026-09-14T06:35:01+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "R451"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población, que a partir de las 02:10AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉.R451:Calles Perdo"
  }
 }

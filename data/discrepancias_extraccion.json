@@ -1506,5 +1506,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚡️Consumidores del municipio Cerro, se detectó AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: Tulipán entre Santa Catalina y Calzada del"
+ },
+ "82771": {
+  "fecha": "2026-09-14T22:56:43+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚡️Consumidores del municipio Arroyo Naranjo, se detecta AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: Callejón Gutiérrez y Avenida de L"
  }
 }

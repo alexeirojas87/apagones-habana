@@ -1,15 +1,4 @@
 {
- "80401": {
-  "fecha": "2026-09-07T03:33:50+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:30PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ay"
- },
  "80417": {
   "fecha": "2026-09-07T04:41:03+00:00",
   "tipo_llm": "afectacion",

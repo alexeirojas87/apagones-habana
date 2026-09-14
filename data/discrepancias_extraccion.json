@@ -1,14 +1,4 @@
 {
- "80661": {
-  "fecha": "2026-09-07T22:01:06+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2203",
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 330 MW distribuidos en 97 circuitos de distribución. A continuación, "
- },
  "80688": {
   "fecha": "2026-09-07T23:55:21+00:00",
   "tipo_llm": "averia",
@@ -1496,5 +1486,25 @@
    "A465"
   ],
   "extracto": "⚠️⚡️Informamos a los clientes de los municipios 10 de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, la rotación se efectuó de la siguiente man"
+ },
+ "82739": {
+  "fecha": "2026-09-14T21:56:47+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:55 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 P325: Desagüe des"
+ },
+ "82734": {
+  "fecha": "2026-09-14T21:34:35+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP402"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚡️Consumidores del municipio Cerro, se detectó AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: Tulipán entre Santa Catalina y Calzada del"
  }
 }

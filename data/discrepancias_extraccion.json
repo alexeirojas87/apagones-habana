@@ -1,14 +1,4 @@
 {
- "80471": {
-  "fecha": "2026-09-07T10:10:00+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 159 MW distribuidos en 50 circuitos de distribución. A continuación, "
- },
  "80499": {
   "fecha": "2026-09-07T12:46:19+00:00",
   "tipo_llm": "restablecimiento",
@@ -1484,5 +1474,24 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población, que a partir de las 02:10AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉.R451:Calles Perdo"
+ },
+ "82611": {
+  "fecha": "2026-09-14T10:29:54+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1372",
+   "D1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚠️ Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación: Afectando Calabazar( D1380 y D1372) 🚨Avería Secundaria: 💥10 d"
+ },
+ "82610": {
+  "fecha": "2026-09-14T10:15:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "GC11"
+  ],
+  "solo_regex": [],
+  "extracto": "⭕⚡Informamos a los clientes del municipio Guanabacoa que se encuentran afectados por un Disparo del Circuito en la siguiente. 👉GC11: Reparto. Garrido,Alrededore"
  }
 }

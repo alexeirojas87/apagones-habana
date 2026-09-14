@@ -1482,5 +1482,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Guanabacoa, debido a una Avería por Puente Primario Partido se afecta el servicio eléctrico en la siguiente dirección: Línea del F"
+ },
+ "82689": {
+  "fecha": "2026-09-14T17:31:12+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "249"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚡️Consumidores del municipio Boyeros, se detectó AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 249 e/ 136 y 134, Río Verde.⚡️🚧"
  }
 }

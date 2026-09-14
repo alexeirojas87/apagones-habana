@@ -1473,5 +1473,14 @@
   ],
   "solo_regex": [],
   "extracto": "⭕⚡Informamos a los clientes del municipio Guanabacoa que se encuentran afectados por un Disparo del Circuito en la siguiente. 👉GC11: Reparto. Garrido,Alrededore"
+ },
+ "82677": {
+  "fecha": "2026-09-14T16:10:16+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2210"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Guanabacoa, debido a una Avería por Puente Primario Partido se afecta el servicio eléctrico en la siguiente dirección: Línea del F"
  }
 }

@@ -1,13 +1,4 @@
 {
- "80688": {
-  "fecha": "2026-09-07T23:55:21+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP306"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Arroyo Naranjo, se ha localizado avería secundaria por transformador dañado en San Antonio José Miguel y Silvia🚨"
- },
  "80712": {
   "fecha": "2026-09-08T01:00:15+00:00",
   "tipo_llm": "afectacion",

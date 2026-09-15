@@ -1521,5 +1521,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP 304,OP424,OP318, OP323,OP424 ,OP41"
+ },
+ "83089": {
+  "fecha": "2026-09-15T18:19:15+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:18PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde "
  }
 }

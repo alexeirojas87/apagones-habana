@@ -1,22 +1,4 @@
 {
- "80892": {
-  "fecha": "2026-09-08T16:23:34+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉AL55: Zonas: 12; 13; 14; "
- },
- "80889": {
-  "fecha": "2026-09-08T16:16:18+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉AL55: Zonas: 12; 13; 14; 19; 20; 21; "
- },
  "80939": {
   "fecha": "2026-09-08T19:28:40+00:00",
   "tipo_llm": "restablecimiento",
@@ -1514,5 +1496,17 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 154 MW distribuidos en 48 circuitos de distribución. A continuación, "
+ },
+ "83017": {
+  "fecha": "2026-09-15T16:10:53+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1008",
+   "A1009",
+   "D633",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨⚡️🚨Informamos a los clientes de los municipios Arroyo Naranjo y Diez de Octubre pertenecientes a la Subestación Apolo que a raíz de modificaciones en los esque"
  }
 }

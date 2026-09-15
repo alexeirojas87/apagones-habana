@@ -1523,5 +1523,14 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 11:03 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta A"
+ },
+ "82854": {
+  "fecha": "2026-09-15T04:41:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC14"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:38 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC7: Cojimar ca"
  }
 }

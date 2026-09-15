@@ -1508,5 +1508,18 @@
   ],
   "solo_regex": [],
   "extracto": "🚨⚡️🚨Informamos a los clientes de los municipios Arroyo Naranjo y Diez de Octubre pertenecientes a la Subestación Apolo que a raíz de modificaciones en los esque"
+ },
+ "83040": {
+  "fecha": "2026-09-15T17:05:07+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP323",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP 304,OP424,OP318, OP323,OP424 ,OP41"
  }
 }

@@ -1,14 +1,4 @@
 {
- "80939": {
-  "fecha": "2026-09-08T19:28:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "S512",
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 03:24 PM queda restablecido el servicio en los siguientes circuitos: 👉A490: Delicias, Altura del Mirador del Die"
- },
  "80963": {
   "fecha": "2026-09-08T19:56:01+00:00",
   "tipo_llm": "afectacion",
@@ -37,15 +27,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉AL55: Zonas: 12; 13; 14; "
- },
- "80941": {
-  "fecha": "2026-09-08T19:32:01+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉MB920: Alturas de Boca Ciega, Santa M"
  },
  "80971": {
   "fecha": "2026-09-08T20:05:49+00:00",
@@ -1532,5 +1513,18 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 2:18PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde "
+ },
+ "83102": {
+  "fecha": "2026-09-15T19:12:11+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP320",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:06PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 304,OP424,OP31"
  }
 }

@@ -1,40 +1,4 @@
 {
- "81262": {
-  "fecha": "2026-09-09T19:00:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL52",
-   "AL57",
-   "R461",
-   "R466",
-   "SR840",
-   "SR860"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:45 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R451:Calles Perd"
- },
- "81259": {
-  "fecha": "2026-09-09T18:53:59+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P318"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:45 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉PZ5: 2 desde 27 has"
- },
- "81258": {
-  "fecha": "2026-09-09T18:47:10+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "OP304",
-   "OP318",
-   "OP323",
-   "OP324",
-   "OP325"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP304,OP310.OP323,OP324,OP325,OP318,C"
- },
  "81269": {
   "fecha": "2026-09-09T19:14:36+00:00",
   "tipo_llm": "afectacion",
@@ -1393,5 +1357,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: OP408 y H341"
+ },
+ "83315": {
+  "fecha": "2026-09-16T19:00:01+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "153",
+   "250",
+   "274"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔Averías existentes hasta el momento en los municipios Playa y Lisa : 🚨Averìas Secundarias por Transformador Dañado: 📌Lisa : 👉250 entre 37 y 39 👉69 entre 158 y "
  }
 }

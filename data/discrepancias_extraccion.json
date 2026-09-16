@@ -1,22 +1,4 @@
 {
- "81233": {
-  "fecha": "2026-09-09T16:59:46+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG920"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:51 pm quedó restablecido el servicio en los siguientes circuitos: 👉 PG930:Repartos: Averoff, El Retiro, El Ca"
- },
- "81231": {
-  "fecha": "2026-09-09T16:43:05+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1425"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:32 pm quedó restablecido el servicio en los siguientes circuitos: 👉 A1516:Casa Blanca, carretera del Asilo. -"
- },
  "81235": {
   "fecha": "2026-09-09T17:04:28+00:00",
   "tipo_llm": "restablecimiento",
@@ -1411,5 +1393,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP411, OP424🚧📉"
+ },
+ "83276": {
+  "fecha": "2026-09-16T16:44:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C7"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:40 PM quedó restablecido el servicio en el siguiente circuito: C7: Alrededores del cuadrante desde calles Fom"
  }
 }

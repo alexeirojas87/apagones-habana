@@ -1,23 +1,4 @@
 {
- "81216": {
-  "fecha": "2026-09-09T15:34:10+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "MB910",
-   "MB950"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF los siguientes circuitos: 👉 MB920:Alturas de Boca Ciega, Santa María del Ma"
- },
- "81215": {
-  "fecha": "2026-09-09T15:34:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [],
-  "solo_regex": [
-   "PZ19"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:40 am quedó restablecido el servicio en el siguiente circuito: 👉PZ19:21 desde 2 hasta K, J desde 21 hasta 19,"
- },
  "81229": {
   "fecha": "2026-09-09T16:11:45+00:00",
   "tipo_llm": "restablecimiento",
@@ -1421,5 +1402,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L316 que se encuentra transferida temporalmente la carga al circuito L325 en el "
+ },
+ "83270": {
+  "fecha": "2026-09-16T15:53:20+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 313 MW distribuidos en 113 circuitos de distribución. A continuación,"
+ },
+ "83265": {
+  "fecha": "2026-09-16T15:34:32+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP411, OP424🚧📉"
  }
 }

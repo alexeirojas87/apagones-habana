@@ -1,22 +1,4 @@
 {
- "81198": {
-  "fecha": "2026-09-09T14:41:37+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR830"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R454:Repartos "
- },
- "81194": {
-  "fecha": "2026-09-09T14:38:43+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL53"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC18:Zona Fran"
- },
  "81211": {
   "fecha": "2026-09-09T15:17:08+00:00",
   "tipo_llm": "restablecimiento",

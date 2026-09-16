@@ -8,7 +8,7 @@ API:
   identificar("AL56 - Zonas: 13...") -> (["AL56"], "Zonas: 13...")  # o ([], texto)
   casar_por_calles("Zonas: 13; 15 y Micro X") -> ("AL56", 0.83)     # o (None, 0)
   es_conocido("AL56") -> True (catálogo oficial o aprendido de Telegram)
-  canonico("581") -> "SF581" (alias aprendido resuelve al código canónico)
+  canonico("581") -> "SF581" (alias verificado a mano o aprendido)
 """
 
 import json
@@ -77,6 +77,7 @@ def _tokens(texto):
 
 _CATALOGO = None  # {codigo: tokens de calles} — se carga una vez
 _APRENDIDOS = None  # {codigo: registro} de data/circuitos_aprendidos.json (una vez)
+_ALIAS_MANUAL = None  # {truncado: canónico} de correcciones.json (una vez)
 
 
 def _aprendidos():
@@ -91,25 +92,42 @@ def _aprendidos():
     return _APRENDIDOS
 
 
+def _alias_manual():
+    """Alias verificados a mano (correcciones.json, sección circuitos_alias).
+    Best effort: sin sección o import fallido = sin alias manual."""
+    global _ALIAS_MANUAL
+    if _ALIAS_MANUAL is None:
+        try:
+            import correcciones
+            _ALIAS_MANUAL = {}
+            for k, v in (correcciones.circuitos_alias() or {}).items():
+                destino = (v or {}).get("alias_de") if isinstance(v, dict) else v
+                if destino:
+                    _ALIAS_MANUAL[str(k).strip().upper()] = str(destino).strip().upper()
+        except Exception:
+            _ALIAS_MANUAL = {}
+    return _ALIAS_MANUAL
+
+
 def recargar():
-    """Olvida las cachés de catálogo y aprendidos. build_circuitos la llama
-    después de que el aprendiz escribe el archivo, para que los códigos
+    """Olvida las cachés de catálogo, aprendidos y alias manuales. build_circuitos
+    la llama después de que el aprendiz escribe el archivo, para que los códigos
     promovidos en ESTA corrida cuenten ya como conocidos."""
-    global _CATALOGO, _APRENDIDOS
+    global _CATALOGO, _APRENDIDOS, _ALIAS_MANUAL
     _CATALOGO = None
     _APRENDIDOS = None
+    _ALIAS_MANUAL = None
 
 
 def canonico(codigo):
-    """Resuelve un alias aprendido hacia su código canónico. '581' (bare) ->
-    'SF581' si el aprendiz aprendió que son el mismo circuito. Un código que no
-    es alias se devuelve tal cual. La cadena de alias se sigue un máximo corto
-    de saltos para no loops si alguien edita el JSON a mano."""
-    ap = _aprendidos()
+    """Resuelve un alias hacia su código canónico: primero los verificados a
+    mano (correcciones.json, circuitos_alias: 'L53' -> 'AL53'), luego los
+    aprendidos (circuitos_aprendidos.json: '581' -> 'SF581'). Un código que no
+    es alias se devuelve tal cual. La cadena se sigue un máximo corto de saltos
+    para no loops si alguien edita el JSON a mano."""
     c = str(codigo or "").strip().upper()
     for _ in range(4):
-        reg = ap.get(c)
-        destino = (reg or {}).get("alias_de")
+        destino = _alias_manual().get(c) or (_aprendidos().get(c) or {}).get("alias_de")
         if not destino or destino == c:
             break
         c = destino

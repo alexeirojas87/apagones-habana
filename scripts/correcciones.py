@@ -58,6 +58,16 @@ def circuitos_municipio():
     return _cargar().get("circuitos_municipio", {})
 
 
+def circuitos_alias():
+    """Alias de códigos verificados a mano: CÓDIGO TRUNCADO -> {alias_de:
+    CANÓNICO, motivo}. La UNE a veces publica el código sin el prefijo de
+    subestación ('L53' por AL53, parte 77905); el aprendizaje automático
+    (aprende_circuitos.py) exige >= 3 posts y no cubre los one-offs.
+    canonico()/es_conocido() de circuitos_id.py los aplican con precedencia
+    sobre los alias aprendidos."""
+    return _cargar().get("circuitos_alias", {})
+
+
 def circuitos_falsos():
     """Códigos que NO son circuitos aunque parezcan (verdad local): p. ej. 'L2'
     es la CALLE L del Vedado leída como código. Se excluyen del catálogo."""

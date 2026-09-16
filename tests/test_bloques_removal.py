@@ -142,11 +142,16 @@ class S6MantencionTest(unittest.TestCase):
                        "scripts/build_barrios.py", "scripts/build_poligonos.py",
                        "scripts/build_lineas.py", "scripts/build_lineas_local.py",
                        "scripts/build_cuadrantes.py", "scripts/build_no_rota.py",
-                       "scripts/geocode_zonas.py", "scripts/build_mapa_bloques.py",
-                       "scripts/correcciones.py")
+                       "scripts/geocode_zonas.py", "scripts/build_mapa_bloques.py")
         if rc is None:
             self.skipTest("git no disponible")
         self.assertEqual(out.strip(), "", "constructores de zonas modificados")
+        # correcciones.py es el cargador de la verdad local de esos
+        # constructores: puede crecer con secciones nuevas verificadas a mano
+        # (p. ej. circuitos_alias), pero no puede dejar de leer la semilla.
+        src = (RAIZ / "scripts" / "correcciones.py").read_text(encoding="utf-8")
+        self.assertIn("bloques.json", src,
+                      "correcciones.py debe seguir leyendo data/bloques.json")
         for script in ("scripts/build_poligonos.py", "scripts/build_lineas_local.py"):
             src = (RAIZ / script).read_text(encoding="utf-8")
             self.assertIn("bloques.json", src, "%s debe seguir leyendo data/bloques.json" % script)

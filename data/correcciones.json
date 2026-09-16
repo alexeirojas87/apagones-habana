@@ -1,5 +1,14 @@
-{
+ {
  "_doc": "VERDAD LOCAL — correcciones sobre el PDF base (data/bloques.json). El PDF es solo la semilla; este archivo y bloques_aprendidos.json (aprendido del canal) tienen prioridad. Ante discrepancia PDF vs realidad, gana la realidad. Cada sección la consume un script vía scripts/correcciones.py.",
+ "circuitos_alias": {
+  "L53": {"alias_de": "AL53", "motivo": "la UNE lo publicó sin la A en el parte 77905 (zonas: 1, 2, 3, 5, 24, 8, 7 — idénticas a AL53)"},
+  "L55": {"alias_de": "AL55", "motivo": "parte 77905: zonas 12; 13; 14; 19; 20; 21; 23; 24 y 25 idénticas a AL55"},
+  "1565": {"alias_de": "A1565", "motivo": "partes 74654 y 78536: 'Tarará y Mégano' — A1565 oficial: 'Parte de Tarará y del Mégano'"},
+  "SR86": {"alias_de": "SR860", "motivo": "parte 72384: 'Dulce Nombre, Santa María del Rosario' — idéntico a SR860"},
+  "D110": {"alias_de": "D1100", "motivo": "parte 77549: 'Parque Lenin' — D1100: 'Parque Lenin, pedazo del reparto Ponce'"},
+  "OP31": {"alias_de": "OP312", "motivo": "parte 72708: calles de Centro Habana idénticas a OP312 (Lealtad, Campanario, Reyna, Águila, Revillagigedo)"},
+  "1430": {"alias_de": "A1430", "motivo": "parte 79024: 'Soterrado Cujae, Toledo' — A1430 oficial: 'Cujae y Toledo'"}
+ },
  "clasificacion_barrios": {
   "Colinas de Villareal": "bloque",
   "Reparto Náutico": "bloque"

@@ -1,34 +1,4 @@
 {
- "81211": {
-  "fecha": "2026-09-09T15:17:08+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP20",
-   "CPP8",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:25 am queda restablecido el servicio eléctrico en el siguiente circuito: 👉 CPP17: Alrededores de calles Puert"
- },
- "81208": {
-  "fecha": "2026-09-09T15:11:34+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "1856"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:40 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉D1280:Repartos "
- },
- "81205": {
-  "fecha": "2026-09-09T15:11:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P15"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:33 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉C14:Washinton desd"
- },
  "81216": {
   "fecha": "2026-09-09T15:34:10+00:00",
   "tipo_llm": "afectacion",
@@ -1441,5 +1411,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) perteneciente a los circuitos: Al52 , AL57 , R461, R464"
+ },
+ "83251": {
+  "fecha": "2026-09-16T15:06:41+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "L316",
+   "L325"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L316 que se encuentra transferida temporalmente la carga al circuito L325 en el "
  }
 }

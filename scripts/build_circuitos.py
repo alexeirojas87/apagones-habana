@@ -560,6 +560,7 @@ def main():
             continue
         if c.get("estado") == "con servicio" and cu.get("desde"):
             cu["desde"] = None
+            cu.pop("holder_ip_hash", None)  # el holder viejo no suprime tras el reset
             cu["ultimo_reset"] = ahora_c.isoformat()
             cu.pop("horas", None)
         # discrepancia: usuario dice sin (desde not null) y UNE dice con (o nada)

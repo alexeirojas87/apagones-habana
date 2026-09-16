@@ -60,3 +60,9 @@ create index if not exists comentarios_llm_fecha on comentarios_llm (fecha desc)
 
 -- Migración: añadir 'codigos' a tablas existentes (idempotente).
 -- Ejecutar una vez: alter table comentarios_llm add column if not exists codigos text[];
+
+-- Migración: código de circuito en reportes (idempotente). Ejecutar una vez:
+-- DEBE correr ANTES de desplegar código que escriba codigo (worker crearReporte
+-- y luego el cron estado.py). Aditiva y anulable: el código viejo sigue
+-- funcionando contra la tabla alterada; no hace falta rollback de esquema.
+alter table reportes add column if not exists codigo text;

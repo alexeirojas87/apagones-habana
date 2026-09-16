@@ -682,6 +682,39 @@ def _dist_m(lat1, lon1, lat2, lon2):
     return math.hypot((lat2 - lat1) * 111000, (lon2 - lon1) * 102000)
 
 
+def aplicar_senales_conteo(entry, senales):
+    """entry: {desde, ultima_sin, ultimo_con, ultimo_reset?, holder_ip_hash?}
+    senales: [(fecha, fila_id, tipo 'sin'|'con', ip_hash), ...] ordenadas (fecha, fila_id) ASC
+    Pura: sin E/S, sin reloj, sin globals. Mutar y devolver entry.
+
+    Regla (spec §2): `holder` es el ip_hash cuyo veredicto cambió el estado por
+    última vez. Un reporte del mismo holder con signo opuesto se graba (ultima_*,
+    ultimo_con) pero NO mueve desde/horas (flip suprimido). Los comentarios_llm
+    llegan sin ip (None) y jamás se suprimen. Señales previas al reset oficial de
+    UNE (ultimo_reset) se descartan, sin o con.
+    """
+    holder = entry.get("holder_ip_hash")
+    for fecha, _fila_id, tipo, ip in senales:
+        ultimo_reset = entry.get("ultimo_reset")
+        if ultimo_reset and fecha < ultimo_reset:
+            continue
+        if tipo == "sin":
+            entry["ultima_sin"] = fecha
+            if entry["desde"] is None and (holder is None or ip != holder):
+                entry["desde"] = fecha
+                holder = ip
+            # desde vigente: corroboración; el holder no se transfiere
+        else:
+            entry["ultimo_con"] = fecha
+            if entry["desde"] is None:
+                holder = ip
+            elif holder is None or ip != holder:
+                entry["desde"] = None
+                holder = ip
+    entry["holder_ip_hash"] = holder
+    return entry
+
+
 def procesar_conteo_usuario(sb, ahora):
     """Mantiene un conteo persistente de 'usuarios reportan sin corriente' por
     circuito, alimentado por reportes web (tabla reportes) y comentarios de
@@ -715,14 +748,14 @@ def procesar_conteo_usuario(sb, ahora):
     if not cat:
         return conteo
 
-    # Señales: codigo -> [(fecha, 'sin'|'con'), ...]
+    # Señales: codigo -> [(fecha, fila_id, 'sin'|'con', ip_hash), ...]
     senales = {}
 
-    def asignar(codigos, lat, lon, fecha, tipo):
+    def asignar(codigos, lat, lon, fecha, tipo, fila_id, ip_hash):
         if codigos:
             for cod in codigos:
                 if cod in cat:
-                    senales.setdefault(cod, []).append((fecha, tipo))
+                    senales.setdefault(cod, []).append((fecha, fila_id, tipo, ip_hash))
         elif lat is not None and lon is not None:
             mejor, mejor_d = None, RADIO_JOIN_M
             for cod, info in cat.items():
@@ -730,47 +763,45 @@ def procesar_conteo_usuario(sb, ahora):
                 if d < mejor_d:
                     mejor, mejor_d = cod, d
             if mejor:
-                senales.setdefault(mejor, []).append((fecha, tipo))
+                senales.setdefault(mejor, []).append((fecha, fila_id, tipo, ip_hash))
 
     # Reportes web (últimas 48h — la purga ya corrió al inicio de main)
-    for r in (sb.table("reportes").select("fecha,lat,lon,direccion,tipo")
+    for r in (sb.table("reportes").select("id,fecha,lat,lon,direccion,tipo,ip_hash,codigo")
               .gte("fecha", (ahora - timedelta(hours=48)).isoformat()).execute().data):
         tipo = "sin" if r.get("tipo") == "sin" else "con"
-        cods = circuitos_id.resolver(r.get("direccion") or "").get("codigos", [])
-        asignar(cods, r.get("lat"), r.get("lon"), r["fecha"], tipo)
+        cod = r.get("codigo")
+        if cod and cod in cat:
+            # Fast-path: el reporte trae su circuito (chat/mapa) — sin resolver
+            # ni join espacial. Código desconocido/viejo cae al resolver.
+            senales.setdefault(cod, []).append((r["fecha"], r["id"], tipo, r.get("ip_hash")))
+        else:
+            cods = circuitos_id.resolver(r.get("direccion") or "").get("codigos", [])
+            asignar(cods, r.get("lat"), r.get("lon"), r["fecha"], tipo,
+                    r.get("id"), r.get("ip_hash"))
 
     # Comentarios LLM de Telegram (últimas 48h)
     try:
-        cols = "fecha,lat,lon,reporta,codigos,lugar"
+        cols = "fecha,lat,lon,reporta,codigos,lugar,message_id"
         com_q = (sb.table("comentarios_llm").select(cols)
                  .gte("fecha", (ahora - timedelta(hours=48)).isoformat())
                  .in_("reporta", ["sin_corriente", "con_corriente"]))
         com_data = com_q.execute().data
     except Exception:
-        com_data = (sb.table("comentarios_llm").select("fecha,lat,lon,reporta,lugar")
+        com_data = (sb.table("comentarios_llm").select("fecha,lat,lon,reporta,lugar,message_id")
                     .gte("fecha", (ahora - timedelta(hours=48)).isoformat())
                     .in_("reporta", ["sin_corriente", "con_corriente"]).execute().data)
     for c in com_data:
         tipo = "sin" if c.get("reporta") == "sin_corriente" else "con"
-        asignar(c.get("codigos") or [], c.get("lat"), c.get("lon"), c["fecha"], tipo)
+        asignar(c.get("codigos") or [], c.get("lat"), c.get("lon"), c["fecha"], tipo,
+                c.get("message_id"), None)
 
-    # Actualizar cache con las señales (ordenadas por fecha)
+    # Actualizar cache con las señales (ordenadas por fecha, empates por fila_id)
     for cod, lista in senales.items():
-        lista.sort(key=lambda x: x[0])
-        entry = conteo.get(cod, {"desde": None, "ultima_sin": None, "ultimo_con": None})
-        ultimo_reset = entry.get("ultimo_reset")
-        for fecha, tipo in lista:
-            if tipo == "sin":
-                # Ignorar 'sin' reportes anteriores al último reset de la UNE
-                # (build_circuitos reseteó el contador cuando la UNE dijo "con")
-                if ultimo_reset and fecha < ultimo_reset:
-                    continue
-                if entry["desde"] is None:
-                    entry["desde"] = fecha
-                entry["ultima_sin"] = fecha
-            else:
-                entry["desde"] = None
-                entry["ultimo_con"] = fecha
+        lista.sort(key=lambda x: (x[0], x[1]))
+        entry = conteo.get(cod, {"desde": None, "ultima_sin": None, "ultimo_con": None,
+                                 "holder_ip_hash": None})
+        entry.setdefault("holder_ip_hash", None)
+        aplicar_senales_conteo(entry, lista)
         conteo[cod] = entry
 
     # Podar entradas sin actividad en los últimos 7 días

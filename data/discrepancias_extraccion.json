@@ -1,14 +1,4 @@
 {
- "81248": {
-  "fecha": "2026-09-09T18:19:53+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "MB910",
-   "MB950"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por un Disparo por DAF los siguientes circuitos: 👉 MB920:Alturas de Boca Ciega, Santa María del Ma"
- },
  "81262": {
   "fecha": "2026-09-09T19:00:09+00:00",
   "tipo_llm": "afectacion",
@@ -1393,5 +1383,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔Averías Secundarias por Transformadores Dañados existentes hasta el momento en los siguientes municipios: 📌CERRO: 👉Florencia entre Parque y Resguardo 👉Daoiz en"
+ },
+ "83302": {
+  "fecha": "2026-09-16T18:23:26+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: OP408 y H341"
  }
 }

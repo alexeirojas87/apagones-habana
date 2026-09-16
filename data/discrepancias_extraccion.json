@@ -1,13 +1,4 @@
 {
- "81162": {
-  "fecha": "2026-09-09T13:19:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PG920"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 08:55 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG930: Repartos"
- },
  "81176": {
   "fecha": "2026-09-09T13:59:27+00:00",
   "tipo_llm": "deficit",
@@ -90,16 +81,6 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC18:Zona Fran"
- },
- "81164": {
-  "fecha": "2026-09-09T13:31:13+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425",
-   "D1140"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 AM se afectan 147 MW distribuidos en 46 circuitos de distribución. A continuación, "
  },
  "81211": {
   "fecha": "2026-09-09T15:17:08+00:00",

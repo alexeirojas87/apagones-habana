@@ -1262,5 +1262,14 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías pendientes pertenecientes a los municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 🚨💥Subestación : ✔️Municipio : Cotor"
+ },
+ "83363": {
+  "fecha": "2026-09-16T22:06:51+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 462 MW distribuidos en 181 circuitos de distribución. A continuación,"
  }
 }

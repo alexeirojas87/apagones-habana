@@ -1,13 +1,4 @@
 {
- "81082": {
-  "fecha": "2026-09-09T02:58:30+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D1300"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías pendientes pertenecientes a los municipios: 📍Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 🚨💥Subestación : ✔️Municipio : Coto"
- },
  "81097": {
   "fecha": "2026-09-09T04:08:56+00:00",
   "tipo_llm": "otro",
@@ -1469,5 +1460,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos C8, H341 y OP408✅"
+ },
+ "83178": {
+  "fecha": "2026-09-16T02:49:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1245"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes al circuito: 1245✅"
  }
 }

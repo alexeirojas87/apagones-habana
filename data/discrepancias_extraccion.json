@@ -1309,5 +1309,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:40 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R456:Alrededore"
+ },
+ "83659": {
+  "fecha": "2026-09-17T17:49:01+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC14",
+   "GC18",
+   "MB910",
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:44 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC7:Cojimar cal"
  }
 }

@@ -112,6 +112,42 @@ def _cobertura(nuevo, viejo):
     return len(tn & tv) / min(len(tn), len(tv))
 
 
+def _reportado_con(c, cu):
+    """Dirección 2 del reporte vecinal (espejo del flag `discrepado`): los
+    vecinos reportan que VOLVIÓ la corriente y el catálogo sigue "sin
+    servicio". True cuando el circuito está "sin servicio", existe
+    `ultimo_con` POSTERIOR a `estado_fecha` (el "volvió" es posterior a la
+    caída que declara la UNE) y el veredicto vecinal VIGENTE es "con": no hay
+    reporte "se fue" (`desde`) posterior al último "volvió". El ÚLTIMO
+    veredicto manda — ultimo_con NO se limpia con reportes "sin" posteriores,
+    así que sin el guard un flip-flop (caída T1, "volvió" T2, "se fue" T3 >
+    T2) mostraría "con servicio (según vecinos)" en falso. Sin umbral de
+    vecinos (1 reporte basta, igual que discrepado con `desde`) y sin
+    ventana de recencia: la frescura la fija la propia comparación contra
+    estado_fecha — anclarla a la fecha de la caída es lo que evita
+    resucitar reportes viejos. Colisión con discrepado: imposible
+    por construcción (discrepado exige estado "con servicio"/None; aquí exige
+    "sin servicio"); si algún día colisionara, discrepado gana (ya tiene
+    prioridad de rama en los tres clientes JS). Determinista: compara
+    timestamps de los datos, nunca el reloj de la corrida. NUNCA lanza:
+    cualquier excepción de comparación (timestamps no-string, p. ej. un
+    epoch crudo) degrada a False — conservador: sin reportado_con."""
+    if not (c.get("estado") == "sin servicio" and cu and cu.get("ultimo_con")
+            and c.get("estado_fecha")):
+        return False
+    a, b = cu["ultimo_con"], c["estado_fecha"]
+    try:  # TODO el razonamiento temporal está envuelto: NUNCA lanza de verdad
+        desde_dt = datetime.fromisoformat(cu["desde"]) if cu.get("desde") else None
+        volvio_dt = datetime.fromisoformat(a)
+        caida_dt = datetime.fromisoformat(b)
+    except (TypeError, ValueError):  # formato raro: comparación léxica
+        try:
+            return (not cu.get("desde") or cu["desde"] < a) and a > b
+        except Exception:  # tipos mixtos: False, sin abortar el build
+            return False
+    return (not desde_dt or desde_dt < volvio_dt) and volvio_dt > caida_dt
+
+
 def _adoptar_calles(r, nuevo, fuente=None):
     """Actualiza la dirección del registro con la última lectura del parte
     (regex o LLM), compartiendo la regla para que las dos vías no diverjan.
@@ -742,10 +778,15 @@ def main():
     codigos_cambiados = {c["codigo"] for c in prev_cambios
                          if c.get("detectado", "") >= (ahora_c - timedelta(days=1)).isoformat()}
 
-    # --- Conteo de usuario (discrepancia UNE vs vecinos) ---
+    # --- Conteo de usuario (discrepancia UNE vs vecinos, EN AMBOS SENTIDOS) ---
     # Lee el conteo producido por estado.py. Cuando la UNE dice "con servicio",
     # resetea el contador de usuario (ultima_reset persiste para que estado.py
     # ignore los "sin" reportes anteriores al reset).
+    # Dirección 1 (discrepado, intacta): UNE "con" (o nada) y vecinos dicen
+    # sin → los clientes lo pintan "usuarios reportan sin corriente".
+    # Dirección 2 (reportado_con, nueva): UNE "sin servicio" y vecinos
+    # reportan que volvió (ultimo_con posterior a estado_fecha) → los clientes
+    # lo pintan "con servicio (según vecinos)" (estado con_vecinos).
     try:
         conteo_usuario = json.load(open(CONTEO_USUARIO_FILE))
     except Exception:
@@ -754,6 +795,7 @@ def main():
         cu = conteo_usuario.get(c["codigo"])
         if not cu:
             c["discrepado"] = False
+            c["reportado_con"] = False
             continue
         if c.get("estado") == "con servicio" and cu.get("desde"):
             cu["desde"] = None
@@ -762,6 +804,7 @@ def main():
             cu.pop("horas", None)
         # discrepancia: usuario dice sin (desde not null) y UNE dice con (o nada)
         c["discrepado"] = bool(cu.get("desde") and c.get("estado") in ("con servicio", None))
+        c["reportado_con"] = _reportado_con(c, cu)
         c["conteo_usuario"] = cu
     # persistir los resets de UNE para que estado.py los respete
     json.dump(conteo_usuario, open(CONTEO_USUARIO_FILE, "w"), ensure_ascii=False)

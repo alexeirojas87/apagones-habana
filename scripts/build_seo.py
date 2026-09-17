@@ -230,8 +230,19 @@ def sitemap_xml(pares):
             + cuerpo + "</urlset>\n")
 
 
+def _sin_efectivos(c):
+    """'Sin servicio efectivo' de UN circuito: ÚNICA definición del archivo.
+    Estado caído según la UNE y SIN reporte vecinal vigente de que volvió
+    (`reportado_con`): esos el catálogo los pinta «con servicio (según
+    vecinos)», así que contarlos como «sin» contradiría a la página hija.
+    La consumen las cuatro superficies con cifra — conteo_municipio (tarjeta
+    del hub), _circ_sin (portada), ranking_poblacion y pagina_municipio
+    (tarjetas de la hija) —: paridad por construcción."""
+    return c.get("estado") == "sin servicio" and not c.get("reportado_con")
+
+
 def _circ_sin(circ):
-    return [c for c in (circ or {}).get("circuitos", []) if c.get("estado") == "sin servicio"]
+    return [c for c in (circ or {}).get("circuitos", []) if _sin_efectivos(c)]
 
 
 def circuitos_del_municipio(nombre, circ):
@@ -243,9 +254,13 @@ def circuitos_del_municipio(nombre, circ):
 
 
 def conteo_municipio(nombre, circ):
-    """(sin_servicio, total) de un municipio según el recorrido canónico."""
+    """(sin_servicio, total) de un municipio según el recorrido canónico.
+
+    "Sin servicio" = _sin_efectivos (excluye reportado_con): la MISMA regla
+    que pagina_municipio aplica a sus tarjetas, para que la tarjeta del hub
+    nunca contradiga a la página hija."""
     del_muni = circuitos_del_municipio(nombre, circ)
-    return sum(1 for c in del_muni if c.get("estado") == "sin servicio"), len(del_muni)
+    return sum(1 for c in del_muni if _sin_efectivos(c)), len(del_muni)
 
 
 def esc_html(texto):
@@ -379,30 +394,41 @@ def _duracion_horas(iso_desde, iso_hasta):
 
 
 # Etiquetas/grupos de fila compartidos con la regla del catálogo en web/app.js
-# (circuitoVigente): sin/con/asum. Sin umbrales de antigüedad (regla nueva del
-# mantenedor): un "sin servicio" permanece sin hasta un evento explícito, y el
-# reloj del builder (estado.generado) solo mide la duración que se muestra.
-_ESTADO_FILA = {"sin": ("sin", "sin servicio"), "con": ("con", "con servicio"),
-                "asum": ("asum", "asumido")}
-_GRUPO = {"sin": 0, "con": 1, "asum": 2}
+# (circuitoVigente): sin/con_vecinos/con/asum. Sin umbrales de antigüedad (regla
+# nueva del mantenedor): un "sin servicio" permanece sin hasta un evento
+# explícito, y el reloj del builder (estado.generado) solo mide la duración que
+# se muestra. Dirección 2 del reporte vecinal: "con_vecinos" = la UNE lo
+# mantiene sin servicio pero los vecinos reportan que volvió (reportado_con lo
+# fija build_circuitos.py) — va ENTRE "sin" y "con" (cuenta como con corriente
+# pero con veracidad propia: señal vecinal, no dato oficial).
+_ESTADO_FILA = {"sin": ("sin", "sin servicio"), "con_vecinos": ("con-vec", "con servicio (según vecinos)"),
+                "con": ("con", "con servicio"), "asum": ("asum", "asumido")}
+_GRUPO = {"sin": 0, "con_vecinos": 1, "con": 2, "asum": 3}
 
 
 def _vigencia(c, gen):
-    """Clasificación estática del circuito (sin/con/asum) bajo la regla nueva
-    del mantenedor: un circuito en estado "sin servicio" PERMANECE sin
+    """Clasificación estática del circuito (sin/con_vecinos/con/asum) bajo la
+    regla del mantenedor: un circuito en estado "sin servicio" PERMANECE sin
     servicio —y su duración "lleva X sin corriente" sigue creciendo— hasta que
     un EVENTO EXPLÍCITO cambie su estado: un restablecimiento de la UNE o el
     reporte de un usuario. El silencio de 24/48 h NO degrada a "sin noticias"
-    ni asume retorno. "con servicio" → "con" y estado None (nunca apareció
-    afectado en un parte) → "asum" (se asume con corriente por descarte),
-    igual que antes. `gen` ya no clasifica por antigüedad: queda en la firma
-    porque las duraciones del catálogo lo usan aparte."""
+    ni asume retorno. Dirección 2 del reporte vecinal: con reportado_con
+    (ultimo_con vecinal posterior a estado_fecha, lo fija build_circuitos.py)
+    el "sin servicio" se publica como "con_vecinos" («con servicio (según
+    vecinos)»), ANTES de caer en "sin". "con servicio" → "con" (aunque un
+    reportado_con residual viajara en el registro: el estado oficial gana) y
+    estado None (nunca apareció afectado en un parte) → "asum" (se asume con
+    corriente por descarte), igual que antes. `gen` ya no clasifica por
+    antigüedad: queda en la firma porque las duraciones del catálogo lo usan
+    aparte."""
     del gen
     if c.get("estado") == "con servicio":
         return "con"
-    if c.get("estado") != "sin servicio":
-        return "asum"
-    return "sin"
+    if c.get("estado") == "sin servicio":
+        if c.get("reportado_con"):
+            return "con_vecinos"
+        return "sin"
+    return "asum"
 
 
 def _nf_es(n):
@@ -476,7 +502,7 @@ def ranking_poblacion(nombre, estado, circ, nombres):
     de personas afectadas compartido con el header (S11)."""
     puestos = sorted(nombres, key=lambda n: (
         -sum(1 for c in circuitos_del_municipio(n, circ)
-             if c.get("estado") == "sin servicio"), slug(n)))
+             if _sin_efectivos(c)), slug(n)))
     puesto = puestos.index(nombre) + 1
     lineas = ["<p>%s <b>%d de %d municipios más afectados hoy</b>, según los "
               "circuitos sin servicio del último parte.</p>"
@@ -557,6 +583,15 @@ def catalogo_circuitos(nombre, estado, circ):
             elif duracion and vig == "con":
                 duracion_txt = ('<span class="circ-dur"> · %s con '
                                 'corriente</span>' % duracion)
+            elif vig == "con_vecinos":
+                # Dirección 2: veracidad vecinal — NUNCA "lleva X sin
+                # corriente" (contradeciría la señal de los vecinos); se
+                # muestra desde cuándo reportan corriente, con el ultimo_con
+                # del registro en hora de La Habana; sin registro, sin duración.
+                uc = (c.get("conteo_usuario") or {}).get("ultimo_con")
+                hora_uc = _hora_cuba(uc)
+                duracion_txt = ('<span class="circ-dur"> · según vecinos desde '
+                                '%s</span>' % hora_uc) if hora_uc != "—" else ""
             else:
                 duracion_txt = ""  # asum o fecha ausente: sin duración
             filas_html.append(
@@ -704,7 +739,12 @@ def pagina_municipio(nombre, estado, circ, nombres, averias=None, horas=None):
     url = site_url("municipio/%s/" % s)
     stamp = hora_estampado(estado.get("generado"))
     del_muni = circuitos_del_municipio(nombre, circ)
-    sin = [c for c in del_muni if c.get("estado") == "sin servicio"]
+    # Tarjetas "Circuitos sin servicio ahora": los reportado_con NO cuentan —
+    # el catálogo de abajo los pinta "con servicio (según vecinos)", listarlos
+    # aquí como "sin" lo contradiría. La MISMA lista alimenta el conteo del
+    # parrafo_estado para que la cifra y las tarjetas coincidan, y la regla es
+    # _sin_efectivos, la definición única compartida con hub/portada/ranking.
+    sin = [c for c in del_muni if _sin_efectivos(c)]
     titulo = "Apagones en %s hoy — horario y estado actual" % nombre
     descripcion = ("Estado de los apagones en %s (La Habana) hoy: circuitos sin servicio según "
                    "el último parte, con su causa y horario. Actualización: %s." % (nombre, stamp))

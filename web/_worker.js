@@ -202,6 +202,10 @@ function sinAcentos(s) {
 // mismos datos → mismo estado en cada visita.
 function estadoVigente(c, est) {
   if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "discrepado";
+  // Dirección 2 del reporte vecinal: la UNE lo mantiene "sin servicio" pero
+  // el builder fijó reportado_con (ultimo_con POSTERIOR a la caída que
+  // declara estado_fecha). Determinista: timestamps de los datos, sin reloj.
+  if (c.estado === "sin servicio" && c.reportado_con) return "con_vecinos";
   const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
   const en = est && est.evento_nacional;
   if (en) return (c.estado === "con servicio" && t && t > new Date(en.desde)) ? "con" : "sin";
@@ -245,11 +249,16 @@ function horasEnRango(bot, codigo, dias) {
 function describirCircuito(c, est) {
   const v = estadoVigente(c, est);
   const etiqueta = { con: "con servicio", sin: "sin servicio", discrepado: "usuarios reportan sin corriente",
-                     asum: "sin cortes reportados" }[v];
+                     con_vecinos: "con servicio (según vecinos)", asum: "sin cortes reportados" }[v];
   const out = { codigo: c.codigo, estado: etiqueta, municipio: c.municipio || null };
   if (v === "sin") out.horas_sin_luz = horasSin(c);
   if (v === "discrepado" && c.conteo_usuario) {
     out.horas_sin_luz_usuario = Math.round(((Date.now() - new Date(c.conteo_usuario.desde)) / 3600000) * 10) / 10;
+  }
+  if (v === "con_vecinos" && c.conteo_usuario && c.conteo_usuario.ultimo_con) {
+    // Veracidad propia: señal vecinal posterior a la caída, no dato oficial —
+    // no se emite horas_sin_luz ni se afirma el retorno como hecho de la UNE.
+    out.segun_vecinos_desde = c.conteo_usuario.ultimo_con.slice(0, 16).replace("T", " ");
   }
   if (c.calles) out.zonas = String(c.calles).replace(/\s+/g, " ").slice(0, 300);
   if (c.estado_fecha) out.ultima_actualizacion = c.estado_fecha.slice(0, 16).replace("T", " ");
@@ -271,7 +280,7 @@ async function cargarContexto(baseUrl) {
 
 function resumenActual(ctx) {
   const { est, circuitos } = ctx;
-  const conteo = { sin: 0, con: 0, asum: 0 };
+  const conteo = { sin: 0, con: 0, asum: 0, con_vecinos: 0 };
   const porMunicipio = {};
   for (const c of circuitos) {
     const v = estadoVigente(c, est);
@@ -280,12 +289,15 @@ function resumenActual(ctx) {
     porMunicipio[m] = porMunicipio[m] || { sin_servicio: 0, con_servicio: 0, total: 0 };
     porMunicipio[m].total++;
     if (v === "sin") porMunicipio[m].sin_servicio++;
-    if (v === "con") porMunicipio[m].con_servicio++;
+    // con_vecinos cuenta como con corriente a nivel municipal (los vecinos
+    // dicen que volvió); arriba se desglosa aparte en con_servicio_segun_vecinos.
+    if (v === "con" || v === "con_vecinos") porMunicipio[m].con_servicio++;
   }
   return {
     total_circuitos: circuitos.length,
     sin_servicio: conteo.sin,
     con_servicio: conteo.con,
+    con_servicio_segun_vecinos: conteo.con_vecinos,
     sin_cortes_reportados: conteo.asum,
     apagon_nacional: !!(est && est.evento_nacional),
     deficit_mw: (est && est.deficit && (est.deficit.mw || est.deficit)) || null,
@@ -487,6 +499,7 @@ async function ejecutarHerramienta(nombre, args, ctx, env) {
         encontrados: hits.length,
         sin_servicio: cuenta("sin servicio"),
         con_servicio: cuenta("con servicio"),
+        con_servicio_segun_vecinos: cuenta("con servicio (según vecinos)"),
         sin_cortes_reportados: cuenta("sin cortes reportados"),
         circuitos: desc.slice(0, 25),
         ...(hits.length > 25 ? { nota: `se listan 25 de ${hits.length}` } : {}),
@@ -650,6 +663,8 @@ Tienes herramientas para consultar los datos. Úsalas siempre antes de responder
 Puedes usar varias herramientas antes de contestar.
 
 Un circuito reportado sin servicio permanece sin servicio hasta que un restablecimiento de la UNE o un reporte de usuario indique lo contrario: el silencio NO es evidencia de retorno — nunca des por hecho que hay corriente solo porque no hay parte reciente.
+
+Los reportes de vecinos pueden volcar el estado en AMBOS sentidos: si la UNE dice "con servicio" pero los vecinos reportan sin corriente, el circuito aparece como "usuarios reportan sin corriente"; si la UNE lo mantiene "sin servicio" pero los vecinos reportan que volvió, aparece como "con servicio (según vecinos)" — esa señal es de los vecinos, no un dato oficial de la Empresa: preséntala siempre como tal.
 
 buscar_historico devuelve un campo "relevancia" (0 a 1). Si es baja (<0.4), di que no encontraste nada claro en vez de forzar una respuesta con eso.
 

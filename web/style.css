@@ -401,6 +401,7 @@ a.circ-cod:hover { text-decoration: underline; }
 .circ-of { font-size: .7rem; background: var(--green-bg); border-radius: 999px; padding: 2px 9px; color: var(--green-t); }
 .circ-est { font-size: .7rem; border-radius: 999px; padding: 2px 9px; font-weight: 600; }
 .circ-est.con { background: var(--green-bg); color: var(--green-t); }
+.circ-est.con-vec { background: var(--green-bg); color: var(--green-t); }
 .circ-est.sin { background: var(--red-bg); color: var(--red-t); }
 .circ-est.discrepado { background: var(--amber-bg); color: var(--amber-t); }
 .circ-est.nd { background: var(--gray-bg); color: var(--text-muted); }
@@ -408,6 +409,7 @@ a.circ-cod:hover { text-decoration: underline; }
 .circ-lleva { font-size: .7rem; font-weight: 600; }
 .circ-lleva.sin { color: var(--red-t); }
 .circ-lleva.con { color: var(--green-t); }
+.circ-lleva.con-vec { color: var(--green-t); }
 .circ-lleva.discrepado { color: var(--amber-t); }
 .circ-lleva.nd { color: var(--text-muted); }
 .circ-meta { font-size: .7rem; color: var(--text-muted); margin-left: auto; }

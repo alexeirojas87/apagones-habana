@@ -30,6 +30,13 @@ function estadoVigente(c) {
   if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde)
     return { clase: "discrepado", txt: "usuarios reportan sin corriente",
              desde: c.conteo_usuario.desde, obsoleto: false };
+  // Dirección 2 del reporte vecinal: la UNE lo mantiene "sin servicio" pero
+  // el builder fijó reportado_con (ultimo_con POSTERIOR a la caída que
+  // declara estado_fecha). Veracidad propia: señal vecinal, no dato oficial.
+  if (c.estado === "sin servicio" && c.reportado_con)
+    return { clase: "con-vec", txt: "con servicio (según vecinos)",
+             desde: (c.conteo_usuario && c.conteo_usuario.ultimo_con) || null,
+             obsoleto: false };
   const en = ESTADO && ESTADO.evento_nacional;
   const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
   if (en) {
@@ -124,8 +131,16 @@ function render(filtro = "") {
     for (const d of ESTADO.deficit.circuitos) horasDef[d.codigo] = d.horas;
   cont.innerHTML = cs.map((c) => {
     const e = estadoVigente(c);
+    // Duración por estado: discrepado mide el apagón vecinal; con-vec muestra
+    // DESDE CUÁNDO reportan los vecinos que hay corriente (hora de La Habana,
+    // del ultimo_con del registro; sin registro, sin duración — nunca inventar
+    // ni "lleva X sin corriente", que contradiría la señal vecinal).
     const lleva = e.clase === "discrepado"
       ? (c.conteo_usuario ? `llevan ${Math.round((Date.now() - new Date(c.conteo_usuario.desde)) / 3600000 * 10) / 10}h sin luz (según vecinos)` : "")
+      : e.clase === "con-vec"
+      ? (c.conteo_usuario && c.conteo_usuario.ultimo_con
+          ? `según vecinos desde ${new Date(c.conteo_usuario.ultimo_con).toLocaleTimeString("es-CU", { hour: "2-digit", minute: "2-digit", timeZone: "America/Havana" })}`
+          : "")
       : e.clase === "sin" && horasDef[c.codigo] != null
       ? `lleva ${horasDef[c.codigo]}h (según la UNE)`
       : llevaDesde(e.desde);
@@ -183,16 +198,19 @@ function cargar() {
   ])
     .then(([d, est]) => {
       DATOS = d; ESTADO = est;
-      let ncon = 0, nsin = 0;
+      let ncon = 0, nsin = 0, nvec = 0;
       for (const c of d.circuitos) {
         const cl = estadoVigente(c).clase;
         if (cl === "con") ncon++; else if (cl === "sin") nsin++;
+        else if (cl === "con-vec") nvec++;
       }
-      const nasum = d.circuitos.length - ncon - nsin;
+      const nasum = d.circuitos.length - ncon - nsin - nvec;
       const sen = est && est.evento_nacional
         ? " · " + icono("alert-triangle", "est-sin") + " SEN caído: los restablecidos antes del apagón cuentan como sin servicio" : "";
       document.getElementById("circ-info").innerHTML =
-        `${d.circuitos.length} circuitos · ${icono("dot-status", "est-con")} ${ncon} con servicio · ${icono("dot-status", "est-sin")} ${nsin} sin servicio` +
+        `${d.circuitos.length} circuitos · ${icono("dot-status", "est-con")} ${ncon} con servicio` +
+        `${nvec > 0 ? ` · ${icono("dot-status", "est-con")} ${nvec} con servicio según vecinos` : ""}` +
+        ` · ${icono("dot-status", "est-sin")} ${nsin} sin servicio` +
         `${nasum > 0 ? ` · ${icono("dot-status", "est-asum")} ${nasum} sin apagones reportados` : ""}${sen}`;
       renderDaf();
       render(filtro.value);  // conserva el filtro escrito

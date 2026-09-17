@@ -725,8 +725,10 @@ def pagina_municipio(nombre, estado, circ, nombres, averias=None, horas=None):
         chips = ""
         if c.get("causa"):
             chips += '<span class="circ-b">Causa: %s</span>' % esc_html(c["causa"])
-        hora = _hora_cuba(c.get("estado_fecha"))
-        meta = ("desde %s (La Habana)" % hora) if hora != "—" else "hora sin publicar"
+        # Duración del estado vigente (mismo vocabulario que el catálogo):
+        # la hora cruda "desde HH:MM" no informa; lo útil es cuánto lleva.
+        duracion = _duracion_horas(c.get("estado_fecha"), estado.get("generado"))
+        meta = ("lleva %s sin corriente" % duracion) if duracion else "hora sin publicar"
         return ('<article class="circ">\n'
                 '<div class="circ-cab">'
                 '<a class="circ-cod" href="/circuitos?c=%s">%s</a>'

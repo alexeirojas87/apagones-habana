@@ -1321,5 +1321,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 1:44 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC7:Cojimar cal"
+ },
+ "83671": {
+  "fecha": "2026-09-17T18:50:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A940",
+   "A945",
+   "D860",
+   "D870"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio Boyeros,por un Disparo del Circuito por 33KV se encuentran afectados los siguientes circuitos: 👉A708: Reparto Abel Santamaría 👉D870"
  }
 }

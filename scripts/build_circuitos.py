@@ -8,9 +8,22 @@ No acumula un fichero propio: reconstruye desde el histórico del canal en
 data/canal_cache.json (commiteado). Ese caché se llena INCREMENTALMENTE desde
 Supabase (solo mensajes nuevos por message_id + una ventana reciente para
 recoger partes editados por la Empresa), así que la corrida ya no re-lee las
-~12 mil filas del canal en cada paso. Para cada código guarda las calles que
-sirve, el municipio, el bloque en que rota (inferido del post), cuántas veces se
-ha visto, cuándo, y su último estado conocido (con/sin servicio).
+~12 mil filas del canal en cada paso. Sin Supabase (corrida local o red
+caída) el replay sigue en pie con el caché commiteado; solo se pierden los
+mensajes nuevos de la ventana incremental. Para cada código guarda las calles
+que sirve, el municipio, el bloque en que rota (inferido del post), cuántas
+veces se ha visto, cuándo, y su último estado conocido (con/sin servicio).
+
+Sobre el MISMO replay emite web/data/circuitos_horas.json: el histórico
+COMPLETO de horas sin corriente por circuito. Cada vez que un mensaje (vía
+regex o vía caché LLM) actualiza r["estado"]/r["estado_fecha"] se anota el
+evento del circuito (fecha, sin/con); el acumulador empareja afectación→
+restablecimiento, reparte cada intervalo por día calendario en HORA_CUBA
+(UTC-4 fijo, con split de medianoche) y el que siga abierto al final corre
+hasta `generado` (web/data/estado.json, que estado.py escribe antes en CI;
+respaldo: el timestamp del último mensaje del canal). Días/circuitos sin
+horas: ausentes, nunca 0; redondeo a 1 decimal por día. Alimenta el ranking
+"Circuitos más afectados" de las páginas de municipio (build_seo.py).
 """
 
 import json
@@ -18,7 +31,7 @@ import os
 import re
 import sys
 import time
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, time as dtime, timezone
 from zoneinfo import ZoneInfo
 
 from supabase import create_client
@@ -37,7 +50,11 @@ CAMBIOS_FILE = os.path.join(RAIZ, "data", "cambios_direccion.json")
 CONTEO_USUARIO_FILE = os.path.join(RAIZ, "data", "conteo_usuario.json")
 ESTADO_FILE = os.path.join(RAIZ, "web", "data", "estado.json")
 CATALOGO_SALIDA = os.path.join(RAIZ, "web", "data", "circuitos.json")
+HORAS_JSON = os.path.join(RAIZ, "web", "data", "circuitos_horas.json")
 CANAL_CACHE = os.path.join(RAIZ, "data", "canal_cache.json")
+# Huso fijo para el reparto por día calendario del histórico de horas: el mismo
+# respaldo que build_seo.py (desde 2026 La Habana no atrasa el reloj).
+HORA_CUBA = timezone(timedelta(hours=-4))
 # La Empresa edita partes ya publicados (ingest.py re-sub los DAF editados):
 # los últimos N mensajes del canal se re-leen SIEMPRE para recoger la versión final.
 VENTANA_EDICIONES = 50
@@ -313,44 +330,156 @@ def cargar_canal(sb):
         len(filas), len(cache["filas"])
 
 
-def main():
-    # 0) Aprende los circuitos recurrentes que el LLM ve pero el catálogo no
-    #    registra (embudo 'por_confirmar'). Sin red, desde partes_llm.json; es
-    #    el paso que cierra el ciclo para que sus códigos entren solos. Debe ir
-    #    ANTES de todo consumo del catálogo (es_conocido y canonico ya lo ven).
-    import aprende_circuitos  # noqa: E402
-    aprende_circuitos.main()
+# --- Histórico de horas sin corriente por circuito (circuitos_horas.json) ---
+# El acumulador vive AQUÍ, en el replay del canal: la historia COMPLETA está en
+# canal_cache.json (14k+ mensajes commiteados, replayados cronológicamente con
+# regex y caché LLM), no en la ventana de ~7 días de web/data/partes.json.
 
-    sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
-    filas, n_nuevos, n_total = cargar_canal(sb)
-    print(f"canal_cache: {n_total} mensajes, {n_nuevos} nuevos de la DB")
+def _fecha_dt(iso):
+    """datetime desde el ISO de un mensaje o de estado.json; None si es
+    irrecuperable (nunca lanza: el histórico no puede tumbar el build)."""
+    try:
+        return datetime.fromisoformat(iso)
+    except (TypeError, ValueError):
+        return None
 
-    # catálogo oficial (se usa para validar códigos numéricos ambiguos y, más
-    # abajo, para la fusión de municipios/calles oficiales)
+
+def _anotar_horas(eventos, codigos, fecha, estado):
+    """Anota el evento de estado de un mensaje en el histórico de horas.
+
+    Se llama EXACTAMENTE donde el replay actualiza r["estado"] /
+    r["estado_fecha"] (camino regex y camino LLM): el histórico replica el
+    flujo autoritativo del catálogo, no un camino paralelo que pueda
+    divergir. `estado` llega tal cual lo escribe el catálogo ("sin servicio" /
+    "con servicio"); un estado nulo no anota nada y una fecha irrecuperable se
+    descarta (no hay dónde ponerla en la línea de tiempo).
+    """
+    if not estado:
+        return
+    dt = _fecha_dt(fecha)
+    if dt is None:
+        return
+    st = "sin" if estado == "sin servicio" else "con"
+    for cod in codigos:
+        eventos.setdefault(cod, []).append((dt, st))
+
+
+def _a_utc(dt):
+    """Normaliza a tz-aware en UTC; naive se interpreta UTC (misma convención
+    que build_seo: las fechas de los datos viajan con offset explícito)."""
+    return dt.replace(tzinfo=timezone.utc) if dt.tzinfo is None else dt
+
+
+def _reparto_dias(desde, hasta):
+    """{YYYY-MM-DD (HORA_CUBA): horas} del intervalo [desde, hasta).
+
+    Un intervalo que cruza medianoche se reparte entre los días calendario que
+    toca (huso fijo −4: sin DST, la aritmética conserva la duración). Un
+    intervalo vacío o invertido no aporta nada.
+    """
+    desde4, hasta4 = _a_utc(desde).astimezone(HORA_CUBA), _a_utc(hasta).astimezone(HORA_CUBA)
+    if hasta4 <= desde4:
+        return {}
+    dias = {}
+    cursor = desde4
+    while cursor < hasta4:
+        dia = cursor.date()
+        medianoche = datetime.combine(dia + timedelta(days=1), dtime.min,
+                                      tzinfo=HORA_CUBA)
+        trozo = min(medianoche, hasta4)
+        clave = dia.isoformat()
+        dias[clave] = dias.get(clave, 0.0) + (trozo - cursor).total_seconds() / 3600.0
+        cursor = trozo
+    return dias
+
+
+def horas_historicas(eventos, generado):
+    """Histórico COMPLETO de horas sin corriente por circuito (sin redondear).
+
+    Empareja los eventos del replay por circuito: una afectación abre el
+    intervalo "sin" (timestamp del mensaje) y un restablecimiento lo cierra;
+    varios ciclos acumulan; el que siga abierto al final corre hasta
+    `generado` (None: nada queda abierto, no se inventa). Devuelve
+    {codigo: {"por_dia": {fecha: horas}, "total": horas}} en horas exactas;
+    el reparto por día es calendario HORA_CUBA (UTC-4 fijo). Un circuito sin
+    intervalos "sin" no aparece.
+    """
+    fin = _a_utc(generado) if generado is not None else None
+    historico = {}
+    for codigo, evs in eventos.items():
+        por_dia = {}
+        abierto = None
+        for dt, estado in sorted(evs, key=lambda x: x[0]):  # replay ya asc; sort defensivo
+            dt = _a_utc(dt)
+            if estado == "sin":
+                if abierto is None:  # dos "sin" seguidos: manda el primero
+                    abierto = dt
+            elif abierto is not None:
+                for dia, h in _reparto_dias(abierto, dt).items():
+                    por_dia[dia] = por_dia.get(dia, 0.0) + h
+                abierto = None
+        if abierto is not None and fin is not None:
+            for dia, h in _reparto_dias(abierto, fin).items():
+                por_dia[dia] = por_dia.get(dia, 0.0) + h
+        if por_dia:
+            historico[codigo] = {"por_dia": por_dia, "total": sum(por_dia.values())}
+    return historico
+
+
+def redondear_horas(historico):
+    """Redondeo a 1 decimal POR DÍA; los días que quedan en 0.0 y los
+    circuitos sin horas publicables se omiten (ausencia ≠ 0). Devuelve el par
+    {"total": {codigo: h}, "por_dia": {codigo: {fecha: h}}} del JSON final,
+    con los códigos ordenados para diffs estables.
+    """
+    total, por_dia = {}, {}
+    for codigo in sorted(historico):
+        dias = {}
+        for fecha, h in historico[codigo]["por_dia"].items():
+            r = round(h, 1)
+            if r > 0:
+                dias[fecha] = r
+        if not dias:
+            continue
+        por_dia[codigo] = dias
+        total[codigo] = round(historico[codigo]["total"], 1)
+    return {"total": total, "por_dia": por_dia}
+
+
+def _generado_horas(filas):
+    """Horizonte del histórico de horas (datetime): el `generado` de
+    web/data/estado.json —estado.py corre antes en CI y es el reloj del resto
+    del sitio—; si el archivo no está o no trae fecha, el timestamp del último
+    mensaje del canal (filas en orden ascendente). None si no hay nada: sin
+    horizonte verificable, ningún intervalo abierto se cierra por su cuenta.
+    """
     try:
-        oficial = json.load(open(OFICIAL_FILE))
-    except Exception:
-        oficial = {}
-    # Baseline: catálogo de la corrida anterior (para detectar cambios de dirección)
-    prev_circuitos = {}
-    try:
-        for c in json.load(open(CATALOGO_SALIDA)).get("circuitos", []):
-            prev_circuitos[c["codigo"]] = c.get("calles", "")
+        with open(ESTADO_FILE, encoding="utf-8") as f:
+            dt = _fecha_dt(json.load(f).get("generado"))
+        if dt is not None:
+            return dt
     except Exception:
         pass
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    import correcciones  # noqa: E402
-    falsos = set(correcciones.circuitos_falsos())  # 'L2' = calle L, no circuito
-    # extracciones LLM por post (partes_llm.py): el LLM entiende redacciones que
-    # los regex no ("se afectó", "T44 y T41", "👉🏼"...). Se aplican DESPUÉS del
-    # regex en cada post (mismo orden cronológico), así el catálogo se corrige
-    # aunque el regex no haya entendido el parte.
-    try:
-        llm_cache = json.load(open(os.path.join(RAIZ, "data", "partes_llm.json")))
-    except Exception:
-        llm_cache = {}
+    for f in reversed(filas):  # ascendentes: el último con fecha válida
+        dt = _fecha_dt(f.get("fecha"))
+        if dt is not None:
+            return dt
+    return None
 
+
+def replay_canal(filas, oficial, falsos, llm_cache):
+    """Replay cronológico del canal: reconstruye el catálogo (en orden
+    cronológico gana el último) y anota, EN EL MISMO PASO, los eventos de
+    estado del histórico de horas. `filas` llega ascendente (cargar_canal);
+    `oficial`, `falsos` y `llm_cache` son los insumos que main() ya cargó.
+
+    Devuelve (cat, eventos_horas): cat es {codigo: registro} y eventos_horas
+    es {codigo: [(datetime, "sin"|"con"), ...]} en orden cronológico, con UN
+    evento por cada actualización de r["estado"] (regex o LLM). Empieza de
+    cero en cada corrida: el catálogo y las horas no arrastran estado.
+    """
     cat = {}  # codigo -> registro acumulado (en orden cronológico gana el último)
+    eventos_horas = {}
     for f in filas:
         texto = f.get("texto") or ""
         plano = normalizar(texto)
@@ -399,6 +528,7 @@ def main():
                 if est:
                     r["estado"] = est
                     r["estado_fecha"] = fecha
+                    _anotar_horas(eventos_horas, [cod], fecha, est)
 
         # Circuitos que SOLO aparecen en el parte de déficit ("✅CODE - N horas"),
         # sin calles: los registramos igual (quedan "sin información de la UNE"),
@@ -427,6 +557,7 @@ def main():
                 r["ultima_message_id"] = f["message_id"]
                 r["estado"] = "sin servicio"
                 r["estado_fecha"] = fecha
+                _anotar_horas(eventos_horas, [cod], fecha, "sin servicio")
                 if mun_cod and not r["municipio"]:
                     r["municipio"] = mun_cod
 
@@ -471,6 +602,72 @@ def main():
                             item.get("estado") and (r["estado_fecha"] or "") <= fecha:
                         r["estado"] = item["estado"]
                         r["estado_fecha"] = fecha
+                        _anotar_horas(eventos_horas, [cod], fecha, item["estado"])
+
+    return cat, eventos_horas
+
+
+def main():
+    # 0) Aprende los circuitos recurrentes que el LLM ve pero el catálogo no
+    #    registra (embudo 'por_confirmar'). Sin red, desde partes_llm.json; es
+    #    el paso que cierra el ciclo para que sus códigos entren solos. Debe ir
+    #    ANTES de todo consumo del catálogo (es_conocido y canonico ya lo ven).
+    import aprende_circuitos  # noqa: E402
+    aprende_circuitos.main()
+
+    # 1) Histórico del canal. Supabase es la ventana INCREMENTAL (mensajes
+    #    nuevos + ediciones recientes); sin credenciales o sin red (corrida
+    #    local) el replay sigue en pie con el caché commiteado, que trae la
+    #    historia COMPLETA — solo se pierden los mensajes de la ventana.
+    try:
+        sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
+        filas, n_nuevos, n_total = cargar_canal(sb)
+        print(f"canal_cache: {n_total} mensajes, {n_nuevos} nuevos de la DB")
+    except Exception as e:
+        cache = _cargar_cache_canal()
+        filas = sorted(cache["filas"].values(),
+                       key=lambda m: (m.get("fecha") or "", m.get("message_id") or 0))
+        print(f"canal_cache: {len(filas)} mensajes del caché commiteado "
+              f"(sin Supabase: {e.__class__.__name__}), replay offline")
+
+    # catálogo oficial (se usa para validar códigos numéricos ambiguos y, más
+    # abajo, para la fusión de municipios/calles oficiales)
+    try:
+        oficial = json.load(open(OFICIAL_FILE))
+    except Exception:
+        oficial = {}
+    # Baseline: catálogo de la corrida anterior (para detectar cambios de dirección)
+    prev_circuitos = {}
+    try:
+        for c in json.load(open(CATALOGO_SALIDA)).get("circuitos", []):
+            prev_circuitos[c["codigo"]] = c.get("calles", "")
+    except Exception:
+        pass
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import correcciones  # noqa: E402
+    falsos = set(correcciones.circuitos_falsos())  # 'L2' = calle L, no circuito
+    # extracciones LLM por post (partes_llm.py): el LLM entiende redacciones que
+    # los regex no ("se afectó", "T44 y T41", "👉🏼"...). Se aplican DESPUÉS del
+    # regex en cada post (mismo orden cronológico), así el catálogo se corrige
+    # aunque el regex no haya entendido el parte.
+    try:
+        llm_cache = json.load(open(os.path.join(RAIZ, "data", "partes_llm.json")))
+    except Exception:
+        llm_cache = {}
+
+    # Replay del canal: catálogo Y eventos del histórico de horas en un paso.
+    cat, eventos_horas = replay_canal(filas, oficial, falsos, llm_cache)
+
+    # Histórico de horas sin corriente (mismo replay) para las páginas de
+    # municipio. Días/circuitos sin horas: ausentes, nunca 0. Va ANTES de la
+    # geocodificación: si la red se agota, las horas ya quedaron escritas.
+    generado_h = _generado_horas(filas)
+    horas = redondear_horas(horas_historicas(eventos_horas, generado_h))
+    with open(HORAS_JSON, "w", encoding="utf-8") as f:
+        f.write(json.dumps({"generado": generado_h.isoformat() if generado_h else None,
+                            **horas}, ensure_ascii=False))
+    print(f"circuitos_horas: {len(horas['total'])} circuitos con horas históricas "
+          f"(replay del canal, por día en HORA_CUBA)")
 
     # --- Fusión con el catálogo OFICIAL de la UNE (data/circuitos_oficial.json,
     # extraído de las tablas PDF, cargado arriba) ---. Es la fuente de verdad:

@@ -44,7 +44,7 @@ class CatalogoTest(test_seo.BaseArbol):
     def pagina(self, nombre):
         return self._leer("municipio", MOD.slug(nombre), "index.html")
 
-    def test_s8_playa_lista_los_siete_con_estado_causa_y_hora(self):
+    def test_s8_playa_lista_los_siete_con_estado_causa_y_duracion(self):
         p = self.pagina("Playa")
         self.assertIn("<h2>Catálogo completo de circuitos</h2>", p)
         self.assertEqual(_filas(p), ["B246", "PG940", "A1443",     # caídos, más nuevo antes
@@ -55,10 +55,22 @@ class CatalogoTest(test_seo.BaseArbol):
         self.assertIn('<a class="circ-cod" href="/circuitos?c=B246">B246</a>', b246)
         self.assertIn('<span class="circ-est sin">sin servicio</span>', b246)
         self.assertIn("Causa: corte programado", b246)
-        self.assertIn("desde 09:10 (La Habana)", b246)   # 13:10 UTC -4
-        self.assertIn('<span class="circ-est nd">sin noticias</span>', _fila_de(p, "B123"))
-        self.assertIn('<span class="circ-est con">con servicio</span>', _fila_de(p, "L315"))
-        self.assertIn('<span class="circ-est asum">asumido</span>', _fila_de(p, "B456"))
+        # duración del estado vigente (13:10 UTC -> 15:10:50 UTC ≈ 2.0 h); la
+        # hora cruda ya no va en la fila (la fecha completa vive en /circuitos)
+        self.assertIn("lleva 2.0 h sin corriente", b246)
+        self.assertNotIn("(La Habana)", b246)
+        self.assertIn("6.2 h sin corriente", _fila_de(p, "PG940"))     # 09:00 -> 15:10
+        self.assertIn("23.0 h sin corriente", _fila_de(p, "A1443"))    # 16:10 -> 15:10
+        # sin noticias (30 h) y asumido (51 h): SIN duración (no inventar)
+        b123 = _fila_de(p, "B123")
+        self.assertIn('<span class="circ-est nd">sin noticias</span>', b123)
+        self.assertNotIn("corriente</span>", b123)
+        b456 = _fila_de(p, "B456")
+        self.assertIn('<span class="circ-est asum">asumido</span>', b456)
+        self.assertNotIn("corriente</span>", b456)
+        # con servicio: duración desde el restablecimiento
+        self.assertIn("5.2 h con corriente", _fila_de(p, "B789"))      # 10:00 -> 15:10
+        self.assertIn("19.2 h con corriente", _fila_de(p, "L315"))     # 02/07 20:00
         # L315 no tiene causa publicada: la fila no fuerza el campo
         self.assertNotIn("Causa", _fila_de(p, "L315"))
         # la sección de rotación ya no existe en ninguna página

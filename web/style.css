@@ -556,6 +556,23 @@ details.faq[open] summary::before { transform: rotate(225deg); }
 .pagina-municipio ul { padding-left: 18px; line-height: 1.7; font-size: .82rem; color: var(--text-soft); }
 .pagina-municipio .circ-meta { margin-left: 0; }
 .stamp { font-size: .72rem; color: var(--text-muted); }
+/* "Circuitos más afectados": ranking histórico de HORAS sin corriente con
+   selector de rango. El default (todo) va server-rendered; las píldoras solo
+   re-ranquean en vivo (web/horas.js). */
+.afect-ranking { margin: 8px 0; padding-left: 18px; line-height: 1.7; font-size: .82rem; color: var(--text-soft); }
+.afect-h { color: var(--red-t); font-weight: 600; margin-left: 8px; font-family: var(--mono); font-size: .76rem; }
+.afect-p { color: var(--text-muted); margin-left: 8px; font-family: var(--mono); font-size: .72rem; }
+.afect-vacio { color: var(--text-dim); list-style: none; margin-left: -18px; }
+.afect-rangos { display: inline-flex; gap: 5px; margin-left: 4px; vertical-align: middle; }
+.afect-rango {
+  background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+  border-radius: 999px; padding: 4px 11px; min-height: 32px; cursor: pointer;
+  font-size: .72rem; font-family: var(--mono);
+}
+.afect-rango:hover { border-color: var(--border-2); color: var(--text); }
+.afect-rango.activo { background: var(--surface-2); border-color: var(--blue); color: var(--text); }
+/* duración del estado vigente dentro de la fila del catálogo (.circ-fila) */
+.circ-dur { color: var(--text-muted); font-size: .78rem; }
 #seo-resumen { max-width: 820px; width: 100%; margin: 0 auto; padding: 8px 16px 0; font-size: .86rem; }
 #seo-resumen h2 { font-size: .95rem; color: var(--text-soft); margin: 6px 0; }
 #seo-resumen ul { padding-left: 18px; line-height: 1.7; }

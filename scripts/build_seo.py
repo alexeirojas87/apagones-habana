@@ -348,6 +348,36 @@ def _dt(iso):
         return None
 
 
+def _formato_horas(horas):
+    """Horas legibles: '5.3 h' (1 decimal) bajo 48 h; a partir de ahí
+    '2 d 4 h' (días completos + horas enteras). Misma regla que web/horas.js."""
+    if horas is None or horas < 0:
+        return ""
+    if horas >= 48.0:
+        dias = int(horas // 24)
+        resto = int(round(horas - dias * 24))
+        if resto >= 24:  # 23.96 h se redondea a 24: sube al día siguiente
+            dias, resto = dias + 1, 0
+        return "%d d %d h" % (dias, resto)
+    return "%.1f h" % horas
+
+
+def _duracion_horas(iso_desde, iso_hasta):
+    """Duración entre dos ISO de los datos con el formato _formato_horas; ''
+    si alguna fecha falta, es inválida o el orden se invierte (no inventar).
+    Los ISO naive se leen como UTC (misma convención que _hora_cuba)."""
+    desde, hasta = _dt(iso_desde), _dt(iso_hasta)
+    if desde is None or hasta is None:
+        return ""
+    if desde.tzinfo is None:
+        desde = desde.replace(tzinfo=timezone.utc)
+    if hasta.tzinfo is None:
+        hasta = hasta.replace(tzinfo=timezone.utc)
+    if hasta <= desde:
+        return ""
+    return _formato_horas((hasta - desde).total_seconds() / 3600.0)
+
+
 # Umbrales de vigencia compartidos con la regla del catálogo en web/app.js
 # (circuitoVigente): el reloj del builder es estado.generado, no la hora local.
 _UMBRAL_ND_H, _UMBRAL_ASUM_H = 24.0, 48.0
@@ -499,33 +529,108 @@ def averias_municipio(nombre, averias):
 
 def catalogo_circuitos(nombre, estado, circ):
     """Catálogo COMPLETO del municipio (reemplaza a la retirada rotación): todos
-    sus circuitos con su estado vigente, causa y hora, en el recorrido canónico
-    compartido con el hub (paridad de longitud por construcción). Orden: caídos
-    (más nuevo antes) -> sin noticias -> con servicio -> asumidos."""
+    sus circuitos con su estado vigente, causa y DURACIÓN del estado vigente,
+    en el recorrido canónico compartido con el hub (paridad de longitud por
+    construcción). Orden: caídos (más nuevo antes) -> sin noticias -> con
+    servicio -> asumidos. La hora cruda ya no va en la fila (la fecha completa
+    se ve en /circuitos?c=CODIGO); nd/asum no llevan duración (no inventar).
+    """
     filas_html = []
     del_muni = circuitos_del_municipio(nombre, circ)
     if not del_muni:
         return ('<h2>Catálogo completo de circuitos</h2>\n'
                 '<p>Sin circuitos catalogados en el último parte.</p>')
-    gen = _dt((estado or {}).get("generado"))
+    gen_iso = (estado or {}).get("generado")
+    gen = _dt(gen_iso)
     grupos = {}
     for c in del_muni:
         grupos.setdefault(_GRUPO[_vigencia(c, gen)], []).append(c)
     for g in sorted(grupos):  # cada grupo, del más reciente al más antiguo
         for c in sorted(grupos[g], key=lambda c: (c.get("estado_fecha") or "", c["codigo"]),
                         reverse=True):
-            clase, etiqueta = _ESTADO_FILA[_vigencia(c, gen)]
+            vig = _vigencia(c, gen)
+            clase, etiqueta = _ESTADO_FILA[vig]
             causa = " · Causa: %s" % esc_html(c["causa"]) if c.get("causa") else ""
-            hora = _hora_cuba(c.get("estado_fecha"))
-            desde = " · desde %s (La Habana)" % hora if hora != "—" else ""
+            duracion = _duracion_horas(c.get("estado_fecha"), gen_iso)
+            if duracion and vig == "sin":
+                duracion_txt = ('<span class="circ-dur"> · lleva %s sin '
+                                'corriente</span>' % duracion)
+            elif duracion and vig == "con":
+                duracion_txt = ('<span class="circ-dur"> · %s con '
+                                'corriente</span>' % duracion)
+            else:
+                duracion_txt = ""  # nd/asum o fecha ausente: sin duración
             filas_html.append(
                 '<li class="circ-fila">'
                 '<a class="circ-cod" href="/circuitos?c=%s">%s</a> '
                 '<span class="circ-est %s">%s</span>%s%s</li>'
                 % (esc_html(c["codigo"]), esc_html(c["codigo"]), clase, etiqueta,
-                   causa, desde))
+                   causa, duracion_txt))
     return ('<h2>Catálogo completo de circuitos</h2>\n'
             '<ul class="circ-filas">' + "".join(filas_html) + "</ul>")
+
+
+# Rangos del selector de "Circuitos más afectados". El default server-rendered
+# es "todo" (SEO-safe: el ranking histórico completo vive en el HTML estático);
+# web/horas.js re-ranquea al cambiar de píldora desde el JSON embebido.
+RANGOS_AFECT = (("7", "7 días"), ("30", "30 días"), ("90", "90 días"),
+                ("todo", "Todo"))
+VACIO_AFECT = "Sin datos históricos de horas todavía."
+
+
+def horas_del_municipio(nombre, circ, horas):
+    """Recorta el histórico de horas (circuitos_horas.json, build_serie24h.py)
+    a los circuitos del municipio y añade `veces` del catálogo (desempate del
+    re-ranqueo en web/horas.js). None cuando no hay datos que mostrar."""
+    if not horas or not (horas.get("por_dia") or {}):
+        return None
+    por_dia, total, veces = {}, {}, {}
+    for c in circuitos_del_municipio(nombre, circ):
+        cod = c["codigo"]
+        dias = horas["por_dia"].get(cod)
+        if not dias:
+            continue
+        por_dia[cod] = dias
+        total[cod] = float((horas.get("total") or {}).get(cod) or 0.0)
+        veces[cod] = int(c.get("veces") or 0)
+    if not por_dia:
+        return None
+    return {"por_dia": por_dia, "total": total, "veces": veces,
+            "generado": horas.get("generado")}
+
+
+def seccion_afectados(nombre, estado, circ, horas):
+    """Sección "Circuitos más afectados" de la página de municipio: top 10
+    histórico por HORAS sin corriente (no conteos), horas desc con desempate
+    por `veces` y código. Server-rendered con el rango "todo"; las píldoras
+    7/30/90/Todo re-ranquean en vivo desde el JSON embebido (sin fetch y sin
+    reloj: web/horas.js usa el `generado` de los datos). Estado vacío
+    explícito cuando el municipio no tiene datos (patrón averías S15/S16)."""
+    embebido = horas_del_municipio(nombre, circ, horas)
+    if not embebido:
+        return "<h2>Circuitos más afectados</h2>\n<p>%s</p>" % VACIO_AFECT
+    total, veces = embebido["total"], embebido["veces"]
+    orden = sorted(total, key=lambda cod: (-total[cod], -veces.get(cod, 0), cod))[:10]
+    filas = "".join(
+        '<li><a class="circ-cod" href="/circuitos?c=%s">%s</a>'
+        '<span class="afect-h">%s sin corriente</span>'
+        '<span class="afect-p">%d %s</span></li>'
+        % (esc_html(cod), esc_html(cod), _formato_horas(total[cod]),
+           veces.get(cod, 0), "parte" if veces.get(cod, 0) == 1 else "partes")
+        for cod in orden)
+    pildoras = "".join(
+        '<button type="button" class="afect-rango%s" data-rango="%s"%s>%s</button>'
+        % (" activo" if r == "todo" else "", r,
+           ' aria-pressed="true"' if r == "todo" else "", etiqueta)
+        for r, etiqueta in RANGOS_AFECT)
+    return ('<h2>Circuitos más afectados</h2>\n'
+            '<p class="stamp">Histórico por horas sin corriente · rango: '
+            '<span class="afect-rangos" role="group" '
+            'aria-label="Rango del histórico">%s</span></p>\n'
+            '<ol class="afect-ranking">%s</ol>\n'
+            '<script type="application/json" id="datos-horas-circuitos">%s</script>\n'
+            '<script src="/horas.js" defer></script>'
+            % (pildoras, filas, guion_ld(embebido)))
 
 
 def region_hub(estado, circ, nombres):
@@ -594,7 +699,7 @@ def nav_tabs(activo):
     return '<nav class="tabs">%s</nav>' % " ".join(piezas)
 
 
-def pagina_municipio(nombre, estado, circ, nombres, averias=None):
+def pagina_municipio(nombre, estado, circ, nombres, averias=None, horas=None):
     """Página estática completa de un municipio (forma /municipio/<slug>/)."""
     s = slug(nombre)
     url = site_url("municipio/%s/" % s)
@@ -649,6 +754,7 @@ def pagina_municipio(nombre, estado, circ, nombres, averias=None):
     cuerpo = "\n".join(filter(None, [
         parrafo_estado, ranking_poblacion(nombre, estado, circ, nombres),
         listado, catalogo_circuitos(nombre, estado, circ),
+        seccion_afectados(nombre, estado, circ, horas),
         reincidentes_circuitos(nombre, estado, circ),
         averias_municipio(nombre, averias),
         '<p><a href="/?municipio=%s">Ver %s en el mapa interactivo</a></p>' % (quote(nombre), esc_html(nombre)),
@@ -765,6 +871,10 @@ def generar(dir_web, datos):
         averias = _averias_por_municipio(_cargar(os.path.join(dir_web, "data", "analitica.json")))
     except (OSError, ValueError):
         averias = {}  # sin histórico (p. ej. árbol de prueba sin analitica): estados vacíos
+    try:
+        horas = _cargar(os.path.join(dir_web, "data", "circuitos_horas.json"))
+    except (OSError, ValueError):
+        horas = None  # sin histórico de horas: estados vacíos en todas las hijas
     for archivo in PAGINAS:
         ruta = os.path.join(dir_web, archivo)
         with open(ruta, encoding="utf-8") as f:
@@ -782,7 +892,7 @@ def generar(dir_web, datos):
         destino = os.path.join(dir_web, "municipio", slug(nombre))
         os.makedirs(destino, exist_ok=True)
         with open(os.path.join(destino, "index.html"), "w", encoding="utf-8") as f:
-            f.write(pagina_municipio(nombre, estado, circ, nombres, averias))
+            f.write(pagina_municipio(nombre, estado, circ, nombres, averias, horas))
     # Endpoints de rastreo. robots.txt vive TAMBIÉN commiteado (si esta corrida
     # revienta, el deploy del último-good conserva reglas); el re-emitir aquí
     # solo lo alinea cuando SITE_BASE cambió. sitemap.xml es 100% generado.

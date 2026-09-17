@@ -1272,5 +1272,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚡Consumidores del municipio Boyeros, se afecta el servicio eléctrico por una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 235 e/ 206 y"
+ },
+ "83449": {
+  "fecha": "2026-09-17T04:18:17+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1300",
+   "MB910",
+   "MR450",
+   "SR840"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 🚨💥Subestación : ✔️Mun"
  }
 }

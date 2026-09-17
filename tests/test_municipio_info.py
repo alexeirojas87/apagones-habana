@@ -1,10 +1,12 @@
 """S8-S16 del delta spec municipios-info: la sección de rotación se reemplaza
 con datos por municipio realmente útiles — catálogo completo de circuitos,
-ranking "N de 15" con población estimada, reincidentes por `veces` con aviso de
-antigüedad y averías recientes desde analitica.json.
+ranking "N de 15" con población estimada, reincidentes por `veces` y averías
+recientes desde analitica.json.
 
-Fixtures: Playa trae los cuatro grupos de vigencia (2 sin frescos + 1 más = 3
-sin, 1 nd a 30 h, 2 con, 1 asumido a 51 h) y 7 valores de `veces` disparados.
+Fixtures: Playa trae 5 circuitos sin servicio (dos de ellas SILENCIOSAS —30 h
+y 51 h— que con la regla nueva del mantenedor permanecen "sin", con duración
+creciente, nunca "sin noticias") y 2 con servicio, con 7 valores de `veces`
+disparados.
 """
 
 import json
@@ -48,9 +50,9 @@ class CatalogoTest(test_seo.BaseArbol):
         p = self.pagina("Playa")
         self.assertIn("<h2>Catálogo completo de circuitos</h2>", p)
         self.assertEqual(_filas(p), ["B246", "PG940", "A1443",     # caídos, más nuevo antes
-                                     "B123",                        # sin noticias (30 h)
-                                     "B789", "L315",                 # con servicio
-                                     "B456"])                        # asumido (>48 h)
+                                     "B123",                        # sin silencioso (30 h): sigue "sin"
+                                     "B456",                        # sin silencioso (51 h): sigue "sin"
+                                     "B789", "L315"])               # con servicio
         b246 = _fila_de(p, "B246")
         self.assertIn('<a class="circ-cod" href="/circuitos?c=B246">B246</a>', b246)
         self.assertIn('<span class="circ-est sin">sin servicio</span>', b246)
@@ -61,13 +63,14 @@ class CatalogoTest(test_seo.BaseArbol):
         self.assertNotIn("(La Habana)", b246)
         self.assertIn("6.2 h sin corriente", _fila_de(p, "PG940"))     # 09:00 -> 15:10
         self.assertIn("23.0 h sin corriente", _fila_de(p, "A1443"))    # 16:10 -> 15:10
-        # sin noticias (30 h) y asumido (51 h): SIN duración (no inventar)
+        # Regla nueva: un apagado silencioso PERMANECE "sin" y su duración
+        # crece sin tope — nunca "sin noticias" ni "asumido" por silencio.
         b123 = _fila_de(p, "B123")
-        self.assertIn('<span class="circ-est nd">sin noticias</span>', b123)
-        self.assertNotIn("corriente</span>", b123)
+        self.assertIn('<span class="circ-est sin">sin servicio</span>', b123)
+        self.assertIn("lleva 30.0 h sin corriente", b123)              # 30 h
         b456 = _fila_de(p, "B456")
-        self.assertIn('<span class="circ-est asum">asumido</span>', b456)
-        self.assertNotIn("corriente</span>", b456)
+        self.assertIn('<span class="circ-est sin">sin servicio</span>', b456)
+        self.assertIn("lleva 2 d 3 h sin corriente", b456)             # 51 h
         # con servicio: duración desde el restablecimiento
         self.assertIn("5.2 h con corriente", _fila_de(p, "B789"))      # 10:00 -> 15:10
         self.assertIn("19.2 h con corriente", _fila_de(p, "L315"))     # 02/07 20:00
@@ -128,21 +131,17 @@ class RankingPoblacionTest(test_seo.BaseArbol):
     def test_s11_la_estimacion_de_personas_igual_al_metodo_del_header(self):
         # Referencia en Python de la fórmula del header (resumenCircuitos en
         # web/app.js), con el reloj anclado en estado.generado (determinismo del
-        # build): fracción de circuitos no-nd del municipio × su población, o
-        # promedio de ciudad si tiene menos de 2 circuitos atribuibles.
+        # build): fracción de circuitos sin servicio del municipio × su
+        # población, o promedio de ciudad si tiene menos de 2 circuitos
+        # atribuibles. Con la regla nueva TODO "sin" cuenta: los apagados
+        # silenciosos ya no quedan fuera del estimado (no hay "nd").
         estado, circ = test_seo.coleccion()
-        generado = "2026-07-03T15:10:50+00:00"
         tabla = estado["poblacion_municipio"]
-        del_gen = MOD._dt(generado)
 
         def vige(c):
             if c.get("estado") == "con servicio":
                 return "con"
             if c.get("estado") == "sin servicio":
-                t = MOD._dt(c.get("estado_fecha"))
-                h = (del_gen - t).total_seconds() / 3600.0 if (t and del_gen) else 0
-                if h > 48: return "asum"
-                if h > 24: return "nd"
                 return "sin"
             return "asum"
 
@@ -152,13 +151,13 @@ class RankingPoblacionTest(test_seo.BaseArbol):
         esperados = {}
         for nombre, pob in tabla.items():
             del_m = [c for c in todos if nombre in (c.get("municipios") or [])]
-            atribuibles = [c for c in del_m if vige(c) != "nd"]
+            atribuibles = del_m  # ya no se excluye nada: silencio ≠ "nd"
             s = sum(1 for c in atribuibles if vige(c) == "sin")
             fraccion = (s / float(len(atribuibles))) if len(atribuibles) >= 2 else sin_city
             # Math.round del header == floor(x + 0.5): la página debe usar la misma regla
             esperados[nombre] = int(math.floor(fraccion * pob + 0.5))
         # y la página debe mostrar el MISMO número (~redondeo del header):
-        self.assertEqual(esperados["Playa"], 71123)  # 3 sin de 6 no-nd × 142245
+        self.assertEqual(esperados["Playa"], 101604)  # 5 sin de 7 atribuibles × 142245
         for nombre, valor in esperados.items():
             p = self.pagina(nombre)
             con_puntos = "{:,}".format(valor).replace(",", ".")
@@ -177,7 +176,9 @@ class RankingPoblacionTest(test_seo.BaseArbol):
 
 
 class ReincidentesTest(test_seo.BaseArbol):
-    """S13/S14 (U-E)."""
+    """S13 (U-E) y la retirada del aviso de antigüedad S14: con la regla nueva
+    del mantenedor el silencio NO es «sin noticias» — el circuito sigue apagado
+    hasta un evento explícito y la duración la muestra el catálogo."""
 
     def setUp(self):
         test_seo.BaseArbol.setUp(self)
@@ -203,15 +204,15 @@ class ReincidentesTest(test_seo.BaseArbol):
         self.assertEqual(_filas_reinc := re.findall(r"\?c=([^\"]+)", self._reincidentes(self.pagina("Regla"))),
                          ["H341"])
 
-    def test_s14_avisos_de_antiguedad_hito_24h(self):
-        # 23 h (A1443): sin aviso. 30 h (B123): «hace 1 día». 51 h (B456): «hace 2 días».
+    def test_s14_silencio_no_genera_aviso_de_noticias(self):
+        # Regla nueva: 30 h (B123) y 51 h (B456) NO producen «sin noticias hace
+        # X días» — el circuito permanece apagado hasta un evento explícito.
         r = self._reincidentes(self.pagina("Playa"))
-        fila_a = re.search(r'\?c=A1443".*?</li>', r, re.DOTALL).group(0)
         fila_b = re.search(r'\?c=B123".*?</li>', r, re.DOTALL).group(0)
         fila_c = re.search(r'\?c=B456".*?</li>', r, re.DOTALL).group(0)
-        self.assertNotIn("sin noticias hace", fila_a)
-        self.assertIn("sin noticias hace 1 día", fila_b)
-        self.assertIn("sin noticias hace 2 días", fila_c)
+        self.assertNotIn("sin noticias hace", fila_b)
+        self.assertNotIn("sin noticias hace", fila_c)
+        self.assertNotIn("sin noticias", r)
 
 
 class AveriasTest(test_seo.BaseArbol):

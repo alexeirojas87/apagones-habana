@@ -13,6 +13,8 @@ import importlib.util
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 import tempfile
 import types
@@ -340,7 +342,8 @@ class SeccionAfectadosTest(test_seo.BaseArbol):
         return self._leer("municipio", MOD.slug(nombre), "index.html")
 
     def _ol(self, pagina):
-        m = re.search(r'<ol class="afect-ranking">(.*?)</ol>', pagina, re.DOTALL)
+        m = re.search(r'<ol id="afect-ranking" class="afect-ranking">(.*?)</ol>',
+                      pagina, re.DOTALL)
         return None if m is None else m.group(1)
 
     def _codigos(self, pagina):
@@ -356,6 +359,9 @@ class SeccionAfectadosTest(test_seo.BaseArbol):
         self.assertIn('class="afect-rango activo" data-rango="todo" '
                       'aria-pressed="true">Todo</button>', p)
         self.assertIn('<script src="/horas.js" defer></script>', p)
+        # Bug B (selector roto): el <ol> lleva id + clase — web/horas.js
+        # necesita el id (y de respaldo la clase) para colgar los listeners.
+        self.assertIn('<ol id="afect-ranking" class="afect-ranking">', p)
 
     def test_default_server_rendered_ordena_por_horas_desc(self):
         # Todo/histórico (SEO-safe): horas desc; el desempate por veces no
@@ -425,7 +431,9 @@ class SinDatosHorasTest(test_seo.BaseArbol):
 
 class CatalogoDuracionRenderTest(test_seo.BaseArbol):
     """El catálogo ya no imprime la hora cruda; muestra la duración del
-    estado vigente (sin corriente / con corriente), nada en nd/asum."""
+    estado vigente (sin corriente / con corriente), nada en asum. Con la
+    regla nueva del mantenedor la duración del caído crece SIN TOPE: un
+    apagado silencioso de 30 h o de 51 h sigue contando."""
 
     def setUp(self):
         test_seo.BaseArbol.setUp(self)
@@ -441,9 +449,12 @@ class CatalogoDuracionRenderTest(test_seo.BaseArbol):
         catalogo = m.group(1)
         self.assertNotIn("desde 09:10", catalogo)
         self.assertNotIn("(La Habana)", catalogo)
-        self.assertIn("lleva 2.0 h sin corriente", catalogo)  # B246
-        self.assertIn("19.2 h con corriente", catalogo)       # L315
-        # nd (30 h) y asumido (51 h): sin duración (no inventar)
+        self.assertIn("lleva 2.0 h sin corriente", catalogo)   # B246
+        self.assertIn("19.2 h con corriente", catalogo)        # L315
+        # Apagados silenciosos (regla nueva: permanecen "sin", duración sin tope):
+        self.assertIn("lleva 30.0 h sin corriente", catalogo)  # B123, 30 h
+        self.assertIn("lleva 2 d 3 h sin corriente", catalogo)  # B456, 51 h
+        # asumido (estado None): sin duración (no inventar)
         self.assertNotIn("lleva", self.pagina("Marianao").split("circ-filas")[1])
 
 
@@ -470,6 +481,129 @@ class HorasJsTest(unittest.TestCase):
         self.assertIn("toFixed(1)", self.js)   # "5.3 h"
         self.assertIn('" d "', self.js)        # "2 d 4 h"
         self.assertIn('" h"', self.js)
+
+    def test_parte_dom_encapsulada_y_exports(self):
+        # R3-002: lo puro es exportable para node; la parte DOM vive bajo la
+        # guarda de documento; el selector tiene defensa doble (id + clase).
+        self.assertIn("module.exports", self.js)
+        self.assertIn('typeof document === "undefined"', self.js)
+        self.assertIn('document.getElementById("afect-ranking") ||', self.js)
+        self.assertIn('document.querySelector("ol.afect-ranking")', self.js)
+
+
+# Fixture sintético con días conocidos (el doc permite usar el JSON de
+# web/municipio/playa/index.html si existe, pero ese HTML es un artefacto
+# generado que puede no estar en un árbol fresco; el sintético es
+# determinista). Generado 2026-09-17T12:00Z → día Habana 2026-09-17.
+# Ventana 7 días (desde 2026-09-11): 09-10 queda FUERA, 09-11 (borde) cuenta.
+DATOS_HORAS_JS = {
+    "generado": "2026-09-17T12:00:00+00:00",
+    "total": {"XX1": 37.0, "BB1": 10.0, "BB9": 10.0, "CC9": 10.0, "AA2": 10.0},
+    "veces": {"XX1": 5, "BB1": 3, "BB9": 3, "CC9": 3, "AA2": 1},
+    "por_dia": {
+        "XX1": {"2026-06-19": 4.0, "2026-06-21": 1.0, "2026-08-01": 9.0,
+                "2026-08-20": 2.0, "2026-09-10": 6.0, "2026-09-11": 7.0,
+                "2026-09-15": 5.0, "2026-09-17": 3.0},
+        "BB1": {"2026-09-17": 10.0},
+        "BB9": {"2026-09-17": 10.0},
+        "CC9": {"2026-09-17": 10.0},
+        "AA2": {"2026-09-17": 10.0},
+    },
+}
+
+
+class HorasJsEjecutableTest(unittest.TestCase):
+    """R3-002: web/horas.js EXECUTABLE con node. Las funciones puras quedan
+    exportadas por module.exports (sin DOM), así que un script tmp puede
+    require()-el archivo real y afirmar el contrato completo: restarDias,
+    ventana 7/30/90 con el borde incluido, paridad de formatoHoras con
+    _formato_horas (build_seo.py) y el orden del ranking."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.node = shutil.which("node")
+
+    def _correr(self, cuerpo):
+        """Ejecuta un script tmp que requiere el web/horas.js REAL con node."""
+        if self.node is None:
+            self.skipTest("node no disponible")
+        prelude = ("var assert = require('assert');\n"
+                   "var h = require(%s);\n"
+                   % json.dumps(str(RAIZ / "web" / "horas.js")))
+        with tempfile.NamedTemporaryFile("w", suffix=".js", delete=False,
+                                         encoding="utf-8") as f:
+            f.write(prelude + cuerpo)
+            ruta = f.name
+        try:
+            r = subprocess.run([self.node, ruta], capture_output=True,
+                               text=True, timeout=60)
+        finally:
+            os.unlink(ruta)
+        self.assertEqual(r.returncode, 0,
+                         "node falló\nstdout: %s\nstderr: %s"
+                         % (r.stdout, r.stderr))
+        return r.stdout
+
+    def test_contrato_completo_de_las_funciones_puras(self):
+        datos = json.dumps(DATOS_HORAS_JS)
+        self._correr("""
+var datos = %s;
+// restarDias: el caso del doc
+assert.strictEqual(h.restarDias('2026-09-17', 7), '2026-09-10');
+assert.strictEqual(h.restarDias('2026-09-17', 89), '2026-06-20');
+// diaHabana: UTC-4 fijo (01:30Z del 18 aún es el 17 en La Habana)
+assert.strictEqual(h.diaHabana('2026-09-18T01:30:00+00:00'), '2026-09-17');
+assert.strictEqual(h.diaHabana('basura'), null);
+// formatoHoras: paridad con _formato_horas (build_seo.py)
+assert.strictEqual(h.formatoHoras(5.3), '5.3 h');
+assert.strictEqual(h.formatoHoras(47.9), '47.9 h');
+assert.strictEqual(h.formatoHoras(48.0), '2 d 0 h');
+assert.strictEqual(h.formatoHoras(71.5), '3 d 0 h');
+// horasEnRango: suma EXACTA de los buckets del rango, borde incluido
+// (el día del generado cuenta; el día anterior al desde, no)
+assert.strictEqual(h.horasEnRango(datos, 'XX1', 7), 15.0);    // 09-11..09-17
+assert.strictEqual(h.horasEnRango(datos, 'XX1', 30), 23.0);   // + 08-20
+assert.strictEqual(h.horasEnRango(datos, 'XX1', 90), 33.0);   // + 08-01, 06-21
+assert.strictEqual(h.horasEnRango(datos, 'XX1', null), 37.0); // todo
+assert.strictEqual(h.horasEnRango(datos, 'XX1', 1), 3.0);     // solo el generado
+// ranking: horas desc, veces desc, código asc
+assert.deepStrictEqual(h.ranquear(datos, 'todo').map(function (p) { return p[0]; }),
+                       ['XX1', 'BB1', 'BB9', 'CC9', 'AA2']);
+// con rango 1 el empate de 10.0 manda y XX1 (3.0) cae al final
+assert.deepStrictEqual(h.ranquear(datos, '1').map(function (p) { return p[0]; }),
+                       ['BB1', 'BB9', 'CC9', 'AA2', 'XX1']);
+""" % datos)
+
+    def test_json_embebido_de_pagina_real_si_existe(self):
+        # Fixture preferido del doc: el JSON embebido de una página real de
+        # municipio (artefacto de build_seo; si no está en el árbol, skip).
+        # El artefacto puede ser STALE (de un build anterior): solo se usa su
+        # JSON como datos de prueba; el contrato del id="afect-ranking" lo
+        # cubren los tests de fixtures sobre salida fresca.
+        pagina = RAIZ / "web" / "municipio" / "playa" / "index.html"
+        if not pagina.exists():
+            self.skipTest("web/municipio/playa/index.html no generado en este árbol")
+        texto = pagina.read_text(encoding="utf-8")
+        m = re.search(r'<script type="application/json" '
+                      r'id="datos-horas-circuitos">(.*?)</script>', texto, re.DOTALL)
+        if m is None:
+            self.skipTest("la página real no trae JSON embebido (sin histórico de horas)")
+        datos = json.dumps(json.loads(m.group(1)))
+        self._correr("""
+var datos = %s;
+assert.ok(datos.por_dia && datos.generado, 'JSON real incompleto');
+var dia = h.diaHabana(datos.generado);
+assert.ok(/^\\d{4}-\\d{2}-\\d{2}$/.test(dia), 'diaHabana del generado real');
+// el ranking completo es total desc (con desempate estable) y el primero
+// coincide con su total exacto
+var ranking = h.ranquear(datos, 'todo');
+assert.ok(ranking.length > 0, 'el histórico real debe tener horas');
+var primero = ranking[0];
+assert.strictEqual(primero[1], datos.total[primero[0]]);
+for (var i = 1; i < ranking.length; i++) {
+  assert.ok(ranking[i - 1][1] >= ranking[i][1], 'horas no ascendentes');
+}
+""" % datos)
 
 
 if __name__ == "__main__":

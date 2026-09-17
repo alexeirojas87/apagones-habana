@@ -378,28 +378,30 @@ def _duracion_horas(iso_desde, iso_hasta):
     return _formato_horas((hasta - desde).total_seconds() / 3600.0)
 
 
-# Umbrales de vigencia compartidos con la regla del catálogo en web/app.js
-# (circuitoVigente): el reloj del builder es estado.generado, no la hora local.
-_UMBRAL_ND_H, _UMBRAL_ASUM_H = 24.0, 48.0
-_ESTADO_FILA = {"sin": ("sin", "sin servicio"), "nd": ("nd", "sin noticias"),
-                "con": ("con", "con servicio"), "asum": ("asum", "asumido")}
-_GRUPO = {"sin": 0, "nd": 1, "con": 2, "asum": 3}
+# Etiquetas/grupos de fila compartidos con la regla del catálogo en web/app.js
+# (circuitoVigente): sin/con/asum. Sin umbrales de antigüedad (regla nueva del
+# mantenedor): un "sin servicio" permanece sin hasta un evento explícito, y el
+# reloj del builder (estado.generado) solo mide la duración que se muestra.
+_ESTADO_FILA = {"sin": ("sin", "sin servicio"), "con": ("con", "con servicio"),
+                "asum": ("asum", "asumido")}
+_GRUPO = {"sin": 0, "con": 1, "asum": 2}
 
 
 def _vigencia(c, gen):
-    """Clasificación estática del circuito (sin/nd/con/asum) con la antigüedad
-    medida contra `gen` (el generado de estado.json): sin noticias a 24 h,
-    asumido-con-corriente (silencio = evidencia de retorno) a 48 h."""
+    """Clasificación estática del circuito (sin/con/asum) bajo la regla nueva
+    del mantenedor: un circuito en estado "sin servicio" PERMANECE sin
+    servicio —y su duración "lleva X sin corriente" sigue creciendo— hasta que
+    un EVENTO EXPLÍCITO cambie su estado: un restablecimiento de la UNE o el
+    reporte de un usuario. El silencio de 24/48 h NO degrada a "sin noticias"
+    ni asume retorno. "con servicio" → "con" y estado None (nunca apareció
+    afectado en un parte) → "asum" (se asume con corriente por descarte),
+    igual que antes. `gen` ya no clasifica por antigüedad: queda en la firma
+    porque las duraciones del catálogo lo usan aparte."""
+    del gen
     if c.get("estado") == "con servicio":
         return "con"
     if c.get("estado") != "sin servicio":
         return "asum"
-    t = _dt(c.get("estado_fecha"))
-    h = (gen - t).total_seconds() / 3600.0 if (gen and t) else 0.0
-    if h > _UMBRAL_ASUM_H:
-        return "asum"
-    if h > _UMBRAL_ND_H:
-        return "nd"
     return "sin"
 
 
@@ -411,10 +413,12 @@ def _nf_es(n):
 def _estimado_afectados(nombre, estado, circ):
     """Personas sin corriente en el municipio con el MISMO método del header de
     la portada (resumenCircuitos en web/app.js): cifra oficial cuando el parte
-    del Capitalino la trae; si no, fracción de circuitos no-nd del municipio ×
-    su población (estado.poblacion_municipio, fuente única U-B), y promedio de
-    ciudad cuando tiene menos de 2 circuitos atribuibles. El redondeo replica
-    Math.round (floor(x + 0.5)). None = no estimable (sin población o sin datos).
+    del Capitalino la trae; si no, fracción de circuitos sin servicio del
+    municipio × su población (estado.poblacion_municipio, fuente única U-B), y
+    promedio de ciudad cuando tiene menos de 2 circuitos atribuibles. Los
+    apagados silenciosos cuentan SIEMPRE (regla nueva: el silencio no los
+    excluye). El redondeo replica Math.round (floor(x + 0.5)). None = no
+    estimable (sin población o sin datos).
     """
     p = ((estado or {}).get("poblacion_municipio") or {}).get(nombre)
     if not p:
@@ -428,8 +432,7 @@ def _estimado_afectados(nombre, estado, circ):
     gen = _dt((estado or {}).get("generado"))
     nsin = sum(1 for c in cat if _vigencia(c, gen) == "sin")
     sin_city = nsin / float(len(cat))
-    atribuibles = [c for c in circuitos_del_municipio(nombre, circ)
-                   if _vigencia(c, gen) != "nd"]
+    atribuibles = circuitos_del_municipio(nombre, circ)
     if len(atribuibles) >= 2:
         fraccion = sum(1 for c in atribuibles if _vigencia(c, gen) == "sin") / float(len(atribuibles))
     else:
@@ -445,30 +448,24 @@ def _fecha_corta(iso):
 
 def reincidentes_circuitos(nombre, estado, circ):
     """Top 5 circuitos por `veces` (S13), desempate alfabético por código: cada
-    fila dice «caído N veces desde <primera>» y, si el último parte del circuito
-    tiene más de 24 h al momento del build, un aviso «sin noticias hace D días»
-    con D = días completos (S14). La fecha de referencia es estado.generado: el
-    builder no usa el reloj de la corrida."""
+    fila dice «caído N veces desde <primera>». La fecha de referencia es
+    estado.generado: el builder no usa el reloj de la corrida. El aviso «sin
+    noticias hace D días» se retiró con la regla nueva del mantenedor: el
+    silencio NO es «sin noticias» (el circuito sigue apagado hasta un evento
+    explícito) y la duración real la muestra el catálogo («lleva X sin
+    corriente», crece sin tope)."""
+    del estado  # ya no aporta nada aquí (la referencia era solo del aviso viejo)
     del_muni = [c for c in circuitos_del_municipio(nombre, circ)
                 if isinstance(c.get("veces"), int) and c["veces"] > 0]
     if not del_muni:
         return ""
-    gen = _dt((estado or {}).get("generado"))
     top = sorted(del_muni, key=lambda c: (-c["veces"], c["codigo"]))[:5]
     filas = []
     for c in top:
         desde = " desde %s" % _fecha_corta(c.get("primera")) if c.get("primera") else ""
-        aviso = ""
-        t = _dt(c.get("estado_fecha"))
-        if gen and t:
-            horas = (gen - t).total_seconds() / 3600.0
-            if horas > _UMBRAL_ND_H:
-                dias = int(horas // 24)
-                aviso = (' <span class="circ-b">sin noticias hace %s</span>'
-                         % ("1 día" if dias == 1 else "%d días" % dias))
         filas.append('<li><a class="circ-cod" href="/circuitos?c=%s">%s</a>'
-                     ' — caído %d veces%s%s</li>'
-                     % (esc_html(c["codigo"]), esc_html(c["codigo"]), c["veces"], desde, aviso))
+                     ' — caído %d veces%s</li>'
+                     % (esc_html(c["codigo"]), esc_html(c["codigo"]), c["veces"], desde))
     return ('<h2>Circuitos más reincidentes</h2>\n<ul class="reinc">'
             + "".join(filas) + "</ul>")
 
@@ -531,9 +528,11 @@ def catalogo_circuitos(nombre, estado, circ):
     """Catálogo COMPLETO del municipio (reemplaza a la retirada rotación): todos
     sus circuitos con su estado vigente, causa y DURACIÓN del estado vigente,
     en el recorrido canónico compartido con el hub (paridad de longitud por
-    construcción). Orden: caídos (más nuevo antes) -> sin noticias -> con
-    servicio -> asumidos. La hora cruda ya no va en la fila (la fecha completa
-    se ve en /circuitos?c=CODIGO); nd/asum no llevan duración (no inventar).
+    construcción). Orden: caídos (más nuevo antes) -> con servicio -> asumidos.
+    La hora cruda ya no va en la fila (la fecha completa se ve en
+    /circuitos?c=CODIGO); la duración del caído crece SIN TOPE (regla nueva:
+    el silencio no corta el conteo — un apagado de 5 días dice «lleva 5 d … sin
+    corriente», nunca «sin noticias») y asum no lleva duración (no inventar).
     """
     filas_html = []
     del_muni = circuitos_del_municipio(nombre, circ)
@@ -559,7 +558,7 @@ def catalogo_circuitos(nombre, estado, circ):
                 duracion_txt = ('<span class="circ-dur"> · %s con '
                                 'corriente</span>' % duracion)
             else:
-                duracion_txt = ""  # nd/asum o fecha ausente: sin duración
+                duracion_txt = ""  # asum o fecha ausente: sin duración
             filas_html.append(
                 '<li class="circ-fila">'
                 '<a class="circ-cod" href="/circuitos?c=%s">%s</a> '
@@ -627,7 +626,7 @@ def seccion_afectados(nombre, estado, circ, horas):
             '<p class="stamp">Histórico por horas sin corriente · rango: '
             '<span class="afect-rangos" role="group" '
             'aria-label="Rango del histórico">%s</span></p>\n'
-            '<ol class="afect-ranking">%s</ol>\n'
+            '<ol id="afect-ranking" class="afect-ranking">%s</ol>\n'
             '<script type="application/json" id="datos-horas-circuitos">%s</script>\n'
             '<script src="/horas.js" defer></script>'
             % (pildoras, filas, guion_ld(embebido)))

@@ -194,23 +194,21 @@ function sinAcentos(s) {
   return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
-// Estado vigente de un circuito. "nd" = sin noticias hace más de 24 h, que no
-// es lo mismo que "con servicio": no lo afirmamos si no lo sabemos.
+// Estado vigente de un circuito. MISMA regla que app.js (circuitoVigente) —
+// regla del mantenedor "apagado sigue apagado": un circuito "sin servicio"
+// PERMANECE sin servicio hasta que un EVENTO EXPLÍCITO cambie su estado (un
+// restablecimiento de la UNE o el reporte de un usuario). El silencio NO
+// degrada a "nd" ni asume retorno; la rama no consulta Date.now(), así que
+// mismos datos → mismo estado en cada visita.
 function estadoVigente(c, est) {
   if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "discrepado";
   const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
   const en = est && est.evento_nacional;
   if (en) return (c.estado === "con servicio" && t && t > new Date(en.desde)) ? "con" : "sin";
   if (c.estado === "con servicio") return "con";
-  if (c.estado === "sin servicio") {
-    const horas = t ? (Date.now() - t) / 3600000 : 0;
-    // >48 h sin salir en partes: se suma a los "sin cortes reportados"
-    // (regla del "no se apagan"); si reaparece en un parte, el catálogo
-    // lo reactiva solo.
-    if (horas > 48) return "asum";
-    if (horas > 24) return "nd";
-    return "sin";
-  }
+  // "sin servicio" siempre "sin": solo un evento explícito lo saca de ahí
+  // (el catálogo lo reactiva solo si reaparece).
+  if (c.estado === "sin servicio") return "sin";
   return "asum";
 }
 
@@ -247,7 +245,7 @@ function horasEnRango(bot, codigo, dias) {
 function describirCircuito(c, est) {
   const v = estadoVigente(c, est);
   const etiqueta = { con: "con servicio", sin: "sin servicio", discrepado: "usuarios reportan sin corriente",
-                     nd: "sin noticias hace +24h", asum: "sin cortes reportados" }[v];
+                     asum: "sin cortes reportados" }[v];
   const out = { codigo: c.codigo, estado: etiqueta, municipio: c.municipio || null };
   if (v === "sin") out.horas_sin_luz = horasSin(c);
   if (v === "discrepado" && c.conteo_usuario) {
@@ -273,7 +271,7 @@ async function cargarContexto(baseUrl) {
 
 function resumenActual(ctx) {
   const { est, circuitos } = ctx;
-  const conteo = { sin: 0, con: 0, nd: 0, asum: 0 };
+  const conteo = { sin: 0, con: 0, asum: 0 };
   const porMunicipio = {};
   for (const c of circuitos) {
     const v = estadoVigente(c, est);
@@ -288,7 +286,6 @@ function resumenActual(ctx) {
     total_circuitos: circuitos.length,
     sin_servicio: conteo.sin,
     con_servicio: conteo.con,
-    sin_noticias_24h: conteo.nd,
     sin_cortes_reportados: conteo.asum,
     apagon_nacional: !!(est && est.evento_nacional),
     deficit_mw: (est && est.deficit && (est.deficit.mw || est.deficit)) || null,
@@ -490,7 +487,6 @@ async function ejecutarHerramienta(nombre, args, ctx, env) {
         encontrados: hits.length,
         sin_servicio: cuenta("sin servicio"),
         con_servicio: cuenta("con servicio"),
-        sin_noticias_24h: cuenta("sin noticias hace +24h"),
         sin_cortes_reportados: cuenta("sin cortes reportados"),
         circuitos: desc.slice(0, 25),
         ...(hits.length > 25 ? { nota: `se listan 25 de ${hits.length}` } : {}),
@@ -653,7 +649,7 @@ Tienes herramientas para consultar los datos. Úsalas siempre antes de responder
 - Si el usuario dice que se fue o volvió la corriente en un lugar, usa reportar con lo que dijo: del candidato que devuelva, ofrece confirmar el reporte mostrando código, dirección y confianza; nunca digas que el reporte quedó registrado hasta que el usuario confirme.
 Puedes usar varias herramientas antes de contestar.
 
-"sin noticias hace +24h" (24-48 h sin salir en partes) significa que no hay parte reciente, NO que haya corriente: no afirmes que hay servicio si no consta. Un circuito sin servicio con MÁS de 48 h sin salir en partes pasa a "sin cortes reportados" (regla del "no se apagan": se asume con corriente); si vuelven a mencionarlo, vuelve a su estado real.
+Un circuito reportado sin servicio permanece sin servicio hasta que un restablecimiento de la UNE o un reporte de usuario indique lo contrario: el silencio NO es evidencia de retorno — nunca des por hecho que hay corriente solo porque no hay parte reciente.
 
 buscar_historico devuelve un campo "relevancia" (0 a 1). Si es baja (<0.4), di que no encontraste nada claro en vez de forzar una respuesta con eso.
 

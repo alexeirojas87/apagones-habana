@@ -139,16 +139,23 @@ class ClasesDeEstadoTest(unittest.TestCase):
         css = (RAIZ / "web" / "style.css").read_text(encoding="utf-8")
         for clase, color in ((".est-sin", "var(--red)"), (".est-con", "var(--green)"),
                              (".est-disc", "var(--amber)"), (".est-asum", "var(--blue)"),
-                             (".est-nd", "var(--gray)"), (".est-daf", "var(--gold)"),
+                             (".est-daf", "var(--gold)"),
                              (".est-av", "#b455c8"), (".est-rep", "#e07b00")):
             regla = re.search(re.escape(clase) + r"\s*\{[^}]*\}", css)
             self.assertIsNotNone(regla, "falta %s" % clase)
             self.assertIn(color, regla.group(0), clase)
 
-    def test_los_estados_de_app_js_usan_el_punto_con_clase(self):
+    def test_los_estados_usan_el_punto_con_clase(self):
         app = (RAIZ / "web" / "app.js").read_text(encoding="utf-8")
-        for clase in ("est-sin", "est-con", "est-disc", "est-asum", "est-nd"):
+        circ = (RAIZ / "web" / "circuitos.js").read_text(encoding="utf-8")
+        # est-nd ya no se emite en NINGUNA superficie (regla nueva: ni
+        # circuitoVigente en app.js ni estadoVigente en circuitos.js producen
+        # "nd"); con el último emisor fuera, la regla .est-nd murió de
+        # style.css.
+        for clase in ("est-sin", "est-con", "est-disc", "est-asum"):
             self.assertIn('"dot-status", "%s"' % clase, app, clase)
+        self.assertNotIn('"dot-status", "est-nd"', app)
+        self.assertNotIn('"dot-status", "est-nd"', circ)
 
 
 if __name__ == "__main__":

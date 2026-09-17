@@ -186,11 +186,15 @@ class S7BotsYCausaTest(unittest.TestCase):
     el texto verbatim de los partes siguen renderizando."""
 
     def test_archivos_del_bot_inalterados(self):
+        # El veto S7 congela el BOT (workers/bot-worker.js). web/_worker.js ya
+        # no está congelado: es el SSR del sitio y ahora lleva la regla global
+        # del mantenedor "apagado sigue apagado", alineada con app.js y
+        # circuitos.js.
         rc, out = _git("diff", "--name-only", "HEAD", "--",
-                       "workers/bot-worker.js", "web/_worker.js")
+                       "workers/bot-worker.js")
         if rc is None:
             self.skipTest("git no disponible")
-        self.assertEqual(out.strip(), "", "los archivos del bot cambiaron en esta rama")
+        self.assertEqual(out.strip(), "", "el bot (workers/bot-worker.js) cambió en esta rama")
 
     def test_worker_sigue_ordenando_no_hablar_de_bloques(self):
         src = (RAIZ / "web" / "_worker.js").read_text(encoding="utf-8")

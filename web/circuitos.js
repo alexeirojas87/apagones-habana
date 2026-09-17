@@ -45,16 +45,11 @@ function estadoVigente(c) {
     return { clase: "con", txt: "con servicio", desde: c.estado_fecha, obsoleto: false };
   }
   if (c.estado === "sin servicio") {
-    const h = t ? (Date.now() - t.getTime()) / 3600000 : 0;
-    // >48 h sin salir en partes: se suma a los "sin apagones reportados"
-    // (azules: se asume con corriente). Sin 'desde' para que no salga el
-    // contador de horas. Si reaparece en un parte, el catálogo lo reactiva.
-    if (h > 48)
-      return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };
-    // 24-48 h sin noticias: la UNE no siempre anuncia el restablecimiento ->
-    // estado real desconocido (gris), misma regla que el mapa y la portada
-    if (h > 24)
-      return { clase: "nd", txt: "sin noticias +24h", desde: c.estado_fecha, obsoleto: false };
+    // Regla del mantenedor "apagado sigue apagado" (silencio ≠ retorno):
+    // PERMANECE sin servicio —y "lleva Xh" sigue creciendo— hasta que un
+    // evento explícito (restablecimiento de la UNE o reporte de usuario)
+    // cambie su estado. El silencio NO degrada a "nd" ni asume retorno,
+    // misma regla que el mapa y la portada (app.js/circuitoVigente).
     return { clase: "sin", txt: "sin servicio", desde: c.estado_fecha, obsoleto: false };
   }
   // Nunca reportado afectado -> por descarte se asume con corriente (azul).
@@ -133,9 +128,7 @@ function render(filtro = "") {
       ? (c.conteo_usuario ? `llevan ${Math.round((Date.now() - new Date(c.conteo_usuario.desde)) / 3600000 * 10) / 10}h sin luz (según vecinos)` : "")
       : e.clase === "sin" && horasDef[c.codigo] != null
       ? `lleva ${horasDef[c.codigo]}h (según la UNE)`
-      : e.clase === "nd"
-        ? `se afectó el ${fechaHabana(e.desde)}; sin noticias desde entonces`
-        : llevaDesde(e.desde);
+      : llevaDesde(e.desde);
     const of = c.oficial ? `<span class="circ-of" title="Verificado con la tabla oficial de la Empresa Eléctrica">${icono("check", "est-con")} oficial</span>` : "";
     const daf = c.daf ? `<span class="circ-daf" title="Circuito con microcortes por Disparo Automático de Frecuencia">${icono("dot-status", "est-daf")} DAF</span>` : "";
     // municipio(s): usa la lista oficial si existe (puede ser más de uno)
@@ -190,17 +183,16 @@ function cargar() {
   ])
     .then(([d, est]) => {
       DATOS = d; ESTADO = est;
-      let ncon = 0, nsin = 0, nnd = 0;
+      let ncon = 0, nsin = 0;
       for (const c of d.circuitos) {
         const cl = estadoVigente(c).clase;
-        if (cl === "con") ncon++; else if (cl === "sin") nsin++; else if (cl === "nd") nnd++;
+        if (cl === "con") ncon++; else if (cl === "sin") nsin++;
       }
-      const nasum = d.circuitos.length - ncon - nsin - nnd;
+      const nasum = d.circuitos.length - ncon - nsin;
       const sen = est && est.evento_nacional
         ? " · " + icono("alert-triangle", "est-sin") + " SEN caído: los restablecidos antes del apagón cuentan como sin servicio" : "";
       document.getElementById("circ-info").innerHTML =
         `${d.circuitos.length} circuitos · ${icono("dot-status", "est-con")} ${ncon} con servicio · ${icono("dot-status", "est-sin")} ${nsin} sin servicio` +
-        `${nnd > 0 ? ` · ${icono("dot-status", "est-nd")} ${nnd} sin noticias +24h` : ""}` +
         `${nasum > 0 ? ` · ${icono("dot-status", "est-asum")} ${nasum} sin apagones reportados` : ""}${sen}`;
       renderDaf();
       render(filtro.value);  // conserva el filtro escrito

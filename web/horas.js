@@ -1,27 +1,21 @@
 // horas.js — selector de rango para "Circuitos más afectados" (páginas de
 // municipio). Lee el JSON embebido #datos-horas-circuitos (SOLO circuitos del
-// municipio, escrito por build_seo.py) y re-ranquea <ol class="afect-ranking">
-// al cambiar de píldora: suma las horas por día del rango (7/30/90 días
-// calendario en HORA_CUBA, UTC-4 fijo) o muestra el histórico completo.
-// Determinismo: el fin de la ventana es el `generado` del JSON, NUNCA el
-// reloj del navegador — mismos datos, mismo orden, aunque este JS venga de
-// caché. Sin dependencias; si falta el JSON o la lista, no hace nada.
+// municipio, escrito por build_seo.py) y re-ranquea <ol id="afect-ranking"
+// class="afect-ranking"> al cambiar de píldora: suma las horas por día del
+// rango (7/30/90 días calendario en HORA_CUBA, UTC-4 fijo) o muestra el
+// histórico completo. Determinismo: el fin de la ventana es el `generado` del
+// JSON, NUNCA el reloj del navegador — mismos datos, mismo orden, aunque este
+// JS venga de caché. Sin dependencias; si falta el JSON o la lista, no hace
+// nada.
+//
+// Estructura testable (R3-002): las funciones PURAS (parseIso, diaHabana,
+// restarDias, horasEnRango, formatoHoras, ranquear) viven arriba y reciben los
+// datos por parámetro — con module.exports se prueban con node sin DOM — y la
+// parte DOM queda encapsulada bajo la guarda `typeof document`. El selector se
+// busca doble: #afect-ranking (id que emite build_seo.py) o, de respaldo,
+// cualquier ol.afect-ranking (la clase).
 (function () {
   "use strict";
-
-  var lista = document.getElementById("afect-ranking");
-  var nodo = document.getElementById("datos-horas-circuitos");
-  if (!lista || !nodo) return;
-  var datos;
-  try {
-    datos = JSON.parse(nodo.textContent);
-  } catch (e) {
-    return;
-  }
-  if (!datos || !datos.por_dia) return;
-
-  var total = datos.total || {};
-  var veces = datos.veces || {};
 
   // Parseo UTC explícito: los ISO de los datos traen offset; uno naive se
   // interpreta como UTC (igual que el builder en Python) — nunca la hora local
@@ -44,15 +38,16 @@
       .toISOString().slice(0, 10);
   }
 
-  // Horas del circuito en el rango: los N últimos días calendario (incluido
-  // el del generado) o el histórico completo (`total`, acumulado del build).
-  function horasEnRango(cod, dias) {
-    if (dias == null) return total[cod] || 0;
+  // Horas del circuito `cod` en los N últimos días calendario de `datos`
+  // (incluido el día del `generado`: el borde cuenta) o el histórico completo
+  // (`total`, acumulado del build) cuando `dias` es null.
+  function horasEnRango(datos, cod, dias) {
+    if (dias == null) return (datos.total || {})[cod] || 0;
     var generado = diaHabana(datos.generado);
-    if (!generado) return total[cod] || 0;  // sin ventana verificable: todo
+    if (!generado) return (datos.total || {})[cod] || 0;  // sin ventana: todo
     var desde = restarDias(generado, dias - 1);
     var suma = 0;
-    var porDia = datos.por_dia[cod] || {};
+    var porDia = (datos.por_dia || {})[cod] || {};
     for (var dia in porDia) {
       if (dia >= desde) suma += porDia[dia];  // ISO YYYY-MM-DD: compara léxico
     }
@@ -70,6 +65,49 @@
     }
     return (Math.round(h * 10) / 10).toFixed(1) + " h";
   }
+
+  // Ranking puro del rango: pares [codigo, horas] con horas > 0, ordenados
+  // horas desc con desempate por veces desc y código asc (igual que el server).
+  function ranquear(datos, rango) {
+    var dias = rango === "todo" ? null : parseInt(rango, 10);
+    var veces = datos.veces || {};
+    var conHoras = [];
+    for (var cod in datos.por_dia) {
+      var h = horasEnRango(datos, cod, dias);
+      if (h > 0) conHoras.push([cod, h]);
+    }
+    conHoras.sort(function (x, y) {
+      return (y[1] - x[1]) ||
+             ((veces[y[0]] || 0) - (veces[x[0]] || 0)) ||
+             (x[0] < y[0] ? -1 : x[0] > y[0] ? 1 : 0);
+    });
+    return conHoras;
+  }
+
+  // Export para pruebas con node (sin DOM): solo lo puro, sin reloj.
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = { parseIso: parseIso, diaHabana: diaHabana,
+                       restarDias: restarDias, horasEnRango: horasEnRango,
+                       formatoHoras: formatoHoras, ranquear: ranquear };
+  }
+
+  if (typeof document === "undefined") return;  // fuera del navegador: nada de DOM
+
+  var nodo = document.getElementById("datos-horas-circuitos");
+  // Defensa doble (bug del selector: build_seo emite id + clase; si el id
+  // cambia de forma, la clase aún encuentra la lista).
+  var lista = document.getElementById("afect-ranking") ||
+              document.querySelector("ol.afect-ranking");
+  if (!lista || !nodo) return;
+  var datos;
+  try {
+    datos = JSON.parse(nodo.textContent);
+  } catch (e) {
+    return;
+  }
+  if (!datos || !datos.por_dia) return;
+
+  var veces = datos.veces || {};
 
   function textoPartes(n) {
     return n === 1 ? "1 parte" : n + " partes";
@@ -94,18 +132,7 @@
   }
 
   function render(rango) {
-    var dias = rango === "todo" ? null : parseInt(rango, 10);
-    var conHoras = [];
-    for (var cod in datos.por_dia) {
-      var h = horasEnRango(cod, dias);
-      if (h > 0) conHoras.push([cod, h]);
-    }
-    // horas desc, desempate por veces desc y código asc (igual que el server)
-    conHoras.sort(function (x, y) {
-      return (y[1] - x[1]) ||
-             ((veces[y[0]] || 0) - (veces[x[0]] || 0)) ||
-             (x[0] < y[0] ? -1 : x[0] > y[0] ? 1 : 0);
-    });
+    var conHoras = ranquear(datos, rango);
     lista.textContent = "";
     if (!conHoras.length) {
       var vacio = document.createElement("li");

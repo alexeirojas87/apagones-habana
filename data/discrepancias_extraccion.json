@@ -1,42 +1,4 @@
 {
- "81613": {
-  "fecha": "2026-09-10T22:29:57+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del Municipio Centro Habana DISPARO DEL CIRCUITO , se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉CPP17: Alrededores de"
- },
- "81611": {
-  "fecha": "2026-09-10T22:22:48+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 261 MW distribuidos en 66 circuitos de distribución. A continuación, "
- },
- "81610": {
-  "fecha": "2026-09-10T22:22:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣 ‼️Consumidores del municipio Plaza, por DISPARO DEL CIRCUITO se afecta el servicio eléctrico en los siguientes circuitos: 👉P314: Alrededores de calles Xifre d"
- },
- "81615": {
-  "fecha": "2026-09-10T22:37:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Cotorro, queda repara la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección: 1"
- },
  "81633": {
   "fecha": "2026-09-10T23:16:48+00:00",
   "tipo_llm": "afectacion",
@@ -1378,5 +1340,34 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:04 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC15:Reparto Ch"
+ },
+ "83722": {
+  "fecha": "2026-09-17T22:00:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ4"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:52 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz1:Cuadrantes c"
+ },
+ "83714": {
+  "fecha": "2026-09-17T21:43:00+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:19 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P319: Castillejo"
+ },
+ "83713": {
+  "fecha": "2026-09-17T21:36:33+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P314",
+   "P318",
+   "PZ19"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:01PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP319:Cuadrante d"
  }
 }

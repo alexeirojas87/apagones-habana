@@ -1,13 +1,4 @@
 {
- "81421": {
-  "fecha": "2026-09-10T09:46:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "L316"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:58 am se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1202:Avenida 33"
- },
  "81425": {
   "fecha": "2026-09-10T10:11:54+00:00",
   "tipo_llm": "afectacion",
@@ -1275,5 +1266,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a el siguiente circuito: OP408✅"
+ },
+ "83498": {
+  "fecha": "2026-09-17T09:53:49+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 377MW distribuidos en 157 circuitos de distribución. A continuación, "
  }
 }

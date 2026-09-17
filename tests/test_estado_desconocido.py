@@ -1,8 +1,10 @@
 """Estado "DESCONOCIDO" a las 48 h de silencio total + AZUL a la semana.
 
-Regla del mantenedor: un circuito RECURRENTE (veces >= 3, misma convención
-que aprende_circuitos MIN_POSTS=3) del que NO hay NINGUNA noticia —ni parte
-de la UNE que lo mencione (`ultima`), ni reporte/comentario de usuario
+Regla del mantenedor: TODO circuito con estado conocido ("sin servicio" o
+"con servicio", tenga las veces que tenga — el ciclo de vida NO mira las
+veces: el gate de recurrencia se eliminó y también decaen los de 1-2
+menciones históricas) del que NO hay NINGUNA noticia —ni parte de la UNE
+que lo mencione (`ultima`), ni reporte/comentario de usuario
 (desde/ultima_sin/ultimo_con/ultimo_reset del conteo_usuario fusionado)—
 decae por silencio total, SIN y CON servicio POR IGUAL (el mantenedor lo
 reafirmó: "si pasan 48 horas de un circuito con servicio sin noticias se
@@ -14,10 +16,10 @@ mientras haya noticias):
   2. silencio > 48 h + 7 días = 216 h (_UMBRAL_AZUL_H) → "asum" (AZUL):
      vuelve al grupo «sin apagones reportados» hasta que una noticia nueva
      (parte que lo mencione o reporte de usuario) resetee el reloj.
-Captura también al con_vecinos con veredicto envejecido. Los azules de
-pocas menciones (veces < 3) NUNCA decaen. Durante evento_nacional no hay
-decaimiento alguno (ni desc ni azul). Las horas históricas
-(circuitos_horas.json) no se tocan: solo cambia el ESTADO.
+Captura también al con_vecinos con veredicto envejecido. Los de estado None
+(nunca mencionados) siguen AZUL directamente, sin reloj. Durante
+evento_nacional no hay decaimiento alguno (ni desc ni azul). Las horas
+históricas (circuitos_horas.json) no se tocan: solo cambia el ESTADO.
 
 Determinismo: el reloj es SIEMPRE estado.generado — nunca Date.now() ni el
 reloj de la corrida. Offline, stdlib, py3.9: los clasificadores JS se
@@ -99,12 +101,13 @@ class TestVigenciaDesconocido(unittest.TestCase):
                  - timedelta(hours=48)).isoformat()
         self.assertEqual(SEO._vigencia(circuito(ultima=justo), _gen()), "sin")
 
-    def test_no_recurrente_50h_sigue_sin(self):
-        # veces < _UMBRAL_RECURRENCIA (azules de pocas menciones): FUERA de la
-        # regla, pase lo que pase con el silencio.
-        self.assertEqual(SEO._vigencia(circuito(veces=2), _gen()), "sin")
-        self.assertEqual(SEO._vigencia(circuito(veces=1), _gen()), "sin")
-        self.assertEqual(SEO._vigencia(circuito(veces=None), _gen()), "sin")
+    def test_no_recurrente_50h_tambien_decae(self):
+        # Sin gate de recurrencia: veces < 3 (los azules de pocas menciones)
+        # TAMBIÉN decaen — 50 h de silencio total → desconocido, pase lo que
+        # pase con las veces (1, 2 o incluso None: sin conteo).
+        self.assertEqual(SEO._vigencia(circuito(veces=2), _gen()), "desconocido")
+        self.assertEqual(SEO._vigencia(circuito(veces=1), _gen()), "desconocido")
+        self.assertEqual(SEO._vigencia(circuito(veces=None), _gen()), "desconocido")
 
     def test_reporte_usuario_fresco_resetea_el_reloj(self):
         # Recurrente con `ultima` de hace 50 h PERO señal de usuario de hace
@@ -163,6 +166,15 @@ class TestVigenciaDesconocido(unittest.TestCase):
         self.assertEqual(SEO._vigencia(circuito(estado=None, veces=9),
                                         _gen()), "asum")
 
+    def test_estado_none_azul_directo_con_o_sin_reloj(self):
+        # Estado None (nunca mencionado) → AZUL directo, tenga o no reloj:
+        # el decaimiento solo aplica a "sin servicio"/"con servicio" (y el
+        # azul del None no depende de silencio ni de veces).
+        for veces in (None, 0, 1, 9):
+            c = circuito(estado=None, veces=veces)
+            self.assertEqual(SEO._vigencia(c, _gen()), "asum")
+            self.assertEqual(SEO._vigencia(c, None), "asum")
+
     def test_reportado_con_sin_reloj_sigue_con_vecinos(self):
         # con_vecinos sin `ultima` ni señales: sin reloj, se conserva el
         # veredicto vecinal (comportamiento previo intacto).
@@ -175,7 +187,8 @@ class TestEscalonAzul(unittest.TestCase):
     """Segundo escalón del decaimiento y extensión a los "con servicio":
     48 h → desconocido (sin Y con por igual); 48 h + 7 días = 216 h → azul
     "asum" hasta que una noticia nueva despierte al circuito. Ni desc ni
-    azul durante evento_nacional; los no recurrentes nunca decaen."""
+    azul durante evento_nacional; el escalonamiento es para TODOS los de
+    estado conocido, recurrentes o no."""
 
     def test_con_servicio_50h_decae_a_desconocido(self):
         # El mantenedor lo reafirmó: el "con servicio" con silencio total de
@@ -218,13 +231,29 @@ class TestEscalonAzul(unittest.TestCase):
                      reportado_con=True, conteo_usuario={"ultimo_con": HACE_220H})
         self.assertEqual(SEO._vigencia(c, _gen()), "asum")
 
-    def test_no_recurrente_220h_nunca_decae(self):
-        # veces < _UMBRAL_RECURRENCIA: ni desc ni azul, pase lo que pase.
+    def test_no_recurrente_220h_cae_a_azul(self):
+        # Sin gate de recurrencia: veces < 3 TAMBIÉN cruza el segundo
+        # escalón — 220 h de silencio total → azul "asum" (caso del
+        # mantenedor: los > 7 días de silencio con 1-2 menciones van azul).
         sin = circuito(veces=2, ultima=HACE_220H, estado_fecha=HACE_220H)
         con = circuito(veces=2, estado="con servicio",
                        ultima=HACE_220H, estado_fecha=HACE_220H)
-        self.assertEqual(SEO._vigencia(sin, _gen()), "sin")
-        self.assertEqual(SEO._vigencia(con, _gen()), "con")
+        self.assertEqual(SEO._vigencia(sin, _gen()), "asum")
+        self.assertEqual(SEO._vigencia(con, _gen()), "asum")
+        # Ni el sin ni el con decaído cuentan en la cifra «sin».
+        self.assertFalse(SEO._sin_efectivos(sin, _gen()))
+        self.assertFalse(SEO._sin_efectivos(con, _gen()))
+
+    def test_con_servicio_1757h_caso_real_t43_azul(self):
+        # Caso real del análisis del mantenedor (T43): "con servicio" con
+        # UNA sola mención (veces=1) y 1757.5 h de silencio total (> 216 h):
+        # antes quedaba "con" para siempre por el gate; ahora es azul.
+        t43 = circuito(codigo="T43", estado="con servicio", veces=1,
+                       ultima="2026-04-21T09:40:00+00:00",
+                       estado_fecha="2026-04-21T09:40:00+00:00")
+        self.assertEqual(SEO._silencio_horas(t43, _gen()), 1757.5)
+        self.assertEqual(SEO._vigencia(t43, _gen()), "asum")
+        self.assertFalse(SEO._sin_efectivos(t43, _gen()))
 
     def test_evento_nacional_220h_estados_vigentes(self):
         # Durante el evento NO decae NADA (ni desc ni azul): el recurrente
@@ -279,7 +308,9 @@ class TestConstantes(unittest.TestCase):
     """Constantes nombradas, tunables (doc: definiciones operativas)."""
 
     def test_valores_y_convenciones(self):
-        self.assertEqual(SEO._UMBRAL_RECURRENCIA, 3)  # = MIN_POSTS aprende_circuitos
+        # El gate de recurrencia se eliminó: solo quedan los umbrales de
+        # silencio (la regla aplica a TODO circuito con estado conocido).
+        self.assertNotIn("_UMBRAL_RECURRENCIA", dir(SEO))
         self.assertEqual(SEO._UMBRAL_DESC_H, 48.0)
         # Segundo escalón: azul = 48 h + 7 días (constante nombrada, derivada).
         self.assertEqual(SEO._UMBRAL_AZUL_H, 216.0)
@@ -364,11 +395,15 @@ class TestEstimadoYParidad(unittest.TestCase):
 
 
 class TestSuperficiesJS(unittest.TestCase):
-    """Las 3 superficies JS: misma regla (veces >= 3, silencio > 48 h contra
-    generado), verificación por asserts de string (convención del repo)."""
+    """Las 3 superficies JS: misma regla (TODO circuito con estado conocido,
+    silencio > 48 h contra generado), verificación por asserts de string
+    (convención del repo)."""
 
     def test_app_js_rama_desconocido_en_sin_servicio(self):
-        self.assertIn("if ((c.veces || 0) >= UMBRAL_RECURRENCIA) {", APP_JS)
+        # Sin gate: la rama "sin" consulta el silencio DIRECTO (sin wrapper
+        # de veces) y UMBRAL_RECURRENCIA ya no existe en ningún JS.
+        self.assertNotIn("UMBRAL_RECURRENCIA", APP_JS)
+        self.assertIn("const UMBRAL_DESC_H = 48;", APP_JS)
         self.assertIn('if (s != null && s > UMBRAL_DESC_H) return "desconocido";', APP_JS)
         # el reloj es estado.generado, NUNCA Date.now()
         rama = APP_JS.index("function circuitoVigente")
@@ -377,15 +412,21 @@ class TestSuperficiesJS(unittest.TestCase):
         self.assertNotIn("Date.now()", bloque)
         self.assertIn("silencioHoras(c, estado.generado)", bloque)
 
+    def test_gate_eliminado_en_las_3_superficies(self):
+        # La constante y la condición del gate desaparecieron de los 3
+        # clientes: el escalonamiento ya no mira las veces.
+        for js in (APP_JS, WORKER_JS, CIRC_JS):
+            self.assertNotIn("UMBRAL_RECURRENCIA", js)
+            self.assertNotIn("(c.veces || 0) >=", js)
+
     def test_con_vecinos_consulta_silencio_en_app_y_circuitos(self):
         # R3-1: el veredicto vecinal también caduca — ENTRE la condición
         # reportado_con y su retorno está el MISMO chequeo de silencio
-        # (recurrente + > 48 h contra generado) que la rama "sin".
+        # (> 48 h contra generado) que la rama "sin".
         for js, retorno in ((APP_JS, 'return "con_vecinos";'),
                             (CIRC_JS, 'clase: "con-vec"')):
             bloque = js[js.index("c.reportado_con"):]
             bloque = bloque[:bloque.index(retorno)]
-            self.assertIn("(c.veces || 0) >= UMBRAL_RECURRENCIA", bloque)
             self.assertIn("silencioHoras(", bloque)
             self.assertIn("UMBRAL_DESC_H", bloque)
 
@@ -406,7 +447,10 @@ class TestSuperficiesJS(unittest.TestCase):
 
     def test_worker_prompt_linea_de_48h(self):
         self.assertIn("estado desconocido", WORKER_JS)
-        self.assertIn("3+ partes", WORKER_JS)
+        # Sin gate: el prompt del chat describe la regla para TODO circuito
+        # con estado conocido, no para los "recurrentes (3+ partes)".
+        self.assertNotIn("3+ partes", WORKER_JS)
+        self.assertIn("estado conocido", WORKER_JS)
         self.assertIn("48 horas", WORKER_JS)
         self.assertIn("no afirmes ni que están sin corriente", WORKER_JS)
         # Segundo escalón en el prompt: una semana → grupo azul, hasta que
@@ -436,7 +480,6 @@ class TestSuperficiesJS(unittest.TestCase):
                                   'clase: "asum"')):
             ini = js.index('if (c.estado === "con servicio") {')
             bloque = js[ini:ini + js[ini:].index(cierre)]
-            self.assertIn("(c.veces || 0) >= UMBRAL_RECURRENCIA", bloque)
             self.assertIn("silencioHoras(", bloque)
             self.assertIn("UMBRAL_AZUL_H", bloque)
             self.assertIn(azul, bloque)

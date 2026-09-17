@@ -20,15 +20,15 @@ function fechaHabana(iso) {
 let DATOS = null;
 let ESTADO = null;  // estado.json: para aplicar la realidad actual al catálogo histórico
 
-// Umbral del estado "desconocido" (regla del mantenedor de las 48 h): un
-// circuito RECURRENTE (veces >= 3) sin NINGUNA noticia —ni parte de la UNE
-// ni señal de usuario— por más de 48 h pasa a "desconocido" y el sitio deja
-// de afirmar (SIN y CON servicio por igual, como app.js/_worker.js). Segundo
-// escalón: una semana completa de silencio devuelve el recurrente al azul
+// Umbral del estado "desconocido" (regla del mantenedor de las 48 h): TODO
+// circuito con estado conocido (sin O con servicio, tenga las veces que
+// tenga —el ciclo de vida no mira las veces: aplica también a los de 1-2
+// menciones históricas—) sin NINGUNA noticia —ni parte de la UNE ni señal
+// de usuario— por más de 48 h pasa a "desconocido" y el sitio deja de
+// afirmar (SIN y CON servicio por igual, como app.js/_worker.js). Segundo
+// escalón: una semana completa de silencio devuelve al circuito al azul
 // "asum" («sin apagones reportados») hasta que una noticia nueva resetee el
-// reloj. Los azules de pocas menciones (veces < 3) NO decaen. Reloj:
-// SIEMPRE estado.generado, nunca Date.now().
-const UMBRAL_RECURRENCIA = 3;
+// reloj. Reloj: SIEMPRE estado.generado, nunca Date.now().
 const UMBRAL_DESC_H = 48;
 const UMBRAL_AZUL_H = UMBRAL_DESC_H + 24 * 7; // 48 + 168 = 216 h
 
@@ -71,7 +71,7 @@ function estadoVigente(c) {
   // declara estado_fecha). Veracidad propia: señal vecinal, no dato oficial.
   // El veredicto vecinal TAMBIÉN caduca: mismo escalonamiento que la rama "sin".
   if (c.estado === "sin servicio" && c.reportado_con) {
-    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && ESTADO) {
+    if (ESTADO) {
       const s = silencioHoras(c, ESTADO.generado);
       if (s != null && s > UMBRAL_AZUL_H)
         return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };
@@ -97,7 +97,7 @@ function estadoVigente(c) {
     // Mantenedor: los con servicio TAMBIÉN decaen por silencio total — mismo
     // escalonamiento que la rama "sin" (el gate de evento_nacional ya
     // devolvió arriba: en crisis nadie decae).
-    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && ESTADO) {
+    if (ESTADO) {
       const s = silencioHoras(c, ESTADO.generado);
       if (s != null && s > UMBRAL_AZUL_H)
         return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };
@@ -112,10 +112,11 @@ function estadoVigente(c) {
     // evento explícito (restablecimiento de la UNE o reporte de usuario)
     // cambie su estado. El silencio NO degrada a "nd" ni asume retorno,
     // misma regla que el mapa y la portada (app.js/circuitoVigente).
-    // Escalonamiento: el recurrente con silencio TOTAL (ni UNE ni usuarios)
-    // pasa a "desconocido" tras UMBRAL_DESC_H horas y al azul (asum) tras
-    // UMBRAL_AZUL_H (una semana) hasta que una noticia nueva resetee.
-    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && ESTADO) {
+    // Escalonamiento: el circuito con estado conocido y silencio TOTAL
+    // (ni UNE ni usuarios) pasa a "desconocido" tras UMBRAL_DESC_H horas
+    // y al azul (asum) tras UMBRAL_AZUL_H (una semana) hasta que una
+    // noticia nueva resetee.
+    if (ESTADO) {
       const s = silencioHoras(c, ESTADO.generado);
       if (s != null && s > UMBRAL_AZUL_H)
         return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };

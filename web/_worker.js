@@ -194,16 +194,16 @@ function sinAcentos(s) {
   return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
-// Estado "desconocido" (regla del mantenedor de las 48 h): un circuito
-// RECURRENTE (veces >= 3) sin NINGUNA noticia —ni parte de la UNE que lo
-// mencione ni reporte/comentario de usuario— por más de 48 h pasa a
-// "desconocido" y el sitio deja de afirmar (SIN y CON servicio por igual:
-// cada parte nuevo que no lo liste solo confirma mientras haya noticias).
-// Segundo escalón: una semana completa de silencio (UMBRAL_AZUL_H) devuelve
-// el recurrente al azul "asum" hasta que una noticia nueva resetee el reloj.
-// Los azules de pocas menciones (veces < 3) NO decaen. Reloj: SIEMPRE
+// Estado "desconocido" (regla del mantenedor de las 48 h): TODO circuito
+// con estado conocido (sin O con servicio, tenga las veces que tenga —el
+// ciclo de vida no mira las veces: aplica también a los de 1-2 menciones
+// históricas—) sin NINGUNA noticia —ni parte de la UNE que lo mencione ni
+// reporte/comentario de usuario— por más de 48 h pasa a "desconocido" y el
+// sitio deja de afirmar (SIN y CON servicio por igual: cada parte nuevo que
+// no lo liste solo confirma mientras haya noticias). Segundo escalón: una
+// semana completa de silencio (UMBRAL_AZUL_H) devuelve al circuito al azul
+// "asum" hasta que una noticia nueva resetee el reloj. Reloj: SIEMPRE
 // est.generado, nunca Date.now() (determinismo).
-const UMBRAL_RECURRENCIA = 3;
 const UMBRAL_DESC_H = 48;
 const UMBRAL_AZUL_H = UMBRAL_DESC_H + 24 * 7; // 48 + 168 = 216 h
 
@@ -237,8 +237,9 @@ function silencioHoras(c, generado) {
 // restablecimiento de la UNE o el reporte de un usuario). El silencio NO
 // degrada a "nd" ni asume retorno; la rama no consulta Date.now(), así que
 // mismos datos → mismo estado en cada visita. Escalonamiento de silencio
-// total para recurrentes SIN y CON servicio por igual: > UMBRAL_DESC_H
-// pasa a "desconocido" y > UMBRAL_AZUL_H (una semana) vuelve al azul asum.
+// total para TODO circuito con estado conocido SIN y CON servicio por
+// igual: > UMBRAL_DESC_H pasa a "desconocido" y > UMBRAL_AZUL_H (una
+// semana) vuelve al azul asum.
 function estadoVigente(c, est) {
   if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "discrepado";
   // Dirección 2 del reporte vecinal: la UNE lo mantiene "sin servicio" pero
@@ -248,7 +249,7 @@ function estadoVigente(c, est) {
     // ... salvo que el veredicto vecinal envejezca: sin noticias de nadie
     // (la última es el propio reporte) cruza el MISMO escalonamiento
     // desc/azul que las demás ramas.
-    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && est) {
+    if (est) {
       const s = silencioHoras(c, est.generado);
       if (s != null && s > UMBRAL_AZUL_H) return "asum";
       if (s != null && s > UMBRAL_DESC_H) return "desconocido";
@@ -262,7 +263,7 @@ function estadoVigente(c, est) {
   // pasan 48 horas de un circuito con servicio sin noticias se pone
   // desconocido también") — el gate de evento_nacional ya devolvió arriba.
   if (c.estado === "con servicio") {
-    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && est) {
+    if (est) {
       const s = silencioHoras(c, est.generado);
       if (s != null && s > UMBRAL_AZUL_H) return "asum";
       if (s != null && s > UMBRAL_DESC_H) return "desconocido";
@@ -270,11 +271,12 @@ function estadoVigente(c, est) {
     return "con";
   }
   // "sin servicio" permanece "sin" (solo un evento explícito lo saca de ahí,
-  // el catálogo lo reactiva solo si reaparece) — SALVO el recurrente con
-  // silencio total: > UMBRAL_DESC_H pasa a "desconocido"; > UMBRAL_AZUL_H
-  // (una semana) vuelve al azul (asum) hasta que una noticia resetee.
+  // el catálogo lo reactiva solo si reaparece) — SALVO el circuito con
+  // estado conocido y silencio total: > UMBRAL_DESC_H pasa a "desconocido";
+  // > UMBRAL_AZUL_H (una semana) vuelve al azul (asum) hasta que una
+  // noticia resetee.
   if (c.estado === "sin servicio") {
-    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && est) {
+    if (est) {
       const s = silencioHoras(c, est.generado);
       if (s != null && s > UMBRAL_AZUL_H) return "asum";
       if (s != null && s > UMBRAL_DESC_H) return "desconocido";
@@ -744,7 +746,7 @@ Un circuito reportado sin servicio permanece sin servicio hasta que un restablec
 
 Los reportes de vecinos pueden volcar el estado en AMBOS sentidos: si la UNE dice "con servicio" pero los vecinos reportan sin corriente, el circuito aparece como "usuarios reportan sin corriente"; si la UNE lo mantiene "sin servicio" pero los vecinos reportan que volvió, aparece como "con servicio (según vecinos)" — esa señal es de los vecinos, no un dato oficial de la Empresa: preséntala siempre como tal.
 
-Los circuitos recurrentes (aparecen en 3+ partes) sin NINGUNA noticia —ni parte de la UNE que los mencione ni reporte de usuario— durante más de 48 horas se muestran como "estado desconocido": no afirmes ni que están sin corriente ni que la tienen, di que no hay datos recientes. Con más de una semana de silencio (48 h + 7 días) esos circuitos vuelven al grupo azul de "sin cortes reportados" (se asumen con corriente) hasta que una noticia nueva —un parte que los mencione o un reporte de usuario— los despierte.
+Los circuitos con estado conocido (sin O con servicio, tengan las veces que tengan) sin NINGUNA noticia —ni parte de la UNE que los mencione ni reporte de usuario— durante más de 48 horas se muestran como "estado desconocido": no afirmes ni que están sin corriente ni que la tienen, di que no hay datos recientes. Con más de una semana de silencio (48 h + 7 días) esos circuitos vuelven al grupo azul de "sin cortes reportados" (se asumen con corriente) hasta que una noticia nueva —un parte que los mencione o un reporte de usuario— los despierte.
 
 buscar_historico devuelve un campo "relevancia" (0 a 1). Si es baja (<0.4), di que no encontraste nada claro en vez de forzar una respuesta con eso.
 

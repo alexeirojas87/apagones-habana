@@ -235,9 +235,10 @@ def _sin_efectivos(c, gen):
     Es la rama "sin" de _vigencia: estado caído según la UNE, SIN reporte
     vecinal vigente de que volvió (`reportado_con`: esos el catálogo los pinta
     «con servicio (según vecinos)») y SIN caer en el escalonamiento de
-    silencio (un recurrente —sin o con servicio— con silencio total > 48 h es
-    "desconocido" y con > una semana azul "asum": ya no se afirma apagado,
-    así que contarlos como «sin» afirmaría lo que el sitio dice no saber).
+    silencio (un circuito con estado conocido —sin o con servicio— con
+    silencio total > 48 h es "desconocido" y con > una semana azul "asum":
+    ya no se afirma apagado, así que contarlos como «sin» afirmaría lo que
+    el sitio dice no saber).
     `gen` es estado.generado como datetime (o None: sin reloj no hay
     decaimiento y la regla decae a la anterior). La consumen las cuatro
     superficies con cifra — conteo_municipio (tarjeta del hub), _circ_sin
@@ -409,33 +410,33 @@ def _duracion_horas(iso_desde, iso_hasta):
 # servicio pero los vecinos reportan que volvió (reportado_con lo fija
 # build_circuitos.py) — va ENTRE "sin" y "desconocido" (cuenta como con
 # corriente pero con veracidad propia: señal vecinal, no dato oficial).
-# "desconocido" = recurrente (sin O con servicio) con silencio total > 48 h
-# (ver _UMBRAL_DESC_H): el sitio DEJA de afirmar (ni sin ni con corriente),
-# va después de los veredictos negativos y antes de los positivos. Segundo
-# escalón: una semana completa de silencio (> _UMBRAL_AZUL_H) devuelve el
-# recurrente al azul "asum" («sin apagones reportados») hasta que una
-# noticia nueva resetee el reloj.
+# "desconocido" = TODO circuito con estado conocido (sin O con servicio,
+# tenga las veces que tenga) con silencio total > 48 h (ver _UMBRAL_DESC_H):
+# el sitio DEJA de afirmar (ni sin ni con corriente), va después de los
+# veredictos negativos y antes de los positivos. Segundo escalón: una semana
+# completa de silencio (> _UMBRAL_AZUL_H) devuelve el circuito al azul
+# "asum" («sin apagones reportados») hasta que una noticia nueva resetee el
+# reloj.
 _ESTADO_FILA = {"sin": ("sin", "sin servicio"), "con_vecinos": ("con-vec", "con servicio (según vecinos)"),
                 "desconocido": ("desc", "estado desconocido"),
                 "con": ("con", "con servicio"), "asum": ("asum", "asumido")}
 _GRUPO = {"sin": 0, "con_vecinos": 1, "desconocido": 2, "con": 3, "asum": 4}
 
-# Umbral de recurrencia para el estado desconocido: "recurrente" = veces >= 3
-# (misma convención que aprende_circuitos MIN_POSTS=3). Un circuito con 1-2
-# menciones históricas (los azules de pocas menciones) NO entra en la regla.
-_UMBRAL_RECURRENCIA = 3
 # Horas de silencio total (ni parte de la UNE que lo mencione ni señal de
-# usuario) para que un recurrente —sin O con servicio— pase a "desconocido".
+# usuario) para que TODO circuito con estado conocido —sin O con servicio,
+# tenga las veces que tenga (regla del mantenedor: el ciclo de vida no mira
+# las veces; aplica también a los de 1-2 menciones históricas)— pase a
+# "desconocido".
 _UMBRAL_DESC_H = 48.0
 # Segundo escalón del decaimiento: una semana COMPLETA en silencio (48 h +
-# 7 días) devuelve el recurrente al grupo azul "asum" («sin apagones
+# 7 días) devuelve el circuito al grupo azul "asum" («sin apagones
 # reportados», el que no se apaga): se asume con corriente por descarte
 # hasta que una noticia nueva (parte que lo mencione o reporte de usuario)
 # resetee el reloj.
 _UMBRAL_AZUL_H = _UMBRAL_DESC_H + 24 * 7  # 48 + 168 = 216 h
 # Modo emergencia (R3-2): con evento_nacional activo NO hay decaimiento a
 # "desconocido" — los clientes JS evalúan la puerta de SEN caído ANTES de esa
-# rama (durante el evento todo recurrente silencioso cuenta "sin"); saltarla
+# rama (durante el evento todo circuito silencioso cuenta "sin"); saltarla
 # aquí mantiene la paridad de la cifra "sin" en la crisis. La fija generar()
 # UNA vez, al cargar el estado.
 _EVENTO_NACIONAL = False
@@ -486,10 +487,12 @@ def _vigencia(c, gen):
     creciendo— hasta que un EVENTO EXPLÍCITO lo cambie: un restablecimiento
     de la UNE o el reporte de un usuario. Escalonamiento de silencio total
     (ni parte de la UNE que lo mencione (`ultima`) ni señal de usuario
-    (conteo_usuario)), para recurrentes (veces >= _UMBRAL_RECURRENCIA) SIN y
-    CON servicio POR IGUAL — el mantenedor lo reafirmó: "si pasan 48 horas
-    de un circuito con servicio sin noticias se pone desconocido también",
-    cada parte nuevo que no lo liste solo confirma mientras haya noticias:
+    (conteo_usuario)) para TODO circuito con estado conocido SIN y CON
+    servicio POR IGUAL — el mantenedor lo reafirmó: "si pasan 48 horas
+    de un circuito con servicio sin noticias se pone desconocido también" y
+    cerró el hueco de los de pocas menciones: el ciclo de vida no mira las
+    veces, tenga 1-2 menciones históricas o decenas. Cada parte nuevo que no
+    lo liste solo confirma mientras haya noticias:
     1. silencio > _UMBRAL_DESC_H (48 h) → "desconocido": el sitio deja de
        afirmar (ni sin ni con corriente);
     2. silencio > _UMBRAL_AZUL_H (48 h + 7 días) → "asum": vuelve al grupo
@@ -497,9 +500,10 @@ def _vigencia(c, gen):
        el reloj.
     Captura también al con_vecinos con veredicto envejecido (su última
     noticia es el reporte del vecino): mismo escalonamiento desc/azul. Los
-    de pocas menciones (azules de siempre, veces < 3) NO decaen. Durante
-    evento_nacional (_EVENTO_NACIONAL) NO hay decaimiento alguno (ni desc
-    ni azul): todo recurrente silencioso queda en su estado vigente sin/con.
+    de estado None (nunca mencionados) siguen azul directo sin reloj.
+    Durante evento_nacional (_EVENTO_NACIONAL) NO hay decaimiento alguno
+    (ni desc ni azul): todo circuito silencioso queda en su estado vigente
+    sin/con.
     Dirección 2 del reporte vecinal: con reportado_con (ultimo_con vecinal
     posterior a estado_fecha, lo fija build_circuitos.py) el "sin servicio"
     se publica como "con_vecinos" («con servicio (según vecinos)») salvo
@@ -511,8 +515,7 @@ def _vigencia(c, gen):
     determinista, nunca el reloj de la corrida."""
     estado = c.get("estado")
     if (not _EVENTO_NACIONAL
-            and estado in ("sin servicio", "con servicio")
-            and (c.get("veces") or 0) >= _UMBRAL_RECURRENCIA):
+            and estado in ("sin servicio", "con servicio")):
         silencio = _silencio_horas(c, gen)
         if silencio is not None:
             if silencio > _UMBRAL_AZUL_H:

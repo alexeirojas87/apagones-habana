@@ -80,18 +80,17 @@ const MOSTRAR_PROTEGIDAS = true;
 // desde otro host (github.io), se apunta al dominio principal.
 const API_BASE = location.hostname.endsWith("pages.dev") ? "" : "https://apagones-habana.pages.dev";
 
-// Umbral del estado "desconocido" (regla del mantenedor de las 48 h): un
-// circuito RECURRENTE (veces >= 3, misma convención que aprende_circuitos)
-// del que no hay NINGUNA noticia —ni parte de la UNE que lo mencione ni
-// reporte/comentario de usuario— durante más de 48 h pasa a "desconocido":
-// el sitio deja de afirmar (SIN y CON servicio por igual — el mantenedor lo
-// reafirmó: cada parte nuevo que no lo liste solo confirma mientras haya
-// noticias). Segundo escalón: una semana completa de silencio devuelve el
-// recurrente al azul "asum" («sin apagones reportados») hasta que una
-// noticia nueva resetee el reloj. Los azules de pocas menciones (veces < 3)
-// NO decaen. El reloj es SIEMPRE estado.generado, nunca Date.now():
-// mismos datos → mismo estado (determinismo).
-const UMBRAL_RECURRENCIA = 3;
+// Umbral del estado "desconocido" (regla del mantenedor de las 48 h): TODO
+// circuito con estado conocido (sin O con servicio, tenga las veces que
+// tenga —el ciclo de vida no mira las veces: aplica también a los de 1-2
+// menciones históricas—) del que no hay NINGUNA noticia —ni parte de la UNE
+// que lo mencione ni reporte/comentario de usuario— durante más de 48 h pasa
+// a "desconocido": el sitio deja de afirmar (SIN y CON servicio por igual —
+// el mantenedor lo reafirmó: cada parte nuevo que no lo liste solo confirma
+// mientras haya noticias). Segundo escalón: una semana completa de silencio
+// devuelve al circuito al azul "asum" («sin apagones reportados») hasta que
+// una noticia nueva resetee el reloj. El reloj es SIEMPRE estado.generado,
+// nunca Date.now(): mismos datos → mismo estado (determinismo).
 const UMBRAL_DESC_H = 48;
 const UMBRAL_AZUL_H = UMBRAL_DESC_H + 24 * 7; // 48 + 168 = 216 h
 
@@ -173,11 +172,12 @@ async function iniciar() {
     // timestamps de los datos, nunca del reloj. El veredicto vecinal TAMBIÉN
     // caduca: mismo escalonamiento que la rama "sin" (paridad con _worker.js).
     if (c.estado === "sin servicio" && c.reportado_con) {
-      if ((c.veces || 0) >= UMBRAL_RECURRENCIA) {
-        const s = silencioHoras(c, estado.generado);
-        if (s != null && s > UMBRAL_AZUL_H) return "asum";
-        if (s != null && s > UMBRAL_DESC_H) return "desconocido";
-      }
+      // ... salvo que el veredicto vecinal envejezca: sin noticias de nadie
+      // (la última es el propio reporte) cruza el MISMO escalonamiento
+      // desc/azul que las demás ramas.
+      const s = silencioHoras(c, estado.generado);
+      if (s != null && s > UMBRAL_AZUL_H) return "asum";
+      if (s != null && s > UMBRAL_DESC_H) return "desconocido";
       return "con_vecinos";
     }
     const en = estado.evento_nacional;
@@ -189,24 +189,21 @@ async function iniciar() {
       // Mantenedor: los con servicio TAMBIÉN decaen por silencio total —
       // mismo escalonamiento que la rama "sin" (el en-gate de arriba ya
       // devolvió durante el evento, así que aquí nunca decae en crisis).
-      if ((c.veces || 0) >= UMBRAL_RECURRENCIA) {
-        const s = silencioHoras(c, estado.generado);
-        if (s != null && s > UMBRAL_AZUL_H) return "asum";
-        if (s != null && s > UMBRAL_DESC_H) return "desconocido";
-      }
+      const s = silencioHoras(c, estado.generado);
+      if (s != null && s > UMBRAL_AZUL_H) return "asum";
+      if (s != null && s > UMBRAL_DESC_H) return "desconocido";
       return "con";
     }
     // "sin servicio" permanece "sin" (solo un evento explícito de la UNE o
     // de los usuarios lo saca de ahí; el catálogo lo reactiva solo si
-    // reaparece) — SALVO el recurrente con silencio total: sin noticias de
-    // nadie > 48 h pasa a "desconocido" y el sitio deja de afirmar; con más
-    // de una semana vuelve al azul (asum) hasta que una noticia resetee.
+    // reaparece) — SALVO el circuito con estado conocido y silencio total:
+    // sin noticias de nadie > 48 h pasa a "desconocido" y el sitio deja de
+    // afirmar; con más de una semana vuelve al azul (asum) hasta que una
+    // noticia resetee.
     if (c.estado === "sin servicio") {
-      if ((c.veces || 0) >= UMBRAL_RECURRENCIA) {
-        const s = silencioHoras(c, estado.generado);
-        if (s != null && s > UMBRAL_AZUL_H) return "asum";
-        if (s != null && s > UMBRAL_DESC_H) return "desconocido";
-      }
+      const s = silencioHoras(c, estado.generado);
+      if (s != null && s > UMBRAL_AZUL_H) return "asum";
+      if (s != null && s > UMBRAL_DESC_H) return "desconocido";
       return "sin";
     }
     return "asum";
@@ -316,7 +313,7 @@ async function iniciar() {
     const tipAsum = "Nunca han aparecido afectados en los partes: por descarte se asume que tienen corriente";
     const tipDisc = "La UNE reporta 'con servicio' pero los vecinos reportan sin corriente: discrepancia entre el parte oficial y la realidad";
     const tipVec = "La UNE lo mantiene 'sin servicio' pero los vecinos reportan que volvió la corriente: señal vecinal, no dato oficial";
-    const tipDesc = "Circuito recurrente sin NINGUNA noticia (ni parte de la UNE ni reporte de vecinos) por más de 48 horas: no se puede afirmar si tiene corriente o no";
+    const tipDesc = "Circuito sin NINGUNA noticia (ni parte de la UNE ni reporte de vecinos) por más de 48 horas: no se puede afirmar si tiene corriente o no";
     const pob = sinP != null ? `
       <div class="rc-box">
         <div class="rc-box-t">Personas afectadas
@@ -565,7 +562,7 @@ async function iniciar() {
         // de afectación (el dato oficial dice que está sin servicio).
         detalle = "La UNE lo mantiene \"sin servicio\" pero los vecinos reportan que volvió la corriente.";
       } else if (v === "desconocido") {
-        // Sin afirmaciones: recurrente sin noticias de nadie por > 48 h.
+        // Sin afirmaciones: circuito con estado conocido sin noticias de nadie por > 48 h.
         detalle = "Sin NINGUNA noticia (ni parte de la UNE ni reporte de vecinos) por más de 48 horas: no se puede afirmar si tiene corriente.";
       } else if (v === "asum") {
         detalle = "Nunca ha aparecido afectado en los partes: por descarte se asume con corriente.";
@@ -868,7 +865,7 @@ async function iniciar() {
         cab = `${icono("dot-status", "est-con")} <b>Con corriente (según vecinos)</b> — la UNE mantiene ${cod} "sin servicio",
           pero los vecinos reportan que volvió la corriente.`;
       } else if (v === "desconocido") {
-        cab = `${icono("dot-status", "est-desc")} <b>Estado desconocido</b> — ${cod} es recurrente y lleva más de 48 horas sin
+        cab = `${icono("dot-status", "est-desc")} <b>Estado desconocido</b> — ${cod} lleva más de 48 horas sin
           NINGUNA noticia (ni parte de la UNE ni reporte de vecinos): no se afirma si tiene corriente.`;
       } else if (v === "asum") {
         cab = `${icono("dot-status", "est-asum")} <b>Sin apagones reportados</b> — ${cod} no aparece en los partes: se asume con corriente.`;

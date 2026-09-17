@@ -1378,5 +1378,34 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:04 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC15:Reparto Ch"
+ },
+ "83722": {
+  "fecha": "2026-09-17T22:00:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ4"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:52 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz1:Cuadrantes c"
+ },
+ "83714": {
+  "fecha": "2026-09-17T21:43:00+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:19 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P319: Castillejo"
+ },
+ "83713": {
+  "fecha": "2026-09-17T21:36:33+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P314",
+   "P318",
+   "PZ19"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:01PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP319:Cuadrante d"
  }
 }

@@ -1,13 +1,4 @@
 {
- "81521": {
-  "fecha": "2026-09-10T16:25:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H466"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio 10 de Octubre, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: Fábrica e/ Herrera y Compromi"
- },
  "81538": {
   "fecha": "2026-09-10T16:55:59+00:00",
   "tipo_llm": "averia",
@@ -1306,5 +1297,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las11:39 AM quedó restablecido el servicio en el siguiente circuito: 👉P318:Alrededores de calles Placencia desde Sit"
+ },
+ "83624": {
+  "fecha": "2026-09-17T16:08:21+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:08 PM se afectan 199MW distribuidos en 69circuitos de distribución. A continuación, se"
  }
 }

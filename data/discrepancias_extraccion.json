@@ -1351,5 +1351,14 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️🚨Consumidores del municipio Arroyo Naranjo, se detectó una Avería Secundaria por Transformador Dañado en las siguientes direcciones: 👉Kessel/Lourdes y Villord"
+ },
+ "83688": {
+  "fecha": "2026-09-17T19:57:48+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️🚨Consumidores del municipio 10 de octubre, se detectó una Avería Secundaria por Transformador Dañado en las siguientes direcciones: 👉14/B y C,Lawton 👉Fuentes/"
  }
 }

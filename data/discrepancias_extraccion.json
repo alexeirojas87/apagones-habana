@@ -1,27 +1,4 @@
 {
- "81633": {
-  "fecha": "2026-09-10T23:16:48+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 07:15 PM se afectó el servicio eléctrico en el siguiente circuito: 👉 P325: Desagüe desde Infanta hasta Ayestarán"
- },
- "81631": {
-  "fecha": "2026-09-10T23:14:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP20",
-   "CPP8",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 07:13 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerr"
- },
  "81655": {
   "fecha": "2026-09-11T00:04:52+00:00",
   "tipo_llm": "restablecimiento",

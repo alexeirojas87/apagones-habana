@@ -1,22 +1,4 @@
 {
- "81538": {
-  "fecha": "2026-09-10T16:55:59+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A940"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 221 e/ 206 y 227, Fontanar.⚡️🚧"
- },
- "81535": {
-  "fecha": "2026-09-10T16:46:22+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Guanabacoa, por Averías Secundarias por Transformador dañado se afecta el servicio eléctrico en las siguientes direcciones: 👉San A"
- },
  "81613": {
   "fecha": "2026-09-10T22:29:57+00:00",
   "tipo_llm": "averia",
@@ -1307,5 +1289,25 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos : 👉 CPP17: Alrede"
+ },
+ "83635": {
+  "fecha": "2026-09-17T16:58:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P317"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:38 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P322:Sitios des"
+ },
+ "83632": {
+  "fecha": "2026-09-17T16:49:55+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR820",
+   "SR830",
+   "SR840"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:40 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R456:Alrededore"
  }
 }

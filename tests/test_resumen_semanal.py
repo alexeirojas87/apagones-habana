@@ -3,8 +3,10 @@
 Carga scripts/resumen_semanal.py por importlib (sin red, sin variables de
 entorno, como el resto de espejos herméticos de la suite) y verifica con
 datos sintéticos: horas sin corriente por municipio y resumen semanal, tops
-por municipio, clasificación de tipos de avería del texto del canal,
-roturas de la ventana y circuitos que no se están afectando. py3.9, offline.
+globales, clasificación de tipos de avería del texto del canal, roturas de
+la ventana, señales vecinales, circuitos que no se están afectando (criterio
+del mantenedor) y las tablas legibles de estado del sistema y roturas.
+py3.9, offline.
 """
 
 import importlib.util
@@ -117,8 +119,8 @@ class HorasVentanaTest(unittest.TestCase):
         self.assertEqual(total["horas_con"], 0.0)
 
 
-class TopPorMunicipioTest(unittest.TestCase):
-    """Tops de horas sin y con corriente por municipio."""
+class TopGlobalesTest(unittest.TestCase):
+    """Tops GLOBALES de horas sin y con corriente (un solo ranking, top 15)."""
 
     def test_top_sin_solo_afectados_y_con_menciones(self):
         menciones = MOD.menciones_ventana(
@@ -127,22 +129,27 @@ class TopPorMunicipioTest(unittest.TestCase):
              "11": {"fecha": "2026-09-06T15:00:00+00:00", "tipo": "averia",
                     "circuitos": [{"codigos": ["P1"]}], "por_confirmar": ["C1"]}},
             datetime.fromisoformat("2026-09-04T12:00:00+00:00"), GEN)
-        top = MOD.top_sin_por_municipio(catalogo_base(), HORAS, DIA0, DIA1, menciones)
-        self.assertEqual(top["Cerro"], [("C1", 24.0, 1)])
-        self.assertEqual(top["Playa"], [("P1", 3.5, 2)])
+        top = MOD.top_sin_global(catalogo_base(), HORAS, DIA0, DIA1, menciones)
+        self.assertEqual(top, [("Cerro", "C1", 24.0, 1),
+                               ("Playa", "P1", 3.5, 2)])
 
-    def test_top_con_exige_datos_y_orden_desc(self):
-        top = MOD.top_con_por_municipio(catalogo_base(), HORAS, DIA0, DIA1)
-        # P2 (con medición, 0 h en ventana) va sobre P1; P3 sin medición no entra.
-        self.assertEqual(top["Playa"], [("P2", 168.0), ("P1", 164.5)])
-        self.assertEqual(top["Cerro"], [("C1", 144.0)])
+    def test_top_con_exige_datos_y_orden_desc_con_estado(self):
+        vigencias = MOD.vigencias_de(catalogo_base(), GEN, False)
+        top = MOD.top_con_global(catalogo_base(), HORAS, vigencias, DIA0, DIA1)
+        # P2 (con medición, 0 h en ventana) va sobre P1; P3 sin medición no
+        # entra; cada fila trae la etiqueta del estado del ciclo.
+        self.assertEqual(top, [("Playa", "P2", 168.0, "con servicio"),
+                               ("Playa", "P1", 164.5, "sin servicio"),
+                               ("Cerro", "C1", 144.0, "sin servicio")])
 
-    def test_top_sin_recorta_a_tres(self):
-        cat = [{"codigo": f"M{i}", "municipio": "Playa"} for i in range(5)]
-        horas = {"por_dia": {f"M{i}": {str(DIA0): float(i + 1)} for i in range(5)}}
-        top = MOD.top_sin_por_municipio(cat, horas, DIA0, DIA1, {})
-        self.assertEqual(len(top["Playa"]), 3)
-        self.assertEqual([cod for cod, _, _ in top["Playa"]], ["M4", "M3", "M2"])
+    def test_top_sin_recorta_a_quince(self):
+        cat = [{"codigo": f"M{i:02d}", "municipio": "Playa"} for i in range(20)]
+        horas = {"por_dia": {f"M{i:02d}": {str(DIA0): float(20 - i)}
+                             for i in range(20)}}
+        top = MOD.top_sin_global(cat, horas, DIA0, DIA1, {})
+        self.assertEqual(len(top), 15)
+        self.assertEqual([cod for _, cod, _, _ in top][0], "M00")  # 20 h
+        self.assertEqual([cod for _, cod, _, _ in top][-1], "M14")  # 6 h
 
 
 class RoturasVentanaTest(unittest.TestCase):
@@ -179,14 +186,14 @@ class RoturasVentanaTest(unittest.TestCase):
         self.assertEqual(rot["conteo"][("Playa", "Transformador dañado")], 1)
         self.assertEqual(rot["conteo"][("Cerro", "Otra avería")], 2)  # texto ausente
 
-    def test_filas_cronologicas_y_texto_limpio(self):
+    def test_filas_por_fecha_desc_y_texto_limpio(self):
         rot = MOD.roturas_ventana(
             self.partes, self.canal,
             datetime.fromisoformat("2026-09-04T12:00:00+00:00"), GEN)
         fechas = [f["fecha"] for f in rot["filas"]]
-        self.assertEqual(fechas, sorted(fechas))
-        self.assertEqual(rot["filas"][0]["calles"], "Calle Uno")  # sin emojis
-        self.assertEqual(rot["filas"][0]["tipo"], "Transformador dañado")
+        self.assertEqual(fechas, sorted(fechas, reverse=True))  # más nuevo primero
+        self.assertEqual(rot["filas"][0]["calles"], "Calle Dos")  # sin emojis
+        self.assertEqual(rot["filas"][-1]["tipo"], "Transformador dañado")
 
     def test_municipio_canonico_del_parte(self):
         # Variantes escritas a mano en el parte (sin artículo, con tilde mala)
@@ -199,10 +206,88 @@ class RoturasVentanaTest(unittest.TestCase):
         self.assertEqual(MOD.municipio_canonico("Cerro", None), "Cerro")
 
 
-class NoAfectadosYVigenciaTest(unittest.TestCase):
-    """Circuitos que no se están afectando y distribución de ciclo de vida."""
+class RoturasResumenTest(unittest.TestCase):
+    """Tabla resumen de roturas legible: cantidad DESC y enteros."""
 
-    def test_solo_con_servicio_confirmado_y_sin_horas(self):
+    def test_cantidad_desc_y_enteros(self):
+        conteo = {("Playa", "Otra avería"): 1.0,
+                  ("Playa", "Transformador dañado"): 3.0,
+                  ("Cerro", "Otra avería"): 2.0}
+        filas = MOD.filas_roturas_resumen(conteo)
+        self.assertEqual(filas, [
+            ["Playa", "Transformador dañado", "3"],
+            ["Cerro", "Otra avería", "2"],
+            ["Playa", "Otra avería", "1"],
+        ])
+
+    def test_vacio(self):
+        self.assertEqual(MOD.filas_roturas_resumen({}), [])
+
+
+class EstadoSistemaTest(unittest.TestCase):
+    """Tabla "Estado del sistema": filas autoexplicativas, cantidad DESC."""
+
+    def test_orden_desc_y_desempate_por_gravedad(self):
+        dist = {"sin": 3, "con": 5, "con_vecinos": 1, "sin_vecinos": 2,
+                "desconocido": 0, "asum": 0}
+        pares = MOD.estado_sistema_ordenado(dist)
+        self.assertEqual([c for c, _ in pares],
+                         ["con", "sin", "sin_vecinos", "con_vecinos",
+                          "desconocido", "asum"])
+        self.assertEqual([n for _, n in pares], [5, 3, 2, 1, 0, 0])
+
+    def test_filas_etiquetas_autoexplicativas_y_enteros(self):
+        filas = MOD.filas_estado_sistema({"sin": 3.0, "sin_vecinos": 2.0})
+        self.assertEqual(filas[0],
+                         ["Sin corriente (confirmado por parte oficial)", "3"])
+        self.assertEqual(
+            filas[1],
+            ["Sin corriente (según reportes de vecinos) — parte oficial "
+             "con corriente", "2"])
+        # Sin "discrepado" como etiqueta: el estado sin_vecinos lo sustituye.
+        self.assertFalse(any("Discrepado" in f[0] for f in filas))
+
+
+class SenalesVecinalesTest(unittest.TestCase):
+    """Señales vecinales de la semana: visibilidad de los reportes de la
+    población, que mandan en ambos sentidos (discrepado y con_vecinos)."""
+
+    def test_cuenta_senales_en_ventana_con_desglose(self):
+        cat = catalogo_base()
+        cat[3].update({"codigo": "P4", "municipio": "Playa",
+                       "estado": "sin servicio",
+                       "estado_fecha": "2026-09-08T00:00:00+00:00",
+                       "ultima": "2026-09-08T00:00:00+00:00"})
+        # P2 discrepado: parte oficial "con" y los vecinos lo reportan sin.
+        cat[1]["discrepado"] = True
+        cu = {
+            "P2": {"desde": "2026-09-10T00:00:00+00:00", "ultima_sin": None,
+                   "ultimo_con": None, "ultimo_reset": None},
+            "P4": {"desde": None, "ultima_sin": None,
+                   "ultimo_con": "2026-09-10T12:00:00+00:00",
+                   "ultimo_reset": None},
+            "VIEJO": {"desde": "2026-08-01T00:00:00+00:00", "ultima_sin": None,
+                      "ultimo_con": None, "ultimo_reset": None},  # fuera
+        }
+        MOD.fusionar_conteo(cat, cu)
+        vigencias = MOD.vigencias_de(cat, GEN, False)
+        sen = MOD.senales_vecinales(cat, cu, vigencias, GEN)
+        self.assertEqual(sen["total"], 2)               # VIEJO queda fuera
+        self.assertEqual(sen["por_municipio"], [("Playa", 2)])
+        self.assertEqual(sen["sin_vecinos"], 1)         # P2 discrepado vigente
+        self.assertEqual(sen["con_vecinos"], 1)         # P4 según vecinos
+
+    def test_sin_senales_en_la_ventana(self):
+        sen = MOD.senales_vecinales(catalogo_base(), {}, {}, GEN)
+        self.assertEqual(sen, {"total": 0, "por_municipio": [],
+                               "sin_vecinos": 0, "con_vecinos": 0})
+
+
+class NoAfectadosYVigenciaTest(unittest.TestCase):
+    """Circuitos que no se están afectando (criterio del mantenedor) y
+    distribución de ciclo de vida."""
+
+    def test_con_y_asum_sin_horas_entran(self):
         cat = catalogo_base()
         vigencias = MOD.vigencias_de(cat, GEN, False)
         # P1 sin (reciente), P2 con (reciente), P3 asum (silencio de una
@@ -211,17 +296,18 @@ class NoAfectadosYVigenciaTest(unittest.TestCase):
         self.assertEqual(vigencias["P2"], "con")
         self.assertEqual(vigencias["P3"], "asum")
         no_afec = MOD.no_afectados_por_municipio(cat, HORAS, vigencias, DIA0, DIA1)
-        # P2: con servicio confirmado y 0 h de corte en la ventana. P1 y C1
-        # registran horas; P3 es asumido (no sabemos); nadie más califica.
-        self.assertEqual(no_afec, {"Playa": ["P2"]})
+        # P2 (con servicio confirmado) y P3 (asumido con corriente) no
+        # acumulan horas de corte en la ventana: ambos entran. P1 y C1
+        # registran horas confirmadas: quedan fuera.
+        self.assertEqual(no_afec, {"Playa": ["P2", "P3"]})
 
-    def test_con_vecinos_no_entra_en_no_afectados(self):
+    def test_con_vecinos_entra_en_no_afectados(self):
         cat = catalogo_base()
         cat[3].update({"codigo": "P4", "municipio": "Playa",
                        "estado": "sin servicio",
                        "estado_fecha": "2026-09-08T00:00:00+00:00",
                        "ultima": "2026-09-08T00:00:00+00:00"})
-        # Reporte vecinal fresco ("volvió" el 10/09): con_vecinos, no desconocido.
+        # Reporte vecinal fresco ("volvió" el 10/09): con_vecinos.
         MOD.fusionar_conteo(cat, {"P4": {"desde": None,
                                          "ultimo_con": "2026-09-10T12:00:00+00:00",
                                          "ultima_sin": None,
@@ -229,7 +315,50 @@ class NoAfectadosYVigenciaTest(unittest.TestCase):
         vigencias = MOD.vigencias_de(cat, GEN, False)
         self.assertEqual(vigencias["P4"], "con_vecinos")
         no_afec = MOD.no_afectados_por_municipio(cat, HORAS, vigencias, DIA0, DIA1)
-        self.assertNotIn("P4", no_afec.get("Playa", []))
+        self.assertIn("P4", no_afec.get("Playa", []))
+
+    def test_desconocido_viejo_entra_y_reciente_no(self):
+        cat = [
+            # Silencio de 200 h: desconocido con más de 7 días de silencio.
+            {"codigo": "DV", "municipio": "Playa", "estado": "con servicio",
+             "estado_fecha": "2026-09-03T04:00:00+00:00",
+             "ultima": "2026-09-03T04:00:00+00:00"},
+            # Silencio de 100 h: desconocido aún dentro de su semana de
+            # incertidumbre.
+            {"codigo": "DR", "municipio": "Playa", "estado": "con servicio",
+             "estado_fecha": "2026-09-07T08:00:00+00:00",
+             "ultima": "2026-09-07T08:00:00+00:00"},
+        ]
+        vigencias = MOD.vigencias_de(cat, GEN, False)
+        self.assertEqual(vigencias["DV"], "desconocido")
+        self.assertEqual(vigencias["DR"], "desconocido")
+        no_afec = MOD.no_afectados_por_municipio(cat, {}, vigencias,
+                                                 DIA0, DIA1, GEN)
+        self.assertEqual(no_afec, {"Playa": ["DV"]})
+
+    def test_sin_y_sin_vecinos_no_entran(self):
+        cat = [
+            {"codigo": "SV", "municipio": "Playa", "estado": "con servicio",
+             "estado_fecha": "2026-09-10T00:00:00+00:00",
+             "ultima": "2026-09-10T00:00:00+00:00", "discrepado": True},
+            {"codigo": "S1", "municipio": "Playa", "estado": "sin servicio",
+             "estado_fecha": "2026-09-10T00:00:00+00:00",
+             "ultima": "2026-09-10T00:00:00+00:00"},
+        ]
+        vigencias = MOD.vigencias_de(cat, GEN, False)
+        self.assertEqual(vigencias["SV"], "sin_vecinos")
+        self.assertEqual(vigencias["S1"], "sin")
+        no_afec = MOD.no_afectados_por_municipio(cat, {}, vigencias,
+                                                 DIA0, DIA1, GEN)
+        self.assertEqual(no_afec, {})
+
+    def test_municipios_ordenados_por_conteo_desc(self):
+        cat = ([{"codigo": f"P{i}", "municipio": "Playa"} for i in range(3)]
+               + [{"codigo": "C0", "municipio": "Cerro"}])
+        vigencias = MOD.vigencias_de(cat, GEN, False)  # sin estado → asum
+        no_afec = MOD.no_afectados_por_municipio(cat, {}, vigencias,
+                                                 DIA0, DIA1, GEN)
+        self.assertEqual(list(no_afec), ["Playa", "Cerro"])  # 3 > 1
 
     def test_distribucion_vigencia_cuenta_todos_los_estados(self):
         cat = catalogo_base()
@@ -238,7 +367,17 @@ class NoAfectadosYVigenciaTest(unittest.TestCase):
         self.assertEqual(dist["con"], 1)          # P2
         self.assertEqual(dist["asum"], 1)         # P3
         self.assertEqual(dist["con_vecinos"], 0)
+        self.assertEqual(dist["sin_vecinos"], 0)
         self.assertEqual(dist["desconocido"], 0)
+
+    def test_distribucion_cuenta_sin_vecinos_en_lugar_de_discrepado(self):
+        # Dirección 1 del reporte vecinal: UNE "con" + vecinos "sin" →
+        # sin_vecinos (ya no hay etiqueta "discrepado").
+        cat = catalogo_base()
+        cat[1]["discrepado"] = True  # P2
+        dist = MOD.distribucion_vigencia(cat, GEN, False)
+        self.assertEqual(dist["sin_vecinos"], 1)
+        self.assertEqual(dist["con"], 0)
 
     def test_evento_nacional_congela_el_decaimiento(self):
         # Con evento_nacional no hay decaimiento: P3 queda "con", no "asum".

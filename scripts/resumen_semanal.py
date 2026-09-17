@@ -7,12 +7,14 @@ por la API de Mailtrap (HTML + texto plano). Todo el cálculo es OFFLINE y
 determinista — el reloj es el sello `generado` de los datos, nunca el reloj
 de la corrida —; la red solo se usa para el envío final.
 
-La clasificación de ciclo de vida (sin/con_vecinos/desconocido/con/asum)
-reusa la MISMA regla que publica el sitio: importa build_seo (biblioteca
-estándar pura, importable sin efectos) y llama a su `_vigencia`, para que el
-email y la web nunca diverjan. El flag `reportado_con` que esa regla lee se
-monta aquí con un espejo exacto de la regla de build_circuitos.py (no se
-importa ese módulo porque arrastra dependencias de red que no existen en el
+La clasificación de ciclo de vida (sin/sin_vecinos/con_vecinos/desconocido/
+con/asum) reusa la MISMA regla que publica el sitio: importa build_seo
+(biblioteca estándar pura, importable sin efectos) y llama a su `_vigencia`,
+para que el email y la web nunca diverjan — el reporte vecinal manda en
+ambos sentidos (UNE "con" + vecinos "sin" → sin_vecinos; UNE "sin" + vecinos
+"con" → con_vecinos). El flag `reportado_con` que esa regla lee se monta
+aquí con un espejo exacto de la regla de build_circuitos.py (no se importa
+ese módulo porque arrastra dependencias de red que no existen en el
 entorno del envío).
 
 Credenciales SOLO por variables de entorno (jamás valores fijos en el
@@ -82,13 +84,44 @@ _RE_EMOJI = re.compile(
 _RE_ESPACIOS = re.compile(r"\s+")
 
 # Etiquetas visibles de la clasificación de ciclo de vida (mismos estados que
-# publica el sitio; orden de gravedad).
+# publica el sitio; orden de gravedad). El reporte vecinal manda en AMBOS
+# sentidos: UNE "con" + vecinos "sin" → "sin_vecinos" (sin corriente según
+# vecinos); UNE "sin" + vecinos "con" → "con_vecinos" (con servicio según
+# vecinos). No existe etiqueta de "discrepado": el estado sin_vecinos lo
+# sustituye.
 ETIQUETAS_VIGENCIA = (
     ("sin", "sin servicio"),
+    ("sin_vecinos", "sin corriente (según vecinos)"),
     ("con_vecinos", "con servicio (según vecinos)"),
-    ("desconocido", "estado desconocido"),
+    ("desconocido", "desconocido"),
     ("con", "con servicio"),
-    ("asum", "asumido"),
+    ("asum", "asumido con corriente"),
+)
+
+# Filas autoexplicativas de la tabla "Estado del sistema": el nombre de cada
+# fila se explica solo (de dónde sale el estado y desde cuándo), sin exigir
+# conocer la jerga interna.
+ETIQUETAS_ESTADO_SISTEMA = {
+    "sin": "Sin corriente (confirmado por parte oficial)",
+    "sin_vecinos": ("Sin corriente (según reportes de vecinos) — "
+                    "parte oficial con corriente"),
+    "con_vecinos": "Con corriente (según reportes de vecinos)",
+    "desconocido": "Desconocido (más de 48 h sin noticias)",
+    "con": "Con corriente (confirmado por parte oficial)",
+    "asum": "Asumido con corriente (más de una semana sin noticias)",
+}
+
+# Párrafo introductorio del correo (HTML y texto plano): de dónde salen los
+# datos y qué significan los estados de silencio.
+INTRODUCCION = (
+    "Este resumen se elabora a partir de la información publicada por la "
+    "Empresa Eléctrica de La Habana en su grupo oficial de Telegram, "
+    "procesada y analizada de forma automatizada, y complementada con los "
+    "reportes y comentarios de la población en ese mismo grupo. Las horas "
+    "sin corriente son horas confirmadas por parte oficial o por señales de "
+    "la población; los circuitos sin noticias pasan a estado desconocido a "
+    "las 48 horas y a asumido con corriente tras una semana, hasta que una "
+    "nueva noticia los actualice."
 )
 
 
@@ -293,11 +326,13 @@ def menciones_ventana(partes, desde, hasta):
     return conteo
 
 
-def top_sin_por_municipio(catalogo, horas, dia0, dia1, menciones, top=3):
-    """Municipio → top N de circuitos con MÁS horas confirmadas sin corriente
-    en la ventana (solo los que registran corte), con horas y # de partes que
-    lo mencionaron en la semana."""
-    res = {}
+def top_sin_global(catalogo, horas, dia0, dia1, menciones, top=15):
+    """Top GLOBAL (un solo ranking, no por municipio) de circuitos con MÁS
+    horas confirmadas sin corriente en la ventana (solo los que registran
+    corte), ordenado por horas DESC: filas (municipio, código, horas, # de
+    partes que lo mencionaron en la semana). Techo 15: el detalle por
+    municipio ya está en el resumen de arriba."""
+    res = []
     for c in catalogo:
         m = municipio_de(c)
         cod = c.get("codigo")
@@ -306,30 +341,29 @@ def top_sin_por_municipio(catalogo, horas, dia0, dia1, menciones, top=3):
         hs = horas_sin_ventana(horas, cod, dia0, dia1)
         if hs <= 0:
             continue
-        res.setdefault(m, []).append((cod, hs, menciones.get(cod, 0)))
-    for m, lst in res.items():
-        lst.sort(key=lambda t: (-t[1], t[0]))
-        res[m] = lst[:top]
-    return {m: res[m] for m in sorted(res)}
+        res.append((m, cod, hs, menciones.get(cod, 0)))
+    res.sort(key=lambda t: (-t[2], t[0], t[1]))
+    return res[:top]
 
 
-def top_con_por_municipio(catalogo, horas, dia0, dia1, top=3):
-    """Municipio → top N de circuitos con MÁS horas con corriente en la
-    ventana, ENTRE LOS QUE TIENEN MEDICIÓN (criterio: un circuito sin
-    registros de horas no prueba corriente constante, no entra). Horas con
-    corriente = 168 h menos las confirmadas sin corriente, piso 0."""
-    res = {}
+def top_con_global(catalogo, horas, vigencias, dia0, dia1, top=15):
+    """Top GLOBAL de circuitos con MÁS horas con corriente en la ventana,
+    ENTRE LOS QUE TIENEN MEDICIÓN (criterio: un circuito sin registros de
+    horas no prueba corriente constante, no entra), ordenado por horas con
+    corriente DESC: filas (municipio, código, horas, etiqueta del estado del
+    ciclo de vida). Horas con corriente = 168 h menos las confirmadas sin
+    corriente, piso 0. Techo 15."""
+    etiqueta = dict(ETIQUETAS_VIGENCIA)
+    res = []
     for c in catalogo:
         m = municipio_de(c)
         cod = c.get("codigo")
         if not m or not cod or not con_datos_horas(horas, cod):
             continue
         con = max(0.0, HORAS_SEMANA - horas_sin_ventana(horas, cod, dia0, dia1))
-        res.setdefault(m, []).append((cod, con))
-    for m, lst in res.items():
-        lst.sort(key=lambda t: (-t[1], t[0]))
-        res[m] = lst[:top]
-    return {m: res[m] for m in sorted(res)}
+        res.append((m, cod, con, etiqueta.get(vigencias.get(cod), "desconocido")))
+    res.sort(key=lambda t: (-t[2], t[0], t[1]))
+    return res[:top]
 
 
 def _reportado_con(c, cu):
@@ -375,38 +409,70 @@ def vigencias_de(catalogo, gen, evento_nacional):
 
 
 def distribucion_vigencia(catalogo, gen, evento_nacional=False):
-    """Circuitos por estado del ciclo de vida, en el orden de gravedad."""
+    """Circuitos por estado del ciclo de vida, en el orden de gravedad.
+    Incluye sin_vecinos: la cifra de "sin corriente" del sistema es la de
+    los estados caídos, oficiales o vecinales por igual."""
     vigencias = vigencias_de(catalogo, gen, evento_nacional)
     conteo = Counter(vigencias.values())
     return {clave: conteo.get(clave, 0) for clave, _ in ETIQUETAS_VIGENCIA}
 
 
-def no_afectados_por_municipio(catalogo, horas, vigencias, dia0, dia1):
-    """Municipio → códigos que NO se están afectando: sin una sola hora de
-    corte registrada en la ventana Y vigencia 'con' (con servicio
-    confirmado). Los desconocidos, asumidos y con_vecinos quedan fuera — de
-    ellos no sabemos — igual que los 'sin' y los que registran horas."""
+def _silencio_superior_a_semana(c, gen):
+    """True si el silencio total del circuito supera la semana (168 h):
+    reusa el MISMO reloj que `_vigencia` (build_seo._silencio_horas, sobre la
+    última noticia de la UNE o del usuario). Sin reloj completo → False
+    (no inventar)."""
+    if gen is None:
+        return False
+    h = build_seo._silencio_horas(c, gen)
+    return h is not None and h > HORAS_SEMANA
+
+
+def no_afectados_por_municipio(catalogo, horas, vigencias, dia0, dia1, gen=None):
+    """Municipio → códigos que NO se están afectando en la ventana: sin una
+    sola hora de corte confirmada Y sin caída confirmada. Criterio del
+    mantenedor — entran:
+      - vigencia "con" (con servicio confirmado por parte oficial),
+      - "con_vecinos" (los vecinos dicen que volvió),
+      - "asum" (más de una semana sin noticias — "no se apagan"),
+      - "desconocido" con silencio total > 7 días (168 h): aún desconocido,
+        pero la semana de incertidumbre ya pasó — el mantenedor los considera
+        no afectados también.
+    Quedan FUERA: "sin" y "sin_vecinos" (caída confirmada, oficial o
+    vecinal) y "desconocido" con silencio <= 7 días (aún en su semana de
+    incertidumbre)."""
     res = {}
     for c in catalogo:
         m = municipio_de(c)
         cod = c.get("codigo")
-        if not m or not cod or vigencias.get(cod) != "con":
+        if not m or not cod:
+            continue
+        vig = vigencias.get(cod)
+        if vig in ("con", "con_vecinos", "asum"):
+            pass  # sin caída confirmada; el filtro de horas decide abajo
+        elif vig == "desconocido":
+            if not _silencio_superior_a_semana(c, gen):
+                continue  # aún dentro de su semana de incertidumbre
+        else:  # "sin", "sin_vecinos" o estado sin clasificar
             continue
         if horas_sin_ventana(horas, cod, dia0, dia1) > 0:
-            continue
+            continue  # registró corte confirmado en la ventana: sí se afecta
         res.setdefault(m, []).append(cod)
     for lst in res.values():
         lst.sort()
-    return {m: res[m] for m in sorted(res)}
+    # Agrupado por municipio con conteo DESC (empate: alfabético).
+    return {m: res[m] for m in
+            sorted(res, key=lambda m: (-len(res[m]), m))}
 
 
 def roturas_ventana(partes, canal, desde, hasta, nombres_municipio=None):
     """Partes de avería de la ventana: total de PARTES, conteo por
     (municipio, tipo clasificado del texto original) y una fila por circuito
     del parte (fecha, municipio, tipo, dirección `calles` del parte), en
-    orden cronológico. El tipo sale del texto del canal por message_id; si
-    el mensaje ya no está en el caché, 'Otra avería'. El municipio del parte
-    se mapea al nombre canónico del catálogo (`nombres_municipio`)."""
+    orden de fecha DESC (lo más nuevo primero). El tipo sale del texto del
+    canal por message_id; si el mensaje ya no está en el caché, 'Otra
+    avería'. El municipio del parte se mapea al nombre canónico del catálogo
+    (`nombres_municipio`)."""
     total = 0
     conteo = Counter()
     filas = []
@@ -425,8 +491,40 @@ def roturas_ventana(partes, canal, desde, hasta, nombres_municipio=None):
                 "calles": limpiar_texto(ci.get("calles")),
             })
             conteo[(m, tipo)] += 1
-    filas.sort(key=lambda r: (r["fecha"], r["municipio"], r["tipo"]))
+    # Fecha DESC (lo más nuevo primero); empate: municipio y tipo ascendentes.
+    filas.sort(key=lambda r: (r["municipio"], r["tipo"]))
+    filas.sort(key=lambda r: r["fecha"] or datetime.min.replace(tzinfo=timezone.utc),
+               reverse=True)
     return {"total": total, "conteo": conteo, "filas": filas}
+
+
+def senales_vecinales(catalogo, conteo_usuario, vigencias, gen):
+    """Señales vecinales de la semana: circuitos con señal de usuario cuyo
+    desde/ultima_sin/ultimo_con cae en los últimos 7 días (desde `generado`).
+    Devuelve {"total", "por_municipio" ([(municipio, n)] conteo DESC),
+    "sin_vecinos" (discrepados vigentes: parte oficial con corriente y
+    vecinos sin corriente) y "con_vecinos" (vecinos dicen que volvió)} — el
+    reporte vecinal manda en ambos sentidos."""
+    desde = gen - timedelta(days=VENTANA_DIAS)
+    municipio_de_cod = {c.get("codigo"): municipio_de(c) for c in catalogo}
+    total = 0
+    por_municipio = Counter()
+    discrepados = 0
+    con_vecinos = 0
+    for cod, cu in (conteo_usuario or {}).items():
+        if not any(en_ventana(cu.get(k), desde, gen)
+                   for k in ("desde", "ultima_sin", "ultimo_con")):
+            continue
+        total += 1
+        por_municipio[municipio_de_cod.get(cod) or "sin municipio"] += 1
+        vig = vigencias.get(cod)
+        if vig == "sin_vecinos":
+            discrepados += 1
+        elif vig == "con_vecinos":
+            con_vecinos += 1
+    orden = sorted(por_municipio.items(), key=lambda kv: (-kv[1], kv[0]))
+    return {"total": total, "por_municipio": orden,
+            "sin_vecinos": discrepados, "con_vecinos": con_vecinos}
 
 
 def agregar(catalogo_doc, horas, estado, partes, canal, conteo_usuario):
@@ -453,13 +551,14 @@ def agregar(catalogo_doc, horas, estado, partes, canal, conteo_usuario):
         "desde": desde,
         "filas": filas,
         "total": total,
-        "top_sin": top_sin_por_municipio(catalogo, horas, dia0, dia1,
-                                         menciones_ventana(partes, desde, gen)),
-        "top_con": top_con_por_municipio(catalogo, horas, dia0, dia1),
+        "top_sin": top_sin_global(catalogo, horas, dia0, dia1,
+                                  menciones_ventana(partes, desde, gen)),
+        "top_con": top_con_global(catalogo, horas, vigencias, dia0, dia1),
         "no_afectados": no_afectados_por_municipio(catalogo, horas, vigencias,
-                                                   dia0, dia1),
+                                                   dia0, dia1, gen),
         "roturas": roturas_ventana(partes, canal, desde, gen, nombres_municipio),
         "distribucion": distribucion_vigencia(catalogo, gen, evento),
+        "senales": senales_vecinales(catalogo, conteo_usuario, vigencias, gen),
         "mw": mw if isinstance(mw, (int, float)) and mw > 0 else None,
     }
 
@@ -512,6 +611,34 @@ def _seccion(titulo, cuerpo, nota=None):
     return f'<h2 style="{_H2}">{titulo}</h2>{cuerpo}{extra}'
 
 
+_ORDEN_GRAVEDAD = {clave: i for i, (clave, _) in enumerate(ETIQUETAS_VIGENCIA)}
+
+
+def estado_sistema_ordenado(distribucion):
+    """[(clave, cantidad entera)] de la tabla "Estado del sistema", ordenada
+    por cantidad DESC (empate: orden de gravedad). Cada fila se explica sola
+    con su etiqueta de ETIQUETAS_ESTADO_SISTEMA."""
+    return sorted(
+        ((clave, int(distribucion.get(clave, 0)))
+         for clave in ETIQUETAS_ESTADO_SISTEMA),
+        key=lambda kv: (-kv[1], _ORDEN_GRAVEDAD.get(kv[0], len(_ORDEN_GRAVEDAD))))
+
+
+def filas_estado_sistema(distribucion):
+    """Filas renderizables de "Estado del sistema": (etiqueta autoexplicativa
+    escapada, cantidad entera)."""
+    return [[html.escape(ETIQUETAS_ESTADO_SISTEMA[clave]), _ent(n)]
+            for clave, n in estado_sistema_ordenado(distribucion)]
+
+
+def filas_roturas_resumen(conteo):
+    """Filas (municipio, tipo, cantidad) del resumen de roturas, ordenadas
+    por cantidad DESC (empate: municipio, tipo); cantidades ENTERAS."""
+    pares = sorted(conteo.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
+    return [[html.escape(m), html.escape(tipo), _ent(n)]
+            for (m, tipo), n in pares]
+
+
 def render_html(res):
     """Correo en HTML: tablas simples con estilos inline, sin JavaScript, sin
     imágenes externas. Cero referencias fuera del propio contenido."""
@@ -522,6 +649,12 @@ def render_html(res):
         f'<p style="color:#555;font-size:13px;margin:0 0 8px;">'
         f"Del {desde.strftime('%d/%m')} al {gen.strftime('%d/%m')} · "
         f"Generado el {gen.strftime('%d/%m/%Y %H:%M')} (hora de Cuba)</p>"
+        # Introducción: de dónde salen los datos y qué significan los estados
+        # de silencio — antes de la primera tabla.
+        f'<div style="background:#f4f8fb;border-left:4px solid #2c6e9e;'
+        f'padding:10px 14px;margin:0 0 8px;border-radius:4px;'
+        f'font-size:13px;color:#333;line-height:1.5;">'
+        f"{html.escape(INTRODUCCION)}</div>"
     )
 
     filas_html = []
@@ -544,24 +677,43 @@ def render_html(res):
          "Horas con corriente", "% con corriente"],
         filas_html, numericas={1, 2, 3, 4, 5})
 
-    filas_top = []
-    for m, lst in res["top_sin"].items():
-        for cod, hs, menciones in lst:
-            filas_top.append([html.escape(m), html.escape(cod),
-                              _num(hs), _ent(menciones)])
+    # Top 15 GLOBAL (un solo ranking, ordenado por horas sin corriente DESC):
+    # el detalle por municipio ya está en el resumen de arriba.
+    filas_top = [[html.escape(m), html.escape(cod), _num(hs), _ent(n)]
+                 for m, cod, hs, n in res["top_sin"]]
     tabla_top_sin = (_tabla(["Municipio", "Circuito", "Horas sin corriente",
                              "Partes que lo mencionaron"],
                             filas_top, numericas={2, 3})
                      if filas_top else "<p>No hubo circuitos afectados en la semana.</p>")
 
-    filas_top_con = []
-    for m, lst in res["top_con"].items():
-        for cod, con in lst:
-            filas_top_con.append([html.escape(m), html.escape(cod), _num(con)])
-    tabla_top_con = (_tabla(["Municipio", "Circuito", "Horas con corriente"],
+    # Top 15 GLOBAL por horas con corriente DESC, con el estado del ciclo.
+    filas_top_con = [[html.escape(m), html.escape(cod), _num(con),
+                      html.escape(etq)]
+                     for m, cod, con, etq in res["top_con"]]
+    tabla_top_con = (_tabla(["Municipio", "Circuito", "Horas con corriente",
+                             "Estado del ciclo"],
                             filas_top_con, numericas={2})
                      if filas_top_con else
                      "<p>No hay mediciones suficientes para este ranking.</p>")
+
+    # Señales vecinales de la semana: el reporte vecinal manda en ambos
+    # sentidos — discrepados (vecinos sin corriente, parte oficial con
+    # corriente) y restablecimientos según vecinos.
+    sen = res["senales"]
+    filas_sen = [[html.escape(m), _ent(n)] for m, n in sen["por_municipio"]]
+    tabla_sen = (_tabla(["Municipio", "Circuitos con señal"],
+                        filas_sen, numericas={1})
+                 if filas_sen else "")
+    cuerpo_sen = (
+        f'<p style="margin:0 0 8px;">Señales de la población (reportes y '
+        f"comentarios del grupo) sobre <strong>{_ent(sen['total'])}</strong> "
+        f"circuitos en la semana: {_ent(sen['sin_vecinos'])} discrepan con la "
+        f"parte oficial (los vecinos los reportan sin corriente) y "
+        f"{_ent(sen['con_vecinos'])} confirman restablecimiento (los vecinos "
+        f"los reportan con corriente). Estos reportes alimentan las horas y "
+        f"los estados del sistema de este resumen.</p>" + tabla_sen
+        if sen["total"] else
+        "<p>Sin señales de la población en la semana.</p>")
 
     parrafos_no = []
     for m, codigos in res["no_afectados"].items():
@@ -571,7 +723,16 @@ def render_html(res):
     cuerpo_no = ("".join(parrafos_no) if parrafos_no
                  else "<p>Sin circuitos en esa condición esta semana.</p>")
 
+    # Roturas: frase introductoria + tabla resumen legible (cantidad entera,
+    # orden DESC) + tabla detallada por fecha DESC (todas las filas).
     rot = res["roturas"]
+    p_rot = (f'<p style="margin:0 0 8px;">En la semana hubo '
+             f"<strong>{_ent(rot['total'])}</strong> roturas reportadas por "
+             f"la UNE, distribuidas así:</p>")
+    filas_rot_resumen = filas_roturas_resumen(rot["conteo"])
+    tabla_rot_resumen = (_tabla(["Municipio", "Tipo de avería", "Roturas"],
+                                filas_rot_resumen, numericas={2})
+                         if filas_rot_resumen else "")
     filas_rot = [
         [html.escape(_cuba(r["fecha"]).strftime("%d/%m %H:%M")),
          html.escape(r["municipio"]), html.escape(r["tipo"]),
@@ -581,19 +742,9 @@ def render_html(res):
     tabla_rot = (_tabla(["Fecha", "Municipio", "Tipo", "Dirección"],
                         filas_rot)
                  if filas_rot else "<p>No se reportaron roturas en la semana.</p>")
-    conteo_rot = ", ".join(
-        f"{html.escape(m)} — {html.escape(tipo)}: {_num(n)}"
-        for (m, tipo), n in sorted(rot["conteo"].items()))
-    p_rot = (f'<p style="margin:0 0 8px;">Partes de avería en la semana: '
-             f"<strong>{_ent(rot['total'])}</strong>"
-             + (f" · {conteo_rot}" if conteo_rot else "") + "</p>")
 
-    filas_dist = [
-        [html.escape(etiqueta), _ent(res["distribucion"].get(clave, 0))]
-        for clave, etiqueta in ETIQUETAS_VIGENCIA
-    ]
-    extras = _tabla(["Estado del ciclo de vida", "Circuitos"],
-                    filas_dist, numericas={1})
+    filas_dist = filas_estado_sistema(res["distribucion"])
+    extras = _tabla(["Estado", "Circuitos"], filas_dist, numericas={1})
     if res["mw"]:
         extras += (f'<p style="margin:8px 0 0;">Déficit de generación '
                    f"estimado: <strong>{_num(res['mw'])} MW</strong></p>")
@@ -601,26 +752,39 @@ def render_html(res):
     secciones = (
         _seccion("Resumen por municipio", tabla_resumen,
                  "Horas confirmadas de corte; % del tiempo con corriente sobre "
-                 "168 h semanales por circuito.")
-        + _seccion("Circuitos con más horas sin corriente, por municipio",
-                   tabla_top_sin,
-                   "Top 3 por municipio dentro del periodo; solo circuitos con "
-                   "corte confirmado.")
-        + _seccion("Circuitos con más horas con corriente, por municipio",
-                   tabla_top_con,
-                   "Criterio: solo circuitos con medición de horas en la semana; "
-                   "horas con corriente = 168 h menos las confirmadas sin "
-                   "corriente. Los circuitos sin registros no se computan.")
+                 "168 h semanales por circuito. Ordenado por horas sin "
+                 "corriente, de mayor a menor.")
+        + _seccion("Circuitos con más horas sin corriente", tabla_top_sin,
+                   "Top 15 global del periodo, de mayor a menor; solo "
+                   "circuitos con corte confirmado. El detalle por municipio "
+                   "está en el resumen de arriba.")
+        + _seccion("Circuitos con más horas con corriente", tabla_top_con,
+                   "Top 15 global del periodo, de mayor a menor. Criterio: "
+                   "solo circuitos con medición de horas en la semana; horas "
+                   "con corriente = 168 h menos las confirmadas sin corriente. "
+                   "Los circuitos sin registros no se computan.")
+        + _seccion("Señales vecinales de la semana", cuerpo_sen,
+                   "Circuitos con reporte o comentario de la población en los "
+                   "últimos 7 días; influyen en las horas confirmadas y en el "
+                   "estado del sistema.")
         + _seccion("Circuitos que no se están afectando", cuerpo_no,
-                   "Sin horas de corte en la semana y con servicio confirmado; "
-                   "los circuitos en estado desconocido o asumido se omiten por "
-                   "falta de certeza.")
-        + _seccion("Roturas de la semana", p_rot + tabla_rot,
+                   "Criterio: sin horas de corte confirmadas en la semana y "
+                   "sin caída confirmada — con servicio confirmado por parte "
+                   "oficial, con servicio según reportes de vecinos, asumido "
+                   "con corriente (más de una semana sin noticias) o "
+                   "desconocido con más de 7 días de silencio.")
+        + _seccion("Roturas de la semana",
+                   p_rot + tabla_rot_resumen
+                   + (f'<p style="font-size:13px;font-weight:bold;'
+                      f'margin:16px 0 8px;color:#111;">Detalle por fecha</p>'
+                      if filas_rot_resumen else "") + tabla_rot,
                    "Tipo según el parte original; dirección según el circuito "
-                   "reportado en el parte.")
+                   "reportado en el parte. Detalle ordenado del más reciente "
+                   "al más antiguo.")
         + _seccion("Estado del sistema", extras,
-                   "Las horas corresponden a cortes confirmados por parte "
-                   "oficial.")
+                   "Los circuitos sin noticias pasan a desconocido a las 48 "
+                   "horas y a asumido con corriente tras una semana, hasta "
+                   "que una noticia nueva los actualice.")
     )
 
     return (
@@ -645,7 +809,10 @@ def render_texto(res):
         f"Del {desde.strftime('%d/%m')} al {gen.strftime('%d/%m')} · Generado "
         f"el {gen.strftime('%d/%m/%Y %H:%M')} (hora de Cuba)",
         "",
-        "RESUMEN POR MUNICIPIO",
+        # Introducción, antes de la primera tabla.
+        INTRODUCCION,
+        "",
+        "RESUMEN POR MUNICIPIO (ordenado por horas sin corriente)",
         "Municipio · circuitos · afectados · horas sin corriente · horas con "
         "corriente · % con corriente",
     ]
@@ -658,29 +825,45 @@ def render_texto(res):
                   f"{t['afectados']:.0f} afectados · {t['horas_sin']:.1f} h sin · "
                   f"{t['horas_con']:.1f} h con · {t['pct']:.1f} % con corriente")
 
-    lineas += ["", "CIRCUITOS CON MÁS HORAS SIN CORRIENTE, POR MUNICIPIO (top 3)"]
+    lineas += ["", "CIRCUITOS CON MÁS HORAS SIN CORRIENTE (top 15 global)"]
     if res["top_sin"]:
-        for m, lst in res["top_sin"].items():
-            detalle = " · ".join(
-                f"{cod} ({hs:.1f} h, {n} parte{'s' if n != 1 else ''})"
-                for cod, hs, n in lst)
-            lineas.append(f"  {m}: {detalle}")
+        for m, cod, hs, n in res["top_sin"]:
+            lineas.append(f"  {m} · {cod}: {hs:.1f} h sin corriente · "
+                          f"{n} parte{'s' if n != 1 else ''} que lo mencionaron")
     else:
         lineas.append("  No hubo circuitos afectados en la semana.")
 
-    lineas += ["", "CIRCUITOS CON MÁS HORAS CON CORRIENTE, POR MUNICIPIO (top 3)",
+    lineas += ["", "CIRCUITOS CON MÁS HORAS CON CORRIENTE (top 15 global)",
                "  Criterio: solo circuitos con medición de horas en la semana; "
                "horas con corriente = 168 h menos las confirmadas sin corriente."]
     if res["top_con"]:
-        for m, lst in res["top_con"].items():
-            detalle = " · ".join(f"{cod} ({con:.1f} h)" for cod, con in lst)
-            lineas.append(f"  {m}: {detalle}")
+        for m, cod, con, etq in res["top_con"]:
+            lineas.append(f"  {m} · {cod}: {con:.1f} h con corriente · {etq}")
     else:
         lineas.append("  No hay mediciones suficientes para este ranking.")
 
+    # Señales vecinales de la semana.
+    sen = res["senales"]
+    lineas += ["", "SEÑALES VECINALES DE LA SEMANA"]
+    if sen["total"]:
+        lineas.append(
+            f"  Señales de la población (reportes y comentarios del grupo) "
+            f"sobre {sen['total']} circuitos: {sen['sin_vecinos']} discrepan "
+            f"con la parte oficial (vecinos sin corriente) y "
+            f"{sen['con_vecinos']} confirman restablecimiento (vecinos con "
+            f"corriente). Estos reportes alimentan las horas y los estados "
+            f"del sistema de este resumen.")
+        for m, n in sen["por_municipio"]:
+            lineas.append(f"  {m}: {n} circuito{'s' if n != 1 else ''} con señal")
+    else:
+        lineas.append("  Sin señales de la población en la semana.")
+
     lineas += ["", "CIRCUITOS QUE NO SE ESTÁN AFECTANDO",
-               "  Sin horas de corte en la semana y con servicio confirmado; los "
-               "desconocidos o asumidos se omiten por falta de certeza."]
+               "  Criterio: sin horas de corte confirmadas en la semana y sin "
+               "caída confirmada — con servicio confirmado por parte oficial, "
+               "con servicio según reportes de vecinos, asumido con corriente "
+               "(más de una semana sin noticias) o desconocido con más de 7 "
+               "días de silencio."]
     if res["no_afectados"]:
         for m, codigos in res["no_afectados"].items():
             lineas.append(f"  {m} ({len(codigos)}): {', '.join(codigos)}")
@@ -689,25 +872,28 @@ def render_texto(res):
 
     rot = res["roturas"]
     lineas += ["", "ROTURAS DE LA SEMANA",
-               f"  Partes de avería: {rot['total']}"]
-    if rot["conteo"]:
-        lineas.append("  Por municipio y tipo: " + "; ".join(
-            f"{m} — {tipo}: {n}" for (m, tipo), n in sorted(rot["conteo"].items())))
+               f"  En la semana hubo {rot['total']} roturas reportadas por la "
+               f"UNE, distribuidas así:"]
+    for (m, tipo), n in sorted(rot["conteo"].items(),
+                               key=lambda kv: (-kv[1], kv[0][0], kv[0][1])):
+        lineas.append(f"    {m} · {tipo}: {int(n)}")
     if rot["filas"]:
-        lineas.append("  Detalle (fecha · municipio · tipo · dirección):")
+        lineas.append("  Detalle (fecha · municipio · tipo · dirección), del "
+                      "más reciente al más antiguo:")
         for r in rot["filas"]:
             lineas.append(f"    {_cuba(r['fecha']).strftime('%d/%m %H:%M')} · "
                           f"{r['municipio']} · {r['tipo']} · {r['calles'] or '—'}")
+    else:
+        lineas.append("  No se reportaron roturas en la semana.")
 
-    lineas += ["", "ESTADO DEL SISTEMA"]
-    lineas.append("  " + " · ".join(
-        f"{etiqueta}: {res['distribucion'].get(clave, 0)}"
-        for clave, etiqueta in ETIQUETAS_VIGENCIA))
+    lineas += ["", "ESTADO DEL SISTEMA (ordenado por cantidad)"]
+    for clave, cantidad in estado_sistema_ordenado(res["distribucion"]):
+        lineas.append(f"  {ETIQUETAS_ESTADO_SISTEMA[clave]}: {cantidad}")
     if res["mw"]:
         lineas.append(f"  Déficit de generación estimado: {res['mw']:.0f} MW")
-    lineas.append("  Nota: las horas corresponden a cortes confirmados por parte "
-                  "oficial; los porcentajes se calculan sobre 168 h semanales "
-                  "por circuito.")
+    lineas.append("  Nota: los circuitos sin noticias pasan a desconocido a "
+                  "las 48 horas y a asumido con corriente tras una semana, "
+                  "hasta que una noticia nueva los actualice.")
     lineas.append("")
     lineas.append("Mensaje automático del sistema de seguimiento del servicio "
                   "eléctrico de La Habana.")

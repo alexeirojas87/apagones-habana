@@ -1,13 +1,4 @@
 {
- "81477": {
-  "fecha": "2026-09-10T13:40:51+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 09:35 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz9:Alrededores"
- },
  "81509": {
   "fecha": "2026-09-10T15:58:47+00:00",
   "tipo_llm": "restablecimiento",

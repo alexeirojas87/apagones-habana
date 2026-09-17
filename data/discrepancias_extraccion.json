@@ -1,23 +1,4 @@
 {
- "81374": {
-  "fecha": "2026-09-10T03:49:28+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "MB960",
-   "SR840"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:23 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R451:Calles Per"
- },
- "81371": {
-  "fecha": "2026-09-10T03:43:22+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "R466"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:40 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R453:La Gloria"
- },
  "81404": {
   "fecha": "2026-09-10T07:51:15+00:00",
   "tipo_llm": "afectacion",
@@ -1273,5 +1254,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: OP408 y H341"
+ },
+ "83437": {
+  "fecha": "2026-09-17T03:37:42+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚡Consumidores del municipio 10 de octubre, se afecta el servicio eléctrico por AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en : 👉 A entre 14 y 15,Lawton. 👉Gener"
+ },
+ "83436": {
+  "fecha": "2026-09-17T03:35:48+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A940"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚡Consumidores del municipio Boyeros, se afecta el servicio eléctrico por una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 235 e/ 206 y"
  }
 }

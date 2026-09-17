@@ -1,46 +1,4 @@
 {
- "81460": {
-  "fecha": "2026-09-10T12:59:53+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP20",
-   "CPP8",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 08:55 AM se afectó el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerr"
- },
- "81470": {
-  "fecha": "2026-09-10T13:29:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 210 MW distribuidos en 65 circuitos de distribución. A continuación, "
- },
- "81477": {
-  "fecha": "2026-09-10T13:40:51+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 09:35 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz9:Alrededores"
- },
- "81509": {
-  "fecha": "2026-09-10T15:58:47+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP20",
-   "CPP8",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:57 am queda restablecido el servicio eléctrico en los siguientes circuitos: 👉 CPP17: Alrededores de calles Pu"
- },
  "81521": {
   "fecha": "2026-09-10T16:25:25+00:00",
   "tipo_llm": "restablecimiento",
@@ -1289,5 +1247,64 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 7:25 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, A"
+ },
+ "83588": {
+  "fecha": "2026-09-17T14:53:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:47 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325:Alrededore"
+ },
+ "83581": {
+  "fecha": "2026-09-17T14:40:23+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "306",
+   "406",
+   "CPP10",
+   "CPP17",
+   "CPP20",
+   "CPP8",
+   "CPP9",
+   "OP304",
+   "OP318",
+   "OP320",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 09:30 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP 304,OP424,OP318,OP320,OP411, 406,306 : "
+ },
+ "83605": {
+  "fecha": "2026-09-17T15:25:33+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ1"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:28 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PZ9:La Timba, c"
+ },
+ "83596": {
+  "fecha": "2026-09-17T15:07:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ14"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 9:16 AM quedó restablecido el servicio en el siguiente circuito: 👉P322:Alrededores de calles Sitios desde Xifre "
+ },
+ "83612": {
+  "fecha": "2026-09-17T15:45:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP319",
+   "P319"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las11:39 AM quedó restablecido el servicio en el siguiente circuito: 👉P318:Alrededores de calles Placencia desde Sit"
  }
 }

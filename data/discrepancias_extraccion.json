@@ -1,13 +1,4 @@
 {
- "81404": {
-  "fecha": "2026-09-10T07:51:15+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ14"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 3 :45 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉PZ13 :Zapata desde"
- },
  "81411": {
   "fecha": "2026-09-10T08:39:18+00:00",
   "tipo_llm": "afectacion",
@@ -1284,5 +1275,14 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 🚨💥Subestación : ✔️Mun"
+ },
+ "83487": {
+  "fecha": "2026-09-17T07:55:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a el siguiente circuito: OP408✅"
  }
 }

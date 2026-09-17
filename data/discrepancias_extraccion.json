@@ -1333,5 +1333,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Consumidores del municipio Boyeros,por un Disparo del Circuito por 33KV se encuentran afectados los siguientes circuitos: 👉A708: Reparto Abel Santamaría 👉D870"
+ },
+ "83684": {
+  "fecha": "2026-09-17T19:30:40+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR850"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:25 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 S516:Reparto La"
+ },
+ "83679": {
+  "fecha": "2026-09-17T19:09:44+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️🚨Consumidores del municipio Arroyo Naranjo, se detectó una Avería Secundaria por Transformador Dañado en las siguientes direcciones: 👉Kessel/Lourdes y Villord"
  }
 }

@@ -96,11 +96,13 @@ class HorasHistoricasTest(unittest.TestCase):
         self.assertEqual(r["por_dia"], {"2026-07-05": 1.0, "2026-07-06": 2.0})
 
     def test_intervalo_abierto_corre_hasta_generado(self):
+        # 5.5 h < 48 h de umbral de confirmación: cuenta hasta generado, como hoy.
         r = self._una([(fh(5, 10), "sin")], gen(5, 15, 30))
         self.assertEqual(r["total"], 5.5)
         self.assertEqual(r["por_dia"], {"2026-07-05": 5.5})
 
     def test_intervalo_abierto_cruza_dias_hasta_generado(self):
+        # 30 h < 48 h: el cap de confirmación no alcanza; reparto intacto.
         r = self._una([(fh(4, 22), "sin")], gen(6, 4))
         # 22:00 del 4 → medianoche (2 h) + 00:00 → 04:00 del 6 (28 h)
         self.assertEqual(r["por_dia"], {"2026-07-04": 2.0, "2026-07-05": 24.0,
@@ -136,6 +138,98 @@ class HorasHistoricasTest(unittest.TestCase):
         r = self._una([(fh(5, 13, 30), "con"), (fh(5, 10), "sin")], gen(5, 15))
         self.assertEqual(r["total"], 3.5)
         self.assertEqual(r["por_dia"], {"2026-07-05": 3.5})
+
+
+class HorasConfirmadasTest(unittest.TestCase):
+    """REGLA del mantenedor: las horas sin corriente son HORAS CONFIRMADAS
+    (coherente con el estado desconocido/azul a 48 h). El tramo ABIERTO al
+    horizonte cuenta 48 h desde su última mención: cada re-mención o señal
+    vecinal reactiva otras 48 h DESDE ELLA y el hueco silencioso NO cuenta;
+    el intervalo CERRADO con restablecimiento cuenta COMPLETO de punta a
+    punta (la UNE confirmó ambos extremos), sin cap."""
+
+    def _una(self, eventos, generado, senales=None):
+        r = BC.horas_historicas({"AL53": eventos}, generado, senales)
+        return r.get("AL53") or {"por_dia": {}, "total": 0.0}
+
+    def test_abierto_100h_sin_remenciones_cuenta_48(self):
+        # apertura fh(1,0); generado a las 100 h (fh(5,4)); sin re-menciones:
+        # 48 h confirmadas, no 100 (fin efectivo = apertura + 48 h).
+        r = self._una([(fh(1, 0), "sin")], fh(5, 4))
+        self.assertEqual(r["total"], 48.0)
+        self.assertEqual(r["por_dia"], {"2026-07-01": 24.0, "2026-07-02": 24.0})
+
+    def test_abierto_30h_cuenta_30(self):
+        # bajo el umbral: cuenta hasta generado, como hoy.
+        r = self._una([(fh(5, 0), "sin")], fh(6, 6))
+        self.assertEqual(r["total"], 30.0)
+        self.assertEqual(r["por_dia"], {"2026-07-05": 24.0, "2026-07-06": 6.0})
+
+    def test_abierto_con_remencion_a_70h(self):
+        # apertura fh(1,0); re-mención a las 70 h (fh(3,22)); generado a las
+        # 100 h (fh(5,4)): 48 h de la 1.ª mención + 30 h desde la re-mención;
+        # el hueco 48→70 NO cuenta (el día 2026-07-03 queda sin horas).
+        r = self._una([(fh(1, 0), "sin"), (fh(3, 22), "sin")], fh(5, 4))
+        self.assertEqual(r["total"], 78.0)
+        self.assertEqual(r["por_dia"], {"2026-07-01": 24.0, "2026-07-02": 24.0,
+                                        "2026-07-03": 2.0, "2026-07-04": 24.0,
+                                        "2026-07-05": 4.0})
+
+    def test_cerrado_100h_con_restablecimiento_cuenta_completo(self):
+        # la UNE confirmó ambos extremos: 100 h de punta a punta, SIN cap.
+        r = self._una([(fh(1, 0), "sin"), (fh(5, 4), "con")], fh(5, 10))
+        self.assertEqual(r["total"], 100.0)
+        self.assertEqual(r["por_dia"], {"2026-07-01": 24.0, "2026-07-02": 24.0,
+                                        "2026-07-03": 24.0, "2026-07-04": 24.0,
+                                        "2026-07-05": 4.0})
+
+    def test_cerrado_con_remenciones_intermedias_cuenta_completo(self):
+        # re-menciones dentro de un tramo que se cierra: no tocan nada, el
+        # episodio completo quedó confirmado por el restablecimiento final.
+        r = self._una([(fh(1, 0), "sin"), (fh(2, 0), "sin"), (fh(3, 0), "sin"),
+                       (fh(5, 0), "con")], fh(5, 10))
+        self.assertEqual(r["total"], 96.0)
+        self.assertEqual(r["por_dia"], {"2026-07-01": 24.0, "2026-07-02": 24.0,
+                                        "2026-07-03": 24.0, "2026-07-04": 24.0})
+
+    def test_senal_vecinal_extiende_las_48h(self):
+        # apertura fh(1,0); señal vecinal a las 80 h (fh(4,8)); generado a las
+        # 100 h: 48 h de la apertura + 20 h desde la señal; el hueco 48→80 NO
+        # cuenta (el día 2026-07-03 queda sin horas).
+        sen = {"AL53": [fh(4, 8)]}
+        r = self._una([(fh(1, 0), "sin")], fh(5, 4), sen)
+        self.assertEqual(r["total"], 68.0)
+        self.assertEqual(r["por_dia"], {"2026-07-01": 24.0, "2026-07-02": 24.0,
+                                        "2026-07-04": 16.0, "2026-07-05": 4.0})
+
+    def test_senal_no_abre_intervalo_propio(self):
+        # la señal solo extiende el reloj del tramo abierto de la UNE: con el
+        # tramo CERRADO, la señal de después no añade ni inventa nada.
+        sen = {"AL53": [fh(4, 8)]}
+        r = self._una([(fh(1, 0), "sin"), (fh(2, 0), "con")], fh(5, 4), sen)
+        self.assertEqual(r["total"], 24.0)  # cerrado: completo, señal fuera
+
+    def test_senal_anterior_al_tramo_no_cuenta(self):
+        # señal de un episodio anterior a la apertura: no menciona este tramo.
+        sen = {"AL53": [fh(1, 0) - timedelta(hours=4)]}
+        r = self._una([(fh(1, 0), "sin")], fh(5, 4), sen)
+        self.assertEqual(r["total"], 48.0)
+
+    def test_menciones_solapadas_no_duplican(self):
+        # re-mención a las 10 h y señal a las 20 h, ambas DENTRO de la ventana
+        # de 48 h de la apertura: el tramo cuenta una sola vez hasta 68 h.
+        sen = {"AL53": [fh(1, 20)]}
+        r = self._una([(fh(1, 0), "sin"), (fh(1, 10), "sin")], fh(5, 4), sen)
+        self.assertEqual(r["total"], 68.0)
+        self.assertEqual(r["por_dia"], {"2026-07-01": 24.0, "2026-07-02": 24.0,
+                                        "2026-07-03": 20.0})
+
+    def test_senal_naive_se_lee_como_utc(self):
+        # convención del builder: ISO naive del conteo_usuario = UTC
+        # (04 08:00Z = 04:00 local; 48 h de la apertura + 24 h de la señal).
+        sen = {"AL53": [datetime(2026, 7, 4, 8, 0)]}
+        r = self._una([(fh(1, 0), "sin")], fh(5, 4), sen)
+        self.assertEqual(r["total"], 72.0)
 
 
 class RedondeoHorasTest(unittest.TestCase):

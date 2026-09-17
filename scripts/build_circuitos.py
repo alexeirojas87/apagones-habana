@@ -15,14 +15,22 @@ que sirve, el municipio, el bloque en que rota (inferido del post), cuántas
 veces se ha visto, cuándo, y su último estado conocido (con/sin servicio).
 
 Sobre el MISMO replay emite web/data/circuitos_horas.json: el histórico
-COMPLETO de horas sin corriente por circuito. Cada vez que un mensaje (vía
-regex o vía caché LLM) actualiza r["estado"]/r["estado_fecha"] se anota el
-evento del circuito (fecha, sin/con); el acumulador empareja afectación→
-restablecimiento, reparte cada intervalo por día calendario en HORA_CUBA
-(UTC-4 fijo, con split de medianoche) y el que siga abierto al final corre
-hasta `generado` (web/data/estado.json, que estado.py escribe antes en CI;
-respaldo: el timestamp del último mensaje del canal). Días/circuitos sin
-horas: ausentes, nunca 0; redondeo a 1 decimal por día. Alimenta el ranking
+COMPLETO de horas sin corriente CONFIRMADAS por circuito. Cada vez que un
+mensaje (vía regex o vía caché LLM) actualiza r["estado"]/r["estado_fecha"]
+se anota el evento del circuito (fecha, sin/con); el acumulador empareja
+afectación→restablecimiento y reparte cada intervalo por día calendario en
+HORA_CUBA (UTC-4 fijo, con split de medianoche). REGLA del mantenedor
+(coherente con el ciclo de vida del estado): las horas son HORAS
+CONFIRMADAS — un intervalo CERRADO con restablecimiento cuenta completo de
+punta a punta (la UNE confirmó ambos extremos), mientras que el que siga
+abierto al final solo cuenta 48 h desde su ÚLTIMA mención (afectación,
+re-mención o señal vecinal; cada mención reactiva otras 48 h desde ella y
+el hueco silencioso NO cuenta — es lo que no sabemos, el mismo silencio que
+deja el estado en desconocido/azul), con fin efectivo
+min(generado, última_mención + 48 h). `generado` viene de
+web/data/estado.json, que estado.py escribe antes en CI; respaldo: el
+timestamp del último mensaje del canal. Días/circuitos sin horas:
+ausentes, nunca 0; redondeo a 1 decimal por día. Alimenta el ranking
 "Circuitos más afectados" de las páginas de municipio (build_seo.py).
 """
 
@@ -55,6 +63,13 @@ CANAL_CACHE = os.path.join(RAIZ, "data", "canal_cache.json")
 # Huso fijo para el reparto por día calendario del histórico de horas: el mismo
 # respaldo que build_seo.py (desde 2026 La Habana no atrasa el reloj).
 HORA_CUBA = timezone(timedelta(hours=-4))
+# Horas que cada mención del circuito CONFIRMA del histórico de horas (regla
+# del mantenedor: las horas sin corriente son HORAS CONFIRMADAS). Mismo valor
+# que _UMBRAL_DESC_H de build_seo.py —el umbral que deja el estado en
+# "desconocido"—: si el estado deja de afirmar a las 48 h de silencio, las
+# horas tampoco pueden seguir contando. Solo afecta al tramo ABIERTO (el
+# cerrado con restablecimiento cuenta completo).
+_UMBRAL_CONFIRMA_H = 48.0
 # La Empresa edita partes ya publicados (ingest.py re-sub los DAF editados):
 # los últimos N mensajes del canal se re-leen SIEMPRE para recoger la versión final.
 VENTANA_EDICIONES = 50
@@ -429,34 +444,73 @@ def _reparto_dias(desde, hasta):
     return dias
 
 
-def horas_historicas(eventos, generado):
-    """Histórico COMPLETO de horas sin corriente por circuito (sin redondear).
+def horas_historicas(eventos, generado, senales=None):
+    """Histórico COMPLETO de horas sin corriente CONFIRMADAS por circuito
+    (sin redondear).
 
     Empareja los eventos del replay por circuito: una afectación abre el
     intervalo "sin" (timestamp del mensaje) y un restablecimiento lo cierra;
-    varios ciclos acumulan; el que siga abierto al final corre hasta
-    `generado` (None: nada queda abierto, no se inventa). Devuelve
-    {codigo: {"por_dia": {fecha: horas}, "total": horas}} en horas exactas;
-    el reparto por día es calendario HORA_CUBA (UTC-4 fijo). Un circuito sin
-    intervalos "sin" no aparece.
+    varios ciclos acumulan. REGLA DEL MANTENEDOR (horas confirmadas, coherente
+    con el ciclo de vida del estado — el estado decae a "desconocido" a las
+    48 h de silencio, las horas tampoco pueden seguir contando):
+
+    - Un intervalo CERRADO con restablecimiento cuenta COMPLETO de punta a
+      punta (la UNE confirmó ambos extremos, aunque hubiera silencios
+      intermedios: el restablecimiento final confirma la duración total del
+      episodio). Sin cap de confirmación.
+    - El tramo que siga abierto al final SOLO cuenta sus horas confirmadas:
+      cada mención confirma _UMBRAL_CONFIRMA_H (48 h) DESDE ELLA; el hueco
+      entre mención+48 h y la siguiente mención NO cuenta (es lo que no
+      sabemos). El fin efectivo del tramo es min(fin_real,
+      última_mención + 48 h); sin re-menciones, solo las primeras 48 h desde
+      la apertura.
+    - Una señal vecinal (`senales`, opcional: {codigo: [datetime, ...]} con
+      desde/ultima_sin del conteo_usuario) también es mención del tramo
+      abierto si cae dentro de él y es posterior a la apertura — misma
+      definición de señal "sin" que _ultima_noticia (build_seo.py). NO abre
+      intervalo propio: solo extiende el reloj de confirmación.
+
+    `generado` None: nada abierto queda contable (sin horizonte verificable
+    no se inventa). Devuelve {codigo: {"por_dia": {fecha: horas}, "total":
+    horas}} en horas exactas; el reparto por día es calendario HORA_CUBA
+    (UTC-4 fijo). Un circuito sin intervalos "sin" no aparece.
     """
     fin = _a_utc(generado) if generado is not None else None
     historico = {}
     for codigo, evs in eventos.items():
         por_dia = {}
         abierto = None
+        re_menciones = []  # "sin" posteriores a la apertura del tramo abierto
         for dt, estado in sorted(evs, key=lambda x: x[0]):  # replay ya asc; sort defensivo
             dt = _a_utc(dt)
             if estado == "sin":
                 if abierto is None:  # dos "sin" seguidos: manda el primero
                     abierto = dt
+                else:
+                    re_menciones.append(dt)  # re-mención: reactiva 48 h desde ella
             elif abierto is not None:
+                # Cerrado con restablecimiento: cuenta COMPLETO de punta a
+                # punta (la UNE confirmó ambos extremos del episodio).
                 for dia, h in _reparto_dias(abierto, dt).items():
                     por_dia[dia] = por_dia.get(dia, 0.0) + h
                 abierto = None
+                re_menciones = []
         if abierto is not None and fin is not None:
-            for dia, h in _reparto_dias(abierto, fin).items():
-                por_dia[dia] = por_dia.get(dia, 0.0) + h
+            # Tramo abierto al horizonte: SOLO horas confirmadas. Segmentos
+            # [mención, mención + 48 h] recortados al fin real, en orden
+            # cronológico; la marca evita el doble conteo cuando las
+            # menciones caen dentro de la ventana de la anterior.
+            senales_cod = sorted(_a_utc(s) for s in (senales or {}).get(codigo, []))
+            menciones = [abierto] + re_menciones + \
+                [s for s in senales_cod if abierto < s <= fin]
+            marca = None  # hasta aquí ya está contado
+            for m in sorted(menciones):
+                hasta = min(m + timedelta(hours=_UMBRAL_CONFIRMA_H), fin)
+                ini = m if marca is None else max(m, marca)
+                if hasta > ini:
+                    for dia, h in _reparto_dias(ini, hasta).items():
+                        por_dia[dia] = por_dia.get(dia, 0.0) + h
+                marca = hasta if marca is None else max(marca, hasta)
         if por_dia:
             historico[codigo] = {"por_dia": por_dia, "total": sum(por_dia.values())}
     return historico
@@ -697,8 +751,26 @@ def main():
     # Histórico de horas sin corriente (mismo replay) para las páginas de
     # municipio. Días/circuitos sin horas: ausentes, nunca 0. Va ANTES de la
     # geocodificación: si la red se agota, las horas ya quedaron escritas.
+    # Señales vecinales que CONFIRMAN horas (desde/ultima_sin del conteo de
+    # usuario — misma definición de señal "sin" que _ultima_noticia en
+    # build_seo.py): una señal no abre intervalo, solo extiende las 48 h del
+    # tramo abierto si cae dentro de él (reloj de confirmación).
+    senales_usuario = {}
+    try:
+        conteo_previo = json.load(open(CONTEO_USUARIO_FILE))
+    except Exception:
+        conteo_previo = {}
+    for cod, cu in conteo_previo.items():
+        fts = []
+        for iso in (cu.get("desde"), cu.get("ultima_sin")):
+            dt = _fecha_dt(iso)
+            if dt is not None:
+                fts.append(_a_utc(dt))
+        if fts:
+            senales_usuario[cod] = fts
     generado_h = _generado_horas(filas)
-    horas = redondear_horas(horas_historicas(eventos_horas, generado_h))
+    horas = redondear_horas(horas_historicas(eventos_horas, generado_h,
+                                             senales_usuario))
     with open(HORAS_JSON, "w", encoding="utf-8") as f:
         f.write(json.dumps({"generado": generado_h.isoformat() if generado_h else None,
                             **horas}, ensure_ascii=False))

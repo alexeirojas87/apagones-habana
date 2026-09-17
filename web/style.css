@@ -53,6 +53,7 @@
 .est-con { color: var(--green); }
 .est-disc { color: var(--amber); }
 .est-asum { color: var(--blue); }
+.est-desc { color: var(--gray); }
 .est-daf { color: var(--gold); }
 .est-av { color: #b455c8; }
 .est-rep { color: #e07b00; }
@@ -111,6 +112,7 @@ h1 { font-size: 1.15rem; margin: 0; }
 .rc-barra .seg.discrepado { background: var(--amber); }
 .rc-barra .seg.asum { background: var(--blue); }
 .rc-barra .seg.nd { background: var(--gray); }
+.rc-barra .seg.desc { background: var(--gray); }
 .rc-chips { display: flex; gap: 6px; flex-wrap: wrap; }
 .rc-chip {
   font-size: .72rem; font-weight: 600; border-radius: 999px; padding: 3px 10px;
@@ -122,6 +124,7 @@ h1 { font-size: 1.15rem; margin: 0; }
 .rc-chip.discrepado { color: var(--amber-t); cursor: help; } .rc-chip.discrepado::before { color: var(--amber); }
 .rc-chip.asum { color: var(--blue-t); cursor: help; } .rc-chip.asum::before { color: var(--blue); }
 .rc-chip.nd { color: var(--gray-t); cursor: help; } .rc-chip.nd::before { color: var(--gray); }
+.rc-chip.desc { color: var(--gray-t); cursor: help; } .rc-chip.desc::before { color: var(--gray); }
 .rc-pnums { display: flex; gap: 14px; flex-wrap: wrap; }
 .rc-pnum b { font-size: 1.15rem; font-weight: 800; font-variant-numeric: tabular-nums; display: block; line-height: 1.15; }
 .rc-pnum small { color: var(--text-muted); font-size: .72rem; }
@@ -169,9 +172,11 @@ h1 { font-size: 1.15rem; margin: 0; }
   .rc-mini-barra .seg.discrepado { background: var(--amber); }
   .rc-mini-barra .seg.asum { background: var(--blue); }
   .rc-mini-barra .seg.nd { background: var(--gray); }
+  .rc-mini-barra .seg.desc { background: var(--gray); }
   .rc-mini-txt { font-size: .74rem; color: var(--text-muted); white-space: nowrap;
     overflow: hidden; text-overflow: ellipsis; }
   .rc-mini-txt b.sin { color: var(--red-t); } .rc-mini-txt b.con { color: var(--green-t); }
+  .rc-mini-txt b.desc { color: var(--gray-t); } .rc-mini-txt b.discrepado { color: var(--amber-t); }
   .rc-flecha { margin-left: auto; color: var(--text-muted); font-size: .7rem; }
   .rc-cuerpo { display: none; }
   .rc-cuerpo.abierto { display: block; margin-top: 8px; }
@@ -405,6 +410,7 @@ a.circ-cod:hover { text-decoration: underline; }
 .circ-est.sin { background: var(--red-bg); color: var(--red-t); }
 .circ-est.discrepado { background: var(--amber-bg); color: var(--amber-t); }
 .circ-est.nd { background: var(--gray-bg); color: var(--text-muted); }
+.circ-est.desc { background: var(--gray-bg); color: var(--text-muted); }
 .circ-est.asum { background: var(--blue-bg); color: var(--accent); }
 .circ-lleva { font-size: .7rem; font-weight: 600; }
 .circ-lleva.sin { color: var(--red-t); }
@@ -412,6 +418,7 @@ a.circ-cod:hover { text-decoration: underline; }
 .circ-lleva.con-vec { color: var(--green-t); }
 .circ-lleva.discrepado { color: var(--amber-t); }
 .circ-lleva.nd { color: var(--text-muted); }
+.circ-lleva.desc { color: var(--text-muted); }
 .circ-meta { font-size: .7rem; color: var(--text-muted); margin-left: auto; }
 .circ-calles { font-size: .82rem; line-height: 1.35; color: var(--text-soft); }
 .circ-sininfo { color: var(--text-muted); font-style: italic; }

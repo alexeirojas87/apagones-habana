@@ -18,3 +18,8 @@ graft/
 # vive solo en el árbol de trabajo (wrangler --commit-dirty), NUNCA en git.
 web/municipio/
 web/sitemap.xml
+
+# Vista previa del resumen semanal (scripts/resumen_semanal.py --dry-run):
+# artefacto local de validación, nunca en git.
+web/data/.resumen_preview.html
+web/data/.resumen_preview.txt

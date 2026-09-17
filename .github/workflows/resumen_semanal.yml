@@ -1,0 +1,35 @@
+# Resumen semanal del servicio eléctrico por email (Mailtrap).
+# Corre los viernes 13:00 UTC (09:00 en La Habana). El envío real requiere el
+# secret MAILTRAP_API_KEY configurado en el repositorio; sin ese secret el
+# script termina con un error claro y no envía nada. La ejecución manual
+# (workflow_dispatch) admite un email de prueba opcional: si se pasa, el
+# resumen va solo a esa dirección con el asunto precedido de [PRUEBA].
+name: Resumen semanal
+
+on:
+  schedule:
+    - cron: "0 13 * * 5" # viernes 13:00 UTC = 09:00 La Habana
+  workflow_dispatch:
+    inputs:
+      destinatario_prueba:
+        description: "Email de prueba (opcional); vacío = destinatario de producción"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  resumen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Enviar resumen semanal
+        run: python3 scripts/resumen_semanal.py
+        env:
+          MAILTRAP_API_KEY: ${{ secrets.MAILTRAP_API_KEY }}
+          RESUMEN_TEST_PARA: ${{ github.event.inputs.destinatario_prueba }}

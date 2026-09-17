@@ -232,7 +232,7 @@ def sitemap_xml(pares):
 
 def _sin_efectivos(c, gen):
     """'Sin servicio efectivo' de UN circuito: ÚNICA definición del archivo.
-    Es la rama "sin" de _vigencia: estado caído según la UNE, SIN reporte
+    Las vigencias "sin" y "sin_vecinos" de _vigencia: estado caído según la UNE o según los vecinos, SIN reporte
     vecinal vigente de que volvió (`reportado_con`: esos el catálogo los pinta
     «con servicio (según vecinos)») y SIN caer en el escalonamiento de
     silencio (un circuito con estado conocido —sin o con servicio— con
@@ -244,7 +244,7 @@ def _sin_efectivos(c, gen):
     superficies con cifra — conteo_municipio (tarjeta del hub), _circ_sin
     (portada), ranking_poblacion y pagina_municipio (tarjetas de la hija) —:
     paridad por construcción."""
-    return _vigencia(c, gen) == "sin"
+    return _vigencia(c, gen) in ("sin", "sin_vecinos")
 
 
 def _circ_sin(circ, gen):
@@ -417,10 +417,11 @@ def _duracion_horas(iso_desde, iso_hasta):
 # completa de silencio (> _UMBRAL_AZUL_H) devuelve el circuito al azul
 # "asum" («sin apagones reportados») hasta que una noticia nueva resetee el
 # reloj.
-_ESTADO_FILA = {"sin": ("sin", "sin servicio"), "con_vecinos": ("con-vec", "con servicio (según vecinos)"),
+_ESTADO_FILA = {"sin": ("sin", "sin servicio"), "sin_vecinos": ("sin-vec", "sin corriente (según vecinos)"),
+                 "con_vecinos": ("con-vec", "con servicio (según vecinos)"),
                 "desconocido": ("desc", "estado desconocido"),
                 "con": ("con", "con servicio"), "asum": ("asum", "asumido")}
-_GRUPO = {"sin": 0, "con_vecinos": 1, "desconocido": 2, "con": 3, "asum": 4}
+_GRUPO = {"sin": 0, "sin_vecinos": 1, "con_vecinos": 2, "desconocido": 3, "con": 4, "asum": 5}
 
 # Horas de silencio total (ni parte de la UNE que lo mencione ni señal de
 # usuario) para que TODO circuito con estado conocido —sin O con servicio,
@@ -514,6 +515,11 @@ def _vigencia(c, gen):
     `gen` (estado.generado, datetime o None) ES el reloj del escalonamiento:
     determinista, nunca el reloj de la corrida."""
     estado = c.get("estado")
+    # Dirección 1 del reporte vecinal: vecinos sin corriente sobre parte
+    # oficial "con" (o sobre un circuito sin estado) → EFECTIVAMENTE caído
+    # ("sin vecinos"). El reporte manda: no lleva escalonamiento propio.
+    if c.get("discrepado") and estado in ("con servicio", None):
+        return "sin_vecinos"
     if (not _EVENTO_NACIONAL
             and estado in ("sin servicio", "con servicio")):
         silencio = _silencio_horas(c, gen)

@@ -170,7 +170,7 @@ class S16EmitCompatTest(unittest.TestCase):
     def test_guardas_de_conteo_usuario_en_el_worker(self):
         # Sin conteo_usuario el estado decae a los estados oficiales (guards).
         self.assertIn("c.conteo_usuario && c.conteo_usuario.desde", WORKER_JS)
-        self.assertIn('v === "discrepado" && c.conteo_usuario', WORKER_JS)
+        self.assertIn('v === "sin_vecinos" && c.conteo_usuario', WORKER_JS)
 
     def test_worker_ignora_holder_ip_hash(self):
         # Clave aditiva: el worker no la consume (desconocida → ignorada).

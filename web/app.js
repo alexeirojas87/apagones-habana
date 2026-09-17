@@ -165,7 +165,7 @@ async function iniciar() {
   function circuitoVigente(c) {
     // Discrepado: usuarios reportan sin corriente pero la UNE dice "con".
     // Tiene prioridad sobre los demás estados (es la señal más accionable).
-    if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "discrepado";
+    if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "sin_vecinos";
     // Dirección 2 del reporte vecinal: la UNE lo mantiene "sin servicio" pero
     // el builder fijó reportado_con (ultimo_con vecinal POSTERIOR a la caída
     // que declara estado_fecha). Determinista: la recencia viene de los
@@ -214,12 +214,12 @@ async function iniciar() {
   // cada vez que se abre, con el catálogo fresco del auto-refresco.
   function popupMunicipio(nombre, d, circuitos, sinUbicar) {
     const faltantes = (sinUbicar || {})[nombre] || [];
-    const conteo = { sin: [], con: 0, asum: 0, discrepado: 0, con_vecinos: 0, desc: 0 };
+    const conteo = { sin: [], con: 0, asum: 0, sin_vecinos: 0, con_vecinos: 0, desc: 0 };
     for (const c of circuitos) {
       const v = circuitoVigente(c);
       if (v === "sin") conteo.sin.push(c);
       else if (v === "asum") conteo.asum++;
-      else if (v === "discrepado") conteo.discrepado++;
+      else if (v === "sin_vecinos") conteo.sin_vecinos++;
       else if (v === "con_vecinos") conteo.con_vecinos++;
       else if (v === "desconocido") conteo.desc++;
       else conteo.con++;
@@ -240,7 +240,7 @@ async function iniciar() {
     const resumen = circuitos.length
       ? `<p class="hora">${circuitos.length} circuitos: ${conteo.sin.length} sin corriente ·
          ${conteo.con} con servicio${conteo.con_vecinos ? ` · ${conteo.con_vecinos} con servicio según vecinos` : ""} ·
-         ${conteo.desc ? `${conteo.desc} desconocidos · ` : ""}${conteo.asum} sin apagones reportados${conteo.discrepado ? ` · ${conteo.discrepado} discrepado(s)` : ""}</p>`
+         ${conteo.desc ? `${conteo.desc} desconocidos · ` : ""}${conteo.asum} sin apagones reportados${conteo.sin_vecinos ? ` · ${conteo.sin_vecinos} sin corriente (según vecinos)` : ""}</p>`
       : `<p class="hora">Sin circuitos registrados en este municipio.</p>`;
     const pendientes = faltantes.length
       ? `<p class="rep">${icono("pin")} ${faltantes.length} zona(s) de este municipio aún sin ubicar en el mapa,
@@ -265,7 +265,7 @@ async function iniciar() {
     const PT = Object.values(PM).reduce((a, b) => a + b, 0);
     let ncon = 0, nsin = 0, nasum = 0, ndisc = 0, nvec = 0, ndesc = 0;
     const perMuni = {};  // municipio -> {sin, tot}; "asum" cuenta como con corriente,
-                         // "discrepado" cuenta como con (la UNE dice con) pero se muestra aparte.
+                         // "sin_vecinos" cuenta como sin (el reporte manda) y se muestra aparte.
                          // "con_vecinos" cuenta como con corriente (los vecinos dicen que
                          // volvió) pero se lista aparte.
                          // "desconocido" NO cuenta en el estimado de personas (estado no
@@ -277,10 +277,10 @@ async function iniciar() {
       if (v === "sin") nsin++; else if (v === "con") ncon++;
       else if (v === "con_vecinos") nvec++;
       else if (v === "desconocido") ndesc++;
-      else if (v === "discrepado") ndisc++; else nasum++;
+      else if (v === "sin_vecinos") ndisc++; else nasum++;
       if (c.municipio && PM[c.municipio]) {
         const o = perMuni[c.municipio] || (perMuni[c.municipio] = { sin: 0, tot: 0 });
-        o.tot++; if (v === "sin") o.sin++;
+        o.tot++; if (v === "sin" || v === "sin_vecinos") o.sin++;
       }
     }
     const nf = (n) => Number(Math.round(n)).toLocaleString("es-CU");
@@ -543,7 +543,7 @@ async function iniciar() {
       con: { l: "#46a758", b: "#1c5f2b", e: icono("dot-status", "est-con"), txt: "con servicio" },
       con_vecinos: { l: "#46a758", b: "#1c5f2b", e: icono("dot-status", "est-con"), txt: "con servicio (según vecinos)" },
       desconocido: { l: "#64748B", b: "#475569", e: icono("dot-status", "est-desc"), txt: "estado desconocido" },
-      discrepado: { l: "#f5a623", b: "#c47e0a", e: icono("dot-status", "est-disc"), txt: "usuarios reportan sin corriente" },
+      sin_vecinos: { l: "#f5a623", b: "#c47e0a", e: icono("dot-status", "est-disc"), txt: "sin corriente (según vecinos)" },
       asum: { l: "#4a90d9", b: "#2b5c94", e: icono("dot-status", "est-asum"), txt: "sin apagones reportados" },
     };
     for (const c of (catCircuitos.circuitos || [])) {
@@ -554,7 +554,7 @@ async function iniciar() {
       const calles = c.calles ? esc(c.calles) : "sin información de calles por parte de la UNE";
       const fmtDia = (iso) => new Date(iso).toLocaleDateString("es-CU", { day: "numeric", month: "short", timeZone: "America/Havana" });
       let detalle;
-      if (v === "discrepado") {
+      if (v === "sin_vecinos") {
         const hu = c.conteo_usuario ? Math.round((Date.now() - new Date(c.conteo_usuario.desde)) / 3600000 * 10) / 10 : null;
         detalle = `La UNE reporta "con servicio" pero los vecinos reportan sin corriente${hu != null ? " (llevan " + hu + "h)" : ""}.`;
       } else if (v === "con_vecinos") {
@@ -858,7 +858,7 @@ async function iniciar() {
         cab = `${icono("dot-status", "est-sin")} <b>Sin corriente</b> — ${cod} está afectado${hDef && hDef.horas != null
           ? ` (lleva ${hDef.horas}h)`
           : circ.estado_fecha ? ` desde las ${horaHabana(circ.estado_fecha)}` : ""}.`;
-      } else if (v === "discrepado") {
+      } else if (v === "sin_vecinos") {
         cab = `${icono("dot-status", "est-disc")} <b>Sin corriente (según vecinos)</b> — la UNE reporta ${cod} "con servicio",
           pero los vecinos reportan sin corriente.`;
       } else if (v === "con_vecinos") {

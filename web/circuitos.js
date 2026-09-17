@@ -64,7 +64,7 @@ function silencioHoras(c, generado) {
 function estadoVigente(c) {
   // Discrepado: usuarios reportan sin corriente pero la UNE dice "con".
   if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde)
-    return { clase: "discrepado", txt: "usuarios reportan sin corriente",
+    return { clase: "sin-vec", txt: "sin corriente (según vecinos)",
              desde: c.conteo_usuario.desde, obsoleto: false };
   // Dirección 2 del reporte vecinal: la UNE lo mantiene "sin servicio" pero
   // el builder fijó reportado_con (ultimo_con POSTERIOR a la caída que
@@ -212,7 +212,7 @@ function render(filtro = "") {
     // DESDE CUÁNDO reportan los vecinos que hay corriente (hora de La Habana,
     // del ultimo_con del registro; sin registro, sin duración — nunca inventar
     // ni "lleva X sin corriente", que contradiría la señal vecinal).
-    const lleva = e.clase === "discrepado"
+    const lleva = e.clase === "sin-vec"
       ? (c.conteo_usuario ? `llevan ${Math.round((Date.now() - new Date(c.conteo_usuario.desde)) / 3600000 * 10) / 10}h sin luz (según vecinos)` : "")
       : e.clase === "con-vec"
       ? (c.conteo_usuario && c.conteo_usuario.ultimo_con

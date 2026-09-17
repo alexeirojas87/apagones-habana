@@ -241,7 +241,7 @@ function silencioHoras(c, generado) {
 // igual: > UMBRAL_DESC_H pasa a "desconocido" y > UMBRAL_AZUL_H (una
 // semana) vuelve al azul asum.
 function estadoVigente(c, est) {
-  if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "discrepado";
+  if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "sin_vecinos";
   // Dirección 2 del reporte vecinal: la UNE lo mantiene "sin servicio" pero
   // el builder fijó reportado_con (ultimo_con POSTERIOR a la caída que
   // declara estado_fecha). Determinista: timestamps de los datos, sin reloj.
@@ -318,12 +318,12 @@ function horasEnRango(bot, codigo, dias) {
 
 function describirCircuito(c, est) {
   const v = estadoVigente(c, est);
-  const etiqueta = { con: "con servicio", sin: "sin servicio", discrepado: "usuarios reportan sin corriente",
+  const etiqueta = { con: "con servicio", sin: "sin servicio", sin_vecinos: "sin corriente (según vecinos)",
                      con_vecinos: "con servicio (según vecinos)", desconocido: "estado desconocido",
                      asum: "sin cortes reportados" }[v];
   const out = { codigo: c.codigo, estado: etiqueta, municipio: c.municipio || null };
   if (v === "sin") out.horas_sin_luz = horasSin(c);
-  if (v === "discrepado" && c.conteo_usuario) {
+  if (v === "sin_vecinos" && c.conteo_usuario) {
     out.horas_sin_luz_usuario = Math.round(((Date.now() - new Date(c.conteo_usuario.desde)) / 3600000) * 10) / 10;
   }
   if (v === "con_vecinos" && c.conteo_usuario && c.conteo_usuario.ultimo_con) {

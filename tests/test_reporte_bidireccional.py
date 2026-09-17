@@ -158,8 +158,8 @@ class TestVigenciaSeo(unittest.TestCase):
 
     def test_orden_y_etiqueta_del_grupo_nuevo(self):
         self.assertEqual(SEO._GRUPO,
-                         {"sin": 0, "con_vecinos": 1, "desconocido": 2,
-                          "con": 3, "asum": 4})
+                         {"sin": 0, "sin_vecinos": 1, "con_vecinos": 2,
+                          "desconocido": 3, "con": 4, "asum": 5})
         self.assertEqual(SEO._ESTADO_FILA["con_vecinos"],
                          ("con-vec", "con servicio (según vecinos)"))
         self.assertEqual(SEO._ESTADO_FILA["desconocido"],
@@ -307,7 +307,7 @@ class TestSuperficiesJS(unittest.TestCase):
     def test_app_js_clasifica_y_despues_de_discrepado(self):
         # Bloque (como el worker): el veredicto envejecido cae a desconocido.
         self.assertIn(f"if ({self.RAMA}) {{", APP_JS)
-        self.assertLess(APP_JS.index('return "discrepado";'),
+        self.assertLess(APP_JS.index('return "sin_vecinos";'),
                         APP_JS.index('return "con_vecinos";'))
 
     def test_worker_js_clasifica_y_despues_de_discrepado(self):
@@ -316,13 +316,13 @@ class TestSuperficiesJS(unittest.TestCase):
         # estadoVigente cae antes a "desconocido" (regla de las 48 h).
         self.assertIn(f"if ({self.RAMA}) {{", WORKER_JS)
         self.assertIn('return "con_vecinos";', WORKER_JS)
-        self.assertLess(WORKER_JS.index('return "discrepado";'),
+        self.assertLess(WORKER_JS.index('return "sin_vecinos";'),
                         WORKER_JS.index('return "con_vecinos";'))
 
     def test_circuitos_js_clasifica_y_despues_de_discrepado(self):
         self.assertIn(f"if ({self.RAMA})", CIRC_JS)
         self.assertIn('"con-vec", txt: "con servicio (según vecinos)"', CIRC_JS)
-        self.assertLess(CIRC_JS.index('clase: "discrepado"'),
+        self.assertLess(CIRC_JS.index('clase: "sin-vec"'),
                         CIRC_JS.index('clase: "con-vec"'))
 
     def test_app_js_conteo_en_popup_y_resumen(self):

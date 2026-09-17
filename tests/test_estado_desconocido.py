@@ -318,8 +318,8 @@ class TestConstantes(unittest.TestCase):
 
     def test_orden_de_grupos_y_etiqueta(self):
         self.assertEqual(SEO._GRUPO,
-                         {"sin": 0, "con_vecinos": 1, "desconocido": 2,
-                          "con": 3, "asum": 4})
+                         {"sin": 0, "sin_vecinos": 1, "con_vecinos": 2,
+                          "desconocido": 3, "con": 4, "asum": 5})
         self.assertEqual(SEO._ESTADO_FILA["desconocido"],
                          ("desc", "estado desconocido"))
 

@@ -1,32 +1,4 @@
 {
- "81538": {
-  "fecha": "2026-09-10T16:55:59+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A940"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 221 e/ 206 y 227, Fontanar.⚡️🚧"
- },
- "81535": {
-  "fecha": "2026-09-10T16:46:22+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Guanabacoa, por Averías Secundarias por Transformador dañado se afecta el servicio eléctrico en las siguientes direcciones: 👉San A"
- },
- "81527": {
-  "fecha": "2026-09-10T16:34:06+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1243",
-   "A318"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Cotorro, por Averías Secundarias por Transformador dañado se afecta el servicio eléctrico en las siguientes direcciones: 👉20 entre"
- },
  "81613": {
   "fecha": "2026-09-10T22:29:57+00:00",
   "tipo_llm": "averia",
@@ -1307,5 +1279,77 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:08 PM se afectan 199MW distribuidos en 69circuitos de distribución. A continuación, se"
+ },
+ "83631": {
+  "fecha": "2026-09-17T16:37:21+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos : 👉 CPP17: Alrede"
+ },
+ "83635": {
+  "fecha": "2026-09-17T16:58:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P317"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:38 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P322:Sitios des"
+ },
+ "83632": {
+  "fecha": "2026-09-17T16:49:55+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR820",
+   "SR830",
+   "SR840"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:40 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R456:Alrededore"
+ },
+ "83659": {
+  "fecha": "2026-09-17T17:49:01+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC14",
+   "GC18",
+   "MB910",
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:44 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC7:Cojimar cal"
+ },
+ "83671": {
+  "fecha": "2026-09-17T18:50:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A940",
+   "A945",
+   "D860",
+   "D870"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio Boyeros,por un Disparo del Circuito por 33KV se encuentran afectados los siguientes circuitos: 👉A708: Reparto Abel Santamaría 👉D870"
+ },
+ "83684": {
+  "fecha": "2026-09-17T19:30:40+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR850"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:25 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 S516:Reparto La"
+ },
+ "83679": {
+  "fecha": "2026-09-17T19:09:44+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️🚨Consumidores del municipio Arroyo Naranjo, se detectó una Avería Secundaria por Transformador Dañado en las siguientes direcciones: 👉Kessel/Lourdes y Villord"
  }
 }

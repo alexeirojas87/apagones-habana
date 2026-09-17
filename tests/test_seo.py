@@ -492,13 +492,14 @@ class HubPaginaTest(BaseArbol):
     def test_cada_tarjeta_nombre_cuenta_y_dos_enlaces(self):
         self.correr()
         hub = self.hub()
-        _, circ = coleccion()
+        estado, circ = coleccion()
         from urllib.parse import quote
         for nombre in MUNICIPIOS_15:
             t = self._por_slug(hub)[MOD.slug(nombre)]
             self.assertIn(nombre + "</a>", t)  # nombre visible en el enlace
             texto = self._texto(t)
-            sin_n, total_n = MOD.conteo_municipio(nombre, circ)
+            sin_n, total_n = MOD.conteo_municipio(
+                nombre, circ, MOD._dt(estado.get("generado")))
             self.assertIn("%d de %d circuitos sin servicio" % (sin_n, total_n), texto)
             self.assertIn('href="/municipio/%s/"' % MOD.slug(nombre), t)
             self.assertIn('href="/?municipio=' + quote(nombre), t)

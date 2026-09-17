@@ -139,6 +139,7 @@ class ClasesDeEstadoTest(unittest.TestCase):
         css = (RAIZ / "web" / "style.css").read_text(encoding="utf-8")
         for clase, color in ((".est-sin", "var(--red)"), (".est-con", "var(--green)"),
                              (".est-disc", "var(--amber)"), (".est-asum", "var(--blue)"),
+                             (".est-desc", "var(--gray)"),
                              (".est-daf", "var(--gold)"),
                              (".est-av", "#b455c8"), (".est-rep", "#e07b00")):
             regla = re.search(re.escape(clase) + r"\s*\{[^}]*\}", css)
@@ -152,7 +153,7 @@ class ClasesDeEstadoTest(unittest.TestCase):
         # circuitoVigente en app.js ni estadoVigente en circuitos.js producen
         # "nd"); con el último emisor fuera, la regla .est-nd murió de
         # style.css.
-        for clase in ("est-sin", "est-con", "est-disc", "est-asum"):
+        for clase in ("est-sin", "est-con", "est-disc", "est-asum", "est-desc"):
             self.assertIn('"dot-status", "%s"' % clase, app, clase)
         self.assertNotIn('"dot-status", "est-nd"', app)
         self.assertNotIn('"dot-status", "est-nd"', circ)

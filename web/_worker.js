@@ -194,25 +194,93 @@ function sinAcentos(s) {
   return String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
+// Estado "desconocido" (regla del mantenedor de las 48 h): un circuito
+// RECURRENTE (veces >= 3) sin NINGUNA noticia —ni parte de la UNE que lo
+// mencione ni reporte/comentario de usuario— por más de 48 h pasa a
+// "desconocido" y el sitio deja de afirmar (SIN y CON servicio por igual:
+// cada parte nuevo que no lo liste solo confirma mientras haya noticias).
+// Segundo escalón: una semana completa de silencio (UMBRAL_AZUL_H) devuelve
+// el recurrente al azul "asum" hasta que una noticia nueva resetee el reloj.
+// Los azules de pocas menciones (veces < 3) NO decaen. Reloj: SIEMPRE
+// est.generado, nunca Date.now() (determinismo).
+const UMBRAL_RECURRENCIA = 3;
+const UMBRAL_DESC_H = 48;
+const UMBRAL_AZUL_H = UMBRAL_DESC_H + 24 * 7; // 48 + 168 = 216 h
+
+// Última noticia del circuito: la mención más reciente del catálogo (`ultima`)
+// o la señal de usuario más reciente (max de desde/ultima_sin/ultimo_con/
+// ultimo_reset del conteo_usuario fusionado), lo que sea posterior. ms epoch
+// o null (sin reloj: el circuito queda como está).
+function ultimaNoticia(c) {
+  let m = c.ultima ? new Date(c.ultima).getTime() : NaN;
+  const cu = c.conteo_usuario || {};
+  for (const k of ["desde", "ultima_sin", "ultimo_con", "ultimo_reset"]) {
+    const v = cu[k] ? new Date(cu[k]).getTime() : NaN;
+    if (!isNaN(v) && (isNaN(m) || v > m)) m = v;
+  }
+  return isNaN(m) ? null : m;
+}
+
+// Horas de silencio total respecto a `generado`: null si falta una punta del
+// reloj (no inventar) o si los datos están a futuro.
+function silencioHoras(c, generado) {
+  const g = generado ? new Date(generado).getTime() : NaN;
+  const u = ultimaNoticia(c);
+  if (isNaN(g) || u == null) return null;
+  const h = (g - u) / 3600000;
+  return h >= 0 ? h : null;
+}
+
 // Estado vigente de un circuito. MISMA regla que app.js (circuitoVigente) —
-// regla del mantenedor "apagado sigue apagado": un circuito "sin servicio"
-// PERMANECE sin servicio hasta que un EVENTO EXPLÍCITO cambie su estado (un
+// regla del mantenedor "apagado sigue apagado": un circuito PERMANECE en su
+// estado vigente hasta que un EVENTO EXPLÍCITO cambie su estado (un
 // restablecimiento de la UNE o el reporte de un usuario). El silencio NO
 // degrada a "nd" ni asume retorno; la rama no consulta Date.now(), así que
-// mismos datos → mismo estado en cada visita.
+// mismos datos → mismo estado en cada visita. Escalonamiento de silencio
+// total para recurrentes SIN y CON servicio por igual: > UMBRAL_DESC_H
+// pasa a "desconocido" y > UMBRAL_AZUL_H (una semana) vuelve al azul asum.
 function estadoVigente(c, est) {
   if (c.discrepado && c.conteo_usuario && c.conteo_usuario.desde) return "discrepado";
   // Dirección 2 del reporte vecinal: la UNE lo mantiene "sin servicio" pero
   // el builder fijó reportado_con (ultimo_con POSTERIOR a la caída que
   // declara estado_fecha). Determinista: timestamps de los datos, sin reloj.
-  if (c.estado === "sin servicio" && c.reportado_con) return "con_vecinos";
+  if (c.estado === "sin servicio" && c.reportado_con) {
+    // ... salvo que el veredicto vecinal envejezca: sin noticias de nadie
+    // (la última es el propio reporte) cruza el MISMO escalonamiento
+    // desc/azul que las demás ramas.
+    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && est) {
+      const s = silencioHoras(c, est.generado);
+      if (s != null && s > UMBRAL_AZUL_H) return "asum";
+      if (s != null && s > UMBRAL_DESC_H) return "desconocido";
+    }
+    return "con_vecinos";
+  }
   const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
   const en = est && est.evento_nacional;
   if (en) return (c.estado === "con servicio" && t && t > new Date(en.desde)) ? "con" : "sin";
-  if (c.estado === "con servicio") return "con";
-  // "sin servicio" siempre "sin": solo un evento explícito lo saca de ahí
-  // (el catálogo lo reactiva solo si reaparece).
-  if (c.estado === "sin servicio") return "sin";
+  // Los con servicio TAMBIÉN decaen por silencio total (mantenedor: "si
+  // pasan 48 horas de un circuito con servicio sin noticias se pone
+  // desconocido también") — el gate de evento_nacional ya devolvió arriba.
+  if (c.estado === "con servicio") {
+    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && est) {
+      const s = silencioHoras(c, est.generado);
+      if (s != null && s > UMBRAL_AZUL_H) return "asum";
+      if (s != null && s > UMBRAL_DESC_H) return "desconocido";
+    }
+    return "con";
+  }
+  // "sin servicio" permanece "sin" (solo un evento explícito lo saca de ahí,
+  // el catálogo lo reactiva solo si reaparece) — SALVO el recurrente con
+  // silencio total: > UMBRAL_DESC_H pasa a "desconocido"; > UMBRAL_AZUL_H
+  // (una semana) vuelve al azul (asum) hasta que una noticia resetee.
+  if (c.estado === "sin servicio") {
+    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && est) {
+      const s = silencioHoras(c, est.generado);
+      if (s != null && s > UMBRAL_AZUL_H) return "asum";
+      if (s != null && s > UMBRAL_DESC_H) return "desconocido";
+    }
+    return "sin";
+  }
   return "asum";
 }
 
@@ -249,7 +317,8 @@ function horasEnRango(bot, codigo, dias) {
 function describirCircuito(c, est) {
   const v = estadoVigente(c, est);
   const etiqueta = { con: "con servicio", sin: "sin servicio", discrepado: "usuarios reportan sin corriente",
-                     con_vecinos: "con servicio (según vecinos)", asum: "sin cortes reportados" }[v];
+                     con_vecinos: "con servicio (según vecinos)", desconocido: "estado desconocido",
+                     asum: "sin cortes reportados" }[v];
   const out = { codigo: c.codigo, estado: etiqueta, municipio: c.municipio || null };
   if (v === "sin") out.horas_sin_luz = horasSin(c);
   if (v === "discrepado" && c.conteo_usuario) {
@@ -259,6 +328,12 @@ function describirCircuito(c, est) {
     // Veracidad propia: señal vecinal posterior a la caída, no dato oficial —
     // no se emite horas_sin_luz ni se afirma el retorno como hecho de la UNE.
     out.segun_vecinos_desde = c.conteo_usuario.ultimo_con.slice(0, 16).replace("T", " ");
+  }
+  if (v === "desconocido" && est) {
+    // Estado NO afirmable: nunca horas_sin_luz (no se afirma el apagado);
+    // el silencio sí es factual: días enteros desde la última noticia.
+    const dias = silencioHoras(c, est.generado);
+    if (dias != null) out.sin_datos_hace_dias = Math.floor(dias / 24);
   }
   if (c.calles) out.zonas = String(c.calles).replace(/\s+/g, " ").slice(0, 300);
   if (c.estado_fecha) out.ultima_actualizacion = c.estado_fecha.slice(0, 16).replace("T", " ");
@@ -280,7 +355,7 @@ async function cargarContexto(baseUrl) {
 
 function resumenActual(ctx) {
   const { est, circuitos } = ctx;
-  const conteo = { sin: 0, con: 0, asum: 0, con_vecinos: 0 };
+  const conteo = { sin: 0, con: 0, asum: 0, con_vecinos: 0, desconocido: 0 };
   const porMunicipio = {};
   for (const c of circuitos) {
     const v = estadoVigente(c, est);
@@ -291,6 +366,7 @@ function resumenActual(ctx) {
     if (v === "sin") porMunicipio[m].sin_servicio++;
     // con_vecinos cuenta como con corriente a nivel municipal (los vecinos
     // dicen que volvió); arriba se desglosa aparte en con_servicio_segun_vecinos.
+    // desconocido NO cuenta ni como sin ni como con (estado no afirmable).
     if (v === "con" || v === "con_vecinos") porMunicipio[m].con_servicio++;
   }
   return {
@@ -298,6 +374,7 @@ function resumenActual(ctx) {
     sin_servicio: conteo.sin,
     con_servicio: conteo.con,
     con_servicio_segun_vecinos: conteo.con_vecinos,
+    estado_desconocido: conteo.desconocido,
     sin_cortes_reportados: conteo.asum,
     apagon_nacional: !!(est && est.evento_nacional),
     deficit_mw: (est && est.deficit && (est.deficit.mw || est.deficit)) || null,
@@ -500,6 +577,7 @@ async function ejecutarHerramienta(nombre, args, ctx, env) {
         sin_servicio: cuenta("sin servicio"),
         con_servicio: cuenta("con servicio"),
         con_servicio_segun_vecinos: cuenta("con servicio (según vecinos)"),
+        estado_desconocido: cuenta("estado desconocido"),
         sin_cortes_reportados: cuenta("sin cortes reportados"),
         circuitos: desc.slice(0, 25),
         ...(hits.length > 25 ? { nota: `se listan 25 de ${hits.length}` } : {}),
@@ -665,6 +743,8 @@ Puedes usar varias herramientas antes de contestar.
 Un circuito reportado sin servicio permanece sin servicio hasta que un restablecimiento de la UNE o un reporte de usuario indique lo contrario: el silencio NO es evidencia de retorno — nunca des por hecho que hay corriente solo porque no hay parte reciente.
 
 Los reportes de vecinos pueden volcar el estado en AMBOS sentidos: si la UNE dice "con servicio" pero los vecinos reportan sin corriente, el circuito aparece como "usuarios reportan sin corriente"; si la UNE lo mantiene "sin servicio" pero los vecinos reportan que volvió, aparece como "con servicio (según vecinos)" — esa señal es de los vecinos, no un dato oficial de la Empresa: preséntala siempre como tal.
+
+Los circuitos recurrentes (aparecen en 3+ partes) sin NINGUNA noticia —ni parte de la UNE que los mencione ni reporte de usuario— durante más de 48 horas se muestran como "estado desconocido": no afirmes ni que están sin corriente ni que la tienen, di que no hay datos recientes. Con más de una semana de silencio (48 h + 7 días) esos circuitos vuelven al grupo azul de "sin cortes reportados" (se asumen con corriente) hasta que una noticia nueva —un parte que los mencione o un reporte de usuario— los despierte.
 
 buscar_historico devuelve un campo "relevancia" (0 a 1). Si es baja (<0.4), di que no encontraste nada claro en vez de forzar una respuesta con eso.
 

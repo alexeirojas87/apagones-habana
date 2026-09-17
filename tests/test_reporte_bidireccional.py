@@ -158,9 +158,12 @@ class TestVigenciaSeo(unittest.TestCase):
 
     def test_orden_y_etiqueta_del_grupo_nuevo(self):
         self.assertEqual(SEO._GRUPO,
-                         {"sin": 0, "con_vecinos": 1, "con": 2, "asum": 3})
+                         {"sin": 0, "con_vecinos": 1, "desconocido": 2,
+                          "con": 3, "asum": 4})
         self.assertEqual(SEO._ESTADO_FILA["con_vecinos"],
                          ("con-vec", "con servicio (según vecinos)"))
+        self.assertEqual(SEO._ESTADO_FILA["desconocido"],
+                         ("desc", "estado desconocido"))
         self.assertLess(SEO._GRUPO["sin"], SEO._GRUPO["con_vecinos"])
         self.assertLess(SEO._GRUPO["con_vecinos"], SEO._GRUPO["con"])
         self.assertLess(SEO._GRUPO["con"], SEO._GRUPO["asum"])
@@ -228,15 +231,17 @@ class TestParidadCifraSin(unittest.TestCase):
         return {"circuitos": [circuito(), circuite_con_vecinos(codigo="ZZ02")]}
 
     def test_sin_efectivos_es_la_definicion_unica(self):
-        self.assertTrue(SEO._sin_efectivos(circuito()))
-        self.assertFalse(SEO._sin_efectivos(circuite_con_vecinos()))
-        self.assertFalse(SEO._sin_efectivos(circuito(estado="con servicio")))
+        gen = SEO._dt(self.ESTADO["generado"])
+        self.assertTrue(SEO._sin_efectivos(circuito(), gen))
+        self.assertFalse(SEO._sin_efectivos(circuite_con_vecinos(), gen))
+        self.assertFalse(SEO._sin_efectivos(circuito(estado="con servicio"), gen))
 
     def test_hub_portada_hija_y_ranking_dan_la_misma_cifra(self):
         circ = self._catalogo()
+        gen = SEO._dt(self.ESTADO["generado"])
         # Definición única: ZZ01 sin, ZZ02 excluido por reportado_con.
-        self.assertEqual([c["codigo"] for c in SEO._circ_sin(circ)], ["ZZ01"])
-        self.assertEqual(SEO.conteo_municipio("Playa", circ), (1, 2))
+        self.assertEqual([c["codigo"] for c in SEO._circ_sin(circ, gen)], ["ZZ01"])
+        self.assertEqual(SEO.conteo_municipio("Playa", circ, gen), (1, 2))
         # Hub: tarjeta real renderizada (region_hub), misma cifra que la hija.
         hub = SEO.region_hub(self.ESTADO, circ, ["Playa"])
         self.assertIn("1 <small>de 2 circuitos sin servicio</small>", hub)
@@ -258,8 +263,39 @@ class TestParidadCifraSin(unittest.TestCase):
         # del arreglo (regresión: la exclusión solo aplica a reportado_con).
         circ = {"circuitos": [circuito(), circuite_con_vecinos(codigo="ZZ02",
                                                                reportado_con=False)]}
-        self.assertEqual(SEO.conteo_municipio("Playa", circ), (2, 2))
-        self.assertEqual(len(SEO._circ_sin(circ)), 2)
+        gen = SEO._dt(self.ESTADO["generado"])
+        self.assertEqual(SEO.conteo_municipio("Playa", circ, gen), (2, 2))
+        self.assertEqual(len(SEO._circ_sin(circ, gen)), 2)
+
+    def test_desconocido_cuenta_fuera_de_sin_en_todas_las_superficies(self):
+        # Extensión 48 h: ZZ03 es recurrente (veces=5) con silencio total
+        # (ultima hace 3 días, sin señales de usuario) → desconocido; se
+        # cuenta FUERA de "sin" en las cuatro superficies con cifra, igual
+        # que un reportado_con: la cifra «sin» de hub/portada/hija/ranking
+        # sigue siendo exactamente 1 (solo ZZ01) y el desconocido no entra
+        # ni en las tarjetas «sin servicio ahora» ni en el estimado.
+        gen = SEO._dt(self.ESTADO["generado"])
+        desc = circuito(codigo="ZZ03", veces=5,
+                        ultima="2026-06-30T10:00:00+00:00")  # ~3 días de silencio
+        circ = {"circuitos": self._catalogo()["circuitos"] + [desc]}
+        self.assertEqual(SEO._vigencia(desc, gen), "desconocido")
+        self.assertFalse(SEO._sin_efectivos(desc, gen))
+        self.assertEqual(SEO.conteo_municipio("Playa", circ, gen), (1, 3))
+        self.assertEqual([c["codigo"] for c in SEO._circ_sin(circ, gen)], ["ZZ01"])
+        hub = SEO.region_hub(self.ESTADO, circ, ["Playa"])
+        self.assertIn("1 <small>de 3 circuitos sin servicio</small>", hub)
+        portada = SEO.instantanea_index(self.ESTADO, circ)
+        self.assertIn("<b>1 de 3 circuitos</b>", portada)
+        hija = SEO.pagina_municipio("Playa", self.ESTADO, circ, ["Playa"])
+        self.assertIn("<b>1 de 3 circuitos</b> del municipio", hija)
+        self.assertEqual(hija.count('<article class="circ">'), 1)
+        # La fila del catálogo SÍ aparece, como desconocida y con el silencio
+        # («sin datos hace N días»), nunca «lleva X sin corriente».
+        self.assertIn('<span class="circ-est desc">estado desconocido</span>', hija)
+        self.assertIn("sin datos hace", hija)
+        # Ranking: ZZ03 no suma al puesto (misma definición de «sin»).
+        ranking = SEO.ranking_poblacion("Playa", self.ESTADO, circ, ["Playa"])
+        self.assertIn("<b>1 de 1 municipios más afectados hoy</b>", ranking)
 
 
 class TestSuperficiesJS(unittest.TestCase):
@@ -269,12 +305,17 @@ class TestSuperficiesJS(unittest.TestCase):
     RAMA = 'c.estado === "sin servicio" && c.reportado_con'
 
     def test_app_js_clasifica_y_despues_de_discrepado(self):
-        self.assertIn(f'if ({self.RAMA}) return "con_vecinos";', APP_JS)
+        # Bloque (como el worker): el veredicto envejecido cae a desconocido.
+        self.assertIn(f"if ({self.RAMA}) {{", APP_JS)
         self.assertLess(APP_JS.index('return "discrepado";'),
                         APP_JS.index('return "con_vecinos";'))
 
     def test_worker_js_clasifica_y_despues_de_discrepado(self):
-        self.assertIn(f"if ({self.RAMA}) return \"con_vecinos\";", WORKER_JS)
+        # La rama es ahora un bloque: con el veredicto VIGENTE devuelve
+        # con_vecinos; si el veredicto envejece (> 48 h sin noticias),
+        # estadoVigente cae antes a "desconocido" (regla de las 48 h).
+        self.assertIn(f"if ({self.RAMA}) {{", WORKER_JS)
+        self.assertIn('return "con_vecinos";', WORKER_JS)
         self.assertLess(WORKER_JS.index('return "discrepado";'),
                         WORKER_JS.index('return "con_vecinos";'))
 

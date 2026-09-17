@@ -20,6 +20,42 @@ function fechaHabana(iso) {
 let DATOS = null;
 let ESTADO = null;  // estado.json: para aplicar la realidad actual al catálogo histórico
 
+// Umbral del estado "desconocido" (regla del mantenedor de las 48 h): un
+// circuito RECURRENTE (veces >= 3) sin NINGUNA noticia —ni parte de la UNE
+// ni señal de usuario— por más de 48 h pasa a "desconocido" y el sitio deja
+// de afirmar (SIN y CON servicio por igual, como app.js/_worker.js). Segundo
+// escalón: una semana completa de silencio devuelve el recurrente al azul
+// "asum" («sin apagones reportados») hasta que una noticia nueva resetee el
+// reloj. Los azules de pocas menciones (veces < 3) NO decaen. Reloj:
+// SIEMPRE estado.generado, nunca Date.now().
+const UMBRAL_RECURRENCIA = 3;
+const UMBRAL_DESC_H = 48;
+const UMBRAL_AZUL_H = UMBRAL_DESC_H + 24 * 7; // 48 + 168 = 216 h
+
+// Última noticia del circuito: la mención más reciente del catálogo (`ultima`)
+// o la señal de usuario más reciente (max de desde/ultima_sin/ultimo_con/
+// ultimo_reset del conteo_usuario fusionado), lo que sea posterior. ms epoch
+// o null (sin reloj: el circuito queda como está).
+function ultimaNoticia(c) {
+  let m = c.ultima ? new Date(c.ultima).getTime() : NaN;
+  const cu = c.conteo_usuario || {};
+  for (const k of ["desde", "ultima_sin", "ultimo_con", "ultimo_reset"]) {
+    const v = cu[k] ? new Date(cu[k]).getTime() : NaN;
+    if (!isNaN(v) && (isNaN(m) || v > m)) m = v;
+  }
+  return isNaN(m) ? null : m;
+}
+
+// Horas de silencio total respecto a `generado` (estado.json): null si falta
+// una punta del reloj (no inventar) o si los datos están a futuro.
+function silencioHoras(c, generado) {
+  const g = generado ? new Date(generado).getTime() : NaN;
+  const u = ultimaNoticia(c);
+  if (isNaN(g) || u == null) return null;
+  const h = (g - u) / 3600000;
+  return h >= 0 ? h : null;
+}
+
 // Estado VIGENTE del circuito: MISMA regla que en la portada y el mapa (app.js,
 // circuitoVigente) para que los números coincidan en todas las páginas:
 //  - SEN caído: todo sin servicio, salvo lo restablecido DESPUÉS del colapso.
@@ -33,10 +69,19 @@ function estadoVigente(c) {
   // Dirección 2 del reporte vecinal: la UNE lo mantiene "sin servicio" pero
   // el builder fijó reportado_con (ultimo_con POSTERIOR a la caída que
   // declara estado_fecha). Veracidad propia: señal vecinal, no dato oficial.
-  if (c.estado === "sin servicio" && c.reportado_con)
+  // El veredicto vecinal TAMBIÉN caduca: mismo escalonamiento que la rama "sin".
+  if (c.estado === "sin servicio" && c.reportado_con) {
+    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && ESTADO) {
+      const s = silencioHoras(c, ESTADO.generado);
+      if (s != null && s > UMBRAL_AZUL_H)
+        return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };
+      if (s != null && s > UMBRAL_DESC_H)
+        return { clase: "desc", txt: "estado desconocido", desde: null, obsoleto: false };
+    }
     return { clase: "con-vec", txt: "con servicio (según vecinos)",
              desde: (c.conteo_usuario && c.conteo_usuario.ultimo_con) || null,
              obsoleto: false };
+  }
   const en = ESTADO && ESTADO.evento_nacional;
   const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
   if (en) {
@@ -49,6 +94,16 @@ function estadoVigente(c) {
     const b = c.bloque && ESTADO && ESTADO.bloques ? ESTADO.bloques[c.bloque] : null;
     if (t && b && b.estado === "afectado" && b.desde && t < new Date(b.desde))
       return { clase: "sin", txt: "sin servicio", desde: b.desde, obsoleto: true };
+    // Mantenedor: los con servicio TAMBIÉN decaen por silencio total — mismo
+    // escalonamiento que la rama "sin" (el gate de evento_nacional ya
+    // devolvió arriba: en crisis nadie decae).
+    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && ESTADO) {
+      const s = silencioHoras(c, ESTADO.generado);
+      if (s != null && s > UMBRAL_AZUL_H)
+        return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };
+      if (s != null && s > UMBRAL_DESC_H)
+        return { clase: "desc", txt: "estado desconocido", desde: null, obsoleto: false };
+    }
     return { clase: "con", txt: "con servicio", desde: c.estado_fecha, obsoleto: false };
   }
   if (c.estado === "sin servicio") {
@@ -57,6 +112,16 @@ function estadoVigente(c) {
     // evento explícito (restablecimiento de la UNE o reporte de usuario)
     // cambie su estado. El silencio NO degrada a "nd" ni asume retorno,
     // misma regla que el mapa y la portada (app.js/circuitoVigente).
+    // Escalonamiento: el recurrente con silencio TOTAL (ni UNE ni usuarios)
+    // pasa a "desconocido" tras UMBRAL_DESC_H horas y al azul (asum) tras
+    // UMBRAL_AZUL_H (una semana) hasta que una noticia nueva resetee.
+    if ((c.veces || 0) >= UMBRAL_RECURRENCIA && ESTADO) {
+      const s = silencioHoras(c, ESTADO.generado);
+      if (s != null && s > UMBRAL_AZUL_H)
+        return { clase: "asum", txt: "sin apagones reportados", obsoleto: false };
+      if (s != null && s > UMBRAL_DESC_H)
+        return { clase: "desc", txt: "estado desconocido", desde: null, obsoleto: false };
+    }
     return { clase: "sin", txt: "sin servicio", desde: c.estado_fecha, obsoleto: false };
   }
   // Nunca reportado afectado -> por descarte se asume con corriente (azul).
@@ -72,6 +137,17 @@ function llevaDesde(iso) {
   const h = min / 60;
   if (h < 48) return `lleva ${Math.round(h * 10) / 10}h`;
   return `lleva ${Math.floor(h / 24)}d ${Math.round(h % 24)}h`;
+}
+
+// "sin datos hace N días" para el estado desconocido: N = días enteros del
+// silencio total, con el MISMO reloj que la clasificación (estado.generado,
+// NUNCA Date.now(): mismos datos → misma fila). Sin reloj, sin duración.
+function sinDatosDesde(c) {
+  if (!ESTADO || !ESTADO.generado) return "";
+  const s = silencioHoras(c, ESTADO.generado);
+  if (s == null) return "";
+  const d = Math.floor(s / 24);
+  return d === 1 ? "sin datos hace 1 día" : `sin datos hace ${d} días`;
 }
 
 function fechaCompleta(iso) {
@@ -141,6 +217,8 @@ function render(filtro = "") {
       ? (c.conteo_usuario && c.conteo_usuario.ultimo_con
           ? `según vecinos desde ${new Date(c.conteo_usuario.ultimo_con).toLocaleTimeString("es-CU", { hour: "2-digit", minute: "2-digit", timeZone: "America/Havana" })}`
           : "")
+      : e.clase === "desc"
+      ? sinDatosDesde(c)
       : e.clase === "sin" && horasDef[c.codigo] != null
       ? `lleva ${horasDef[c.codigo]}h (según la UNE)`
       : llevaDesde(e.desde);
@@ -198,19 +276,21 @@ function cargar() {
   ])
     .then(([d, est]) => {
       DATOS = d; ESTADO = est;
-      let ncon = 0, nsin = 0, nvec = 0;
+      let ncon = 0, nsin = 0, nvec = 0, ndesc = 0;
       for (const c of d.circuitos) {
         const cl = estadoVigente(c).clase;
         if (cl === "con") ncon++; else if (cl === "sin") nsin++;
         else if (cl === "con-vec") nvec++;
+        else if (cl === "desc") ndesc++;
       }
-      const nasum = d.circuitos.length - ncon - nsin - nvec;
+      const nasum = d.circuitos.length - ncon - nsin - nvec - ndesc;
       const sen = est && est.evento_nacional
         ? " · " + icono("alert-triangle", "est-sin") + " SEN caído: los restablecidos antes del apagón cuentan como sin servicio" : "";
       document.getElementById("circ-info").innerHTML =
         `${d.circuitos.length} circuitos · ${icono("dot-status", "est-con")} ${ncon} con servicio` +
         `${nvec > 0 ? ` · ${icono("dot-status", "est-con")} ${nvec} con servicio según vecinos` : ""}` +
         ` · ${icono("dot-status", "est-sin")} ${nsin} sin servicio` +
+        `${ndesc > 0 ? ` · ${icono("dot-status", "est-desc")} ${ndesc} desconocidos` : ""}` +
         `${nasum > 0 ? ` · ${icono("dot-status", "est-asum")} ${nasum} sin apagones reportados` : ""}${sen}`;
       renderDaf();
       render(filtro.value);  // conserva el filtro escrito

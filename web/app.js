@@ -80,6 +80,21 @@ const MOSTRAR_PROTEGIDAS = true;
 // desde otro host (github.io), se apunta al dominio principal.
 const API_BASE = location.hostname.endsWith("pages.dev") ? "" : "https://apagones-habana.pages.dev";
 
+// Umbral del estado "desconocido" (regla del mantenedor de las 48 h): un
+// circuito RECURRENTE (veces >= 3, misma convención que aprende_circuitos)
+// del que no hay NINGUNA noticia —ni parte de la UNE que lo mencione ni
+// reporte/comentario de usuario— durante más de 48 h pasa a "desconocido":
+// el sitio deja de afirmar (SIN y CON servicio por igual — el mantenedor lo
+// reafirmó: cada parte nuevo que no lo liste solo confirma mientras haya
+// noticias). Segundo escalón: una semana completa de silencio devuelve el
+// recurrente al azul "asum" («sin apagones reportados») hasta que una
+// noticia nueva resetee el reloj. Los azules de pocas menciones (veces < 3)
+// NO decaen. El reloj es SIEMPRE estado.generado, nunca Date.now():
+// mismos datos → mismo estado (determinismo).
+const UMBRAL_RECURRENCIA = 3;
+const UMBRAL_DESC_H = 48;
+const UMBRAL_AZUL_H = UMBRAL_DESC_H + 24 * 7; // 48 + 168 = 216 h
+
 // (el popup de municipio se construye dentro de iniciar: necesita
 // circuitoVigente y el catálogo, que viven en ese scope)
 
@@ -122,6 +137,32 @@ async function iniciar() {
   //    24/48 h NO degrada a "nd" ni asume retorno. OJO determinismo: esta rama
   //    ya no consulta Date.now(), así que el resultado es idéntico en cada
   //    visita y entre visitante (mismos datos → mismo estado).
+  // Última noticia del circuito: la mención más reciente del catálogo
+  // (`ultima`, cualquier parte) o la señal de usuario más reciente (max de
+  // desde/ultima_sin/ultimo_con/ultimo_reset del conteo_usuario fusionado),
+  // lo que sea posterior. Devuelve ms epoch o null (sin reloj: el circuito
+  // queda como está).
+  function ultimaNoticia(c) {
+    let m = c.ultima ? new Date(c.ultima).getTime() : NaN;
+    const cu = c.conteo_usuario || {};
+    for (const k of ["desde", "ultima_sin", "ultimo_con", "ultimo_reset"]) {
+      const v = cu[k] ? new Date(cu[k]).getTime() : NaN;
+      if (!isNaN(v) && (isNaN(m) || v > m)) m = v;
+    }
+    return isNaN(m) ? null : m;
+  }
+
+  // Horas de silencio total respecto a `generado` (estado.json): null si
+  // falta cualquiera de las dos puntas del reloj (no inventar) o si los
+  // datos están a futuro.
+  function silencioHoras(c, generado) {
+    const g = generado ? new Date(generado).getTime() : NaN;
+    const u = ultimaNoticia(c);
+    if (isNaN(g) || u == null) return null;
+    const h = (g - u) / 3600000;
+    return h >= 0 ? h : null;
+  }
+
   function circuitoVigente(c) {
     // Discrepado: usuarios reportan sin corriente pero la UNE dice "con".
     // Tiene prioridad sobre los demás estados (es la señal más accionable).
@@ -129,19 +170,45 @@ async function iniciar() {
     // Dirección 2 del reporte vecinal: la UNE lo mantiene "sin servicio" pero
     // el builder fijó reportado_con (ultimo_con vecinal POSTERIOR a la caída
     // que declara estado_fecha). Determinista: la recencia viene de los
-    // timestamps de los datos, nunca del reloj.
-    if (c.estado === "sin servicio" && c.reportado_con) return "con_vecinos";
+    // timestamps de los datos, nunca del reloj. El veredicto vecinal TAMBIÉN
+    // caduca: mismo escalonamiento que la rama "sin" (paridad con _worker.js).
+    if (c.estado === "sin servicio" && c.reportado_con) {
+      if ((c.veces || 0) >= UMBRAL_RECURRENCIA) {
+        const s = silencioHoras(c, estado.generado);
+        if (s != null && s > UMBRAL_AZUL_H) return "asum";
+        if (s != null && s > UMBRAL_DESC_H) return "desconocido";
+      }
+      return "con_vecinos";
+    }
     const en = estado.evento_nacional;
     const t = c.estado_fecha ? new Date(c.estado_fecha) : null;
     if (en) return (c.estado === "con servicio" && t && t > new Date(en.desde)) ? "con" : "sin";
     if (c.estado === "con servicio") {
       const b = c.bloque && estado.bloques ? estado.bloques[c.bloque] : null;
       if (t && b && b.estado === "afectado" && b.desde && t < new Date(b.desde)) return "sin";
+      // Mantenedor: los con servicio TAMBIÉN decaen por silencio total —
+      // mismo escalonamiento que la rama "sin" (el en-gate de arriba ya
+      // devolvió durante el evento, así que aquí nunca decae en crisis).
+      if ((c.veces || 0) >= UMBRAL_RECURRENCIA) {
+        const s = silencioHoras(c, estado.generado);
+        if (s != null && s > UMBRAL_AZUL_H) return "asum";
+        if (s != null && s > UMBRAL_DESC_H) return "desconocido";
+      }
       return "con";
     }
-    // "sin servicio" siempre "sin": solo un evento explícito de la UNE o de
-    // los usuarios lo saca de ahí (el catálogo lo reactiva solo si reaparece).
-    if (c.estado === "sin servicio") return "sin";
+    // "sin servicio" permanece "sin" (solo un evento explícito de la UNE o
+    // de los usuarios lo saca de ahí; el catálogo lo reactiva solo si
+    // reaparece) — SALVO el recurrente con silencio total: sin noticias de
+    // nadie > 48 h pasa a "desconocido" y el sitio deja de afirmar; con más
+    // de una semana vuelve al azul (asum) hasta que una noticia resetee.
+    if (c.estado === "sin servicio") {
+      if ((c.veces || 0) >= UMBRAL_RECURRENCIA) {
+        const s = silencioHoras(c, estado.generado);
+        if (s != null && s > UMBRAL_AZUL_H) return "asum";
+        if (s != null && s > UMBRAL_DESC_H) return "desconocido";
+      }
+      return "sin";
+    }
     return "asum";
   }
 
@@ -150,13 +217,14 @@ async function iniciar() {
   // cada vez que se abre, con el catálogo fresco del auto-refresco.
   function popupMunicipio(nombre, d, circuitos, sinUbicar) {
     const faltantes = (sinUbicar || {})[nombre] || [];
-    const conteo = { sin: [], con: 0, asum: 0, discrepado: 0, con_vecinos: 0 };
+    const conteo = { sin: [], con: 0, asum: 0, discrepado: 0, con_vecinos: 0, desc: 0 };
     for (const c of circuitos) {
       const v = circuitoVigente(c);
       if (v === "sin") conteo.sin.push(c);
       else if (v === "asum") conteo.asum++;
       else if (v === "discrepado") conteo.discrepado++;
       else if (v === "con_vecinos") conteo.con_vecinos++;
+      else if (v === "desconocido") conteo.desc++;
       else conteo.con++;
     }
     const filas = conteo.sin
@@ -175,7 +243,7 @@ async function iniciar() {
     const resumen = circuitos.length
       ? `<p class="hora">${circuitos.length} circuitos: ${conteo.sin.length} sin corriente ·
          ${conteo.con} con servicio${conteo.con_vecinos ? ` · ${conteo.con_vecinos} con servicio según vecinos` : ""} ·
-         ${conteo.asum} sin apagones reportados${conteo.discrepado ? ` · ${conteo.discrepado} discrepado(s)` : ""}</p>`
+         ${conteo.desc ? `${conteo.desc} desconocidos · ` : ""}${conteo.asum} sin apagones reportados${conteo.discrepado ? ` · ${conteo.discrepado} discrepado(s)` : ""}</p>`
       : `<p class="hora">Sin circuitos registrados en este municipio.</p>`;
     const pendientes = faltantes.length
       ? `<p class="rep">${icono("pin")} ${faltantes.length} zona(s) de este municipio aún sin ubicar en el mapa,
@@ -198,17 +266,20 @@ async function iniciar() {
     const PM = (estado.poblacion_municipio && Object.keys(estado.poblacion_municipio).length)
       ? estado.poblacion_municipio : POB_MUNI;
     const PT = Object.values(PM).reduce((a, b) => a + b, 0);
-    let ncon = 0, nsin = 0, nasum = 0, ndisc = 0, nvec = 0;
+    let ncon = 0, nsin = 0, nasum = 0, ndisc = 0, nvec = 0, ndesc = 0;
     const perMuni = {};  // municipio -> {sin, tot}; "asum" cuenta como con corriente,
                          // "discrepado" cuenta como con (la UNE dice con) pero se muestra aparte.
                          // "con_vecinos" cuenta como con corriente (los vecinos dicen que
                          // volvió) pero se lista aparte.
+                         // "desconocido" NO cuenta en el estimado de personas (estado no
+                         // afirmable: queda fuera del numerador, como "con") y se lista aparte.
                          // TODO "sin" cuenta (incluidos apagados silenciosos: el silencio
                          // no los excluye del estimado, regla nueva del mantenedor).
     for (const c of cat) {
       const v = circuitoVigente(c);
       if (v === "sin") nsin++; else if (v === "con") ncon++;
       else if (v === "con_vecinos") nvec++;
+      else if (v === "desconocido") ndesc++;
       else if (v === "discrepado") ndisc++; else nasum++;
       if (c.municipio && PM[c.municipio]) {
         const o = perMuni[c.municipio] || (perMuni[c.municipio] = { sin: 0, tot: 0 });
@@ -245,6 +316,7 @@ async function iniciar() {
     const tipAsum = "Nunca han aparecido afectados en los partes: por descarte se asume que tienen corriente";
     const tipDisc = "La UNE reporta 'con servicio' pero los vecinos reportan sin corriente: discrepancia entre el parte oficial y la realidad";
     const tipVec = "La UNE lo mantiene 'sin servicio' pero los vecinos reportan que volvió la corriente: señal vecinal, no dato oficial";
+    const tipDesc = "Circuito recurrente sin NINGUNA noticia (ni parte de la UNE ni reporte de vecinos) por más de 48 horas: no se puede afirmar si tiene corriente o no";
     const pob = sinP != null ? `
       <div class="rc-box">
         <div class="rc-box-t">Personas afectadas
@@ -299,6 +371,7 @@ async function iniciar() {
     const mini = `<button id="rc-toggle" class="rc-toggle" aria-expanded="${rcAbierto}">
         <span class="rc-mini-barra">
           <span class="seg sin" style="width:${pw(nsin)}%"></span>
+          <span class="seg desc" style="width:${pw(ndesc)}%"></span>
           <span class="seg discrepado" style="width:${pw(ndisc)}%"></span>
           <span class="seg con" style="width:${pw(ncon + nvec)}%"></span>
           <span class="seg asum" style="width:${pw(nasum)}%"></span>
@@ -306,6 +379,7 @@ async function iniciar() {
         <span class="rc-mini-txt"><b class="sin">${nsin}</b> sin luz · <b class="con">${ncon}</b> con luz${
           nvec > 0 ? ` · <b class="con">${nvec}</b> con luz según vecinos` : ""}${
           ndisc > 0 ? ` · <b class="discrepado">${ndisc}</b> discrepantes` : ""}${
+          ndesc > 0 ? ` · <b class="desc">${ndesc}</b> desconocidos` : ""}${
           sinP != null ? ` · <b class="sin">~${nf(sinP / 1000)}k</b> personas sin corriente` : ""}</span>
         <span class="rc-flecha">${rcAbierto ? "▲" : "▼"}</span>
       </button>`;
@@ -314,8 +388,9 @@ async function iniciar() {
       <div class="rc-box">
         <div class="rc-box-t">Circuitos <span class="rc-n">${cat.length}</span>
           <a class="rc-mas" href="circuitos">ver todos →</a></div>
-        <div class="rc-barra" role="img" aria-label="${ncon} con servicio${nvec ? ` y ${nvec} con servicio según vecinos` : ""}, ${nsin} sin servicio, ${ndisc} discrepantes, ${nasum} sin apagones reportados">
+        <div class="rc-barra" role="img" aria-label="${ncon} con servicio${nvec ? ` y ${nvec} con servicio según vecinos` : ""}, ${nsin} sin servicio, ${ndesc} desconocidos, ${ndisc} discrepantes, ${nasum} sin apagones reportados">
           <span class="seg sin" style="width:${pw(nsin)}%"></span>
+          <span class="seg desc" style="width:${pw(ndesc)}%"></span>
           <span class="seg discrepado" style="width:${pw(ndisc)}%"></span>
           <span class="seg con" style="width:${pw(ncon + nvec)}%"></span>
           <span class="seg asum" style="width:${pw(nasum)}%"></span>
@@ -325,6 +400,7 @@ async function iniciar() {
           <span class="rc-chip con">${ncon} con servicio</span>
           ${nvec > 0 ? `<span class="rc-chip con" tabindex="0" title="${tipVec}">${nvec} con servicio según vecinos</span>` : ""}
           ${ndisc > 0 ? `<span class="rc-chip discrepado" tabindex="0" title="${tipDisc}">${ndisc} discrepancias</span>` : ""}
+          ${ndesc > 0 ? `<span class="rc-chip desc" tabindex="0" title="${tipDesc}">${ndesc} desconocidos</span>` : ""}
           ${nasum > 0 ? `<span class="rc-chip asum" tabindex="0" title="${tipAsum}">${nasum} sin apagones reportados</span>` : ""}
         </div>
       </div>${cards}${pob}</div></div>`;
@@ -469,6 +545,7 @@ async function iniciar() {
       sin: { l: "#e5484d", b: "#8b0000", e: icono("dot-status", "est-sin"), txt: "sin corriente" },
       con: { l: "#46a758", b: "#1c5f2b", e: icono("dot-status", "est-con"), txt: "con servicio" },
       con_vecinos: { l: "#46a758", b: "#1c5f2b", e: icono("dot-status", "est-con"), txt: "con servicio (según vecinos)" },
+      desconocido: { l: "#64748B", b: "#475569", e: icono("dot-status", "est-desc"), txt: "estado desconocido" },
       discrepado: { l: "#f5a623", b: "#c47e0a", e: icono("dot-status", "est-disc"), txt: "usuarios reportan sin corriente" },
       asum: { l: "#4a90d9", b: "#2b5c94", e: icono("dot-status", "est-asum"), txt: "sin apagones reportados" },
     };
@@ -487,6 +564,9 @@ async function iniciar() {
         // Veracidad propia: señal vecinal, no dato oficial — nunca "lleva Xh"
         // de afectación (el dato oficial dice que está sin servicio).
         detalle = "La UNE lo mantiene \"sin servicio\" pero los vecinos reportan que volvió la corriente.";
+      } else if (v === "desconocido") {
+        // Sin afirmaciones: recurrente sin noticias de nadie por > 48 h.
+        detalle = "Sin NINGUNA noticia (ni parte de la UNE ni reporte de vecinos) por más de 48 horas: no se puede afirmar si tiene corriente.";
       } else if (v === "asum") {
         detalle = "Nunca ha aparecido afectado en los partes: por descarte se asume con corriente.";
       } else {
@@ -787,6 +867,9 @@ async function iniciar() {
       } else if (v === "con_vecinos") {
         cab = `${icono("dot-status", "est-con")} <b>Con corriente (según vecinos)</b> — la UNE mantiene ${cod} "sin servicio",
           pero los vecinos reportan que volvió la corriente.`;
+      } else if (v === "desconocido") {
+        cab = `${icono("dot-status", "est-desc")} <b>Estado desconocido</b> — ${cod} es recurrente y lleva más de 48 horas sin
+          NINGUNA noticia (ni parte de la UNE ni reporte de vecinos): no se afirma si tiene corriente.`;
       } else if (v === "asum") {
         cab = `${icono("dot-status", "est-asum")} <b>Sin apagones reportados</b> — ${cod} no aparece en los partes: se asume con corriente.`;
       } else {

@@ -663,6 +663,47 @@ def senales_vecinales(catalogo, conteo_usuario, vigencias, gen):
             "sin_vecinos": discrepados, "con_vecinos": con_vecinos}
 
 
+def desglose_por_municipio(catalogo, horas, vigencias, dia0, dia1):
+    """Desglose completo: por municipio (ordenado por total de horas sin
+    corriente DESC), TODOS sus circuitos ordenados por horas sin corriente
+    DESC — "los que menos corriente tuvieron" primero. Cada circuito trae
+    sus horas sin corriente confirmadas y el % de la semana con corriente
+    (168 h menos las sin corriente, piso 0; sin registro de horas = semana
+    completa con corriente). La vigencia va marcada cuando no es la de
+    caída confirmada, para que una fila de 0 h de un azul no se lea como
+    apagado cero. Los circuitos sin municipio van en el bloque aparte
+    "Sin municipio asignado". Devuelve [(municipio, {total_horas,
+    afectados, catalogados, filas: [(codigo, horas, pct_con, marca)]})]."""
+    por_muni = {}
+    for c in catalogo:
+        cod = c.get("codigo")
+        if not cod:
+            continue
+        m = municipio_de(c) or "Sin municipio asignado"
+        hs = horas_sin_ventana(horas, cod, dia0, dia1)
+        pct_con = int(max(0.0, (HORAS_SEMANA - hs) / HORAS_SEMANA * 100.0))
+        vig = (vigencias or {}).get(cod, "")
+        marca = {
+            "desconocido": "desconocido",
+            "asum": "azul (asumido con corriente)",
+            "con_vecinos": "con corriente (según vecinos)",
+            "sin_vecinos": "sin corriente (según vecinos)",
+        }.get(vig, "")
+        g = por_muni.setdefault(m, {"total_horas": 0.0, "afectados": 0,
+                                    "catalogados": 0, "filas": []})
+        g["catalogados"] += 1
+        g["total_horas"] += hs
+        if hs > 0:
+            g["afectados"] += 1
+        g["filas"].append((cod, hs, pct_con, marca))
+    orden = []
+    for m, g in sorted(por_muni.items(),
+                       key=lambda kv: (-kv[1]["total_horas"], kv[0])):
+        filas = sorted(g["filas"], key=lambda f: (-f[1], f[0]))
+        orden.append((m, {**g, "filas": filas}))
+    return orden
+
+
 def agregar(catalogo_doc, horas, estado, partes, canal, conteo_usuario):
     """Agregación completa de la semana → un solo diccionario para el
     render. Determinista: mismas entradas, mismas salidas."""
@@ -689,6 +730,8 @@ def agregar(catalogo_doc, horas, estado, partes, canal, conteo_usuario):
         "total": total,
         "top_sin": top_sin_global(catalogo, horas, dia0, dia1,
                                   menciones_ventana(partes, desde, gen)),
+        "desglose": desglose_por_municipio(catalogo, horas, vigencias,
+                                           dia0, dia1),
         "grafico_deficit": datos_grafico_deficit(catalogo, horas, dia0, dia1),
         "top_con": top_con_global(catalogo, horas, vigencias, dia0, dia1),
         "no_afectados": no_afectados_por_municipio(catalogo, horas, vigencias,
@@ -1099,6 +1142,23 @@ def render_html(res, png=None):
     filas_top_con = [[html.escape(m), html.escape(cod), _num(con),
                       html.escape(etq)]
                      for m, cod, con, etq in res["top_con"]]
+    # Desglose por municipio: TODOS los circuitos de cada municipio, de
+    # mayor a menor horas sin corriente confirmadas.
+    bloques_d = []
+    for m, g in res.get("desglose", []):
+        filas_d = [[html.escape(cod),
+                    _num(hs) + (f" <span style='color:#666;font-size:11px;'>"
+                                f"({html.escape(marca)})</span>" if marca else ""),
+                    f"{pct} %"]
+                   for cod, hs, pct, marca in g["filas"]]
+        cab = (f"{html.escape(m)} — {g['afectados']} de {g['catalogados']} "
+               f"circuitos afectados · {_num(g['total_horas'])} h sin corriente")
+        bloques_d.append(
+            f"<h3 style='font-size:13px;margin:16px 0 4px;'>{cab}</h3>"
+            + _tabla(["Circuito", "Horas sin corriente", "% semana con corriente"],
+                     filas_d, numericas={1, 2}))
+    desglose_html = "".join(bloques_d) or "<p>Sin circuitos catalogados.</p>"
+
     tabla_top_con = (_tabla(["Municipio", "Circuito", "Horas con corriente",
                              "Estado del ciclo"],
                             filas_top_con, numericas={2})
@@ -1183,6 +1243,13 @@ def render_html(res, png=None):
                    "solo circuitos con medición de horas en la semana; horas "
                    "con corriente = 168 h menos las confirmadas sin corriente. "
                    "Los circuitos sin registros no se computan.")
+        + _seccion("Desglose por municipio", desglose_html,
+                   "Todos los circuitos de cada municipio, de mayor a menor "
+                   "por horas sin corriente confirmadas en la semana; al "
+                   "lado, el % de la semana con corriente. La marca entre "
+                   "paréntesis indica el estado del ciclo de vida cuando no "
+                   "es una caída confirmada. Municipios ordenados por total "
+                   "de horas sin corriente.")
         + _seccion("Señales vecinales de la semana", cuerpo_sen,
                    "Circuitos con reporte o comentario de la población en los "
                    "últimos 7 días; influyen en las horas confirmadas y en el "
@@ -1262,6 +1329,16 @@ def render_texto(res):
         lineas.append("  Horas sin corriente confirmadas por parte oficial o "
                       "señal vecinal; el resto del sistema absorbe el resto "
                       "del tiempo.")
+
+    lineas += ["", "DESGLOSE POR MUNICIPIO (todos los circuitos, de mayor a "
+               "menor horas sin corriente)"]
+    for m, g in res.get("desglose", []):
+        lineas.append(f"  {m} — {g['afectados']} de {g['catalogados']} "
+                      f"afectados · {g['total_horas']:.1f} h sin corriente")
+        for cod, hs, pct, marca in g["filas"]:
+            extra = f" ({marca})" if marca else ""
+            lineas.append(f"    {cod}: {hs:.1f} h sin · {pct} % con corriente"
+                          f"{extra}")
 
     lineas += ["", "CIRCUITOS CON MÁS HORAS SIN CORRIENTE (top 15 global)"]
     if res["top_sin"]:

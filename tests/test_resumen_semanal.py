@@ -392,8 +392,9 @@ class NoAfectadosYVigenciaTest(unittest.TestCase):
 class GraficoDeficitTest(unittest.TestCase):
     """Datos del gráfico 'Dónde se soporta el déficit de la capital': TODOS
     los circuitos catalogados ordenados DESC por horas confirmadas (incluidos
-    los de 0 h), gradiente rojo→azul y concentración del top 10 sobre el
-    TOTAL de horas sin corriente de la semana."""
+    los de 0 h), gradiente rojo→azul y los DOS MUNDOS del mantenedor sobre el
+    TOTAL de horas sin corriente de la semana: quién aguanta (>= 48 h), quién
+    lo disfruta (<= 8 h) y la banda intermedia entre ambos."""
 
     @staticmethod
     def catalogo_grafico():
@@ -435,14 +436,75 @@ class GraficoDeficitTest(unittest.TestCase):
         # Interpolación RGB lineal al 50% del máximo (G06 con 24 h).
         self.assertEqual(g["filas"][6]["color"], "#804488")
 
-    def test_concentracion_denominador_total_semanal(self):
-        # El top 10 suma 300 h; el total de la semana (con G10, G11 y los
-        # de 0 h) es 312 h — el denominador correcto.
+    def test_grupos_dos_mundos_denominador_total_semanal(self):
+        # El mismo fixture del gráfico: G00 (48 h) aguanta solo; G01–G09
+        # (44–12 h) son la banda intermedia; G10–G13 (8, 4, 0, 0 h) lo
+        # disfrutan. El denominador es el TOTAL semanal (312 h), el MISMO
+        # que suma la tabla del resumen por municipio.
         g = self.datos_grafico()
-        self.assertEqual(g["top_n"], 10)
-        self.assertAlmostEqual(sum(f["horas"] for f in g["filas"][:10]), 300.0)
         self.assertAlmostEqual(g["total"], 312.0)
-        self.assertEqual(g["concentracion"], round(300 * 100 / 312))   # 96
+        gr = g["grupos"]
+        self.assertEqual(gr["aguanta"]["n"], 1)
+        self.assertAlmostEqual(gr["aguanta"]["horas"], 48.0)
+        self.assertAlmostEqual(gr["aguanta"]["pct"], 48 * 100 / 312)
+        self.assertEqual(gr["intermedio"]["n"], 9)
+        self.assertAlmostEqual(gr["intermedio"]["horas"], 252.0)
+        self.assertAlmostEqual(gr["intermedio"]["pct"], 252 * 100 / 312)
+        self.assertEqual(gr["disfruta"]["n"], 4)
+        self.assertAlmostEqual(gr["disfruta"]["horas"], 12.0)
+        self.assertAlmostEqual(gr["disfruta"]["pct"], 12 * 100 / 312)
+        # Los tres % de horas suman 100.
+        self.assertAlmostEqual(sum(gr[k]["pct"]
+                                   for k in ("aguanta", "intermedio",
+                                             "disfruta")), 100.0)
+
+    def test_datos_grupos_deficit_fronteras_y_none(self):
+        # Fronteras exactas: 48 h entra en 'aguanta', 8 h en 'disfruta';
+        # 47.5 y 8.5 caen en la banda intermedia. 0 h también disfruta.
+        g = MOD.datos_grupos_deficit(
+            [{"horas": 48.0}, {"horas": 47.5}, {"horas": 8.0},
+             {"horas": 8.5}, {"horas": 0.0}])
+        self.assertAlmostEqual(g["total"], 112.0)
+        self.assertEqual(g["aguanta"]["n"], 1)
+        self.assertAlmostEqual(g["aguanta"]["horas"], 48.0)
+        self.assertAlmostEqual(g["aguanta"]["pct"], 48 * 100 / 112)
+        self.assertEqual(g["intermedio"]["n"], 2)
+        self.assertAlmostEqual(g["intermedio"]["horas"], 56.0)
+        self.assertAlmostEqual(g["intermedio"]["pct"], 50.0)
+        self.assertEqual(g["disfruta"]["n"], 2)
+        self.assertAlmostEqual(g["disfruta"]["horas"], 8.0)
+        self.assertAlmostEqual(g["disfruta"]["pct"], 8 * 100 / 112)
+        self.assertAlmostEqual(sum(g[k]["pct"] for k in
+                                   ("aguanta", "intermedio", "disfruta")),
+                               100.0)
+        # Sin horas que repartir: None (reparto 0/0).
+        self.assertIsNone(MOD.datos_grupos_deficit([]))
+        self.assertIsNone(MOD.datos_grupos_deficit([{"horas": 0.0}]))
+        self.assertIsNone(MOD.datos_grupos_deficit(None))
+
+    def test_frase_dos_mundos_singular_y_plural(self):
+        """La frase del titular, igual en HTML/TXT/PNG, con singular y
+        plural correctos en ambos grupos."""
+        uno = {"aguanta": {"n": 1, "horas": 60.0, "pct": 60.0},
+               "intermedio": {"n": 0, "horas": 0.0, "pct": 0.0},
+               "disfruta": {"n": 1, "horas": 40.0, "pct": 40.0}}
+        self.assertEqual(
+            MOD.frase_dos_mundos(uno),
+            "1 circuito aguanta el 60% del déficit de la capital; "
+            "1 circuito apenas lo siente (≤8 h sin corriente en toda la "
+            "semana).")
+        varios = {"aguanta": {"n": 180, "horas": 55.0, "pct": 55.0},
+                  "intermedio": {"n": 5, "horas": 5.0, "pct": 5.0},
+                  "disfruta": {"n": 30, "horas": 40.0, "pct": 40.0}}
+        self.assertEqual(
+            MOD.frase_dos_mundos(varios),
+            "180 circuitos aguantan el 55% del déficit de la capital; "
+            "30 circuitos apenas lo sienten (≤8 h sin corriente en toda la "
+            "semana).")
+        self.assertEqual(
+            MOD.frase_dos_mundos(varios, corto=True),
+            "180 circuitos aguantan el 55% del déficit · 30 apenas lo "
+            "sienten")
 
     def test_semana_sin_cortes_devuelve_none(self):
         cat = self.catalogo_grafico()
@@ -453,12 +515,18 @@ class GraficoDeficitTest(unittest.TestCase):
         self.assertIsNone(
             MOD.datos_grafico_deficit(cat, horas_fuera, DIA0, DIA1))
 
-    def test_menos_de_diez_circuitos_usa_los_que_haya(self):
+    def test_pocos_circuitos_grupos_minimos(self):
         g = MOD.datos_grafico_deficit(self.catalogo_grafico()[:3],
                                       self.horas_grafico(3), DIA0, DIA1)
         self.assertEqual(len(g["filas"]), 3)
-        self.assertEqual(g["top_n"], 3)
-        self.assertEqual(g["concentracion"], 100)  # todo el corte está en el top
+        # 48 h aguanta; 44 y 40 h quedan en la intermedia; nadie disfruta.
+        self.assertEqual(g["grupos"]["aguanta"]["n"], 1)
+        self.assertAlmostEqual(g["grupos"]["aguanta"]["pct"],
+                               48 * 100 / 132)
+        self.assertEqual(g["grupos"]["intermedio"]["n"], 2)
+        self.assertAlmostEqual(g["grupos"]["intermedio"]["horas"], 84.0)
+        self.assertEqual(g["grupos"]["disfruta"]["n"], 0)
+        self.assertAlmostEqual(g["grupos"]["disfruta"]["pct"], 0.0)
 
     def test_empate_por_municipio_luego_codigo(self):
         cat = [{"codigo": "C-B", "municipio": "Cerro"},
@@ -497,10 +565,32 @@ class GraficoDeficitPngTest(unittest.TestCase):
         self.assertGreater(len(png), 0)
         # Techo del spec: <= 300 KB.
         self.assertLessEqual(len(png), MOD.GRAFICO_LIMITE_BYTES)
-        # Dimensiones exactas 1400×420 px (IHDR: ancho y alto big-endian).
+        # Dimensiones exactas 1400×640 px, DOS paneles (IHDR: ancho y alto
+        # big-endian).
         ancho, alto = struct.unpack(">II", png[16:24])
         self.assertEqual((ancho, alto),
                          (MOD.GRAFICO_ANCHO_PX, MOD.GRAFICO_ALTO_PX))
+
+    def test_png_grupos_degenerados_renderizan(self):
+        # Solo disfrutan (nadie >= 48 h, nadie en el medio): la barra del
+        # panel superior queda toda azul y el PNG se genera igual.
+        self._requiere_matplotlib()
+        cat = [{"codigo": "D1", "municipio": "Playa"},
+               {"codigo": "D2", "municipio": "Playa"}]
+        horas = {"por_dia": {"D1": {str(DIA0): 5.0},
+                             "D2": {str(DIA0): 0.0}}}
+        png = MOD.generar_grafico_deficit(
+            MOD.datos_grafico_deficit(cat, horas, DIA0, DIA1))
+        self.assertIsNotNone(png)
+        self.assertTrue(png.startswith(b"\x89PNG"))
+
+        # Solo aguantan y la intermedia: nadie disfruta; sin zona azul.
+        horas = {"por_dia": {"D1": {str(DIA0): 96.0},
+                             "D2": {str(DIA0): 20.0}}}
+        png = MOD.generar_grafico_deficit(
+            MOD.datos_grafico_deficit(cat, horas, DIA0, DIA1))
+        self.assertIsNotNone(png)
+        self.assertTrue(png.startswith(b"\x89PNG"))
 
     def test_sin_datos_devuelve_none(self):
         self.assertIsNone(MOD.generar_grafico_deficit(None))
@@ -508,13 +598,19 @@ class GraficoDeficitPngTest(unittest.TestCase):
 
 
 class GraficoDeficitRenderTest(unittest.TestCase):
-    """Render del gráfico: titular de concentración ENCIMA de la imagen
-    incrustada por cid en el HTML (o nota textual sin matplotlib) y bloque
-    ASCII del top 10 en el texto; la sección desaparece si no hubo cortes."""
+    """Render del gráfico: el titular de los DOS MUNDOS ENCIMA de la imagen
+    incrustada por cid en el HTML (o nota textual sin matplotlib, siempre con
+    la frase) y bloque ASCII del top 10 en el texto; la sección desaparece si
+    no hubo cortes."""
 
     @classmethod
     def datos_grafico(cls):
         return GraficoDeficitTest.datos_grafico()
+
+    # Fixture: 1 circuito aguanta el 15% (48/312 h); 4 disfrutan (12 h).
+    TITULAR = ("1 circuito aguanta el 15% del déficit de la capital; "
+               "4 circuitos apenas lo sienten (≤8 h sin corriente en toda "
+               "la semana).")
 
     @staticmethod
     def res_base(grafico):
@@ -552,17 +648,19 @@ class GraficoDeficitRenderTest(unittest.TestCase):
     def test_html_titular_encima_y_img_por_cid(self):
         h = MOD.render_html(self.res_base(self.datos_grafico()), png=b"PNG")
         self.assertIn("Dónde se soporta el déficit de la capital", h)
-        # Titular con la concentración (denominador correcto) y el N del top.
-        self.assertIn("<strong>96%</strong>", h)
-        self.assertIn("se concentró en solo <strong>10</strong> circuitos", h)
+        # Titular de los DOS MUNDOS: quién aguanta y quién disfruta.
+        self.assertIn(self.TITULAR, h)
         # La imagen incrustada por cid, con el alt del spec.
         self.assertIn('<img src="cid:grafico-deficit" '
-                      'alt="Distribución del déficit por circuito" '
+                      'alt="Reparto del déficit entre los dos mundos y '
+                      'distribución por circuito" '
                       'style="width:100%;max-width:1400px;height:auto;'
                       'border:0;">', h)
         # El titular queda ENCIMA de la imagen.
-        self.assertLess(h.index("El <strong>96%</strong>"),
+        self.assertLess(h.index("1 circuito aguanta"),
                         h.index("cid:grafico-deficit"))
+        # La línea vieja de concentración desapareció.
+        self.assertNotIn("se concentró", h)
         # Las barras CSS del bug anterior desaparecieron.
         self.assertNotIn("width:92%", h)
         self.assertNotIn("background:#f1f5f9;height:20px", h)
@@ -571,14 +669,13 @@ class GraficoDeficitRenderTest(unittest.TestCase):
     def test_html_sin_matplotlib_nota_textual(self):
         h = MOD.render_html(self.res_base(self.datos_grafico()), png=None)
         self.assertNotIn("cid:grafico-deficit", h)
-        self.assertIn("<strong>96%</strong>", h)  # el titular se mantiene
+        self.assertIn(self.TITULAR, h)  # la frase de los dos mundos se queda
         self.assertIn("no pudo renderizarse como imagen", h)
 
     def test_texto_barras_ascii_top10(self):
         txt = MOD.render_texto(self.res_base(self.datos_grafico()))
         self.assertIn("DÓNDE SE SOPORTA EL DÉFICIT DE LA CAPITAL", txt)
-        self.assertIn("El 96% de las horas sin corriente confirmadas de la "
-                      "semana se concentró en solo 10 circuitos.", txt)
+        self.assertIn(self.TITULAR, txt)
         # El bloque ASCII conserva el top 10 aunque `filas` traiga los 14.
         lineas = [l for l in txt.splitlines() if "█" in l]
         self.assertEqual(len(lineas), 10)

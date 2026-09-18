@@ -40,11 +40,15 @@ Uso:
       # versiones) SIN enviar nada y sin necesitar credenciales
 
 El gráfico "Dónde se soporta el déficit de la capital" va como IMAGEN PNG
-generada con matplotlib (backend Agg, importado solo al usarlo): todos los
-circuitos catalogados, ordenados de mayor a menor por horas confirmadas sin
-corriente, con gradiente rojo→azul, incrustada por `cid` como attachment
+generada con matplotlib (backend Agg, importado solo al usarlo), en DOS
+paneles: arriba, "El reparto del déficit" — una barra horizontal apilada al
+100% con las horas de la semana repartidas entre los circuitos que AGUANTAN
+el déficit (>= 48 h sin corriente), la banda intermedia y los que lo
+DISFRUTAN (<= 8 h) — los DOS MUNDOS del mantenedor, con su titular; abajo,
+la distribución completa por circuito (orden DESC, gradiente rojo→azul, las
+zonas de cada grupo sombreadas), incrustada por `cid` como attachment
 inline de Mailtrap. Si matplotlib no está disponible, el correo sale sin
-imagen (el HTML muestra una nota y el texto plano conserva el bloque ASCII).
+imagen (el HTML muestra la nota y el texto plano conserva el bloque ASCII).
 """
 
 import argparse
@@ -378,14 +382,24 @@ def top_con_global(catalogo, horas, vigencias, dia0, dia1, top=15):
 
 # Gráfico "Dónde se soporta el déficit de la capital": la DISTRIBUCIÓN
 # completa de las horas sin corriente confirmadas de la semana, un circuito
-# del catálogo por barra. N es la cantidad de circuitos del bloque superior
-# con la que se mide la concentración (el titular).
+# del catálogo por barra. TOP_GRAFICO fija cuántas barras del top salen en
+# el bloque ASCII del texto plano (el titular ya no habla del top 10: habla
+# de los DOS MUNDOS).
 TOP_GRAFICO = 10
 
 # Gradiente del gráfico: rojo para las horas máximas de la semana → azul para
 # los circuitos con 0 h (siempre con corriente). Interpolación RGB manual.
 COLOR_ROJO = "#dc2626"
 COLOR_AZUL = "#2563eb"
+COLOR_INTERMEDIO = "#94a3b8"
+
+# Umbral de los DOS MUNDOS del mantenedor, sobre las HORAS SIN CORRIENTE
+# CONFIRMADAS de la semana: los que AGUANTAN el déficit (>= 48 h — más de
+# 2 días de la semana sin corriente) y los que lo DISFRUTAN (<= 8 h — nunca
+# les afecta o muy poco). Entre ambos queda la banda intermedia: existe,
+# pero no es la historia.
+GRUPO_AGUANTA_H = 48.0
+GRUPO_DISFRUTA_H = 8.0
 
 
 def color_deficit(horas, maximo):
@@ -405,12 +419,11 @@ def datos_grafico_deficit(catalogo, horas, dia0, dia1):
     corriente: son parte del mensaje visual —, ordenados DESC por horas
     CONFIRMADAS sin corriente en la ventana (la MISMA medida que ya agrega el
     script), con desempate por municipio y código. Cada fila trae su color
-    del gradiente (rojo = máximo de la semana, azul = 0 h). Aparte va la
-    concentración P del bloque superior (TOP_GRAFICO circuitos): horas del
-    top × 100 / TOTAL de horas sin corriente de la semana — el denominador es
-    el MISMO que suma la tabla del resumen por municipio, de modo que gráfico
-    y tabla no puedan divergir. Devuelve None si la semana no registra
-    cortes (la sección se omite por completa; la concentración sería 0/0)."""
+    del gradiente (rojo = máximo de la semana, azul = 0 h). Aparte van los
+    DOS MUNDOS (`grupos`, vía `datos_grupos_deficit`): quién aguanta el
+    déficit y quién lo disfruta — la historia que cuenta el panel superior.
+    Devuelve None si la semana no registra cortes (la sección se omite por
+    completa; el reparto de horas sería 0/0)."""
     filas = []
     total = 0.0
     for c in catalogo:
@@ -425,7 +438,6 @@ def datos_grafico_deficit(catalogo, horas, dia0, dia1):
         return None
     filas.sort(key=lambda t: (-t[2], t[0], t[1]))
     maximo = filas[0][2]
-    top_n = min(TOP_GRAFICO, len(filas))
     return {
         "filas": [
             {"municipio": m, "codigo": cod, "horas": hs,
@@ -433,10 +445,61 @@ def datos_grafico_deficit(catalogo, horas, dia0, dia1):
             for m, cod, hs in filas
         ],
         "total": total,
-        "top_n": top_n,
-        "concentracion": int(round(
-            sum(hs for _, _, hs in filas[:top_n]) * 100.0 / total)),
+        "grupos": datos_grupos_deficit([
+            {"municipio": m, "codigo": cod, "horas": hs}
+            for m, cod, hs in filas]),
     }
+
+
+def datos_grupos_deficit(filas):
+    """Los DOS MUNDOS del déficit, sobre las horas sin corriente CONFIRMADAS
+    de la semana de cada circuito (las mismas filas del gráfico: TODOS los
+    catalogados). 'aguanta' reúne a los de >= 48 h (más de 2 días de la
+    semana sin corriente), 'disfruta' a los de <= 8 h (cero o casi cero) y
+    'intermedio' a la banda gris entre ambos umbrales. Por grupo devuelve la
+    cantidad de circuitos ('n'), la suma de horas y el % de las horas de la
+    semana ('pct' — los tres suman 100), junto con el total ('total').
+    Devuelve None si no hay horas que repartir (semana sin cortes: el
+    reparto sería 0/0)."""
+    grupos = {clave: {"n": 0, "horas": 0.0}
+              for clave in ("aguanta", "intermedio", "disfruta")}
+    total = 0.0
+    for f in filas or ():
+        hs = f["horas"]
+        total += hs
+        if hs >= GRUPO_AGUANTA_H:
+            clave = "aguanta"
+        elif hs <= GRUPO_DISFRUTA_H:
+            clave = "disfruta"
+        else:
+            clave = "intermedio"
+        grupos[clave]["n"] += 1
+        grupos[clave]["horas"] += hs
+    if total <= 0:
+        return None
+    for g in grupos.values():
+        g["pct"] = g["horas"] * 100.0 / total
+    grupos["total"] = total
+    return grupos
+
+
+def frase_dos_mundos(grupos, corto=False):
+    """El titular de los DOS MUNDOS, idéntico en el HTML, el TXT y el
+    panel superior del gráfico (para que no puedan divergir): cuántos
+    circuitos aguantan qué % del déficit y cuántos apenas lo sienten.
+    Con `corto`, la versión condensada que va dentro del PNG. Singular y
+    plural correctos en ambos grupos."""
+    n_ag, n_dis = int(grupos["aguanta"]["n"]), int(grupos["disfruta"]["n"])
+    p_ag = int(round(grupos["aguanta"]["pct"]))
+    verbo_ag = "aguanta" if n_ag == 1 else "aguantan"
+    if corto:
+        return (f"{n_ag} circuito{'' if n_ag == 1 else 's'} {verbo_ag} el "
+                f"{p_ag}% del déficit · {n_dis} apenas lo sienten")
+    verbo_dis = "siente" if n_dis == 1 else "sienten"
+    return (f"{n_ag} circuito{'' if n_ag == 1 else 's'} {verbo_ag} el "
+            f"{p_ag}% del déficit de la capital; {n_dis} "
+            f"circuito{'' if n_dis == 1 else 's'} apenas lo {verbo_dis} "
+            f"(≤8 h sin corriente en toda la semana).")
 
 
 def _reportado_con(c, cu):
@@ -733,29 +796,195 @@ def _truncar(texto, maximo=_MAX_ETIQUETA):
 # Gráfico del déficit (imagen PNG con matplotlib, incrustada por cid)
 # --------------------------------------------------------------------------
 
-# Formato del PNG: ~1400×420 px, fondo blanco, sin adornos, <= 300 KB.
+# Formato del PNG: ~1400×640 px en DOS paneles apilados (el reparto del
+# déficit arriba, la distribución completa abajo), fondo blanco, sin
+# adornos, <= 300 KB.
 GRAFICO_ANCHO_PX = 1400
-GRAFICO_ALTO_PX = 420
+GRAFICO_ALTO_PX = 640
 GRAFICO_DPI = 100
 GRAFICO_LIMITE_BYTES = 300 * 1024
 GRAFICO_FILENAME = "deficit_semana.png"
 GRAFICO_CID = "grafico-deficit"
-GRAFICO_TITULO = "Dónde se soporta el déficit de la capital — distribución por circuito"
+GRAFICO_TITULO = ("Dónde se soporta el déficit de la capital — "
+                  "los dos mundos y la distribución por circuito")
+
+# Ancho medio estimado de un glifo, en fracciones del tamaño de fuente
+# (DejaVu Sans, la fuente por defecto de matplotlib, con dígitos y
+# minúsculas mezclados). Solo sirve para decidir si una etiqueta cabe
+# dentro de su segmento o sale fuera con flecha.
+_ANCHO_GLIFO = 0.62
+
+
+def _cabe_etiqueta(ancho_px, texto, fontsize):
+    """¿Cabe `texto` dentro de `ancho_px` píxeles a `fontsize` pt? Heurística
+    con el ancho medio de glifo (`_ANCHO_GLIFO`): decide si la etiqueta de un
+    segmento va DENTRO de la barra o fuera con flecha."""
+    return len(texto) * fontsize * _ANCHO_GLIFO * GRAFICO_DPI / 72.0 \
+        <= ancho_px
+
+
+def _panel_reparto(ax, grupos):
+    """Panel superior, "El reparto del déficit": UNA barra horizontal apilada
+    al 100% con las horas sin corriente confirmadas de la semana repartidas
+    entre los que AGUANTAN (rojo), la banda INTERMEDIA (gris) y los que lo
+    DISFRUTAN (azul) — el contraste N vs K circuitos y P vs R % de horas es
+    la historia. Encima de la barra, el titular de los dos mundos. La
+    etiqueta de cada segmento va DENTRO si cabe; si el segmento es demasiado
+    estrecho, fuera con flecha, alternando arriba/abajo."""
+    total = grupos["total"]
+    ax.set_facecolor("white")
+    ax.set_xlim(0, total)
+    ax.set_ylim(-1.15, 1.15)
+    ax.set_yticks([])
+    ax.tick_params(axis="x", bottom=False, labelbottom=False)
+    for lado in ("top", "right", "left"):
+        ax.spines[lado].set_visible(False)
+    ax.spines["bottom"].set_color("#c8ced4")
+
+    # Titular (grande) y rótulo del panel, ENCIMA de la barra.
+    ax.text(0, 1.05, frase_dos_mundos(grupos, corto=True),
+            transform=ax.transAxes, fontsize=12.5, fontweight="bold",
+            color="#111", ha="left", va="bottom")
+    ax.text(0, 1.14, "EL REPARTO DEL DÉFICIT", transform=ax.transAxes,
+            fontsize=8.5, color="#64748b", ha="left", va="bottom")
+
+    # Segmentos izquierda→derecha: aguanta (rojo), intermedio (gris),
+    # disfruta (azul). El gris lleva etiqueta pequeña: existe, pero no es
+    # la historia. `ancho_eje_px` es la anchura real del eje en píxeles.
+    ancho_eje_px = ax.get_position().width * GRAFICO_ANCHO_PX
+    segs = (
+        ("aguanta", COLOR_ROJO, "white", 11.0, "bold",
+         "#b91c1c", "{n} circuito{s} · {p}% de las horas"),
+        ("intermedio", COLOR_INTERMEDIO, "#0f172a", 8.5, "normal",
+         "#475569", "{n} circuito{s} · {p}%"),
+        ("disfruta", COLOR_AZUL, "white", 11.0, "bold",
+         "#1d4ed8", "{n} circuito{s} · {p}% de las horas"),
+    )
+    izquierda = 0.0
+    fuera = 0  # alterna el lado (arriba/abajo) de las etiquetas externas
+    for clave, color, color_txt, fs, peso, color_fuera, plantilla in segs:
+        n = int(grupos[clave]["n"])
+        horas_seg = grupos[clave]["horas"]
+        pct = int(round(grupos[clave]["pct"]))
+        if n > 0:
+            ax.barh([0], [horas_seg], left=izquierda, color=color,
+                    height=0.55, linewidth=0)
+            etiqueta = plantilla.format(
+                n=n, p=pct, s="" if n == 1 else "s")
+            ancho_px = horas_seg / total * ancho_eje_px
+            if _cabe_etiqueta(ancho_px, etiqueta, fs):
+                ax.text(izquierda + horas_seg / 2.0, 0, etiqueta,
+                        ha="center", va="center", fontsize=fs,
+                        color=color_txt, fontweight=peso)
+            else:
+                # Demasiado estrecho: etiqueta fuera, con flecha al centro
+                # del segmento, alternando arriba/abajo y recortada para no
+                # salirse del lienzo.
+                arriba = (fuera % 2 == 0)
+                fuera += 1
+                centro = izquierda + horas_seg / 2.0
+                media_px = (len(etiqueta) * 9.0 * _ANCHO_GLIFO
+                            * GRAFICO_DPI / 72.0) / 2.0
+                media = media_px / (ancho_eje_px / total)
+                x_txt = max(media, min(total - media, centro))
+                ax.annotate(
+                    etiqueta,
+                    xy=(centro, 0.30 if arriba else -0.30),
+                    xytext=(x_txt, 0.80 if arriba else -0.80),
+                    ha="center", va="bottom" if arriba else "top",
+                    fontsize=9, color=color_fuera,
+                    arrowprops={"arrowstyle": "->", "color": "#64748b",
+                                "linewidth": 1.0, "shrinkA": 0, "shrinkB": 2})
+        izquierda += horas_seg
+
+
+def _panel_distribucion(ax, filas, grupos, horas, colores, maximo):
+    """Panel inferior, la distribución completa (buen contexto): TODOS los
+    circuitos del catálogo DESC por horas confirmadas, con el gradiente
+    rojo→azul; las zonas de los tres grupos sombreadas de fondo (rojo >= 48 h
+    — la MISMA frontera de 48 h del ciclo de vida —, gris la intermedia, azul
+    <= 8 h) y los contadores grandes dentro de cada zona. Ya no lleva la
+    anotación de concentración del top 10: la sustituye el panel superior."""
+    n = len(horas)
+    ax.set_facecolor("white")
+    ax.bar(range(n), horas, width=1.0, color=colores, linewidth=0)
+    ax.set_xlim(-0.5, n - 0.5)
+    ax.set_ylim(0, max(maximo * 1.18, 1.0))
+    ax.set_ylabel("Horas sin corriente (confirmadas)", fontsize=9,
+                  color="#333")
+    ax.tick_params(axis="y", labelsize=8, colors="#333")
+    ax.tick_params(axis="x", bottom=False, labelbottom=False)
+    for lado in ("top", "right"):
+        ax.spines[lado].set_visible(False)
+    ax.spines["left"].set_color("#c8ced4")
+    ax.spines["bottom"].set_color("#c8ced4")
+
+    # Fronteras de las zonas: el rojo acaba donde caen de las 48 h; el azul
+    # empieza donde bajan de 8 h inclusive (misma regla que
+    # `datos_grupos_deficit`, así zona y grupo no pueden divergir).
+    cruce48 = next((i for i, h in enumerate(horas) if h < GRUPO_AGUANTA_H),
+                   None)
+    cruce8 = next((i for i, h in enumerate(horas) if h <= GRUPO_DISFRUTA_H),
+                  None)
+    x_rojo1 = (cruce48 - 0.5) if cruce48 not in (None, 0) else None
+    x_azul0 = (cruce8 - 0.5) if cruce8 is not None else None
+    x_gris0 = x_rojo1 if x_rojo1 is not None else -0.5
+    x_gris1 = x_azul0 if x_azul0 is not None else n - 0.5
+    if x_rojo1 is not None:
+        ax.axvspan(-0.5, x_rojo1, color=COLOR_ROJO, alpha=0.08, lw=0)
+    if x_gris1 > x_gris0:
+        ax.axvspan(x_gris0, x_gris1, color=COLOR_INTERMEDIO, alpha=0.08,
+                   lw=0)
+    if x_azul0 is not None:
+        ax.axvspan(x_azul0, n - 0.5, color=COLOR_AZUL, alpha=0.08, lw=0)
+
+    # Contadores grandes dentro de cada zona que existe (con caja blanca
+    # translúcida para que se lean sobre las barras).
+    caja = {"facecolor": "white", "edgecolor": "none", "alpha": 0.7,
+            "boxstyle": "round,pad=0.3"}
+    if x_rojo1 is not None and grupos["aguanta"]["n"] > 0:
+        ax.text((-0.5 + x_rojo1) / 2.0, maximo * 0.55,
+                f"{int(grupos['aguanta']['n'])} aguantando",
+                fontsize=12, fontweight="bold", color="#7f1d1d", alpha=0.9,
+                ha="center", va="center", bbox=caja)
+    if x_azul0 is not None and grupos["disfruta"]["n"] > 0:
+        n_dis = int(grupos["disfruta"]["n"])
+        ax.text((x_azul0 + n - 0.5) / 2.0, maximo * 0.30,
+                f"{n_dis} lo disfruta{'' if n_dis == 1 else 'n'}",
+                fontsize=12, fontweight="bold", color="#1e3a8a", alpha=0.9,
+                ha="center", va="center", bbox=caja)
+
+    # Anotación sobre el primer bloque: el máximo real de la semana.
+    if maximo >= HORAS_SEMANA - 0.5:
+        texto_maximo = "168 h — sin corriente toda la semana"
+    else:
+        texto_maximo = f"{maximo:.0f} h — máximo de la semana"
+    ax.annotate(texto_maximo,
+                xy=(0, maximo), xytext=(6, 4), textcoords="offset points",
+                fontsize=9, color="#7f1d1d", ha="left", va="bottom")
+
+    # Marca vertical punteada en las 48 h: el umbral del ciclo de vida
+    # (más silencio que eso → desconocido) es ADEMÁS la frontera del grupo
+    # que aguanta el déficit. La de 216 h (azul ← una semana) no se dibuja:
+    # el techo semanal es 168 h, la distribución nunca la cruza.
+    if cruce48 not in (None, 0):
+        ax.axvline(cruce48 - 0.5, color="#94a3b8", linestyle=":",
+                   linewidth=1)
+        ax.text(cruce48 + 2, maximo * 0.92, "desconocido ← 48 h",
+                fontsize=7, color="#64748b", ha="left", va="top")
 
 
 def generar_grafico_deficit(g):
-    """PNG de la distribución del déficit: una barra vertical por circuito
-    (TODOS los del catálogo, ordenados DESC por horas confirmadas sin
-    corriente), eje Y = horas (0-168+), eje X sin etiquetas individuales
-    (demasiados; solo el orden importa). Gradiente rojo→azul por intensidad:
-    bloque rojo de circuitos con la semana completa sin corriente → caída →
-    cola azul de los que siempre tuvieron corriente. Anotaciones dentro de la
-    imagen: el máximo real arriba del primer bloque, la marca vertical
-    punteada donde las barras cruzan las 48 h del ciclo de vida — la de 216 h
-    no se dibuja: con el techo semanal de 168 h nunca se cruza y solo
-    ensuciaría — y la concentración del top 10 en la esquina. Devuelve los
-    bytes del PNG (<= 300 KB) o None si matplotlib no está disponible (el
-    correo sale sin imagen, degradación graciosa) o si `g` no trae filas."""
+    """PNG de DOS PANELES (1400×640): arriba, "El reparto del déficit" — una
+    barra horizontal apilada al 100% con las horas de la semana repartidas
+    entre los que AGUANTAN (>= 48 h, rojo), la banda INTERMEDIA (gris) y los
+    que lo DISFRUTAN (<= 8 h, azul), con el titular de los dos mundos
+    encima; abajo, la distribución completa por circuito (todos los
+    catalogados, DESC, gradiente rojo→azul) con las zonas de cada grupo
+    sombreadas y sus contadores. Desapareció la anotación de concentración
+    del top 10: la sustituye el panel superior. Devuelve los bytes del PNG
+    (<= 300 KB) o None si matplotlib no está disponible (el correo sale sin
+    imagen, degradación graciosa) o si `g` no trae filas."""
     if not g or not g.get("filas"):
         return None
     try:
@@ -765,61 +994,25 @@ def generar_grafico_deficit(g):
     except ImportError:
         return None
     filas = g["filas"]
+    grupos = g.get("grupos") or datos_grupos_deficit(filas)
+    if not grupos:
+        return None
     horas = [f["horas"] for f in filas]
     colores = [f["color"] for f in filas]
     maximo = max(horas)
 
-    fig = plt.figure(
-        figsize=(GRAFICO_ANCHO_PX / GRAFICO_DPI, GRAFICO_ALTO_PX / GRAFICO_DPI),
+    fig, (ax_reparto, ax_dist) = plt.subplots(
+        2, 1, height_ratios=[2, 3],
+        figsize=(GRAFICO_ANCHO_PX / GRAFICO_DPI,
+                 GRAFICO_ALTO_PX / GRAFICO_DPI),
         dpi=GRAFICO_DPI, facecolor="white")
     try:
-        ax = fig.add_axes([0.06, 0.10, 0.90, 0.74])
-        ax.set_facecolor("white")
-        ax.bar(range(len(horas)), horas, width=1.0, color=colores,
-               linewidth=0)
-        ax.set_xlim(-0.5, len(horas) - 0.5)
-        ax.set_ylim(0, max(maximo * 1.18, 1.0))
-        ax.set_ylabel("Horas sin corriente (confirmadas)", fontsize=9,
-                      color="#333")
-        ax.tick_params(axis="y", labelsize=8, colors="#333")
-        ax.tick_params(axis="x", bottom=False, labelbottom=False)
-        for lado in ("top", "right"):
-            ax.spines[lado].set_visible(False)
-        ax.spines["left"].set_color("#c8ced4")
-        ax.spines["bottom"].set_color("#c8ced4")
-
-        # Anotación sobre el primer bloque: el máximo real de la semana.
-        if maximo >= HORAS_SEMANA - 0.5:
-            texto_maximo = "168 h — sin corriente toda la semana"
-        else:
-            texto_maximo = f"{maximo:.0f} h — máximo de la semana"
-        ax.annotate(texto_maximo,
-                    xy=(0, maximo), xytext=(6, 4), textcoords="offset points",
-                    fontsize=9, color="#7f1d1d", ha="left", va="bottom")
-
-        # Marca vertical punteada donde las barras cruzan las 48 h (umbral
-        # del ciclo de vida: más silencio que eso → desconocido). La de 216 h
-        # (azul ← una semana) no se dibuja: el techo semanal es 168 h, la
-        # distribución nunca la cruza y solo ensuciaría el gráfico.
-        cruce = next((i for i, h in enumerate(horas) if h < 48.0), None)
-        if cruce is not None and cruce > 0:
-            ax.axvline(cruce - 0.5, color="#94a3b8", linestyle=":",
-                       linewidth=1)
-            ax.text(cruce + 2, maximo * 0.92, "desconocido ← 48 h",
-                    fontsize=7, color="#64748b", ha="left", va="top")
-
-        # Esquina: concentración del top 10 con el denominador correcto
-        # (total de horas sin corriente de la semana).
-        ax.text(0.995, 0.97,
-                f"El {int(g['concentracion'])}% de las horas sin corriente "
-                f"de la semana se concentró en {int(g['top_n'])} circuitos",
-                transform=ax.transAxes, fontsize=8.5, color="#334155",
-                ha="right", va="top",
-                bbox={"facecolor": "white", "edgecolor": "#e2e8f0",
-                      "boxstyle": "round,pad=0.35", "alpha": 0.9})
-
+        fig.subplots_adjust(left=0.06, right=0.985, top=0.83, bottom=0.085,
+                            hspace=0.62)
+        _panel_reparto(ax_reparto, grupos)
+        _panel_distribucion(ax_dist, filas, grupos, horas, colores, maximo)
         fig.suptitle(GRAFICO_TITULO, fontsize=12, color="#111", x=0.06,
-                     ha="left", y=0.97)
+                     ha="left", y=0.985)
         bufer = io.BytesIO()
         fig.savefig(bufer, format="png", dpi=GRAFICO_DPI, facecolor="white")
     finally:
@@ -828,16 +1021,15 @@ def generar_grafico_deficit(g):
 
 
 def render_grafico_deficit(g, png=True):
-    """Cuerpo HTML de la sección del gráfico: la cifra de concentración como
-    titular en texto (queda ENCIMA de la imagen, también con imagen) y la
-    imagen PNG incrustada por `cid` — el attachment inline lo monta el envío.
-    Si el PNG no pudo generarse (matplotlib ausente, png falsy), degradación
+    """Cuerpo HTML de la sección del gráfico: el titular de los DOS MUNDOS
+    ENCIMA de la imagen (también con imagen, y también en la degradación sin
+    matplotlib — la frase de los dos mundos se mantiene siempre) y la imagen
+    PNG incrustada por `cid` — el attachment inline lo monta el envío. Si el
+    PNG no pudo generarse (matplotlib ausente, png falsy), degradación
     graciosa: nota textual en su lugar, sin abortar el envío."""
     titular = (
         f'<p style="margin:0 0 10px;font-size:13px;color:#0f172a;">'
-        f"El <strong>{int(g['concentracion'])}%</strong> de las horas sin "
-        f"corriente confirmadas de la semana se concentró en solo "
-        f"<strong>{int(g['top_n'])}</strong> circuitos.</p>")
+        f"{html.escape(frase_dos_mundos(g['grupos']))}</p>")
     if not png:
         return titular + (
             '<p style="margin:0 0 8px;font-size:13px;color:#0f172a;">'
@@ -846,7 +1038,8 @@ def render_grafico_deficit(g, png=True):
             "en el bloque de barras del texto plano.</p>")
     return titular + (
         f'<img src="cid:{GRAFICO_CID}" '
-        f'alt="Distribución del déficit por circuito" '
+        f'alt="Reparto del déficit entre los dos mundos y distribución por '
+        f'circuito" '
         f'style="width:100%;max-width:{GRAFICO_ANCHO_PX}px;height:auto;'
         f'border:0;">')
 
@@ -971,10 +1164,14 @@ def render_html(res, png=None):
                  "corriente, de mayor a menor.")
         + (_seccion("Dónde se soporta el déficit de la capital",
                     render_grafico_deficit(res["grafico_deficit"], png),
-                    "Imagen: todos los circuitos del catálogo, de mayor a "
-                    "menor por horas confirmadas sin corriente; rojo = más "
-                    "horas, azul = 0 h (siempre con corriente). Horas "
-                    "confirmadas por parte oficial o señal vecinal.")
+                    "Imagen: arriba, el reparto de las horas sin corriente "
+                    "de la semana entre los circuitos que aguantan el "
+                    "déficit (48 h o más), la banda intermedia y los que "
+                    "apenas lo sienten (8 h o menos); abajo, todos los "
+                    "circuitos del catálogo de mayor a menor por horas "
+                    "confirmadas sin corriente; rojo = más horas, azul = 0 h "
+                    "(siempre con corriente). Horas confirmadas por parte "
+                    "oficial o señal vecinal.")
            if res.get("grafico_deficit") else "")
         + _seccion("Circuitos con más horas sin corriente", tabla_top_sin,
                    "Top 15 global del periodo, de mayor a menor; solo "
@@ -1047,16 +1244,14 @@ def render_texto(res):
                   f"{t['afectados']:.0f} afectados · {t['horas_sin']:.1f} h sin · "
                   f"{t['horas_con']:.1f} h con · {t['pct']:.1f} % con corriente")
 
-    # Gráfico de concentración del déficit, en barras ASCII (la imagen PNG del
-    # HTML solo sustituye al gráfico del HTML): top 10 del bloque superior,
-    # longitud proporcional a las horas del circuito respecto al más afectado,
-    # techo de 30 caracteres.
+    # Gráfico de los DOS MUNDOS, en barras ASCII (la imagen PNG del HTML se
+    # sostiene por sí sola): titular con la frase de los dos mundos + el top
+    # 10 del bloque superior, longitud proporcional a las horas del circuito
+    # respecto al más afectado, techo de 30 caracteres.
     graf = res.get("grafico_deficit")
     if graf:
         lineas += ["", "DÓNDE SE SOPORTA EL DÉFICIT DE LA CAPITAL",
-                   f"  El {int(graf['concentracion'])}% de las horas sin "
-                   f"corriente confirmadas de la semana se concentró en solo "
-                   f"{int(graf['top_n'])} circuitos."]
+                   f"  {frase_dos_mundos(graf['grupos'])}"]
         mayor = graf["filas"][0]["horas"]
         for fila in graf["filas"][:TOP_GRAFICO]:
             etiqueta = _truncar(f"{fila['codigo']} · {fila['municipio']}")

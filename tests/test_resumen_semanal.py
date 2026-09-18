@@ -3,15 +3,18 @@
 Carga scripts/resumen_semanal.py por importlib (sin red, sin variables de
 entorno, como el resto de espejos herméticos de la suite) y verifica con
 datos sintéticos: horas sin corriente por municipio y resumen semanal, tops
-globales, clasificación de tipos de avería del texto del canal, roturas de
-la ventana, señales vecinales, circuitos que no se están afectando (criterio
-del mantenedor) y las tablas legibles de estado del sistema y roturas.
+globales, el gráfico de concentración del déficit (barras HTML/CSS y su
+versión ASCII), clasificación de tipos de avería del texto del canal,
+roturas de la ventana, señales vecinales, circuitos que no se están
+afectando (criterio del mantenedor) y las tablas legibles de estado del
+sistema y roturas.
 py3.9, offline.
 """
 
 import importlib.util
+import re
 import unittest
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 RUTA = Path(__file__).parents[1] / "scripts" / "resumen_semanal.py"
@@ -384,6 +387,164 @@ class NoAfectadosYVigenciaTest(unittest.TestCase):
         dist = MOD.distribucion_vigencia(catalogo_base(), GEN, True)
         self.assertEqual(dist["con"], 2)          # P2, P3
         self.assertEqual(dist["asum"], 0)
+
+
+class GraficoDeficitTest(unittest.TestCase):
+    """Datos del gráfico 'Dónde se soporta el déficit de la capital': top 10
+    por horas confirmadas, % respecto al mayor y concentración sobre el
+    total de la semana."""
+
+    @staticmethod
+    def catalogo_grafico():
+        """12 circuitos de un mismo municipio, horas 48, 44, …, 4."""
+        return [{"codigo": f"G{i:02d}", "municipio": "Playa"}
+                for i in range(12)]
+
+    @classmethod
+    def horas_grafico(cls, n=12):
+        """Horas del catálogo anterior: G00 48 h … G11 4 h, todas en ventana."""
+        return {"por_dia": {f"G{i:02d}": {str(DIA0): float(48 - 4 * i)}
+                            for i in range(n)}}
+
+    def test_top10_orden_desc_y_recorte(self):
+        g = MOD.datos_grafico_deficit(self.catalogo_grafico(),
+                                      self.horas_grafico(), DIA0, DIA1)
+        self.assertEqual(len(g["filas"]), 10)
+        horas = [f["horas"] for f in g["filas"]]
+        self.assertEqual(horas, sorted(horas, reverse=True))
+        self.assertEqual(horas[0], 48.0)
+        self.assertEqual(horas[-1], 12.0)   # G10 (8 h) y G11 (4 h) quedan fuera
+        self.assertEqual([f["codigo"] for f in g["filas"]][:3],
+                         ["G00", "G01", "G02"])
+
+    def test_pct_del_mayor(self):
+        g = MOD.datos_grafico_deficit(self.catalogo_grafico(),
+                                      self.horas_grafico(), DIA0, DIA1)
+        self.assertEqual(g["filas"][0]["pct"], 100)         # el mayor: barra llena
+        self.assertEqual(g["filas"][1]["pct"], round(44 * 100 / 48))   # 92
+        self.assertEqual(g["filas"][9]["pct"], round(12 * 100 / 48))   # 25
+
+    def test_concentracion_sobre_el_total_de_la_semana(self):
+        # El top 10 suma 300 h; el total de la semana (con G10 y G11) es 312 h.
+        g = MOD.datos_grafico_deficit(self.catalogo_grafico(),
+                                      self.horas_grafico(), DIA0, DIA1)
+        self.assertAlmostEqual(sum(f["horas"] for f in g["filas"]), 300.0)
+        self.assertAlmostEqual(g["total"], 312.0)
+        self.assertEqual(g["concentracion"], round(300 * 100 / 312))   # 96
+
+    def test_semana_sin_cortes_devuelve_none(self):
+        cat = self.catalogo_grafico()
+        self.assertIsNone(MOD.datos_grafico_deficit(cat, {}, DIA0, DIA1))
+        # Horas solo fuera de la ventana: para la semana es lo mismo que nada.
+        horas_fuera = {"por_dia": {c["codigo"]: {"2026-08-01": 24.0}
+                                   for c in cat}}
+        self.assertIsNone(
+            MOD.datos_grafico_deficit(cat, horas_fuera, DIA0, DIA1))
+
+    def test_menos_de_diez_circuitos_usa_los_que_haya(self):
+        g = MOD.datos_grafico_deficit(self.catalogo_grafico()[:3],
+                                      self.horas_grafico(3), DIA0, DIA1)
+        self.assertEqual(len(g["filas"]), 3)
+        self.assertEqual(g["concentracion"], 100)  # todo el corte está en el gráfico
+
+    def test_empate_por_municipio_luego_codigo(self):
+        cat = [{"codigo": "C-B", "municipio": "Cerro"},
+               {"codigo": "C-A", "municipio": "Cerro"},
+               {"codigo": "P-B", "municipio": "Playa"},
+               {"codigo": "P-A", "municipio": "Playa"}]
+        horas = {"por_dia": {c["codigo"]: {str(DIA0): 10.0} for c in cat}}
+        g = MOD.datos_grafico_deficit(cat, horas, DIA0, DIA1)
+        self.assertEqual([(f["municipio"], f["codigo"]) for f in g["filas"]],
+                         [("Cerro", "C-A"), ("Cerro", "C-B"),
+                          ("Playa", "P-A"), ("Playa", "P-B")])
+
+
+class GraficoDeficitRenderTest(unittest.TestCase):
+    """Render del gráfico: divs de barra con los anchos esperados en el HTML
+    y barras ASCII en el texto; la sección desaparece si no hubo cortes."""
+
+    @classmethod
+    def datos_grafico(cls):
+        return MOD.datos_grafico_deficit(
+            GraficoDeficitTest.catalogo_grafico(),
+            GraficoDeficitTest.horas_grafico(), DIA0, DIA1)
+
+    @staticmethod
+    def res_base(grafico):
+        """Fixture mínimo del agregado semanal, suficiente para renderizar."""
+        return {
+            "generado": GEN,
+            "desde": GEN - timedelta(days=7),
+            "filas": [
+                ("Cerro", {"catalogados": 1, "afectados": 1, "horas_sin": 24.0,
+                           "horas_con": 144.0, "pct": 85.7}),
+                ("Playa", {"catalogados": 3, "afectados": 1, "horas_sin": 3.5,
+                           "horas_con": 500.5, "pct": 99.3}),
+            ],
+            "total": {"catalogados": 4, "afectados": 2, "horas_sin": 27.5,
+                      "horas_con": 644.5, "pct": 95.9},
+            "top_sin": [("Cerro", "C1", 24.0, 1)],
+            "top_con": [("Playa", "P2", 168.0, "con servicio")],
+            "grafico_deficit": grafico,
+            "no_afectados": {"Playa": ["P2"]},
+            "roturas": {
+                "total": 1,
+                "conteo": {("Cerro", "Otra avería"): 1},
+                "filas": [{"fecha": datetime.fromisoformat(
+                               "2026-09-06T15:00:00+00:00"),
+                           "municipio": "Cerro", "tipo": "Otra avería",
+                           "calles": "Calle Dos"}],
+            },
+            "distribucion": {"sin": 2, "con": 1, "asum": 1, "con_vecinos": 0,
+                             "sin_vecinos": 0, "desconocido": 0},
+            "senales": {"total": 0, "por_municipio": [], "sin_vecinos": 0,
+                        "con_vecinos": 0},
+            "mw": 800.0,
+        }
+
+    def test_html_contiene_divs_de_barra_con_anchos_esperados(self):
+        g = self.datos_grafico()
+        h = MOD.render_html(self.res_base(g))
+        self.assertIn("Dónde se soporta el déficit de la capital", h)
+        # Subtítulo con la concentración y la cantidad de circuitos.
+        self.assertIn("<strong>96%</strong>", h)
+        self.assertIn("se concentró en solo <strong>10</strong> circuitos", h)
+        # Barras: div interior con el color del dato y width esperado.
+        self.assertIn('background:#dc2626;height:20px;border-radius:3px;'
+                      'font-size:1px;line-height:20px;width:100%;">', h)
+        self.assertIn('width:92%;">', h)
+        self.assertIn('width:25%;">', h)
+        self.assertIn('background:#f1f5f9;height:20px;border-radius:3px;">', h)
+        # Etiqueta y horas en texto plano, fuera de la barra.
+        self.assertIn("G00 · Playa", h)
+        self.assertIn("48.0 h", h)
+        # Los únicos anchos en % del documento son los de las barras, DESC.
+        anchos = [float(a) for a in re.findall(r"width:([\d.]+)%", h)]
+        self.assertEqual(len(anchos), 10)
+        self.assertEqual(anchos, sorted(anchos, reverse=True))
+
+    def test_texto_barras_ascii(self):
+        txt = MOD.render_texto(self.res_base(self.datos_grafico()))
+        self.assertIn("DÓNDE SE SOPORTA EL DÉFICIT DE LA CAPITAL", txt)
+        self.assertIn("El 96% de las horas sin corriente confirmadas de la "
+                      "semana se concentró en solo 10 circuitos.", txt)
+        lineas = [l for l in txt.splitlines() if "█" in l]
+        self.assertEqual(len(lineas), 10)
+        self.assertIn("█" * 30, lineas[0])   # G00: 48 h → barra llena
+        self.assertIn("█" * 8, lineas[9])    # G09: 12 h → 12·30/48 = 7.5 → 8
+        self.assertIn("48.0 h", lineas[0])
+        self.assertIn("12.0 h", lineas[9])
+        self.assertIn("G00 · Playa", lineas[0])
+        # Nota al pie, igual que en el HTML.
+        self.assertIn("el resto del sistema absorbe el resto del tiempo.", txt)
+
+    def test_seccion_omitida_sin_cortes(self):
+        h = MOD.render_html(self.res_base(None))
+        self.assertNotIn("Dónde se soporta el déficit", h)
+        self.assertEqual(re.findall(r"width:([\d.]+)%", h), [])
+        txt = MOD.render_texto(self.res_base(None))
+        self.assertNotIn("DÓNDE SE SOPORTA", txt)
+        self.assertNotIn("█", txt)
 
 
 if __name__ == "__main__":

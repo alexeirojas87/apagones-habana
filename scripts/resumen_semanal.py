@@ -366,6 +366,50 @@ def top_con_global(catalogo, horas, vigencias, dia0, dia1, top=15):
     return res[:top]
 
 
+# Gráfico "Dónde se soporta el déficit de la capital": cuántos circuitos
+# concentran las horas sin corriente confirmadas de la semana.
+TOP_GRAFICO = 10
+
+
+def datos_grafico_deficit(catalogo, horas, dia0, dia1):
+    """Datos del gráfico de concentración del déficit: top 10 de circuitos
+    por horas CONFIRMADAS sin corriente en la ventana (la MISMA medida que ya
+    agrega el script), ordenado DESC con desempate por municipio y código;
+    cada fila trae `pct` respecto al circuito más afectado (ancho de barra) y
+    aparte va la concentración P: horas del top × 100 / total de la semana,
+    redondeada a entero. El total es el MISMO que suma la tabla del resumen
+    por municipio (todos los circuitos catalogados con municipio), de modo
+    que gráfico y tabla no puedan divergir. Devuelve None si la semana no
+    registra cortes (la sección se omite por completa); con menos de 10
+    circuitos afectados usa los que haya."""
+    filas = []
+    total = 0.0
+    for c in catalogo:
+        m = municipio_de(c)
+        if not m:
+            continue
+        cod = c.get("codigo")
+        hs = horas_sin_ventana(horas, cod, dia0, dia1)
+        total += hs
+        if cod and hs > 0:
+            filas.append((m, cod, hs))
+    if total <= 0:
+        return None
+    filas.sort(key=lambda t: (-t[2], t[0], t[1]))
+    filas = filas[:TOP_GRAFICO]
+    mayor = filas[0][2]
+    return {
+        "filas": [
+            {"municipio": m, "codigo": cod, "horas": hs,
+             "pct": int(round(hs * 100.0 / mayor))}
+            for m, cod, hs in filas
+        ],
+        "total": total,
+        "concentracion": int(round(
+            sum(hs for _, _, hs in filas) * 100.0 / total)),
+    }
+
+
 def _reportado_con(c, cu):
     """Espejo exacto de build_circuitos.py::_reportado_con (dirección 2 del
     reporte vecinal): "sin servicio" de la UNE con `ultimo_con` vecinal
@@ -553,6 +597,7 @@ def agregar(catalogo_doc, horas, estado, partes, canal, conteo_usuario):
         "total": total,
         "top_sin": top_sin_global(catalogo, horas, dia0, dia1,
                                   menciones_ventana(partes, desde, gen)),
+        "grafico_deficit": datos_grafico_deficit(catalogo, horas, dia0, dia1),
         "top_con": top_con_global(catalogo, horas, vigencias, dia0, dia1),
         "no_afectados": no_afectados_por_municipio(catalogo, horas, vigencias,
                                                    dia0, dia1, gen),
@@ -567,7 +612,11 @@ def agregar(catalogo_doc, horas, estado, partes, canal, conteo_usuario):
 # Render (HTML con estilos inline + texto plano)
 # --------------------------------------------------------------------------
 
-_T_TABLE = "border-collapse:collapse;width:100%;font-size:13px;"
+# Las tablas fijan su ancho completo con el ATRIBUTO width="100%" (no CSS):
+# el correo debe reservar el patrón `width:N%` de los estilos inline para los
+# anchos de las barras del gráfico de déficit (únicos en % y en orden DESC),
+# y el atributo es además lo que mejor entiende el motor Word de Outlook.
+_T_TABLE = "border-collapse:collapse;font-size:13px;"
 _T_TH = "text-align:left;padding:6px 8px;background:#eef1f4;border-bottom:2px solid #c8ced4;font-size:12px;color:#333;"
 _T_TH_D = "text-align:right;padding:6px 8px;background:#eef1f4;border-bottom:2px solid #c8ced4;font-size:12px;color:#333;"
 _T_TD = "padding:6px 8px;border-bottom:1px solid #e4e7ea;"
@@ -592,7 +641,7 @@ def _tabla(cabeceras, filas, numericas=()):
             for i, celda in enumerate(fila)
         )
         cuerpo.append(f"<tr>{tds}</tr>")
-    return (f'<table style="{_T_TABLE}">'
+    return (f'<table width="100%" style="{_T_TABLE}">'
             f"<thead><tr>{th}</tr></thead><tbody>{''.join(cuerpo)}</tbody></table>")
 
 
@@ -637,6 +686,55 @@ def filas_roturas_resumen(conteo):
     pares = sorted(conteo.items(), key=lambda kv: (-kv[1], kv[0][0], kv[0][1]))
     return [[html.escape(m), html.escape(tipo), _ent(n)]
             for (m, tipo), n in pares]
+
+
+# Estilo del gráfico de barras (colores hex inline: los clientes de correo no
+# leen variables CSS). Barra del dato, pista de fondo y texto del eje.
+_MAX_ETIQUETA = 28
+_ANCHO_BARRA_TXT = 30  # caracteres █ máximo de la barra en texto plano
+_ESTILO_ETIQ = "font-size:12px;color:#0f172a;white-space:nowrap;"
+_ESTILO_PISTA = "background:#f1f5f9;height:20px;border-radius:3px;"
+_ESTILO_BARRA = ("background:#dc2626;height:20px;border-radius:3px;"
+                 "font-size:1px;line-height:20px;")
+
+
+def _truncar(texto, maximo=_MAX_ETIQUETA):
+    """Etiqueta recortada a `maximo` caracteres + '…' si excede."""
+    return texto if len(texto) <= maximo else texto[:maximo] + "…"
+
+
+def render_grafico_deficit(g):
+    """Cuerpo del gráfico 'Dónde se soporta el déficit de la capital': filas
+    [etiqueta | pista + barra | horas] en HTML/CSS PURO (sin SVG, sin JS, sin
+    imágenes, sin CSS externo — solo estilos inline y divs anidados, que
+    Gmail/Outlook respetan). La barra es un div interior con el color del
+    dato y `width:N%` sobre una pista gris; el ancho es % del circuito más
+    afectado. La pista es un div a nivel de bloque: llena su celda sin
+    escribir width:100%, de modo que los únicos anchos en % del documento
+    son los de las barras, que salen en orden DESC."""
+    partes = [
+        f'<p style="margin:0 0 10px;font-size:13px;color:#0f172a;">'
+        f"El <strong>{int(g['concentracion'])}%</strong> de las horas sin "
+        f"corriente confirmadas de la semana se concentró en solo "
+        f"<strong>{len(g['filas'])}</strong> circuitos.</p>",
+        '<div style="max-width:640px;">'
+        '<table width="100%" style="border-collapse:collapse;font-size:13px;">',
+    ]
+    for fila in g["filas"]:
+        etiqueta = _truncar(f"{fila['codigo']} · {fila['municipio']}")
+        partes.append(
+            "<tr>"
+            f'<td style="{_ESTILO_ETIQ}padding-right:8px;vertical-align:middle;">'
+            f"{html.escape(etiqueta)}</td>"
+            "<td>"
+            f'<div style="{_ESTILO_PISTA}">'
+            f'<div style="{_ESTILO_BARRA}width:{int(fila["pct"])}%;">&nbsp;</div>'
+            "</div></td>"
+            f'<td style="{_ESTILO_ETIQ}padding-left:8px;text-align:right;'
+            f'vertical-align:middle;">{fila["horas"]:.1f} h</td>'
+            "</tr>")
+    partes.append("</table></div>")
+    return "".join(partes)
 
 
 def render_html(res):
@@ -754,6 +852,12 @@ def render_html(res):
                  "Horas confirmadas de corte; % del tiempo con corriente sobre "
                  "168 h semanales por circuito. Ordenado por horas sin "
                  "corriente, de mayor a menor.")
+        + (_seccion("Dónde se soporta el déficit de la capital",
+                    render_grafico_deficit(res["grafico_deficit"]),
+                    "Horas sin corriente confirmadas por parte oficial o "
+                    "señal vecinal; el resto del sistema absorbe el resto "
+                    "del tiempo.")
+           if res.get("grafico_deficit") else "")
         + _seccion("Circuitos con más horas sin corriente", tabla_top_sin,
                    "Top 15 global del periodo, de mayor a menor; solo "
                    "circuitos con corte confirmado. El detalle por municipio "
@@ -824,6 +928,25 @@ def render_texto(res):
     lineas.append(f"  TOTAL LA HABANA: {t['catalogados']:.0f} circuitos · "
                   f"{t['afectados']:.0f} afectados · {t['horas_sin']:.1f} h sin · "
                   f"{t['horas_con']:.1f} h con · {t['pct']:.1f} % con corriente")
+
+    # Gráfico de concentración del déficit, en barras ASCII (misma información
+    # que el gráfico de barras del HTML): longitud proporcional a las horas
+    # del circuito respecto al más afectado, techo de 30 caracteres.
+    graf = res.get("grafico_deficit")
+    if graf:
+        lineas += ["", "DÓNDE SE SOPORTA EL DÉFICIT DE LA CAPITAL",
+                   f"  El {int(graf['concentracion'])}% de las horas sin "
+                   f"corriente confirmadas de la semana se concentró en solo "
+                   f"{len(graf['filas'])} circuitos."]
+        mayor = graf["filas"][0]["horas"]
+        for fila in graf["filas"]:
+            etiqueta = _truncar(f"{fila['codigo']} · {fila['municipio']}")
+            barra = "█" * max(1, int(round(
+                fila["horas"] * _ANCHO_BARRA_TXT / mayor)))
+            lineas.append(f"  {etiqueta:<28} {barra} {fila['horas']:.1f} h")
+        lineas.append("  Horas sin corriente confirmadas por parte oficial o "
+                      "señal vecinal; el resto del sistema absorbe el resto "
+                      "del tiempo.")
 
     lineas += ["", "CIRCUITOS CON MÁS HORAS SIN CORRIENTE (top 15 global)"]
     if res["top_sin"]:

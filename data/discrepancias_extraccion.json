@@ -1,81 +1,4 @@
 {
- "81720": {
-  "fecha": "2026-09-11T09:47:44+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 05:46 AM quedó restablecido el servicio en los siguientes circuitos: 👉 2202: Alrededores de calles Callejón de L"
- },
- "81733": {
-  "fecha": "2026-09-11T10:19:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 151 MW distribuidos en 51 circuitos de distribución. A continuación, "
- },
- "81728": {
-  "fecha": "2026-09-11T10:05:30+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "⚠️⚡️Informamos a los clientes de los municipios 10 de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, la rotación se efectuó de la siguiente man"
- },
- "81738": {
-  "fecha": "2026-09-11T10:40:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A318"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Cotorro, queda repara la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección: C"
- },
- "81751": {
-  "fecha": "2026-09-11T11:54:02+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "R466"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores de municipio Regla, se localiza avería secundaria por transformador dañado en las calles Anillo del Puerto y Base Logística, Antiguo Campamento de"
- },
- "81749": {
-  "fecha": "2026-09-11T11:48:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP20",
-   "CPP8",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 07:47 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP307: Soterrado Habana Vieja. 👉"
- },
- "81773": {
-  "fecha": "2026-09-11T13:02:49+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 203 MW distribuidos en 65 circuitos de distribución. A continuación, "
- },
- "81809": {
-  "fecha": "2026-09-11T14:11:37+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "M1603"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Cotorro, se localiza avería secundaria por transformador dañado en las calles Tenería entre Final y 1ro de Mayo.🚨"
- },
  "81857": {
   "fecha": "2026-09-11T17:24:49+00:00",
   "tipo_llm": "restablecimiento",
@@ -1375,5 +1298,100 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:30AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG312:Santiago d"
+ },
+ "83830": {
+  "fecha": "2026-09-18T06:26:41+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:08AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz24:Calles 2 des"
+ },
+ "83829": {
+  "fecha": "2026-09-18T06:21:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP17",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 2:00 AM quedo restblecido el servicio electrico en el siguiente circuito. 👉C14: Alrededores de calles Washington"
+ },
+ "83824": {
+  "fecha": "2026-09-18T06:08:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:16 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL56: Zonas: 13"
+ },
+ "83836": {
+  "fecha": "2026-09-18T07:00:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 330MW distribuidos en 109 circuitos de distribución. A continuación, "
+ },
+ "83831": {
+  "fecha": "2026-09-18T06:31:24+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL53"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se afectaban por DISPARO del CIRCUITO en Alamar quedando sin servicio la siguiente direcciòn : 👉AL53:Zonas: 1, 2,"
+ },
+ "83845": {
+  "fecha": "2026-09-18T09:26:21+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P318"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:19AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P322:Alrededores "
+ },
+ "83850": {
+  "fecha": "2026-09-18T10:08:32+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:08 AM se afectan 294MW distribuidos en 104 circuitos de distribución. A continuación, "
+ },
+ "83856": {
+  "fecha": "2026-09-18T10:37:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A708",
+   "A800",
+   "A940",
+   "D860"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 2:50 AM quedó restablecido el servicio en los siguientes circuitos: 👉D870:Zona Industrial Wajay, Zona Franca, Re"
+ },
+ "83855": {
+  "fecha": "2026-09-18T10:32:16+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 6 :12AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz15: Calles 35 "
+ },
+ "83922": {
+  "fecha": "2026-09-18T14:19:21+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑💥Consumidores del municipio Arroyo Naranjo, se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉Avenida Oeste / 6ta y Norte.💥🛑"
  }
 }

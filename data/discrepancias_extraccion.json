@@ -1,13 +1,4 @@
 {
- "81809": {
-  "fecha": "2026-09-11T14:11:37+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "M1603"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Cotorro, se localiza avería secundaria por transformador dañado en las calles Tenería entre Final y 1ro de Mayo.🚨"
- },
  "81857": {
   "fecha": "2026-09-11T17:24:49+00:00",
   "tipo_llm": "restablecimiento",
@@ -1393,5 +1384,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 6 :12AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz15: Calles 35 "
+ },
+ "83922": {
+  "fecha": "2026-09-18T14:19:21+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑💥Consumidores del municipio Arroyo Naranjo, se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉Avenida Oeste / 6ta y Norte.💥🛑"
  }
 }

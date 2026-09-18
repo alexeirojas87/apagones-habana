@@ -1,15 +1,4 @@
 {
- "81720": {
-  "fecha": "2026-09-11T09:47:44+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 05:46 AM quedó restablecido el servicio en los siguientes circuitos: 👉 2202: Alrededores de calles Callejón de L"
- },
  "81733": {
   "fecha": "2026-09-11T10:19:50+00:00",
   "tipo_llm": "afectacion",

@@ -1,17 +1,4 @@
 {
- "81668": {
-  "fecha": "2026-09-11T01:23:28+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP304",
-   "OP318",
-   "OP320",
-   "OP410",
-   "OP411"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 09:20 PM queda restablecido el servicio en los siguientes circuitos: 👉OP424, OP411, OP410, OP304, OP318, OP320 -"
- },
  "81698": {
   "fecha": "2026-09-11T04:13:16+00:00",
   "tipo_llm": "deficit",
@@ -1340,5 +1327,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en Alamar debido a un Puente Partido quedando sin servicio la si"
+ },
+ "83764": {
+  "fecha": "2026-09-18T01:31:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL52"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🚨Clientes del municipio Habana del Este el reparto Alamar queda restablecido el servicio en el siguiente circuito : 👉AL52: Zonas: 6; 7; 8; 9; 10; 11 y Micro 4."
  }
 }

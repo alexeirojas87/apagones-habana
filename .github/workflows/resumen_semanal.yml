@@ -8,7 +8,7 @@ name: Resumen semanal
 
 on:
   schedule:
-    - cron: "0 13 * * 5" # viernes 13:00 UTC = 09:00 La Habana
+    - cron: "0 12 * * 5" # viernes 12:00 UTC = 08:00 La Habana (horario de verano; en invierno UTC-5 serían las 07:00)
   workflow_dispatch:
     inputs:
       destinatario_prueba:

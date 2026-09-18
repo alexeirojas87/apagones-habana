@@ -1014,7 +1014,8 @@ def generar_grafico_deficit(g):
         fig.suptitle(GRAFICO_TITULO, fontsize=12, color="#111", x=0.06,
                      ha="left", y=0.985)
         bufer = io.BytesIO()
-        fig.savefig(bufer, format="png", dpi=GRAFICO_DPI, facecolor="white")
+        fig.savefig(bufer, format="png", dpi=GRAFICO_DPI, facecolor="white",
+                metadata={"Software": None})  # sin huella de herramienta
     finally:
         plt.close(fig)
     return bufer.getvalue()

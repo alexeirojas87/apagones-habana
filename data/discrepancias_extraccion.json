@@ -1,13 +1,4 @@
 {
- "81857": {
-  "fecha": "2026-09-11T17:24:49+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1125"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:31pm quedó restablecido el servicio en los siguientes circuitos: 👉D:1125 Reparto Guiteras. 👉A1695: Reparto El"
- },
  "81879": {
   "fecha": "2026-09-11T19:21:01+00:00",
   "tipo_llm": "restablecimiento",

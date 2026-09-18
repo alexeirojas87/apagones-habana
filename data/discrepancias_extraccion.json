@@ -1375,5 +1375,34 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:30AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG312:Santiago d"
+ },
+ "83830": {
+  "fecha": "2026-09-18T06:26:41+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:08AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz24:Calles 2 des"
+ },
+ "83829": {
+  "fecha": "2026-09-18T06:21:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP17",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 2:00 AM quedo restblecido el servicio electrico en el siguiente circuito. 👉C14: Alrededores de calles Washington"
+ },
+ "83824": {
+  "fecha": "2026-09-18T06:08:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:16 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL56: Zonas: 13"
  }
 }

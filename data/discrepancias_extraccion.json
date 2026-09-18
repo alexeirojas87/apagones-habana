@@ -1,13 +1,4 @@
 {
- "81666": {
-  "fecha": "2026-09-11T01:00:42+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 552 MW distribuidos en 154 circuitos de distribución. A continuación,"
- },
  "81668": {
   "fecha": "2026-09-11T01:23:28+00:00",
   "tipo_llm": "restablecimiento",
@@ -1340,5 +1331,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 7:31PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉D870:Zona Industr"
+ },
+ "83751": {
+  "fecha": "2026-09-18T00:58:49+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL52"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en Alamar debido a un Puente Partido quedando sin servicio la si"
  }
 }

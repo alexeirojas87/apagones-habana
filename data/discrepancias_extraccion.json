@@ -1365,5 +1365,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:56 PM quedó restablecido el servicio en el siguiente circuito: 👉P318:Alrededores de calles Placencia desde Si"
+ },
+ "83806": {
+  "fecha": "2026-09-18T04:59:11+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG314",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:30AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG312:Santiago d"
  }
 }

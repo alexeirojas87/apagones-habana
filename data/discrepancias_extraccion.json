@@ -1384,5 +1384,16 @@
   ],
   "solo_regex": [],
   "extracto": "🛑💥Consumidores del municipio Arroyo Naranjo, se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉Avenida Oeste / 6ta y Norte.💥🛑"
+ },
+ "84000": {
+  "fecha": "2026-09-18T17:46:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP17",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 01:44 PM queda restblecido el servicio electrico en los siguientes circuitos. 👉C14: Alrededores de calles Washin"
  }
 }

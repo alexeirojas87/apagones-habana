@@ -28,6 +28,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Instalar matplotlib (gráfico de distribución del déficit)
+        run: pip install matplotlib
       - name: Enviar resumen semanal
         run: python3 scripts/resumen_semanal.py
         env:

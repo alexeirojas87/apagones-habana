@@ -38,10 +38,19 @@ Uso:
   python3 scripts/resumen_semanal.py --dry-run    # agrega y renderiza la
       # vista previa en web/data/.resumen_preview.html (fuera del control de
       # versiones) SIN enviar nada y sin necesitar credenciales
+
+El gráfico "Dónde se soporta el déficit de la capital" va como IMAGEN PNG
+generada con matplotlib (backend Agg, importado solo al usarlo): todos los
+circuitos catalogados, ordenados de mayor a menor por horas confirmadas sin
+corriente, con gradiente rojo→azul, incrustada por `cid` como attachment
+inline de Mailtrap. Si matplotlib no está disponible, el correo sale sin
+imagen (el HTML muestra una nota y el texto plano conserva el bloque ASCII).
 """
 
 import argparse
+import base64
 import html
+import io
 import json
 import os
 import re
@@ -66,6 +75,7 @@ CANAL_FILE = os.path.join(RAIZ, "data", "canal_cache.json")
 
 PREVIEW_HTML = os.path.join(RAIZ, "web", "data", ".resumen_preview.html")
 PREVIEW_TXT = os.path.join(RAIZ, "web", "data", ".resumen_preview.txt")
+PREVIEW_PNG = os.path.join(RAIZ, "web", "data", ".resumen_preview.png")
 
 MAILTRAP_URL = "https://send.api.mailtrap.io/api/send"
 NOMBRE_REMITENTE = "Resumen Eléctrico"
@@ -366,47 +376,66 @@ def top_con_global(catalogo, horas, vigencias, dia0, dia1, top=15):
     return res[:top]
 
 
-# Gráfico "Dónde se soporta el déficit de la capital": cuántos circuitos
-# concentran las horas sin corriente confirmadas de la semana.
+# Gráfico "Dónde se soporta el déficit de la capital": la DISTRIBUCIÓN
+# completa de las horas sin corriente confirmadas de la semana, un circuito
+# del catálogo por barra. N es la cantidad de circuitos del bloque superior
+# con la que se mide la concentración (el titular).
 TOP_GRAFICO = 10
+
+# Gradiente del gráfico: rojo para las horas máximas de la semana → azul para
+# los circuitos con 0 h (siempre con corriente). Interpolación RGB manual.
+COLOR_ROJO = "#dc2626"
+COLOR_AZUL = "#2563eb"
+
+
+def color_deficit(horas, maximo):
+    """Color de la barra del circuito: interpolación lineal en RGB de
+    COLOR_AZUL (0 h) a COLOR_ROJO (el máximo de la semana), según horas/max.
+    Devuelve el hex '#rrggbb' que consumen matplotlib y los tests."""
+    t = 0.0 if maximo <= 0 else min(1.0, max(0.0, horas / maximo))
+    r = round(0x25 + (0xDC - 0x25) * t)
+    g = round(0x63 + (0x26 - 0x63) * t)
+    b = round(0xEB + (0x26 - 0xEB) * t)
+    return f"#{r:02x}{g:02x}{b:02x}"
 
 
 def datos_grafico_deficit(catalogo, horas, dia0, dia1):
-    """Datos del gráfico de concentración del déficit: top 10 de circuitos
-    por horas CONFIRMADAS sin corriente en la ventana (la MISMA medida que ya
-    agrega el script), ordenado DESC con desempate por municipio y código;
-    cada fila trae `pct` respecto al circuito más afectado (ancho de barra) y
-    aparte va la concentración P: horas del top × 100 / total de la semana,
-    redondeada a entero. El total es el MISMO que suma la tabla del resumen
-    por municipio (todos los circuitos catalogados con municipio), de modo
-    que gráfico y tabla no puedan divergir. Devuelve None si la semana no
-    registra cortes (la sección se omite por completa); con menos de 10
-    circuitos afectados usa los que haya."""
+    """Datos del gráfico de distribución del déficit: TODOS los circuitos
+    catalogados (con municipio y código), incluidos los de 0 h — siempre con
+    corriente: son parte del mensaje visual —, ordenados DESC por horas
+    CONFIRMADAS sin corriente en la ventana (la MISMA medida que ya agrega el
+    script), con desempate por municipio y código. Cada fila trae su color
+    del gradiente (rojo = máximo de la semana, azul = 0 h). Aparte va la
+    concentración P del bloque superior (TOP_GRAFICO circuitos): horas del
+    top × 100 / TOTAL de horas sin corriente de la semana — el denominador es
+    el MISMO que suma la tabla del resumen por municipio, de modo que gráfico
+    y tabla no puedan divergir. Devuelve None si la semana no registra
+    cortes (la sección se omite por completa; la concentración sería 0/0)."""
     filas = []
     total = 0.0
     for c in catalogo:
         m = municipio_de(c)
-        if not m:
-            continue
         cod = c.get("codigo")
+        if not m or not cod:
+            continue
         hs = horas_sin_ventana(horas, cod, dia0, dia1)
         total += hs
-        if cod and hs > 0:
-            filas.append((m, cod, hs))
+        filas.append((m, cod, hs))
     if total <= 0:
         return None
     filas.sort(key=lambda t: (-t[2], t[0], t[1]))
-    filas = filas[:TOP_GRAFICO]
-    mayor = filas[0][2]
+    maximo = filas[0][2]
+    top_n = min(TOP_GRAFICO, len(filas))
     return {
         "filas": [
             {"municipio": m, "codigo": cod, "horas": hs,
-             "pct": int(round(hs * 100.0 / mayor))}
+             "color": color_deficit(hs, maximo)}
             for m, cod, hs in filas
         ],
         "total": total,
+        "top_n": top_n,
         "concentracion": int(round(
-            sum(hs for _, _, hs in filas) * 100.0 / total)),
+            sum(hs for _, _, hs in filas[:top_n]) * 100.0 / total)),
     }
 
 
@@ -613,9 +642,10 @@ def agregar(catalogo_doc, horas, estado, partes, canal, conteo_usuario):
 # --------------------------------------------------------------------------
 
 # Las tablas fijan su ancho completo con el ATRIBUTO width="100%" (no CSS):
-# el correo debe reservar el patrón `width:N%` de los estilos inline para los
-# anchos de las barras del gráfico de déficit (únicos en % y en orden DESC),
-# y el atributo es además lo que mejor entiende el motor Word de Outlook.
+# el atributo es lo que mejor entiende el motor Word de Outlook. La única
+# anchura en % de los estilos inline del documento es la de la imagen del
+# gráfico de déficit (width:100% con techo max-width, que los clientes de
+# correo respetan).
 _T_TABLE = "border-collapse:collapse;font-size:13px;"
 _T_TH = "text-align:left;padding:6px 8px;background:#eef1f4;border-bottom:2px solid #c8ced4;font-size:12px;color:#333;"
 _T_TH_D = "text-align:right;padding:6px 8px;background:#eef1f4;border-bottom:2px solid #c8ced4;font-size:12px;color:#333;"
@@ -688,14 +718,10 @@ def filas_roturas_resumen(conteo):
             for (m, tipo), n in pares]
 
 
-# Estilo del gráfico de barras (colores hex inline: los clientes de correo no
-# leen variables CSS). Barra del dato, pista de fondo y texto del eje.
+# Etiquetas del bloque ASCII del texto plano (la imagen PNG solo sustituye
+# al gráfico del HTML).
 _MAX_ETIQUETA = 28
 _ANCHO_BARRA_TXT = 30  # caracteres █ máximo de la barra en texto plano
-_ESTILO_ETIQ = "font-size:12px;color:#0f172a;white-space:nowrap;"
-_ESTILO_PISTA = "background:#f1f5f9;height:20px;border-radius:3px;"
-_ESTILO_BARRA = ("background:#dc2626;height:20px;border-radius:3px;"
-                 "font-size:1px;line-height:20px;")
 
 
 def _truncar(texto, maximo=_MAX_ETIQUETA):
@@ -703,43 +729,134 @@ def _truncar(texto, maximo=_MAX_ETIQUETA):
     return texto if len(texto) <= maximo else texto[:maximo] + "…"
 
 
-def render_grafico_deficit(g):
-    """Cuerpo del gráfico 'Dónde se soporta el déficit de la capital': filas
-    [etiqueta | pista + barra | horas] en HTML/CSS PURO (sin SVG, sin JS, sin
-    imágenes, sin CSS externo — solo estilos inline y divs anidados, que
-    Gmail/Outlook respetan). La barra es un div interior con el color del
-    dato y `width:N%` sobre una pista gris; el ancho es % del circuito más
-    afectado. La pista es un div a nivel de bloque: llena su celda sin
-    escribir width:100%, de modo que los únicos anchos en % del documento
-    son los de las barras, que salen en orden DESC."""
-    partes = [
+# --------------------------------------------------------------------------
+# Gráfico del déficit (imagen PNG con matplotlib, incrustada por cid)
+# --------------------------------------------------------------------------
+
+# Formato del PNG: ~1400×420 px, fondo blanco, sin adornos, <= 300 KB.
+GRAFICO_ANCHO_PX = 1400
+GRAFICO_ALTO_PX = 420
+GRAFICO_DPI = 100
+GRAFICO_LIMITE_BYTES = 300 * 1024
+GRAFICO_FILENAME = "deficit_semana.png"
+GRAFICO_CID = "grafico-deficit"
+GRAFICO_TITULO = "Dónde se soporta el déficit de la capital — distribución por circuito"
+
+
+def generar_grafico_deficit(g):
+    """PNG de la distribución del déficit: una barra vertical por circuito
+    (TODOS los del catálogo, ordenados DESC por horas confirmadas sin
+    corriente), eje Y = horas (0-168+), eje X sin etiquetas individuales
+    (demasiados; solo el orden importa). Gradiente rojo→azul por intensidad:
+    bloque rojo de circuitos con la semana completa sin corriente → caída →
+    cola azul de los que siempre tuvieron corriente. Anotaciones dentro de la
+    imagen: el máximo real arriba del primer bloque, la marca vertical
+    punteada donde las barras cruzan las 48 h del ciclo de vida — la de 216 h
+    no se dibuja: con el techo semanal de 168 h nunca se cruza y solo
+    ensuciaría — y la concentración del top 10 en la esquina. Devuelve los
+    bytes del PNG (<= 300 KB) o None si matplotlib no está disponible (el
+    correo sale sin imagen, degradación graciosa) o si `g` no trae filas."""
+    if not g or not g.get("filas"):
+        return None
+    try:
+        import matplotlib
+        matplotlib.use("Agg")  # CI sin display: antes de importar pyplot
+        import matplotlib.pyplot as plt
+    except ImportError:
+        return None
+    filas = g["filas"]
+    horas = [f["horas"] for f in filas]
+    colores = [f["color"] for f in filas]
+    maximo = max(horas)
+
+    fig = plt.figure(
+        figsize=(GRAFICO_ANCHO_PX / GRAFICO_DPI, GRAFICO_ALTO_PX / GRAFICO_DPI),
+        dpi=GRAFICO_DPI, facecolor="white")
+    try:
+        ax = fig.add_axes([0.06, 0.10, 0.90, 0.74])
+        ax.set_facecolor("white")
+        ax.bar(range(len(horas)), horas, width=1.0, color=colores,
+               linewidth=0)
+        ax.set_xlim(-0.5, len(horas) - 0.5)
+        ax.set_ylim(0, max(maximo * 1.18, 1.0))
+        ax.set_ylabel("Horas sin corriente (confirmadas)", fontsize=9,
+                      color="#333")
+        ax.tick_params(axis="y", labelsize=8, colors="#333")
+        ax.tick_params(axis="x", bottom=False, labelbottom=False)
+        for lado in ("top", "right"):
+            ax.spines[lado].set_visible(False)
+        ax.spines["left"].set_color("#c8ced4")
+        ax.spines["bottom"].set_color("#c8ced4")
+
+        # Anotación sobre el primer bloque: el máximo real de la semana.
+        if maximo >= HORAS_SEMANA - 0.5:
+            texto_maximo = "168 h — sin corriente toda la semana"
+        else:
+            texto_maximo = f"{maximo:.0f} h — máximo de la semana"
+        ax.annotate(texto_maximo,
+                    xy=(0, maximo), xytext=(6, 4), textcoords="offset points",
+                    fontsize=9, color="#7f1d1d", ha="left", va="bottom")
+
+        # Marca vertical punteada donde las barras cruzan las 48 h (umbral
+        # del ciclo de vida: más silencio que eso → desconocido). La de 216 h
+        # (azul ← una semana) no se dibuja: el techo semanal es 168 h, la
+        # distribución nunca la cruza y solo ensuciaría el gráfico.
+        cruce = next((i for i, h in enumerate(horas) if h < 48.0), None)
+        if cruce is not None and cruce > 0:
+            ax.axvline(cruce - 0.5, color="#94a3b8", linestyle=":",
+                       linewidth=1)
+            ax.text(cruce + 2, maximo * 0.92, "desconocido ← 48 h",
+                    fontsize=7, color="#64748b", ha="left", va="top")
+
+        # Esquina: concentración del top 10 con el denominador correcto
+        # (total de horas sin corriente de la semana).
+        ax.text(0.995, 0.97,
+                f"El {int(g['concentracion'])}% de las horas sin corriente "
+                f"de la semana se concentró en {int(g['top_n'])} circuitos",
+                transform=ax.transAxes, fontsize=8.5, color="#334155",
+                ha="right", va="top",
+                bbox={"facecolor": "white", "edgecolor": "#e2e8f0",
+                      "boxstyle": "round,pad=0.35", "alpha": 0.9})
+
+        fig.suptitle(GRAFICO_TITULO, fontsize=12, color="#111", x=0.06,
+                     ha="left", y=0.97)
+        bufer = io.BytesIO()
+        fig.savefig(bufer, format="png", dpi=GRAFICO_DPI, facecolor="white")
+    finally:
+        plt.close(fig)
+    return bufer.getvalue()
+
+
+def render_grafico_deficit(g, png=True):
+    """Cuerpo HTML de la sección del gráfico: la cifra de concentración como
+    titular en texto (queda ENCIMA de la imagen, también con imagen) y la
+    imagen PNG incrustada por `cid` — el attachment inline lo monta el envío.
+    Si el PNG no pudo generarse (matplotlib ausente, png falsy), degradación
+    graciosa: nota textual en su lugar, sin abortar el envío."""
+    titular = (
         f'<p style="margin:0 0 10px;font-size:13px;color:#0f172a;">'
         f"El <strong>{int(g['concentracion'])}%</strong> de las horas sin "
         f"corriente confirmadas de la semana se concentró en solo "
-        f"<strong>{len(g['filas'])}</strong> circuitos.</p>",
-        '<div style="max-width:640px;">'
-        '<table width="100%" style="border-collapse:collapse;font-size:13px;">',
-    ]
-    for fila in g["filas"]:
-        etiqueta = _truncar(f"{fila['codigo']} · {fila['municipio']}")
-        partes.append(
-            "<tr>"
-            f'<td style="{_ESTILO_ETIQ}padding-right:8px;vertical-align:middle;">'
-            f"{html.escape(etiqueta)}</td>"
-            "<td>"
-            f'<div style="{_ESTILO_PISTA}">'
-            f'<div style="{_ESTILO_BARRA}width:{int(fila["pct"])}%;">&nbsp;</div>'
-            "</div></td>"
-            f'<td style="{_ESTILO_ETIQ}padding-left:8px;text-align:right;'
-            f'vertical-align:middle;">{fila["horas"]:.1f} h</td>'
-            "</tr>")
-    partes.append("</table></div>")
-    return "".join(partes)
+        f"<strong>{int(g['top_n'])}</strong> circuitos.</p>")
+    if not png:
+        return titular + (
+            '<p style="margin:0 0 8px;font-size:13px;color:#0f172a;">'
+            "La distribución completa por circuito no pudo renderizarse como "
+            "imagen en este envío; el detalle está en las tablas de abajo y "
+            "en el bloque de barras del texto plano.</p>")
+    return titular + (
+        f'<img src="cid:{GRAFICO_CID}" '
+        f'alt="Distribución del déficit por circuito" '
+        f'style="width:100%;max-width:{GRAFICO_ANCHO_PX}px;height:auto;'
+        f'border:0;">')
 
 
-def render_html(res):
+def render_html(res, png=None):
     """Correo en HTML: tablas simples con estilos inline, sin JavaScript, sin
-    imágenes externas. Cero referencias fuera del propio contenido."""
+    imágenes externas. Cero referencias fuera del propio contenido. La imagen
+    del gráfico de déficit va incrustada por `cid` (attachment inline que
+    monta el envío); con `png` vacío (matplotlib ausente) la sección muestra
+    la nota textual en su lugar."""
     gen, desde = _cuba(res["generado"]), _cuba(res["desde"])
     encabezado = (
         '<h1 style="font-size:20px;margin:0 0 4px;color:#111;">'
@@ -853,10 +970,11 @@ def render_html(res):
                  "168 h semanales por circuito. Ordenado por horas sin "
                  "corriente, de mayor a menor.")
         + (_seccion("Dónde se soporta el déficit de la capital",
-                    render_grafico_deficit(res["grafico_deficit"]),
-                    "Horas sin corriente confirmadas por parte oficial o "
-                    "señal vecinal; el resto del sistema absorbe el resto "
-                    "del tiempo.")
+                    render_grafico_deficit(res["grafico_deficit"], png),
+                    "Imagen: todos los circuitos del catálogo, de mayor a "
+                    "menor por horas confirmadas sin corriente; rojo = más "
+                    "horas, azul = 0 h (siempre con corriente). Horas "
+                    "confirmadas por parte oficial o señal vecinal.")
            if res.get("grafico_deficit") else "")
         + _seccion("Circuitos con más horas sin corriente", tabla_top_sin,
                    "Top 15 global del periodo, de mayor a menor; solo "
@@ -929,17 +1047,18 @@ def render_texto(res):
                   f"{t['afectados']:.0f} afectados · {t['horas_sin']:.1f} h sin · "
                   f"{t['horas_con']:.1f} h con · {t['pct']:.1f} % con corriente")
 
-    # Gráfico de concentración del déficit, en barras ASCII (misma información
-    # que el gráfico de barras del HTML): longitud proporcional a las horas
-    # del circuito respecto al más afectado, techo de 30 caracteres.
+    # Gráfico de concentración del déficit, en barras ASCII (la imagen PNG del
+    # HTML solo sustituye al gráfico del HTML): top 10 del bloque superior,
+    # longitud proporcional a las horas del circuito respecto al más afectado,
+    # techo de 30 caracteres.
     graf = res.get("grafico_deficit")
     if graf:
         lineas += ["", "DÓNDE SE SOPORTA EL DÉFICIT DE LA CAPITAL",
                    f"  El {int(graf['concentracion'])}% de las horas sin "
                    f"corriente confirmadas de la semana se concentró en solo "
-                   f"{len(graf['filas'])} circuitos."]
+                   f"{int(graf['top_n'])} circuitos."]
         mayor = graf["filas"][0]["horas"]
-        for fila in graf["filas"]:
+        for fila in graf["filas"][:TOP_GRAFICO]:
             etiqueta = _truncar(f"{fila['codigo']} · {fila['municipio']}")
             barra = "█" * max(1, int(round(
                 fila["horas"] * _ANCHO_BARRA_TXT / mayor)))
@@ -1035,10 +1154,11 @@ def asunto_de(res, prueba=False):
 # --------------------------------------------------------------------------
 
 def enviar_mailtrap(asunto, cuerpo_html, cuerpo_texto, remitente, destinatario,
-                    api_key):
+                    api_key, adjuntos=None):
     """Envía por la API de Mailtrap y devuelve el ID de envío. La clave solo
     viaja en el encabezado Authorization: jamás en el cuerpo, en los errores
-    ni en la salida."""
+    ni en la salida. `adjuntos` son attachments del formato de la API
+    (filename, content base64, type, disposition, content_id)."""
     cuerpo = {
         "from": {"email": remitente, "name": NOMBRE_REMITENTE},
         "to": [{"email": destinatario}],
@@ -1046,6 +1166,8 @@ def enviar_mailtrap(asunto, cuerpo_html, cuerpo_texto, remitente, destinatario,
         "html": cuerpo_html,
         "text": cuerpo_texto,
     }
+    if adjuntos:
+        cuerpo["attachments"] = adjuntos
     peticion = urllib.request.Request(
         MAILTRAP_URL,
         data=json.dumps(cuerpo, ensure_ascii=False).encode("utf-8"),
@@ -1075,21 +1197,34 @@ def enviar_mailtrap(asunto, cuerpo_html, cuerpo_texto, remitente, destinatario,
     return ids[0] if ids else "(sin id)"
 
 
-def _previsualizar(asunto, cuerpo_html, cuerpo_texto, destinatario, remitente):
+def _previsualizar(asunto, cuerpo_html, cuerpo_texto, destinatario, remitente,
+                   png=None):
     """--dry-run: escribe la vista previa (fuera del control de versiones) e
     imprime los datos del envío simulado + el comienzo del texto. NUNCA
-    envía ni pide credenciales."""
+    envía ni pide credenciales. El PNG del gráfico (si lo hay) va junto a la
+    vista previa; si no lo hay, se limpia cualquier PNG viejo."""
     os.makedirs(os.path.dirname(PREVIEW_HTML), exist_ok=True)
     with open(PREVIEW_HTML, "w", encoding="utf-8") as f:
         f.write(cuerpo_html)
     with open(PREVIEW_TXT, "w", encoding="utf-8") as f:
         f.write(cuerpo_texto)
+    if png:
+        with open(PREVIEW_PNG, "wb") as f:
+            f.write(png)
+    elif os.path.exists(PREVIEW_PNG):
+        os.remove(PREVIEW_PNG)
     print("Vista previa generada (sin envío):")
     print(f"  Asunto: {asunto}")
     print(f"  Destinatario (simulado): {destinatario}")
     print(f"  Remitente: {remitente}")
     print(f"  HTML: {PREVIEW_HTML} ({os.path.getsize(PREVIEW_HTML) / 1024:.1f} KB)")
     print(f"  Texto: {PREVIEW_TXT} ({os.path.getsize(PREVIEW_TXT) / 1024:.1f} KB)")
+    if png:
+        print(f"  Imagen: {PREVIEW_PNG} "
+              f"({os.path.getsize(PREVIEW_PNG) / 1024:.1f} KB)")
+    else:
+        print("  Imagen: (sin PNG — matplotlib no disponible o semana sin "
+              "cortes)")
     print()
     print("\n".join(cuerpo_texto.splitlines()[:24]))
     return 0
@@ -1125,14 +1260,18 @@ def main(argv=None):
         sys.exit(f"Error: {CATALOGO_FILE} no trae circuitos")
 
     res = agregar(catalogo_doc, horas, estado, partes, canal, conteo_usuario)
-    cuerpo_html = render_html(res)
+    # La imagen del gráfico se genera UNA vez: el mismo PNG va a la vista
+    # previa, al attachment inline del envío y decide si el HTML muestra la
+    # imagen (cid) o la nota textual (matplotlib ausente / semana sin cortes).
+    png = generar_grafico_deficit(res.get("grafico_deficit"))
+    cuerpo_html = render_html(res, png)
     cuerpo_texto = render_texto(res)
     destinatario, remitente, prueba = _config_env()
     asunto = asunto_de(res, prueba)
 
     if args.dry_run:
         return _previsualizar(asunto, cuerpo_html, cuerpo_texto,
-                              destinatario, remitente)
+                              destinatario, remitente, png)
 
     api_key = (os.environ.get("MAILTRAP_API_KEY") or "").strip()
     if not api_key:
@@ -1140,9 +1279,19 @@ def main(argv=None):
               "se envía nada (crea el secret del sistema de CI o expórtala "
               "localmente; jamás la escribas en archivos)", file=sys.stderr)
         return 1
+    adjuntos = None
+    if png:
+        adjuntos = [{
+            "filename": GRAFICO_FILENAME,
+            "content": base64.b64encode(png).decode("ascii"),
+            "type": "image/png",
+            "disposition": "inline",
+            "content_id": GRAFICO_CID,
+        }]
     try:
         id_envio = enviar_mailtrap(asunto, cuerpo_html, cuerpo_texto,
-                                   remitente, destinatario, api_key)
+                                   remitente, destinatario, api_key,
+                                   adjuntos)
     except urllib.error.HTTPError as e:
         print(f"Error {e.code} de Mailtrap: "
               f"{e.read().decode('utf-8', 'replace')[:500]}", file=sys.stderr)

@@ -3,16 +3,16 @@
 Carga scripts/resumen_semanal.py por importlib (sin red, sin variables de
 entorno, como el resto de espejos herméticos de la suite) y verifica con
 datos sintéticos: horas sin corriente por municipio y resumen semanal, tops
-globales, el gráfico de concentración del déficit (barras HTML/CSS y su
-versión ASCII), clasificación de tipos de avería del texto del canal,
-roturas de la ventana, señales vecinales, circuitos que no se están
-afectando (criterio del mantenedor) y las tablas legibles de estado del
-sistema y roturas.
+globales, el gráfico de distribución del déficit (datos ordenados con
+gradiente, PNG con matplotlib si está disponible y su bloque ASCII del
+texto), clasificación de tipos de avería del texto del canal, roturas de la
+ventana, señales vecinales, circuitos que no se están afectando (criterio
+del mantenedor) y las tablas legibles de estado del sistema y roturas.
 py3.9, offline.
 """
 
 import importlib.util
-import re
+import struct
 import unittest
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -390,45 +390,57 @@ class NoAfectadosYVigenciaTest(unittest.TestCase):
 
 
 class GraficoDeficitTest(unittest.TestCase):
-    """Datos del gráfico 'Dónde se soporta el déficit de la capital': top 10
-    por horas confirmadas, % respecto al mayor y concentración sobre el
-    total de la semana."""
+    """Datos del gráfico 'Dónde se soporta el déficit de la capital': TODOS
+    los circuitos catalogados ordenados DESC por horas confirmadas (incluidos
+    los de 0 h), gradiente rojo→azul y concentración del top 10 sobre el
+    TOTAL de horas sin corriente de la semana."""
 
     @staticmethod
     def catalogo_grafico():
-        """12 circuitos de un mismo municipio, horas 48, 44, …, 4."""
+        """14 circuitos de un mismo municipio: 12 con horas en la ventana
+        (48, 44, …, 4) y 2 sin registros de corte (0 h — siempre con
+        corriente, parte del mensaje visual)."""
         return [{"codigo": f"G{i:02d}", "municipio": "Playa"}
-                for i in range(12)]
+                for i in range(14)]
 
     @classmethod
     def horas_grafico(cls, n=12):
-        """Horas del catálogo anterior: G00 48 h … G11 4 h, todas en ventana."""
+        """Horas del catálogo anterior: G00 48 h … G11 4 h en ventana;
+        G12 y G13 sin registros (0 h)."""
         return {"por_dia": {f"G{i:02d}": {str(DIA0): float(48 - 4 * i)}
                             for i in range(n)}}
 
-    def test_top10_orden_desc_y_recorte(self):
-        g = MOD.datos_grafico_deficit(self.catalogo_grafico(),
-                                      self.horas_grafico(), DIA0, DIA1)
-        self.assertEqual(len(g["filas"]), 10)
+    @classmethod
+    def datos_grafico(cls):
+        return MOD.datos_grafico_deficit(
+            cls.catalogo_grafico(), cls.horas_grafico(), DIA0, DIA1)
+
+    def test_todos_los_circuitos_orden_desc_incluye_ceros(self):
+        g = self.datos_grafico()
+        # TODOS los circuitos del catálogo, incluidos los de 0 h.
+        self.assertEqual(len(g["filas"]), 14)
         horas = [f["horas"] for f in g["filas"]]
         self.assertEqual(horas, sorted(horas, reverse=True))
         self.assertEqual(horas[0], 48.0)
-        self.assertEqual(horas[-1], 12.0)   # G10 (8 h) y G11 (4 h) quedan fuera
+        self.assertEqual(horas[-2:], [0.0, 0.0])   # G12 y G13, siempre con corriente
         self.assertEqual([f["codigo"] for f in g["filas"]][:3],
                          ["G00", "G01", "G02"])
+        self.assertEqual([f["codigo"] for f in g["filas"]][-2:],
+                         ["G12", "G13"])
 
-    def test_pct_del_mayor(self):
-        g = MOD.datos_grafico_deficit(self.catalogo_grafico(),
-                                      self.horas_grafico(), DIA0, DIA1)
-        self.assertEqual(g["filas"][0]["pct"], 100)         # el mayor: barra llena
-        self.assertEqual(g["filas"][1]["pct"], round(44 * 100 / 48))   # 92
-        self.assertEqual(g["filas"][9]["pct"], round(12 * 100 / 48))   # 25
+    def test_gradiente_primera_barra_roja_ultima_azul(self):
+        g = self.datos_grafico()
+        self.assertEqual(g["filas"][0]["color"], "#dc2626")   # máx: rojo
+        self.assertEqual(g["filas"][-1]["color"], "#2563eb")  # 0 h: azul
+        # Interpolación RGB lineal al 50% del máximo (G06 con 24 h).
+        self.assertEqual(g["filas"][6]["color"], "#804488")
 
-    def test_concentracion_sobre_el_total_de_la_semana(self):
-        # El top 10 suma 300 h; el total de la semana (con G10 y G11) es 312 h.
-        g = MOD.datos_grafico_deficit(self.catalogo_grafico(),
-                                      self.horas_grafico(), DIA0, DIA1)
-        self.assertAlmostEqual(sum(f["horas"] for f in g["filas"]), 300.0)
+    def test_concentracion_denominador_total_semanal(self):
+        # El top 10 suma 300 h; el total de la semana (con G10, G11 y los
+        # de 0 h) es 312 h — el denominador correcto.
+        g = self.datos_grafico()
+        self.assertEqual(g["top_n"], 10)
+        self.assertAlmostEqual(sum(f["horas"] for f in g["filas"][:10]), 300.0)
         self.assertAlmostEqual(g["total"], 312.0)
         self.assertEqual(g["concentracion"], round(300 * 100 / 312))   # 96
 
@@ -445,7 +457,8 @@ class GraficoDeficitTest(unittest.TestCase):
         g = MOD.datos_grafico_deficit(self.catalogo_grafico()[:3],
                                       self.horas_grafico(3), DIA0, DIA1)
         self.assertEqual(len(g["filas"]), 3)
-        self.assertEqual(g["concentracion"], 100)  # todo el corte está en el gráfico
+        self.assertEqual(g["top_n"], 3)
+        self.assertEqual(g["concentracion"], 100)  # todo el corte está en el top
 
     def test_empate_por_municipio_luego_codigo(self):
         cat = [{"codigo": "C-B", "municipio": "Cerro"},
@@ -459,15 +472,49 @@ class GraficoDeficitTest(unittest.TestCase):
                           ("Playa", "P-A"), ("Playa", "P-B")])
 
 
-class GraficoDeficitRenderTest(unittest.TestCase):
-    """Render del gráfico: divs de barra con los anchos esperados en el HTML
-    y barras ASCII en el texto; la sección desaparece si no hubo cortes."""
+class GraficoDeficitPngTest(unittest.TestCase):
+    """Generación del PNG con matplotlib (backend Agg). Si matplotlib no
+    está disponible en el entorno, los tests que lo exigen se saltan
+    limpios (mismo patrón que 'git no disponible')."""
 
-    @classmethod
-    def datos_grafico(cls):
+    @staticmethod
+    def datos_grafico():
         return MOD.datos_grafico_deficit(
             GraficoDeficitTest.catalogo_grafico(),
             GraficoDeficitTest.horas_grafico(), DIA0, DIA1)
+
+    def _requiere_matplotlib(self):
+        try:
+            import matplotlib  # noqa: F401
+        except ImportError:
+            self.skipTest("matplotlib no disponible")
+
+    def test_png_valido_dimensiones_y_tamano(self):
+        self._requiere_matplotlib()
+        png = MOD.generar_grafico_deficit(self.datos_grafico())
+        self.assertIsNotNone(png)
+        self.assertTrue(png.startswith(b"\x89PNG"))
+        self.assertGreater(len(png), 0)
+        # Techo del spec: <= 300 KB.
+        self.assertLessEqual(len(png), MOD.GRAFICO_LIMITE_BYTES)
+        # Dimensiones exactas 1400×420 px (IHDR: ancho y alto big-endian).
+        ancho, alto = struct.unpack(">II", png[16:24])
+        self.assertEqual((ancho, alto),
+                         (MOD.GRAFICO_ANCHO_PX, MOD.GRAFICO_ALTO_PX))
+
+    def test_sin_datos_devuelve_none(self):
+        self.assertIsNone(MOD.generar_grafico_deficit(None))
+        self.assertIsNone(MOD.generar_grafico_deficit({"filas": []}))
+
+
+class GraficoDeficitRenderTest(unittest.TestCase):
+    """Render del gráfico: titular de concentración ENCIMA de la imagen
+    incrustada por cid en el HTML (o nota textual sin matplotlib) y bloque
+    ASCII del top 10 en el texto; la sección desaparece si no hubo cortes."""
+
+    @classmethod
+    def datos_grafico(cls):
+        return GraficoDeficitTest.datos_grafico()
 
     @staticmethod
     def res_base(grafico):
@@ -502,32 +549,37 @@ class GraficoDeficitRenderTest(unittest.TestCase):
             "mw": 800.0,
         }
 
-    def test_html_contiene_divs_de_barra_con_anchos_esperados(self):
-        g = self.datos_grafico()
-        h = MOD.render_html(self.res_base(g))
+    def test_html_titular_encima_y_img_por_cid(self):
+        h = MOD.render_html(self.res_base(self.datos_grafico()), png=b"PNG")
         self.assertIn("Dónde se soporta el déficit de la capital", h)
-        # Subtítulo con la concentración y la cantidad de circuitos.
+        # Titular con la concentración (denominador correcto) y el N del top.
         self.assertIn("<strong>96%</strong>", h)
         self.assertIn("se concentró en solo <strong>10</strong> circuitos", h)
-        # Barras: div interior con el color del dato y width esperado.
-        self.assertIn('background:#dc2626;height:20px;border-radius:3px;'
-                      'font-size:1px;line-height:20px;width:100%;">', h)
-        self.assertIn('width:92%;">', h)
-        self.assertIn('width:25%;">', h)
-        self.assertIn('background:#f1f5f9;height:20px;border-radius:3px;">', h)
-        # Etiqueta y horas en texto plano, fuera de la barra.
-        self.assertIn("G00 · Playa", h)
-        self.assertIn("48.0 h", h)
-        # Los únicos anchos en % del documento son los de las barras, DESC.
-        anchos = [float(a) for a in re.findall(r"width:([\d.]+)%", h)]
-        self.assertEqual(len(anchos), 10)
-        self.assertEqual(anchos, sorted(anchos, reverse=True))
+        # La imagen incrustada por cid, con el alt del spec.
+        self.assertIn('<img src="cid:grafico-deficit" '
+                      'alt="Distribución del déficit por circuito" '
+                      'style="width:100%;max-width:1400px;height:auto;'
+                      'border:0;">', h)
+        # El titular queda ENCIMA de la imagen.
+        self.assertLess(h.index("El <strong>96%</strong>"),
+                        h.index("cid:grafico-deficit"))
+        # Las barras CSS del bug anterior desaparecieron.
+        self.assertNotIn("width:92%", h)
+        self.assertNotIn("background:#f1f5f9;height:20px", h)
+        self.assertNotIn("width:100%;\">&nbsp;</div>", h)
 
-    def test_texto_barras_ascii(self):
+    def test_html_sin_matplotlib_nota_textual(self):
+        h = MOD.render_html(self.res_base(self.datos_grafico()), png=None)
+        self.assertNotIn("cid:grafico-deficit", h)
+        self.assertIn("<strong>96%</strong>", h)  # el titular se mantiene
+        self.assertIn("no pudo renderizarse como imagen", h)
+
+    def test_texto_barras_ascii_top10(self):
         txt = MOD.render_texto(self.res_base(self.datos_grafico()))
         self.assertIn("DÓNDE SE SOPORTA EL DÉFICIT DE LA CAPITAL", txt)
         self.assertIn("El 96% de las horas sin corriente confirmadas de la "
                       "semana se concentró en solo 10 circuitos.", txt)
+        # El bloque ASCII conserva el top 10 aunque `filas` traiga los 14.
         lineas = [l for l in txt.splitlines() if "█" in l]
         self.assertEqual(len(lineas), 10)
         self.assertIn("█" * 30, lineas[0])   # G00: 48 h → barra llena
@@ -535,13 +587,13 @@ class GraficoDeficitRenderTest(unittest.TestCase):
         self.assertIn("48.0 h", lineas[0])
         self.assertIn("12.0 h", lineas[9])
         self.assertIn("G00 · Playa", lineas[0])
-        # Nota al pie, igual que en el HTML.
+        # Nota al pie.
         self.assertIn("el resto del sistema absorbe el resto del tiempo.", txt)
 
     def test_seccion_omitida_sin_cortes(self):
         h = MOD.render_html(self.res_base(None))
         self.assertNotIn("Dónde se soporta el déficit", h)
-        self.assertEqual(re.findall(r"width:([\d.]+)%", h), [])
+        self.assertNotIn("cid:grafico-deficit", h)
         txt = MOD.render_texto(self.res_base(None))
         self.assertNotIn("DÓNDE SE SOPORTA", txt)
         self.assertNotIn("█", txt)

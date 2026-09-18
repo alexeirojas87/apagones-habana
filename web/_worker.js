@@ -811,6 +811,12 @@ ${JSON.stringify(resumenActual(ctx))}`;
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // Dominio propio (regla del mantenedor): el host de producción en
+    // pages.dev redirige 301 al dominio canónico. Los previews de branches
+    // (<hash>.apagones-habana.pages.dev) NO se tocan.
+    if (url.hostname === "apagones-habana.pages.dev") {
+      return Response.redirect(`https://apagoneshabana.lat${url.pathname}${url.search}`, 301);
+    }
     if (url.pathname === "/api/sugerencia" && request.method === "POST") return crearSugerencia(request, env);
     if (url.pathname === "/api/reporte" && request.method === "POST") return crearReporte(request, env);
     if (url.pathname === "/api/reporte" && request.method === "OPTIONS") {

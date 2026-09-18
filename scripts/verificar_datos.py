@@ -44,7 +44,7 @@ import urllib.request
 from datetime import datetime, timedelta, timezone
 
 RAIZ = os.path.join(os.path.dirname(__file__), "..")
-BASE = os.environ.get("APAGONES_URL", "https://apagones-habana.pages.dev")
+BASE = os.environ.get("APAGONES_URL", "https://apagoneshabana.lat")
 CACHE_GEO = os.path.join(RAIZ, "data", "geocache_averias.json")
 CACHE_LINEAS = os.path.join(RAIZ, "data", "geocache_circuitos_lineas.json")
 CACHE_INTENTOS = os.path.join(RAIZ, "data", "geocache_lineas_intentos.json")

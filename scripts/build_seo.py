@@ -38,7 +38,7 @@ RAIZ = os.path.join(os.path.dirname(__file__), "..")
 WEB = os.path.join(RAIZ, "web")
 DATOS = os.path.join(WEB, "data")
 
-SITE_BASE = "https://apagones-habana.pages.dev"
+SITE_BASE = "https://apagoneshabana.lat"
 HORA_CUBA = timezone(timedelta(hours=-4))  # La Habana, horario único desde 2026
 
 # Pares de marcadores de las regiones inyectables (vacías en el git commiteado).

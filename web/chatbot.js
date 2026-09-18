@@ -3,7 +3,7 @@
 
   if (document.getElementById("chatbot-widget")) return;
 
-  const API = location.hostname.endsWith("pages.dev") ? "" : "https://apagones-habana.pages.dev";
+  const API = location.hostname.endsWith("pages.dev") || location.hostname === "apagoneshabana.lat" || location.hostname.endsWith(".apagoneshabana.lat") ? "" : "https://apagoneshabana.lat";
 
   var css = document.createElement("style");
   // Paleta en tokens compartidos (D9): el widget sigue el tema claro/oscuro

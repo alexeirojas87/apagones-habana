@@ -78,7 +78,7 @@ const MOSTRAR_PROTEGIDAS = true;
 
 // La API de reportes vive en el worker de Cloudflare Pages; si la web se sirve
 // desde otro host (github.io), se apunta al dominio principal.
-const API_BASE = location.hostname.endsWith("pages.dev") ? "" : "https://apagones-habana.pages.dev";
+const API_BASE = location.hostname.endsWith("pages.dev") || location.hostname === "apagoneshabana.lat" || location.hostname.endsWith(".apagoneshabana.lat") ? "" : "https://apagoneshabana.lat";
 
 // Umbral del estado "desconocido" (regla del mantenedor de las 48 h): TODO
 // circuito con estado conocido (sin O con servicio, tenga las veces que

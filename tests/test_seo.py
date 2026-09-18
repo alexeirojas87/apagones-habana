@@ -79,7 +79,7 @@ class SlugTest(unittest.TestCase):
 
 class SiteBaseTest(unittest.TestCase):
     def test_valor_por_defecto(self):
-        self.assertEqual(MOD.SITE_BASE, "https://apagones-habana.pages.dev")
+        self.assertEqual(MOD.SITE_BASE, "https://apagoneshabana.lat")
 
     def test_una_linea_cambia_canonical_og_sitemap_y_robots_junto(self):
         original = MOD.SITE_BASE

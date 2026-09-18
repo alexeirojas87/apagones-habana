@@ -1,22 +1,4 @@
 {
- "81655": {
-  "fecha": "2026-09-11T00:04:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Guanabacoa, queda repara la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección"
- },
- "81652": {
-  "fecha": "2026-09-11T00:01:47+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "PG940"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚡️Consumidores del municipio Arroyo Naranjo, se localiza AVERÍA por PRIMARIO PARTIDO en: Cantera e/ Rosario y Final, Guinera.⚡️🚧"
- },
  "81666": {
   "fecha": "2026-09-11T01:00:42+00:00",
   "tipo_llm": "deficit",
@@ -1346,5 +1328,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:01PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP319:Cuadrante d"
+ },
+ "83742": {
+  "fecha": "2026-09-17T23:59:24+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A708",
+   "A800",
+   "A940",
+   "D860"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 7:31PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉D870:Zona Industr"
  }
 }

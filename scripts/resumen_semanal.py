@@ -84,7 +84,7 @@ PREVIEW_PNG = os.path.join(RAIZ, "web", "data", ".resumen_preview.png")
 MAILTRAP_URL = "https://send.api.mailtrap.io/api/send"
 NOMBRE_REMITENTE = "Resumen Eléctrico"
 DESTINATARIO_DEFECTO = "despacho@presidencia.gob.cu"
-REMITENTE_DEFECTO = "resumen@demomailtrap.co"  # dominio sandbox de Mailtrap
+REMITENTE_DEFECTO = "resumen@apagoneshabana.lat"  # dominio propio verificado en Mailtrap
 
 VENTANA_DIAS = 7
 HORAS_SEMANA = 24.0 * VENTANA_DIAS  # 168 h: techo semanal por circuito

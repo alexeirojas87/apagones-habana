@@ -1,13 +1,4 @@
 {
- "81738": {
-  "fecha": "2026-09-11T10:40:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A318"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Cotorro, queda repara la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección: C"
- },
  "81751": {
   "fecha": "2026-09-11T11:54:02+00:00",
   "tipo_llm": "averia",
@@ -1411,5 +1402,26 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:08 AM se afectan 294MW distribuidos en 104 circuitos de distribución. A continuación, "
+ },
+ "83856": {
+  "fecha": "2026-09-18T10:37:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A708",
+   "A800",
+   "A940",
+   "D860"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 2:50 AM quedó restablecido el servicio en los siguientes circuitos: 👉D870:Zona Industrial Wajay, Zona Franca, Re"
+ },
+ "83855": {
+  "fecha": "2026-09-18T10:32:16+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 6 :12AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz15: Calles 35 "
  }
 }

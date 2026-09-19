@@ -1248,5 +1248,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:15 PM se afectan 377 MW distribuidos en 139 circuitos de distribución. A continuación,"
+ },
+ "84407": {
+  "fecha": "2026-09-19T23:16:38+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P319"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 7:15PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P322: Alrededores"
  }
 }

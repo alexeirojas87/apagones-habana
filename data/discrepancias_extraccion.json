@@ -1,13 +1,4 @@
 {
- "82204": {
-  "fecha": "2026-09-12T18:57:22+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Boyeros, por DISPARO DEL CIRCUITO se afecta el servicio eléctrico en : 👉A820: Repartos 250, Miraflores Viejo, Embil, Altura de Emb"
- },
  "82222": {
   "fecha": "2026-09-12T19:18:02+00:00",
   "tipo_llm": "restablecimiento",

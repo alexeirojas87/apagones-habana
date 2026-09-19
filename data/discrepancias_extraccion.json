@@ -1316,5 +1316,16 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 09:24AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Alrededores de calles Infanta, Ayestarán"
+ },
+ "84124": {
+  "fecha": "2026-09-19T13:33:00+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "‼️Consumidores del municipio Cerro, por disparo del circuito se afecta el servicio eléctrico en: 👉P325: Alrededores de calles Infanta, Ayestarán, Zequeira, Desa"
  }
 }

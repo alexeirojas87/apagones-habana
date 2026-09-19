@@ -1,13 +1,4 @@
 {
- "82295": {
-  "fecha": "2026-09-12T22:17:16+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "123"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉123 entre 100 y 100 C.🛑⚡️"
- },
  "82306": {
   "fecha": "2026-09-12T22:54:03+00:00",
   "tipo_llm": "afectacion",
@@ -1257,5 +1248,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:04PM se afectó el servicio eléctrico por déficit de generación en los siguiente circuito: 👉A1006: Repartos San"
+ },
+ "84383": {
+  "fecha": "2026-09-19T22:26:56+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A980",
+   "D633"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:15 PM se afectan 377 MW distribuidos en 139 circuitos de distribución. A continuación,"
  }
 }

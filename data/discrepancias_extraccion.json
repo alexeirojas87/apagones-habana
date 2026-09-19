@@ -1,34 +1,4 @@
 {
- "82222": {
-  "fecha": "2026-09-12T19:18:02+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️✅Consumidores del municipio Boyeros, se restableció el DISPARO DE CIRCUITO que afectaba el servicio eléctrico en : 👉A820: Repartos 250, Miraflores Viejo, Embi"
- },
- "82220": {
-  "fecha": "2026-09-12T19:16:40+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1465",
-   "A708"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías Secundarias por Transformadores Dañados existentes hasta el momento en los siguientes municipios: 📌Boyeros: 👉Calle 2da entre Embil y Pasaje B. 👉Calle 6"
- },
- "82217": {
-  "fecha": "2026-09-12T19:13:04+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 02:59 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta A"
- },
  "82263": {
   "fecha": "2026-09-12T20:38:16+00:00",
   "tipo_llm": "afectacion",
@@ -1277,5 +1247,15 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 11:41 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores "
+ },
+ "84270": {
+  "fecha": "2026-09-19T19:14:01+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "2204",
+   "A820"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Boyeros pertenecientes al circuito A820, que por condiciones en la Subestación se ha transferido temporalmente parte d"
  }
 }

@@ -1,13 +1,4 @@
 {
- "82096": {
-  "fecha": "2026-09-12T12:55:59+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C10"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡ Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA que afecta el servicio eléctrico en: 👉Palmar / Chaple y Suzarte.⚡🛑"
- },
  "82125": {
   "fecha": "2026-09-12T14:20:16+00:00",
   "tipo_llm": "averia",

@@ -1,13 +1,4 @@
 {
- "82125": {
-  "fecha": "2026-09-12T14:20:16+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A708"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️ Consumidores del municipio Boyeros, se encuentran afectados por AVERÍA SECUNDARIA DE TRANSFORMADOR DAÑADO en las siguientes direcciones: 👉Calle 180 entre 41"
- },
  "82168": {
   "fecha": "2026-09-12T16:55:51+00:00",
   "tipo_llm": "averia",

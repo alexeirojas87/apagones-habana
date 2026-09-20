@@ -1328,5 +1328,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:31 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1227: Calle 14"
+ },
+ "84791": {
+  "fecha": "2026-09-20T18:40:46+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "L317",
+   "L322"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L322 que se encuentra transferida temporalmente la carga al circuito L317 . Una "
  }
 }

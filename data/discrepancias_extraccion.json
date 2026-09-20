@@ -1,22 +1,4 @@
 {
- "82485": {
-  "fecha": "2026-09-13T22:17:08+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "MB920"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06: 18PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉.MB920: Alturas de"
- },
- "82479": {
-  "fecha": "2026-09-13T22:04:05+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR840"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 5:58 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R451: Calles Pe"
- },
  "82497": {
   "fecha": "2026-09-13T22:48:13+00:00",
   "tipo_llm": "afectacion",

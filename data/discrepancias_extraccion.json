@@ -1258,5 +1258,15 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 8:07 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉PZ17: Hotel Gran Ashton. 👉P325: A"
+ },
+ "84456": {
+  "fecha": "2026-09-20T01:00:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D631",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 306 MW distribuidos en 97 circuitos de distribución. A continuación, "
  }
 }

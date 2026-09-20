@@ -1313,5 +1313,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧‼️Consumidores del municipio San Miguel del Padrón debido a una avería en el interruptor en la Subestación Melones se encuentra parte del circuito H442 transfe"
+ },
+ "84705": {
+  "fecha": "2026-09-20T14:02:52+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "R464"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚠️Consumidores del municipio Regla debido a la AVERÍA por CABLE FALLO se encuentra transferida la carga del circuito R464 al los siguientes circuitos : 👉 Gc15 "
  }
 }

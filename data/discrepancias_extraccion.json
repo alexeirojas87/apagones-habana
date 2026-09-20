@@ -1,14 +1,4 @@
 {
- "82476": {
-  "fecha": "2026-09-13T21:57:08+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL53",
-   "AL56"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 5:49 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉.🚨📣AL53: Zonas 1"
- },
  "82485": {
   "fecha": "2026-09-13T22:17:08+00:00",
   "tipo_llm": "afectacion",
@@ -26,15 +16,6 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:58 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R451: Calles Pe"
- },
- "82478": {
-  "fecha": "2026-09-13T22:01:17+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR830"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 5:50 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR 830: Reparto"
  },
  "82497": {
   "fecha": "2026-09-13T22:48:13+00:00",

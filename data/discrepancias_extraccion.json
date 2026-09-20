@@ -1268,5 +1268,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 306 MW distribuidos en 97 circuitos de distribución. A continuación, "
+ },
+ "84476": {
+  "fecha": "2026-09-20T01:52:20+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1590"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Boyeros, se ha localizado avería por primario partido en la entrada de la cuchilla afectando el servicio eléctrico en los siguientes"
  }
 }

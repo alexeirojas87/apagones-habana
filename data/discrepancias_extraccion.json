@@ -1303,5 +1303,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 144 MW distribuidos en 51 circuitos de distribución. A continuación, "
+ },
+ "84702": {
+  "fecha": "2026-09-20T13:52:46+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H442",
+   "H443"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧‼️Consumidores del municipio San Miguel del Padrón debido a una avería en el interruptor en la Subestación Melones se encuentra parte del circuito H442 transfe"
  }
 }

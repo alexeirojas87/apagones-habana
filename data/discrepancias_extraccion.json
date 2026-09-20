@@ -1247,5 +1247,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 7:15PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P322: Alrededores"
+ },
+ "84442": {
+  "fecha": "2026-09-20T00:10:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 8:07 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉PZ17: Hotel Gran Ashton. 👉P325: A"
  }
 }

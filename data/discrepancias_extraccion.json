@@ -1277,5 +1277,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Boyeros, se ha localizado avería por primario partido en la entrada de la cuchilla afectando el servicio eléctrico en los siguientes"
+ },
+ "84538": {
+  "fecha": "2026-09-20T03:41:26+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 11:41PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
  }
 }

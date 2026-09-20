@@ -1283,5 +1283,27 @@
   ],
   "solo_regex": [],
   "extracto": "📣Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H442, que por condiciones en la Subestación se ha transferido temporal"
+ },
+ "84614": {
+  "fecha": "2026-09-20T06:45:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 2:42 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
+ },
+ "84607": {
+  "fecha": "2026-09-20T06:32:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1175",
+   "1249",
+   "A1217"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 02:23AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉1170: A1217: 1175: 1249 📌Usted pu"
  }
 }

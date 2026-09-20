@@ -1319,5 +1319,14 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 10:28 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta"
+ },
+ "84739": {
+  "fecha": "2026-09-20T16:22:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Arroyo Naranjo, se afecta el servicio eléctrico por avería secundaria de transformador dañado en: 2da entre Camilo Cienfuegos y Adel"
  }
 }

@@ -1322,5 +1322,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚠️Consumidores del municipio Regla debido a la AVERÍA por CABLE FALLO se encuentra transferida la carga del circuito R464 al los siguientes circuitos : 👉 Gc15 "
+ },
+ "84718": {
+  "fecha": "2026-09-20T14:32:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:28 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta"
  }
 }

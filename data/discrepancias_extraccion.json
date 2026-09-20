@@ -1,13 +1,4 @@
 {
- "82451": {
-  "fecha": "2026-09-13T19:51:53+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C14"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Cerro , queda reparada la Avería Primaria, que afectaba el servicio eléctrico en la siguiente dirección: 👉Piñeira Esquina Vista Herm"
- },
  "82461": {
   "fecha": "2026-09-13T21:22:56+00:00",
   "tipo_llm": "restablecimiento",
@@ -1329,5 +1320,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L322 que se encuentra transferida temporalmente la carga al circuito L317 . Una "
+ },
+ "84818": {
+  "fecha": "2026-09-20T19:47:32+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "MR450",
+   "R464"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro ✔️Municipio : San Mig"
  }
 }

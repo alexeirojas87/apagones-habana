@@ -1,13 +1,4 @@
 {
- "82704": {
-  "fecha": "2026-09-14T18:28:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1280"
-  ],
-  "solo_regex": [],
-  "extracto": "⚠️🚧Consumidores del municipio Marianao, se encuentran afectados por una VÍA LIBRE DE EMERGENCIA en la Subestación que afecta el servicio eléctrico en el siguien"
- },
  "82710": {
   "fecha": "2026-09-14T19:06:14+00:00",
   "tipo_llm": "afectacion",

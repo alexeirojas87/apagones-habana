@@ -1,13 +1,4 @@
 {
- "82691": {
-  "fecha": "2026-09-14T17:49:13+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "RA56"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Regla, debido a una Avería por Primario Partido se afecta el servicio eléctrico en la siguiente dirección: Calixto García entre Ag"
- },
  "82704": {
   "fecha": "2026-09-14T18:28:19+00:00",
   "tipo_llm": "afectacion",
@@ -1238,5 +1229,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:05 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉A1547:Repartos: La Castellana, Las Guásim"
+ },
+ "85157": {
+  "fecha": "2026-09-21T17:45:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P318",
+   "P322"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 13:30 PM quedó restablecido el servicio en los siguientes circuitos: 👉Pz13: Zapata desde Carlos Manuel de Césped"
  }
 }

@@ -1220,5 +1220,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
+ },
+ "85136": {
+  "fecha": "2026-09-21T16:46:03+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:37 PM se afectan 380MW distribuidos en 108 circuitos de distribución. A continuación, "
  }
 }

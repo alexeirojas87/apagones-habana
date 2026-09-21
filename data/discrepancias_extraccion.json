@@ -1,23 +1,4 @@
 {
- "82611": {
-  "fecha": "2026-09-14T10:29:54+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D1372",
-   "D1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚠️ Averías existentes hasta el momento: 🚨Subestación Apolo: (continúan las labores) 🚨Subestación: Afectando Calabazar( D1380 y D1372) 🚨Avería Secundaria: 💥10 d"
- },
- "82610": {
-  "fecha": "2026-09-14T10:15:14+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "GC11"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕⚡Informamos a los clientes del municipio Guanabacoa que se encuentran afectados por un Disparo del Circuito en la siguiente. 👉GC11: Reparto. Garrido,Alrededore"
- },
  "82677": {
   "fecha": "2026-09-14T16:10:16+00:00",
   "tipo_llm": "averia",
@@ -1193,5 +1174,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:30 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉1170: Calle 42 "
+ },
+ "85039": {
+  "fecha": "2026-09-21T10:14:41+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 245 MW distribuidos en 94 circuitos de distribución. A continuación, "
+ },
+ "85035": {
+  "fecha": "2026-09-21T10:02:07+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "MB920"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 📍Primarias ✔️Municipi"
  }
 }

@@ -1247,5 +1247,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:10 PM se afectan 215MW distribuidos en 81 circuitos de distribución. A continuación, s"
+ },
+ "85219": {
+  "fecha": "2026-09-21T21:03:50+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "114"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑💥Consumidores del municipio Marianao , se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉 114 Ciclo Vías Esquina 119.💥🛑"
  }
 }

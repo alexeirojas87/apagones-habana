@@ -1,13 +1,4 @@
 {
- "82508": {
-  "fecha": "2026-09-13T23:58:32+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ16"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:49 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP319: Cuadrant"
- },
  "82510": {
   "fecha": "2026-09-14T00:10:52+00:00",
   "tipo_llm": "restablecimiento",

@@ -1220,5 +1220,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 10:38 AM quedó restablecido el servicio en los siguientes circuitos: 👉D1380:Repartos: Berenguer, Altura de Calab"
+ },
+ "85115": {
+  "fecha": "2026-09-21T15:48:05+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  }
 }

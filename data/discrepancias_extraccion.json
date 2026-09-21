@@ -1192,5 +1192,24 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 📍Primarias ✔️Municipi"
+ },
+ "85080": {
+  "fecha": "2026-09-21T13:59:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 09:28 AM quedó restablecido el servicio en el siguiente circuito: 👉 CPP17: Alrededores de calles Puerta Cerrada "
+ },
+ "85079": {
+  "fecha": "2026-09-21T13:42:26+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:40 AM se afectan 241 MW distribuidos en 91 circuitos de distribución. A continuación, "
  }
 }

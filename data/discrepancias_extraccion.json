@@ -1211,5 +1211,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:40 AM se afectan 241 MW distribuidos en 91 circuitos de distribución. A continuación, "
+ },
+ "85096": {
+  "fecha": "2026-09-21T14:53:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1372"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:38 AM quedó restablecido el servicio en los siguientes circuitos: 👉D1380:Repartos: Berenguer, Altura de Calab"
  }
 }

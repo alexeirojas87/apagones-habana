@@ -1,13 +1,4 @@
 {
- "83011": {
-  "fecha": "2026-09-15T16:01:08+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 154 MW distribuidos en 48 circuitos de distribución. A continuación, "
- },
  "83017": {
   "fecha": "2026-09-15T16:10:53+00:00",
   "tipo_llm": "otro",
@@ -1294,5 +1285,23 @@
   ],
   "solo_regex": [],
   "extracto": ":🚨📣Informamos a la población que a partir de las 06:33 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alrede"
+ },
+ "85548": {
+  "fecha": "2026-09-22T15:40:02+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "R454"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Guanabacoa, se localiza Avería por Poste Partido afectado el servicio eléctrico en los siguientes repartos: Mañana, Valero, Vía Bl"
+ },
+ "85547": {
+  "fecha": "2026-09-22T15:38:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Arroyo Naranjo, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba la siguiente dirección: 2da e/ Camilo Cien"
  }
 }

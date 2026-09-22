@@ -8,15 +8,6 @@
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 09:48PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318: Placencia "
  },
- "82783": {
-  "fecha": "2026-09-15T01:01:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P327"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 272 MW distribuidos en 73 circuitos de distribución. A continuación, "
- },
  "82839": {
   "fecha": "2026-09-15T03:30:13+00:00",
   "tipo_llm": "restablecimiento",
@@ -1256,5 +1247,15 @@
   ],
   "solo_regex": [],
   "extracto": "🟢✔️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba la siguiente dirección: 👉 236/247 y 249,Abel Sa"
+ },
+ "85277": {
+  "fecha": "2026-09-22T01:28:13+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ19",
+   "PZ4"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 09:11 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz7:Cuadrante d"
  }
 }

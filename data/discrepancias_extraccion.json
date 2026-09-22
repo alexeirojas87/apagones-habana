@@ -1,13 +1,4 @@
 {
- "83120": {
-  "fecha": "2026-09-15T21:35:58+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1075"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería secundaria por transformador dañado en la calle Independencia entre Ricabal y Monumental.🚨"
- },
  "83147": {
   "fecha": "2026-09-16T00:36:56+00:00",
   "tipo_llm": "restablecimiento",

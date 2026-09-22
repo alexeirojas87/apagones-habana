@@ -1,14 +1,4 @@
 {
- "82945": {
-  "fecha": "2026-09-15T13:31:15+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2204",
-   "A1007"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito 2204, que por condiciones en la Subestación Arroyo se ha transferido tempora"
- },
  "83011": {
   "fecha": "2026-09-15T16:01:08+00:00",
   "tipo_llm": "afectacion",

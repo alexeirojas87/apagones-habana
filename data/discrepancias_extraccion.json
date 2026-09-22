@@ -1247,5 +1247,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
+ },
+ "85260": {
+  "fecha": "2026-09-22T00:33:35+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A708"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢✔️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba la siguiente dirección: 👉 236/247 y 249,Abel Sa"
  }
 }

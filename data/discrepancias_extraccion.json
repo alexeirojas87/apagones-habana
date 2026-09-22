@@ -1237,5 +1237,24 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 09:11 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz7:Cuadrante d"
+ },
+ "85313": {
+  "fecha": "2026-09-22T03:53:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1465",
+   "A1547"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 11:03 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉D1290:Carretera Las Guásimas has"
+ },
+ "85312": {
+  "fecha": "2026-09-22T03:47:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A845"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 11:03 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉A170:Repartos: Calderón y Lechug"
  }
 }

@@ -1256,5 +1256,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 01:31 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz5:Calles desd"
+ },
+ "85383": {
+  "fecha": "2026-09-22T07:17:53+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425",
+   "SR830"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:18 AM se afectan 304MW distribuidos en 106 circuitos de distribución. A continuación, "
  }
 }

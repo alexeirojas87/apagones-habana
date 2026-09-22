@@ -1263,5 +1263,34 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Guanabacoa, queda reparada la Avería por Poste Partido que afectaba los repartos: Mañana, Valero, Vía Blanca, Azotea, Vista Alegre.✅"
+ },
+ "85640": {
+  "fecha": "2026-09-22T19:59:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Playa, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉78 / 15 y 17.☑️🟢"
+ },
+ "85628": {
+  "fecha": "2026-09-22T19:39:46+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A940"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 292 MW distribuidos en 109 circuitos de distribución. A continuación,"
+ },
+ "85626": {
+  "fecha": "2026-09-22T19:32:12+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:31PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
  }
 }

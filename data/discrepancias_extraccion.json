@@ -1,16 +1,4 @@
 {
- "83017": {
-  "fecha": "2026-09-15T16:10:53+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1008",
-   "A1009",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨⚡️🚨Informamos a los clientes de los municipios Arroyo Naranjo y Diez de Octubre pertenecientes a la Subestación Apolo que a raíz de modificaciones en los esque"
- },
  "83040": {
   "fecha": "2026-09-15T17:05:07+00:00",
   "tipo_llm": "daf",
@@ -1303,5 +1291,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Arroyo Naranjo, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba la siguiente dirección: 2da e/ Camilo Cien"
+ },
+ "85570": {
+  "fecha": "2026-09-22T16:13:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R454"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Guanabacoa, queda reparada la Avería por Poste Partido que afectaba los repartos: Mañana, Valero, Vía Blanca, Azotea, Vista Alegre.✅"
  }
 }

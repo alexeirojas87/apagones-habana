@@ -1227,5 +1227,25 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 05:41 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz13: Zapata de"
+ },
+ "85259": {
+  "fecha": "2026-09-22T00:26:17+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 08:22 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325: Alrededor"
+ },
+ "85258": {
+  "fecha": "2026-09-22T00:21:40+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  }
 }

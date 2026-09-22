@@ -1301,5 +1301,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:58 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
+ },
+ "85654": {
+  "fecha": "2026-09-22T20:47:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "114"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Marianao, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉114 Ciclo Vía esquina 119.☑️🟢"
  }
 }

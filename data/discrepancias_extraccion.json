@@ -1292,5 +1292,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:31PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
+ },
+ "85650": {
+  "fecha": "2026-09-22T20:17:25+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:58 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
  }
 }

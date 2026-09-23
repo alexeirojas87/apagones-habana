@@ -1,13 +1,4 @@
 {
- "83178": {
-  "fecha": "2026-09-16T02:49:01+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1245"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes al circuito: 1245✅"
- },
  "83179": {
   "fecha": "2026-09-16T03:30:40+00:00",
   "tipo_llm": "restablecimiento",

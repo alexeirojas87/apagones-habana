@@ -1,15 +1,4 @@
 {
- "83200": {
-  "fecha": "2026-09-16T09:55:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8",
-   "H341",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: OP408, H341 "
- },
  "83214": {
   "fecha": "2026-09-16T12:30:09+00:00",
   "tipo_llm": "restablecimiento",

@@ -1,14 +1,4 @@
 {
- "83251": {
-  "fecha": "2026-09-16T15:06:41+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "L316",
-   "L325"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L316 que se encuentra transferida temporalmente la carga al circuito L325 en el "
- },
  "83270": {
   "fecha": "2026-09-16T15:53:20+00:00",
   "tipo_llm": "deficit",

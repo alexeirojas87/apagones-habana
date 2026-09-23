@@ -1223,5 +1223,16 @@
   ],
   "solo_regex": [],
   "extracto": "🛑💥Consumidores del municipio Cerro , se detectó una AVERÍA PRIMARIA en: 👉 Macedonia y Buenos Aires.💥🛑"
+ },
+ "85753": {
+  "fecha": "2026-09-23T07:35:36+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:35AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
  }
 }

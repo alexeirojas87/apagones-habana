@@ -1,13 +1,4 @@
 {
- "83276": {
-  "fecha": "2026-09-16T16:44:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C7"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:40 PM quedó restablecido el servicio en el siguiente circuito: C7: Alrededores del cuadrante desde calles Fom"
- },
  "83284": {
   "fecha": "2026-09-16T17:27:46+00:00",
   "tipo_llm": "averia",

@@ -1,24 +1,4 @@
 {
- "83193": {
-  "fecha": "2026-09-16T05:23:34+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1241",
-   "1244"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) perteneciente a los circuitos: 1241; 1244✅"
- },
- "83191": {
-  "fecha": "2026-09-16T05:04:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52",
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: AL57 y AL52✅"
- },
  "83200": {
   "fecha": "2026-09-16T09:55:27+00:00",
   "tipo_llm": "restablecimiento",

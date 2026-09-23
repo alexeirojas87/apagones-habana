@@ -1,15 +1,4 @@
 {
- "83315": {
-  "fecha": "2026-09-16T19:00:01+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "153",
-   "250",
-   "274"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔Averías existentes hasta el momento en los municipios Playa y Lisa : 🚨Averìas Secundarias por Transformador Dañado: 📌Lisa : 👉250 entre 37 y 39 👉69 entre 158 y "
- },
  "83317": {
   "fecha": "2026-09-16T19:07:12+00:00",
   "tipo_llm": "deficit",

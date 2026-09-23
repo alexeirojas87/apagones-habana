@@ -1,41 +1,4 @@
 {
- "83183": {
-  "fecha": "2026-09-16T03:54:57+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1247"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) perteneciente al circuito: 1247✅"
- },
- "83182": {
-  "fecha": "2026-09-16T03:52:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "GC16"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) perteneciente al circuito: GC16.✅"
- },
- "83181": {
-  "fecha": "2026-09-16T03:36:24+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: OP408 y C8✅"
- },
- "83180": {
-  "fecha": "2026-09-16T03:35:46+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SR860"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) perteneciente al circuito: SR860.✅"
- },
  "83193": {
   "fecha": "2026-09-16T05:23:34+00:00",
   "tipo_llm": "restablecimiento",

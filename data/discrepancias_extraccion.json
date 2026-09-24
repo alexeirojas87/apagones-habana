@@ -1,22 +1,4 @@
 {
- "83605": {
-  "fecha": "2026-09-17T15:25:33+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ1"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:28 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PZ9:La Timba, c"
- },
- "83596": {
-  "fecha": "2026-09-17T15:07:19+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ14"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 9:16 AM quedó restablecido el servicio en el siguiente circuito: 👉P322:Alrededores de calles Sitios desde Xifre "
- },
  "83612": {
   "fecha": "2026-09-17T15:45:03+00:00",
   "tipo_llm": "restablecimiento",

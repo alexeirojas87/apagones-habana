@@ -1012,5 +1012,20 @@
    "OP325"
   ],
   "extracto": "📌⚡️Consumidores del municipio Cerro se afecta el servicio eléctrico por TRABAJOS OPERATIVOS en el siguiente circuito: 👉P325: Alrededores de calles Infanta, Ayes"
+ },
+ "86373": {
+  "fecha": "2026-09-24T18:10:58+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP310",
+   "OP318",
+   "OP323",
+   "OP404",
+   "OP411",
+   "OP417",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP325, OP323, OP411, OP417, OP318, OP"
  }
 }

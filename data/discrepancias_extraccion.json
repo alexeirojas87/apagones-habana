@@ -1,14 +1,4 @@
 {
- "83612": {
-  "fecha": "2026-09-17T15:45:03+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP319",
-   "P319"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las11:39 AM quedó restablecido el servicio en el siguiente circuito: 👉P318:Alrededores de calles Placencia desde Sit"
- },
  "83624": {
   "fecha": "2026-09-17T16:08:21+00:00",
   "tipo_llm": "deficit",
@@ -1012,5 +1002,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343 que se ha transferido temporalmente la carga al circuito S513 qu"
+ },
+ "86313": {
+  "fecha": "2026-09-24T15:35:29+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1202",
+   "A500"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Marianao pertenecientes al circuito A500 que se encuentra transferida temporalmente la carga al circuito A1202. U"
  }
 }

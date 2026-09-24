@@ -13,6 +13,20 @@ caída) el replay sigue en pie con el caché commiteado; solo se pierden los
 mensajes nuevos de la ventana incremental. Para cada código guarda las calles
 que sirve, el municipio, el bloque en que rota (inferido del post), cuántas
 veces se ha visto, cuándo, y su último estado conocido (con/sin servicio).
+El reloj del estado es `estado_desde` (fecha del parte que CAMBIÓ el estado);
+`estado_fecha` NO cambia de significado: sigue siendo la última MENCIÓN de
+estado (lo consumen build_seo, build_serie24h, coherencia_catalogo, bot y el
+worker como «última mención»).
+
+La dirección (`calles`) de cada circuito se decide por CONSENSO CORROBORADO del
+canal —con peso por recencia (vida media 45 días) e histéresis—, no por la
+última mención: la dirección vigente no cae por una mención suelta ni por un
+error de la fuente (un parte con el código cruzado), y solo la reemplaza un
+racimo dominante (>=60% del peso y >=3 menciones) o una variante de la misma
+zona. La tabla oficial de la UNE NO es verdad absoluta (los circuitos cambiaron
+desde su publicación): es el arranque en frío y el árbitro del detector de
+cruce. Los casos irreducibles quedan marcados en `direccion_en_revision` para
+revisión manual.
 
 Sobre el MISMO replay emite web/data/circuitos_horas.json: el histórico
 COMPLETO de horas sin corriente CONFIRMADAS por circuito. Cada vez que un
@@ -23,11 +37,11 @@ HORA_CUBA (UTC-4 fijo, con split de medianoche). REGLA del mantenedor
 (coherente con el ciclo de vida del estado): las horas son HORAS
 CONFIRMADAS — un intervalo CERRADO con restablecimiento cuenta completo de
 punta a punta (la UNE confirmó ambos extremos), mientras que el que siga
-abierto al final solo cuenta 48 h desde su ÚLTIMA mención (afectación,
-re-mención o señal vecinal; cada mención reactiva otras 48 h desde ella y
-el hueco silencioso NO cuenta — es lo que no sabemos, el mismo silencio que
-deja el estado en desconocido/azul), con fin efectivo
-min(generado, última_mención + 48 h). `generado` viene de
+abierto al final solo cuenta hasta la APERTURA + 216 h (el umbral azul): el
+reloj del silencio se ancla en el CAMBIO de estado y solo lo resetea un parte
+CONTRARIO, así que una re-mención "sin" o una señal vecinal "sin" posterior
+que coincide con el apagón NO lo extiende. Fin efectivo
+min(generado, apertura + 216 h). `generado` viene de
 web/data/estado.json, que estado.py escribe antes en CI; respaldo: el
 timestamp del último mensaje del canal. Días/circuitos sin horas:
 ausentes, nunca 0; redondeo a 1 decimal por día. Alimenta el ranking
@@ -131,6 +145,19 @@ def _cobertura(nuevo, viejo):
     return len(tn & tv) / min(len(tn), len(tv))
 
 
+# --- Decisión de dirección por CONSENSO corroborado del canal (en vez de
+# "gana la última mención") ---. Los parámetros salen de medir el caché local
+# (2.5 meses, ~27k menciones, 206 circuitos con >=30): 154 con racimo dominante
+# >=90% (dirección clara), solo 3 cambios reales y sostenidos, y 41 pares de
+# cruce. La tabla oficial NO pisa decisiones: es arranque en frío y árbitro.
+VIDA_MEDIA_DIRECCION_D = 45.0      # vida media del peso por recencia (días)
+_UMBRAL_MISMO_RACIMO = 0.6         # dos textos son el mismo racimo
+_UMBRAL_MISMA_DIRECCION = 0.35     # el texto nuevo es la misma zona que la vigente
+_UMBRAL_SHARE_CAMBIO = 0.60        # un cambio real necesita este respaldo
+_MIN_MENCIONES_CAMBIO = 3          # y al menos estas menciones
+_UMBRAL_CRUCE = 0.7                # el texto es la dirección de OTRO circuito
+
+
 def _reportado_con(c, cu):
     """Dirección 2 del reporte vecinal (espejo del flag `discrepado`): los
     vecinos reportan que VOLVIÓ la corriente y el catálogo sigue "sin
@@ -182,6 +209,164 @@ def _adoptar_calles(r, nuevo, fuente=None):
     if (not r["calles"] or _cobertura(nuevo, r["calles"]) < 0.25
             or len(nuevo) > len(r["calles"])):
         r["calles"] = nuevo
+
+
+def _peso_recencia(fecha_iso, generado):
+    """Peso de una mención por antigüedad: 0.5 ** (días / 45).
+
+    `generado` es el horizonte del build (datetime). Sin horizonte verificable
+    o con fecha irrecuperable la mención cuenta como reciente (1.0): no se
+    castiga un dato por no poder fecharlo.
+    """
+    if generado is None:
+        return 1.0
+    fd = _fecha_dt(fecha_iso)
+    if fd is None:
+        return 1.0
+    try:
+        dias = max(0, (generado - fd).days)
+    except TypeError:  # tz-aware contra naive: sin comparación posible
+        return 1.0
+    return 0.5 ** (dias / VIDA_MEDIA_DIRECCION_D)
+
+
+def _racimos(votables, generado):
+    """Agrupa los votos por variante de escritura (racimos) y los pondera.
+
+    Recorrido greedy en orden de llegada: un voto entra al primer racimo cuyo
+    representante solapa >= _UMBRAL_MISMO_RACIMO (mismo lugar escrito distinto:
+    tildes, mayúsculas, prefijos). El representante es el texto MÁS LARGO del
+    racimo (la variante más completa gana). Devuelve la lista
+    [{"texto", "n", "peso"}, ...] ordenada por peso descendente.
+    """
+    racs = []
+    for v in votables:
+        texto = (v.get("texto") or "").strip()
+        if not texto:
+            continue
+        peso = _peso_recencia(v.get("fecha"), generado)
+        rac = next((r for r in racs
+                    if _cobertura(texto, r["texto"]) >= _UMBRAL_MISMO_RACIMO), None)
+        if rac is None:
+            racs.append({"texto": texto, "n": 1, "peso": peso})
+        else:
+            rac["n"] += 1
+            rac["peso"] += peso
+            if len(texto) > len(rac["texto"]):
+                rac["texto"] = texto
+    racs.sort(key=lambda r: r["peso"], reverse=True)
+    return racs
+
+
+def _mejor_ajena(texto, cod, referencias):
+    """La dirección de OTRO circuito que mejor solapa con `texto`.
+
+    `referencias` es {codigo: direccion} (dirección publicada en la corrida
+    anterior + tabla oficial). Devuelve (codigo_ajeno | None, cobertura): el
+    detector de cruce lo usa para saber si el texto ganador es, en realidad,
+    la dirección de un circuito distinto.
+    """
+    mejor, mejor_cob = None, 0.0
+    for otro, dir_otro in (referencias or {}).items():
+        if otro == cod or not dir_otro:
+            continue
+        cob = _cobertura(texto, dir_otro)
+        if cob > mejor_cob:
+            mejor, mejor_cob = otro, cob
+    return mejor, mejor_cob
+
+
+def resolver_direcciones(cat, votos, previos, generado, oficial):
+    """Decide la dirección de cada circuito por consenso corroborado del canal.
+
+    Muta `cat` in place (calles, direccion_confianza, direccion_menciones y,
+    cuando hay problema, direccion_en_revision/direccion_de) y devuelve la
+    lista de casos para revisión manual, ordenada por menciones descendente.
+
+    Histéresis deliberada: la dirección vigente solo cae si el racimo nuevo
+    solapa con ella (misma zona: gana la variante más votada) o si es un
+    cambio real y sostenido (share >= 0.60 y n >= 3). Una mención compartida
+    (un bloque de texto repartido entre varios códigos) no vota, salvo que el
+    circuito no tenga ningún otro voto. El detector de cruce usa como
+    referencias la tabla oficial y la dirección publicada en la corrida
+    anterior —NUNCA los candidatos de esta corrida: dos circuitos no pueden
+    validarse mutuamente—; si el ganador es la dirección de otro circuito se
+    busca el mejor racimo propio no cruzado y se marca. Un código sin votos
+    queda con su `calles` tal cual: cae al respaldo oficial/aprendido y a
+    `_adoptar_calles`.
+    """
+    referencias = {}
+    for cod_of, info in (oficial or {}).items():
+        calles_of = " · ".join(v for v in (info.get("calles") or {}).values() if v)
+        if calles_of:
+            referencias[cod_of] = calles_of
+    referencias.update(previos or {})  # lo publicado manda sobre el PDF
+
+    revision = []
+    for cod, r in cat.items():
+        vs = (votos or {}).get(cod) or []
+        if not vs:
+            continue
+        votables = [v for v in vs if not v.get("compartida")] or vs
+        racs = _racimos(votables, generado)
+        if not racs:
+            continue
+        total = sum(x["peso"] for x in racs) or 1.0
+        top = racs[0]
+        share = top["peso"] / total
+        vigente = (previos or {}).get(cod) or ""
+        motivo, ajeno = None, None
+
+        def pasa_puerta(cand):
+            # Misma zona que la vigente o cambio real y sostenido.
+            if not vigente:
+                return True
+            if _cobertura(cand["texto"], vigente) >= _UMBRAL_MISMA_DIRECCION:
+                return True
+            return (cand["peso"] / total >= _UMBRAL_SHARE_CAMBIO
+                    and cand["n"] >= _MIN_MENCIONES_CAMBIO)
+
+        def cruce(cand):
+            # Devuelve el código ajeno si `cand` es la dirección de OTRO
+            # circuito (y no es la misma zona que la vigente).
+            otro, cob = _mejor_ajena(cand["texto"], cod, referencias)
+            if (cob >= _UMBRAL_CRUCE
+                    and _cobertura(cand["texto"], vigente) < _UMBRAL_MISMA_DIRECCION):
+                return otro
+            return None
+
+        cand = top if pasa_puerta(top) else None
+        if cand is None:
+            motivo = "disputada"
+        else:
+            de = cruce(cand)
+            if de:
+                motivo, ajeno = "cruzada", de
+                cand = next((x for x in racs
+                             if not cruce(x) and pasa_puerta(x)), None)
+
+        r["direccion_confianza"] = round(share, 2)
+        r["direccion_menciones"] = top["n"]
+        if cand is not None:
+            r["calles"] = cand["texto"]
+        elif vigente:
+            # Sin candidato propio se conserva la VIGENTE (histéresis real):
+            # el replay pudo dejar en `calles` la última mención —p. ej. el
+            # texto cruzado—, y publicarla sería justo lo que este cambio
+            # evita. No pisar la vigente solo vale cuando no hay vigente.
+            r["calles"] = vigente
+        if motivo:
+            r["direccion_en_revision"] = motivo
+            if motivo == "cruzada":
+                r["direccion_de"] = ajeno
+            revision.append({
+                "codigo": cod, "publicada": r["calles"],
+                "evidencia": top["texto"], "motivo": motivo, "de": ajeno,
+                "menciones": top["n"], "confianza": round(share, 2),
+            })
+    revision.sort(key=lambda e: e["menciones"], reverse=True)
+    return revision
+
 
 MESES = {
     "enero": 1, "febrero": 2, "marzo": 3, "abril": 4,
@@ -458,10 +643,14 @@ def horas_historicas(eventos, generado, senales=None, senales_con=None):
 
     - Las horas cuentan mientras el circuito está EFECTIVAMENTE caído: desde
       la apertura y a través del estado "desconocido", hasta el umbral azul
-      (_UMBRAL_HORAS_AZUL_H de silencio tras la última señal "sin" — llegar
-      a azul significa "asumimos con corriente" y ahí se detienen). Una
-      re-mención de la UNE o una señal vecinal "sin" resetea el reloj de
-      silencio y extiende el conteo.
+      (_UMBRAL_HORAS_AZUL_H desde la APERTURA — llegar a azul significa
+      "asumimos con corriente" y ahí se detienen). El tope se ancla en el
+      CAMBIO de estado: una re-mención de la UNE o una señal vecinal "sin"
+      que COINCIDE con el apagón no resetea ni extiende el reloj.
+    - El parámetro `senales` ({codigo: [datetime]} con las señales vecinales
+      "sin") se conserva en la firma por compatibilidad (lo pasa main()),
+      pero ya NO participa del tope: una señal que coincide no extiende el
+      reloj. Nunca participó de la apertura/cierre del tramo.
     - Una señal vecinal de RETORNO (`senales_con`: {codigo: [datetime]} con
       ultimo_con del conteo_usuario) DETIENE las horas en ese punto: los
       vecinos dicen que volvió y después no sabemos. Si la UNE volvió a
@@ -517,14 +706,14 @@ def horas_historicas(eventos, generado, senales=None, senales_con=None):
                     ult_con = s
                     break
         if abierto is not None and fin is not None:
-            # Tramo abierto al horizonte: cuenta hasta el umbral azul de
-            # silencio tras la última señal "sin" (UNE o vecinal), o hasta
-            # la señal vecinal de retorno si llegó antes y sigue vigente.
-            sin_signals = [abierto] + re_menciones + [
-                _a_utc(s) for s in (senales or {}).get(codigo, [])
-                if abierto < _a_utc(s) <= fin]
-            ultima_sin = max(sin_signals)
-            azul_cap = ultima_sin + timedelta(hours=_UMBRAL_HORAS_AZUL_H)
+            # Tramo abierto al horizonte: cuenta hasta la señal vecinal de
+            # retorno si llegó antes y sigue vigente, o hasta el umbral azul
+            # medido desde la APERTURA del tramo — que ES el cambio de estado.
+            # Una noticia que COINCIDE (una re-mención "sin" de la UNE o una
+            # señal vecinal "sin") NO extiende el tope: el reloj del silencio
+            # solo lo resetea un parte contrario. `senales` se conserva en la
+            # firma porque la pasa main(), pero no participa del tope.
+            azul_cap = abierto + timedelta(hours=_UMBRAL_HORAS_AZUL_H)
             hasta = min(fin, azul_cap)
             if ult_con and ult_con <= hasta:
                 hasta = ult_con
@@ -576,17 +765,30 @@ def _generado_horas(filas):
     return None
 
 
-def replay_canal(filas, oficial, falsos, llm_cache):
+def replay_canal(filas, oficial, falsos, llm_cache, votos=None):
     """Replay cronológico del canal: reconstruye el catálogo (en orden
     cronológico gana el último) y anota, EN EL MISMO PASO, los eventos de
     estado del histórico de horas. `filas` llega ascendente (cargar_canal);
     `oficial`, `falsos` y `llm_cache` son los insumos que main() ya cargó.
+
+    `votos` (opcional) es el acumulador de menciones para decidir la dirección
+    por consenso: {codigo: [{"fecha", "texto", "compartida"}, ...]}. Se anota
+    ADEMÁS del `_adoptar_calles` actual (que queda como respaldo), sin tocar
+    la lógica de estado/horas ni el retorno.
+
+    Cada registro acumula DOS fechas de estado: `estado_fecha` (última MENCIÓN
+    de estado, sin cambiar su significado) y `estado_desde` (fecha del parte
+    que CAMBIÓ el estado). Un parte que coincide con el estado vigente (otro
+    "sin" estando ya en apagón) actualiza `estado_fecha` pero NO `estado_desde`:
+    es el reloj del silencio que consumen el sitio y las horas.
 
     Devuelve (cat, eventos_horas): cat es {codigo: registro} y eventos_horas
     es {codigo: [(datetime, "sin"|"con"), ...]} en orden cronológico, con UN
     evento por cada actualización de r["estado"] (regex o LLM). Empieza de
     cero en cada corrida: el catálogo y las horas no arrastran estado.
     """
+    if votos is None:
+        votos = {}
     cat = {}  # codigo -> registro acumulado (en orden cronológico gana el último)
     eventos_horas = {}
     for f in filas:
@@ -604,8 +806,12 @@ def replay_canal(filas, oficial, falsos, llm_cache):
             calles = limpiar_calles(m.group(3))
             if len(calles) < 3:
                 continue
-            for cod in re.split(_SEP, m.group(1)):
-                cod = cod.strip().upper()
+            # Los códigos se calculan UNA vez: si el parte lista varios, ese
+            # bloque de texto se reparte idéntico a todos y NO es evidencia por
+            # circuito (mención compartida).
+            codigos = [c.strip().upper() for c in re.split(_SEP, m.group(1))]
+            compartida = len(codigos) > 1
+            for cod in codigos:
                 if not RE_UN_CODIGO.match(cod):
                     continue
                 cod = canonico(cod)  # alias aprendido ('581') -> registro canónico
@@ -622,11 +828,13 @@ def replay_canal(filas, oficial, falsos, llm_cache):
                     "calles": "", "municipio": None, "bloque": None, "causa": None,
                     "veces": 0, "primera": fecha, "ultima": fecha,
                     "ultima_message_id": f["message_id"],
-                    "estado": None, "estado_fecha": None,
+                    "estado": None, "estado_fecha": None, "estado_desde": None,
                 })
                 r["veces"] += 1
                 r["ultima"] = fecha
                 r["ultima_message_id"] = f["message_id"]
+                votos.setdefault(cod, []).append(
+                    {"fecha": fecha, "texto": calles, "compartida": compartida})
                 _adoptar_calles(r, calles, texto)
                 if bloque is not None:
                     r["bloque"] = bloque          # último bloque conocido gana
@@ -635,6 +843,12 @@ def replay_canal(filas, oficial, falsos, llm_cache):
                 if causa:
                     r["causa"] = causa
                 if est:
+                    # Solo un parte CONTRARIO al estado vigente mueve el reloj:
+                    # `estado_desde` es la fecha del CAMBIO. Una mención que
+                    # coincide (otro "sin" estando ya en apagón) la deja quieta
+                    # y el contador sigue corriendo desde el último cambio.
+                    if r["estado"] != est:
+                        r["estado_desde"] = fecha
                     r["estado"] = est
                     r["estado_fecha"] = fecha
                     _anotar_horas(eventos_horas, [cod], fecha, est)
@@ -659,7 +873,7 @@ def replay_canal(filas, oficial, falsos, llm_cache):
                     "calles": "", "municipio": None, "bloque": None, "causa": "déficit de generación",
                     "veces": 0, "primera": fecha, "ultima": fecha,
                     "ultima_message_id": f["message_id"],
-                    "estado": None, "estado_fecha": None,
+                    "estado": None, "estado_fecha": None, "estado_desde": None,
                 })
                 r["veces"] += 1
                 r["ultima"] = fecha
@@ -680,7 +894,14 @@ def replay_canal(filas, oficial, falsos, llm_cache):
             for item in v.get("circuitos") or []:
                 codes_estado |= {canonico(x) for x in (item.get("codigos_estado") or [])}
             for item in v.get("circuitos") or []:
-                for cod in item.get("codigos") or []:
+                codigos_llm = item.get("codigos") or []
+                calles_llm = item.get("calles")
+                # El LLM también puede repetir un bloque para varios códigos:
+                # misma regla de mención compartida que la vía regex. Un texto
+                # degenerado no vota ni se adopta.
+                compartida_llm = len(codigos_llm) > 1
+                voto_llm = bool(calles_llm) and not texto_degenerado(calles_llm, texto)
+                for cod in codigos_llm:
                     cod = canonico(cod)  # '581' -> SF581: un solo registro, sin gemelo
                     # Un código que el aprendiz ya registró (directo o por alias)
                     # dejó de ser dudoso aunque el caché viejo lo marcara: se
@@ -695,20 +916,30 @@ def replay_canal(filas, oficial, falsos, llm_cache):
                         "calles": "", "municipio": None, "bloque": None, "causa": None,
                         "veces": 0, "primera": fecha, "ultima": fecha,
                         "ultima_message_id": f["message_id"],
-                        "estado": None, "estado_fecha": None,
+                        "estado": None, "estado_fecha": None, "estado_desde": None,
                     })
                     if (r["ultima"] or "") <= fecha:
                         r["ultima"] = fecha
                         r["ultima_message_id"] = f["message_id"]
+                    if voto_llm:
+                        votos.setdefault(cod, []).append(
+                            {"fecha": fecha, "texto": calles_llm,
+                             "compartida": compartida_llm})
                     # El texto degenerado del LLM no se adopta ni aunque sea el
                     # más largo: la defensa en profundidad vive en _adoptar_calles.
-                    _adoptar_calles(r, item.get("calles"), texto)
+                    _adoptar_calles(r, calles_llm, texto)
                     if item.get("municipio") and not r["municipio"]:
                         r["municipio"] = (municipios_en(item["municipio"]) or [None])[0]
                     # Solo un código escrito explícitamente en el parte puede
                     # cambiar estado; casar un nombre por calles es auxiliar.
                     if cod in codes_estado and \
                             item.get("estado") and (r["estado_fecha"] or "") <= fecha:
+                        # Mismo reloj que el camino regex: solo el CAMBIO de
+                        # estado mueve `estado_desde`; el guard temporal de
+                        # arriba evita retrocederlo con un parte viejo
+                        # revalidado. Una mención que coincide no lo toca.
+                        if r["estado"] != item["estado"]:
+                            r["estado_desde"] = fecha
                         r["estado"] = item["estado"]
                         r["estado_fecha"] = fecha
                         _anotar_horas(eventos_horas, [cod], fecha, item["estado"])
@@ -765,15 +996,18 @@ def main():
         llm_cache = {}
 
     # Replay del canal: catálogo Y eventos del histórico de horas en un paso.
-    cat, eventos_horas = replay_canal(filas, oficial, falsos, llm_cache)
+    # `votos` acumula las menciones de calles para resolver la dirección por
+    # consenso más abajo.
+    votos = {}
+    cat, eventos_horas = replay_canal(filas, oficial, falsos, llm_cache, votos)
 
     # Histórico de horas sin corriente (mismo replay) para las páginas de
     # municipio. Días/circuitos sin horas: ausentes, nunca 0. Va ANTES de la
     # geocodificación: si la red se agota, las horas ya quedaron escritas.
-    # Señales vecinales que CONFIRMAN horas (desde/ultima_sin del conteo de
-    # usuario — misma definición de señal "sin" que _ultima_noticia en
-    # build_seo.py): una señal no abre intervalo, solo extiende las 48 h del
-    # tramo abierto si cae dentro de él (reloj de confirmación).
+    # Señales vecinales "sin" (desde/ultima_sin del conteo de usuario): se
+    # siguen cargando solo por compatibilidad de la firma — una señal que
+    # COINCIDE con el apagón ya NO extiende el tope del tramo abierto (el reloj
+    # se ancla en la apertura; ver horas_historicas). No abren intervalo.
     senales_usuario = {}
     try:
         conteo_previo = json.load(open(CONTEO_USUARIO_FILE))
@@ -846,6 +1080,19 @@ def main():
         r["aprendido"] = True
         if info.get("calles") and not r["calles"]:
             r["calles"] = info["calles"]  # respaldo: Telegram/LLM no trajeron nada
+
+    # Dirección por CONSENSO corroborado del canal (peso por recencia +
+    # histéresis + detector de cruce). Va ANTES de la detección de cambios y
+    # de la geocodificación (Fase 2), porque cambia `calles`; los códigos sin
+    # votos caen al respaldo oficial/aprendido y a `_adoptar_calles`.
+    revision = resolver_direcciones(cat, votos, prev_circuitos, generado_h, oficial)
+    if revision:
+        print(f"direcciones en revisión: {len(revision)} circuitos")
+        for e in revision[:20]:
+            print(f"  {e['codigo']}: {e['motivo']} · evidencia \"{e['evidencia']}\" "
+                  f"({e['menciones']} menciones, confianza {e['confianza']:.2f})")
+    else:
+        print("direcciones en revisión: ninguna")
 
     circuitos = sorted(cat.values(), key=lambda r: r["ultima"] or "", reverse=True)
 

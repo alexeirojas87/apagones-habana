@@ -301,7 +301,7 @@ class CorridaCompletaTest(BaseArbol):
     def test_instantanea_del_index_trae_estado_y_estampado(self):
         self.correr()
         idx = self._leer("index.html")
-        self.assertIn("6 de 9 circuitos", idx)  # datos de mini_circuitos.json
+        self.assertIn("5 de 9 circuitos", idx)  # datos de mini_circuitos.json
         self.assertIn("datos al 15:10 (UTC) · 11:10 hora de La Habana", idx)
         self.assertIn('<a href="/municipio/playa/">', idx)
 
@@ -385,7 +385,8 @@ class PaginasMunicipioTest(BaseArbol):
         h1 = self._h1(p)
         self.assertIn("Apagones en Playa hoy", h1)  # texto verbatim conservado
         self.assertIn("icon-zap", h1)  # patrón de header del sitio (sprite R8)
-        self.assertIn("5 de 7 circuitos", p)  # estado actual desde mini_circuitos
+        self.assertIn("4 de 7 circuitos", p)  # estado actual desde mini_circuitos
+        # (Playa: 4 "sin" de 7; B456 decae a desconocido por 51 h de silencio)
         self.assertIn("A1443", p)  # listado de circuitos sin servicio
         self.assertIn("Calle 28 desde 41 hasta 47", p)  # calles del A1443 (contrato
         # migra de la retirada rotación a las calles verbatim del circuito Kohly)
@@ -414,7 +415,9 @@ class PaginasMunicipioTest(BaseArbol):
     def test_playa_lista_styled(self):
         """U3: el listado usa la tarjeta .circ del sitio (nunca <table>)."""
         p = self.pagina("Playa")
-        self.assertEqual(len(re.findall(r'<article class="circ">', p)), 5)
+        # 4 "sin servicio ahora": B456 (51 h de silencio desde el cambio) ya
+        # es desconocido y no entra en la lista de caídos afirmados.
+        self.assertEqual(len(re.findall(r'<article class="circ">', p)), 4)
         self.assertIn('class="circ-est sin"', p)  # chip de estado por circuito
         self.assertNotIn("<table", p)
         self.assertNotIn("<th>", p)
@@ -508,8 +511,9 @@ class HubPaginaTest(BaseArbol):
         self.correr()
         tarjetas = self._por_slug(self.hub())
         # Playa (N>0): el string de la tarjeta es el que lee la hija en su parte.
-        self.assertIn("5 de 7 circuitos sin servicio", self._texto(tarjetas["playa"]))
-        self.assertIn("5 de 7 circuitos", self._leer("municipio", "playa", "index.html"))
+        # CAMBIO DE REGLA: 4 "sin" de 7 (B456 decae a desconocido a las 51 h).
+        self.assertIn("4 de 7 circuitos sin servicio", self._texto(tarjetas["playa"]))
+        self.assertIn("4 de 7 circuitos", self._leer("municipio", "playa", "index.html"))
         # Marianao (N=0 con catálogo) y Boyeros (N=0 sin catálogo): cuenta 0
         # en la tarjeta y refuerzo "sin afectaciones" en la hija.
         self.assertIn("0 de 1 circuitos sin servicio", self._texto(tarjetas["marianao"]))

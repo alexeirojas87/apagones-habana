@@ -405,18 +405,22 @@ def _duracion_horas(iso_desde, iso_hasta):
 # (circuitoVigente): sin/con_vecinos/desconocido/con/asum. Sin umbrales de
 # antigüedad para el apagado en sí (regla del mantenedor "apagado sigue
 # apagado"): un "sin servicio" permanece sin hasta un evento explícito, y el
-# reloj del builder (estado.generado) solo mide la duración que se muestra.
+# reloj (último CAMBIO de estado, ver _ultimo_cambio) solo mide la duración
+# que se muestra. Un parte que COINCIDE con el estado vigente (otra mención
+# "sin" estando ya en apagón) NO resetea ese reloj; solo un parte CONTRARIO
+# (restablecimiento de la UNE o señal vecinal de retorno / reporte "sin") lo
+# hace.
 # Dirección 2 del reporte vecinal: "con_vecinos" = la UNE lo mantiene sin
 # servicio pero los vecinos reportan que volvió (reportado_con lo fija
 # build_circuitos.py) — va ENTRE "sin" y "desconocido" (cuenta como con
 # corriente pero con veracidad propia: señal vecinal, no dato oficial).
 # "desconocido" = TODO circuito con estado conocido (sin O con servicio,
-# tenga las veces que tenga) con silencio total > 48 h (ver _UMBRAL_DESC_H):
-# el sitio DEJA de afirmar (ni sin ni con corriente), va después de los
-# veredictos negativos y antes de los positivos. Segundo escalón: una semana
-# completa de silencio (> _UMBRAL_AZUL_H) devuelve el circuito al azul
-# "asum" («sin apagones reportados») hasta que una noticia nueva resetee el
-# reloj.
+# tenga las veces que tenga) con silencio > 48 h desde el último CAMBIO (ver
+# _UMBRAL_DESC_H): el sitio DEJA de afirmar (ni sin ni con corriente), va
+# después de los veredictos negativos y antes de los positivos. Segundo
+# escalón: una semana completa de silencio (> _UMBRAL_AZUL_H) devuelve el
+# circuito al azul "asum" («sin apagones reportados») hasta que un parte
+# contrario lo despierte.
 _ESTADO_FILA = {"sin": ("sin", "sin servicio"), "sin_vecinos": ("sin-vec", "sin corriente (según vecinos)"),
                  "con_vecinos": ("con-vec", "con servicio (según vecinos)"),
                 "desconocido": ("desc", "estado desconocido"),
@@ -443,18 +447,30 @@ _UMBRAL_AZUL_H = _UMBRAL_DESC_H + 24 * 7  # 48 + 168 = 216 h
 _EVENTO_NACIONAL = False
 
 
-def _ultima_noticia(c):
-    """Fecha de la ÚLTIMA noticia del circuito (datetime o None): la mención
-    más reciente del catálogo (`ultima`, cualquier parte) o la señal de
-    usuario más reciente — max de desde/ultima_sin/ultimo_con/ultimo_reset
-    del conteo_usuario fusionado por build_circuitos.py —, lo que sea
-    posterior. None = sin reloj (no hay ninguna noticia registrada: el
-    circuito queda como está). Los ISO naive se leen como UTC (misma
-    convención que _dt/_hora_cuba)."""
+def _ultimo_cambio(c):
+    """Fecha del último CAMBIO de estado del circuito (datetime o None).
+
+    El reloj del silencio solo lo resetea un parte CONTRARIO al estado
+    declarado: `estado_desde` (el parte que cambió el estado, lo fija
+    build_circuitos.py) con respaldo en `estado_fecha` — así los catálogos
+    viejos, aún sin `estado_desde`, conservan el comportamiento previo. Se
+    suman SOLO las señales vecinales CONTRARIAS, las que el builder marca
+    como cambio de estado: `ultimo_con` (retorno vecinal, cuando
+    reportado_con) para "sin servicio", y `desde` (reporte vecinal "sin",
+    cuando discrepado) para "con servicio". Un parte que COINCIDE (otra
+    mención "sin" estando ya en apagón) NO lo resetea: el contador sigue
+    corriendo desde el último cambio. None = sin reloj (no hay ninguna
+    fecha: el circuito queda como está). Los ISO naive se leen como UTC
+    (misma convención que _dt/_hora_cuba)."""
     cu = c.get("conteo_usuario") or {}
+    estado = c.get("estado")
+    contrarias = []
+    if estado == "sin servicio" and c.get("reportado_con"):
+        contrarias.append(cu.get("ultimo_con"))
+    if estado == "con servicio" and c.get("discrepado"):
+        contrarias.append(cu.get("desde"))
     fechas = []
-    for iso in (c.get("ultima"), cu.get("desde"), cu.get("ultima_sin"),
-                cu.get("ultimo_con"), cu.get("ultimo_reset")):
+    for iso in [c.get("estado_desde") or c.get("estado_fecha")] + contrarias:
         dt = _dt(iso)
         if dt is None:
             continue
@@ -463,10 +479,12 @@ def _ultima_noticia(c):
 
 
 def _silencio_horas(c, gen):
-    """Horas de silencio total del circuito: gen (estado.generado) menos la
-    última noticia. None si falta cualquiera de las dos puntas del reloj (no
-    inventar); negativo si los datos están a futuro (también None: no medir)."""
-    ult = _ultima_noticia(c)
+    """Horas de silencio total del circuito: gen (estado.generado) menos el
+    último CAMBIO de estado (contrario o la fecha declarada; un parte que
+    coincide NO mueve el reloj). None si falta cualquiera de las dos puntas
+    del reloj (no inventar); negativo si los datos están a futuro (también
+    None: no medir)."""
+    ult = _ultimo_cambio(c)
     if ult is None or gen is None:
         return None
     g = gen if gen.tzinfo else gen.replace(tzinfo=timezone.utc)
@@ -486,22 +504,23 @@ def _vigencia(c, gen):
     asum) bajo la regla del mantenedor: un circuito PERMANECE en su estado
     vigente —y la duración del caído "lleva X sin corriente" sigue
     creciendo— hasta que un EVENTO EXPLÍCITO lo cambie: un restablecimiento
-    de la UNE o el reporte de un usuario. Escalonamiento de silencio total
-    (ni parte de la UNE que lo mencione (`ultima`) ni señal de usuario
-    (conteo_usuario)) para TODO circuito con estado conocido SIN y CON
-    servicio POR IGUAL — el mantenedor lo reafirmó: "si pasan 48 horas
-    de un circuito con servicio sin noticias se pone desconocido también" y
-    cerró el hueco de los de pocas menciones: el ciclo de vida no mira las
-    veces, tenga 1-2 menciones históricas o decenas. Cada parte nuevo que no
-    lo liste solo confirma mientras haya noticias:
+    de la UNE o el reporte de un usuario. Escalonamiento del silencio desde
+    el último CAMBIO de estado (_ultimo_cambio: estado_desde —respaldo
+    estado_fecha— más las señales vecinales CONTRARIAS) para TODO circuito
+    con estado conocido SIN y CON servicio POR IGUAL — el mantenedor lo
+    reafirmó: "si pasan 48 horas de un circuito con servicio sin noticias se
+    pone desconocido también" y cerró el hueco de los de pocas menciones: el
+    ciclo de vida no mira las veces, tenga 1-2 menciones históricas o
+    decenas. Un parte que COINCIDE (otra mención "sin" estando ya en apagón)
+    no mueve el reloj:
     1. silencio > _UMBRAL_DESC_H (48 h) → "desconocido": el sitio deja de
        afirmar (ni sin ni con corriente);
     2. silencio > _UMBRAL_AZUL_H (48 h + 7 días) → "asum": vuelve al grupo
-       azul «sin apagones reportados» hasta que una noticia nueva resetee
-       el reloj.
-    Captura también al con_vecinos con veredicto envejecido (su última
-    noticia es el reporte del vecino): mismo escalonamiento desc/azul. Los
-    de estado None (nunca mencionados) siguen azul directo sin reloj.
+       azul «sin apagones reportados» hasta que un parte contrario lo
+       despierte.
+    Captura también al con_vecinos con veredicto envejecido (su reloj es el
+    reporte del vecino, una señal contraria): mismo escalonamiento desc/azul.
+    Los de estado None (nunca mencionados) siguen azul directo sin reloj.
     Durante evento_nacional (_EVENTO_NACIONAL) NO hay decaimiento alguno
     (ni desc ni azul): todo circuito silencioso queda en su estado vigente
     sin/con.

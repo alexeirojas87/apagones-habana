@@ -136,15 +136,19 @@ async function iniciar() {
   //    24/48 h NO degrada a "nd" ni asume retorno. OJO determinismo: esta rama
   //    ya no consulta Date.now(), así que el resultado es idéntico en cada
   //    visita y entre visitante (mismos datos → mismo estado).
-  // Última noticia del circuito: la mención más reciente del catálogo
-  // (`ultima`, cualquier parte) o la señal de usuario más reciente (max de
-  // desde/ultima_sin/ultimo_con/ultimo_reset del conteo_usuario fusionado),
-  // lo que sea posterior. Devuelve ms epoch o null (sin reloj: el circuito
-  // queda como está).
-  function ultimaNoticia(c) {
-    let m = c.ultima ? new Date(c.ultima).getTime() : NaN;
+  // Reloj del estado: solo lo resetea un parte CONTRARIO al estado declarado.
+  // Un parte que coincide (otro "sin" estando ya en apagón) NO lo resetea: el
+  // contador sigue corriendo desde el último CAMBIO de estado (`estado_desde`).
+  function ultimoCambio(c) {
+    let m = c.estado_desde ? new Date(c.estado_desde).getTime()
+          : (c.estado_fecha ? new Date(c.estado_fecha).getTime() : NaN);
     const cu = c.conteo_usuario || {};
-    for (const k of ["desde", "ultima_sin", "ultimo_con", "ultimo_reset"]) {
+    // Solo la señal vecinal CONTRARIA cuenta (las que el builder marca como
+    // cambio de estado); las que coinciden no tocan el reloj.
+    const claves = [];
+    if (c.estado === "sin servicio" && c.reportado_con) claves.push("ultimo_con");
+    if (c.estado === "con servicio" && c.discrepado) claves.push("desde");
+    for (const k of claves) {
       const v = cu[k] ? new Date(cu[k]).getTime() : NaN;
       if (!isNaN(v) && (isNaN(m) || v > m)) m = v;
     }
@@ -156,7 +160,7 @@ async function iniciar() {
   // datos están a futuro.
   function silencioHoras(c, generado) {
     const g = generado ? new Date(generado).getTime() : NaN;
-    const u = ultimaNoticia(c);
+    const u = ultimoCambio(c);
     if (isNaN(g) || u == null) return null;
     const h = (g - u) / 3600000;
     return h >= 0 ? h : null;
@@ -328,7 +332,10 @@ async function iniciar() {
     // Tarjetas de los circuitos con más horas sin corriente: del CATÁLOGO
     // COMPLETO (no solo los ~5 que lista el parte de déficit: un circuito
     // apagado por avería/afectación puede llevar más horas que esos). Las horas
-    // oficiales del parte ganan sobre nuestro conteo cuando existen.
+    // oficiales del parte de déficit ganan cuando existen; si no, se usa el
+    // MISMO reloj del estado que el semáforo (silencioHoras): horas de silencio
+    // desde el último parte que lo cambió, nunca un número que el escalón no
+    // sostenga (48 h → desconocido, 216 h → azul).
     const horasDef = {};
     if (estado.deficit && estado.deficit.circuitos)
       for (const d of estado.deficit.circuitos) horasDef[d.codigo] = d.horas;
@@ -336,18 +343,16 @@ async function iniciar() {
       .filter((c) => circuitoVigente(c) === "sin")
       .map((c) => {
         let h = horasDef[c.codigo], oficialH = h != null;
-        if (h == null && c.estado_fecha) {
-          let desde = new Date(c.estado_fecha);
-          const en = estado.evento_nacional;
-          if (en && desde < new Date(en.desde)) desde = new Date(en.desde);
-          h = (Date.now() - desde) / 3600000;
+        if (h == null) {
+          // Vía no oficial: el reloj del estado, no el cronómetro viejo desde
+          // estado_fecha (que prometía "horas sin luz" de un apagón que el
+          // escalón ya no sostiene). Si no hay reloj en los datos, h queda
+          // null y la tarjeta NO muestra ese circuito (no inventar).
+          const s = silencioHoras(c, estado.generado);
+          if (s != null) h = Math.round(s * 10) / 10;
         }
         return { c, h: h != null ? Math.round(h * 10) / 10 : null, oficialH };
       })
-      // horas creíbles: con la regla nueva el silencio NO invalida el conteo —
-      // un "sin servicio" permanece apagado hasta un evento explícito, así que
-      // el reloj propio crece sin tope, igual que la duración del catálogo
-      // estático (las horas oficiales del parte, cuando existen, siguen ganando).
       .filter((x) => x.h != null)
       .sort((a, b) => b.h - a.h).slice(0, 5);
     let cards = "";
@@ -356,9 +361,9 @@ async function iniciar() {
         <div class="rc-box-t">Con más horas sin corriente</div>
         <div class="rc-cards">` + top.map(({ c, h, oficialH }) => `
         <a class="rc-card" href="circuitos?c=${encodeURIComponent(c.codigo)}"
-           title="${oficialH ? "Horas declaradas por la UNE" : "Horas desde el último parte que lo afectó"} — ver ${esc(c.codigo)}">
+           title="${oficialH ? "Horas declaradas por la UNE" : "Horas de silencio del reloj del estado (sin partes que lo cambien)"} — ver ${esc(c.codigo)}">
           <span class="rc-card-cab"><span class="rc-dot"></span>${esc(c.codigo)}</span>
-          <span class="rc-card-h">${h}<small>h sin luz${oficialH ? " · UNE" : ""}</small></span>
+          <span class="rc-card-h">${h}<small>${oficialH ? "h sin luz · UNE" : "h de silencio"}</small></span>
           <span class="rc-card-det">${c.calles ? esc(c.calles.slice(0, 42)) : "sin información de calles"}</span>
           ${spark(c.serie_24h)}
         </a>`).join("") + `</div></div>`;

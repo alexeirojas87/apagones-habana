@@ -275,8 +275,12 @@ class TestParidadCifraSin(unittest.TestCase):
         # sigue siendo exactamente 1 (solo ZZ01) y el desconocido no entra
         # ni en las tarjetas «sin servicio ahora» ni en el estimado.
         gen = SEO._dt(self.ESTADO["generado"])
+        # ~3 días de silencio desde el CAMBIO de estado. CAMBIO DE REGLA: el
+        # reloj es estado_desde/estado_fecha; `ultima` ya no lo mueve, así que
+        # hay que fijar la fecha del cambio para que decaiga.
         desc = circuito(codigo="ZZ03", veces=5,
-                        ultima="2026-06-30T10:00:00+00:00")  # ~3 días de silencio
+                        estado_desde="2026-06-30T10:00:00+00:00",
+                        estado_fecha="2026-06-30T10:00:00+00:00")
         circ = {"circuitos": self._catalogo()["circuitos"] + [desc]}
         self.assertEqual(SEO._vigencia(desc, gen), "desconocido")
         self.assertFalse(SEO._sin_efectivos(desc, gen))

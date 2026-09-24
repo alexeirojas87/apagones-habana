@@ -144,9 +144,10 @@ class HorasPorEstadoEfectivoTest(unittest.TestCase):
     """REGLA del mantenedor: las horas cuentan mientras el circuito está
     EFECTIVAMENTE caído (apagado sigue apagado, también dentro del estado
     "desconocido") y se DETIENEN al asumirlo con corriente: al umbral azul
-    (216 h de silencio tras la última señal "sin") o ante una señal vecinal
-    de retorno. El tramo CERRADO con restablecimiento cuenta COMPLETO de
-    punta a punta (la UNE confirmó ambos extremos), salvo señal vecinal de
+    (216 h desde la APERTURA — el cambio de estado; una re-mención "sin" o una
+    señal vecinal "sin" que COINCIDE no extiende el tope) o ante una señal
+    vecinal de retorno. El tramo CERRADO con restablecimiento cuenta COMPLETO
+    de punta a punta (la UNE confirmó ambos extremos), salvo señal vecinal de
     retorno dentro del episodio y sin "sin" posterior."""
 
     def _una(self, eventos, generado, senales=None, senales_con=None):
@@ -178,23 +179,35 @@ class HorasPorEstadoEfectivoTest(unittest.TestCase):
         self.assertEqual(r["total"], 30.0)
         self.assertEqual(r["por_dia"], {"2026-07-05": 24.0, "2026-07-06": 6.0})
 
-    def test_remencion_a_70h_extiende_el_cap(self):
-        # re-mención a las 70 h resetea el reloj: cap a 70+216, horizonte 100
-        # → cuenta completo y CONTINUO (sin hueco: apagado sigue apagado).
+    def test_remencion_a_70h_no_extiende_el_cap(self):
+        # CAMBIO DE REGLA: una re-mención "sin" COINCIDE con el apagón y ya no
+        # resetea el reloj; el tope es apertura + 216 h. Con horizonte a 100 h
+        # (< 216) el conteo es continuo igual (sin hueco: apagado sigue apagado).
         r = self._una([(fh(1, 0), "sin"), (fh(3, 22), "sin")], fh(5, 4))
         self.assertEqual(r["total"], 100.0)
         self.assertEqual(r["por_dia"], {"2026-07-01": 24.0, "2026-07-02": 24.0,
                                         "2026-07-03": 24.0, "2026-07-04": 24.0,
                                         "2026-07-05": 4.0})
 
-    def test_senal_vecinal_sin_extiende_el_cap(self):
-        # señal vecinal "sin" a las 80 h resetea el reloj: cuenta completo.
+    def test_senal_vecinal_sin_no_extiende_el_cap(self):
+        # CAMBIO DE REGLA: una señal vecinal "sin" (coincide con el apagón)
+        # tampoco extiende el reloj; con horizonte a 100 h no cambia el conteo.
         sen = {"AL53": [fh(4, 8)]}
         r = self._una([(fh(1, 0), "sin")], fh(5, 4), sen)
         self.assertEqual(r["total"], 100.0)
         self.assertEqual(r["por_dia"], {"2026-07-01": 24.0, "2026-07-02": 24.0,
                                         "2026-07-03": 24.0, "2026-07-04": 24.0,
                                         "2026-07-05": 4.0})
+
+    def test_caso_1861_coincidentes_cortan_exacto_a_216(self):
+        # Caso real (1861): apertura el día 1; re-menciones "sin" de la UNE y
+        # señales vecinales "sin" que COINCIDEN los días 9 y 11. El tope NO se
+        # ancla en la última mención (daría las 315 h del horizonte): se ancla
+        # en la apertura → corta exacto a 216 h.
+        sen = {"AL53": [fh(9, 0), fh(11, 0)]}
+        eventos = [(fh(1, 0), "sin"), (fh(9, 0), "sin"), (fh(11, 0), "sin")]
+        r = self._una(eventos, fh(14, 3), sen)  # horizonte 315 h
+        self.assertEqual(r["total"], 216.0)
 
     def test_señal_naive_se_lee_como_utc(self):
         # convención del builder: ISO naive del conteo_usuario = UTC.
@@ -244,7 +257,7 @@ class HorasPorEstadoEfectivoTest(unittest.TestCase):
 
     def test_menciones_solapadas_cuentan_una_vez(self):
         # re-mención a las 10 h y señal a las 20 h, ambas dentro del tramo:
-        # el reloj es max() de todas, sin doble conteo (cap lejos).
+        # el tope es la apertura + 216 h (cap lejos), sin doble conteo.
         sen = {"AL53": [fh(1, 20)]}
         r = self._una([(fh(1, 0), "sin"), (fh(1, 10), "sin")], fh(5, 4))
         self.assertEqual(r["total"], 100.0)
@@ -356,6 +369,58 @@ class ReplayCanalHorasTest(unittest.TestCase):
         _, ev1 = self._correr(filas)
         _, ev2 = self._correr(filas)  # sin estado persistente: de cero otra vez
         self.assertEqual(ev1, ev2)
+
+
+    def test_estado_desde_solo_avanza_con_parte_contrario(self):
+        # El reloj del catálogo: el primer parte fija estado_desde; una
+        # re-mención "sin" posterior (COINCIDE) actualiza estado_fecha pero NO
+        # estado_desde.
+        filas = [
+            {"message_id": 1, "fecha": "2026-07-05T14:00:00+00:00",
+             "texto": "🔻 Afectación\n👉 AL53: Zona 24, Edf 3"},
+            {"message_id": 2, "fecha": "2026-07-06T14:00:00+00:00",
+             "texto": "🔻 Afectación\n👉 AL53: Zona 24, Edf 3"},
+        ]
+        cat, _ = self._correr(filas)
+        self.assertEqual(cat["AL53"]["estado"], "sin servicio")
+        self.assertEqual(cat["AL53"]["estado_desde"], "2026-07-05T14:00:00+00:00")
+        self.assertEqual(cat["AL53"]["estado_fecha"], "2026-07-06T14:00:00+00:00")
+
+    def test_estado_desde_avanza_con_restablecimiento(self):
+        # Un parte CONTRARIO (restablecimiento) sí mueve estado_desde.
+        filas = [
+            {"message_id": 1, "fecha": "2026-07-05T14:00:00+00:00",
+             "texto": "🔻 Afectación\n👉 AL53: Zona 24, Edf 3"},
+            {"message_id": 2, "fecha": "2026-07-05T18:00:00+00:00",
+             "texto": "✅ Restablecimiento\n👉AL53: Zona 24, Edf 3"},
+        ]
+        cat, _ = self._correr(filas)
+        self.assertEqual(cat["AL53"]["estado"], "con servicio")
+        self.assertEqual(cat["AL53"]["estado_desde"], "2026-07-05T18:00:00+00:00")
+
+    def test_estado_desde_en_camino_llm(self):
+        # El camino LLM usa el mismo reloj: un parte que CAMBIA el estado mueve
+        # estado_desde; el que coincide solo actualiza estado_fecha.
+        filas = [
+            {"message_id": 10, "fecha": "2026-07-05T14:00:00+00:00",
+             "texto": "Reportan daños en el reparto Zona 24, Habana del Este"},
+            {"message_id": 11, "fecha": "2026-07-06T14:00:00+00:00",
+             "texto": "Reportan que volvió la corriente en Zona 24, Habana del Este"},
+        ]
+        llm = {
+            "10": {"via": "llm", "validador_version": 2,
+                   "circuitos": [{"codigos": ["AL53"], "codigos_estado": ["AL53"],
+                                  "estado": "sin servicio",
+                                  "calles": "Zona 24, Edf 3"}]},
+            "11": {"via": "llm", "validador_version": 2,
+                   "circuitos": [{"codigos": ["AL53"], "codigos_estado": ["AL53"],
+                                  "estado": "con servicio",
+                                  "calles": "Zona 24, Edf 3"}]},
+        }
+        cat, _ = self._correr(filas, llm)
+        self.assertEqual(cat["AL53"]["estado"], "con servicio")
+        self.assertEqual(cat["AL53"]["estado_desde"], "2026-07-06T14:00:00+00:00")
+        self.assertEqual(cat["AL53"]["estado_fecha"], "2026-07-06T14:00:00+00:00")
 
 
 class GeneradoHorasTest(unittest.TestCase):
@@ -543,9 +608,10 @@ class SinDatosHorasTest(test_seo.BaseArbol):
 
 class CatalogoDuracionRenderTest(test_seo.BaseArbol):
     """El catálogo ya no imprime la hora cruda; muestra la duración del
-    estado vigente (sin corriente / con corriente), nada en asum. Con la
-    regla nueva del mantenedor la duración del caído crece SIN TOPE: un
-    apagado silencioso de 30 h o de 51 h sigue contando."""
+    estado vigente (sin corriente / con corriente), nada en asum. La duración
+    es la del estado vigente mientras no decaiga: el silencio cuenta desde el
+    último CAMBIO de estado, así que un apagado de 51 h ya es "desconocido"
+    (no se le inventa duración)."""
 
     def setUp(self):
         test_seo.BaseArbol.setUp(self)
@@ -563,9 +629,15 @@ class CatalogoDuracionRenderTest(test_seo.BaseArbol):
         self.assertNotIn("(La Habana)", catalogo)
         self.assertIn("lleva 2.0 h sin corriente", catalogo)   # B246
         self.assertIn("19.2 h con corriente", catalogo)        # L315
-        # Apagados silenciosos (regla nueva: permanecen "sin", duración sin tope):
+        # Apagados silenciosos DENTRO de las 48 h: permanecen "sin" con su
+        # duración. CAMBIO DE REGLA: B456 (51 h desde el cambio de estado) ya
+        # cruzó el umbral → desconocido, y no se le inventa duración. El reloj
+        # nuevo se ancla en estado_fecha/estado_desde, así que B456 ya no queda
+        # "sin" por la ausencia de `ultima` (comportamiento viejo).
         self.assertIn("lleva 30.0 h sin corriente", catalogo)  # B123, 30 h
-        self.assertIn("lleva 2 d 3 h sin corriente", catalogo)  # B456, 51 h
+        self.assertIn('<span class="circ-est desc">estado desconocido</span>',
+                      catalogo)  # B456, 51 h
+        self.assertNotIn("lleva 2 d 3 h sin corriente", catalogo)
         # asumido (estado None): sin duración (no inventar)
         self.assertNotIn("lleva", self.pagina("Marianao").split("circ-filas")[1])
 

@@ -3,10 +3,10 @@ con datos por municipio realmente útiles — catálogo completo de circuitos,
 ranking "N de 15" con población estimada, reincidentes por `veces` y averías
 recientes desde analitica.json.
 
-Fixtures: Playa trae 5 circuitos sin servicio (dos de ellas SILENCIOSAS —30 h
-y 51 h— que con la regla nueva del mantenedor permanecen "sin", con duración
-creciente, nunca "sin noticias") y 2 con servicio, con 7 valores de `veces`
-disparados.
+Fixtures: Playa trae 4 circuitos sin servicio (B123, silenciosa de 30 h, sigue
+"sin" con duración creciente) más B456, que a las 51 h ya cruzó el umbral de
+silencio desde el cambio de estado y es "desconocido"; y 2 con servicio, con 7
+valores de `veces` disparados.
 """
 
 import json
@@ -15,6 +15,7 @@ import os
 import re
 import sys
 import unittest
+from datetime import timezone
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import test_seo  # noqa: E402
@@ -63,14 +64,16 @@ class CatalogoTest(test_seo.BaseArbol):
         self.assertNotIn("(La Habana)", b246)
         self.assertIn("6.2 h sin corriente", _fila_de(p, "PG940"))     # 09:00 -> 15:10
         self.assertIn("23.0 h sin corriente", _fila_de(p, "A1443"))    # 16:10 -> 15:10
-        # Regla nueva: un apagado silencioso PERMANECE "sin" y su duración
-        # crece sin tope — nunca "sin noticias" ni "asumido" por silencio.
+        # CAMBIO DE REGLA: el reloj se ancla en el último CAMBIO de estado, así
+        # que B456 (51 h de silencio) ya cruzó el umbral y es desconocido (sin
+        # duración inventada); B123 (30 h) sigue "sin" con su duración.
         b123 = _fila_de(p, "B123")
         self.assertIn('<span class="circ-est sin">sin servicio</span>', b123)
         self.assertIn("lleva 30.0 h sin corriente", b123)              # 30 h
         b456 = _fila_de(p, "B456")
-        self.assertIn('<span class="circ-est sin">sin servicio</span>', b456)
-        self.assertIn("lleva 2 d 3 h sin corriente", b456)             # 51 h
+        self.assertIn('<span class="circ-est desc">estado desconocido</span>', b456)
+        self.assertIn("sin datos hace 2 días", b456)
+        self.assertNotIn("lleva", b456)
         # con servicio: duración desde el restablecimiento
         self.assertIn("5.2 h con corriente", _fila_de(p, "B789"))      # 10:00 -> 15:10
         self.assertIn("19.2 h con corriente", _fila_de(p, "L315"))     # 02/07 20:00
@@ -133,17 +136,29 @@ class RankingPoblacionTest(test_seo.BaseArbol):
         # web/app.js), con el reloj anclado en estado.generado (determinismo del
         # build): fracción de circuitos sin servicio del municipio × su
         # población, o promedio de ciudad si tiene menos de 2 circuitos
-        # atribuibles. Con la regla nueva TODO "sin" cuenta: los apagados
-        # silenciosos ya no quedan fuera del estimado (no hay "nd").
+        # atribuibles. CAMBIO DE REGLA: la cifra «sin» usa el reloj del último
+        # CAMBIO de estado; los circuitos en silencio > 48 h son desconocidos y
+        # quedan FUERA del estimado (no hay que contarlos como «sin»).
         estado, circ = test_seo.coleccion()
         tabla = estado["poblacion_municipio"]
+        gen = MOD._dt(estado["generado"])
 
         def vige(c):
-            if c.get("estado") == "con servicio":
-                return "con"
-            if c.get("estado") == "sin servicio":
-                return "sin"
-            return "asum"
+            # Referencia independiente del escalonamiento (mismos umbrales):
+            # decae por silencio desde estado_desde/estado_fecha.
+            est = c.get("estado")
+            if est not in ("sin servicio", "con servicio"):
+                return "asum"
+            dt = MOD._dt(c.get("estado_desde") or c.get("estado_fecha"))
+            if dt is not None:
+                if dt.tzinfo is None:
+                    dt = dt.replace(tzinfo=timezone.utc)
+                h = (gen - dt).total_seconds() / 3600.0
+                if h > MOD._UMBRAL_AZUL_H:
+                    return "asum"
+                if h > MOD._UMBRAL_DESC_H:
+                    return "desconocido"
+            return "sin" if est == "sin servicio" else "con"
 
         todos = circ["circuitos"]
         nsin = sum(1 for c in todos if vige(c) == "sin")
@@ -157,7 +172,7 @@ class RankingPoblacionTest(test_seo.BaseArbol):
             # Math.round del header == floor(x + 0.5): la página debe usar la misma regla
             esperados[nombre] = int(math.floor(fraccion * pob + 0.5))
         # y la página debe mostrar el MISMO número (~redondeo del header):
-        self.assertEqual(esperados["Playa"], 101604)  # 5 sin de 7 atribuibles × 142245
+        self.assertEqual(esperados["Playa"], 81283)  # 4 sin de 7 atribuibles × 142245
         for nombre, valor in esperados.items():
             p = self.pagina(nombre)
             con_puntos = "{:,}".format(valor).replace(",", ".")

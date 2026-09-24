@@ -32,14 +32,19 @@ let ESTADO = null;  // estado.json: para aplicar la realidad actual al catálogo
 const UMBRAL_DESC_H = 48;
 const UMBRAL_AZUL_H = UMBRAL_DESC_H + 24 * 7; // 48 + 168 = 216 h
 
-// Última noticia del circuito: la mención más reciente del catálogo (`ultima`)
-// o la señal de usuario más reciente (max de desde/ultima_sin/ultimo_con/
-// ultimo_reset del conteo_usuario fusionado), lo que sea posterior. ms epoch
-// o null (sin reloj: el circuito queda como está).
-function ultimaNoticia(c) {
-  let m = c.ultima ? new Date(c.ultima).getTime() : NaN;
+// Reloj del estado: solo lo resetea un parte CONTRARIO al estado declarado.
+// Un parte que coincide (otro "sin" estando ya en apagón) NO lo resetea: el
+// contador sigue corriendo desde el último CAMBIO de estado (`estado_desde`).
+function ultimoCambio(c) {
+  let m = c.estado_desde ? new Date(c.estado_desde).getTime()
+        : (c.estado_fecha ? new Date(c.estado_fecha).getTime() : NaN);
   const cu = c.conteo_usuario || {};
-  for (const k of ["desde", "ultima_sin", "ultimo_con", "ultimo_reset"]) {
+  // Solo la señal vecinal CONTRARIA cuenta (las que el builder marca como
+  // cambio de estado); las que coinciden no tocan el reloj.
+  const claves = [];
+  if (c.estado === "sin servicio" && c.reportado_con) claves.push("ultimo_con");
+  if (c.estado === "con servicio" && c.discrepado) claves.push("desde");
+  for (const k of claves) {
     const v = cu[k] ? new Date(cu[k]).getTime() : NaN;
     if (!isNaN(v) && (isNaN(m) || v > m)) m = v;
   }
@@ -50,7 +55,7 @@ function ultimaNoticia(c) {
 // una punta del reloj (no inventar) o si los datos están a futuro.
 function silencioHoras(c, generado) {
   const g = generado ? new Date(generado).getTime() : NaN;
-  const u = ultimaNoticia(c);
+  const u = ultimoCambio(c);
   if (isNaN(g) || u == null) return null;
   const h = (g - u) / 3600000;
   return h >= 0 ? h : null;

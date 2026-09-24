@@ -13,6 +13,10 @@ caída) el replay sigue en pie con el caché commiteado; solo se pierden los
 mensajes nuevos de la ventana incremental. Para cada código guarda las calles
 que sirve, el municipio, el bloque en que rota (inferido del post), cuántas
 veces se ha visto, cuándo, y su último estado conocido (con/sin servicio).
+El reloj del estado es `estado_desde` (fecha del parte que CAMBIÓ el estado);
+`estado_fecha` NO cambia de significado: sigue siendo la última MENCIÓN de
+estado (lo consumen build_seo, build_serie24h, coherencia_catalogo, bot y el
+worker como «última mención»).
 
 La dirección (`calles`) de cada circuito se decide por CONSENSO CORROBORADO del
 canal —con peso por recencia (vida media 45 días) e histéresis—, no por la
@@ -33,11 +37,11 @@ HORA_CUBA (UTC-4 fijo, con split de medianoche). REGLA del mantenedor
 (coherente con el ciclo de vida del estado): las horas son HORAS
 CONFIRMADAS — un intervalo CERRADO con restablecimiento cuenta completo de
 punta a punta (la UNE confirmó ambos extremos), mientras que el que siga
-abierto al final solo cuenta 48 h desde su ÚLTIMA mención (afectación,
-re-mención o señal vecinal; cada mención reactiva otras 48 h desde ella y
-el hueco silencioso NO cuenta — es lo que no sabemos, el mismo silencio que
-deja el estado en desconocido/azul), con fin efectivo
-min(generado, última_mención + 48 h). `generado` viene de
+abierto al final solo cuenta hasta la APERTURA + 216 h (el umbral azul): el
+reloj del silencio se ancla en el CAMBIO de estado y solo lo resetea un parte
+CONTRARIO, así que una re-mención "sin" o una señal vecinal "sin" posterior
+que coincide con el apagón NO lo extiende. Fin efectivo
+min(generado, apertura + 216 h). `generado` viene de
 web/data/estado.json, que estado.py escribe antes en CI; respaldo: el
 timestamp del último mensaje del canal. Días/circuitos sin horas:
 ausentes, nunca 0; redondeo a 1 decimal por día. Alimenta el ranking
@@ -639,10 +643,14 @@ def horas_historicas(eventos, generado, senales=None, senales_con=None):
 
     - Las horas cuentan mientras el circuito está EFECTIVAMENTE caído: desde
       la apertura y a través del estado "desconocido", hasta el umbral azul
-      (_UMBRAL_HORAS_AZUL_H de silencio tras la última señal "sin" — llegar
-      a azul significa "asumimos con corriente" y ahí se detienen). Una
-      re-mención de la UNE o una señal vecinal "sin" resetea el reloj de
-      silencio y extiende el conteo.
+      (_UMBRAL_HORAS_AZUL_H desde la APERTURA — llegar a azul significa
+      "asumimos con corriente" y ahí se detienen). El tope se ancla en el
+      CAMBIO de estado: una re-mención de la UNE o una señal vecinal "sin"
+      que COINCIDE con el apagón no resetea ni extiende el reloj.
+    - El parámetro `senales` ({codigo: [datetime]} con las señales vecinales
+      "sin") se conserva en la firma por compatibilidad (lo pasa main()),
+      pero ya NO participa del tope: una señal que coincide no extiende el
+      reloj. Nunca participó de la apertura/cierre del tramo.
     - Una señal vecinal de RETORNO (`senales_con`: {codigo: [datetime]} con
       ultimo_con del conteo_usuario) DETIENE las horas en ese punto: los
       vecinos dicen que volvió y después no sabemos. Si la UNE volvió a
@@ -698,14 +706,14 @@ def horas_historicas(eventos, generado, senales=None, senales_con=None):
                     ult_con = s
                     break
         if abierto is not None and fin is not None:
-            # Tramo abierto al horizonte: cuenta hasta el umbral azul de
-            # silencio tras la última señal "sin" (UNE o vecinal), o hasta
-            # la señal vecinal de retorno si llegó antes y sigue vigente.
-            sin_signals = [abierto] + re_menciones + [
-                _a_utc(s) for s in (senales or {}).get(codigo, [])
-                if abierto < _a_utc(s) <= fin]
-            ultima_sin = max(sin_signals)
-            azul_cap = ultima_sin + timedelta(hours=_UMBRAL_HORAS_AZUL_H)
+            # Tramo abierto al horizonte: cuenta hasta la señal vecinal de
+            # retorno si llegó antes y sigue vigente, o hasta el umbral azul
+            # medido desde la APERTURA del tramo — que ES el cambio de estado.
+            # Una noticia que COINCIDE (una re-mención "sin" de la UNE o una
+            # señal vecinal "sin") NO extiende el tope: el reloj del silencio
+            # solo lo resetea un parte contrario. `senales` se conserva en la
+            # firma porque la pasa main(), pero no participa del tope.
+            azul_cap = abierto + timedelta(hours=_UMBRAL_HORAS_AZUL_H)
             hasta = min(fin, azul_cap)
             if ult_con and ult_con <= hasta:
                 hasta = ult_con
@@ -768,6 +776,12 @@ def replay_canal(filas, oficial, falsos, llm_cache, votos=None):
     ADEMÁS del `_adoptar_calles` actual (que queda como respaldo), sin tocar
     la lógica de estado/horas ni el retorno.
 
+    Cada registro acumula DOS fechas de estado: `estado_fecha` (última MENCIÓN
+    de estado, sin cambiar su significado) y `estado_desde` (fecha del parte
+    que CAMBIÓ el estado). Un parte que coincide con el estado vigente (otro
+    "sin" estando ya en apagón) actualiza `estado_fecha` pero NO `estado_desde`:
+    es el reloj del silencio que consumen el sitio y las horas.
+
     Devuelve (cat, eventos_horas): cat es {codigo: registro} y eventos_horas
     es {codigo: [(datetime, "sin"|"con"), ...]} en orden cronológico, con UN
     evento por cada actualización de r["estado"] (regex o LLM). Empieza de
@@ -814,7 +828,7 @@ def replay_canal(filas, oficial, falsos, llm_cache, votos=None):
                     "calles": "", "municipio": None, "bloque": None, "causa": None,
                     "veces": 0, "primera": fecha, "ultima": fecha,
                     "ultima_message_id": f["message_id"],
-                    "estado": None, "estado_fecha": None,
+                    "estado": None, "estado_fecha": None, "estado_desde": None,
                 })
                 r["veces"] += 1
                 r["ultima"] = fecha
@@ -829,6 +843,12 @@ def replay_canal(filas, oficial, falsos, llm_cache, votos=None):
                 if causa:
                     r["causa"] = causa
                 if est:
+                    # Solo un parte CONTRARIO al estado vigente mueve el reloj:
+                    # `estado_desde` es la fecha del CAMBIO. Una mención que
+                    # coincide (otro "sin" estando ya en apagón) la deja quieta
+                    # y el contador sigue corriendo desde el último cambio.
+                    if r["estado"] != est:
+                        r["estado_desde"] = fecha
                     r["estado"] = est
                     r["estado_fecha"] = fecha
                     _anotar_horas(eventos_horas, [cod], fecha, est)
@@ -853,7 +873,7 @@ def replay_canal(filas, oficial, falsos, llm_cache, votos=None):
                     "calles": "", "municipio": None, "bloque": None, "causa": "déficit de generación",
                     "veces": 0, "primera": fecha, "ultima": fecha,
                     "ultima_message_id": f["message_id"],
-                    "estado": None, "estado_fecha": None,
+                    "estado": None, "estado_fecha": None, "estado_desde": None,
                 })
                 r["veces"] += 1
                 r["ultima"] = fecha
@@ -896,7 +916,7 @@ def replay_canal(filas, oficial, falsos, llm_cache, votos=None):
                         "calles": "", "municipio": None, "bloque": None, "causa": None,
                         "veces": 0, "primera": fecha, "ultima": fecha,
                         "ultima_message_id": f["message_id"],
-                        "estado": None, "estado_fecha": None,
+                        "estado": None, "estado_fecha": None, "estado_desde": None,
                     })
                     if (r["ultima"] or "") <= fecha:
                         r["ultima"] = fecha
@@ -914,6 +934,12 @@ def replay_canal(filas, oficial, falsos, llm_cache, votos=None):
                     # cambiar estado; casar un nombre por calles es auxiliar.
                     if cod in codes_estado and \
                             item.get("estado") and (r["estado_fecha"] or "") <= fecha:
+                        # Mismo reloj que el camino regex: solo el CAMBIO de
+                        # estado mueve `estado_desde`; el guard temporal de
+                        # arriba evita retrocederlo con un parte viejo
+                        # revalidado. Una mención que coincide no lo toca.
+                        if r["estado"] != item["estado"]:
+                            r["estado_desde"] = fecha
                         r["estado"] = item["estado"]
                         r["estado_fecha"] = fecha
                         _anotar_horas(eventos_horas, [cod], fecha, item["estado"])
@@ -978,10 +1004,10 @@ def main():
     # Histórico de horas sin corriente (mismo replay) para las páginas de
     # municipio. Días/circuitos sin horas: ausentes, nunca 0. Va ANTES de la
     # geocodificación: si la red se agota, las horas ya quedaron escritas.
-    # Señales vecinales que CONFIRMAN horas (desde/ultima_sin del conteo de
-    # usuario — misma definición de señal "sin" que _ultima_noticia en
-    # build_seo.py): una señal no abre intervalo, solo extiende las 48 h del
-    # tramo abierto si cae dentro de él (reloj de confirmación).
+    # Señales vecinales "sin" (desde/ultima_sin del conteo de usuario): se
+    # siguen cargando solo por compatibilidad de la firma — una señal que
+    # COINCIDE con el apagón ya NO extiende el tope del tramo abierto (el reloj
+    # se ancla en la apertura; ver horas_historicas). No abren intervalo.
     senales_usuario = {}
     try:
         conteo_previo = json.load(open(CONTEO_USUARIO_FILE))

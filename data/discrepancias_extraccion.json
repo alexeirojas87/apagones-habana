@@ -1,34 +1,4 @@
 {
- "83631": {
-  "fecha": "2026-09-17T16:37:21+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos : 👉 CPP17: Alrede"
- },
- "83635": {
-  "fecha": "2026-09-17T16:58:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P317"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:38 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P322:Sitios des"
- },
- "83632": {
-  "fecha": "2026-09-17T16:49:55+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR820",
-   "SR830",
-   "SR840"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:40 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R456:Alrededore"
- },
  "83659": {
   "fecha": "2026-09-17T17:49:01+00:00",
   "tipo_llm": "afectacion",
@@ -1002,5 +972,26 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores del municipio Marianao pertenecientes al circuito A500 que se encuentra transferida temporalmente la carga al circuito A1202. U"
+ },
+ "86351": {
+  "fecha": "2026-09-24T16:55:39+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP318",
+   "OP320",
+   "OP411",
+   "OP420"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:48 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP325, OP318, OP320, OP420, OP411 📌Usted p"
+ },
+ "86348": {
+  "fecha": "2026-09-24T16:47:18+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1125"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Habana del Este se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉14 / 2da y 3ra , Guiteras🛑⚡️"
  }
 }

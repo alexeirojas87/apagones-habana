@@ -1042,5 +1042,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:55 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: L317:"
+ },
+ "86222": {
+  "fecha": "2026-09-24T11:16:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 7:16 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
  }
 }

@@ -1,22 +1,4 @@
 {
- "83704": {
-  "fecha": "2026-09-17T21:11:23+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "R454"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 5:08 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC19: Repartos "
- },
- "83702": {
-  "fecha": "2026-09-17T21:07:41+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "MB950"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 5:04 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC15:Reparto Ch"
- },
  "83722": {
   "fecha": "2026-09-17T22:00:22+00:00",
   "tipo_llm": "afectacion",

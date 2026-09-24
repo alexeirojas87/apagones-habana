@@ -1,16 +1,4 @@
 {
- "83671": {
-  "fecha": "2026-09-17T18:50:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A940",
-   "A945",
-   "D860",
-   "D870"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Consumidores del municipio Boyeros,por un Disparo del Circuito por 33KV se encuentran afectados los siguientes circuitos: 👉A708: Reparto Abel Santamaría 👉D870"
- },
  "83684": {
   "fecha": "2026-09-17T19:30:40+00:00",
   "tipo_llm": "afectacion",
@@ -1027,5 +1015,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP325, OP323, OP411, OP417, OP318, OP"
+ },
+ "86397": {
+  "fecha": "2026-09-24T18:57:59+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380",
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 349 MW distribuidos en 129 circuitos de distribución. A continuación,"
  }
 }

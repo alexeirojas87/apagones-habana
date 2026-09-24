@@ -1,22 +1,4 @@
 {
- "83684": {
-  "fecha": "2026-09-17T19:30:40+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR850"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 3:25 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 S516:Reparto La"
- },
- "83679": {
-  "fecha": "2026-09-17T19:09:44+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️🚨Consumidores del municipio Arroyo Naranjo, se detectó una Avería Secundaria por Transformador Dañado en las siguientes direcciones: 👉Kessel/Lourdes y Villord"
- },
  "83688": {
   "fecha": "2026-09-17T19:57:48+00:00",
   "tipo_llm": "averia",
@@ -1025,5 +1007,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 349 MW distribuidos en 129 circuitos de distribución. A continuación,"
+ },
+ "86408": {
+  "fecha": "2026-09-24T19:22:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  }
 }

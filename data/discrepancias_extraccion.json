@@ -1,35 +1,4 @@
 {
- "83588": {
-  "fecha": "2026-09-17T14:53:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:47 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325:Alrededore"
- },
- "83581": {
-  "fecha": "2026-09-17T14:40:23+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "306",
-   "406",
-   "CPP10",
-   "CPP17",
-   "CPP20",
-   "CPP8",
-   "CPP9",
-   "OP304",
-   "OP318",
-   "OP320",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 09:30 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP 304,OP424,OP318,OP320,OP411, 406,306 : "
- },
  "83605": {
   "fecha": "2026-09-17T15:25:33+00:00",
   "tipo_llm": "afectacion",
@@ -1042,5 +1011,24 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 7:16 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
+ },
+ "86295": {
+  "fecha": "2026-09-24T15:01:02+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "C13"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Consumidores del municipio Cerro, se autoriza Vía Libre de Emergencia por Trabajos Operativos,afectando el servicio eléctrico en el siguiente circuito: C13: In"
+ },
+ "86286": {
+  "fecha": "2026-09-24T14:40:54+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H343",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343 que se ha transferido temporalmente la carga al circuito S513 qu"
  }
 }

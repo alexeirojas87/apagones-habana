@@ -1,23 +1,4 @@
 {
- "83777": {
-  "fecha": "2026-09-18T02:20:34+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 9:22 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉D836:Repartos: Trig"
- },
- "83774": {
-  "fecha": "2026-09-18T02:11:53+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1372",
-   "D1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 9:57 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉D1372:Repartos: "
- },
  "83790": {
   "fecha": "2026-09-18T03:42:59+00:00",
   "tipo_llm": "restablecimiento",

@@ -1078,5 +1078,26 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 4:38 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
+ },
+ "86911": {
+  "fecha": "2026-09-25T21:24:45+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC15",
+   "GC16",
+   "GC17"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:10PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC12:Centro de Co"
+ },
+ "86904": {
+  "fecha": "2026-09-25T21:11:13+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1202",
+   "A1222"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Marianao pertenecientes al circuito A1222 , que se ha transferido temporalmente la carga al circuito A1202 la zona de:"
  }
 }

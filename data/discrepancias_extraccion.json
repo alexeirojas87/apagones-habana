@@ -988,5 +988,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L323 que se encuentra transferida temporalmente la carga al circuito A1219 en el"
+ },
+ "86492": {
+  "fecha": "2026-09-25T00:18:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ5"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito P329, se ha transferido temporalmente la carga al circuito Pz5: 👉P329: 0 desde 19 has"
  }
 }

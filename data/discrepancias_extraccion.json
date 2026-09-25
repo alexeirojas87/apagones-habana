@@ -1,16 +1,4 @@
 {
- "83742": {
-  "fecha": "2026-09-17T23:59:24+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A708",
-   "A800",
-   "A940",
-   "D860"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 7:31PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉D870:Zona Industr"
- },
  "83751": {
   "fecha": "2026-09-18T00:58:49+00:00",
   "tipo_llm": "averia",
@@ -980,5 +968,25 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 430 MW distribuidos en 165 circuitos de distribución. A continuación,"
+ },
+ "86485": {
+  "fecha": "2026-09-25T00:00:45+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "1851",
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Marianao pertenecientes al circuito 1851 que se encuentra transferida temporalmente la carga al circuito L326 Una"
+ },
+ "86484": {
+  "fecha": "2026-09-24T23:34:26+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1219",
+   "L323"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L323 que se encuentra transferida temporalmente la carga al circuito A1219 en el"
  }
 }

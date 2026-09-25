@@ -1,13 +1,4 @@
 {
- "83764": {
-  "fecha": "2026-09-18T01:31:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Clientes del municipio Habana del Este el reparto Alamar queda restablecido el servicio en el siguiente circuito : 👉AL52: Zonas: 6; 7; 8; 9; 10; 11 y Micro 4."
- },
  "83777": {
   "fecha": "2026-09-18T02:20:34+00:00",
   "tipo_llm": "afectacion",

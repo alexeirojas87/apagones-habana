@@ -1099,5 +1099,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Marianao pertenecientes al circuito A1222 , que se ha transferido temporalmente la carga al circuito A1202 la zona de:"
+ },
+ "86915": {
+  "fecha": "2026-09-25T22:00:49+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 433 MW distribuidos en 167 circuitos de distribución. A continuación, "
  }
 }

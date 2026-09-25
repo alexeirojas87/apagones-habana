@@ -999,5 +999,19 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:00 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 M2044:Repartos"
+ },
+ "86828": {
+  "fecha": "2026-09-25T16:43:43+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1465",
+   "A1547",
+   "A170",
+   "A845",
+   "A928",
+   "D1290"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los consumidores del municipio Arroyo Naranjo que por Disparo del Circuito se encuentran afectados los siguientes circuitos: 👉VC100:Repartos: Man"
  }
 }

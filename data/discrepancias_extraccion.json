@@ -1,13 +1,4 @@
 {
- "83922": {
-  "fecha": "2026-09-18T14:19:21+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C10"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑💥Consumidores del municipio Arroyo Naranjo, se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉Avenida Oeste / 6ta y Norte.💥🛑"
- },
  "84000": {
   "fecha": "2026-09-18T17:46:29+00:00",
   "tipo_llm": "restablecimiento",
@@ -938,5 +929,14 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:36 AM se afectan 267 MW distribuidos en 108 circuitos de distribución. A continuación, "
+ },
+ "86770": {
+  "fecha": "2026-09-25T14:30:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC17"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a la población que a partir de las 10:15 AM quedó restablecido el servicio en los siguientes circuitos: 👉GC16:Soterrado Panamericanos, Camilo Cienfu"
  }
 }

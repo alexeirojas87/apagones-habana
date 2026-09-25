@@ -1058,5 +1058,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉📣Informamos a los consumidores que se encuentran afectados por un Disparo Automático por Frecuencia(DAF) los siguientes circuitos: 👉SG312:Alrededores de calles"
+ },
+ "86874": {
+  "fecha": "2026-09-25T19:01:15+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 322 MW distribuidos en 116 circuitos de distribución. A continuación, "
  }
 }

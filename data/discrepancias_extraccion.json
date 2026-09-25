@@ -1,13 +1,4 @@
 {
- "83850": {
-  "fecha": "2026-09-18T10:08:32+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:08 AM se afectan 294MW distribuidos en 104 circuitos de distribución. A continuación, "
- },
  "83856": {
   "fecha": "2026-09-18T10:37:49+00:00",
   "tipo_llm": "restablecimiento",
@@ -19,15 +10,6 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 2:50 AM quedó restablecido el servicio en los siguientes circuitos: 👉D870:Zona Industrial Wajay, Zona Franca, Re"
- },
- "83855": {
-  "fecha": "2026-09-18T10:32:16+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P327"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 6 :12AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz15: Calles 35 "
  },
  "83922": {
   "fecha": "2026-09-18T14:19:21+00:00",
@@ -874,5 +856,33 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito P329, se ha transferido temporalmente la carga al circuito Pz5: 👉P329: 0 desde 19 has"
+ },
+ "86664": {
+  "fecha": "2026-09-25T10:09:51+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1140",
+   "MR450"
+  ],
+  "solo_regex": [],
+  "extracto": "Z✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro ✔️Municipio : San Mi"
+ },
+ "86663": {
+  "fecha": "2026-09-25T10:09:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ5"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito P329, se ha transferido temporalmente la carga al circuito Pz5: 👉P329: 0 desde 19 has"
+ },
+ "86662": {
+  "fecha": "2026-09-25T10:06:54+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 257 MW distribuidos en 98 circuitos de distribución. A continuación, s"
  }
 }

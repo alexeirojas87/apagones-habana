@@ -938,5 +938,39 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a la población que a partir de las 10:15 AM quedó restablecido el servicio en los siguientes circuitos: 👉GC16:Soterrado Panamericanos, Camilo Cienfu"
+ },
+ "86783": {
+  "fecha": "2026-09-25T14:53:18+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC12",
+   "GC13",
+   "GC14",
+   "GC15",
+   "GC16",
+   "GC17",
+   "GC18",
+   "GC19"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes pertenecientes a la SUBESTACIÓN Guanabacoa, que se encuentran afectados por TRABAJOS OPERATIVOS en los siguientes circuitos: 👉GC7:Co"
+ },
+ "86780": {
+  "fecha": "2026-09-25T14:44:33+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A708"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:31 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A940:Reparto Fo"
+ },
+ "86771": {
+  "fecha": "2026-09-25T14:32:28+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  }
 }

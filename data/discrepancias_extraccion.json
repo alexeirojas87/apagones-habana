@@ -901,5 +901,42 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio La Lisa se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉85 e/ 200 y 202.🛑⚡️"
+ },
+ "86754": {
+  "fecha": "2026-09-25T13:52:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1470"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio Arroyo Naranjo,por una Vía Libre de Emergencia para realizar trabajos en las líneas de 33KV se encuentran afectados los siguientes "
+ },
+ "86753": {
+  "fecha": "2026-09-25T13:50:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 09:33 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "86746": {
+  "fecha": "2026-09-25T13:38:36+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PG940"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 9:19 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG980:Fraternida"
+ },
+ "86745": {
+  "fecha": "2026-09-25T13:36:41+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:36 AM se afectan 267 MW distribuidos en 108 circuitos de distribución. A continuación, "
  }
 }

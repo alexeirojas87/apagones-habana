@@ -1013,5 +1013,61 @@
   ],
   "solo_regex": [],
   "extracto": "📉📣Informamos a los consumidores del municipio Arroyo Naranjo que por Disparo del Circuito se encuentran afectados los siguientes circuitos: 👉VC100:Repartos: Man"
+ },
+ "86842": {
+  "fecha": "2026-09-25T17:26:05+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:20 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG313:Alrededore"
+ },
+ "86841": {
+  "fecha": "2026-09-25T17:22:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG314",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a la población que a partir de las 1:20 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG312:Alrededore"
+ },
+ "86837": {
+  "fecha": "2026-09-25T17:17:21+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:08 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB910: Justi, Ag"
+ },
+ "86831": {
+  "fecha": "2026-09-25T17:11:18+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:02 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores "
+ },
+ "86830": {
+  "fecha": "2026-09-25T17:09:10+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "C8"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:00 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP408:Alrededore"
+ },
+ "86829": {
+  "fecha": "2026-09-25T17:05:04+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "SG314",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los consumidores que se encuentran afectados por un Disparo Automático por Frecuencia(DAF) los siguientes circuitos: 👉SG312:Alrededores de calles"
  }
 }

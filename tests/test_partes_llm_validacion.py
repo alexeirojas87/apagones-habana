@@ -229,5 +229,72 @@ class CorpusCacheadoLimpioTest(unittest.TestCase):
                 )
 
 
+# El aviso real que reportó el mantenedor (26-09-2026, entrada 87195): la
+# difusión horaria del bot de notificaciones, repetida 24 veces por día.
+AVISO = (
+    "⚡ Mantente informado sobre el estado de los circuitos\n"
+    "Ya está disponible nuestro bot de notificaciones 🤖 y se encuentra en fase "
+    "de prueba ✅: hasta donde hemos probado, funciona correctamente, pero puede "
+    "tener detalles por pulir.\n"
+    "📌 Cómo suscribirte:\n"
+    "Abre el bot: @moderador_DeGrupos_bot\n"
+    "Pulsa Iniciar (o /start)\n"
+    "Envía: /suscribir\n"
+    "📣 ¿Encontraste algo raro o tienes una idea?:\n"
+    "Envía /reporte dentro del bot y cuéntanos qué pasó.\n"
+)
+# Un parte real, sin código de circuito (el caso de los 692): debe seguir
+# entrando al LLM.
+PARTE = (
+    "AFECTACIÓN\n"
+    "Circuito P318 sin servicio.\n"
+    "Zonas: 13; 15; 16\n"
+    "Municipio: Plaza de la Revolución\n"
+)
+
+
+class DifusionRepetidaTest(unittest.TestCase):
+    """Las dos defensas contra la difusión horaria: marcas y hash del texto."""
+
+    def test_las_marcas_reconocen_el_aviso_real(self):
+        self.assertTrue(MOD.es_difusion(AVISO))
+        for fragmento in ("@moderador_DeGrupos_bot", "se encuentra en fase de prueba"):
+            with self.subTest(fragmento=fragmento):
+                self.assertTrue(MOD.es_difusion(fragmento))
+
+    def test_las_marcas_no_tocan_un_parte_real(self):
+        # Garantía: no se puede cargar ningún parte legítimo por las marcas.
+        self.assertFalse(MOD.es_difusion(PARTE))
+        self.assertTrue(MOD.RELEVANTE.search(PARTE))
+
+    def test_hash_ignora_espacios_y_mayusculas(self):
+        # Mismo texto con tabulaciones, saltos y mayúsculas: el hash no cambia.
+        variante = "  " + AVISO.upper().replace(" ", "\t").replace(
+            "\n", "   \n  ") + "\n\n"
+        self.assertEqual(MOD.hash_texto(AVISO), MOD.hash_texto(variante))
+        self.assertNotEqual(MOD.hash_texto(AVISO), MOD.hash_texto(PARTE))
+
+    def test_sin_datos(self):
+        vacia = {"circuitos": [], "bloques": [], "mw_deficit": None,
+                 "pct_restablecido": None}
+        self.assertTrue(MOD.sin_datos(vacia))
+        con_codigos = {**vacia, "circuitos": [{"codigos": ["P318"]}]}
+        solo_calles = {**vacia, "circuitos": [{"calles": "Zonas: 13; 15; 16"}]}
+        solo_municipio = {**vacia, "circuitos": [{"municipio": "Plaza"}]}
+        con_bloques = {**vacia, "bloques": [3]}
+        con_deficit = {**vacia, "mw_deficit": 12}
+        for caso in (con_codigos, solo_calles, solo_municipio, con_bloques,
+                     con_deficit):
+            with self.subTest(caso=caso):
+                self.assertFalse(MOD.sin_datos(caso))
+
+    def test_hashes_sin_datos_solo_mira_las_que_lo_tienen(self):
+        cache = {
+            "1": {"hash_texto": "abc", "circuitos": []},
+            "2": {"via": "prefiltro", "circuitos": []},
+        }
+        self.assertEqual(MOD.hashes_sin_datos(cache), {"abc"})
+
+
 if __name__ == "__main__":
     unittest.main()

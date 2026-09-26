@@ -10,8 +10,15 @@ invalidaba la caché entera y la corrida agotaba el timeout del workflow.
 NVIDIA NIM y Cloudflare Workers AI quedan como respaldo (fallback) por si
 NaN no está disponible. La caché por message_id sigue vigente para no
 reprocesar lo ya visto.
+
+Contra las difusiones del canal que se repiten hay dos defensas: un pre-filtro
+por marcas de difusión (aviso del bot, suscripción, reportes) que ataja la
+primera emisión sin gastar LLM, y el hash del texto de las extracciones que no
+dejaron nada, que evita volver a pagar el mismo texto cuando la caché por
+message_id no lo reconoce (cada emisión trae un id nuevo).
 """
 
+import hashlib
 import json
 import os
 import re
@@ -80,6 +87,17 @@ PROMPT = (
 # Pre-filtro: solo posts que parecen partes con datos (evita gastar en saludos).
 RELEVANTE = re.compile(
     r"circuito|bloque|afectaci|restablec|aver[ií]a|d[eé]ficit|desconexi|MW|disparo",
+    re.IGNORECASE)
+
+# Difusión del canal: habla del bot, de cómo suscribirse o de mejoras del
+# servicio, no de cortes. El pre-filtro la dejaba pasar porque el aviso dice
+# "estado de los circuitos" y RELEVANTE busca justamente "circuito": buscar
+# palabras sueltas no distingue un parte de una difusión que HABLA de circuitos.
+# Medido el 2026-09-26: una difusión horaria se comió el 8,5% de las llamadas de
+# las últimas 24 h (24 de 281), siempre en el minuto :26.
+RE_AVISO_DIFUSION = re.compile(
+    r"@\w*bot\b|suscr[ií]b|/suscribir\b|/reporte\b|nuestro\s+bot\b|"
+    r"fase\s+de\s+prueba|ay[uú]danos\s+a\s+mejorar",
     re.IGNORECASE)
 
 # Los partes de recuperación del SEN también hablan de "restablecimiento", pero
@@ -181,6 +199,42 @@ def validar(extraccion, texto=""):
     return out
 
 
+def es_difusion(texto):
+    """True si el texto es una difusión o aviso institucional, no un parte."""
+    return bool(RE_AVISO_DIFUSION.search(texto or ""))
+
+
+def hash_texto(texto):
+    """sha1 del texto normalizado.
+
+    Se normaliza (espacios colapsados y sin mayúsculas) porque la misma difusión
+    puede variar en espacios o saltos entre emisiones sin cambiar el contenido.
+    """
+    return hashlib.sha1(
+        " ".join((texto or "").split()).casefold().encode("utf-8")).hexdigest()
+
+
+def sin_datos(extraccion):
+    """True si la extracción no dejó NADA recuperable.
+
+    Mismo criterio con el que embeddings.py decide si un parte entra al índice
+    (código, calles, municipio o déficit), más los bloques. Un texto que no
+    produjo nada no lo va a producir la próxima vez: no se vuelve a pagar por él.
+    """
+    for x in (extraccion.get("circuitos") or []):
+        if isinstance(x, dict) and (x.get("codigos") or x.get("calles")
+                                    or x.get("municipio")):
+            return False
+    return not (extraccion.get("bloques") or extraccion.get("mw_deficit")
+                or extraccion.get("pct_restablecido"))
+
+
+def hashes_sin_datos(cache):
+    """Hashes de los textos que ya se procesaron y no dejaron nada."""
+    return {v["hash_texto"] for v in cache.values()
+            if isinstance(v, dict) and v.get("hash_texto")}
+
+
 def main():
     sb = create_client(os.environ["SUPABASE_URL"], os.environ["SUPABASE_SERVICE_KEY"])
     cache = {}
@@ -205,16 +259,36 @@ def main():
     inicio = time.monotonic()
     nuevos = fallos = 0
     corte = None
+    # Textos que ya se procesaron y no dejaron nada. La caché está indexada por
+    # message_id y cada emisión de una difusión trae uno nuevo, así que el id no
+    # alcanzaba para reconocerla: el hash del TEXTO sí.
+    repetidos = hashes_sin_datos(cache)
+    evitados_difusion = evitados_repetido = 0
     try:
         for p in posts:
             mid = str(p["message_id"])
             if cache.get(mid, {}).get("validador_version") == VALIDADOR_VERSION:
                 continue
-            if not RELEVANTE.search(p["texto"] or ""):
+            texto = p["texto"] or ""
+            h = hash_texto(texto)
+            if es_difusion(texto) or not RELEVANTE.search(texto):
+                # Las dos causas del corte son "rechazado antes de pagar el
+                # LLM"; se cuentan juntas a propósito.
+                evitados_difusion += 1
                 cache[mid] = {"fecha": p["fecha"], "tipo": "otro", "circuitos": [],
                               "por_confirmar": [], "bloques": [],
                               "mw_deficit": None, "pct_restablecido": None,
                               "via": "prefiltro", "validador_version": VALIDADOR_VERSION}
+                continue
+            if h in repetidos:
+                # Ya se le pagó al LLM a este mismo texto y no dejó nada: una
+                # difusión que se repite no vuelve a costar.
+                evitados_repetido += 1
+                cache[mid] = {"fecha": p["fecha"], "tipo": "otro", "circuitos": [],
+                              "por_confirmar": [], "bloques": [],
+                              "mw_deficit": None, "pct_restablecido": None,
+                              "via": "repetido", "hash_texto": h,
+                              "validador_version": VALIDADOR_VERSION}
                 continue
             if nuevos >= MAX_LLM:
                 corte = f"tope de {MAX_LLM} posts"
@@ -234,9 +308,15 @@ def main():
             if valido is None:
                 fallos += 1
                 continue
-            cache[mid] = {"fecha": p["fecha"], **valido, "via": "llm",
-                          "proveedor": uso["proveedor"], "modelo": uso["modelo"],
-                          "validador_version": VALIDADOR_VERSION}
+            entrada = {"fecha": p["fecha"], **valido, "via": "llm",
+                       "proveedor": uso["proveedor"], "modelo": uso["modelo"],
+                       "validador_version": VALIDADOR_VERSION}
+            if sin_datos(valido):
+                # No dejó nada: se recuerda el hash del TEXTO para no volver a
+                # pagarlo cuando la misma difusión se repita.
+                entrada["hash_texto"] = h
+                repetidos.add(h)
+            cache[mid] = entrada
             nuevos += 1
             # Incremental: el step que commitea la caché va después de este
             # script, así que sin esto un fallo tardío tira toda la corrida.
@@ -250,7 +330,9 @@ def main():
         if cache.get(str(p["message_id"]), {}).get("validador_version") != VALIDADOR_VERSION)
     tot_circ = sum(len(v.get("circuitos") or []) for v in cache.values())
     print(f"partes_llm: {nuevos} posts nuevos procesados, {len(cache)} en caché, "
-          f"{tot_circ} circuitos extraídos, {fallos} fallos")
+          f"{tot_circ} circuitos extraídos, {fallos} fallos, "
+          f"{evitados_difusion + evitados_repetido} sin llamar al LLM "
+          f"({evitados_difusion} difusiones, {evitados_repetido} repetidos)")
     if corte:
         print(f"partes_llm: corte por {corte}; {pendientes} pendientes "
               f"para la próxima corrida")

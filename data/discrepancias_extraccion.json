@@ -1144,5 +1144,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:14PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL52:Zonas: 6; "
+ },
+ "86994": {
+  "fecha": "2026-09-26T03:13:20+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ15"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉Panorama e/ Tulipán y Conill.🛑⚡️"
  }
 }

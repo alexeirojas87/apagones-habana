@@ -1117,5 +1117,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅🟢Consumidores del municipio La Lisa queda reparada la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección:"
+ },
+ "86971": {
+  "fecha": "2026-09-26T01:29:26+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "R456"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores de los municipios Regla y Guanabacoa , se encuentran afectados por DISPARO del CIRCUITO en las siguientes direcciones : 👉 R454:Repartos Mañana, V"
+ },
+ "86960": {
+  "fecha": "2026-09-26T01:04:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:04 PM se afectan 342 MW distribuidos en 116 circuitos de distribución. A continuación, "
  }
 }

@@ -1,14 +1,4 @@
 {
- "84270": {
-  "fecha": "2026-09-19T19:14:01+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "2204",
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Boyeros pertenecientes al circuito A820, que por condiciones en la Subestación se ha transferido temporalmente parte d"
- },
  "84341": {
   "fecha": "2026-09-19T21:04:35+00:00",
   "tipo_llm": "afectacion",

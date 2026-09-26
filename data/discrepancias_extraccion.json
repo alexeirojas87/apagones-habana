@@ -1213,5 +1213,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L323, que se ha transferido temporalmente la carga a los siguientes circuitos debido "
+ },
+ "87219": {
+  "fecha": "2026-09-26T15:07:30+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L317",
+   "L322"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L322, que se ha transferido temporalmente la carga al circuito L317 debido a un cable"
  }
 }

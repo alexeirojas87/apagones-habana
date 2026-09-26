@@ -1189,5 +1189,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L323, que se ha transferido temporalmente la carga a los siguientes circuitos debido "
+ },
+ "87099": {
+  "fecha": "2026-09-26T10:15:27+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:14 AM se afectan 269 MW distribuidos en 102 circuitos de distribución. A continuación, "
  }
 }

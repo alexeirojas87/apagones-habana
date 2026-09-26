@@ -205,7 +205,11 @@ steps: 24
 
 ### Commits de unidad de trabajo
 
-(pendientes de registrar en este documento)
+- `b143ed78` — `perf(chatbot): el índice deja de indexar comentarios sin valor de
+  reporte` (`embeddings.py`, `tests/test_embeddings_filtro.py`, este documento,
+  `docs/presupuesto-storage-supabase.md`).
+- `452e2a2d` — `fix(purga): el auto-apagado deja de ser silencioso`
+  (`purga.py`, `tests/test_purga.py`, `.github/workflows/ingest.yml`).
 
 ## Próximo paso
 

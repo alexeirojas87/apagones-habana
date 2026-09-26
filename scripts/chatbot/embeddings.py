@@ -10,6 +10,13 @@ Es incremental: cada fragmento lleva el sha1 de su texto y solo se re-embebe lo
 nuevo o lo que cambió. Y está acotado por cantidad y por reloj, como partes_llm,
 para no volver a ser el paso que agota el timeout del workflow.
 
+Desde 2026-09-26 el índice de comentarios descarta los fragmentos cuyo "reporta"
+no es un estado de corriente ('pregunta', 'queja', 'irrelevante'): medidos
+2.583 de 11.771 fragmentos de comentario (22%), describen la conversación y no
+la zona, así que no son recuperables por similitud y le robaban un hueco del
+top-6 a los que sí informan. Se filtran al indexar y no al enriquecer porque
+esas filas también alimentan estado.py y build_analitica.py.
+
 Env: SUPABASE_URL, SUPABASE_SERVICE_KEY, NAN_API_KEY
 Requiere haber ejecutado ingestor/schema_chatbot.sql una vez.
 """
@@ -42,6 +49,14 @@ DIM = int(os.environ.get("EMBED_DIM", "1024"))
 
 DIAS_HISTORICO = int(os.environ.get("DIAS_HISTORICO_BOT", "30"))
 HORAS_COMENTARIOS = 48
+# Solo los reportes de estado de corriente alimentan el RAG. 'pregunta', 'queja'
+# e 'irrelevante' describen la conversación, no la zona: no son recuperables por
+# similitud y le roban un hueco del top-6 a los fragmentos que sí informan.
+# Medido el 2026-09-26: 2.583 de los 11.771 fragmentos de comentario (22%) caían
+# en esos tres valores. El filtro va acá y no en comentarios_llm.py porque esas
+# filas también alimentan estado.py y build_analitica.py: filtrarlas en origen
+# cambiaría el mapa y el reloj de silencio, no solo el índice.
+REPORTA_INDEXABLE = ("sin_corriente", "con_corriente")
 MAX_EMBEDS = int(os.environ.get("MAX_EMBEDS_BOT", "300"))
 MAX_SEGUNDOS = int(os.environ.get("MAX_SEGUNDOS_BOT", "240"))
 LOTE = 32  # fragmentos por llamada; el endpoint acepta lista en "input"
@@ -126,9 +141,16 @@ def fragmentos_partes():
 def fragmentos_comentarios(sb):
     """Reportes de vecinos: lenguaje libre, el caso donde el RAG más aporta."""
     desde = (datetime.now(timezone.utc) - timedelta(hours=HORAS_COMENTARIOS)).isoformat()
+    # El .in_ filtra en el servidor: menos filas que viajan y menos egress. El
+    # .order es una corrección, no cosmética: sin él, .limit(500) devuelve 500
+    # filas arbitrarias, así que dos corridas seguidas indexan conjuntos
+    # distintos y el tope tapa cuáles quedaron afuera.
     filas = (sb.table("comentarios_llm")
              .select("message_id,fecha,reporta,lugar,horas")
-             .gte("fecha", desde).limit(500).execute().data)
+             .gte("fecha", desde)
+             .in_("reporta", list(REPORTA_INDEXABLE))
+             .order("fecha", desc=True)
+             .limit(500).execute().data)
     fragmentos = []
     for c in filas:
         lugar = (c.get("lugar") or "").strip()

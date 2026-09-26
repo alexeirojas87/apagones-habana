@@ -1108,5 +1108,14 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 433 MW distribuidos en 167 circuitos de distribución. A continuación, "
+ },
+ "86951": {
+  "fecha": "2026-09-26T00:20:35+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1218"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Consumidores del municipio La Lisa queda reparada la Avería Secundaria por Transformador Dañado, que afectaba el servicio eléctrico en la siguiente dirección:"
  }
 }

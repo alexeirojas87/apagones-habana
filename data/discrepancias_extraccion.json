@@ -1,30 +1,4 @@
 {
- "84186": {
-  "fecha": "2026-09-19T15:59:23+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:57 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 304,OP424,OP"
- },
- "84180": {
-  "fecha": "2026-09-19T15:44:05+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:41 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores "
- },
  "84270": {
   "fecha": "2026-09-19T19:14:01+00:00",
   "tipo_llm": "otro",

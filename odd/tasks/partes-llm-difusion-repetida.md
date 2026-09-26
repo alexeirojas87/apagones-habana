@@ -166,13 +166,32 @@ datos**:
 - `70f82181` — `perf(partes-llm): no volver a pagar el LLM por la misma difusion`
   (`scripts/partes_llm.py`, `tests/test_partes_llm_validacion.py`).
 
+## Verificado en producción
+
+Merge `3efbb737` en `main`, corrido por el cron (run `36252216628`, headSha
+`f1cadcb9`, con el merge confirmado como ancestro de ese SHA) — `success` a las
+15:41:22Z. Del log:
+
+```
+partes_llm: 12 posts nuevos procesados, 13903 en caché, 31844 circuitos extraídos,
+            0 fallos, 2 sin llamar al LLM (2 difusiones, 0 repetidos)
+```
+
+El contador nuevo reporta **2 emisiones atajadas sin gastar una llamada**. Fue por
+**marcas y no por hash** (`2 difusiones, 0 repetidos`), que es el reparto
+esperado: las marcas atajan la emisión de redacción conocida, y el hash queda
+como red para cuando la cambien.
+
+El resto de la corrida también sana: `chatbot_embeddings` filtrando (20 nuevos, sin
+tormenta de ruido) y la purga sin auto-apagarse. Sitio en **200**.
+
+Nota de lectura del contador: es **por corrida**, y sólo cuenta emisiones
+**nuevas** — las que ya estaban procesadas las saltea antes el chequeo de
+`validador_version`, así que no pasan por las marcas. Con una difusión por hora y
+una corrida cada 30 minutos, el orden esperado es ~1 por corrida.
+
 ## Próximo paso
 
-Verificar **en producción**, en el log de la próxima ingesta, que `partes_llm`
-reporta difusiones evitadas — el contador nuevo es
-`N sin llamar al LLM (X difusiones, Y repetidos)`.
-
-Ojo al leerlo: los contadores son **por corrida** y `MAX_LLM_PARTES` corta el
-recorrido antes de terminar el backlog, así que el número depende de dónde se
-cortó. Lo que importa es que aparezca > 0 y que `via: llm` deje de crecer al
-ritmo de una por hora.
+Nada pendiente. Vale la pena, dentro de unos días, mirar en
+`data/partes_llm.json` que `via: llm` dejó de crecer al ritmo de una entrada por
+hora: es la señal de que ninguna difusión se está escapando.

@@ -1180,5 +1180,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 3:37 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL55:Zonas: 12;"
+ },
+ "87084": {
+  "fecha": "2026-09-26T08:28:08+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L323"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L323, que se ha transferido temporalmente la carga a los siguientes circuitos debido "
  }
 }

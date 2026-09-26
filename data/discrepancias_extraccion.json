@@ -1,15 +1,4 @@
 {
- "84124": {
-  "fecha": "2026-09-19T13:33:00+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "‼️Consumidores del municipio Cerro, por disparo del circuito se afecta el servicio eléctrico en: 👉P325: Alrededores de calles Infanta, Ayestarán, Zequeira, Desa"
- },
  "84186": {
   "fecha": "2026-09-19T15:59:23+00:00",
   "tipo_llm": "afectacion",
@@ -1187,5 +1176,33 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:14 AM se afectan 269 MW distribuidos en 102 circuitos de distribución. A continuación, "
+ },
+ "87181": {
+  "fecha": "2026-09-26T13:43:59+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "267"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚡️Consumidores del municipio Boyeros, se localiza AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 267, Finca las Cuartas, Wajay.⚡️🚧"
+ },
+ "87180": {
+  "fecha": "2026-09-26T13:42:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "245"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️ Consumidores de municipio Lisa, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉245 / 46 y 48.☑️🟢"
+ },
+ "87176": {
+  "fecha": "2026-09-26T13:36:54+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A490",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 256 MW distribuidos en 91 circuitos de distribución. A continuación, "
  }
 }

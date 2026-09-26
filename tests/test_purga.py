@@ -57,5 +57,22 @@ class RetencionesTest(unittest.TestCase):
                          "(la BD vivía en 335MB con 90d; el RAG es último recurso)")
 
 
+class AutoApagadoTest(unittest.TestCase):
+    def test_cache_no_fresco_termina_con_error(self):
+        """Con cachés no frescos la purga debe salir con error, no omitirse muda.
+
+        Solo se cubre la rama de salida: el camino en que cache_frescos()
+        devuelve True llama a purgar_tabla(), que hace red. Acá se parchea para
+        que devuelva False y main() falle antes de tocar la DB.
+        """
+        mod = cargar_purga()
+        mod.cache_frescos = lambda: False
+        with self.assertRaises(SystemExit) as ctx:
+            mod.main()
+        self.assertEqual(ctx.exception.code, 1,
+                         "con cachés no frescos la purga debe fallar, no omitirse "
+                         "en silencio: la base crecería sin techo hasta la cuota")
+
+
 if __name__ == "__main__":
     unittest.main()

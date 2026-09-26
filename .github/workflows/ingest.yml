@@ -171,16 +171,6 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
-      # Purga de datos viejos (retenciones en scripts/purga.py). Va al FINAL:
-      # los cachés incrementales (analitica_raw, canal_cache) son la copia del
-      # histórico que la DB va a borrar, y si no están frescos la purga se
-      # auto-deshabilita. PURGA_DRY_RUN=1 en el primer despliegue si se quiere
-      # ver solo los conteos.
-      - run: python scripts/purga.py || echo "purga falló, se continúa"
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-
       # Persiste las cachés de geocodificación (averías + circuitos) para no repetir
       # consultas a Nominatim/Overpass. Es BEST-EFFORT: si hay conflicto con otra
       # corrida (ambas tocan la caché), se resuelve tomando lo entrante y nunca
@@ -215,3 +205,21 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # Purga de datos viejos (retenciones en scripts/purga.py). Va AL FINAL, después
+      # del deploy, y a propósito: los cachés incrementales (analitica_raw,
+      # canal_cache) son la copia del histórico que la DB va a borrar, y si no están
+      # frescos la purga se auto-deshabilita.
+      #
+      # UN FALLO ACÁ ES INTENCIONAL Y VISIBLE: sin el "|| echo", la falta de cachés
+      # frescos deja la corrida en rojo en vez de dejar la base creciendo en silencio
+      # hasta reventar la cuota. Y va DESPUÉS del deploy porque los steps de SEO y
+      # deploy no tienen `if: always()`: si la purga fallara antes, un caché viejo
+      # congelaría el sitio. La base tarda semanas en llegar a la cuota; el sitio se
+      # congela en el acto.
+      #
+      # PURGA_DRY_RUN=1 en el primer despliegue si se quiere ver solo los conteos.
+      - run: python scripts/purga.py
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

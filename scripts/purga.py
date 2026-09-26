@@ -21,7 +21,9 @@ Retenciones (días, configurables por env):
 
 Seguridad (por eso puede correr solo en cada ingesta):
   1. Los cachés incrementales deben existir y ser frescos (< 48 h): son la copia
-     del histórico que la DB va a borrar. Sin ellos, la purga se omite.
+     del histórico que la DB va a borrar. Sin ellos la purga se omite y el paso
+     TERMINA CON ERROR: un auto-apagado silencioso dejaría la base creciendo sin
+     techo hasta reventar la cuota sin que nadie se entere.
   2. El borrado va por franjas de fechas y se detiene al llegar al fondo de los
      datos, así la primera purga (masiva) y las de mantenimiento cuestan lo mismo.
   3. PURGA_DRY_RUN=1 solo cuenta lo que borraría (útil la primera vez).
@@ -159,7 +161,10 @@ def purgar_tabla(tabla, filtros, col_fecha, dias, paso_dias, ahora, dry_run):
 def main():
     dry_run = os.environ.get("PURGA_DRY_RUN") == "1"
     if not cache_frescos():
-        return
+        # Sin cachés frescos la purga se omite ENTERA y la base crece sin techo
+        # hasta reventar la cuota, en silencio. Ya imprimió el motivo: que falle
+        # el paso para que se vea.
+        sys.exit(1)
     ahora = datetime.now(timezone.utc)
     modo = "dry-run" if dry_run else "REAL"
     print(f"purga: {modo} (retenciones: " + ", ".join(

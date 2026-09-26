@@ -1,16 +1,21 @@
 # presupuesto-storage-supabase — DDL del lado base (T5)
 
-El 80% del ahorro de la tarea `presupuesto-storage-supabase` está de este lado,
-y **no se puede ejecutar desde el repo**: el CLI de Supabase está logueado
-(proyecto `apagoneshabana`, ref `bmtvaebcnwzjjlempzgb`), pero el proyecto no está
-linkeado, no hay `psql` instalado y `.env` solo tiene `SUPABASE_URL` +
-`SUPABASE_SERVICE_KEY`, que son credenciales REST (PostgREST no ejecuta DDL).
+> **APLICADO el 2026-09-26.** De **425 MB a 276 MB** (−149 MB; de 85% de la cuota
+> a 55%). Las tres sentencias de abajo quedan como registro de lo que se ejecutó,
+> no como algo pendiente. El detalle y la verificación funcional del RAG están en
+> `odd/tasks/presupuesto-storage-supabase.md`.
 
-Ejecutar en el **SQL Editor de Supabase**, idealmente de noche (el paso 3 toma un
-lock exclusivo y bloquea las consultas del chatbot unos segundos). **Una
-sentencia por vez**: `VACUUM` no puede ir dentro de una transacción.
+Cómo se ejecutó, en vez del SQL Editor: con `psycopg2` y `autocommit` contra el
+host directo `db.bmtvaebcnwzjjlempzgb.supabase.co:5432`. Ese host es el correcto
+para esto —es sesión real—; el *transaction pooler* (`:6543`) no sirve, porque
+`VACUUM` no puede correr dentro de una transacción. El host directo resuelve
+**solo IPv6** (verificado: conecta desde esta máquina).
 
-Estado de partida medido el 2026-09-26: base ~432 MB de 500.
+**Una sentencia por vez**, y el paso 3 toma un lock exclusivo que bloquea las
+consultas del chatbot unos segundos: conviene correrlo de noche.
+
+Estado de partida medido el 2026-09-26: 425 MB de 500, y el índice ivfflat en
+132 MB (el doble de lo que le correspondía para 16.811 vectores).
 
 ---
 

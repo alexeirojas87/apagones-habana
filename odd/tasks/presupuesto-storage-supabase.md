@@ -124,9 +124,9 @@ RAG. Ese es el "estamos ingiriendo partes que no son partes" reportado.
 - [x] **T3** `ingest.yml`: la línea de purga deja de llevar `|| echo`.
 - [x] **T4** Tests: filtro, determinismo del orden y el invariante
       `PURGA_FRAGMENTOS_DIAS >= DIAS_HISTORICO_BOT`; auto-apagado con exit ≠ 0.
-- [ ] **T5** DDL del lado base (bloqueado: requiere credencial): drop del ivfflat
-      + delete del ruido + `vacuum full`. El SQL está en
-      `docs/presupuesto-storage-supabase.md`.
+- [x] **T5** DDL del lado base **aplicado el 2026-09-26**: drop del ivfflat +
+      delete del ruido + `vacuum full`. Resultado y verificación en "Progreso".
+      El SQL queda documentado en `docs/presupuesto-storage-supabase.md`.
 
 ## Criterios de aceptación
 
@@ -203,6 +203,48 @@ steps: 24
  - python scripts/purga.py | always= None
 ```
 
+### T5 aplicado — DDL del lado base (2026-09-26)
+
+Ejecutado con `psycopg2` y `autocommit` (obligatorio: `VACUUM FULL` no puede
+correr dentro de un bloque de transacción) contra el host directo
+`db.bmtvaebcnwzjjlempzgb.supabase.co:5432`. Antes se verificó que ese host
+resuelve **solo IPv6** y que **conecta** desde la máquina — la trampa habitual de
+las conexiones directas de Supabase no aplicaba acá. El host directo era el
+correcto para el DDL: es sesión real, y el *transaction pooler* (`:6543`) no
+sirve para `VACUUM`.
+
+Estado medido justo antes, que confirma el diagnóstico sobre datos vivos (y
+muestra que el índice no se desinfla solo, como predecía el análisis):
+
+| | antes | después |
+|---|---|---|
+| filas | 16.811 | **14.225** |
+| vectores | 66 MB | 56 MB |
+| `pg_total_relation_size('chatbot_fragmentos')` | 232 MB | **82 MB** |
+| `pg_database_size` | 425 MB | **276 MB** |
+| índice `chatbot_fragmentos_embedding` | 132 MB | no existe |
+
+**−149 MB. De 85% de la cuota a 55%.** El `delete` borró 2.586 filas: exactamente
+el conteo del ruido medido antes de tocarlo.
+
+Verificación funcional del RAG —era una consulta de producción a la que se le
+quitó el índice, así que había que probarla—: `buscar_fragmentos` sigue
+devolviendo 6 filas, y usando como consulta el vector de una fila existente el
+primer resultado da **similitud 1.0000**. O sea: la búsqueda es **exacta**, con
+mejor recall que el aproximado que había antes. `Execution Time` del plan:
+**241 ms**, aceptable para un bot de Telegram low-QPS.
+
+Dos correcciones sobre la propia verificación, para que no queden como dato
+bueno:
+
+- El `0 ms` que imprimió el script es un artefacto de cómo lo escribí: el
+  cronómetro arrancaba *después* del `execute()`, así que medía el `fetchall()`
+  de un resultado ya calculado. El número válido es el del plan: **241 ms**.
+- El `EXPLAIN` **no** confirma por sí solo el seq scan: la función SQL no se
+  inlinea en el plan, así que `Function Scan on buscar_fragmentos` es el wrapper,
+  no el scan interno. Lo que sí lo prueba es que ya no existe ningún índice sobre
+  `embedding`: no hay otro plan posible.
+
 ### Commits de unidad de trabajo
 
 - `b143ed78` — `perf(chatbot): el índice deja de indexar comentarios sin valor de
@@ -213,10 +255,20 @@ steps: 24
 
 ## Próximo paso
 
-T5 requiere una credencial que el repo no tiene: el CLI de Supabase está logueado
-(proyecto `apagoneshabana`, ref `bmtvaebcnwzjjlempzgb`) pero **el proyecto no
-está linkeado, no hay `psql` instalado y `.env` solo tiene `SUPABASE_URL` +
-`SUPABASE_SERVICE_KEY`** (REST, no sirve para DDL). Sin la cadena de conexión de
-Postgres (o sin correr el SQL a mano en el editor de Supabase) no se puede hacer
-el drop del índice, que es el 80% del ahorro.
+**La limpieza NO queda firme hasta que el cambio de código llegue a producción.**
+El `delete` borró los 2.586 fragmentos-ruido, pero mientras `main` siga teniendo
+la versión vieja de `scripts/chatbot/embeddings.py`, la ingesta los vuelve a
+indexar: a ~86 filas por día, en un mes el ruido está de vuelta en ~2.586. Lo que
+ya no vuelve nunca es el índice de 132 MB — la fuga estructural está cortada.
+
+1. Mergear la rama (los dos commits de unidad de trabajo + este documento).
+   Decisión del mantenedor, por política normal del repo.
+2. Levers disponibles si hiciera falta más margen, ninguno urgente con 276 MB de
+   500: `PURGA_COMENTARIOS_DIAS` de 60 → 30 (~35 MB) y el `mensajes.raw` legacy
+   (9,5 MB en 6.585 filas) con un `vacuum full` de `mensajes`.
+
+Nota de método: la credencial de Postgres se usó desde un archivo temporal con
+permisos `600` leído por `--url-file`, nunca desde una línea de comando, y se
+borró al terminar. El archivo del ejecutor vivió en el directorio temporal, no en
+el repo.
 

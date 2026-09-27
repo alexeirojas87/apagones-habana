@@ -10,17 +10,6 @@
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 2:42 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
  },
- "84607": {
-  "fecha": "2026-09-20T06:32:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1175",
-   "1249",
-   "A1217"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 02:23AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉1170: A1217: 1175: 1249 📌Usted pu"
- },
  "84687": {
   "fecha": "2026-09-20T13:00:43+00:00",
   "tipo_llm": "deficit",

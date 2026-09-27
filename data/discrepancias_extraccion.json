@@ -1,13 +1,4 @@
 {
- "84747": {
-  "fecha": "2026-09-20T16:44:28+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "L317"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:31 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1227: Calle 14"
- },
  "84791": {
   "fecha": "2026-09-20T18:40:46+00:00",
   "tipo_llm": "otro",

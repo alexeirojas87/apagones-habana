@@ -1,14 +1,4 @@
 {
- "84818": {
-  "fecha": "2026-09-20T19:47:32+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "MR450",
-   "R464"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro ✔️Municipio : San Mig"
- },
  "84859": {
   "fecha": "2026-09-20T21:17:34+00:00",
   "tipo_llm": "averia",

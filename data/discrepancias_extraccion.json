@@ -1,13 +1,4 @@
 {
- "84557": {
-  "fecha": "2026-09-20T04:40:32+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "H443"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H442, que por condiciones en la Subestación se ha transferido temporal"
- },
  "84614": {
   "fecha": "2026-09-20T06:45:31+00:00",
   "tipo_llm": "restablecimiento",

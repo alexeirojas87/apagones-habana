@@ -1110,5 +1110,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L323, que se ha transferido temporalmente la carga a los siguientes circuitos debido "
+ },
+ "87924": {
+  "fecha": "2026-09-28T01:34:22+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D633"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Diez de Octubre, se localiza avería secundaria por transformador dañado en la calle Acosta entre Porvenir y 7ma🚨"
  }
 }

@@ -1,13 +1,4 @@
 {
- "85186": {
-  "fecha": "2026-09-21T19:10:09+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:10 PM se afectan 215MW distribuidos en 81 circuitos de distribución. A continuación, s"
- },
  "85219": {
   "fecha": "2026-09-21T21:03:50+00:00",
   "tipo_llm": "averia",
@@ -1093,5 +1084,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣🚨 Recordamos a los clientes pertenecientes al circuito OP319 que durante la semana que estaba prevista la rotación por Disparo Automático por Frecuencia (DAF),"
+ },
+ "88290": {
+  "fecha": "2026-09-28T19:05:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1244",
+   "L316"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L316 que se encuentra transferida temporalmente parte de la carga al circuito 12"
  }
 }

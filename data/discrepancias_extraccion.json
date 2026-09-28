@@ -1121,5 +1121,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores del municipio 10 DE Octubre pertenecientes al circuito PG980 que se encuentra transferida temporalmente parte de la carga al ci"
+ },
+ "88205": {
+  "fecha": "2026-09-28T16:02:05+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 270 MW distribuidos en 96 circuitos de distribución. A continuación, "
  }
 }

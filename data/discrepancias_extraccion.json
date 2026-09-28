@@ -1085,5 +1085,23 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro ✔️Municipio : San Mig"
+ },
+ "88395": {
+  "fecha": "2026-09-28T22:41:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "178"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️ Consumidores de municipio Playa, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉178 entre 1ra y 5ta ☑️🟢"
+ },
+ "88392": {
+  "fecha": "2026-09-28T22:33:44+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "210"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️ Consumidores de municipio Lisa, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉210 entre 51 y 56☑️🟢"
  }
 }

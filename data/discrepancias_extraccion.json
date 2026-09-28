@@ -1,13 +1,4 @@
 {
- "85219": {
-  "fecha": "2026-09-21T21:03:50+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "114"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑💥Consumidores del municipio Marianao , se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉 114 Ciclo Vías Esquina 119.💥🛑"
- },
  "85232": {
   "fecha": "2026-09-21T21:44:23+00:00",
   "tipo_llm": "afectacion",

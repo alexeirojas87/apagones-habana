@@ -1,13 +1,4 @@
 {
- "85232": {
-  "fecha": "2026-09-21T21:44:23+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ17"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:41 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz13: Zapata de"
- },
  "85259": {
   "fecha": "2026-09-22T00:26:17+00:00",
   "tipo_llm": "afectacion",

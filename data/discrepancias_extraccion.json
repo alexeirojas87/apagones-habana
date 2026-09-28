@@ -1,13 +1,4 @@
 {
- "85115": {
-  "fecha": "2026-09-21T15:48:05+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
- },
  "85136": {
   "fecha": "2026-09-21T16:46:03+00:00",
   "tipo_llm": "deficit",
@@ -1103,5 +1094,32 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores del municipio 10 de Octubre pertenecientes al circuito 2203 que se encuentra transferida temporalmente la carga al circuito 220"
+ },
+ "88196": {
+  "fecha": "2026-09-28T15:39:24+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Reiteramos a los consumidores del municipio 10 de Octubre pertenecientes al circuito C8 que se encuentra transferida temporalmente la carga al circuito OP408"
+ },
+ "88194": {
+  "fecha": "2026-09-28T15:37:05+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Arroyo Naranjo pertenecientes al circuito 2205 que se encuentra transferida temporalmente parte de la carga al ci"
+ },
+ "88190": {
+  "fecha": "2026-09-28T15:33:55+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "D632"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio 10 DE Octubre pertenecientes al circuito PG980 que se encuentra transferida temporalmente parte de la carga al ci"
  }
 }

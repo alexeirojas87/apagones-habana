@@ -1,22 +1,4 @@
 {
- "85145": {
-  "fecha": "2026-09-21T17:10:03+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D860"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:09 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉PG920:Repartos: Ciudad Jardín y Parcelaci"
- },
- "85144": {
-  "fecha": "2026-09-21T17:10:02+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1465"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:05 PM se afectó el servicio eléctrico en los siguientes circuitos: 👉A1547:Repartos: La Castellana, Las Guásim"
- },
  "85157": {
   "fecha": "2026-09-21T17:45:19+00:00",
   "tipo_llm": "restablecimiento",
@@ -1121,5 +1103,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 270 MW distribuidos en 96 circuitos de distribución. A continuación, "
+ },
+ "88230": {
+  "fecha": "2026-09-28T17:09:34+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP319"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Informamos a los clientes del municipio Centro Habana pertenecientes al circuito OP319, que se ha transferido temporalmente la carga a los siguientes circuitos"
  }
 }

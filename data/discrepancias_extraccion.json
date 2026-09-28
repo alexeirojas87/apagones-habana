@@ -1094,5 +1094,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L316 que se encuentra transferida temporalmente parte de la carga al circuito 12"
+ },
+ "88313": {
+  "fecha": "2026-09-28T20:01:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "MR450"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro ✔️Municipio : San Mig"
  }
 }

@@ -1017,5 +1017,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a los consumidores del municipio Playa pertenecientes al circuito L316 que se encontraba transferida temporalmente parte su carga al circuito 1244 ,"
+ },
+ "88618": {
+  "fecha": "2026-09-29T11:52:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo del Circuito en los municipios Habana del Este y Guanabacoa.✅ 👉MB910:Justi, Agromar, Ba"
  }
 }

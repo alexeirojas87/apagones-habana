@@ -1,14 +1,4 @@
 {
- "85383": {
-  "fecha": "2026-09-22T07:17:53+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425",
-   "SR830"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:18 AM se afectan 304MW distribuidos en 106 circuitos de distribución. A continuación, "
- },
  "85400": {
   "fecha": "2026-09-22T09:07:08+00:00",
   "tipo_llm": "afectacion",

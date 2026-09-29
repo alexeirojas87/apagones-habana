@@ -1,14 +1,4 @@
 {
- "85277": {
-  "fecha": "2026-09-22T01:28:13+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ19",
-   "PZ4"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 09:11 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz7:Cuadrante d"
- },
  "85313": {
   "fecha": "2026-09-22T03:53:00+00:00",
   "tipo_llm": "restablecimiento",
@@ -1074,5 +1064,14 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️ Consumidores de municipio Lisa, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉210 entre 51 y 56☑️🟢"
+ },
+ "88445": {
+  "fecha": "2026-09-29T01:03:10+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PG930"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 236 MW distribuidos en 79 circuitos de distribución. A continuación, "
  }
 }

@@ -1,13 +1,4 @@
 {
- "85260": {
-  "fecha": "2026-09-22T00:33:35+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A708"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢✔️Consumidores del municipio Boyeros, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba la siguiente dirección: 👉 236/247 y 249,Abel Sa"
- },
  "85277": {
   "fecha": "2026-09-22T01:28:13+00:00",
   "tipo_llm": "afectacion",

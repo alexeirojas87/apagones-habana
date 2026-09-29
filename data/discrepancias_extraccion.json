@@ -1174,5 +1174,27 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 4:22 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR820:Reparto A"
+ },
+ "88812": {
+  "fecha": "2026-09-29T21:23:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP320",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:20 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP320, OP424, OP304, OP411, : Sot"
+ },
+ "88810": {
+  "fecha": "2026-09-29T21:15:45+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:12 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG312:Alrededor"
  }
 }

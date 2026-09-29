@@ -1072,5 +1072,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de la 10:23 AM queda restablecido el servicio en los siguientes circuitos: 👉 GC 7:Cojimar calle 80 desde 1era hasta 7ma"
+ },
+ "88676": {
+  "fecha": "2026-09-29T14:34:59+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A945"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio Boyeros por un Disparo por 33KV se encuentran afectados los siguientes circuitos: 👉A940:Reparto Fontanar 👉A708:Reparto Abel Santama"
  }
 }

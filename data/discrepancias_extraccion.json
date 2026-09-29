@@ -1,22 +1,4 @@
 {
- "85548": {
-  "fecha": "2026-09-22T15:40:02+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "R454"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Guanabacoa, se localiza Avería por Poste Partido afectado el servicio eléctrico en los siguientes repartos: Mañana, Valero, Vía Bl"
- },
- "85547": {
-  "fecha": "2026-09-22T15:38:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1695"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Arroyo Naranjo, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afectaba la siguiente dirección: 2da e/ Camilo Cien"
- },
  "85570": {
   "fecha": "2026-09-22T16:13:03+00:00",
   "tipo_llm": "restablecimiento",
@@ -1091,5 +1073,32 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 11:20 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC19:Repartos R"
+ },
+ "88706": {
+  "fecha": "2026-09-29T16:00:20+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H442"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio San Miguel del Padrón, se encuentran afectados por un PUENTE PRIMARIO PARTIDO quedando sin servicio el siguiente circuito: 👉H442: R"
+ },
+ "88705": {
+  "fecha": "2026-09-29T15:53:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 11:26 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR840:Centro d"
+ },
+ "88702": {
+  "fecha": "2026-09-29T15:49:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A945"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Con servicio los consumidores del municipio Boyeros que se encontraban afectados por un Disparo por 33KV en los siguientes circuitos: 👉A940:Reparto Fontanar 👉"
  }
 }

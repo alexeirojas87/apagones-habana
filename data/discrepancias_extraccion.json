@@ -1026,5 +1026,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo del Circuito en los municipios Habana del Este y Guanabacoa.✅ 👉MB910:Justi, Agromar, Ba"
+ },
+ "88631": {
+  "fecha": "2026-09-29T13:00:39+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC18",
+   "R464"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 08:50 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 MB930:Mirador "
  }
 }

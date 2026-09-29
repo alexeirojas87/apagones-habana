@@ -1,13 +1,4 @@
 {
- "85654": {
-  "fecha": "2026-09-22T20:47:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "114"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Marianao, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉114 Ciclo Vía esquina 119.☑️🟢"
- },
  "85706": {
   "fecha": "2026-09-23T01:17:09+00:00",
   "tipo_llm": "averia",
@@ -1154,5 +1145,34 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de la 16:16 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325:Alrededores de"
+ },
+ "88808": {
+  "fecha": "2026-09-29T20:56:22+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "152"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢✅ Consumidores de municipio La Lisa, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO en: 👉152 entre 85 y 87.✅🟢"
+ },
+ "88806": {
+  "fecha": "2026-09-29T20:45:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D128"
+  ],
+  "solo_regex": [
+   "D1280"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 04:45 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉D1280: Repartos Coco Solo, Los Poci"
+ },
+ "88800": {
+  "fecha": "2026-09-29T20:34:39+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S512"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 4:22 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR820:Reparto A"
  }
 }

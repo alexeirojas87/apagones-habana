@@ -1,13 +1,4 @@
 {
- "85344": {
-  "fecha": "2026-09-22T05:42:34+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP321"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 01:31 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz5:Calles desd"
- },
  "85383": {
   "fecha": "2026-09-22T07:17:53+00:00",
   "tipo_llm": "deficit",

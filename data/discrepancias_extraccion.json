@@ -1,14 +1,4 @@
 {
- "85422": {
-  "fecha": "2026-09-22T10:50:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": ":🚨📣Informamos a la población que a partir de las 06:33 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alrede"
- },
  "85548": {
   "fecha": "2026-09-22T15:40:02+00:00",
   "tipo_llm": "averia",
@@ -1007,5 +997,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 236 MW distribuidos en 79 circuitos de distribución. A continuación, "
+ },
+ "88599": {
+  "fecha": "2026-09-29T10:38:56+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "GC12",
+   "MR450"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro ✔️Municipio : San Mig"
  }
 }

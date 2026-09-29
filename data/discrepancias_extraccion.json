@@ -17,17 +17,6 @@
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 292 MW distribuidos en 109 circuitos de distribución. A continuación,"
  },
- "85626": {
-  "fecha": "2026-09-22T19:32:12+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:31PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
- },
  "85650": {
   "fecha": "2026-09-22T20:17:25+00:00",
   "tipo_llm": "afectacion",
@@ -1136,5 +1125,32 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de la 02:16PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉C14:Alrededores de c"
+ },
+ "88777": {
+  "fecha": "2026-09-29T19:20:39+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑💥 Consumidores del municipio Plaza se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO afectando la siguiente dirección: 👉 Avenida Norte e/ Lazada Norte "
+ },
+ "88776": {
+  "fecha": "2026-09-29T19:20:22+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C15"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑💥 Consumidores del municipio Plaza se detectó una AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO afectando la siguiente dirección: 👉Washington e/ Prensa y Colon .🛑"
+ },
+ "88774": {
+  "fecha": "2026-09-29T19:06:03+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "PZ17"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:05 PM se afectan 286 MW distribuidos en 101 circuitos de distribución. A continuación,"
  }
 }

@@ -1,13 +1,4 @@
 {
- "85570": {
-  "fecha": "2026-09-22T16:13:03+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "R454"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Guanabacoa, queda reparada la Avería por Poste Partido que afectaba los repartos: Mañana, Valero, Vía Blanca, Azotea, Vista Alegre.✅"
- },
  "85640": {
   "fecha": "2026-09-22T19:59:48+00:00",
   "tipo_llm": "restablecimiento",
@@ -1100,5 +1091,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Con servicio los consumidores del municipio Boyeros que se encontraban afectados por un Disparo por 33KV en los siguientes circuitos: 👉A940:Reparto Fontanar 👉"
+ },
+ "88709": {
+  "fecha": "2026-09-29T16:08:05+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "PZ17"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:08 PM se afectan 162 MW distribuidos en 58 circuitos de distribución. A continuación, "
  }
 }

@@ -1277,5 +1277,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📣Consumidores del municipio Boyeros, se localiza AVERÍA por PRIMARIO PARTIDO en la siguiente dirección: Vento y 2da, Altahabana.📣🚧"
+ },
+ "89191": {
+  "fecha": "2026-09-30T16:46:10+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:20 PM se afectan 123 MW distribuidos en 51 circuitos de distribución. A continuación, s"
  }
 }

@@ -1263,5 +1263,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 01:45 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL55:Zonas: 12"
+ },
+ "89000": {
+  "fecha": "2026-09-30T07:19:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:18 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores"
+ },
+ "88994": {
+  "fecha": "2026-09-30T07:11:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR840"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:56 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC19:Repartos "
  }
 }

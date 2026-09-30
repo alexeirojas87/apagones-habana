@@ -1245,5 +1245,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 10:47 PM queda restablecido el servicio en los siguientes circuitos: 👉AL55:Zonas: 12; 13; 14; 19; 20; 21; 23; 24"
+ },
+ "88930": {
+  "fecha": "2026-09-30T04:21:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:21 AM se afectan 366 MW distribuidos en 118 circuitos de distribución. A continuación, "
  }
 }

@@ -1268,5 +1268,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 211 MW distribuidos en 87 circuitos de distribución. A continuación, "
+ },
+ "89133": {
+  "fecha": "2026-09-30T14:42:03+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📣Consumidores del municipio Boyeros, se localiza AVERÍA por PRIMARIO PARTIDO en la siguiente dirección: Vento y 2da, Altahabana.📣🚧"
  }
 }

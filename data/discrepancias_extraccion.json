@@ -1295,5 +1295,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨🚧Consumidores del municipio Playa, se encuentran afectados por AVERÍA PRIMARIA debido a un árbol caído sobre las líneas en: 190 y 19, Náutico.🚧🚨"
+ },
+ "89219": {
+  "fecha": "2026-09-30T18:06:51+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de la 02:06 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325:Alrededores de"
  }
 }

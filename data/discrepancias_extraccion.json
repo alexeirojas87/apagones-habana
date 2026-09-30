@@ -1270,5 +1270,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:56 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC19:Repartos "
+ },
+ "89030": {
+  "fecha": "2026-09-30T10:00:04+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "S512"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 211 MW distribuidos en 87 circuitos de distribución. A continuación, "
  }
 }

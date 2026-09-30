@@ -1205,5 +1205,18 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:05 PM se afectan 373 MW distribuidos en 138 circuitos de distribución. A continuación,"
+ },
+ "88855": {
+  "fecha": "2026-09-29T23:56:22+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP320",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a la población que a partir de las 7:54 PM quedó restablecido el servicio en los siguientes circuitos: 👉 OP 318, OP320, OP424, OP304, OP411, : Soter"
  }
 }

@@ -1236,5 +1236,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:52 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL52:Zonas: 6;"
+ },
+ "88905": {
+  "fecha": "2026-09-30T03:01:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:47 PM queda restablecido el servicio en los siguientes circuitos: 👉AL55:Zonas: 12; 13; 14; 19; 20; 21; 23; 24"
  }
 }

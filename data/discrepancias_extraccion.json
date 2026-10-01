@@ -1324,5 +1324,14 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 08:06 PM quedó restablecido el servicio en los siguientes circuitos: 👉PZ9: La Timba, calle 4 desde 37 a Hidalgo,"
+ },
+ "89440": {
+  "fecha": "2026-10-01T04:26:52+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️🚨 Informamos a los clientes de los municipios Arroyo Naranjo y Diez de Octubre, pertenecientes a la Subestación Apolo, que, a raíz de una avería en un interru"
  }
 }

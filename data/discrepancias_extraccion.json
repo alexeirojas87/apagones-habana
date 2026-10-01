@@ -1,25 +1,4 @@
 {
- "86351": {
-  "fecha": "2026-09-24T16:55:39+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP318",
-   "OP320",
-   "OP411",
-   "OP420"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:48 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP325, OP318, OP320, OP420, OP411 📌Usted p"
- },
- "86348": {
-  "fecha": "2026-09-24T16:47:18+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D1125"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Habana del Este se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉14 / 2da y 3ra , Guiteras🛑⚡️"
- },
  "86367": {
   "fecha": "2026-09-24T17:48:05+00:00",
   "tipo_llm": "restablecimiento",

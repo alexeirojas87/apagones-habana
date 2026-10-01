@@ -1,14 +1,4 @@
 {
- "86397": {
-  "fecha": "2026-09-24T18:57:59+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380",
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 349 MW distribuidos en 129 circuitos de distribución. A continuación,"
- },
  "86408": {
   "fecha": "2026-09-24T19:22:37+00:00",
   "tipo_llm": "restablecimiento",
@@ -1288,5 +1278,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣Informamos a los clientes pertenecientes al municipio Arroyo Naranjo que se normaliza el esquema del circuito A1007 de la Subestación Apolo siendo reparada la "
+ },
+ "89774": {
+  "fecha": "2026-10-01T18:48:54+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "P319",
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Recordamos a los clientes de los municipios Plaza y Centro Habana pertenecientes al circuito P326 que se encuentra transferida temporalmente la carga al circ"
  }
 }

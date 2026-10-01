@@ -1334,5 +1334,26 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores de los municipios Arroyo Naranjo y Boyeros pertenecientes al circuito 2204 que se encuentra transferida temporalmente parte de "
+ },
+ "89662": {
+  "fecha": "2026-10-01T15:11:04+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "C13",
+   "C15"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Cerro pertenecientes al circuito C15 que se encuentra transferida temporalmente parte de la carga al circuito C13"
+ },
+ "89659": {
+  "fecha": "2026-10-01T15:05:13+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅Informamos a la población que a partir de las 11:04 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Alrededores de calles Infanta, Ayestarán"
  }
 }

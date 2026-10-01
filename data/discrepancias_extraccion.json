@@ -1344,5 +1344,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de la 01:06 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325:Alrededores de"
+ },
+ "89565": {
+  "fecha": "2026-10-01T10:59:33+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:30 AM se afectan 307 MW distribuidos en 110 circuitos de distribución. A continuación, "
  }
 }

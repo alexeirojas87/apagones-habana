@@ -1,23 +1,4 @@
 {
- "86295": {
-  "fecha": "2026-09-24T15:01:02+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "C13"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Consumidores del municipio Cerro, se autoriza Vía Libre de Emergencia por Trabajos Operativos,afectando el servicio eléctrico en el siguiente circuito: C13: In"
- },
- "86286": {
-  "fecha": "2026-09-24T14:40:54+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H343",
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343 que se ha transferido temporalmente la carga al circuito S513 qu"
- },
  "86313": {
   "fecha": "2026-09-24T15:35:29+00:00",
   "tipo_llm": "otro",
@@ -1342,5 +1323,16 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:30 AM se afectan 307 MW distribuidos en 110 circuitos de distribución. A continuación, "
+ },
+ "89653": {
+  "fecha": "2026-10-01T14:53:27+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2204",
+   "A1006",
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores de los municipios Arroyo Naranjo y Boyeros pertenecientes al circuito 2204 que se encuentra transferida temporalmente parte de "
  }
 }

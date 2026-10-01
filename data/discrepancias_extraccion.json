@@ -1279,5 +1279,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Recordamos a los clientes de los municipios Plaza y Centro Habana pertenecientes al circuito P326 que se encuentra transferida temporalmente la carga al circ"
+ },
+ "89805": {
+  "fecha": "2026-10-01T19:52:36+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2204",
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Arroyo Naranjo pertenecientes al circuito 2204 que se normaliza el esquema afectándose el cuadrante a continuació"
  }
 }

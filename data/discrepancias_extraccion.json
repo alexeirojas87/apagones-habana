@@ -1,14 +1,4 @@
 {
- "86313": {
-  "fecha": "2026-09-24T15:35:29+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1202",
-   "A500"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio Marianao pertenecientes al circuito A500 que se encuentra transferida temporalmente la carga al circuito A1202. U"
- },
  "86351": {
   "fecha": "2026-09-24T16:55:39+00:00",
   "tipo_llm": "restablecimiento",

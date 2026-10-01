@@ -1,35 +1,4 @@
 {
- "86367": {
-  "fecha": "2026-09-24T17:48:05+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅Consumidores del municipio Cerro, queda restablecido el servicio eléctrico, afectado por Trabajos Operativos en: 👉P325: Alrededores de calles Infanta, Ayestará"
- },
- "86366": {
-  "fecha": "2026-09-24T17:47:56+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "MR450"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro ✔️Municipio : San Mig"
- },
- "86364": {
-  "fecha": "2026-09-24T17:41:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📌⚡️Consumidores del municipio Cerro se afecta el servicio eléctrico por TRABAJOS OPERATIVOS en el siguiente circuito: 👉P325: Alrededores de calles Infanta, Ayes"
- },
  "86373": {
   "fecha": "2026-09-24T18:10:58+00:00",
   "tipo_llm": "daf",
@@ -1324,5 +1293,15 @@
    "OP325"
   ],
   "extracto": "✅Informamos a la población que a partir de las 11:04 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Alrededores de calles Infanta, Ayestarán"
+ },
+ "89749": {
+  "fecha": "2026-10-01T18:00:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1007",
+   "PG970"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Informamos a los clientes pertenecientes al municipio Arroyo Naranjo que se normaliza el esquema del circuito A1007 de la Subestación Apolo siendo reparada la "
  }
 }

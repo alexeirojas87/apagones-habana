@@ -1278,5 +1278,17 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores del municipio Arroyo Naranjo pertenecientes al circuito 2204 que se normaliza el esquema afectándose el cuadrante a continuació"
+ },
+ "89835": {
+  "fecha": "2026-10-01T21:15:05+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C10",
+   "C13",
+   "C15",
+   "C7"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio Cerro que se repara el interruptor del circuito C15 el cual lleva la carga del hospital Clínico de 26, normalizando e"
  }
 }

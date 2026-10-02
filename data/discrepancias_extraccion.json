@@ -1115,5 +1115,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio Playa que se normaliza el esquema del circuito L323 de la subestación Ciudad Libertad🔔📣"
+ },
+ "90286": {
+  "fecha": "2026-10-02T20:15:26+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "L317"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 4:13 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: .👉L317: Alrededor"
  }
 }

@@ -1,13 +1,4 @@
 {
- "86690": {
-  "fecha": "2026-09-25T11:08:59+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1007"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
- },
  "86726": {
   "fecha": "2026-09-25T12:56:11+00:00",
   "tipo_llm": "afectacion",
@@ -1251,5 +1242,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:05 AM se afectan 466 MW distribuidos en 159 circuitos de distribución. A continuación,"
+ },
+ "90034": {
+  "fecha": "2026-10-02T11:05:56+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "C10",
+   "C13",
+   "C7"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio Cerro pertenecientes a los circuitos C7, C10, C13 que se encontraban en parelo, que por posible avería se aisló el C1"
  }
 }

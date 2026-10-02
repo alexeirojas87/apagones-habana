@@ -1,13 +1,4 @@
 {
- "86770": {
-  "fecha": "2026-09-25T14:30:37+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "GC17"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a la población que a partir de las 10:15 AM quedó restablecido el servicio en los siguientes circuitos: 👉GC16:Soterrado Panamericanos, Camilo Cienfu"
- },
  "86783": {
   "fecha": "2026-09-25T14:53:18+00:00",
   "tipo_llm": "afectacion",

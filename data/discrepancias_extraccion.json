@@ -1,32 +1,4 @@
 {
- "86664": {
-  "fecha": "2026-09-25T10:09:51+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D1140",
-   "MR450"
-  ],
-  "solo_regex": [],
-  "extracto": "Z✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro ✔️Municipio : San Mi"
- },
- "86663": {
-  "fecha": "2026-09-25T10:09:32+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ5"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Plaza pertenecientes al circuito P329, se ha transferido temporalmente la carga al circuito Pz5: 👉P329: 0 desde 19 has"
- },
- "86662": {
-  "fecha": "2026-09-25T10:06:54+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 257 MW distribuidos en 98 circuitos de distribución. A continuación, s"
- },
  "86690": {
   "fecha": "2026-09-25T11:08:59+00:00",
   "tipo_llm": "restablecimiento",

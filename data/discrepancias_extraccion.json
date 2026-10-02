@@ -1270,5 +1270,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio Playa que se normaliza el esquema del circuito L322 de la subestación Ciudad Libertad🔔📣"
+ },
+ "89947": {
+  "fecha": "2026-10-02T04:14:12+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P314"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:05 AM se afectan 466 MW distribuidos en 159 circuitos de distribución. A continuación,"
  }
 }

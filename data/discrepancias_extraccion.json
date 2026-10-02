@@ -1076,5 +1076,35 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 12:51 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉A 815: Alrededores de calles calzad"
+ },
+ "90205": {
+  "fecha": "2026-10-02T17:54:21+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C10",
+   "C13",
+   "C7"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio Cerro, que se normaliza el esquema de los circuitos C7, C10 y C13🔔📣"
+ },
+ "90202": {
+  "fecha": "2026-10-02T17:48:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C13"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio Cerro, que se encontraba en paralelo con C1O y C13 por Avería, quedó restablecido el servicio eléct"
+ },
+ "90191": {
+  "fecha": "2026-10-02T17:32:24+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L317",
+   "L322"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L322, que se ha transferido temporalmente la carga al circuito L317 debido a un cable"
  }
 }

@@ -1,18 +1,4 @@
 {
- "86828": {
-  "fecha": "2026-09-25T16:43:43+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1465",
-   "A1547",
-   "A170",
-   "A845",
-   "A928",
-   "D1290"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los consumidores del municipio Arroyo Naranjo que por Disparo del Circuito se encuentran afectados los siguientes circuitos: 👉VC100:Repartos: Man"
- },
  "86842": {
   "fecha": "2026-09-25T17:26:05+00:00",
   "tipo_llm": "afectacion",
@@ -1137,5 +1123,14 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 7:52 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Alrededores de calles Infanta, Ayestarán"
+ },
+ "90171": {
+  "fecha": "2026-10-02T17:01:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A815"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 12:51 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉A 815: Alrededores de calles calzad"
  }
 }

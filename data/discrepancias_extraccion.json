@@ -1169,5 +1169,29 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de la 01:45 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz4: Calles 27 y"
+ },
+ "90629": {
+  "fecha": "2026-10-03T18:14:17+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP318",
+   "OP324",
+   "OP404",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente a Llos siguientes circuitos: 👉OP 324,OP4"
+ },
+ "90627": {
+  "fecha": "2026-10-03T18:01:30+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL53",
+   "AL56",
+   "GC7"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:00 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC14:Guiteras, B"
  }
 }

@@ -1150,5 +1150,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 11:23 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL53:Zonas: 1,"
+ },
+ "90618": {
+  "fecha": "2026-10-03T17:10:57+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "310"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP304,OP424,OP318, OP323,OP424 ,OP411"
  }
 }

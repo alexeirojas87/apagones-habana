@@ -1,14 +1,4 @@
 {
- "87219": {
-  "fecha": "2026-09-26T15:07:30+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "L317",
-   "L322"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L322, que se ha transferido temporalmente la carga al circuito L317 debido a un cable"
- },
  "87334": {
   "fecha": "2026-09-26T19:53:09+00:00",
   "tipo_llm": "deficit",
@@ -1099,5 +1089,36 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 10:12 AM quedó restablecido el servicio en los siguientes circuitos: 👉A 1565:Tarará y Mégano. 👉 A1570: Tarará. 📌"
+ },
+ "90569": {
+  "fecha": "2026-10-03T15:27:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1160",
+   "A1227"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 11:17AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 A1218:Cuadrante en"
+ },
+ "90565": {
+  "fecha": "2026-10-03T15:17:24+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 11:12 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
+ },
+ "90564": {
+  "fecha": "2026-10-03T15:14:47+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP307",
+   "OP319",
+   "OP415"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 11:12 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP321.OP319,OP4"
  }
 }

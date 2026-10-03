@@ -1024,5 +1024,32 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los clientes del municipio Cerro pertenecientes a los circuitos C7, C10 y C13, por posible avería se encuentran paralelos: 👉Cuadrantes de Norte "
+ },
+ "90500": {
+  "fecha": "2026-10-03T12:26:08+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SR820"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido"
+ },
+ "90499": {
+  "fecha": "2026-10-03T12:24:54+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR830"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes del municipio Cotorro , que se encuentran afectados por TRABAJOS OPERATIVOS en el siguiente circuito: 👉SR830:Reparto Delicias."
+ },
+ "90498": {
+  "fecha": "2026-10-03T12:21:56+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SR820"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido"
  }
 }

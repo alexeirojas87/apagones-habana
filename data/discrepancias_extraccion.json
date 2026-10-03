@@ -1,15 +1,4 @@
 {
- "87378": {
-  "fecha": "2026-09-26T22:14:43+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:13 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores "
- },
  "87403": {
   "fecha": "2026-09-26T23:32:05+00:00",
   "tipo_llm": "deficit",
@@ -1192,5 +1181,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de la 3:46 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 1170:Calle 42 de"
+ },
+ "90647": {
+  "fecha": "2026-10-03T22:08:43+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:05 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 :Alrededores "
  }
 }

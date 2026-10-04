@@ -1,13 +1,4 @@
 {
- "87803": {
-  "fecha": "2026-09-27T20:36:25+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A708"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Boyeros, se localiza avería secundaria por transformador dañado en 247 entre 244 y 246, Abel Santamaría🚨"
- },
  "87834": {
   "fecha": "2026-09-27T22:00:19+00:00",
   "tipo_llm": "afectacion",
@@ -1267,5 +1258,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 143 MW distribuidos en 49 circuitos de distribución. A continuación, "
+ },
+ "90939": {
+  "fecha": "2026-10-04T20:51:50+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1175"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉37 / 48 y 50.🛑⚡️"
  }
 }

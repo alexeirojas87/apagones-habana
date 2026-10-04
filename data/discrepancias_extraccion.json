@@ -1244,5 +1244,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de la 12:13 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 A1218:Cuadrante"
+ },
+ "90846": {
+  "fecha": "2026-10-04T17:21:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP307",
+   "OP319",
+   "OP415"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a la población que a partir de las 01:19 PM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉OP321.OP319,OP415,OP307. 📌Usted p"
  }
 }

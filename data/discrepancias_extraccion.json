@@ -1188,5 +1188,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 12:20 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP317.OP321. 👉C14:Alrededores de calles Wa"
+ },
+ "90672": {
+  "fecha": "2026-10-04T04:51:41+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "1245"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las12:45AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P322: Alrededores"
  }
 }

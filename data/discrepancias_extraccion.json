@@ -1258,5 +1258,16 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉37 / 48 y 50.🛑⚡️"
+ },
+ "90970": {
+  "fecha": "2026-10-04T22:35:53+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:35 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 :Alrededores "
  }
 }

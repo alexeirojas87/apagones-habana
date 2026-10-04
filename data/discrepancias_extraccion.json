@@ -1235,5 +1235,14 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 08:00 AM quedó restablecido el servicio en el siguiente circuito: 👉P325:Alrededores de calles Infanta, Ayestarán"
+ },
+ "90831": {
+  "fecha": "2026-10-04T16:39:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1217"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de la 12:13 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 A1218:Cuadrante"
  }
 }

@@ -1,17 +1,4 @@
 {
- "87458": {
-  "fecha": "2026-09-27T04:07:56+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425",
-   "A490",
-   "C8",
-   "OP408",
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 442 MW distribuidos en 142 circuitos de distribución. A continuación,"
- },
  "87540": {
   "fecha": "2026-09-27T10:23:43+00:00",
   "tipo_llm": "deficit",
@@ -1181,5 +1168,25 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📣Informamos a los clientes del muinicipio San Miguel Padrón que debido a dificultades técnicas en las Redes queda afectado el servicio eléctrico con un proceso"
+ },
+ "90667": {
+  "fecha": "2026-10-04T04:29:41+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:28 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "90665": {
+  "fecha": "2026-10-04T04:26:08+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C14",
+   "OP321"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 12:20 AM quedó restablecido el servicio en los siguientes circuitos: 👉OP317.OP321. 👉C14:Alrededores de calles Wa"
  }
 }

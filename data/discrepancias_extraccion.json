@@ -1196,5 +1196,35 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 06:14 AM quedó restablecido el servicio en los siguientes circuitos: 👉Pz1: Cuadrantes calle Línea hasta calle 27"
+ },
+ "90683": {
+  "fecha": "2026-10-04T10:58:04+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P317",
+   "PZ4"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 06:20 AM quedó restablecido el servicio en los siguientes circuitos: 👉 1248:Avenida del Río desde calle 35 a la "
+ },
+ "90679": {
+  "fecha": "2026-10-04T10:42:34+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": ":🚨📣Informamos a la población que a partir de las 06:30 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alrede"
+ },
+ "90677": {
+  "fecha": "2026-10-04T10:36:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P318",
+   "PZ17"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 06:25 AM quedó restablecido el servicio en los siguientes circuitos: 👉Pz9: La Timba, calle 4 desde 37 a Hidalgo,"
  }
 }

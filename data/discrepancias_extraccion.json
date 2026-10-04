@@ -1235,5 +1235,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 06:20 AM quedó restablecido el servicio en los siguientes circuitos: 👉 R451:Calles Perdomo y Simpatía. 👉 R456:Al"
+ },
+ "90701": {
+  "fecha": "2026-10-04T12:00:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 08:00 AM quedó restablecido el servicio en el siguiente circuito: 👉P325:Alrededores de calles Infanta, Ayestarán"
  }
 }

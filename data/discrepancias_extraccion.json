@@ -1260,5 +1260,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:01 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 A1218:Cuadrant"
+ },
+ "91067": {
+  "fecha": "2026-10-05T08:19:50+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425",
+   "A490",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 AM se afectan 167 MW distribuidos en 62 circuitos de distribución. A continuación, "
  }
 }

@@ -1281,5 +1281,25 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 169 MW distribuidos en 71 circuitos de distribución. A continuación, "
+ },
+ "91113": {
+  "fecha": "2026-10-05T11:18:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 7:14 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Alrededores de calles Infanta, Ayestarán"
+ },
+ "91112": {
+  "fecha": "2026-10-05T11:18:04+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "230"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉230 / 15 A y 15 B.🛑⚡️"
  }
 }

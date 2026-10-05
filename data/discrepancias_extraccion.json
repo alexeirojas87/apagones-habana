@@ -1,13 +1,4 @@
 {
- "88279": {
-  "fecha": "2026-09-28T18:35:51+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "OP319"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨 Recordamos a los clientes pertenecientes al circuito OP319 que durante la semana que estaba prevista la rotación por Disparo Automático por Frecuencia (DAF),"
- },
  "88290": {
   "fecha": "2026-09-28T19:05:04+00:00",
   "tipo_llm": "afectacion",

@@ -1,15 +1,4 @@
 {
- "88151": {
-  "fecha": "2026-09-28T14:14:07+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "GC12",
-   "GC14",
-   "GC7"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio Habana del Este pertenecientes al circuito GC7 que se encuentra transferida temporalmente parte de la carga al ci"
- },
  "88188": {
   "fecha": "2026-09-28T15:30:48+00:00",
   "tipo_llm": "otro",

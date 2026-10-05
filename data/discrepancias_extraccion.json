@@ -1,13 +1,4 @@
 {
- "88230": {
-  "fecha": "2026-09-28T17:09:34+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP319"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los clientes del municipio Centro Habana pertenecientes al circuito OP319, que se ha transferido temporalmente la carga a los siguientes circuitos"
- },
  "88279": {
   "fecha": "2026-09-28T18:35:51+00:00",
   "tipo_llm": "daf",

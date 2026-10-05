@@ -1251,5 +1251,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 11:05 PM queda restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "91032": {
+  "fecha": "2026-10-05T04:12:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1217"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:01 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 A1218:Cuadrant"
  }
 }

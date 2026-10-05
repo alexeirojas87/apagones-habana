@@ -1280,5 +1280,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉230 / 15 A y 15 B.🛑⚡️"
+ },
+ "91176": {
+  "fecha": "2026-10-05T14:56:44+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería secundaria por transformador dañado en la calle 24 entre 3ra y 2da.🚨"
  }
 }

@@ -1,14 +1,4 @@
 {
- "88290": {
-  "fecha": "2026-09-28T19:05:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "1244",
-   "L316"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio Playa pertenecientes al circuito L316 que se encuentra transferida temporalmente parte de la carga al circuito 12"
- },
  "88313": {
   "fecha": "2026-09-28T20:01:14+00:00",
   "tipo_llm": "averia",
@@ -1217,5 +1207,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería secundaria por transformador dañado en la calle 24 entre 3ra y 2da.🚨"
+ },
+ "91205": {
+  "fecha": "2026-10-05T19:07:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2203"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 37 MW distribuidos en 10 circuitos de distribución. ✅2076 (Lisa) 02ho"
  }
 }

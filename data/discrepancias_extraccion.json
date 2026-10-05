@@ -1,22 +1,4 @@
 {
- "88188": {
-  "fecha": "2026-09-28T15:30:48+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio Boyeros pertenecientes al circuito A820 que se encuentra transferida temporalmente la carga al circuito D836 en e"
- },
- "88186": {
-  "fecha": "2026-09-28T15:28:38+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio 10 de Octubre pertenecientes al circuito 2203 que se encuentra transferida temporalmente la carga al circuito 220"
- },
  "88196": {
   "fecha": "2026-09-28T15:39:24+00:00",
   "tipo_llm": "afectacion",

@@ -1207,5 +1207,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 37 MW distribuidos en 10 circuitos de distribución. ✅2076 (Lisa) 02ho"
+ },
+ "91280": {
+  "fecha": "2026-10-05T22:29:35+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 6:28PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores de"
  }
 }

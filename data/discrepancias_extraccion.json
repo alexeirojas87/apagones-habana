@@ -1,31 +1,4 @@
 {
- "88636": {
-  "fecha": "2026-09-29T13:13:48+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "MB950"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 9:13 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉S512: Calzada de"
- },
- "88634": {
-  "fecha": "2026-09-29T13:07:54+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 9:04 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2203:Alrededores"
- },
- "88633": {
-  "fecha": "2026-09-29T13:05:56+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "C8"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 9:02 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP408:Alrededore"
- },
  "88669": {
   "fecha": "2026-09-29T14:24:42+00:00",
   "tipo_llm": "restablecimiento",
@@ -1276,5 +1249,14 @@
    "OP325"
   ],
   "extracto": "✅Informamos a la población que a partir de las 8:24 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, Ay"
+ },
+ "91423": {
+  "fecha": "2026-10-06T13:30:56+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 90 MW distribuidos en 43 circuitos de distribución. A continuación, s"
  }
 }

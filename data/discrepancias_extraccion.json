@@ -1,22 +1,4 @@
 {
- "88766": {
-  "fecha": "2026-09-29T18:28:54+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC18"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R464:Reparto Mod"
- },
- "88755": {
-  "fecha": "2026-09-29T18:19:23+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P322"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de la 02:16PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉C14:Alrededores de c"
- },
  "88777": {
   "fecha": "2026-09-29T19:20:39+00:00",
   "tipo_llm": "averia",
@@ -1176,5 +1158,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 90 MW distribuidos en 43 circuitos de distribución. A continuación, s"
+ },
+ "91472": {
+  "fecha": "2026-10-06T18:28:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A928"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Boyeros - 10 de Octubre - Arroyo Naranjo 🚨Averías Primarias ✔️Municipio : Boyeros 📍Afecta : "
+ },
+ "91470": {
+  "fecha": "2026-10-06T18:21:48+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 🛑Transformadores daña"
  }
 }

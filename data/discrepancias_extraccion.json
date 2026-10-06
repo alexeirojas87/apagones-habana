@@ -1210,5 +1210,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 249 MW distribuidos en 86 circuitos de distribución. A continuación, "
+ },
+ "91343": {
+  "fecha": "2026-10-06T06:47:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 2:47 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerrad"
  }
 }

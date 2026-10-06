@@ -1229,5 +1229,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 158 MW distribuidos en 59 circuitos de distribución. A continuación, "
+ },
+ "91388": {
+  "fecha": "2026-10-06T10:29:42+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio 10 de Octubre, se localiza avería secundaria por transformador dañado en las calle C entre 12 y 13, Lawton🚨"
+ },
+ "91387": {
+  "fecha": "2026-10-06T10:07:04+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [],
+  "solo_regex": [
+   "0444"
+  ],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 133 MW distribuidos en 57 circuitos de distribución. A continuación, "
  }
 }

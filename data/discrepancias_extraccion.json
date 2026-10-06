@@ -1,13 +1,4 @@
 {
- "88676": {
-  "fecha": "2026-09-29T14:34:59+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A945"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Consumidores del municipio Boyeros por un Disparo por 33KV se encuentran afectados los siguientes circuitos: 👉A940:Reparto Fontanar 👉A708:Reparto Abel Santama"
- },
  "88695": {
   "fecha": "2026-09-29T15:29:23+00:00",
   "tipo_llm": "afectacion",

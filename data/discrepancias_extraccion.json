@@ -1,26 +1,4 @@
 {
- "88812": {
-  "fecha": "2026-09-29T21:23:06+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP304",
-   "OP318",
-   "OP320",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:20 pm se afectó el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP320, OP424, OP304, OP411, : Sot"
- },
- "88810": {
-  "fecha": "2026-09-29T21:15:45+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SG316"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:12 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG312:Alrededor"
- },
  "88827": {
   "fecha": "2026-09-29T22:06:07+00:00",
   "tipo_llm": "deficit",
@@ -1100,5 +1078,14 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Marianao / Playa: 🛑Transformadores dañados: ✔️Municipio : Playa 👉Dirección: 58 / 53 y 55 👉Di"
+ },
+ "91525": {
+  "fecha": "2026-10-06T21:12:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Guanabacoa, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADR DAÑADO que afectó el servicio eléctrico en: 👉Calle 24 e/ 3ra y 2d"
  }
 }

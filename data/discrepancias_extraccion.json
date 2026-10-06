@@ -1,31 +1,4 @@
 {
- "88706": {
-  "fecha": "2026-09-29T16:00:20+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H442"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧🛑Consumidores del municipio San Miguel del Padrón, se encuentran afectados por un PUENTE PRIMARIO PARTIDO quedando sin servicio el siguiente circuito: 👉H442: R"
- },
- "88705": {
-  "fecha": "2026-09-29T15:53:22+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:26 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR840:Centro d"
- },
- "88702": {
-  "fecha": "2026-09-29T15:49:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A945"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Con servicio los consumidores del municipio Boyeros que se encontraban afectados por un Disparo por 33KV en los siguientes circuitos: 👉A940:Reparto Fontanar 👉"
- },
  "88709": {
   "fecha": "2026-09-29T16:08:05+00:00",
   "tipo_llm": "deficit",

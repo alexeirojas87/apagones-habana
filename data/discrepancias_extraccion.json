@@ -1,14 +1,4 @@
 {
- "88631": {
-  "fecha": "2026-09-29T13:00:39+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC18",
-   "R464"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 08:50 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 MB930:Mirador "
- },
  "88636": {
   "fecha": "2026-09-29T13:13:48+00:00",
   "tipo_llm": "afectacion",
@@ -1275,5 +1265,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S514, que se ha transferido temporalmente la carga al circuito A490 d"
+ },
+ "91414": {
+  "fecha": "2026-10-06T12:37:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅Informamos a la población que a partir de las 8:24 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, Ay"
  }
 }

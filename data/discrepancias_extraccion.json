@@ -1,13 +1,4 @@
 {
- "88618": {
-  "fecha": "2026-09-29T11:52:18+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo del Circuito en los municipios Habana del Este y Guanabacoa.✅ 👉MB910:Justi, Agromar, Ba"
- },
  "88631": {
   "fecha": "2026-09-29T13:00:39+00:00",
   "tipo_llm": "afectacion",
@@ -1246,5 +1237,43 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito D1055, que se ha transferido temporalmente la carga al circuito MB910 de los sig"
+ },
+ "91408": {
+  "fecha": "2026-10-06T12:01:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio San Miguel del Padrón, que se normaliza el esquema en el circuito H343. 🔔📣"
+ },
+ "91404": {
+  "fecha": "2026-10-06T11:56:44+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SR820"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Reiteramos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido"
+ },
+ "91399": {
+  "fecha": "2026-10-06T11:51:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A495",
+   "MR450"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito A495, que se ha transferido temporalmente la carga al circuito MR450 "
+ },
+ "91394": {
+  "fecha": "2026-10-06T11:47:45+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A490",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S514, que se ha transferido temporalmente la carga al circuito A490 d"
  }
 }

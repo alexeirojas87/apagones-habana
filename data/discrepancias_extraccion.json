@@ -1,22 +1,4 @@
 {
- "88732": {
-  "fecha": "2026-09-29T16:46:32+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:43PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉H341:Alrededores"
- },
- "88723": {
-  "fecha": "2026-09-29T16:40:54+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "R466"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:29PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R461:Calle Maceo"
- },
  "88766": {
   "fecha": "2026-09-29T18:28:54+00:00",
   "tipo_llm": "afectacion",

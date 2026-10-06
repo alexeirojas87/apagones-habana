@@ -1,33 +1,4 @@
 {
- "88799": {
-  "fecha": "2026-09-29T20:29:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "S512"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:23 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR820:Reparto A"
- },
- "88790": {
-  "fecha": "2026-09-29T20:22:22+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:16 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 MB960:Repartos "
- },
- "88789": {
-  "fecha": "2026-09-29T20:17:43+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de la 16:16 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325:Alrededores de"
- },
  "88808": {
   "fecha": "2026-09-29T20:56:22+00:00",
   "tipo_llm": "restablecimiento",

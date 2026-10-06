@@ -1,14 +1,4 @@
 {
- "88615": {
-  "fecha": "2026-09-29T11:29:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1244",
-   "L316"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a los consumidores del municipio Playa pertenecientes al circuito L316 que se encontraba transferida temporalmente parte su carga al circuito 1244 ,"
- },
  "88618": {
   "fecha": "2026-09-29T11:52:18+00:00",
   "tipo_llm": "restablecimiento",
@@ -1237,5 +1227,24 @@
    "0444"
   ],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 133 MW distribuidos en 57 circuitos de distribución. A continuación, "
+ },
+ "91393": {
+  "fecha": "2026-10-06T11:31:16+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1050",
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito D1050, que se ha transferido temporalmente la carga al circuito MB930 de los sig"
+ },
+ "91392": {
+  "fecha": "2026-10-06T11:31:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito D1055, que se ha transferido temporalmente la carga al circuito MB910 de los sig"
  }
 }

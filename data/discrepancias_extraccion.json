@@ -1052,5 +1052,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los clientes del municipio Playa pertenecientes al circuito SF584 que se encontraba transferida temporalmente la carga al circuito A1203, debido"
+ },
+ "91679": {
+  "fecha": "2026-10-07T10:55:25+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1203"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio Playa pertenecientes al circuito SF581 que se encuentra transferida temporalmente parte de su carga al circuito A1203"
+ },
+ "91678": {
+  "fecha": "2026-10-07T10:41:41+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Boyeros - 10 de Octubre - Arroyo Naranjo 🛑Transformadores dañados: ✔️Municipio : 10 de Octub"
  }
 }

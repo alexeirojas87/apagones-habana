@@ -1067,5 +1067,14 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Playa, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 230 frente al 15A10.🟢☑️"
+ },
+ "91588": {
+  "fecha": "2026-10-07T03:16:41+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2074"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 11:15 PM quedó restablecido el servicio en los siguientes circuitos: 👉1851: Reparto Zamora 👉1856: Calle 130 desd"
  }
 }

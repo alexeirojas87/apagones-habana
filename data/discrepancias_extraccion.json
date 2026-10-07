@@ -1088,5 +1088,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 8:29 AM quedó restablecido el servicio en los siguientes circuitos: 👉Pz1: Cuadrantes calle Línea hasta calle 27 "
+ },
+ "91714": {
+  "fecha": "2026-10-07T13:43:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC7",
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 09: 25 AM queda restablecido el servicio en los siguientes circuitos: 👉 GC7Cojimar calle 80 desde 1era hasta 7ma"
  }
 }

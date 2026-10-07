@@ -1,13 +1,4 @@
 {
- "88878": {
-  "fecha": "2026-09-30T01:05:06+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:05 PM se afectan 376 MW distribuidos en 129 circuitos de distribución. A continuación,"
- },
  "88904": {
   "fecha": "2026-09-30T02:57:59+00:00",
   "tipo_llm": "afectacion",
@@ -1065,5 +1056,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Plaza, se afecta el servicio eléctrico por una AVERÍA SECUNDARIA de TRANSFORMADOR DAÑADO en: 👉13 entre 27 y 29 Vedado.🛑⚡️"
+ },
+ "91565": {
+  "fecha": "2026-10-07T01:09:56+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1203"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio Playa pertenecientes al circuito SF584 que se encuentra transferida temporalmente la carga al circuito A1203 debido a"
  }
 }

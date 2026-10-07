@@ -1,13 +1,4 @@
 {
- "89133": {
-  "fecha": "2026-09-30T14:42:03+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📣Consumidores del municipio Boyeros, se localiza AVERÍA por PRIMARIO PARTIDO en la siguiente dirección: Vento y 2da, Altahabana.📣🚧"
- },
  "89191": {
   "fecha": "2026-09-30T16:46:10+00:00",
   "tipo_llm": "deficit",
@@ -1098,5 +1089,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 09: 25 AM queda restablecido el servicio en los siguientes circuitos: 👉 GC7Cojimar calle 80 desde 1era hasta 7ma"
+ },
+ "91731": {
+  "fecha": "2026-10-07T15:21:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "H442"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio San Miguel del Padrón se encuentran afectados por VIA LIBRE DE EMERGENCIA para retirar base de antiguo interruptor afectando los ci"
  }
 }

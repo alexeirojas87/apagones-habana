@@ -1166,5 +1166,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:30PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉Pz7: Cuadrante desd"
+ },
+ "91791": {
+  "fecha": "2026-10-07T21:25:11+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "L317"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:24 PM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1227: Calle 14"
  }
 }

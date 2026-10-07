@@ -1137,5 +1137,34 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:11PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz14:Calles 14 d"
+ },
+ "91784": {
+  "fecha": "2026-10-07T20:51:39+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1075"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Guanabacoa , se localizó AVERÍA PRIMARIA: Conductor Primario Partido) que afecta el servicio en la siguiente dirección: 👉 Monument"
+ },
+ "91783": {
+  "fecha": "2026-10-07T20:46:16+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "PZ16",
+   "PZ4"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:43PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉Pz1:Cuadrantes call"
+ },
+ "91779": {
+  "fecha": "2026-10-07T20:32:20+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP319",
+   "PZ9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:30PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉Pz7: Cuadrante desd"
  }
 }

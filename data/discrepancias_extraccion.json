@@ -1042,5 +1042,15 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 3:26 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, A"
+ },
+ "91675": {
+  "fecha": "2026-10-07T10:25:21+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1203",
+   "A1218"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio Playa pertenecientes al circuito SF584 que se encontraba transferida temporalmente la carga al circuito A1203, debido"
  }
 }

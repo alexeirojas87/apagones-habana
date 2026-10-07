@@ -1,13 +1,4 @@
 {
- "88875": {
-  "fecha": "2026-09-30T00:51:39+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P314"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a la población que a partir de las 8:4 9 PM quedó restablecido el servicio en el siguiente circuito: 👉P 314:Alrededores de calles Xifre desde Sitio "
- },
  "88878": {
   "fecha": "2026-09-30T01:05:06+00:00",
   "tipo_llm": "deficit",

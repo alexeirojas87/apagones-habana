@@ -1,22 +1,4 @@
 {
- "89000": {
-  "fecha": "2026-09-30T07:19:08+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:18 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores"
- },
- "88994": {
-  "fecha": "2026-09-30T07:11:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR840"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:56 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC19:Repartos "
- },
  "89030": {
   "fecha": "2026-09-30T10:00:04+00:00",
   "tipo_llm": "deficit",
@@ -1058,5 +1040,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 11:15 PM quedó restablecido el servicio en los siguientes circuitos: 👉1851: Reparto Zamora 👉1856: Calle 130 desd"
+ },
+ "91648": {
+  "fecha": "2026-10-07T07:28:22+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 3:26 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, A"
  }
 }

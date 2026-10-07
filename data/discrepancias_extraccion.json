@@ -1098,5 +1098,14 @@
   ],
   "solo_regex": [],
   "extracto": "‼️Consumidores del municipio San Miguel del Padrón se encuentran afectados por VIA LIBRE DE EMERGENCIA para retirar base de antiguo interruptor afectando los ci"
+ },
+ "91733": {
+  "fecha": "2026-10-07T15:42:40+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "H343"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio San Miguel del Padrón pertenecientes al circuito H343: Se encuentran afectados por TRABAJOS en la SUBESTACIÓN de MELONES 👉 H343: Re"
  }
 }

@@ -1098,5 +1098,20 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Consumidores del municipio San Miguel del Padrón pertenecientes al circuito H343: Se encuentran afectados por TRABAJOS en la SUBESTACIÓN de MELONES 👉 H343: Re"
+ },
+ "91738": {
+  "fecha": "2026-10-07T17:26:11+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "310",
+   "OP304",
+   "OP318",
+   "OP323",
+   "OP325",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP 304,OP424,OP318, OP323,OP424 ,OP41"
  }
 }

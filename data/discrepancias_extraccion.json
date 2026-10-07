@@ -1070,5 +1070,14 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Boyeros - 10 de Octubre - Arroyo Naranjo 🛑Transformadores dañados: ✔️Municipio : 10 de Octub"
+ },
+ "91698": {
+  "fecha": "2026-10-07T12:02:36+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P318"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 7:59 AM quedó restablecido el servicio en los siguientes circuitos: 👉P317:25 y K. 👉P318:lrededores de calles Pla"
  }
 }

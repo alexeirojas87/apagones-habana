@@ -1,22 +1,4 @@
 {
- "88904": {
-  "fecha": "2026-09-30T02:57:59+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:52 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL52:Zonas: 6;"
- },
- "88905": {
-  "fecha": "2026-09-30T03:01:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL56"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:47 PM queda restablecido el servicio en los siguientes circuitos: 👉AL55:Zonas: 12; 13; 14; 19; 20; 21; 23; 24"
- },
  "88930": {
   "fecha": "2026-09-30T04:21:22+00:00",
   "tipo_llm": "afectacion",
@@ -1076,5 +1058,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:00 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desd"
+ },
+ "91586": {
+  "fecha": "2026-10-07T02:56:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "230"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Playa, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 230 frente al 15A10.🟢☑️"
  }
 }

@@ -1,15 +1,4 @@
 {
- "89219": {
-  "fecha": "2026-09-30T18:06:51+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de la 02:06 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325:Alrededores de"
- },
  "89260": {
   "fecha": "2026-09-30T19:47:57+00:00",
   "tipo_llm": "deficit",
@@ -1128,5 +1117,15 @@
   ],
   "solo_regex": [],
   "extracto": "⭕️⚡️Informamos a los consumidores que se encuentran afectados por Disparo por DAF los siguientes circuitos: 👉 MB910: Justi, Agromar, Bajurayabo, Campo Florido, "
+ },
+ "91750": {
+  "fecha": "2026-10-07T18:27:02+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "C13",
+   "C14"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:20 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉C7: Alrededores de"
  }
 }

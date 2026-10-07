@@ -1065,5 +1065,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los clientes del municipio Playa pertenecientes al circuito SF584 que se encuentra transferida temporalmente la carga al circuito A1203 debido a"
+ },
+ "91572": {
+  "fecha": "2026-10-07T02:01:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:00 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desd"
  }
 }

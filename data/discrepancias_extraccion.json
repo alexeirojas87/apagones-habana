@@ -1,25 +1,4 @@
 {
- "89662": {
-  "fecha": "2026-10-01T15:11:04+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "C13",
-   "C15"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio Cerro pertenecientes al circuito C15 que se encuentra transferida temporalmente parte de la carga al circuito C13"
- },
- "89659": {
-  "fecha": "2026-10-01T15:05:13+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅Informamos a la población que a partir de las 11:04 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Alrededores de calles Infanta, Ayestarán"
- },
  "89749": {
   "fecha": "2026-10-01T18:00:58+00:00",
   "tipo_llm": "restablecimiento",
@@ -1317,5 +1296,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑‼️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉114 / 43 y 45, Los Quemados.‼️🛑"
+ },
+ "92013": {
+  "fecha": "2026-10-08T15:16:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1218"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚠️Consumidores del municipio Playa, se afecta el servicio eléctrico en el siguiente cuadrante debido a una VÍA LIBRE DE EMERGENCIA para realizar PODA y MANTENI"
  }
 }

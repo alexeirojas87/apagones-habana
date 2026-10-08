@@ -1334,5 +1334,15 @@
    "2202"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de la 05:40 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉2202:Alrededores de"
+ },
+ "92155": {
+  "fecha": "2026-10-08T23:26:08+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:30 PM se afectan 341 MW distribuidos en 151 circuitos de distribución. A continuación,"
  }
 }

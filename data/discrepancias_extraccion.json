@@ -1,14 +1,4 @@
 {
- "89749": {
-  "fecha": "2026-10-01T18:00:58+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1007",
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los clientes pertenecientes al municipio Arroyo Naranjo que se normaliza el esquema del circuito A1007 de la Subestación Apolo siendo reparada la "
- },
  "89774": {
   "fecha": "2026-10-01T18:48:54+00:00",
   "tipo_llm": "averia",
@@ -1305,5 +1295,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚠️Consumidores del municipio Playa, se afecta el servicio eléctrico en el siguiente cuadrante debido a una VÍA LIBRE DE EMERGENCIA para realizar PODA y MANTENI"
+ },
+ "92065": {
+  "fecha": "2026-10-08T17:52:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 01:52 PM queda restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
  }
 }

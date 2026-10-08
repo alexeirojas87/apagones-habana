@@ -1184,5 +1184,23 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de la 11:28 PM queda restablecido el servicio en los siguientes circuitos: 👉P314: Alrededores de calles Xifre desde Sit"
+ },
+ "91859": {
+  "fecha": "2026-10-08T03:54:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1305"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de la 11:49 PM queda restablecido el servicio en los siguientes circuitos: 👉D1300: Águila Hatuey, Purísima y Magdalena."
+ },
+ "91854": {
+  "fecha": "2026-10-08T03:35:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P318"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de la 11:32 PM queda restablecido el servicio en los siguientes circuitos: 👉Pz17: Hotel Gran Ashton. 👉P318:Alrededores "
  }
 }

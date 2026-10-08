@@ -1313,5 +1313,26 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Plaza, queda restablecido el servicio eléctrico en el siguiente cuadrante que fue afectado por una VÍA LIBRE DE EMERGENCIA para re"
+ },
+ "92138": {
+  "fecha": "2026-10-08T21:42:18+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:41 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
+ },
+ "92136": {
+  "fecha": "2026-10-08T21:41:12+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "220"
+  ],
+  "solo_regex": [
+   "2202"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de la 05:40 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉2202:Alrededores de"
  }
 }

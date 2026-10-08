@@ -1259,5 +1259,27 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:36 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P314:Alrededore"
+ },
+ "91909": {
+  "fecha": "2026-10-08T09:20:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ14",
+   "PZ7",
+   "PZ9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:59 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos 👉Pz5:alles desde "
+ },
+ "91908": {
+  "fecha": "2026-10-08T09:20:03+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "PZ14",
+   "PZ7",
+   "PZ9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:59 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos 👉Pz5:alles desde "
  }
 }

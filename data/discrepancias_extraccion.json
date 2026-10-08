@@ -1309,5 +1309,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 AM se afectan 63 MW distribuidos en 25 circuitos de distribución. A continuación, s"
+ },
+ "91983": {
+  "fecha": "2026-10-08T14:21:39+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": ":🚨📣Informamos a la población que a partir de las 10:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alrede"
  }
 }

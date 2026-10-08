@@ -1305,5 +1305,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 01:52 PM queda restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "92070": {
+  "fecha": "2026-10-08T18:07:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1218"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Playa, queda restablecido el servicio eléctrico en el siguiente cuadrante que fue afectado por una VÍA LIBRE DE EMERGENCIA para re"
  }
 }

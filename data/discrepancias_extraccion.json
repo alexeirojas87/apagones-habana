@@ -1175,5 +1175,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:21 PM se afectan 271 MW distribuidos en 101 circuitos de distribución. A continuación,"
+ },
+ "91851": {
+  "fecha": "2026-10-08T03:30:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P317"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de la 11:28 PM queda restablecido el servicio en los siguientes circuitos: 👉P314: Alrededores de calles Xifre desde Sit"
  }
 }

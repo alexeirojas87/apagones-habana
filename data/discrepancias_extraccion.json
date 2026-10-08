@@ -1241,5 +1241,23 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 04:05 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "91898": {
+  "fecha": "2026-10-08T08:46:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ17"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:36 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 OP321: Lealtad de"
+ },
+ "91897": {
+  "fecha": "2026-10-08T08:41:31+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P317"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:36 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P314:Alrededore"
  }
 }

@@ -1202,5 +1202,25 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:06 AM se afectan 235 MW distribuidos en 91 circuitos de distribución. A continuación, "
+ },
+ "91866": {
+  "fecha": "2026-10-08T05:00:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ14",
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de la 12:53 PM queda restablecido el servicio en los siguientes circuitos: 👉Pz9: La Timba, calle 4 desde 37 a Hidalgo, "
+ },
+ "91863": {
+  "fecha": "2026-10-08T04:45:29+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "C13",
+   "C7"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:41 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉C10: Alrededores d"
  }
 }

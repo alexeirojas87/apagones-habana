@@ -1281,5 +1281,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 06:43 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉Pz1: Cuadrantes ca"
+ },
+ "91924": {
+  "fecha": "2026-10-08T11:06:45+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:59 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉S512: Calzada d"
+ },
+ "91923": {
+  "fecha": "2026-10-08T11:05:18+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "L317"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:01 AM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1227: Calle 14"
  }
 }

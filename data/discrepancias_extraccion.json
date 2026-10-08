@@ -1221,5 +1221,25 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de la 01:00 AM queda restablecido el servicio en los siguientes circuitos: 👉Pz1: Cuadrantes calle Línea hasta calle 27 "
+ },
+ "91892": {
+  "fecha": "2026-10-08T08:24:10+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "1248",
+   "P322"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:19 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos 👉Pz15: 35 desde 4"
+ },
+ "91889": {
+  "fecha": "2026-10-08T08:05:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 04:05 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
  }
 }

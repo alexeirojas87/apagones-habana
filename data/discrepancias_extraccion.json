@@ -1463,5 +1463,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Arroyo Naranjo, se localiza avería secundaria por transformador dañado en Martí entre Cesario Fernández y Mella, Eléctrico🚨"
+ },
+ "92342": {
+  "fecha": "2026-10-09T15:45:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2075"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Queda restablecido el servicio eléctrico de los clientes afectados por el disparo del circuito por sobrecarga en: 👉2075✅"
  }
 }

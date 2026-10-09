@@ -1520,5 +1520,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a los consumidores del municipio Boyeros pertenecientes al circuito 2205 que queda restablecido el servicio eléctrico afectado por disparo del circu"
+ },
+ "92475": {
+  "fecha": "2026-10-09T22:16:33+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "R461"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Regla, se localiza avería secundaria por transformador dañado en calle Maceo entre Concepción y Rubiera. (R461)🚨"
  }
 }

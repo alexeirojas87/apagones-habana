@@ -1400,5 +1400,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Habana del Este, se restableció el servicio eléctrico a los clientes del GC18: Zona Franca de Berroa, que se encentraban afectados p"
+ },
+ "92221": {
+  "fecha": "2026-10-09T07:50:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ16",
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 03:39 AM quedó restablecido el servicio en los siguientes circuitos: 👉PZ5:Calles desde 27 hasta 24 ,25 desde 2 h"
+ },
+ "92213": {
+  "fecha": "2026-10-09T07:18:19+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "C8"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 221 MW distribuidos en 97 circuitos de distribución. A continuación, "
  }
 }

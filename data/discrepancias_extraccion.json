@@ -1,13 +1,4 @@
 {
- "89947": {
-  "fecha": "2026-10-02T04:14:12+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P314"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:05 AM se afectan 466 MW distribuidos en 159 circuitos de distribución. A continuación,"
- },
  "90034": {
   "fecha": "2026-10-02T11:05:56+00:00",
   "tipo_llm": "afectacion",
@@ -1381,5 +1372,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚡️Consumidores del municipio Boyeros, se encuentran afectados por AVERÍA SECUNDARIA debido a TRANSFORMADOR DAÑADO en la siguiente dirección: 👉 Carretera Vieja "
+ },
+ "92194": {
+  "fecha": "2026-10-09T04:19:30+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 327 MW distribuidos en 125 circuitos de distribución. A continuación,"
  }
 }

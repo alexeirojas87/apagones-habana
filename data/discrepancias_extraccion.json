@@ -1454,5 +1454,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente a los siguientes circuitos: 👉1241; 1160"
+ },
+ "92322": {
+  "fecha": "2026-10-09T14:52:51+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Arroyo Naranjo, se localiza avería secundaria por transformador dañado en Martí entre Cesario Fernández y Mella, Eléctrico🚨"
  }
 }

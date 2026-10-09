@@ -1353,5 +1353,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📣Consumidores del municipio Arroyo Naranjo, se encuentran afectados por AVERÍA debido a varios tramos de PRIMARIO PARTIDO en la siguiente dirección: Martí y Ce"
+ },
+ "92164": {
+  "fecha": "2026-10-09T00:34:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SR830"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio San Miguel del Padrón, queda reparada la Avería Secundaria por Transformador Dañado que afectaba la siguiente dirección: 5ta entre 8"
  }
 }

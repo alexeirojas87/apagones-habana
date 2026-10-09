@@ -1,13 +1,4 @@
 {
- "90171": {
-  "fecha": "2026-10-02T17:01:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A815"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 12:51 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉A 815: Alrededores de calles calzad"
- },
  "90205": {
   "fecha": "2026-10-02T17:54:21+00:00",
   "tipo_llm": "restablecimiento",
@@ -1492,5 +1483,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 192 MW distribuidos en 86 circuitos de distribución. A continuación, "
+ },
+ "92365": {
+  "fecha": "2026-10-09T16:50:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A928"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a los consumidores del municipio Boyeros, que concluyen las labores de Vía Libre en el circuito A928 incluyendo la Fuente de Abasto de Agua del Sier"
  }
 }

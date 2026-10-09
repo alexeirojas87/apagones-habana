@@ -1,13 +1,4 @@
 {
- "90286": {
-  "fecha": "2026-10-02T20:15:26+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "L317"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:13 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: .👉L317: Alrededor"
- },
  "90311": {
   "fecha": "2026-10-02T20:52:12+00:00",
   "tipo_llm": "afectacion",
@@ -1503,5 +1494,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408, H341 y C8✅"
+ },
+ "92436": {
+  "fecha": "2026-10-09T20:27:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PG970"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Arroyo Naranjo pertenecientes al circuito PG970 que se normaliza el esquema llevando la carga de los Hospitales J"
+ },
+ "92435": {
+  "fecha": "2026-10-09T20:21:56+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a los consumidores del municipio Boyeros pertenecientes al circuito A820, que queda restablecido el servicio eléctrico afectado por trabajos operati"
  }
 }

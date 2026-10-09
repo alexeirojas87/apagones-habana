@@ -1,13 +1,4 @@
 {
- "89908": {
-  "fecha": "2026-10-02T02:14:03+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L322"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio Playa que se normaliza el esquema del circuito L322 de la subestación Ciudad Libertad🔔📣"
- },
  "89947": {
   "fecha": "2026-10-02T04:14:12+00:00",
   "tipo_llm": "deficit",
@@ -1366,6 +1357,15 @@
  },
  "92170": {
   "fecha": "2026-10-09T01:51:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Habana del Este, se restableció el servicio eléctrico a los clientes del Al56: Zonas: 13; 15; 16; 17; 18; 21 y Micro X. Alamar, que "
+ },
+ "92172": {
+  "fecha": "2026-10-09T02:05:02+00:00",
   "tipo_llm": "restablecimiento",
   "solo_llm": [
    "AL56"

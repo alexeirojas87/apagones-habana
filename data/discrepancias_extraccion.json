@@ -1,15 +1,4 @@
 {
- "90311": {
-  "fecha": "2026-10-02T20:52:12+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:50 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
- },
  "90418": {
   "fecha": "2026-10-03T04:09:29+00:00",
   "tipo_llm": "averia",
@@ -1512,5 +1501,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a los consumidores del municipio Boyeros pertenecientes al circuito A820, que queda restablecido el servicio eléctrico afectado por trabajos operati"
+ },
+ "92443": {
+  "fecha": "2026-10-09T20:37:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2204",
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Arroyo Naranjo pertenecientes al circuito 2204 que se normaliza el esquema afectándose el cuadrante a continuació"
  }
 }

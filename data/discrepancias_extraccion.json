@@ -1472,5 +1472,25 @@
   ],
   "solo_regex": [],
   "extracto": "✅Queda restablecido el servicio eléctrico de los clientes afectados por el disparo del circuito por sobrecarga en: 👉2075✅"
+ },
+ "92351": {
+  "fecha": "2026-10-09T16:19:08+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2075"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Queda restablecido el servicio eléctrico de los clientes afectados por el disparo del circuito por sobrecarga en: 👉2075✅"
+ },
+ "92349": {
+  "fecha": "2026-10-09T16:10:48+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380",
+   "A425",
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 192 MW distribuidos en 86 circuitos de distribución. A continuación, "
  }
 }

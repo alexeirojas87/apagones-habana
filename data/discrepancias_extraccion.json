@@ -1,13 +1,4 @@
 {
- "89894": {
-  "fecha": "2026-10-02T01:13:07+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P314"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 9:00 PM se afectan 470 MW distribuidos en 169 circuitos de distribución. A continuación, "
- },
  "89908": {
   "fecha": "2026-10-02T02:14:03+00:00",
   "tipo_llm": "restablecimiento",
@@ -1362,5 +1353,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio San Miguel del Padrón, queda reparada la Avería Secundaria por Transformador Dañado que afectaba la siguiente dirección: 5ta entre 8"
+ },
+ "92168": {
+  "fecha": "2026-10-09T01:09:31+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 374 MW distribuidos en 153 circuitos de distribución. A continuación,"
  }
 }

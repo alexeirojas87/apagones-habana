@@ -1,15 +1,4 @@
 {
- "90045": {
-  "fecha": "2026-10-02T11:55:18+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 7:52 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Alrededores de calles Infanta, Ayestarán"
- },
  "90171": {
   "fecha": "2026-10-02T17:01:31+00:00",
   "tipo_llm": "restablecimiento",
@@ -1421,6 +1410,15 @@
  },
  "92254": {
   "fecha": "2026-10-09T11:20:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R453"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Regla, se restableció el servicio eléctrico a los clientes del R453: La Gloria, Ciruela, Unión, Lídice y Colina Lenin, que se encent"
+ },
+ "92259": {
+  "fecha": "2026-10-09T11:32:12+00:00",
   "tipo_llm": "restablecimiento",
   "solo_llm": [
    "R453"

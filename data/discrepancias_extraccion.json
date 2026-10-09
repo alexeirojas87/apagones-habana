@@ -1425,5 +1425,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Regla, se restableció el servicio eléctrico a los clientes del R453: La Gloria, Ciruela, Unión, Lídice y Colina Lenin, que se encent"
+ },
+ "92283": {
+  "fecha": "2026-10-09T13:03:11+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1218",
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 289 MW distribuidos en 142 circuitos de distribución. A continuación,"
  }
 }

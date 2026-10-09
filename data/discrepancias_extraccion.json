@@ -1,13 +1,4 @@
 {
- "90249": {
-  "fecha": "2026-10-02T19:05:02+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L323"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio Playa que se normaliza el esquema del circuito L323 de la subestación Ciudad Libertad🔔📣"
- },
  "90286": {
   "fecha": "2026-10-02T20:15:26+00:00",
   "tipo_llm": "afectacion",
@@ -1482,5 +1473,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Restablecido el servicio eléctrico afectado por disparo automático por frecuencia (DAF) de los siguientes circuitos: 👉A1218; A1203; 1241✅📉"
+ },
+ "92415": {
+  "fecha": "2026-10-09T19:29:49+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ1"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Plaza, se localiza avería secundaria por transformador dañado en 14 entre 19 y 21 (PZ1)🚨"
+ },
+ "92407": {
+  "fecha": "2026-10-09T19:11:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1243",
+   "1247"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico afectado por disparo automático por frecuencia (DAF) de los siguientes circuitos: 👉1243; 1247✅📉"
  }
 }

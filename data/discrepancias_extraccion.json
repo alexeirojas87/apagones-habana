@@ -1,24 +1,4 @@
 {
- "90509": {
-  "fecha": "2026-10-03T12:50:13+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP321",
-   "PZ5"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de la 08:46AM quedó restablecido el servicio en el siguiente circuito: 👉OP319: Alrededores de calles del cuadrante desd"
- },
- "90503": {
-  "fecha": "2026-10-03T12:41:16+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 08:40 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
- },
  "90514": {
   "fecha": "2026-10-03T13:33:56+00:00",
   "tipo_llm": "restablecimiento",

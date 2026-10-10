@@ -1545,5 +1545,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Boyeros, queda restablecido el servicio eléctrico en el circuito M2044 ✅"
+ },
+ "92595": {
+  "fecha": "2026-10-10T06:09:35+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [],
+  "solo_regex": [
+   "PG930"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de la 2:09 AM quedó restablecido el servicio en el siguiente circuito: 👉PG930: Repartos: Averoff, El Retiro, El Calvari"
  }
 }

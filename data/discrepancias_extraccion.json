@@ -1536,5 +1536,23 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Guanabacoa, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Camarera e/ Venus y Bertematti 👉Maceo e/ Concepción "
+ },
+ "92886": {
+  "fecha": "2026-10-10T22:00:46+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A219"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 281 MW distribuidos en 117 circuitos de distribución. A continuación,"
+ },
+ "92884": {
+  "fecha": "2026-10-10T21:44:04+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en el siguiente municipio: Marianao 🛑Transformadores dañados: 👉Dirección : 114 / 43 y 45 👉Dirección : 127/ 122 y 124"
  }
 }

@@ -1509,5 +1509,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 4:10 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
+ },
+ "92869": {
+  "fecha": "2026-10-10T20:59:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP402"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Cerro, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉La Rosa y Calzada del Cerro (OP402).✅"
  }
 }

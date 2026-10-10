@@ -1,34 +1,4 @@
 {
- "90580": {
-  "fecha": "2026-10-03T15:58:35+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL7"
-  ],
-  "solo_regex": [
-   "AL53"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de la 11:51 AM quedó restablecido el servicio en los siguientes circuitos: 👉 AL56:Zonas: 13; 15; 16; 17; 18; 21 y Micro"
- },
- "90578": {
-  "fecha": "2026-10-03T15:45:25+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1217"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:08 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 1170:Calle 42 "
- },
- "90571": {
-  "fecha": "2026-10-03T15:39:26+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC13",
-   "GC14"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:23 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL53:Zonas: 1,"
- },
  "90618": {
   "fecha": "2026-10-03T17:10:57+00:00",
   "tipo_llm": "daf",
@@ -1458,5 +1428,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408, H341 y C8✅"
+ },
+ "92737": {
+  "fecha": "2026-10-10T15:33:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes al circuito H341✅"
  }
 }

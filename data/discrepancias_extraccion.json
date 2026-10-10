@@ -1497,5 +1497,15 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Habana del Este, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉500 / I y H , Sibarimar🛑⚡️"
+ },
+ "92852": {
+  "fecha": "2026-10-10T19:56:41+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C13",
+   "C15"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔informamos a los consumidores del municipio Cerro pertenecientes al circuito C15 que fue transferido temporalmente parte de la carga al circuito C13, debido a"
  }
 }

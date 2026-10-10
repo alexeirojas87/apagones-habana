@@ -1518,5 +1518,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Cerro, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉La Rosa y Calzada del Cerro (OP402).✅"
+ },
+ "92877": {
+  "fecha": "2026-10-10T21:17:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio San Miguel del Padrón , queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Nueva e/ 3ra y 4ta🟢☑️"
+ },
+ "92870": {
+  "fecha": "2026-10-10T21:03:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R456"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Guanabacoa, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Camarera e/ Venus y Bertematti 👉Maceo e/ Concepción "
  }
 }

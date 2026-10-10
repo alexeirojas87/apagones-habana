@@ -1,15 +1,4 @@
 {
- "90514": {
-  "fecha": "2026-10-03T13:33:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de la 09:32 AM quedó restablecido el servicio en el siguiente circuito: 👉P325:Alrededores de calles Infanta, Ayestarán,"
- },
  "90548": {
   "fecha": "2026-10-03T14:30:01+00:00",
   "tipo_llm": "restablecimiento",

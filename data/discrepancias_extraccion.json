@@ -1529,5 +1529,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Regla, se localiza avería secundaria por transformador dañado en calle Maceo entre Concepción y Rubiera. (R461)🚨"
+ },
+ "92485": {
+  "fecha": "2026-10-09T23:37:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2073"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Lisa, queda restablecido el servicio eléctrico de la avería que afectaba el siguiente circuito: 👉2073✅"
  }
 }

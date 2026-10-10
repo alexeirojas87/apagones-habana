@@ -1457,5 +1457,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408 y C8✅"
+ },
+ "92771": {
+  "fecha": "2026-10-10T16:54:42+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2769",
+   "A980",
+   "H342",
+   "H343",
+   "H442",
+   "H443",
+   "H446",
+   "H447",
+   "T41",
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "⚠️🔔Se le informa a los clientes pertenecientes a la SUBESTACIÓN MELONES que debido a una Avería se afecta el servicio en los siguientes circuitos : 👉H443-H442-H"
  }
 }

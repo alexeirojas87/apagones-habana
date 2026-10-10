@@ -1,17 +1,4 @@
 {
- "90629": {
-  "fecha": "2026-10-03T18:14:17+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP318",
-   "OP324",
-   "OP404",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente a Llos siguientes circuitos: 👉OP 324,OP4"
- },
  "90634": {
   "fecha": "2026-10-03T20:14:55+00:00",
   "tipo_llm": "deficit",
@@ -1483,5 +1470,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de la 1:45 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R451: Calles Perd"
+ },
+ "92817": {
+  "fecha": "2026-10-10T18:18:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉127 / 122 y 124 .🛑⚡️"
  }
 }

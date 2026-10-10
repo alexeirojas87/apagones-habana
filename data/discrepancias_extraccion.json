@@ -1554,5 +1554,14 @@
    "PG930"
   ],
   "extracto": "✅📣Informamos a la población que a partir de la 2:09 AM quedó restablecido el servicio en el siguiente circuito: 👉PG930: Repartos: Averoff, El Retiro, El Calvari"
+ },
+ "92608": {
+  "fecha": "2026-10-10T07:14:08+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC11"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito: GC11✅"
  }
 }

@@ -1547,5 +1547,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Arroyo Naranjo, queda restablecido el servicio eléctrico en el circuito PG930✅"
+ },
+ "92550": {
+  "fecha": "2026-10-10T03:03:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1175"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Marianao, queda restablecido el servicio eléctrico en el siguiente circuito: 👉1175✅"
  }
 }

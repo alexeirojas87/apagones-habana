@@ -1543,5 +1543,15 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías existentes hasta el momento en el siguiente municipio: Marianao 🛑Transformadores dañados: 👉Dirección : 114 / 43 y 45 👉Dirección : 127/ 122 y 124"
+ },
+ "92905": {
+  "fecha": "2026-10-10T23:24:35+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1248",
+   "PZ1"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes en: Plaza 🚨 Transformadores Dañados: 📌Municipio: Plaza ⚡️Dirección: Avenida la Loma entre 37 y Final (1248) ⚡️Dirección: 14 entre 19 y 21 ("
  }
 }

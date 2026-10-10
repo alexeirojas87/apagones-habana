@@ -1,14 +1,4 @@
 {
- "90625": {
-  "fecha": "2026-10-03T17:50:32+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ13",
-   "PZ17"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de la 01:45 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz4: Calles 27 y"
- },
  "90629": {
   "fecha": "2026-10-03T18:14:17+00:00",
   "tipo_llm": "restablecimiento",
@@ -21,17 +11,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente a Llos siguientes circuitos: 👉OP 324,OP4"
- },
- "90627": {
-  "fecha": "2026-10-03T18:01:30+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL53",
-   "AL56",
-   "GC7"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:00 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC14:Guiteras, B"
  },
  "90634": {
   "fecha": "2026-10-03T20:14:55+00:00",
@@ -1476,5 +1455,33 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408 y C8✅"
+ },
+ "92809": {
+  "fecha": "2026-10-10T17:59:59+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ15"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Plaza se encuentran afectados por un incendio en el circuito PZ15, en la siguiente dirección: Estancia, entre Conill y Santa Ana, "
+ },
+ "92808": {
+  "fecha": "2026-10-10T17:59:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408 y C8✅"
+ },
+ "92802": {
+  "fecha": "2026-10-10T17:52:53+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de la 1:45 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R451: Calles Perd"
  }
 }

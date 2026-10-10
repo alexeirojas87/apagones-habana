@@ -1,13 +1,4 @@
 {
- "90550": {
-  "fecha": "2026-10-03T14:33:53+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1565"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 10:12 AM quedó restablecido el servicio en los siguientes circuitos: 👉A 1565:Tarará y Mégano. 👉 A1570: Tarará. 📌"
- },
  "90569": {
   "fecha": "2026-10-03T15:27:09+00:00",
   "tipo_llm": "afectacion",

@@ -1547,5 +1547,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Marianao, queda restablecido el servicio eléctrico en el siguiente circuito: 👉1175✅"
+ },
+ "92589": {
+  "fecha": "2026-10-10T04:52:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "M2044"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Boyeros, queda restablecido el servicio eléctrico en el circuito M2044 ✅"
  }
 }

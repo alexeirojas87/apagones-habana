@@ -1,49 +1,4 @@
 {
- "90548": {
-  "fecha": "2026-10-03T14:30:01+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2202",
-   "PZ4"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de la 10:26 AM quedó restablecido el servicio en el siguiente circuito: 👉Pz17:Hotel Gran Ashton. 👉Pz13:Zapata desde Car"
- },
- "90542": {
-  "fecha": "2026-10-03T14:20:47+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P322"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:18 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P318:rededores de "
- },
- "90540": {
-  "fecha": "2026-10-03T14:15:39+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP304",
-   "OP318",
-   "OP323",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente al siguiente circuito: 👉OP 304,OP424,OP3"
- },
- "90539": {
-  "fecha": "2026-10-03T14:12:23+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "OP304",
-   "OP318",
-   "OP323",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP 304,OP424,OP318, OP323,OP424 ,OP41"
- },
  "90550": {
   "fecha": "2026-10-03T14:33:53+00:00",
   "tipo_llm": "restablecimiento",
@@ -1523,5 +1478,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 109 MW distribuidos en 50 circuitos de distribución. A continuación, "
+ },
+ "92697": {
+  "fecha": "2026-10-10T14:19:15+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "MR450"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes pertenecientes al municipio San Miguel del Padrón que se encuentra transferida parte de la carga del circuito S515 al circuito MR450"
  }
 }

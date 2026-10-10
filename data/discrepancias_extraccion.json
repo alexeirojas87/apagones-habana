@@ -1,31 +1,4 @@
 {
- "90500": {
-  "fecha": "2026-10-03T12:26:08+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "SR820"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido"
- },
- "90499": {
-  "fecha": "2026-10-03T12:24:54+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR830"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes del municipio Cotorro , que se encuentran afectados por TRABAJOS OPERATIVOS en el siguiente circuito: 👉SR830:Reparto Delicias."
- },
- "90498": {
-  "fecha": "2026-10-03T12:21:56+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "SR820"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido"
- },
  "90509": {
   "fecha": "2026-10-03T12:50:13+00:00",
   "tipo_llm": "restablecimiento",
@@ -1563,5 +1536,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito: GC11✅"
+ },
+ "92663": {
+  "fecha": "2026-10-10T12:28:35+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "3228"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes pertenecientes a los municipios San Miguel del Padrón , Cotorro , Guanabacoa debido a una AVERÍA por falta de aceite en el transform"
  }
 }

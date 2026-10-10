@@ -1,15 +1,4 @@
 {
- "90436": {
-  "fecha": "2026-10-03T05:45:57+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C10",
-   "C13",
-   "C7"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio Cerro pertenecientes a los circuitos C7, C10 y C13, por posible avería se encuentran paralelos: 👉Cuadrantes de Norte "
- },
  "90500": {
   "fecha": "2026-10-03T12:26:08+00:00",
   "tipo_llm": "averia",

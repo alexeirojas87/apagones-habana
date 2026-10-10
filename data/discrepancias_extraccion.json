@@ -1,35 +1,4 @@
 {
- "90569": {
-  "fecha": "2026-10-03T15:27:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "1160",
-   "A1227"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:17AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 A1218:Cuadrante en"
- },
- "90565": {
-  "fecha": "2026-10-03T15:17:24+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:12 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
- },
- "90564": {
-  "fecha": "2026-10-03T15:14:47+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP307",
-   "OP319",
-   "OP415"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:12 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP321.OP319,OP4"
- },
  "90580": {
   "fecha": "2026-10-03T15:58:35+00:00",
   "tipo_llm": "restablecimiento",
@@ -1478,5 +1447,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes pertenecientes al municipio San Miguel del Padrón que se encuentra transferida parte de la carga del circuito S515 al circuito MR450"
+ },
+ "92732": {
+  "fecha": "2026-10-10T15:23:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "H341",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los circuitos OP408, H341 y C8✅"
  }
 }

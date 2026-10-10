@@ -1,13 +1,4 @@
 {
- "90634": {
-  "fecha": "2026-10-03T20:14:55+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1217"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de la 3:46 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 1170:Calle 42 de"
- },
  "90647": {
   "fecha": "2026-10-03T22:08:43+00:00",
   "tipo_llm": "afectacion",
@@ -1507,5 +1498,16 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔informamos a los consumidores del municipio Cerro pertenecientes al circuito C15 que fue transferido temporalmente parte de la carga al circuito C13, debido a"
+ },
+ "92855": {
+  "fecha": "2026-10-10T20:11:44+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 4:10 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
  }
 }

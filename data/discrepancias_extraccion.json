@@ -1525,5 +1525,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes pertenecientes a los municipios San Miguel del Padrón , Cotorro , Guanabacoa debido a una AVERÍA por falta de aceite en el transform"
+ },
+ "92675": {
+  "fecha": "2026-10-10T13:15:11+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 109 MW distribuidos en 50 circuitos de distribución. A continuación, "
  }
 }

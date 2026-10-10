@@ -1479,5 +1479,23 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉127 / 122 y 124 .🛑⚡️"
+ },
+ "92837": {
+  "fecha": "2026-10-10T18:58:12+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "PZ4"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 206 MW distribuidos en 76 circuitos de distribución. A continuación, "
+ },
+ "92830": {
+  "fecha": "2026-10-10T18:47:37+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "500"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Habana del Este, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉500 / I y H , Sibarimar🛑⚡️"
  }
 }

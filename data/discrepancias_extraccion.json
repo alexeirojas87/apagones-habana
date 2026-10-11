@@ -1514,5 +1514,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 09:03 AM quedó restablecido el servicio en los siguientes circuitos: 👉A223:Repartos Arco del Chico, La Peña, Hor"
+ },
+ "93143": {
+  "fecha": "2026-10-11T15:52:55+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "166"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉166 e/ 379 y 377 🛑⚡️"
+ },
+ "93142": {
+  "fecha": "2026-10-11T15:51:53+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "409"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉409 e/ 210 y 212. Fina La Leona 🛑⚡️"
  }
 }

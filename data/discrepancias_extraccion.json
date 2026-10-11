@@ -1505,5 +1505,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 08:35 AM quedó restablecido el servicio en los siguientes circuitos: 👉 GC18:Zona Franca de Berroa. 👉 GC7:Cojimar"
+ },
+ "93117": {
+  "fecha": "2026-10-11T13:07:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A219"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 09:03 AM quedó restablecido el servicio en los siguientes circuitos: 👉A223:Repartos Arco del Chico, La Peña, Hor"
  }
 }

@@ -1496,5 +1496,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 151 MW distribuidos en 55 circuitos de distribución. A continuación, "
+ },
+ "93112": {
+  "fecha": "2026-10-11T12:39:24+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC7"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 08:35 AM quedó restablecido el servicio en los siguientes circuitos: 👉 GC18:Zona Franca de Berroa. 👉 GC7:Cojimar"
  }
 }

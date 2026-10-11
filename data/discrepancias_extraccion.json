@@ -1559,5 +1559,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito D1055, que se ha transferido temporalmente la carga al circuito MB910 de los sig"
+ },
+ "93188": {
+  "fecha": "2026-10-11T18:38:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R461",
+   "R464"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos.✅ 👉R461/R464."
  }
 }

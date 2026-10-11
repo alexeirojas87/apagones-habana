@@ -11,15 +11,6 @@
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 03:52 PM quedó restablecido el servicio en los siguientes circuitos: 👉OP424,OP318,OP411,OP404,OP320 📌Usted puede"
  },
- "90893": {
-  "fecha": "2026-10-04T19:14:54+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 143 MW distribuidos en 49 circuitos de distribución. A continuación, "
- },
  "90939": {
   "fecha": "2026-10-04T20:51:50+00:00",
   "tipo_llm": "averia",
@@ -1569,5 +1560,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos.✅ 👉R461/R464."
+ },
+ "93198": {
+  "fecha": "2026-10-11T19:24:34+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1455"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito A1455 que las cargas del mismo se encuentran transferidos para los circuitos GC1"
  }
 }

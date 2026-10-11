@@ -1,13 +1,4 @@
 {
- "90661": {
-  "fecha": "2026-10-04T03:34:02+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "H443"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📣Informamos a los clientes del muinicipio San Miguel Padrón que debido a dificultades técnicas en las Redes queda afectado el servicio eléctrico con un proceso"
- },
  "90667": {
   "fecha": "2026-10-04T04:29:41+00:00",
   "tipo_llm": "restablecimiento",

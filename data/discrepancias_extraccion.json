@@ -1,13 +1,4 @@
 {
- "90831": {
-  "fecha": "2026-10-04T16:39:03+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1217"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de la 12:13 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 A1218:Cuadrante"
- },
  "90846": {
   "fecha": "2026-10-04T17:21:32+00:00",
   "tipo_llm": "restablecimiento",
@@ -1532,5 +1523,52 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉409 e/ 210 y 212. Fina La Leona 🛑⚡️"
+ },
+ "93157": {
+  "fecha": "2026-10-11T16:49:01+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "R451"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Regla pertenecientes al circuito R451, se ha transferido temporalmente la carga al circuito R466 de los siguientes rep"
+ },
+ "93155": {
+  "fecha": "2026-10-11T16:46:10+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SR820"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido"
+ },
+ "93151": {
+  "fecha": "2026-10-11T16:38:12+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A490",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S514, que se ha transferido temporalmente la carga al circuito A490 d"
+ },
+ "93149": {
+  "fecha": "2026-10-11T16:34:17+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1050"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito D1050, que se ha transferido temporalmente la carga al circuito MB930 de los sig"
+ },
+ "93148": {
+  "fecha": "2026-10-11T16:33:58+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "D1055",
+   "MB910"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito D1055, que se ha transferido temporalmente la carga al circuito MB910 de los sig"
  }
 }

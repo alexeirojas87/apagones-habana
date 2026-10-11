@@ -1553,5 +1553,25 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías existentes en: Plaza 🚨 Transformadores Dañados: 📌Municipio: Plaza ⚡️Dirección: Avenida la Loma entre 37 y Final (1248) ⚡️Dirección: 14 entre 19 y 21 ("
+ },
+ "92960": {
+  "fecha": "2026-10-11T01:42:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "220"
+  ],
+  "solo_regex": [
+   "2203"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 09:39PM queda restablecido el servicio en los siguientes circuitos: 👉2203: Reparto Alturas del Sevillano. Alrede"
+ },
+ "92949": {
+  "fecha": "2026-10-11T01:31:47+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1219"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Marianao pertenecientes al circuito 1851, que se ha transferido temporalmente la carga al circuito A1219 por una Averí"
  }
 }

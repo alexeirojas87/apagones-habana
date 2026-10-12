@@ -1679,5 +1679,17 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de la 06:27 PM queda restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, A"
+ },
+ "93796": {
+  "fecha": "2026-10-12T22:59:56+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A201",
+   "A219"
+  ],
+  "solo_regex": [
+   "A223"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:59 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A223:Repartos A"
  }
 }

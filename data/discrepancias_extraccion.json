@@ -1,13 +1,4 @@
 {
- "91176": {
-  "fecha": "2026-10-05T14:56:44+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería secundaria por transformador dañado en la calle 24 entre 3ra y 2da.🚨"
- },
  "91205": {
   "fecha": "2026-10-05T19:07:03+00:00",
   "tipo_llm": "afectacion",
@@ -1617,5 +1608,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Tulipán entre Calzada del Cerro y Santa Catalina. 🛑⚡️"
+ },
+ "93506": {
+  "fecha": "2026-10-12T14:38:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A219"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 10:22 AM queda restablecido el servicio en los siguientes circuitos: 👉A223:Repartos Arco del Chico, La Peña, Hor"
  }
 }

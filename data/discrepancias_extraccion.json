@@ -1590,5 +1590,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:37 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
+ },
+ "93429": {
+  "fecha": "2026-10-12T11:31:47+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343 que se encuentra transferida temporalmente la carga al circuito"
  }
 }

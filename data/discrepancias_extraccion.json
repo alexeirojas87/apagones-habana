@@ -1,14 +1,4 @@
 {
- "91023": {
-  "fecha": "2026-10-05T03:06:59+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:05 PM queda restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
- },
  "91032": {
   "fecha": "2026-10-05T04:12:08+00:00",
   "tipo_llm": "afectacion",
@@ -1595,5 +1585,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔴⚡️ Consumidores del municipio Habana Vieja, se detectó una AVERÍA por Cable Fallo que afecta el servicio eléctrico en: 👉 Compostela e/ Teniente Rey y Muralla. "
+ },
+ "93332": {
+  "fecha": "2026-10-12T03:07:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "S512"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a los consumidores del municipio San Miguel del Padrón pertenecientes al circuito S512 que se encontraba transferida temporalmente su carga , ya se"
  }
 }

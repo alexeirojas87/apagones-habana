@@ -1576,5 +1576,14 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Plaza, queda reparada la AVERÍA SECUNDARIA que afectaba el servicio eléctrico en: 👉 14 e/ 19 y 21🟢☑️"
+ },
+ "93308": {
+  "fecha": "2026-10-12T01:01:11+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [],
+  "solo_regex": [
+   "L317"
+  ],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:01 PM se afectan 261 MW distribuidos en 103 circuitos de distribución. A continuación, "
  }
 }

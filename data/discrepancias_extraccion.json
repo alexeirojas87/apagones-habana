@@ -1,15 +1,4 @@
 {
- "91280": {
-  "fecha": "2026-10-05T22:29:35+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 6:28PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores de"
- },
  "91296": {
   "fecha": "2026-10-06T01:01:12+00:00",
   "tipo_llm": "afectacion",
@@ -1679,5 +1668,16 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de la 04:26 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PZ24: Calles 2 d"
+ },
+ "93779": {
+  "fecha": "2026-10-12T22:28:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de la 06:27 PM queda restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, A"
  }
 }

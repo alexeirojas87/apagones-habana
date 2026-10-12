@@ -1594,5 +1594,23 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a los consumidores del municipio San Miguel del Padrón pertenecientes al circuito S512 que se encontraba transferida temporalmente su carga , ya se"
+ },
+ "93344": {
+  "fecha": "2026-10-12T04:00:18+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 238 MW distribuidos en 96 circuitos de distribución. A continuación, "
+ },
+ "93337": {
+  "fecha": "2026-10-12T03:31:53+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Boyeros pertenecientes al circuito 2205, se ha transferido temporalmente una parte de la carga al circuito A960 y la o"
  }
 }

@@ -1659,5 +1659,25 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 193 MW distribuidos en 83 circuitos de distribución. A continuación, "
+ },
+ "93734": {
+  "fecha": "2026-10-12T20:42:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢✅Informamos a los clientes del municipio Boyeros pertenecientes al circuito 2205 que fue normalizado su esquema y se encuentra restablecido el servicio en el m"
+ },
+ "93731": {
+  "fecha": "2026-10-12T20:38:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de la 04:26 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PZ24: Calles 2 d"
  }
 }

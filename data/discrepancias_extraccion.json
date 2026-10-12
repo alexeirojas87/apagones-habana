@@ -1599,5 +1599,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343 que se encuentra transferida temporalmente la carga al circuito"
+ },
+ "93501": {
+  "fecha": "2026-10-12T14:17:53+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "L322"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L322, que se ha transferido temporalmente la carga al circuito L317 del siguiente cua"
+ },
+ "93496": {
+  "fecha": "2026-10-12T14:04:43+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP402"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Tulipán entre Calzada del Cerro y Santa Catalina. 🛑⚡️"
  }
 }

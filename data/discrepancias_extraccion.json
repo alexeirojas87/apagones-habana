@@ -1557,5 +1557,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF).✅ 👉R461:Calle Maceo desde 10 de Octubre a La Piedra, ca"
+ },
+ "93287": {
+  "fecha": "2026-10-11T23:44:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 07:38 PM queda restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
  }
 }

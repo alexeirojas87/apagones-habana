@@ -1638,5 +1638,24 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 09:30 AM queda restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "93643": {
+  "fecha": "2026-10-12T17:53:42+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Habana del Este, se afecta el servicio eléctrico por Disparo del Circuito en: Al55: Zonas: 12; 13; 14; 19; 20; 21; 23; 24 y 25.‼️🚨"
+ },
+ "93634": {
+  "fecha": "2026-10-12T17:38:17+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 01:23 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
  }
 }

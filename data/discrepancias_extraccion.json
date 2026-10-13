@@ -1776,5 +1776,44 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito 1243✅"
+ },
+ "94102": {
+  "fecha": "2026-10-13T17:19:44+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1242",
+   "1243",
+   "1244"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉1242; 1243; 1244✅📉"
+ },
+ "94098": {
+  "fecha": "2026-10-13T17:17:35+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito: H341✅"
+ },
+ "94095": {
+  "fecha": "2026-10-13T17:14:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1160"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en el siguiente circuito: 👉1160📉✅"
+ },
+ "94075": {
+  "fecha": "2026-10-13T16:41:39+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "R466",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343 que las cargas del mismo se encuentran transferidas para los cir"
  }
 }

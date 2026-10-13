@@ -1691,5 +1691,14 @@
    "A223"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 06:59 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A223:Repartos A"
+ },
+ "93831": {
+  "fecha": "2026-10-13T00:22:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [],
+  "solo_regex": [
+   "T44"
+  ],
+  "extracto": "✅Consumidores del municipio 10 de Octubre queda restablecido el servicio eléctrico en los siguientes circuitos: 👉T41: Alrededores del cuadrante comprendido desd"
  }
 }

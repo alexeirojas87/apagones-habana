@@ -1,22 +1,4 @@
 {
- "91472": {
-  "fecha": "2026-10-06T18:28:14+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A928"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Boyeros - 10 de Octubre - Arroyo Naranjo 🚨Averías Primarias ✔️Municipio : Boyeros 📍Afecta : "
- },
- "91470": {
-  "fecha": "2026-10-06T18:21:48+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 🛑Transformadores daña"
- },
  "91473": {
   "fecha": "2026-10-06T18:41:24+00:00",
   "tipo_llm": "averia",
@@ -1845,5 +1827,26 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico de los clientes afectados por la vía libre para realizar labores de mantenimiento y poda, en los siguientes circuitos: 👉2076"
+ },
+ "94132": {
+  "fecha": "2026-10-13T18:12:35+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1222",
+   "A500"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Recordamos a los clientes del municipio Marianao pertenecientes al circuito A500 , que se ha transferido temporalmente la carga al circuito A1222 la zona de: "
+ },
+ "94131": {
+  "fecha": "2026-10-13T18:12:02+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨Consumidores del municipio Centro Habana, por trabajos operativos se afecta el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta "
  }
 }

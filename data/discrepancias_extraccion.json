@@ -1,13 +1,4 @@
 {
- "91473": {
-  "fecha": "2026-10-06T18:41:24+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1175"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Marianao / Playa: 🛑Transformadores dañados: ✔️Municipio : Playa 👉Dirección: 58 / 53 y 55 👉Di"
- },
  "91525": {
   "fecha": "2026-10-06T21:12:45+00:00",
   "tipo_llm": "restablecimiento",

@@ -1739,5 +1739,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito P314✅"
+ },
+ "94067": {
+  "fecha": "2026-10-13T16:19:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito por posible avería en el circuito 1243✅"
  }
 }

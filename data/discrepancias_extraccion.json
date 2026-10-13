@@ -1866,5 +1866,41 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por disparo de circuito en el circuito MB910.✅"
+ },
+ "94182": {
+  "fecha": "2026-10-13T19:57:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP323",
+   "OP325",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:56 PM se afectó el servicio eléctrico por déficit de generación en lo siguientes circuitos: OP304, OP424, OP31"
+ },
+ "94177": {
+  "fecha": "2026-10-13T19:47:21+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:47 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
+ },
+ "94155": {
+  "fecha": "2026-10-13T19:02:44+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "SF850"
+  ],
+  "solo_regex": [
+   "SR850"
+  ],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 169 MW distribuidos en 73 circuitos de distribución. A continuación, "
  }
 }

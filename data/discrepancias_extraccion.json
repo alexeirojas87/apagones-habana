@@ -1902,5 +1902,14 @@
    "SR850"
   ],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 169 MW distribuidos en 73 circuitos de distribución. A continuación, "
+ },
+ "94190": {
+  "fecha": "2026-10-13T20:08:28+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PG930"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Consumidores del municipio Arroyo Naranjo, se trabaja en vía libre de emergencia para cambio de transformador en calle 2da entre Camilo Cienfuegos y Adelaida, "
  }
 }

@@ -1,13 +1,4 @@
 {
- "91525": {
-  "fecha": "2026-10-06T21:12:45+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Guanabacoa, queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADR DAÑADO que afectó el servicio eléctrico en: 👉Calle 24 e/ 3ra y 2d"
- },
  "91550": {
   "fecha": "2026-10-06T23:01:34+00:00",
   "tipo_llm": "averia",

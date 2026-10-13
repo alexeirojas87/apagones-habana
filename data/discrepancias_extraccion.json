@@ -1,15 +1,4 @@
 {
- "91414": {
-  "fecha": "2026-10-06T12:37:16+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅Informamos a la población que a partir de las 8:24 AM quedó restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, Ay"
- },
  "91423": {
   "fecha": "2026-10-06T13:30:56+00:00",
   "tipo_llm": "afectacion",
@@ -1642,5 +1631,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 7:51 AM quedó restablecido el servicio en los siguientes circuitos: 👉PZ24: Calles 2 desde 27 hasta 19, 19 desde "
+ },
+ "93986": {
+  "fecha": "2026-10-13T12:58:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A960"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito A960✅"
  }
 }

@@ -1721,5 +1721,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Boyeros, se afecta el servicio eléctrico por avería secundaria debido a un transformador dañado en la calle 4ta entre Central y Fina"
+ },
+ "94048": {
+  "fecha": "2026-10-13T15:21:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Se restablece el servicio eléctrico afectado por disparo en el circuito 2205✅"
  }
 }

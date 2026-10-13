@@ -1700,5 +1700,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Playa se detectó una AVERÍA SECUNDARIA quedando afectada la siguiente dirección : 👉98 / 7ma y 9na .🛑⚡️"
+ },
+ "93863": {
+  "fecha": "2026-10-13T03:20:50+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C8"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚡️Consumidores del municipio 10 de Octubre, se encuentran afectados por AVERÍA SECUNDARIA debido a TRANSFORMADOR DAÑADO en la siguiente dirección: 👉San Julio e"
  }
 }

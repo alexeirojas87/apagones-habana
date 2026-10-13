@@ -1839,5 +1839,32 @@
    "OP325"
   ],
   "extracto": "🚨Consumidores del municipio Centro Habana, por trabajos operativos se afecta el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta "
+ },
+ "94163": {
+  "fecha": "2026-10-13T19:14:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB910"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo de circuito en el circuito MB910.✅"
+ },
+ "94158": {
+  "fecha": "2026-10-13T19:06:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2075"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los clientes afectados por el disparo del circuito por sobrecarga en: 👉2075✅"
+ },
+ "94156": {
+  "fecha": "2026-10-13T19:04:53+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB910"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo de circuito en el circuito MB910.✅"
  }
 }

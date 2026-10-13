@@ -1730,5 +1730,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Se restablece el servicio eléctrico afectado por disparo en el circuito 2205✅"
+ },
+ "94058": {
+  "fecha": "2026-10-13T15:58:53+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P314"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito P314✅"
  }
 }

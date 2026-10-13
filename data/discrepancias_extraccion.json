@@ -1691,5 +1691,14 @@
    "T44"
   ],
   "extracto": "✅Consumidores del municipio 10 de Octubre queda restablecido el servicio eléctrico en los siguientes circuitos: 👉T41: Alrededores del cuadrante comprendido desd"
+ },
+ "93849": {
+  "fecha": "2026-10-13T02:15:02+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L322"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa se detectó una AVERÍA SECUNDARIA quedando afectada la siguiente dirección : 👉98 / 7ma y 9na .🛑⚡️"
  }
 }

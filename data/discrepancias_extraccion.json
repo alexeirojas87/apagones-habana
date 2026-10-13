@@ -1672,5 +1672,23 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Playa - Marianao - Lisa 🚨Averías Secundarias ✔️Municipio : Playa 👉98 e/ 7ma y 9na 👉2 e/ 1ra "
+ },
+ "93947": {
+  "fecha": "2026-10-13T10:47:32+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "H442"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Aclaramos a los cliente pertenecientes al circuito H442 que se encuentra afectado por déficit de generación desde las 07:30 PM.📣🚨"
+ },
+ "93944": {
+  "fecha": "2026-10-13T10:36:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "MB920"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:16 AM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC19: Repartos "
  }
 }

@@ -1,13 +1,4 @@
 {
- "91733": {
-  "fecha": "2026-10-07T15:42:40+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "H343"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Consumidores del municipio San Miguel del Padrón pertenecientes al circuito H343: Se encuentran afectados por TRABAJOS en la SUBESTACIÓN de MELONES 👉 H343: Re"
- },
  "91738": {
   "fecha": "2026-10-07T17:26:11+00:00",
   "tipo_llm": "daf",

@@ -1996,5 +1996,14 @@
    "MB910"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 2:50 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC12: Centro de "
+ },
+ "94581": {
+  "fecha": "2026-10-14T19:12:39+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP402"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Cerro, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Tulipán entre Calzada del Cerro y Santa Catalina(OP402) ✅"
  }
 }

@@ -1959,5 +1959,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico de los circuitos: D631 y D634✅"
+ },
+ "94318": {
+  "fecha": "2026-10-14T06:21:08+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Arroyo Naranjo, se afecta el servicio eléctrico por primario partido en el cuadrante de calle 9na hasta 13 (Circuito A1009)🚨"
  }
 }

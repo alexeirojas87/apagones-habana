@@ -1891,5 +1891,32 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 367 MW distribuidos en 146 circuitos de distribución. A continuación,"
+ },
+ "94296": {
+  "fecha": "2026-10-14T04:20:34+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1455"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Guanabacoa, se afecta el servicio eléctrico por avería secundaria debido a un transformador dañado en la calle San Diego entre Asilo"
+ },
+ "94295": {
+  "fecha": "2026-10-14T04:17:49+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio San Miguel del Padrón, se afecta el servicio eléctrico por avería secundaria debido a un transformador dañado en la calle 108 y 4ta "
+ },
+ "94293": {
+  "fecha": "2026-10-14T04:13:45+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1516"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Regla, se afecta el servicio eléctrico por avería secundaria debido a un transformador dañado en la calle Fuerte San Diego, Casa Bla"
  }
 }

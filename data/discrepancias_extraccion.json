@@ -1,14 +1,4 @@
 {
- "91776": {
-  "fecha": "2026-10-07T20:15:15+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P317",
-   "P318"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:11PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz14:Calles 14 d"
- },
  "91784": {
   "fecha": "2026-10-07T20:51:39+00:00",
   "tipo_llm": "averia",
@@ -2005,5 +1995,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Cerro, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Tulipán entre Calzada del Cerro y Santa Catalina(OP402) ✅"
+ },
+ "94602": {
+  "fecha": "2026-10-14T20:13:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "H341",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos H341,OP408 y C8✅📉"
  }
 }

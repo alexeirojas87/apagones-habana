@@ -1918,5 +1918,27 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Regla, se afecta el servicio eléctrico por avería secundaria debido a un transformador dañado en la calle Fuerte San Diego, Casa Bla"
+ },
+ "94305": {
+  "fecha": "2026-10-14T04:46:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1009",
+   "D631",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los circuitos: A1009, D631 y D634✅"
+ },
+ "94294": {
+  "fecha": "2026-10-14T04:13:53+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "2203",
+   "2204",
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 371 MW distribuidos en 146 circuitos de distribución. A continuación,"
  }
 }

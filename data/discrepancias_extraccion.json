@@ -1976,5 +1976,15 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Lisa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 240/ 81 y 95.🛑⚡️"
+ },
+ "94669": {
+  "fecha": "2026-10-14T22:45:43+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "PZ20",
+   "PZ5"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los consumidores del municipio Plaza pertenecientes al circuito PZ5 que fue transferido temporalmente parte de la carga al circuito PZ20, debido "
  }
 }

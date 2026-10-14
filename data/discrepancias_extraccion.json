@@ -1973,5 +1973,26 @@
    "OP325"
   ],
   "extracto": "‼️Consumidores del municipio Plaza, por Disparo del circuito se afecta el servicio eléctrico en: 👉P325: Desagüe desde Infanta hasta Ayestarán, Ayestarán desde C"
+ },
+ "94425": {
+  "fecha": "2026-10-14T14:23:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:07 AM quedó restablecido el servicio en el siguiente circuito afectado por Disparo de Circuito por Avería: 👉P"
+ },
+ "94418": {
+  "fecha": "2026-10-14T14:02:13+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380",
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 324 MW distribuidos en 100 circuitos de distribución. A continuación,"
  }
 }

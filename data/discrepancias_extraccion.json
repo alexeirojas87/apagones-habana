@@ -1,22 +1,4 @@
 {
- "91679": {
-  "fecha": "2026-10-07T10:55:25+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1203"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio Playa pertenecientes al circuito SF581 que se encuentra transferida temporalmente parte de su carga al circuito A1203"
- },
- "91678": {
-  "fecha": "2026-10-07T10:41:41+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "AL55"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Boyeros - 10 de Octubre - Arroyo Naranjo 🛑Transformadores dañados: ✔️Municipio : 10 de Octub"
- },
  "91698": {
   "fecha": "2026-10-07T12:02:36+00:00",
   "tipo_llm": "restablecimiento",
@@ -1990,5 +1972,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:31 AM se se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP304, OP424,"
+ },
+ "94362": {
+  "fecha": "2026-10-14T10:39:07+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Cerro, se afecta el servicio eléctrico por avería secundaria debido a un transformador dañado en la dirección Universidad entre San "
  }
 }

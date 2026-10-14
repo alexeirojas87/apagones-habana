@@ -1,14 +1,4 @@
 {
- "91675": {
-  "fecha": "2026-10-07T10:25:21+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1203",
-   "A1218"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio Playa pertenecientes al circuito SF584 que se encontraba transferida temporalmente la carga al circuito A1203, debido"
- },
  "91679": {
   "fecha": "2026-10-07T10:55:25+00:00",
   "tipo_llm": "averia",

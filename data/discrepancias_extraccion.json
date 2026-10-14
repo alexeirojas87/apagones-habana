@@ -1949,5 +1949,15 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por disparo automático por frecuencia (DAF) en el circuito H341✅📉"
+ },
+ "94315": {
+  "fecha": "2026-10-14T05:50:26+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D631",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los circuitos: D631 y D634✅"
  }
 }

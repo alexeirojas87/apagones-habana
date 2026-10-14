@@ -1995,5 +1995,26 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los consumidores del municipio Habana Vieja que el circuito OP306 se encuentra transferido para el circuito OP410: OP306/OP410: Soterrado Habana "
+ },
+ "94497": {
+  "fecha": "2026-10-14T16:50:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343",
+   "R451",
+   "R466",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢📣Informamos a los clientes de los municipios San Miguel del Padrón - Guanabacoa - Regla que se encuentra normalizado el esquema que afectaba los circuitos H343"
+ },
+ "94489": {
+  "fecha": "2026-10-14T16:38:50+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:30 PM quedó restablecido el servicio en los siguientes circuitos: 👉MB910(D1055): Justi, Agromar, Bajurayabo, "
  }
 }

@@ -1976,5 +1976,24 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 324 MW distribuidos en 100 circuitos de distribución. A continuación,"
+ },
+ "94484": {
+  "fecha": "2026-10-14T16:28:56+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PG920"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 12:00 PM queda restablecido el servicio en el siguiente circuito: 👉 A1695 : Reparto Eléctrico /👉 PG 920 : Repart"
+ },
+ "94474": {
+  "fecha": "2026-10-14T16:14:13+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "OP306",
+   "OP410"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los consumidores del municipio Habana Vieja que el circuito OP306 se encuentra transferido para el circuito OP410: OP306/OP410: Soterrado Habana "
  }
 }

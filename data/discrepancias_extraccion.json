@@ -1,13 +1,4 @@
 {
- "91753": {
-  "fecha": "2026-10-07T18:55:07+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "S512"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a los consumidores del municipio San Miguel del Padrón pertenecientes al circuito S512 que se encontraba transferida temporalmente su carga , ya se "
- },
  "91776": {
   "fecha": "2026-10-07T20:15:15+00:00",
   "tipo_llm": "afectacion",
@@ -1996,5 +1987,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 2:18 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
+ },
+ "94569": {
+  "fecha": "2026-10-14T18:51:58+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [],
+  "solo_regex": [
+   "MB910"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:50 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC12: Centro de "
  }
 }

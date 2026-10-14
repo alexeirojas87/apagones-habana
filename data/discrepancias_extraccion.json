@@ -1,14 +1,4 @@
 {
- "91800": {
-  "fecha": "2026-10-07T22:02:18+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "AL53",
-   "MB960"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:56 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R461:Calle Mace"
- },
  "91823": {
   "fecha": "2026-10-07T23:34:38+00:00",
   "tipo_llm": "restablecimiento",
@@ -1977,5 +1967,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 4:53 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉3228(S515) : Repart"
+ },
+ "94667": {
+  "fecha": "2026-10-14T22:25:52+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "240"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Lisa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 240/ 81 y 95.🛑⚡️"
  }
 }

@@ -1,13 +1,4 @@
 {
- "91698": {
-  "fecha": "2026-10-07T12:02:36+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P318"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 7:59 AM quedó restablecido el servicio en los siguientes circuitos: 👉P317:25 y K. 👉P318:lrededores de calles Pla"
- },
  "91701": {
   "fecha": "2026-10-07T12:35:17+00:00",
   "tipo_llm": "restablecimiento",
@@ -1990,5 +1981,16 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por disparo automático por frecuencia (DAF) en el circuito H341✅📉"
+ },
+ "94379": {
+  "fecha": "2026-10-14T12:03:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "‼️Consumidores del municipio Plaza, por Disparo del circuito se afecta el servicio eléctrico en: 👉P325: Desagüe desde Infanta hasta Ayestarán, Ayestarán desde C"
  }
 }

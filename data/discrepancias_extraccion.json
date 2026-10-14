@@ -1,13 +1,4 @@
 {
- "91565": {
-  "fecha": "2026-10-07T01:09:56+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1203"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio Playa pertenecientes al circuito SF584 que se encuentra transferida temporalmente la carga al circuito A1203 debido a"
- },
  "91572": {
   "fecha": "2026-10-07T02:01:50+00:00",
   "tipo_llm": "afectacion",
@@ -1920,5 +1911,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por disparo automático por frecuencia (DAF) en el circuito H341✅📉"
+ },
+ "94264": {
+  "fecha": "2026-10-14T01:10:11+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2203"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 367 MW distribuidos en 146 circuitos de distribución. A continuación,"
  }
 }

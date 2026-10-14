@@ -1,13 +1,4 @@
 {
- "91586": {
-  "fecha": "2026-10-07T02:56:51+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "230"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Playa, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 230 frente al 15A10.🟢☑️"
- },
  "91588": {
   "fecha": "2026-10-07T03:16:41+00:00",
   "tipo_llm": "restablecimiento",

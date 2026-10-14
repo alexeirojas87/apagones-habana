@@ -1,19 +1,4 @@
 {
- "91743": {
-  "fecha": "2026-10-07T17:40:09+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP304",
-   "OP310",
-   "OP318",
-   "OP323",
-   "OP325",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente al siguiente circuito: 👉OP 304,OP424,OP3"
- },
  "91750": {
   "fecha": "2026-10-07T18:27:02+00:00",
   "tipo_llm": "deficit",
@@ -2001,5 +1986,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 177 MW distribuidos en 74 circuitos de distribución. A continuación, "
+ },
+ "94531": {
+  "fecha": "2026-10-14T17:41:56+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de la 1:38 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: PZ7: Cuadrante desde "
  }
 }

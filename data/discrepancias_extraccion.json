@@ -1,25 +1,4 @@
 {
- "92138": {
-  "fecha": "2026-10-08T21:42:18+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:41 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
- },
- "92136": {
-  "fecha": "2026-10-08T21:41:12+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "220"
-  ],
-  "solo_regex": [
-   "2202"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de la 05:40 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉2202:Alrededores de"
- },
  "92155": {
   "fecha": "2026-10-08T23:26:08+00:00",
   "tipo_llm": "deficit",
@@ -2086,5 +2065,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:33 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 Pz16:Calle 6 desd"
+ },
+ "95113": {
+  "fecha": "2026-10-15T21:54:30+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ10"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Queda Restablecida la VIA LIBRE en el municipio plaza que afectaba el servicio eléctrico en el siguiente circuito: Pz10✅🟢"
+ },
+ "95107": {
+  "fecha": "2026-10-15T21:42:31+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alred"
  }
 }

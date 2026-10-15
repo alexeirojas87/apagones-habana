@@ -2024,5 +2024,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅🟢Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) 👉AL52:Zonas: 6; 7; 8; 9; 10; 11 y Micro 4 👉AL57:Colina"
+ },
+ "95020": {
+  "fecha": "2026-10-15T18:46:21+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB960"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el servicio eléctrico a los clientes afectados por Disparo del Circuito en la siguiente dirección: 👉 MB960: Repartos La Conchita, Veneciana, Cent"
+ },
+ "95017": {
+  "fecha": "2026-10-15T18:39:28+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "OP306",
+   "OP410"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Recordamos a los consumidores del municipio Habana Vieja que el circuito OP306 se encuentra transferido para el circuito OP410: OP306/OP410: Soterrado Habana "
  }
 }

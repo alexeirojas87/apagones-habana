@@ -1986,5 +1986,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Informamos a los consumidores del municipio Plaza pertenecientes al circuito PZ5 que fue transferido temporalmente parte de la carga del circuito PZ20, debido"
+ },
+ "94714": {
+  "fecha": "2026-10-15T01:43:01+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ5"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los consumidores del municipio Plaza pertenecientes al circuito PZ5 que fue transferido temporalmente parte de la carga del circuito PZ20: 👉PZ20:"
  }
 }

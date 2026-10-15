@@ -2083,5 +2083,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alred"
+ },
+ "95115": {
+  "fecha": "2026-10-15T22:05:51+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S516"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:57 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 S513:Carretera"
  }
 }

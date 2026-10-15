@@ -1,24 +1,4 @@
 {
- "91866": {
-  "fecha": "2026-10-08T05:00:28+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ14",
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de la 12:53 PM queda restablecido el servicio en los siguientes circuitos: 👉Pz9: La Timba, calle 4 desde 37 a Hidalgo, "
- },
- "91863": {
-  "fecha": "2026-10-08T04:45:29+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "C13",
-   "C7"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:41 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉C10: Alrededores d"
- },
  "91867": {
   "fecha": "2026-10-08T05:03:40+00:00",
   "tipo_llm": "restablecimiento",

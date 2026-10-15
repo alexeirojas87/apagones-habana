@@ -1,13 +1,4 @@
 {
- "92013": {
-  "fecha": "2026-10-08T15:16:06+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1218"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚠️Consumidores del municipio Playa, se afecta el servicio eléctrico en el siguiente cuadrante debido a una VÍA LIBRE DE EMERGENCIA para realizar PODA y MANTENI"
- },
  "92065": {
   "fecha": "2026-10-08T17:52:29+00:00",
   "tipo_llm": "restablecimiento",

@@ -1938,5 +1938,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 11:39 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB950: Ampliaci"
+ },
+ "94790": {
+  "fecha": "2026-10-15T07:43:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "H341",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos H341,OP408 y C8✅📉"
  }
 }

@@ -1,13 +1,4 @@
 {
- "91917": {
-  "fecha": "2026-10-08T10:47:15+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ4"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:43 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉Pz1: Cuadrantes ca"
- },
  "91924": {
   "fecha": "2026-10-08T11:06:45+00:00",
   "tipo_llm": "afectacion",
@@ -1920,5 +1911,24 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos H341,OP408 y C8✅📉"
+ },
+ "94831": {
+  "fecha": "2026-10-15T11:00:28+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1516"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Regla - Cotorro 🚨Avería Primaria ✔️Municipio : Regla 👉(A1516): Antigua Planta Frank País 🛑Tr"
+ },
+ "94829": {
+  "fecha": "2026-10-15T10:58:25+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "OP306",
+   "OP410"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Recordamos a los consumidores del municipio Habana Vieja que el circuito OP306 se encuentra transferido para el circuito OP410: OP306/OP410: Soterrado Habana "
  }
 }

@@ -1,24 +1,4 @@
 {
- "92070": {
-  "fecha": "2026-10-08T18:07:48+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1218"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Playa, queda restablecido el servicio eléctrico en el siguiente cuadrante que fue afectado por una VÍA LIBRE DE EMERGENCIA para re"
- },
- "92080": {
-  "fecha": "2026-10-08T18:33:05+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:32 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desd"
- },
  "92107": {
   "fecha": "2026-10-08T20:01:25+00:00",
   "tipo_llm": "restablecimiento",
@@ -2014,5 +1994,35 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 1:00 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R466:Calle 10 de"
+ },
+ "94997": {
+  "fecha": "2026-10-15T18:14:57+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:13 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desd"
+ },
+ "94994": {
+  "fecha": "2026-10-15T18:08:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC15"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:02 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R456:Alrededore"
+ },
+ "94991": {
+  "fecha": "2026-10-15T18:01:08+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL52",
+   "AL57"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) 👉AL52:Zonas: 6; 7; 8; 9; 10; 11 y Micro 4 👉AL57:Colina"
  }
 }

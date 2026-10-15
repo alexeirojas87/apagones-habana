@@ -1,14 +1,4 @@
 {
- "91983": {
-  "fecha": "2026-10-08T14:21:39+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": ":🚨📣Informamos a la población que a partir de las 10:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alrede"
- },
  "91998": {
   "fecha": "2026-10-08T14:57:35+00:00",
   "tipo_llm": "averia",
@@ -1948,5 +1938,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de la 09:11 AM queda restablecido el servicio en los siguientes circuitos: 👉Pz9: La Timba, calle 4 desde 37 a Hidalgo, "
+ },
+ "94886": {
+  "fecha": "2026-10-15T14:15:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ17"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 10:06 AM queda restablecido el servicio en el siguiente circuito: 👉Pz19: Calles 21 desde 2 hasta K, J desde 21 h"
  }
 }

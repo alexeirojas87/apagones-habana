@@ -2043,5 +2043,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Recordamos a los consumidores del municipio Habana Vieja que el circuito OP306 se encuentra transferido para el circuito OP410: OP306/OP410: Soterrado Habana "
+ },
+ "95031": {
+  "fecha": "2026-10-15T19:01:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL53",
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:55 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR840:Centro de"
  }
 }

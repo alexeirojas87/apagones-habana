@@ -1,22 +1,4 @@
 {
- "91924": {
-  "fecha": "2026-10-08T11:06:45+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:59 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉S512: Calzada d"
- },
- "91923": {
-  "fecha": "2026-10-08T11:05:18+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "L317"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 07:01 AM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1227: Calle 14"
- },
  "91972": {
   "fecha": "2026-10-08T13:43:14+00:00",
   "tipo_llm": "deficit",
@@ -1930,5 +1912,24 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Recordamos a los consumidores del municipio Habana Vieja que el circuito OP306 se encuentra transferido para el circuito OP410: OP306/OP410: Soterrado Habana "
+ },
+ "94841": {
+  "fecha": "2026-10-15T11:25:17+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos OP408 y C8✅📉"
+ },
+ "94839": {
+  "fecha": "2026-10-15T11:24:53+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alred"
  }
 }

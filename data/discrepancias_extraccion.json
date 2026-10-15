@@ -1,14 +1,4 @@
 {
- "91867": {
-  "fecha": "2026-10-08T05:03:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ16",
-   "PZ4"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de la 01:00 AM queda restablecido el servicio en los siguientes circuitos: 👉Pz1: Cuadrantes calle Línea hasta calle 27 "
- },
  "91892": {
   "fecha": "2026-10-08T08:24:10+00:00",
   "tipo_llm": "afectacion",

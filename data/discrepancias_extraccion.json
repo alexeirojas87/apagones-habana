@@ -1,13 +1,4 @@
 {
- "91998": {
-  "fecha": "2026-10-08T14:57:35+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "114"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑‼️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉114 / 43 y 45, Los Quemados.‼️🛑"
- },
  "92013": {
   "fecha": "2026-10-08T15:16:06+00:00",
   "tipo_llm": "afectacion",
@@ -1947,5 +1938,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 10:06 AM queda restablecido el servicio en el siguiente circuito: 👉Pz19: Calles 21 desde 2 hasta K, J desde 21 h"
+ },
+ "94892": {
+  "fecha": "2026-10-15T14:34:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alred"
  }
 }

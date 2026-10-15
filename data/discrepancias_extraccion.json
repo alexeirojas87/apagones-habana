@@ -1,22 +1,4 @@
 {
- "91859": {
-  "fecha": "2026-10-08T03:54:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1305"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de la 11:49 PM queda restablecido el servicio en los siguientes circuitos: 👉D1300: Águila Hatuey, Purísima y Magdalena."
- },
- "91854": {
-  "fecha": "2026-10-08T03:35:48+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P318"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de la 11:32 PM queda restablecido el servicio en los siguientes circuitos: 👉Pz17: Hotel Gran Ashton. 👉P318:Alrededores "
- },
  "91861": {
   "fecha": "2026-10-08T04:07:37+00:00",
   "tipo_llm": "afectacion",
@@ -1986,5 +1968,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Informamos a los consumidores del municipio Plaza pertenecientes al circuito PZ5 que fue transferido temporalmente parte de la carga del circuito PZ20: 👉PZ20:"
+ },
+ "94736": {
+  "fecha": "2026-10-15T03:41:20+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1050"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 11:39 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB950: Ampliaci"
  }
 }

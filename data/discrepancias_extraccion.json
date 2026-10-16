@@ -1,23 +1,4 @@
 {
- "92415": {
-  "fecha": "2026-10-09T19:29:49+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "PZ1"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Plaza, se localiza avería secundaria por transformador dañado en 14 entre 19 y 21 (PZ1)🚨"
- },
- "92407": {
-  "fecha": "2026-10-09T19:11:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1243",
-   "1247"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico afectado por disparo automático por frecuencia (DAF) de los siguientes circuitos: 👉1243; 1247✅📉"
- },
  "92418": {
   "fecha": "2026-10-09T19:43:56+00:00",
   "tipo_llm": "restablecimiento",

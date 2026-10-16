@@ -1,13 +1,4 @@
 {
- "92342": {
-  "fecha": "2026-10-09T15:45:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2075"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Queda restablecido el servicio eléctrico de los clientes afectados por el disparo del circuito por sobrecarga en: 👉2075✅"
- },
  "92351": {
   "fecha": "2026-10-09T16:19:08+00:00",
   "tipo_llm": "restablecimiento",
@@ -2032,5 +2023,29 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Reiteramos a los cliente pertenecientes al circuito D836 que se encuentra afectado por déficit de generación desde las 04:00 PM.📣🚨"
+ },
+ "95378": {
+  "fecha": "2026-10-16T15:54:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP310",
+   "OP323",
+   "OP404",
+   "OP417"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos: 👉OP325: Alrededores de calles San Benigno hast"
+ },
+ "95372": {
+  "fecha": "2026-10-16T15:43:07+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP310",
+   "OP323",
+   "OP404",
+   "OP417"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP325: Alrededores de calles San Beni"
  }
 }

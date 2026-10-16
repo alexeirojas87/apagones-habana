@@ -1,13 +1,4 @@
 {
- "92302": {
-  "fecha": "2026-10-09T13:56:35+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📈Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en el siguiente circuito: 👉1243✅📈"
- },
  "92308": {
   "fecha": "2026-10-09T14:08:33+00:00",
   "tipo_llm": "restablecimiento",
@@ -2033,5 +2024,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 09:00 AM queda restablecido el servicio en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águila hasta "
+ },
+ "95315": {
+  "fecha": "2026-10-16T13:57:16+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 AM se afectan 262 MW distribuidos en 121 circuitos de distribución. A continuación,"
  }
 }

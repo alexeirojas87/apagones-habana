@@ -2023,5 +2023,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 10:24 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P327 (P325): Alrededores de calles "
+ },
+ "95361": {
+  "fecha": "2026-10-16T15:22:22+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Reiteramos a los cliente pertenecientes al circuito D836 que se encuentra afectado por déficit de generación desde las 04:00 PM.📣🚨"
  }
 }

@@ -2014,5 +2014,24 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Aclaramos a los cliente pertenecientes al circuito MB920 que se encuentra afectado por déficit de generación desde las 03:47 PM.📣🚨"
+ },
+ "95257": {
+  "fecha": "2026-10-16T12:49:16+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Aclaramos a los cliente pertenecientes al circuito P327 (P325) que se encuentra afectado por déficit de generación desde las 02:14 PM.📣🚨"
+ },
+ "95254": {
+  "fecha": "2026-10-16T12:48:29+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "PZ13"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Aclaramos a los cliente pertenecientes al circuito PZ13 que se encuentra afectado por déficit de generación desde las 08:24 PM.📣🚨"
  }
 }

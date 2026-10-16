@@ -1,14 +1,4 @@
 {
- "92194": {
-  "fecha": "2026-10-09T04:19:30+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 327 MW distribuidos en 125 circuitos de distribución. A continuación,"
- },
  "92198": {
   "fecha": "2026-10-09T05:17:19+00:00",
   "tipo_llm": "restablecimiento",
@@ -2052,5 +2042,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN NACIONAL se interrumpe la rotación de los circuitos de la Subest"
+ },
+ "95184": {
+  "fecha": "2026-10-16T04:07:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos: 👉 H341 👉OP 408✅📉"
  }
 }

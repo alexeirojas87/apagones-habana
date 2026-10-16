@@ -1,24 +1,4 @@
 {
- "92351": {
-  "fecha": "2026-10-09T16:19:08+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2075"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Queda restablecido el servicio eléctrico de los clientes afectados por el disparo del circuito por sobrecarga en: 👉2075✅"
- },
- "92349": {
-  "fecha": "2026-10-09T16:10:48+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380",
-   "A425",
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 192 MW distribuidos en 86 circuitos de distribución. A continuación, "
- },
  "92365": {
   "fecha": "2026-10-09T16:50:45+00:00",
   "tipo_llm": "restablecimiento",
@@ -2047,5 +2027,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉OP325: Alrededores de calles San Beni"
+ },
+ "95398": {
+  "fecha": "2026-10-16T16:24:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:13 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
  }
 }

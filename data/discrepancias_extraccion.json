@@ -1,13 +1,4 @@
 {
- "92164": {
-  "fecha": "2026-10-09T00:34:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SR830"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio San Miguel del Padrón, queda reparada la Avería Secundaria por Transformador Dañado que afectaba la siguiente dirección: 5ta entre 8"
- },
  "92168": {
   "fecha": "2026-10-09T01:09:31+00:00",
   "tipo_llm": "deficit",

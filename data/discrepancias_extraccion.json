@@ -1,22 +1,4 @@
 {
- "92436": {
-  "fecha": "2026-10-09T20:27:32+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio Arroyo Naranjo pertenecientes al circuito PG970 que se normaliza el esquema llevando la carga de los Hospitales J"
- },
- "92435": {
-  "fecha": "2026-10-09T20:21:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a los consumidores del municipio Boyeros pertenecientes al circuito A820, que queda restablecido el servicio eléctrico afectado por trabajos operati"
- },
  "92443": {
   "fecha": "2026-10-09T20:37:55+00:00",
   "tipo_llm": "restablecimiento",

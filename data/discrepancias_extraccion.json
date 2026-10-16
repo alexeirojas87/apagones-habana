@@ -1,13 +1,4 @@
 {
- "92202": {
-  "fecha": "2026-10-09T05:34:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "GC18"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Habana del Este, se restableció el servicio eléctrico a los clientes del GC18: Zona Franca de Berroa, que se encentraban afectados p"
- },
  "92221": {
   "fecha": "2026-10-09T07:50:25+00:00",
   "tipo_llm": "restablecimiento",
@@ -2042,5 +2033,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos: 👉 H341 👉OP 408✅📉"
+ },
+ "95192": {
+  "fecha": "2026-10-16T05:36:34+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2205"
+  ],
+  "solo_regex": [],
+  "extracto": ".✅Se restablece el servicio eléctrico afectado por disparo en el circuito 2205✅"
  }
 }

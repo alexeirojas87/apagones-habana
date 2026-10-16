@@ -1,13 +1,4 @@
 {
- "92180": {
-  "fecha": "2026-10-09T02:59:32+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚡️Consumidores del municipio Boyeros, se encuentran afectados por AVERÍA SECUNDARIA debido a TRANSFORMADOR DAÑADO en la siguiente dirección: 👉 Carretera Vieja "
- },
  "92194": {
   "fecha": "2026-10-09T04:19:30+00:00",
   "tipo_llm": "deficit",

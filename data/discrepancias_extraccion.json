@@ -1,14 +1,4 @@
 {
- "92221": {
-  "fecha": "2026-10-09T07:50:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ16",
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 03:39 AM quedó restablecido el servicio en los siguientes circuitos: 👉PZ5:Calles desde 27 hasta 24 ,25 desde 2 h"
- },
  "92234": {
   "fecha": "2026-10-09T10:01:21+00:00",
   "tipo_llm": "deficit",

@@ -1,13 +1,4 @@
 {
- "92322": {
-  "fecha": "2026-10-09T14:52:51+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1695"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Arroyo Naranjo, se localiza avería secundaria por transformador dañado en Martí entre Cesario Fernández y Mella, Eléctrico🚨"
- },
  "92342": {
   "fecha": "2026-10-09T15:45:31+00:00",
   "tipo_llm": "restablecimiento",
@@ -2023,5 +2014,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 AM se afectan 262 MW distribuidos en 121 circuitos de distribución. A continuación,"
+ },
+ "95344": {
+  "fecha": "2026-10-16T14:38:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:24 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P327 (P325): Alrededores de calles "
  }
 }

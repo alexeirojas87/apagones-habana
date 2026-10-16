@@ -2005,5 +2005,14 @@
   ],
   "solo_regex": [],
   "extracto": "🟢📣informamos que se encuentra normalizado el esquema del circuito L322 transferido temporalmente la carga al L317.🔔🟢"
+ },
+ "95246": {
+  "fecha": "2026-10-16T12:29:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "MB920"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Aclaramos a los cliente pertenecientes al circuito MB920 que se encuentra afectado por déficit de generación desde las 03:47 PM.📣🚨"
  }
 }

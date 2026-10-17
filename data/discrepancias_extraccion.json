@@ -1948,5 +1948,16 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 9:17 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP304, OP424, OP318, OP424 , OP41"
+ },
+ "95833": {
+  "fecha": "2026-10-17T13:38:03+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A980",
+   "MB930",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:15 AM se afectan 305 MW distribuidos en 136 circuitos de distribución. A continuación,"
  }
 }

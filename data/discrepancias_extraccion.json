@@ -1932,5 +1932,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Lisa se detectó una AVERÍA SECUNDARIA afectando el servicio en la siguiente dirección : 👉247 / 38 y 40 , Punta Brava🛑⚡️"
+ },
+ "95628": {
+  "fecha": "2026-10-17T00:18:25+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "247"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Recordamos a los consumidores del municipio Lisa se detectó una AVERÍA SECUNDARIA afectando el servicio en la siguiente dirección : 👉247 / 38 y 40 , Punta Br"
  }
 }

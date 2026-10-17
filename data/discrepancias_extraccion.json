@@ -2065,5 +2065,39 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente al siguiente circuito: 👉1244✅"
+ },
+ "95976": {
+  "fecha": "2026-10-17T19:19:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1006",
+   "A1007",
+   "A1008",
+   "A1009",
+   "A465",
+   "D632",
+   "D633",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO 👉"
+ },
+ "95973": {
+  "fecha": "2026-10-17T19:13:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D860"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por Fusible Fundido en el circuito: D860✅"
+ },
+ "95972": {
+  "fecha": "2026-10-17T19:11:12+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 367 MW distribuidos en 153 circuitos de distribución. A continuación,"
  }
 }

@@ -1,13 +1,4 @@
 {
- "92520": {
-  "fecha": "2026-10-10T01:44:24+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG930"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Arroyo Naranjo, queda restablecido el servicio eléctrico en el circuito PG930✅"
- },
  "92550": {
   "fecha": "2026-10-10T03:03:48+00:00",
   "tipo_llm": "restablecimiento",

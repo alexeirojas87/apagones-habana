@@ -1,13 +1,4 @@
 {
- "92663": {
-  "fecha": "2026-10-10T12:28:35+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "3228"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes pertenecientes a los municipios San Miguel del Padrón , Cotorro , Guanabacoa debido a una AVERÍA por falta de aceite en el transform"
- },
  "92675": {
   "fecha": "2026-10-10T13:15:11+00:00",
   "tipo_llm": "afectacion",

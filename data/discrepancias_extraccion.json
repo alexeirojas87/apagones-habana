@@ -1,13 +1,4 @@
 {
- "92869": {
-  "fecha": "2026-10-10T20:59:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP402"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Cerro, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉La Rosa y Calzada del Cerro (OP402).✅"
- },
  "92877": {
   "fecha": "2026-10-10T21:17:07+00:00",
   "tipo_llm": "restablecimiento",
@@ -2118,5 +2109,26 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el disparo del siguiente circuito L326✅"
+ },
+ "96009": {
+  "fecha": "2026-10-17T20:51:25+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 4:50 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 P325 (P327): Alred"
+ },
+ "96007": {
+  "fecha": "2026-10-17T20:47:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SF584"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico por trabajos operativos en el siguiente circuito: SF584✅"
  }
 }

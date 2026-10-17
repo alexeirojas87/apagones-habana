@@ -1,13 +1,4 @@
 {
- "92589": {
-  "fecha": "2026-10-10T04:52:55+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "M2044"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Boyeros, queda restablecido el servicio eléctrico en el circuito M2044 ✅"
- },
  "92595": {
   "fecha": "2026-10-10T06:09:35+00:00",
   "tipo_llm": "restablecimiento",

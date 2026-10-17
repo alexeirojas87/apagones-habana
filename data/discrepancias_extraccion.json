@@ -1,13 +1,4 @@
 {
- "92737": {
-  "fecha": "2026-10-10T15:33:37+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes al circuito H341✅"
- },
  "92756": {
   "fecha": "2026-10-10T16:16:24+00:00",
   "tipo_llm": "deficit",

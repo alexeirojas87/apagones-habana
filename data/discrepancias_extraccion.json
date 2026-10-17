@@ -1,13 +1,4 @@
 {
- "92485": {
-  "fecha": "2026-10-09T23:37:19+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2073"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Lisa, queda restablecido el servicio eléctrico de la avería que afectaba el siguiente circuito: 👉2073✅"
- },
  "92520": {
   "fecha": "2026-10-10T01:44:24+00:00",
   "tipo_llm": "restablecimiento",

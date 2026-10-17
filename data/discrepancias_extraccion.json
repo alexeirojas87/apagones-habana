@@ -1917,5 +1917,15 @@
   ],
   "solo_regex": [],
   "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Playa - Lisa 🚨Avería Primarias ✔️Municipio : Lisa 👉Subestación Punta Brava : 👉D740 : Reparto"
+ },
+ "95787": {
+  "fecha": "2026-10-17T11:01:22+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A490",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:50 AM se afectan 365 MW distribuidos en 169 circuitos de distribución. A continuación,"
  }
 }

@@ -1,13 +1,4 @@
 {
- "92675": {
-  "fecha": "2026-10-10T13:15:11+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 109 MW distribuidos en 50 circuitos de distribución. A continuación, "
- },
  "92697": {
   "fecha": "2026-10-10T14:19:15+00:00",
   "tipo_llm": "averia",
@@ -1928,5 +1919,34 @@
   ],
   "solo_regex": [],
   "extracto": "🟢📣Informamos a los clientes del municipio San Miguel del Padrón que se encuentra normalizado el esquema que afectaba los circuitos S515/S513.🟢📣."
+ },
+ "95831": {
+  "fecha": "2026-10-17T13:30:17+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1008"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito: A1008✅"
+ },
+ "95826": {
+  "fecha": "2026-10-17T13:20:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1008"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito: A1008✅"
+ },
+ "95823": {
+  "fecha": "2026-10-17T13:18:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP411"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 9:17 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP304, OP424, OP318, OP424 , OP41"
  }
 }

@@ -1,22 +1,4 @@
 {
- "92837": {
-  "fecha": "2026-10-10T18:58:12+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "PZ4"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 206 MW distribuidos en 76 circuitos de distribución. A continuación, "
- },
- "92830": {
-  "fecha": "2026-10-10T18:47:37+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "500"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Habana del Este, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉500 / I y H , Sibarimar🛑⚡️"
- },
  "92852": {
   "fecha": "2026-10-10T19:56:41+00:00",
   "tipo_llm": "averia",
@@ -2074,5 +2056,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 2:10 PM se afectó el servicio eléctrico por déficit de generación en siguientes circuitos: 👉OP304,OP424, OP318 ,"
+ },
+ "95961": {
+  "fecha": "2026-10-17T18:48:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1244"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente al siguiente circuito: 👉1244✅"
  }
 }

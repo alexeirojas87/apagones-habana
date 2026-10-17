@@ -1,13 +1,4 @@
 {
- "92697": {
-  "fecha": "2026-10-10T14:19:15+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "MR450"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes pertenecientes al municipio San Miguel del Padrón que se encuentra transferida parte de la carga del circuito S515 al circuito MR450"
- },
  "92732": {
   "fecha": "2026-10-10T15:23:19+00:00",
   "tipo_llm": "restablecimiento",
@@ -1959,5 +1950,36 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:15 AM se afectan 305 MW distribuidos en 136 circuitos de distribución. A continuación,"
+ },
+ "95847": {
+  "fecha": "2026-10-17T14:27:30+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:25 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉 P325 (P327): Alrededores de calles"
+ },
+ "95844": {
+  "fecha": "2026-10-17T14:22:43+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL53",
+   "GC13"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en los circuitos: GC13 y AL53. ✅"
+ },
+ "95843": {
+  "fecha": "2026-10-17T14:13:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1008"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito: A1008✅"
  }
 }

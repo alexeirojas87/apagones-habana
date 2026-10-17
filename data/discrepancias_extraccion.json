@@ -1896,5 +1896,17 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Recordamos a los consumidores del municipio Lisa se detectó una AVERÍA SECUNDARIA afectando el servicio en la siguiente dirección : 👉247 / 38 y 40 , Punta Br"
+ },
+ "95747": {
+  "fecha": "2026-10-17T08:07:27+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A490",
+   "C8",
+   "OP408",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:50 AM se afectan 368 MW distribuidos en 162 circuitos de distribución. A continuación,"
  }
 }

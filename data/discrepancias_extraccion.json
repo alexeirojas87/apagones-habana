@@ -1,14 +1,4 @@
 {
- "92852": {
-  "fecha": "2026-10-10T19:56:41+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C13",
-   "C15"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔informamos a los consumidores del municipio Cerro pertenecientes al circuito C15 que fue transferido temporalmente parte de la carga al circuito C13, debido a"
- },
  "92855": {
   "fecha": "2026-10-10T20:11:44+00:00",
   "tipo_llm": "afectacion",
@@ -2099,5 +2089,36 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 367 MW distribuidos en 153 circuitos de distribución. A continuación,"
+ },
+ "95991": {
+  "fecha": "2026-10-17T19:45:27+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1100"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por avería en el circuito D1100✅"
+ },
+ "95986": {
+  "fecha": "2026-10-17T19:41:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1241",
+   "1245"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente a los siguientes circuitos: 👉1241; 1245✅"
+ },
+ "95984": {
+  "fecha": "2026-10-17T19:31:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 3:29 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉 P325 (P327): Alrededores de calles "
  }
 }

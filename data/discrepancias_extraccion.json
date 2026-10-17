@@ -2113,5 +2113,33 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en los circuitos SG312 y SG314✅"
+ },
+ "96040": {
+  "fecha": "2026-10-17T22:21:08+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1440"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito A1440✅"
+ },
+ "96039": {
+  "fecha": "2026-10-17T22:15:59+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 419 MW distribuidos en 185 circuitos de distribución. A continuación,"
+ },
+ "96033": {
+  "fecha": "2026-10-17T22:02:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1006",
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en los circuitos: A1006 y A1007✅"
  }
 }

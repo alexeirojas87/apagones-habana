@@ -1,22 +1,4 @@
 {
- "92771": {
-  "fecha": "2026-10-10T16:54:42+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2769",
-   "A980",
-   "H342",
-   "H343",
-   "H442",
-   "H443",
-   "H446",
-   "H447",
-   "T41",
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "⚠️🔔Se le informa a los clientes pertenecientes a la SUBESTACIÓN MELONES que debido a una Avería se afecta el servicio en los siguientes circuitos : 👉H443-H442-H"
- },
  "92789": {
   "fecha": "2026-10-10T17:25:03+00:00",
   "tipo_llm": "restablecimiento",
@@ -2029,5 +2011,24 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:22 PM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉OP304, OP424, OP318, OP323, OP42"
+ },
+ "95909": {
+  "fecha": "2026-10-17T16:58:14+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "MR450",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito MR450 ( Luyanó Moderno) que se encuentra transferida temporalmente l"
+ },
+ "95903": {
+  "fecha": "2026-10-17T16:39:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en la parte del municipio Diez de Octubre en el siguiente circuito A980✅"
  }
 }

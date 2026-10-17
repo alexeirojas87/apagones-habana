@@ -1981,5 +1981,52 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito: A1008✅"
+ },
+ "95866": {
+  "fecha": "2026-10-17T15:00:46+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito A980✅"
+ },
+ "95862": {
+  "fecha": "2026-10-17T14:57:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1280"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito D1280✅"
+ },
+ "95861": {
+  "fecha": "2026-10-17T14:55:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito A980✅"
+ },
+ "95855": {
+  "fecha": "2026-10-17T14:47:49+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP411"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:46 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP304, OP424, O"
+ },
+ "95853": {
+  "fecha": "2026-10-17T14:45:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D633"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito D633✅"
  }
 }

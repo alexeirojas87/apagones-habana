@@ -1,13 +1,4 @@
 {
- "92817": {
-  "fecha": "2026-10-10T18:18:57+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "L326"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉127 / 122 y 124 .🛑⚡️"
- },
  "92837": {
   "fecha": "2026-10-10T18:58:12+00:00",
   "tipo_llm": "deficit",
@@ -2061,5 +2052,27 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en los circuitos: OP408 y C8✅"
+ },
+ "95951": {
+  "fecha": "2026-10-17T18:22:52+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣Informamos a la población que a partir de las 2:21 PM se afectó el servicio eléctrico por déficit de generación en siguientes circuitos: 👉P319: Alrededores de "
+ },
+ "95945": {
+  "fecha": "2026-10-17T18:11:12+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP318"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:10 PM se afectó el servicio eléctrico por déficit de generación en siguientes circuitos: 👉OP304,OP424, OP318 ,"
  }
 }

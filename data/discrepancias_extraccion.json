@@ -2226,5 +2226,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico del disparo del circuito en: 1175✅"
+ },
+ "96206": {
+  "fecha": "2026-10-18T06:56:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG312",
+   "SG314",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) en los circuitos: SG312, SG314, SG316.✅"
  }
 }

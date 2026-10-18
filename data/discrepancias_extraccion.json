@@ -1,13 +1,4 @@
 {
- "93198": {
-  "fecha": "2026-10-11T19:24:34+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1455"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito A1455 que las cargas del mismo se encuentran transferidos para los circuitos GC1"
- },
  "93215": {
   "fecha": "2026-10-11T20:19:28+00:00",
   "tipo_llm": "restablecimiento",
@@ -2314,5 +2305,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) en los circuitos: SG312, SG314, SG316.✅"
+ },
+ "96602": {
+  "fecha": "2026-10-18T19:06:08+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ6"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨⚡️Consumidores del municipio Plaza, se detectó una AVERÍA por PUENTE PRIMARIO PARTIDO quedando afectado el servicio en la siguiente dirección: 👉13 hasta 17, 6 "
  }
 }

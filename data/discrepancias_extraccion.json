@@ -1,13 +1,4 @@
 {
- "93117": {
-  "fecha": "2026-10-11T13:07:05+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A219"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 09:03 AM quedó restablecido el servicio en los siguientes circuitos: 👉A223:Repartos Arco del Chico, La Peña, Hor"
- },
  "93143": {
   "fecha": "2026-10-11T15:52:55+00:00",
   "tipo_llm": "averia",
@@ -2292,5 +2283,33 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población queda restablecido el servicio eléctrico en el siguiente circuito: 👉 P325 (P327): Alrededores de calles Infanta, Ayestarán, Zequeira"
+ },
+ "96327": {
+  "fecha": "2026-10-18T13:28:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MR450"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 9:05 AM queda restablecido el servicio en el siguiente circuito: 👉MB910: Justi, Agromar, Bajurayabo, Campo Flori"
+ },
+ "96323": {
+  "fecha": "2026-10-18T13:16:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 09:10 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉S513(H343) : Carretera San Migue"
+ },
+ "96316": {
+  "fecha": "2026-10-18T13:07:06+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380",
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 246 MW distribuidos en 114 circuitos de distribución. A continuación,"
  }
 }

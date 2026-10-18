@@ -2333,5 +2333,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio Habana del Este, pertenecientes al circuito MB930 que se encuentra transferida temporalmente parte de la carga al circ"
+ },
+ "96492": {
+  "fecha": "2026-10-18T16:23:56+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [],
+  "solo_regex": [
+   "S513"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 9:04 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉S513(H343) : Carret"
  }
 }

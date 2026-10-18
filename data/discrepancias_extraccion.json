@@ -2347,5 +2347,15 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P324: Alrededores de calles cuadrante de"
+ },
+ "96699": {
+  "fecha": "2026-10-18T21:32:46+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP319",
+   "PZ16"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Plaza - Centro Habana 🚨Averías Primarias: 📌Municipio: Plaza (PZ16) 👉Dirección: 5ta entre Pas"
  }
 }

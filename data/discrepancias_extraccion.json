@@ -2257,5 +2257,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico a los siguientes circuitos: R451, R453.✅"
+ },
+ "96254": {
+  "fecha": "2026-10-18T10:03:00+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [
+   "1075"
+  ],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 358 MW distribuidos en 166 circuitos de distribución. A continuación,"
  }
 }

@@ -2314,5 +2314,26 @@
   ],
   "solo_regex": [],
   "extracto": "🚨⚡️Consumidores del municipio Plaza, se detectó una AVERÍA por PUENTE PRIMARIO PARTIDO quedando afectado el servicio en la siguiente dirección: 👉13 hasta 17, 6 "
+ },
+ "96633": {
+  "fecha": "2026-10-18T19:47:07+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:43 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
+ },
+ "96626": {
+  "fecha": "2026-10-18T19:33:44+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "OP319",
+   "P318"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Centro Habana pertenecientes al circuito OP319, se ha transferido temporalmente la carga al circuito P318 del siguient"
  }
 }

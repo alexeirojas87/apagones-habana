@@ -2268,5 +2268,26 @@
    "1075"
   ],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 358 MW distribuidos en 166 circuitos de distribución. A continuación,"
+ },
+ "96267": {
+  "fecha": "2026-10-18T10:54:45+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1565",
+   "A1570",
+   "MB920",
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los clientes del municipio Habana del Este, pertenecientes al circuito MB930 que se encuentra transferida temporalmente parte de la carga al cir"
+ },
+ "96266": {
+  "fecha": "2026-10-18T10:30:41+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2075"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el disparo del circuito por sobrecarga en el: 2075✅"
  }
 }

@@ -2325,5 +2325,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Centro Habana pertenecientes al circuito OP319, se ha transferido temporalmente la carga al circuito P318 del siguient"
+ },
+ "96659": {
+  "fecha": "2026-10-18T20:44:27+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desagüe desde Infanta hasta Ayesta"
  }
 }

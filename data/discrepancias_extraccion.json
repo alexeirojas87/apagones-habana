@@ -1,22 +1,4 @@
 {
- "93143": {
-  "fecha": "2026-10-11T15:52:55+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "166"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉166 e/ 379 y 377 🛑⚡️"
- },
- "93142": {
-  "fecha": "2026-10-11T15:51:53+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "409"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Boyeros, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉409 e/ 210 y 212. Fina La Leona 🛑⚡️"
- },
  "93157": {
   "fecha": "2026-10-11T16:49:01+00:00",
   "tipo_llm": "averia",
@@ -2320,5 +2302,36 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 10:00 AM queda restablecido el servicio en el siguiente circuito: 👉SR820 (SR860): Reparto Alturas de Lotería.(Re"
+ },
+ "96452": {
+  "fecha": "2026-10-18T15:37:40+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SR820"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido "
+ },
+ "96450": {
+  "fecha": "2026-10-18T15:36:46+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "MR450",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito MR450 ( Luyanó Moderno) que se encuentra transferida temporalmente l"
+ },
+ "96447": {
+  "fecha": "2026-10-18T15:34:51+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1565",
+   "A1570",
+   "MB920",
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Habana del Este, pertenecientes al circuito MB930 que se encuentra transferida temporalmente parte de la carga al circ"
  }
 }

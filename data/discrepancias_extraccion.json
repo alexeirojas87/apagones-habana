@@ -2336,5 +2336,16 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desagüe desde Infanta hasta Ayesta"
+ },
+ "96691": {
+  "fecha": "2026-10-18T21:22:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P324: Alrededores de calles cuadrante de"
  }
 }

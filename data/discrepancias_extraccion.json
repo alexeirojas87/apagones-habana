@@ -2138,5 +2138,25 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente al siguiente circuito: AL56.✅"
+ },
+ "96116": {
+  "fecha": "2026-10-18T02:28:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1227"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico del disparo del circuito en el A1227✅"
+ },
+ "96112": {
+  "fecha": "2026-10-18T02:16:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56",
+   "R453",
+   "R454"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente a los siguientes circuitos: R453, R454, A"
  }
 }

@@ -1,22 +1,4 @@
 {
- "93501": {
-  "fecha": "2026-10-12T14:17:53+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "L322"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito L322, que se ha transferido temporalmente la carga al circuito L317 del siguiente cua"
- },
- "93496": {
-  "fecha": "2026-10-12T14:04:43+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP402"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Cerro, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉Tulipán entre Calzada del Cerro y Santa Catalina. 🛑⚡️"
- },
  "93506": {
   "fecha": "2026-10-12T14:38:02+00:00",
   "tipo_llm": "restablecimiento",
@@ -2363,5 +2345,60 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 09:39 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG313:Alrededor"
+ },
+ "97040": {
+  "fecha": "2026-10-19T14:26:50+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL52",
+   "AL53"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando los circuitos: 👉AL 52, AL53 🟢✅"
+ },
+ "97039": {
+  "fecha": "2026-10-19T14:23:47+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL53"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨⭕️Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO DEL CIRCUITO en Alamar afectando los siguientes circuitos: 👉 AL52: Zonas: 6;"
+ },
+ "97036": {
+  "fecha": "2026-10-19T14:11:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C7"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando el siguiente circuito 👉C7:lrededores del cuadrante desde calles Fomento hasta Vía Banca, Prim"
+ },
+ "97032": {
+  "fecha": "2026-10-19T14:06:21+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Boyeros , por DISPARO DEL CIRCUITO se encuentran afectados los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Al"
+ },
+ "97027": {
+  "fecha": "2026-10-19T14:02:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Altura de Embil, Ampli"
+ },
+ "97026": {
+  "fecha": "2026-10-19T14:01:21+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Boyeros , por DISPARO DEL CIRCUITO se encuentran afectados los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Al"
  }
 }

@@ -1,13 +1,4 @@
 {
- "93345": {
-  "fecha": "2026-10-12T04:10:54+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "R451"
-  ],
-  "solo_regex": [],
-  "extracto": "🔴⚡️Consumidores del municipio Regla ,se encuentran afectados por Disparo del circuito por posible AVERÍA afectando el siguiente circuito. 👉 R451:Calles Perdomo "
- },
  "93351": {
   "fecha": "2026-10-12T04:41:39+00:00",
   "tipo_llm": "afectacion",

@@ -1,14 +1,4 @@
 {
- "93368": {
-  "fecha": "2026-10-12T05:55:32+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:37 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
- },
  "93429": {
   "fecha": "2026-10-12T11:31:47+00:00",
   "tipo_llm": "afectacion",

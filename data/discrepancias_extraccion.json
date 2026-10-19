@@ -1,24 +1,4 @@
 {
- "93734": {
-  "fecha": "2026-10-12T20:42:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢✅Informamos a los clientes del municipio Boyeros pertenecientes al circuito 2205 que fue normalizado su esquema y se encuentra restablecido el servicio en el m"
- },
- "93731": {
-  "fecha": "2026-10-12T20:38:08+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de la 04:26 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PZ24: Calles 2 d"
- },
  "93779": {
   "fecha": "2026-10-12T22:28:58+00:00",
   "tipo_llm": "restablecimiento",
@@ -2774,5 +2754,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF).✅ 👉R451,R454,R456 ."
+ },
+ "97286": {
+  "fecha": "2026-10-19T20:49:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨⚡️Consumidores del municipio Plaza, se detectó una AVERÍA PRIMARIA afectando los siguientes circuitos: 👉P318:Alrededores de calles Placencia desde Sitios hasta"
+ },
+ "97281": {
+  "fecha": "2026-10-19T20:41:53+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "PZ24"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:39 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉Pz13:Zapata desde "
  }
 }

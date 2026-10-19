@@ -1,32 +1,4 @@
 {
- "93308": {
-  "fecha": "2026-10-12T01:01:11+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [],
-  "solo_regex": [
-   "L317"
-  ],
-  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:01 PM se afectan 261 MW distribuidos en 103 circuitos de distribución. A continuación, "
- },
- "93314": {
-  "fecha": "2026-10-12T01:23:25+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H442"
-  ],
-  "solo_regex": [],
-  "extracto": "🔴⚡️Consumidores del municipio San Miguel del Padrón,se encuentran afectados por Disparo del circuito por posible AVERÍA afectando el siguiente circuito: 👉H442:R"
- },
- "93310": {
-  "fecha": "2026-10-12T01:06:54+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP304",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🔴⚡️ Consumidores del municipio Habana Vieja, se detectó una AVERÍA por Cable Fallo que afecta el servicio eléctrico en: 👉 Compostela e/ Teniente Rey y Muralla. "
- },
  "93332": {
   "fecha": "2026-10-12T03:07:00+00:00",
   "tipo_llm": "restablecimiento",

@@ -2344,5 +2344,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO 👉"
+ },
+ "96773": {
+  "fecha": "2026-10-19T00:46:49+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "130"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉130 entre 91 y 93.🛑⚡️"
  }
 }

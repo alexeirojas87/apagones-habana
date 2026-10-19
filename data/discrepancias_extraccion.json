@@ -2498,5 +2498,37 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 11:40 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG940:Repartos:"
+ },
+ "97114": {
+  "fecha": "2026-10-19T16:20:07+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores del municipio Boyeros pertenecientes al circuito A820 que se encuentra transferida temporalmente parte de la carga al circuito "
+ },
+ "97112": {
+  "fecha": "2026-10-19T16:18:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando el siguiente circuito: 👉A820:Repartos 250, Miraflores Viejo, Embil, Altura de Embil, Capdevil"
+ },
+ "97104": {
+  "fecha": "2026-10-19T16:02:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56",
+   "R451",
+   "R453",
+   "R454",
+   "R456"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes que se afectaban por Disparo Automático por Frecuencia (DAF).✅ 👉 R451,R454,R453,R456,AL56 🟢"
  }
 }

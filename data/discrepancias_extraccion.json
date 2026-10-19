@@ -2703,5 +2703,35 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF).✅ 👉 AL56:Zonas: 13; 15; 16; 17; 18; 21 y Micro X ✅"
+ },
+ "97257": {
+  "fecha": "2026-10-19T19:57:23+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 03:49 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉Pz5:Calles desde 27 hasta 24 ,25 de"
+ },
+ "97255": {
+  "fecha": "2026-10-19T19:54:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P318",
+   "P319",
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el servicio eléctrico a los clientes afectados por Disparo DE CIRCUITO . 👉:P318, P319/326. ✅🟢"
+ },
+ "97251": {
+  "fecha": "2026-10-19T19:40:24+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P319",
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Plaza , por DISPARO DEL CIRCUITO se encuentran afectados los siguientes circuitos: 👉P318:Alrededores de calles Placencia desde Sitio"
  }
 }

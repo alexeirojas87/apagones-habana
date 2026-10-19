@@ -2685,5 +2685,23 @@
   ],
   "solo_regex": [],
   "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
+ },
+ "97243": {
+  "fecha": "2026-10-19T19:15:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R451"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF).✅ 👉R456: Alrededores de calles Adriano, González Rubier"
+ },
+ "97236": {
+  "fecha": "2026-10-19T19:04:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF).✅ 👉 AL56:Zonas: 13; 15; 16; 17; 18; 21 y Micro X ✅"
  }
 }

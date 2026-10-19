@@ -2772,5 +2772,17 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:39 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉Pz13:Zapata desde "
+ },
+ "97298": {
+  "fecha": "2026-10-19T21:04:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56",
+   "R451",
+   "R454",
+   "R456"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF). 👉R451,R454,R456,AL56 ✅🟢"
  }
 }

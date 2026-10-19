@@ -1,15 +1,4 @@
 {
- "93530": {
-  "fecha": "2026-10-12T15:05:59+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SE980"
-  ],
-  "solo_regex": [
-   "PG980"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 11:00 AM queda restablecido el servicio en el siguiente circuito: 👉PG980: Repartos Fraternidad, Callejas, San Ag"
- },
  "93563": {
   "fecha": "2026-10-12T15:40:39+00:00",
   "tipo_llm": "restablecimiento",
@@ -2446,5 +2435,41 @@
   ],
   "solo_regex": [],
   "extracto": "🚨⭕️Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO DEL CIRCUITO en Alamar afectando los siguientes circuitos: 👉 AL52: Zonas: 6;"
+ },
+ "97077": {
+  "fecha": "2026-10-19T15:14:27+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
+ },
+ "97075": {
+  "fecha": "2026-10-19T15:07:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P319"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:54 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P318:Alrededores de calles Placenci"
+ },
+ "97066": {
+  "fecha": "2026-10-19T15:01:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:37 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "97065": {
+  "fecha": "2026-10-19T15:00:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P314"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:54 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉C14:Alrededores de calles Washingto"
  }
 }

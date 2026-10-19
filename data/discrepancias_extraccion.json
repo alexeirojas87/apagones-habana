@@ -1,13 +1,4 @@
 {
- "93301": {
-  "fecha": "2026-10-12T00:04:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL55"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Plaza, queda reparada la AVERÍA SECUNDARIA que afectaba el servicio eléctrico en: 👉 14 e/ 19 y 21🟢☑️"
- },
  "93308": {
   "fecha": "2026-10-12T01:01:11+00:00",
   "tipo_llm": "deficit",

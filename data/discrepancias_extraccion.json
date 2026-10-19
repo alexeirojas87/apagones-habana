@@ -2647,5 +2647,25 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito MR450 ( Luyanó Moderno) que se encuentra transferida temporalmente l"
+ },
+ "97210": {
+  "fecha": "2026-10-19T18:26:34+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:26 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325:Alrededores d"
+ },
+ "97201": {
+  "fecha": "2026-10-19T18:06:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ15"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚠️Informamos a los consumidores del municipio Plaza que la VÍA LIBRE planificda fue restablecida por inclemencias del tiempo en el circuito pz15 .🚧⚠️"
  }
 }

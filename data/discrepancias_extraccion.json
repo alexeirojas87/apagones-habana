@@ -1,13 +1,4 @@
 {
- "93332": {
-  "fecha": "2026-10-12T03:07:00+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "S512"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a los consumidores del municipio San Miguel del Padrón pertenecientes al circuito S512 que se encontraba transferida temporalmente su carga , ya se"
- },
  "93344": {
   "fecha": "2026-10-12T04:00:18+00:00",
   "tipo_llm": "deficit",

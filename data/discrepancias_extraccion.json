@@ -2354,5 +2354,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 09:00 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A800:Repartos M"
+ },
+ "97015": {
+  "fecha": "2026-10-19T13:42:13+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 09:39 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG313:Alrededor"
  }
 }

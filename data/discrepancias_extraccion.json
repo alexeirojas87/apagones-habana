@@ -2288,5 +2288,15 @@
    "S512"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 1:07 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉MB920 : Alturas de Boca Ciega, Sa"
+ },
+ "96878": {
+  "fecha": "2026-10-19T06:14:49+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [],
+  "solo_regex": [
+   "D632",
+   "D633"
+  ],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  }
 }

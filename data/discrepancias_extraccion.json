@@ -2667,5 +2667,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚠️Informamos a los consumidores del municipio Plaza que la VÍA LIBRE planificda fue restablecida por inclemencias del tiempo en el circuito pz15 .🚧⚠️"
+ },
+ "97233": {
+  "fecha": "2026-10-19T19:02:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1245"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF). 👉1245:Cuadrante 32 hasta 24 y desde 23 hasta Malecón,"
+ },
+ "97216": {
+  "fecha": "2026-10-19T18:32:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1008"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  }
 }

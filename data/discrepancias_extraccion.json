@@ -2924,5 +2924,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318: Alrededor"
+ },
+ "97549": {
+  "fecha": "2026-10-20T08:05:14+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "MB910"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en la siguiente dirección: 👉MB910:Justi, Agromar, Bajurayabo, Ca"
  }
 }

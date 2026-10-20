@@ -1,32 +1,4 @@
 {
- "94090": {
-  "fecha": "2026-10-13T17:00:47+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1175",
-   "1247"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📈Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉1175; 1247✅📈"
- },
- "94087": {
-  "fecha": "2026-10-13T16:58:13+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Reiteramos a los clientes que pertenecían a los circuitos 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desague. 👉P327: Alred"
- },
- "94074": {
-  "fecha": "2026-10-13T16:39:17+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito 1243✅"
- },
  "94102": {
   "fecha": "2026-10-13T17:19:44+00:00",
   "tipo_llm": "restablecimiento",
@@ -55,16 +27,6 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en el siguiente circuito: 👉1160📉✅"
- },
- "94075": {
-  "fecha": "2026-10-13T16:41:39+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "R466",
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito H343 que las cargas del mismo se encuentran transferidas para los cir"
  },
  "94126": {
   "fecha": "2026-10-13T17:57:33+00:00",
@@ -2912,5 +2874,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣 Informamos a la población que a partir de las 11:56 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG940: Reparto"
+ },
+ "97794": {
+  "fecha": "2026-10-20T16:51:50+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "SG314"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉SG312:Alrededores de call"
  }
 }

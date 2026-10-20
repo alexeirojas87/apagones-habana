@@ -1,40 +1,4 @@
 {
- "94035": {
-  "fecha": "2026-10-13T14:45:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A960"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito A960✅"
- },
- "94028": {
-  "fecha": "2026-10-13T14:39:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP325"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito OP325✅"
- },
- "94025": {
-  "fecha": "2026-10-13T14:34:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP321"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito OP321✅"
- },
- "94024": {
-  "fecha": "2026-10-13T14:33:37+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "M1603"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Boyeros, se afecta el servicio eléctrico por avería secundaria debido a un transformador dañado en la calle 4ta entre Central y Fina"
- },
  "94048": {
   "fecha": "2026-10-13T15:21:58+00:00",
   "tipo_llm": "restablecimiento",
@@ -2921,5 +2885,23 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 09:10 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉PG940:Repartos: Comodoro, El Vol"
+ },
+ "97714": {
+  "fecha": "2026-10-20T14:56:23+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Marianao, queda restablecido el servicio eléctrico en el siguiente cuadrante perteneciente al circuito L326: 👉Reparto Ciudad Liber"
+ },
+ "97712": {
+  "fecha": "2026-10-20T14:42:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Habana Vieja, queda restablecido el servicio eléctrico en el siguiente cuadrante perteneciente al circuito A980: 👉Alrededores de c"
  }
 }

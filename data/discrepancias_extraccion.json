@@ -2838,5 +2838,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅🟢Queda Restablecida la VIA LIBRE en el municipio Centro Habana que afectaba el servicio eléctrico en el siguiente circuito: P318.✅🟢"
+ },
+ "96992": {
+  "fecha": "2026-10-19T12:58:56+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P321"
+  ],
+  "solo_regex": [
+   "OP321"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 08:50 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P321:Lealtad desde Sitios hasta Mal"
  }
 }

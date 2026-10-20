@@ -1,25 +1,4 @@
 {
- "94132": {
-  "fecha": "2026-10-13T18:12:35+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1222",
-   "A500"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Recordamos a los clientes del municipio Marianao pertenecientes al circuito A500 , que se ha transferido temporalmente la carga al circuito A1222 la zona de: "
- },
- "94131": {
-  "fecha": "2026-10-13T18:12:02+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨Consumidores del municipio Centro Habana, por trabajos operativos se afecta el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta "
- },
  "94163": {
   "fecha": "2026-10-13T19:14:16+00:00",
   "tipo_llm": "restablecimiento",
@@ -2842,5 +2821,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF). en el siguiente circuito: 👉L316: Alrededores de calle "
+ },
+ "97840": {
+  "fecha": "2026-10-20T18:27:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:24 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
  }
 }

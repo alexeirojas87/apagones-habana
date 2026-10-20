@@ -1,13 +1,4 @@
 {
- "94067": {
-  "fecha": "2026-10-13T16:19:45+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito por posible avería en el circuito 1243✅"
- },
  "94090": {
   "fecha": "2026-10-13T17:00:47+00:00",
   "tipo_llm": "restablecimiento",
@@ -2903,5 +2894,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:54 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A800:Repartos M"
+ },
+ "97760": {
+  "fecha": "2026-10-20T16:05:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
+ },
+ "97756": {
+  "fecha": "2026-10-20T16:03:20+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣 Informamos a la población que a partir de las 11:56 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG940: Reparto"
  }
 }

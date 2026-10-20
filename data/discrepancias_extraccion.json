@@ -1,29 +1,4 @@
 {
- "94182": {
-  "fecha": "2026-10-13T19:57:06+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP304",
-   "OP318",
-   "OP323",
-   "OP325",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 3:56 PM se afectó el servicio eléctrico por déficit de generación en lo siguientes circuitos: OP304, OP424, OP31"
- },
- "94177": {
-  "fecha": "2026-10-13T19:47:21+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 3:47 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
- },
  "94190": {
   "fecha": "2026-10-13T20:08:28+00:00",
   "tipo_llm": "averia",
@@ -2814,5 +2789,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:24 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
+ },
+ "97873": {
+  "fecha": "2026-10-20T19:42:55+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:06 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG313:Alrededor"
  }
 }

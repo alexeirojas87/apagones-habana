@@ -1,13 +1,4 @@
 {
- "93863": {
-  "fecha": "2026-10-13T03:20:50+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C8"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚡️Consumidores del municipio 10 de Octubre, se encuentran afectados por AVERÍA SECUNDARIA debido a TRANSFORMADOR DAÑADO en la siguiente dirección: 👉San Julio e"
- },
  "93939": {
   "fecha": "2026-10-13T10:19:05+00:00",
   "tipo_llm": "averia",
@@ -2849,5 +2840,23 @@
   ],
   "solo_regex": [],
   "extracto": "🟢🚧Consumidores del municipio Centro Habana queda reparda y restablecida la AVERÍA POR PUENTE PRIMARIO PARTIDO que afectaba el siguiente circuito : P319: 👉Calle "
+ },
+ "97453": {
+  "fecha": "2026-10-20T03:21:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Altura de Embil,Capdev"
+ },
+ "97452": {
+  "fecha": "2026-10-20T03:20:00+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Boyeros , por DISPARO DEL CIRCUITO se encuentran afectados los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Al"
  }
 }

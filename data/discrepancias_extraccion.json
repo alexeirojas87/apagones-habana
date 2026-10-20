@@ -1,13 +1,4 @@
 {
- "94048": {
-  "fecha": "2026-10-13T15:21:58+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2205"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Se restablece el servicio eléctrico afectado por disparo en el circuito 2205✅"
- },
  "94058": {
   "fecha": "2026-10-13T15:58:53+00:00",
   "tipo_llm": "restablecimiento",
@@ -2903,5 +2894,23 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Habana Vieja, queda restablecido el servicio eléctrico en el siguiente cuadrante perteneciente al circuito A980: 👉Alrededores de c"
+ },
+ "97725": {
+  "fecha": "2026-10-20T15:21:52+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "M1603"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 11:20 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉M2044: Repartos"
+ },
+ "97721": {
+  "fecha": "2026-10-20T15:16:20+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A708"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:54 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A800:Repartos M"
  }
 }

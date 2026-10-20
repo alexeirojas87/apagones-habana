@@ -107,7 +107,7 @@ async function iniciar() {
 
   // zonas/barrios/sin_ubicar/no_rota alimentan popups, diagnósticos y la capa azul.
   // Las geozonas por bloque (zonas_lineas/poligonos/cuadrantes) se fueron con el pintado.
-  const [geo, estadoIni, barrios, sinUbicar, barriosPoly, noRota, catInicial] = await Promise.all([
+  const [geo, estadoIni, barrios, sinUbicar, barriosPoly, noRota, catInicial, circuitosGeo] = await Promise.all([
     fetch("data/municipios.geojson").then((r) => r.json()),
     fetch(`data/estado.json?t=${Date.now()}`).then((r) => r.json()),
     fetch("data/barrios.json").then((r) => r.json()),
@@ -115,6 +115,9 @@ async function iniciar() {
     fetch("data/barrios_poligonos.json").then((r) => r.json()).catch(() => ({})),
     fetch("data/no_rota.geojson").then((r) => r.json()).catch(() => ({ features: [] })),
     fetch(`data/circuitos.json?t=${Date.now()}`).then((r) => r.json()).catch(() => ({ circuitos: [] })),
+    // Delimitaciones de circuito: si el archivo falta o falla, el mapa sigue
+    // con las líneas/círculos aproximados de siempre.
+    fetch("data/circuitos_geometrias.geojson").then((r) => r.json()).catch(() => ({ features: [] })),
   ]);
 
   // `estado` y `catCircuitos` son mutables: el auto-refresco los reasigna y todo
@@ -462,6 +465,9 @@ async function iniciar() {
   document.addEventListener("cambio-tema", () => {
     mapa.removeLayer(capaBase);
     capaBase = protomapsL.leafletLayer(opcionesBase()).addTo(mapa);
+    // El contorno neutro de los circuitos depende del tema (oscuro sobre mapa
+    // claro, claro sobre mapa oscuro): se repinta con las capas dinámicas.
+    if (typeof poblarDinamicas === "function") poblarDinamicas();
   });
 
   // Municipios: solo contorno y popup de resumen; el color lo llevan las zonas.
@@ -529,6 +535,11 @@ async function iniciar() {
   const circuitoCapas = {};  // codigo -> capa del circuito (enfoque por ?c=)
 
   function poblarDinamicas() {
+    // Contorno neutro de separación: oscuro sobre mapa claro y claro sobre
+    // mapa oscuro. Va aparte del color de estado, que solo tiñe el relleno.
+    const esClaro = document.documentElement.dataset.theme === "light";
+    const bordeSep = esClaro ? "#0f172a" : "#e2e8f0";
+    const bordeOp = esClaro ? 0.7 : 0.55;
     capaAverias.clearLayers();
     capaEmergencia.clearLayers();
     capaParciales.clearLayers();
@@ -551,8 +562,23 @@ async function iniciar() {
       sin_vecinos: { l: "#f5a623", b: "#c47e0a", e: icono("dot-status", "est-disc"), txt: "sin corriente (según vecinos)" },
       asum: { l: "#4a90d9", b: "#2b5c94", e: icono("dot-status", "est-asum"), txt: "sin apagones reportados" },
     };
+    // Índice de delimitaciones: un código -> sus polígonos propios. Las
+    // features con varios códigos (p. ej. "GC17, GC16") van aparte y se pintan
+    // una sola vez al final, para no duplicar el mismo territorio.
+    const porCodigo = new Map();
+    const compartidas = [];
+    for (const f of ((circuitosGeo && circuitosGeo.features) || [])) {
+      const cods = (f.properties && f.properties.codigos) || [];
+      if (cods.length === 1) {
+        const lista = porCodigo.get(cods[0]);
+        if (lista) lista.push(f);
+        else porCodigo.set(cods[0], [f]);
+      } else if (cods.length > 1) {
+        compartidas.push(f);
+      }
+    }
     for (const c of (catCircuitos.circuitos || [])) {
-      if (!(c.lineas && c.lineas.length) && c.lat === undefined) continue;  // sin ubicar
+      if (!porCodigo.has(c.codigo) && !(c.lineas && c.lineas.length) && c.lat === undefined) continue;  // sin ubicar
       const v = circuitoVigente(c);  // misma regla que la portada y la pestaña Circuitos
       const col = COL_CIRC[v];
       const h = horasDef[c.codigo];
@@ -574,20 +600,79 @@ async function iniciar() {
       } else {
         detalle = `${h != null ? "Lleva " + h + "h de afectación. " : ""}Último dato oficial: ${fmtDia(c.ultima)}.`;
       }
+      const geoF = porCodigo.get(c.codigo);
+      const provisional = !!(geoF && geoF.some((f) => f.properties && f.properties.provisional));
+      const delimitacion = geoF
+        ? (provisional
+            ? "Delimitación provisional a partir de calles UNE."
+            : "Delimitación: Info UNE.")
+        : "";
       const popup = `<div class="popup"><h3>${col.e} Circuito ${esc(c.codigo)} — ${col.txt}</h3>
          <p>${calles}</p>
-         <p class="hora">${detalle} Ubicación aproximada.</p>
+         <p class="hora">${detalle}${geoF ? "" : " Ubicación aproximada."}</p>
+         ${delimitacion ? `<p class="hora">${esc(delimitacion)}</p>` : ""}
          <p><a href="circuitos?c=${encodeURIComponent(c.codigo)}">${icono("clipboard")} ver ${esc(c.codigo)} en Circuitos →</a></p></div>`;
       const tip = `${col.e} Circuito ${esc(c.codigo)} (${col.txt})`;
-      const capa = (c.lineas && c.lineas.length)
-        ? L.polyline(c.lineas.map((l) => l.map(([lo, la]) => [la, lo])), {
-            color: col.l, weight: 4, opacity: 0.9,
-          })
-        : L.circle([c.lat, c.lon], {
-            radius: 450, weight: 2, color: col.b, fillColor: col.l, fillOpacity: 0.22,
-          });
+      let capa;
+      if (geoF && geoF.length) {
+        // Polígono: borde tenue y relleno por estado; las formas provisionales
+        // van punteadas y más transparentes para no confundirlas con la base.
+        // Relleno tenue por estado + contorno NEUTRO: el relleno dice el estado
+        // y el contorno separa circuitos vecinos aunque compartan color.
+        const estilo = {
+          color: bordeSep, weight: provisional ? 1.4 : 1.6, opacity: bordeOp,
+          fillColor: col.l, fillOpacity: provisional ? 0.1 : (esClaro ? 0.18 : 0.24),
+        };
+        if (provisional) estilo.dashArray = "4 4";
+        if (provisional) estilo.dashArray = "4 4";
+        capa = L.geoJSON({ type: "FeatureCollection", features: geoF }, { style: estilo });
+      } else if (c.lineas && c.lineas.length) {
+        capa = L.polyline(c.lineas.map((l) => l.map(([lo, la]) => [la, lo])), {
+          color: col.l, weight: 4, opacity: 0.9,
+        });
+      } else {
+        capa = L.circle([c.lat, c.lon], {
+          // Sin polígono: una referencia discreta, no una mancha de 450 m.
+          radius: 200, weight: 1.5, color: col.l, dashArray: "4",
+          fillColor: col.l, fillOpacity: 0.1,
+        });
+      }
       capa.bindTooltip(tip).bindPopup(popup, { maxWidth: 300 }).addTo(capaCircuitos);
       circuitoCapas[c.codigo] = capa;  // para enfocar con index.html?c=CODIGO
+    }
+
+    // Features compartidas por varios códigos: el mismo territorio se pinta una
+    // sola vez, con el estado PEOR de los códigos que existen en el catálogo.
+    const ORDEN_PEOR = ["sin", "sin_vecinos", "desconocido", "con_vecinos", "asum", "con"];
+    const catPorCodigo = new Map();
+    for (const c of (catCircuitos.circuitos || [])) catPorCodigo.set(c.codigo, c);
+    for (const f of compartidas) {
+      const cods = (f.properties && f.properties.codigos) || [];
+      const conocidos = cods.filter((cod) => catPorCodigo.has(cod));
+      if (!conocidos.length) continue;  // ningún código del catálogo: no se ubica
+      const estados = conocidos.map((cod) => circuitoVigente(catPorCodigo.get(cod)));
+      const peor = ORDEN_PEOR.find((e) => estados.includes(e)) || "desconocido";
+      const col = COL_CIRC[peor];
+      const provisional = !!(f.properties && f.properties.provisional);
+      // Mismo criterio: relleno por estado y contorno neutro que separa.
+      const estilo = {
+        color: bordeSep, weight: provisional ? 1.4 : 1.6, opacity: bordeOp,
+        fillColor: col.l, fillOpacity: provisional ? 0.1 : (esClaro ? 0.18 : 0.24),
+      };
+      if (provisional) estilo.dashArray = "4 4";
+      if (provisional) estilo.dashArray = "4 4";
+      const capa = L.geoJSON({ type: "FeatureCollection", features: [f] }, { style: estilo });
+      const rotulo = esc(cods.join(", "));
+      capa
+        .bindTooltip(`${col.e} Circuito(s) ${rotulo}`)
+        .bindPopup(
+          `<div class="popup"><h3>${col.e} Circuito(s) ${rotulo} — ${col.txt}</h3>
+           <p class="hora">Delimitación: Info UNE.</p></div>`,
+          { maxWidth: 300 }
+        )
+        .addTo(capaCircuitos);
+      // El mismo polígono responde a ?c= para cualquiera de sus códigos.
+      for (const cod of conocidos) circuitoCapas[cod] = capa;
     }
 
     // Averías activas (roturas): del último parte oficial "Averías existentes".
@@ -617,11 +702,11 @@ async function iniciar() {
       const forma = limite
         ? L.polygon(limite.anillo.map(([lon, lat]) => [lat, lon]), {
             color: borde, weight: 2, dashArray: "5",
-            fillColor: relleno, fillOpacity: 0.45,
+            fill: false,
           })
         : L.circle([z.lat, z.lon], {
-            radius: 400, weight: 2, color: borde, dashArray: "5",
-            fillColor: relleno, fillOpacity: 0.4,
+            radius: 220, weight: 2, color: borde, dashArray: "5",
+            fillColor: relleno, fillOpacity: 0.12,
           });
       const nz = esc(z.nombre);
       forma
@@ -684,8 +769,10 @@ async function iniciar() {
           radius: 6, weight: 1.5, color: "#2f7d3a", fillColor: "#7fd08c", fillOpacity: 0.8,
         }).bindTooltip(`${icono("chat")} ya hay luz: ${esc(c.lugar)}`).bindPopup(popup, { maxWidth: 300 }).addTo(capaComentarios);
       } else {
-        L.circle([c.lat, c.lon], {
-          radius: 350, weight: 2, color: "#8b0000", fillColor: "#e5484d", fillOpacity: 0.2, dashArray: "4",
+        // Un reporte vecinal es un punto, no un área de 350 m: el círculo
+        // enorme tapaba los límites de los circuitos sin aportar precisión.
+        L.circleMarker([c.lat, c.lon], {
+          radius: 5, weight: 1.5, color: "#8b0000", fillColor: "#e5484d", fillOpacity: 0.9,
         }).bindTooltip(`${icono("chat")} vecino sin luz: ${esc(c.lugar)}`).bindPopup(popup, { maxWidth: 300 }).addTo(capaComentarios);
       }
     }
@@ -736,8 +823,9 @@ async function iniciar() {
     [icono("chat") + " Reportes de vecinos (comentarios)"]: capaComentarios,
   };
   if (MOSTRAR_PROTEGIDAS) {
-    capas.daf.addTo(mapa);
-    capas.candidata_protegida.addTo(mapa);
+    // Se ofrecen en el control pero arrancan apagadas: el tinte azul de
+    // "posibles zonas sin apagón" y los puntos DAF ensucian la lectura de los
+    // polígonos de circuito (y el azul se confunde con el estado "asumido").
     capasControl[icono("dot-status", "est-daf") + " Circuitos DAF (microcortes)"] = capas.daf;
     capasControl[icono("dot-status", "est-asum") + " Posibles zonas sin apagón"] = capas.candidata_protegida;
   }

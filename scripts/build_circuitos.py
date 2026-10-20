@@ -1242,6 +1242,21 @@ def main():
         elif c["codigo"] in manual_muni:
             c["municipio"] = manual_muni[c["codigo"]]
 
+    # Alinear con la capa curada de geometrías: para los códigos con polígono,
+    # el centro representativo del polígono manda sobre el punto geocodificado
+    # (las descripciones con calles homónimas caían en otro municipio, p. ej.
+    # P15 en el Malecón). También corrige municipio/municipios y aplica los
+    # overrides manuales de `circuitos_ubicacion`.
+    try:
+        from alinear_circuitos_geometria import alinear as _alinear
+        _stats_geo = _alinear(circuitos)
+        print(f"geometrías: {_stats_geo['movidos']} centroides alineados, "
+              f"{_stats_geo['municipio_corregido']} municipios corregidos, "
+              f"{_stats_geo['manual']} overrides manuales, "
+              f"{_stats_geo['alias']} alias eliminados")
+    except Exception as _exc:  # sin capa de geometrías el catálogo sigue vivo
+        print(f"geometrías: no se pudo alinear ({_exc})")
+
     # Rotación semanal DAF oficial: sustituye la vieja bandera histórica ("alguna
     # vez apareció en un disparo") por la lista vigente del parte de la UNE.
     daf_oficial = extraer_daf_oficial(filas)

@@ -7,7 +7,33 @@
   "SR86": {"alias_de": "SR860", "motivo": "parte 72384: 'Dulce Nombre, Santa María del Rosario' — idéntico a SR860"},
   "D110": {"alias_de": "D1100", "motivo": "parte 77549: 'Parque Lenin' — D1100: 'Parque Lenin, pedazo del reparto Ponce'"},
   "OP31": {"alias_de": "OP312", "motivo": "parte 72708: calles de Centro Habana idénticas a OP312 (Lealtad, Campanario, Reyna, Águila, Revillagigedo)"},
-  "1430": {"alias_de": "A1430", "motivo": "parte 79024: 'Soterrado Cujae, Toledo' — A1430 oficial: 'Cujae y Toledo'"}
+  "1430": {"alias_de": "A1430", "motivo": "parte 79024: 'Soterrado Cujae, Toledo' — A1430 oficial: 'Cujae y Toledo'"},
+  "CG12": {"alias_de": "GC12", "motivo": "la UNE publicó CG12 una vez con la descripción de GC12 (Centro de Cojímar); Info UNE no tiene CG12"},
+  "P15": {"alias_de": "PZ15", "motivo": "la UNE publicó P15 sin la Z; descripción idéntica a PZ15 (Nuevo Vedado)"},
+  "R543": {"alias_de": "R453", "motivo": "dígitos transpuestos; descripción idéntica a R453 (La Gloria, Ciruela, Unión, Lídice y Colina Lenin)"},
+  "1305": {"alias_de": "D1305", "motivo": "sin prefijo D; descripción idéntica a D1305 (Santa Ana, Lotería y Santa Clara)"},
+  "A1318": {"alias_de": "A1328", "motivo": "dígito transpuesto; descripción idéntica a A1328 (Carretera de la Rodo y Centro Isótopo)"},
+  "MB2044": {"alias_de": "M2044", "motivo": "B extra; descripción idéntica a M2044 (Dinorah, Jesús Nazareno, Medina)"},
+  "CCP8": {"alias_de": "CPP8", "motivo": "C duplicada; descripción idéntica a CPP8"},
+  "CCP9": {"alias_de": "CPP9", "motivo": "C duplicada; descripción idéntica a CPP9"},
+  "CCP10": {"alias_de": "CPP10", "motivo": "C duplicada; descripción idéntica a CPP10"},
+  "CCP17": {"alias_de": "CPP17", "motivo": "C duplicada; descripción idéntica a CPP17"},
+  "D1065": {"alias_de": "A1565", "motivo": "prefijo D por A; descripción idéntica a A1565 (Tarará y Mégano)"},
+  "D1272": {"alias_de": "D1372", "motivo": "dígito transpuesto; descripción idéntica a D1372 (Las Cañas y Calabazar)"},
+  "D1465": {"alias_de": "A1465", "motivo": "prefijo D por A; descripción idéntica a A1465 (Corojos, Guásimas)"},
+  "A1290": {"alias_de": "D1290", "motivo": "prefijo A por D; descripción idéntica a D1290 (Las Guásimas, El Globo)"},
+  "A1143": {"alias_de": "A1443", "motivo": "dígito transpuesto; descripción idéntica a A1443 (Río Verde, Calixto Sánchez)"},
+  "3550": {"alias_de": "A1550", "motivo": "sin prefijo A; descripción idéntica a A1550 (María del Carmen, Río Cristal)"},
+  "1690": {"alias_de": "A1690", "motivo": "sin prefijo A; descripción idéntica a A1690 (Escuela Lenin)"},
+  "1300": {"alias_de": "D1300", "motivo": "sin prefijo D; descripción idéntica a D1300 (Águila Hatuey, Purísima y Magdalena)"},
+  "2026": {"alias_de": "2076", "motivo": "dígito transpuesto; descripción idéntica a 2076 (Alturas de La Lisa)"},
+  "P321": {"alias_de": "OP321", "motivo": "sin O; descripción idéntica a OP321 (Lealtad, Campanario, Reyna)"},
+  "OPZ321": {"alias_de": "OP321", "motivo": "Z extra; descripción idéntica a OP321"},
+  "OP32": {"alias_de": "OP321", "motivo": "truncado; descripción idéntica a OP321"},
+  "SR20": {"alias_de": "SR820", "motivo": "truncado; descripción idéntica a SR820 (Alturas de Lotería)"},
+  "R820": {"alias_de": "SR820", "motivo": "sin S; descripción idéntica a SR820"},
+  "R830": {"alias_de": "SR830", "motivo": "sin S; descripción idéntica a SR830 (Reparto Delicias); Info UNE no tiene R830"},
+  "C3": {"alias_de": "C13", "motivo": "dígito truncado; descripción idéntica a C13 (Vía Blanca, Primelles)"}
  },
  "clasificacion_barrios": {
   "Colinas de Villareal": "bloque",
@@ -438,5 +464,8 @@
  },
  "circuitos_falsos": [
   "L2"
- ]
+ ],
+ "circuitos_ubicacion": {
+  "P15": {"lat": 23.116, "lon": -82.3915, "municipio": "Plaza", "motivo": "descripción en Nuevo Vedado (Tulipán, Lombillo, Marino); el geocodificador lo ponía en el Malecón"}
+ }
 }

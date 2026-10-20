@@ -1,22 +1,4 @@
 {
- "93947": {
-  "fecha": "2026-10-13T10:47:32+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "H442"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Aclaramos a los cliente pertenecientes al circuito H442 que se encuentra afectado por déficit de generación desde las 07:30 PM.📣🚨"
- },
- "93944": {
-  "fecha": "2026-10-13T10:36:22+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "MB920"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:16 AM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC19: Repartos "
- },
  "93963": {
   "fecha": "2026-10-13T12:13:45+00:00",
   "tipo_llm": "restablecimiento",
@@ -2971,5 +2953,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO los circuitos siguientes: 👉MB910:Justi, Agromar, Bajurayabo, Cam"
+ },
+ "97611": {
+  "fecha": "2026-10-20T10:52:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo de Circuito en la siguiente dirección: 👉 H343/S513: Ciudamar, Sichi y Alturas de Luyanó"
  }
 }

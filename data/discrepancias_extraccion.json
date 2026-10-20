@@ -1,13 +1,4 @@
 {
- "93963": {
-  "fecha": "2026-10-13T12:13:45+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 7:51 AM quedó restablecido el servicio en los siguientes circuitos: 👉PZ24: Calles 2 desde 27 hasta 19, 19 desde "
- },
  "93986": {
   "fecha": "2026-10-13T12:58:05+00:00",
   "tipo_llm": "restablecimiento",

@@ -2829,5 +2829,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Habana del Este, se localizó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afecta el servicio en la siguiente dirección: 👉 Av"
+ },
+ "97420": {
+  "fecha": "2026-10-20T01:29:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P318"
+  ],
+  "solo_regex": [],
+  "extracto": "✅🟢Queda Restablecida la VIA LIBRE en el municipio Centro Habana que afectaba el servicio eléctrico en el siguiente circuito: P318.✅🟢"
  }
 }

@@ -1,15 +1,4 @@
 {
- "94548": {
-  "fecha": "2026-10-14T18:19:12+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:18 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
- },
  "94569": {
   "fecha": "2026-10-14T18:51:58+00:00",
   "tipo_llm": "afectacion",
@@ -2824,5 +2813,17 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico al circuito A960✅"
+ },
+ "98346": {
+  "fecha": "2026-10-21T18:27:53+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325",
+   "P326"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que que a partir de las 02:26 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desag"
  }
 }

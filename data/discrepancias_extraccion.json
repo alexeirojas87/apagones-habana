@@ -1,13 +1,4 @@
 {
- "94312": {
-  "fecha": "2026-10-14T05:25:24+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por disparo automático por frecuencia (DAF) en el circuito H341✅📉"
- },
  "94315": {
   "fecha": "2026-10-14T05:50:26+00:00",
   "tipo_llm": "restablecimiento",
@@ -2797,5 +2788,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
+ },
+ "98076": {
+  "fecha": "2026-10-21T05:20:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de la 1:20 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉PG940: Repartos: Comodoro, El Volp"
  }
 }

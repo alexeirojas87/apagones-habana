@@ -2823,5 +2823,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 10:37 am queda restablecido el servicio eléctrico en los siguientes circuitos: 👉S513 (H343): Carretera San Migue"
+ },
+ "98123": {
+  "fecha": "2026-10-21T10:23:53+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 265 MW distribuidos en 114 circuitos de distribución. A continuación,"
  }
 }

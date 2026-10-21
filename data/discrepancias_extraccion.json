@@ -1,13 +1,4 @@
 {
- "94504": {
-  "fecha": "2026-10-14T17:10:27+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "D640"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 177 MW distribuidos en 74 circuitos de distribución. A continuación, "
- },
  "94531": {
   "fecha": "2026-10-14T17:41:56+00:00",
   "tipo_llm": "afectacion",
@@ -2813,5 +2804,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 12:05 PM queda restablecido el servicio en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águila hasta "
+ },
+ "98311": {
+  "fecha": "2026-10-21T17:08:42+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR820",
+   "SR860"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Cotorro, por disparo de circuito se afecta el servicio eléctrico en: SR820/SR860: Reparto Alturas de Lotería./Repartos Dulce Nombre"
  }
 }

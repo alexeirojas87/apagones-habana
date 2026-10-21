@@ -2801,5 +2801,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 331 MW distribuidos en 125 circuitos de distribución. A continuación,"
+ },
+ "98022": {
+  "fecha": "2026-10-21T02:20:33+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "SG314"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉SG312:Alrededores de call"
  }
 }

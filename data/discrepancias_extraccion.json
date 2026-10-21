@@ -2805,5 +2805,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG312, SG313, SG314 y SG316✅"
+ },
+ "98230": {
+  "fecha": "2026-10-21T14:44:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG313"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito SG313✅"
+ },
+ "98225": {
+  "fecha": "2026-10-21T14:39:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:37 am queda restablecido el servicio eléctrico en los siguientes circuitos: 👉S513 (H343): Carretera San Migue"
  }
 }

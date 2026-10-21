@@ -1,13 +1,4 @@
 {
- "94362": {
-  "fecha": "2026-10-14T10:39:07+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Cerro, se afecta el servicio eléctrico por avería secundaria debido a un transformador dañado en la dirección Universidad entre San "
- },
  "94374": {
   "fecha": "2026-10-14T11:43:43+00:00",
   "tipo_llm": "restablecimiento",
@@ -2785,5 +2776,23 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 04:56 AM queda restablecido el servicio en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águila hasta "
+ },
+ "98133": {
+  "fecha": "2026-10-21T10:48:39+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 6:47 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2210: Alrededore"
+ },
+ "98122": {
+  "fecha": "2026-10-21T10:06:15+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  }
 }

@@ -1,14 +1,4 @@
 {
- "94315": {
-  "fecha": "2026-10-14T05:50:26+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D631",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico de los circuitos: D631 y D634✅"
- },
  "94318": {
   "fecha": "2026-10-14T06:21:08+00:00",
   "tipo_llm": "averia",
@@ -2797,5 +2787,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de la 1:20 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉PG940: Repartos: Comodoro, El Volp"
+ },
+ "97999": {
+  "fecha": "2026-10-21T01:08:33+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  }
 }

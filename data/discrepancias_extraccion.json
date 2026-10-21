@@ -2796,5 +2796,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 08:35 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
+ },
+ "98187": {
+  "fecha": "2026-10-21T13:09:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:09 AM se afectan 217 MW distribuidos en 96 circuitos de distribución. A continuación, "
  }
 }

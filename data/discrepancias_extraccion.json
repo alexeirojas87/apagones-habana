@@ -1,13 +1,4 @@
 {
- "94633": {
-  "fecha": "2026-10-14T21:20:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "3228"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:53 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉3228(S515) : Repart"
- },
  "94667": {
   "fecha": "2026-10-14T22:25:52+00:00",
   "tipo_llm": "averia",

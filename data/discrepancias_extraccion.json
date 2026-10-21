@@ -2828,5 +2828,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉PZ10: Calles 35 desde 6 hasta A, 6 ha"
+ },
+ "98043": {
+  "fecha": "2026-10-21T03:14:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG314"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📈Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉SG312:Alrededores de calles: Calle 206 desd"
  }
 }

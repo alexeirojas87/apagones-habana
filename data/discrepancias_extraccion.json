@@ -1,15 +1,4 @@
 {
- "94602": {
-  "fecha": "2026-10-14T20:13:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8",
-   "H341",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos H341,OP408 y C8✅📉"
- },
  "94633": {
   "fecha": "2026-10-14T21:20:50+00:00",
   "tipo_llm": "afectacion",
@@ -2826,5 +2815,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:46 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
+ },
+ "98411": {
+  "fecha": "2026-10-21T20:27:58+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A980"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Informamos a los consumidores del municipio 10 de Octubre pertenecientes al circuito A980 que se afecta por Vía Libre para reparar primario en las siguientes d"
+ },
+ "98406": {
+  "fecha": "2026-10-21T20:20:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A960"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito A960✅"
  }
 }

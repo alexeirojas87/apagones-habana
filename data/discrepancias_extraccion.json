@@ -1,13 +1,4 @@
 {
- "94374": {
-  "fecha": "2026-10-14T11:43:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por disparo automático por frecuencia (DAF) en el circuito H341✅📉"
- },
  "94379": {
   "fecha": "2026-10-14T12:03:09+00:00",
   "tipo_llm": "afectacion",
@@ -2794,5 +2785,17 @@
   ],
   "solo_regex": [],
   "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
+ },
+ "98148": {
+  "fecha": "2026-10-21T11:58:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 7:40 AM queda restablecido el servicio en el siguiente circuito: 👉 P325 (P327): Alrededores de calles Infanta, A"
  }
 }

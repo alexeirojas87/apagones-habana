@@ -1,15 +1,4 @@
 {
- "94425": {
-  "fecha": "2026-10-14T14:23:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:07 AM quedó restablecido el servicio en el siguiente circuito afectado por Disparo de Circuito por Avería: 👉P"
- },
  "94484": {
   "fecha": "2026-10-14T16:28:56+00:00",
   "tipo_llm": "restablecimiento",
@@ -2804,5 +2793,17 @@
   ],
   "solo_regex": [],
   "extracto": "📣Consumidores del municipio Habana del Este, se autoriza vía libre de emergencia para poda, quedando afectado parte del circuito MB960: 👉Profilactorio, parte de"
+ },
+ "98218": {
+  "fecha": "2026-10-21T14:24:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG312",
+   "SG313",
+   "SG314",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG312, SG313, SG314 y SG316✅"
  }
 }

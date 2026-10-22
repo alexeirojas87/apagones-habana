@@ -19,16 +19,6 @@
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:02 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R456:Alrededore"
  },
- "94991": {
-  "fecha": "2026-10-15T18:01:08+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52",
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) 👉AL52:Zonas: 6; 7; 8; 9; 10; 11 y Micro 4 👉AL57:Colina"
- },
  "95020": {
   "fecha": "2026-10-15T18:46:21+00:00",
   "tipo_llm": "restablecimiento",

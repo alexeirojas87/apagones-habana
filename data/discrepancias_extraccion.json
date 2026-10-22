@@ -1,14 +1,4 @@
 {
- "95064": {
-  "fecha": "2026-10-15T20:18:30+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "3228",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚧Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito S515 /3228 Se encuentran afectados por AVERÍA en la SUBESTACIÓN 🚧📣"
- },
  "95076": {
   "fecha": "2026-10-15T20:40:51+00:00",
   "tipo_llm": "afectacion",
@@ -2907,5 +2897,16 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Informamos a los consumidores del municipio Plaza pertenecientes al circuito PZ10, que fue transferido temporalmente parte de la carga al circuito PZ13, debid"
+ },
+ "98913": {
+  "fecha": "2026-10-22T19:31:02+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380",
+   "A425",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 PM se afectan 199 MW distribuidos en 83 circuitos de distribución. A continuación, "
  }
 }

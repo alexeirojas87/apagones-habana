@@ -1,13 +1,4 @@
 {
- "94736": {
-  "fecha": "2026-10-15T03:41:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1050"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:39 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB950: Ampliaci"
- },
  "94790": {
   "fecha": "2026-10-15T07:43:16+00:00",
   "tipo_llm": "restablecimiento",
@@ -2918,5 +2909,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en los circuitos SG312, SG313, SG314, SG315 y SG316✅"
+ },
+ "98552": {
+  "fecha": "2026-10-22T03:54:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito SG316✅"
  }
 }

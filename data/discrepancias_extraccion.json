@@ -2887,5 +2887,15 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 4:41 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325(P327/P324):"
+ },
+ "98964": {
+  "fecha": "2026-10-22T21:12:34+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ10",
+   "PZ13"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio Plaza, que se normaliza el esquema de los circuitos PZ10 y PZ13, debido al traspaso del Hospital Fa"
  }
 }

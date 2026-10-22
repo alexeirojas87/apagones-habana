@@ -1,13 +1,4 @@
 {
- "95115": {
-  "fecha": "2026-10-15T22:05:51+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "S516"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:57 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 S513:Carretera"
- },
  "95120": {
   "fecha": "2026-10-15T22:53:18+00:00",
   "tipo_llm": "deficit",

@@ -1,34 +1,4 @@
 {
- "94945": {
-  "fecha": "2026-10-15T16:41:50+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "C10",
-   "P314",
-   "PZ1",
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:34 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz16: Calle 6 d"
- },
- "94944": {
-  "fecha": "2026-10-15T16:38:55+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos: 👉 H341 👉OP 408✅📉"
- },
- "94939": {
-  "fecha": "2026-10-15T16:36:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 12:20 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz14: Calles 14"
- },
  "94960": {
   "fecha": "2026-10-15T17:20:48+00:00",
   "tipo_llm": "afectacion",

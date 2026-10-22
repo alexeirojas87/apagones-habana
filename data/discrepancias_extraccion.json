@@ -2949,5 +2949,17 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 01:30 AM queda restablecido el servicio en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águila hasta "
+ },
+ "98585": {
+  "fecha": "2026-10-22T06:00:45+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325",
+   "P326"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que que a partir de las 02:00 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desag"
  }
 }

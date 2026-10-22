@@ -1,33 +1,4 @@
 {
- "95020": {
-  "fecha": "2026-10-15T18:46:21+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "MB960"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el servicio eléctrico a los clientes afectados por Disparo del Circuito en la siguiente dirección: 👉 MB960: Repartos La Conchita, Veneciana, Cent"
- },
- "95017": {
-  "fecha": "2026-10-15T18:39:28+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "OP306",
-   "OP410"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Recordamos a los consumidores del municipio Habana Vieja que el circuito OP306 se encuentra transferido para el circuito OP410: OP306/OP410: Soterrado Habana "
- },
- "95031": {
-  "fecha": "2026-10-15T19:01:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL53",
-   "AL55"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:55 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR840:Centro de"
- },
  "95064": {
   "fecha": "2026-10-15T20:18:30+00:00",
   "tipo_llm": "averia",

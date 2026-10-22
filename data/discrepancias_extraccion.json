@@ -2930,5 +2930,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG312, SG313, SG314 y SG315✅"
+ },
+ "98579": {
+  "fecha": "2026-10-22T05:51:24+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [],
+  "solo_regex": [
+   "S513"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de la 1:49 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉S513 (H343): Carrete"
+ },
+ "98573": {
+  "fecha": "2026-10-22T05:30:35+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 01:30 AM queda restablecido el servicio en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águila hasta "
  }
 }

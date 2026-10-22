@@ -1,38 +1,4 @@
 {
- "95076": {
-  "fecha": "2026-10-15T20:40:51+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL55"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por Trabajos Operativos afectando el siguiente circuito : 👉AL55: Zonas: 12; 13; 14; 19; 2"
- },
- "95074": {
-  "fecha": "2026-10-15T20:38:46+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D631",
-   "D632",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN NACIONAL se interrumpe la rotación de los circuitos de la Subest"
- },
- "95071": {
-  "fecha": "2026-10-15T20:35:22+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "C7"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:33 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 Pz16:Calle 6 desd"
- },
  "95113": {
   "fecha": "2026-10-15T21:54:30+00:00",
   "tipo_llm": "restablecimiento",
@@ -2908,5 +2874,18 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 PM se afectan 199 MW distribuidos en 83 circuitos de distribución. A continuación, "
+ },
+ "98943": {
+  "fecha": "2026-10-22T20:41:19+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 4:41 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325(P327/P324):"
  }
 }

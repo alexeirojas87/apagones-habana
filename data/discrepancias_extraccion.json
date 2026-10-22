@@ -1,13 +1,4 @@
 {
- "94934": {
-  "fecha": "2026-10-15T16:20:22+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "S512"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo del circuito que afectaba la siguiente dirección: 👉S512:Calzada de Güines desde La Rosi"
- },
  "94945": {
   "fecha": "2026-10-15T16:41:50+00:00",
   "tipo_llm": "deficit",
@@ -37,15 +28,6 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:20 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz14: Calles 14"
- },
- "94930": {
-  "fecha": "2026-10-15T16:07:11+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D632"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  },
  "94960": {
   "fecha": "2026-10-15T17:20:48+00:00",

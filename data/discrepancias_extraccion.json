@@ -1,13 +1,4 @@
 {
- "94892": {
-  "fecha": "2026-10-15T14:34:37+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alred"
- },
  "94934": {
   "fecha": "2026-10-15T16:20:22+00:00",
   "tipo_llm": "restablecimiento",
@@ -3060,5 +3051,15 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que quedó restablecido el servicio en los siguientes circuitos: 👉P327 :Desagüe desde Infanta hasta Ayestarán, Ayestarán desde Carlos"
+ },
+ "98773": {
+  "fecha": "2026-10-22T14:33:34+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "PZ10",
+   "PZ13"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los consumidores del municipio Plaza pertenecientes al circuito PZ10, que fue transferido temporalmente parte de la carga al circuito PZ13, debid"
  }
 }

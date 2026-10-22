@@ -1,23 +1,4 @@
 {
- "94841": {
-  "fecha": "2026-10-15T11:25:17+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "📉✅Queda restablecido el servicio eléctrico afectado por Disparo Automático Por Frecuencia (DAF) en los circuitos OP408 y C8✅📉"
- },
- "94839": {
-  "fecha": "2026-10-15T11:24:53+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alred"
- },
  "94846": {
   "fecha": "2026-10-15T11:44:19+00:00",
   "tipo_llm": "restablecimiento",

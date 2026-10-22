@@ -1,22 +1,4 @@
 {
- "95113": {
-  "fecha": "2026-10-15T21:54:30+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ10"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Queda Restablecida la VIA LIBRE en el municipio plaza que afectaba el servicio eléctrico en el siguiente circuito: Pz10✅🟢"
- },
- "95107": {
-  "fecha": "2026-10-15T21:42:31+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alred"
- },
  "95115": {
   "fecha": "2026-10-15T22:05:51+00:00",
   "tipo_llm": "afectacion",
@@ -2897,5 +2879,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio Plaza, que se normaliza el esquema de los circuitos PZ10 y PZ13, debido al traspaso del Hospital Fa"
+ },
+ "98973": {
+  "fecha": "2026-10-22T21:59:57+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 05:48 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG313:Alrededor"
  }
 }

@@ -1,13 +1,4 @@
 {
- "95577": {
-  "fecha": "2026-10-16T21:35:48+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "247"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Lisa se detectó una AVERÍA SECUNDARIA afectando el servicio en la siguiente dirección : 👉247 / 38 y 40 , Punta Brava🛑⚡️"
- },
  "95628": {
   "fecha": "2026-10-17T00:18:25+00:00",
   "tipo_llm": "averia",
@@ -3020,5 +3011,39 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:31 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz1:Cuadrantes "
+ },
+ "99486": {
+  "fecha": "2026-10-23T22:00:12+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 357 MW distribuidos en 141 circuitos de distribución. A continuación,"
+ },
+ "99484": {
+  "fecha": "2026-10-23T21:57:37+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "D1372"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1443:Repartos Río Verde y Calixto Sánch"
+ },
+ "99482": {
+  "fecha": "2026-10-23T21:50:35+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1006",
+   "A1007",
+   "A1008",
+   "A1009",
+   "A465",
+   "D632",
+   "D633",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO 👉"
  }
 }

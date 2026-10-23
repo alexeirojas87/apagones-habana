@@ -2945,5 +2945,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚠️Consumidores del municipio Plaza, se autoriza VÍA LIBRE por AVERIA PRIMRIA , afectando una parte del siguiente circuito: Pz19 👉Calle : L hasta N, Mdesde 25 h"
+ },
+ "99410": {
+  "fecha": "2026-10-23T19:00:10+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 166 MW distribuidos en 61 circuitos de distribución. A continuación, "
+ },
+ "99405": {
+  "fecha": "2026-10-23T18:34:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ19"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢☑️Consumidores del municipio Plaza, queda reparada la AVERÍA que afectaba el servicio eléctrico en la siguiente dirección: 👉L hasta N, M desde 25 hasta 19 N de"
  }
 }

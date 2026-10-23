@@ -2981,5 +2981,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:21 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P314:Alrededore"
+ },
+ "99436": {
+  "fecha": "2026-10-23T19:58:54+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "AL53"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉R451: Calles Perdomo y Si"
  }
 }

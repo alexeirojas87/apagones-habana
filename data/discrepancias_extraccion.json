@@ -2990,5 +2990,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉R451: Calles Perdomo y Si"
+ },
+ "99444": {
+  "fecha": "2026-10-23T20:08:04+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "MR450",
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito MR450 ( Luyanó Moderno) que se encuentra transferida temporalmente l"
  }
 }

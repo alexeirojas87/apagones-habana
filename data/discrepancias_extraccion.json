@@ -2963,5 +2963,23 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Plaza, queda reparada la AVERÍA que afectaba el servicio eléctrico en la siguiente dirección: 👉L hasta N, M desde 25 hasta 19 N de"
+ },
+ "99424": {
+  "fecha": "2026-10-23T19:29:37+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1455"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito A1455 que las cargas del mismo se encuentran transferidos para los circuitos GC1"
+ },
+ "99420": {
+  "fecha": "2026-10-23T19:26:18+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:21 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P314:Alrededore"
  }
 }

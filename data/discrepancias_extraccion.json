@@ -1,20 +1,4 @@
 {
- "95176": {
-  "fecha": "2026-10-16T03:59:08+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D631",
-   "D632",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN NACIONAL se interrumpe la rotación de los circuitos de la Subest"
- },
  "95184": {
   "fecha": "2026-10-16T04:07:58+00:00",
   "tipo_llm": "restablecimiento",

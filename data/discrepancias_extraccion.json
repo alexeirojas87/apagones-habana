@@ -2936,5 +2936,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 01:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318: Alrededor"
+ },
+ "99391": {
+  "fecha": "2026-10-23T18:05:54+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "PZ19"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚠️Consumidores del municipio Plaza, se autoriza VÍA LIBRE por AVERIA PRIMRIA , afectando una parte del siguiente circuito: Pz19 👉Calle : L hasta N, Mdesde 25 h"
  }
 }

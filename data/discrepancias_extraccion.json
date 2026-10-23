@@ -3009,5 +3009,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:34 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R451:Calles Per"
+ },
+ "99455": {
+  "fecha": "2026-10-23T20:37:10+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ13",
+   "PZ17",
+   "PZ24"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:31 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz1:Cuadrantes "
  }
 }

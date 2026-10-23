@@ -1,14 +1,4 @@
 {
- "95269": {
-  "fecha": "2026-10-16T13:06:11+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 09:00 AM queda restablecido el servicio en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águila hasta "
- },
  "95315": {
   "fecha": "2026-10-16T13:57:16+00:00",
   "tipo_llm": "deficit",
@@ -2819,5 +2809,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 8:52 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerrad"
+ },
+ "99225": {
+  "fecha": "2026-10-23T13:27:35+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:24 AM se afectan 194 MW distribuidos en 81 circuitos de distribución. A continuación, "
  }
 }

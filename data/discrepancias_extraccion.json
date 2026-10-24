@@ -1,35 +1,4 @@
 {
- "95935": {
-  "fecha": "2026-10-17T17:51:20+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "GC18"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito GC18.✅"
- },
- "95926": {
-  "fecha": "2026-10-17T17:36:08+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL56",
-   "R451",
-   "R453",
-   "R454",
-   "R456"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente a los siguientes circuitos: AL56, R451, R"
- },
- "95925": {
-  "fecha": "2026-10-17T17:33:51+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente al siguiente circuito: H341✅"
- },
  "95951": {
   "fecha": "2026-10-17T18:22:52+00:00",
   "tipo_llm": "afectacion",

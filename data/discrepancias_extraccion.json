@@ -1,23 +1,4 @@
 {
- "95914": {
-  "fecha": "2026-10-17T17:19:46+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1223"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Queda con servicio la avería por el puente partido en el circuito A1223✅"
- },
- "95913": {
-  "fecha": "2026-10-17T17:17:07+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "T41",
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos: T41 y T44✅"
- },
  "95935": {
   "fecha": "2026-10-17T17:51:20+00:00",
   "tipo_llm": "restablecimiento",
@@ -48,25 +29,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente al siguiente circuito: H341✅"
- },
- "95924": {
-  "fecha": "2026-10-17T17:32:21+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito A1009✅"
- },
- "95923": {
-  "fecha": "2026-10-17T17:31:28+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos: OP408 y C8✅"
  },
  "95951": {
   "fecha": "2026-10-17T18:22:52+00:00",

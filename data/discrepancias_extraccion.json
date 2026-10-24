@@ -1,26 +1,4 @@
 {
- "95951": {
-  "fecha": "2026-10-17T18:22:52+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣Informamos a la población que a partir de las 2:21 PM se afectó el servicio eléctrico por déficit de generación en siguientes circuitos: 👉P319: Alrededores de "
- },
- "95945": {
-  "fecha": "2026-10-17T18:11:12+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP304",
-   "OP318"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:10 PM se afectó el servicio eléctrico por déficit de generación en siguientes circuitos: 👉OP304,OP424, OP318 ,"
- },
  "95961": {
   "fecha": "2026-10-17T18:48:45+00:00",
   "tipo_llm": "restablecimiento",
@@ -2968,5 +2946,27 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉35 /118 y 120.🛑⚡️"
+ },
+ "99797": {
+  "fecha": "2026-10-24T18:28:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "👷‍♂️⚡️Consumidores del municipio , Plaza/Cerro se afectó el servicio eléctrico por TRABAJOS OPERATIVOS en el siguiente circuito: 👉P325 / P327 / P324: Desagüe de"
+ },
+ "99784": {
+  "fecha": "2026-10-24T18:05:26+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1455",
+   "GC11",
+   "GC13"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑🔔Reiteramos a los clientes pertenecientes al circuito A1455 que fue transferida su carga a los circuitos GC11 y GC13, la cual se encuentra distribuida de la si"
  }
 }

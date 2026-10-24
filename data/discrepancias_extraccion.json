@@ -1,16 +1,4 @@
 {
- "95747": {
-  "fecha": "2026-10-17T08:07:27+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A490",
-   "C8",
-   "OP408",
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:50 AM se afectan 368 MW distribuidos en 162 circuitos de distribución. A continuación,"
- },
  "95778": {
   "fecha": "2026-10-17T10:28:47+00:00",
   "tipo_llm": "averia",
@@ -3100,5 +3088,23 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:45 AM se afectan 268 MW distribuidos en 109 circuitos de distribución. A continuación, "
+ },
+ "99559": {
+  "fecha": "2026-10-24T08:22:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ15"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 04:015 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉Pz14: Calles 14 desde Zapata ha"
+ },
+ "99557": {
+  "fecha": "2026-10-24T08:18:04+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P319"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 04:09 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P318: Alrededores de calles Placenc"
  }
 }

@@ -1,13 +1,4 @@
 {
- "95996": {
-  "fecha": "2026-10-17T20:07:58+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L326"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el disparo del siguiente circuito L326✅"
- },
  "96009": {
   "fecha": "2026-10-17T20:51:25+00:00",
   "tipo_llm": "afectacion",
@@ -2914,5 +2905,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:39 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2202: Alrededor"
+ },
+ "99859": {
+  "fecha": "2026-10-24T20:15:46+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:14 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325/P327/P324: De"
  }
 }

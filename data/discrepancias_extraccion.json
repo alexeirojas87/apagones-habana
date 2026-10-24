@@ -1,23 +1,4 @@
 {
- "95909": {
-  "fecha": "2026-10-17T16:58:14+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "MR450",
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito MR450 ( Luyanó Moderno) que se encuentra transferida temporalmente l"
- },
- "95903": {
-  "fecha": "2026-10-17T16:39:55+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en la parte del municipio Diez de Octubre en el siguiente circuito A980✅"
- },
  "95914": {
   "fecha": "2026-10-17T17:19:46+00:00",
   "tipo_llm": "restablecimiento",
@@ -3047,5 +3028,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 11:40 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉Pz1: Cuadrantes calle Línea hast"
+ },
+ "99738": {
+  "fecha": "2026-10-24T16:44:43+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉35 /118 y 120.🛑⚡️"
  }
 }

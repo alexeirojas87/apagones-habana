@@ -1,13 +1,4 @@
 {
- "95778": {
-  "fecha": "2026-10-17T10:28:47+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D740"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Playa - Lisa 🚨Avería Primarias ✔️Municipio : Lisa 👉Subestación Punta Brava : 👉D740 : Reparto"
- },
  "95787": {
   "fecha": "2026-10-17T11:01:22+00:00",
   "tipo_llm": "deficit",

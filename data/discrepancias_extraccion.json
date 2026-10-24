@@ -1,13 +1,4 @@
 {
- "95628": {
-  "fecha": "2026-10-17T00:18:25+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "247"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Recordamos a los consumidores del municipio Lisa se detectó una AVERÍA SECUNDARIA afectando el servicio en la siguiente dirección : 👉247 / 38 y 40 , Punta Br"
- },
  "95747": {
   "fecha": "2026-10-17T08:07:27+00:00",
   "tipo_llm": "deficit",
@@ -3045,5 +3036,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO 👉"
+ },
+ "99507": {
+  "fecha": "2026-10-24T00:17:53+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 08:12 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉2203:Alrededores de los cuadrant"
  }
 }

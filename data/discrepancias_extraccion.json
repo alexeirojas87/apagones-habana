@@ -1,35 +1,4 @@
 {
- "95897": {
-  "fecha": "2026-10-17T16:27:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG316"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el siguiente circuito: SG316✅"
- },
- "95895": {
-  "fecha": "2026-10-17T16:24:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1249"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito por sobrecarga en el 1249✅"
- },
- "95894": {
-  "fecha": "2026-10-17T16:22:34+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP304",
-   "OP318",
-   "OP323",
-   "OP325",
-   "OP411"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 12:22 PM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉OP304, OP424, OP318, OP323, OP42"
- },
  "95909": {
   "fecha": "2026-10-17T16:58:14+00:00",
   "tipo_llm": "otro",
@@ -3068,5 +3037,15 @@
    "OP325"
   ],
   "extracto": "📣Informamos a la población que a partir de las 07:04 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P327 :Desagüe desde Infanta hasta Ay"
+ },
+ "99713": {
+  "fecha": "2026-10-24T16:11:57+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ13",
+   "PZ5"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 11:40 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉Pz1: Cuadrantes calle Línea hast"
  }
 }

@@ -1,38 +1,4 @@
 {
- "95976": {
-  "fecha": "2026-10-17T19:19:06+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1006",
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D632",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO 👉"
- },
- "95973": {
-  "fecha": "2026-10-17T19:13:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D860"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por Fusible Fundido en el circuito: D860✅"
- },
- "95972": {
-  "fecha": "2026-10-17T19:11:12+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 367 MW distribuidos en 153 circuitos de distribución. A continuación,"
- },
  "95991": {
   "fecha": "2026-10-17T19:45:27+00:00",
   "tipo_llm": "restablecimiento",
@@ -51,18 +17,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente a los siguientes circuitos: 👉1241; 1245✅"
- },
- "95984": {
-  "fecha": "2026-10-17T19:31:09+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 3:29 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉 P325 (P327): Alrededores de calles "
  },
  "95996": {
   "fecha": "2026-10-17T20:07:58+00:00",
@@ -2959,5 +2913,25 @@
   ],
   "solo_regex": [],
   "extracto": "🛑🔔Reiteramos a los clientes pertenecientes al circuito A1455 que fue transferida su carga a los circuitos GC11 y GC13, la cual se encuentra distribuida de la si"
+ },
+ "99821": {
+  "fecha": "2026-10-24T19:12:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "👷‍♂️🟢Consumidores del municipio Plaza y Cerro, queda restablecido el servicio eléctrico por TRABAJOS OPERATIVOS en el siguiente circuito: 👉P325 / P327 / P324: D"
+ },
+ "99819": {
+  "fecha": "2026-10-24T19:06:36+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "C13"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:39 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2202: Alrededor"
  }
 }

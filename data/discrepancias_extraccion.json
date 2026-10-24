@@ -1,13 +1,4 @@
 {
- "95961": {
-  "fecha": "2026-10-17T18:48:45+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1244"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente al siguiente circuito: 👉1244✅"
- },
  "95976": {
   "fecha": "2026-10-17T19:19:06+00:00",
   "tipo_llm": "afectacion",

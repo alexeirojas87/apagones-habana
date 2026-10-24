@@ -1,35 +1,4 @@
 {
- "95847": {
-  "fecha": "2026-10-17T14:27:30+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:25 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉 P325 (P327): Alrededores de calles"
- },
- "95844": {
-  "fecha": "2026-10-17T14:22:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL53",
-   "GC13"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en los circuitos: GC13 y AL53. ✅"
- },
- "95843": {
-  "fecha": "2026-10-17T14:13:49+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1008"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en el circuito: A1008✅"
- },
  "95866": {
   "fecha": "2026-10-17T15:00:46+00:00",
   "tipo_llm": "restablecimiento",

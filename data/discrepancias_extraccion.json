@@ -1,23 +1,4 @@
 {
- "96026": {
-  "fecha": "2026-10-17T21:42:24+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1851"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Marianao, se localiza avería secundaria por transformador dañado en la calle 35 entre 118 y 120, Zamora🚨"
- },
- "96024": {
-  "fecha": "2026-10-17T21:35:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG312",
-   "SG314"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo en los circuitos SG312 y SG314✅"
- },
  "96040": {
   "fecha": "2026-10-17T22:21:08+00:00",
   "tipo_llm": "restablecimiento",

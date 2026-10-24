@@ -3185,5 +3185,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio 10 de Octubre pertenecientes al circuito D634, que se ha transferido temporalmente una parte de la carga al circuito H"
+ },
+ "99641": {
+  "fecha": "2026-10-24T12:59:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣Informamos a la población que a partir de las 07:04 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P327 :Desagüe desde Infanta hasta Ay"
  }
 }

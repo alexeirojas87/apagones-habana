@@ -1,23 +1,4 @@
 {
- "95991": {
-  "fecha": "2026-10-17T19:45:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1100"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por avería en el circuito D1100✅"
- },
- "95986": {
-  "fecha": "2026-10-17T19:41:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1241",
-   "1245"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente a los siguientes circuitos: 👉1241; 1245✅"
- },
  "95996": {
   "fecha": "2026-10-17T20:07:58+00:00",
   "tipo_llm": "restablecimiento",

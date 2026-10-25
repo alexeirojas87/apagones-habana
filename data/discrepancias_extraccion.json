@@ -1,13 +1,4 @@
 {
- "96602": {
-  "fecha": "2026-10-18T19:06:08+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "PZ6"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨⚡️Consumidores del municipio Plaza, se detectó una AVERÍA por PUENTE PRIMARIO PARTIDO quedando afectado el servicio en la siguiente dirección: 👉13 hasta 17, 6 "
- },
  "96633": {
   "fecha": "2026-10-18T19:47:07+00:00",
   "tipo_llm": "afectacion",
@@ -2821,5 +2812,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos D631 y D634✅"
+ },
+ "100333": {
+  "fecha": "2026-10-25T19:19:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito D836 afectado por sobrecarga✅"
+ },
+ "100332": {
+  "fecha": "2026-10-25T19:18:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito A820✅"
  }
 }

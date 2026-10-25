@@ -1,14 +1,4 @@
 {
- "96699": {
-  "fecha": "2026-10-18T21:32:46+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP319",
-   "PZ16"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Plaza - Centro Habana 🚨Averías Primarias: 📌Municipio: Plaza (PZ16) 👉Dirección: 5ta entre Pas"
- },
  "96718": {
   "fecha": "2026-10-18T22:25:00+00:00",
   "tipo_llm": "afectacion",
@@ -2853,5 +2843,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG313 y SG315✅"
+ },
+ "100402": {
+  "fecha": "2026-10-25T21:57:47+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1695",
+   "PG920"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito PG920/A1695✅"
  }
 }

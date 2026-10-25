@@ -1,24 +1,4 @@
 {
- "96526": {
-  "fecha": "2026-10-18T17:03:32+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR860"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 1:03 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R461: Calle Mace"
- },
- "96544": {
-  "fecha": "2026-10-18T17:31:37+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG312",
-   "SG314",
-   "SG316"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) en los circuitos: SG312, SG314, SG316.✅"
- },
  "96602": {
   "fecha": "2026-10-18T19:06:08+00:00",
   "tipo_llm": "averia",

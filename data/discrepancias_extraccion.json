@@ -1,15 +1,4 @@
 {
- "96659": {
-  "fecha": "2026-10-18T20:44:27+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desagüe desde Infanta hasta Ayesta"
- },
  "96691": {
   "fecha": "2026-10-18T21:22:04+00:00",
   "tipo_llm": "afectacion",
@@ -2847,5 +2836,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería secundaria por transformador dañado en la calle Vigario entre 14 y Línea de Ferrocarril.🚨"
+ },
+ "100364": {
+  "fecha": "2026-10-25T21:00:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito A820✅"
+ },
+ "100363": {
+  "fecha": "2026-10-25T20:59:42+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SF581"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico por trabajos operativos en el siguiente circuito: SF581✅"
  }
 }

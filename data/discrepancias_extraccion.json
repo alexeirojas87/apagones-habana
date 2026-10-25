@@ -1,20 +1,4 @@
 {
- "96718": {
-  "fecha": "2026-10-18T22:25:00+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1006",
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D632",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO 👉"
- },
  "96773": {
   "fecha": "2026-10-19T00:46:49+00:00",
   "tipo_llm": "averia",

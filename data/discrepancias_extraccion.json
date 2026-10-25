@@ -1,13 +1,4 @@
 {
- "96358": {
-  "fecha": "2026-10-18T14:06:35+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SR860"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:00 AM queda restablecido el servicio en el siguiente circuito: 👉SR820 (SR860): Reparto Alturas de Lotería.(Re"
- },
  "96452": {
   "fecha": "2026-10-18T15:37:40+00:00",
   "tipo_llm": "averia",
@@ -2742,5 +2733,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG312, SG314 y SG316✅"
+ },
+ "100196": {
+  "fecha": "2026-10-25T14:23:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito A1009✅"
  }
 }

@@ -2731,5 +2731,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:16 AM se afectan 235 MW distribuidos en 105 circuitos de distribución. A continuación,"
+ },
+ "100185": {
+  "fecha": "2026-10-25T13:55:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG312",
+   "SG314",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG312, SG314 y SG316✅"
  }
 }

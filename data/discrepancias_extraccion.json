@@ -2802,5 +2802,14 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Restablecido el servicio eléctrico a los clientes por Disparo Automático por Frecuencia (DAF) perteneciente al siguiente circuito: 👉1245✅📉"
+ },
+ "100319": {
+  "fecha": "2026-10-25T18:22:41+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1851"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito en el 1851✅"
  }
 }

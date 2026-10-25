@@ -1,13 +1,4 @@
 {
- "96075": {
-  "fecha": "2026-10-18T00:15:04+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2076"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito en el 2076✅"
- },
  "96087": {
   "fecha": "2026-10-18T01:01:35+00:00",
   "tipo_llm": "deficit",

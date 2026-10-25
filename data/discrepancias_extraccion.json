@@ -1,35 +1,4 @@
 {
- "96452": {
-  "fecha": "2026-10-18T15:37:40+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "SR820"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido "
- },
- "96450": {
-  "fecha": "2026-10-18T15:36:46+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "MR450",
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito MR450 ( Luyanó Moderno) que se encuentra transferida temporalmente l"
- },
- "96447": {
-  "fecha": "2026-10-18T15:34:51+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1565",
-   "A1570",
-   "MB920",
-   "MB930"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Habana del Este, pertenecientes al circuito MB930 que se encuentra transferida temporalmente parte de la carga al circ"
- },
  "96492": {
   "fecha": "2026-10-18T16:23:56+00:00",
   "tipo_llm": "afectacion",
@@ -2762,5 +2731,32 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
+ },
+ "100256": {
+  "fecha": "2026-10-25T15:52:08+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2076"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Queda restablecido el servicio eléctrico por disparo del circuito en el 2076✅"
+ },
+ "100250": {
+  "fecha": "2026-10-25T15:44:22+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PG970"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito PG970✅"
+ },
+ "100245": {
+  "fecha": "2026-10-25T15:40:41+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A960"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito A960✅"
  }
 }

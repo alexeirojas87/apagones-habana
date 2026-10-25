@@ -2704,5 +2704,51 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 289 MW distribuidos en 126 circuitos de distribución. A continuación,"
+ },
+ "100153": {
+  "fecha": "2026-10-25T12:29:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PG970"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito PG970✅"
+ },
+ "100151": {
+  "fecha": "2026-10-25T12:24:47+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 8:20 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉P325: Desagüe desde Infanta hasta"
+ },
+ "100148": {
+  "fecha": "2026-10-25T12:15:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 8:15 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325/P327/P324: Desagüe desde Infant"
+ },
+ "100147": {
+  "fecha": "2026-10-25T12:11:59+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 07:12 am se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 318, OP320, "
  }
 }

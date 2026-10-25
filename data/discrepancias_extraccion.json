@@ -1,16 +1,4 @@
 {
- "96267": {
-  "fecha": "2026-10-18T10:54:45+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1565",
-   "A1570",
-   "MB920",
-   "MB930"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio Habana del Este, pertenecientes al circuito MB930 que se encuentra transferida temporalmente parte de la carga al cir"
- },
  "96286": {
   "fecha": "2026-10-18T11:37:03+00:00",
   "tipo_llm": "restablecimiento",

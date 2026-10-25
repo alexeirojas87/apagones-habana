@@ -1,13 +1,4 @@
 {
- "96185": {
-  "fecha": "2026-10-18T05:43:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1175"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico del disparo del circuito en: 1175✅"
- },
  "96206": {
   "fecha": "2026-10-18T06:56:11+00:00",
   "tipo_llm": "restablecimiento",

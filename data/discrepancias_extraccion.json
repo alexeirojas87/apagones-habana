@@ -1,25 +1,4 @@
 {
- "96633": {
-  "fecha": "2026-10-18T19:47:07+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 3:43 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
- },
- "96626": {
-  "fecha": "2026-10-18T19:33:44+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "OP319",
-   "P318"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Centro Habana pertenecientes al circuito OP319, se ha transferido temporalmente la carga al circuito P318 del siguient"
- },
  "96659": {
   "fecha": "2026-10-18T20:44:27+00:00",
   "tipo_llm": "afectacion",
@@ -2830,5 +2809,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico al circuito A820✅"
+ },
+ "100338": {
+  "fecha": "2026-10-25T19:44:39+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "PZ1"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Consumidores del municipio Plaza pertenecientes al circuito PZ14, se ha transferido temporalmente la carga al circuito PZ1: 👉PZ14: Calles 14 desde Zapata hast"
+ },
+ "100335": {
+  "fecha": "2026-10-25T19:31:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC11"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito GC11✅"
  }
 }

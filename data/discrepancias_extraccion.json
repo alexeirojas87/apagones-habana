@@ -2837,5 +2837,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico al circuito PG920/A1695✅"
+ },
+ "100424": {
+  "fecha": "2026-10-25T23:17:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D632",
+   "D633"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos D632 y D633✅"
  }
 }

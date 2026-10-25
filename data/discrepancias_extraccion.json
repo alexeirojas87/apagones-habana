@@ -1,13 +1,4 @@
 {
- "96492": {
-  "fecha": "2026-10-18T16:23:56+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [],
-  "solo_regex": [
-   "S513"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 9:04 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉S513(H343) : Carret"
- },
  "96511": {
   "fecha": "2026-10-18T16:45:35+00:00",
   "tipo_llm": "afectacion",
@@ -2758,5 +2749,42 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico al circuito A960✅"
+ },
+ "100275": {
+  "fecha": "2026-10-25T16:25:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D631",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se van a man"
+ },
+ "100267": {
+  "fecha": "2026-10-25T16:09:23+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PG970"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Consumidores del municipio Arroyo Naranjo, queda reparada la avería que afectaba el circuito PG970 normalizando su esquema llevando la carga de los Hospitales"
+ },
+ "100266": {
+  "fecha": "2026-10-25T16:04:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PG970"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito PG970✅"
+ },
+ "100261": {
+  "fecha": "2026-10-25T16:01:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito A820✅"
  }
 }

@@ -1,13 +1,4 @@
 {
- "96096": {
-  "fecha": "2026-10-18T01:37:02+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL56"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por disparo automático por frecuencia (DAF) perteneciente al siguiente circuito: AL56.✅"
- },
  "96116": {
   "fecha": "2026-10-18T02:28:11+00:00",
   "tipo_llm": "restablecimiento",
@@ -2849,5 +2840,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 PM se afectan 370 MW distribuidos en 159 circuitos de distribución. A continuación,"
+ },
+ "100005": {
+  "fecha": "2026-10-25T01:38:08+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:30 PM se afectan 421 MW distribuidos en 172 circuitos de distribución. A continuación,"
  }
 }

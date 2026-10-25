@@ -1,15 +1,4 @@
 {
- "96691": {
-  "fecha": "2026-10-18T21:22:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P324: Alrededores de calles cuadrante de"
- },
  "96699": {
   "fecha": "2026-10-18T21:32:46+00:00",
   "tipo_llm": "averia",
@@ -2854,5 +2843,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico por trabajos operativos en el siguiente circuito: SF581✅"
+ },
+ "100366": {
+  "fecha": "2026-10-25T21:02:34+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG313",
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG313 y SG315✅"
  }
 }

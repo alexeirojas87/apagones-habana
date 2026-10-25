@@ -2757,5 +2757,50 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico al circuito A820✅"
+ },
+ "100307": {
+  "fecha": "2026-10-25T17:51:22+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP307"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico a los clientes por Disparo Automático por Frecuencia (DAF) perteneciente a los siguientes circuitos: 👉OP321:OP307📉✅"
+ },
+ "100306": {
+  "fecha": "2026-10-25T17:50:30+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2202"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Cerro, quedó restablecido el servicio en el siguiente circuito afectado por vía libre: 👉2202✅"
+ },
+ "100305": {
+  "fecha": "2026-10-25T17:49:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "L323"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico a los clientes por Disparo Automático por Frecuencia (DAF) perteneciente a los siguientes circuitos: 👉L322; L323📉✅"
+ },
+ "100303": {
+  "fecha": "2026-10-25T17:48:53+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el disparo del circuito por posible avería en el 1243✅"
+ },
+ "100301": {
+  "fecha": "2026-10-25T17:47:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1245"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico a los clientes por Disparo Automático por Frecuencia (DAF) perteneciente al siguiente circuito: 👉1245✅📉"
  }
 }

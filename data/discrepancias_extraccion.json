@@ -2752,5 +2752,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
+ },
+ "100233": {
+  "fecha": "2026-10-25T15:18:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
  }
 }

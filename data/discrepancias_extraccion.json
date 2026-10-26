@@ -2896,5 +2896,32 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Marianao, se localiza avería secundaria por transformador dañado en la calle 29 entre 142 y 144, Zamora🚨"
+ },
+ "100497": {
+  "fecha": "2026-10-26T04:00:05+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "PZ13"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 254 MW distribuidos en 91 circuitos de distribución. A continuación, s"
+ },
+ "100496": {
+  "fecha": "2026-10-26T03:43:44+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P319"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 11:36 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P326(P319): Hospital desde Carlos I"
+ },
+ "100493": {
+  "fecha": "2026-10-26T03:33:32+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C13"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Cerro, se mantienen afectados por avería primaria los siguientes cuadrantes pertenecientes al circuito C13: 👉 Cuadrantes de Avenida "
  }
 }

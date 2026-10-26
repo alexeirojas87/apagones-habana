@@ -1,13 +1,4 @@
 {
- "97364": {
-  "fecha": "2026-10-19T23:04:07+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1227"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️🚨Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉Calle 90/51 y 51A."
- },
  "97382": {
   "fecha": "2026-10-19T23:57:16+00:00",
   "tipo_llm": "afectacion",

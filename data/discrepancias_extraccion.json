@@ -1,13 +1,4 @@
 {
- "96809": {
-  "fecha": "2026-10-19T02:21:40+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP304"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Habana Vieja, se encuentran afectados por un incendio en el circuito OP304, en la siguiente dirección: 👉Picota, San Isidro y Desam"
- },
  "96857": {
   "fecha": "2026-10-19T05:08:56+00:00",
   "tipo_llm": "restablecimiento",

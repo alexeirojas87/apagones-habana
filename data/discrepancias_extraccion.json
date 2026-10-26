@@ -1,13 +1,4 @@
 {
- "96931": {
-  "fecha": "2026-10-19T09:33:44+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [],
-  "solo_regex": [
-   "S513"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:31 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉S513(H343) : Ca"
- },
  "96956": {
   "fecha": "2026-10-19T10:44:42+00:00",
   "tipo_llm": "averia",

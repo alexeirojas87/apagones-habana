@@ -1,13 +1,4 @@
 {
- "96923": {
-  "fecha": "2026-10-19T09:22:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A495"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:00 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB920 : Alturas"
- },
  "96931": {
   "fecha": "2026-10-19T09:33:44+00:00",
   "tipo_llm": "afectacion",
@@ -2922,5 +2913,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:25 AM se afectan 174 MW distribuidos en 76 circuitos de distribución. A continuación, "
+ },
+ "100564": {
+  "fecha": "2026-10-26T09:13:29+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de la 5:13 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325: Desagüe des"
  }
 }

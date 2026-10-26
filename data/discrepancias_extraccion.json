@@ -2887,5 +2887,14 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 10:53 PM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉PZ7: Cuadrante desde calle 4 has"
+ },
+ "100491": {
+  "fecha": "2026-10-26T03:20:38+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1851"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Marianao, se localiza avería secundaria por transformador dañado en la calle 29 entre 142 y 144, Zamora🚨"
  }
 }

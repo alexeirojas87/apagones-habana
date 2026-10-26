@@ -2644,5 +2644,15 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Restablecido el servicio eléctrico a los clientes por Disparo Automático por Frecuencia (DAF) perteneciente a los siguientes circuitos: 👉L322; L323📉✅"
+ },
+ "100726": {
+  "fecha": "2026-10-26T17:13:22+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343",
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 1:11 PM queda queda restablecido el servicio en el siguiente circuito: 👉S513(H343)(S515): Carretera San Miguel d"
  }
 }

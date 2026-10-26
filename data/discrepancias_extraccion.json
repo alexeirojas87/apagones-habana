@@ -1,24 +1,4 @@
 {
- "97210": {
-  "fecha": "2026-10-19T18:26:34+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:26 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325:Alrededores d"
- },
- "97201": {
-  "fecha": "2026-10-19T18:06:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ15"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚠️Informamos a los consumidores del municipio Plaza que la VÍA LIBRE planificda fue restablecida por inclemencias del tiempo en el circuito pz15 .🚧⚠️"
- },
  "97233": {
   "fecha": "2026-10-19T19:02:05+00:00",
   "tipo_llm": "restablecimiento",
@@ -27,15 +7,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅🟢Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF). 👉1245:Cuadrante 32 hasta 24 y desde 23 hasta Malecón,"
- },
- "97216": {
-  "fecha": "2026-10-19T18:32:16+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1008"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  },
  "97243": {
   "fecha": "2026-10-19T19:15:45+00:00",
@@ -2584,5 +2555,25 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 1:11 PM queda queda restablecido el servicio en el siguiente circuito: 👉S513(H343)(S515): Carretera San Miguel d"
+ },
+ "100760": {
+  "fecha": "2026-10-26T18:30:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343",
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🟢✔️Consumidores del municipio San Miguel del Padrón ,queda restablecido el servicio eléctrico afectado por TRABAJOS OPERATIVOS en el siguiente circuito: 👉S513(H"
+ },
+ "100747": {
+  "fecha": "2026-10-26T18:13:17+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "H343",
+   "S515"
+  ],
+  "solo_regex": [],
+  "extracto": "🔴⚡️Consumidores del municipio San Miguel del Padrón se afecta el servicio eléctrico por TRABAJOS OPERATIVOS en el siguiente circuito: 👉S513(H343)(S515): Carrete"
  }
 }

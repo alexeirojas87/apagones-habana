@@ -1,22 +1,4 @@
 {
- "97286": {
-  "fecha": "2026-10-19T20:49:14+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨⚡️Consumidores del municipio Plaza, se detectó una AVERÍA PRIMARIA afectando los siguientes circuitos: 👉P318:Alrededores de calles Placencia desde Sitios hasta"
- },
- "97281": {
-  "fecha": "2026-10-19T20:41:53+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "PZ24"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:39 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉Pz13:Zapata desde "
- },
  "97298": {
   "fecha": "2026-10-19T21:04:33+00:00",
   "tipo_llm": "restablecimiento",

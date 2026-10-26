@@ -1,13 +1,4 @@
 {
- "96857": {
-  "fecha": "2026-10-19T05:08:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [],
-  "solo_regex": [
-   "S512"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 1:07 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉MB920 : Alturas de Boca Ciega, Sa"
- },
  "96878": {
   "fecha": "2026-10-19T06:14:49+00:00",
   "tipo_llm": "afectacion",

@@ -1,13 +1,4 @@
 {
- "96956": {
-  "fecha": "2026-10-19T10:44:42+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "R464"
-  ],
-  "solo_regex": [],
-  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Habana del Este - Guanabacoa - Regla - San Miguel del Padrón - Cotorro 🚨Avería Primaria : ✔️"
- },
  "96990": {
   "fecha": "2026-10-19T12:57:08+00:00",
   "tipo_llm": "restablecimiento",
@@ -2924,5 +2915,25 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:03 AM se afectan 207 MW distribuidos en 91 circuitos de distribución. A continuación, "
+ },
+ "100599": {
+  "fecha": "2026-10-26T10:55:54+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos: 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alre"
+ },
+ "100596": {
+  "fecha": "2026-10-26T10:32:40+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:58 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desagüe d"
  }
 }

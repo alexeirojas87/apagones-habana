@@ -1,41 +1,4 @@
 {
- "97099": {
-  "fecha": "2026-10-19T15:57:30+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "AL53",
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:46 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 AL52: Zonas: 6"
- },
- "97098": {
-  "fecha": "2026-10-19T15:54:44+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC15"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:45 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC13:Mambí, Ga"
- },
- "97093": {
-  "fecha": "2026-10-19T15:49:13+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:42 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores"
- },
- "97090": {
-  "fecha": "2026-10-19T15:46:13+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:40 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG940:Repartos:"
- },
  "97114": {
   "fecha": "2026-10-19T16:20:07+00:00",
   "tipo_llm": "otro",

@@ -1,13 +1,4 @@
 {
- "96773": {
-  "fecha": "2026-10-19T00:46:49+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "130"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉130 entre 91 y 93.🛑⚡️"
- },
  "96809": {
   "fecha": "2026-10-19T02:21:40+00:00",
   "tipo_llm": "averia",
@@ -2847,5 +2838,41 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos D632 y D633✅"
+ },
+ "100469": {
+  "fecha": "2026-10-26T00:51:47+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2202"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Cerro, quedó restablecido el servicio en el siguiente circuito afectado por vía libre: 👉2202✅"
+ },
+ "100468": {
+  "fecha": "2026-10-26T00:50:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1242"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito en el 1242✅"
+ },
+ "100465": {
+  "fecha": "2026-10-26T00:46:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R465"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito R465✅"
+ },
+ "100460": {
+  "fecha": "2026-10-26T00:33:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1227"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico por trabajos operativos en el siguiente circuito: A1227✅"
  }
 }

@@ -1,22 +1,4 @@
 {
- "97077": {
-  "fecha": "2026-10-19T15:14:27+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
- },
- "97075": {
-  "fecha": "2026-10-19T15:07:00+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P319"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:54 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P318:Alrededores de calles Placenci"
- },
  "97099": {
   "fecha": "2026-10-19T15:57:30+00:00",
   "tipo_llm": "deficit",

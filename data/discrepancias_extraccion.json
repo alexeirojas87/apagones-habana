@@ -2913,5 +2913,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el siguiente circuito: A500✅"
+ },
+ "100540": {
+  "fecha": "2026-10-26T07:25:14+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:25 AM se afectan 174 MW distribuidos en 76 circuitos de distribución. A continuación, "
  }
 }

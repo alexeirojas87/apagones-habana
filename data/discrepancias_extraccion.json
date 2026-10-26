@@ -1,50 +1,4 @@
 {
- "97064": {
-  "fecha": "2026-10-19T14:58:32+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Boyeros , por DISPARO DEL CIRCUITO se encuentran afectados los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Al"
- },
- "97059": {
-  "fecha": "2026-10-19T14:46:05+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52",
-   "AL53"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando los circuitos: 👉AL52, AL53 🟢✅"
- },
- "97058": {
-  "fecha": "2026-10-19T14:40:23+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:32 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP408:Alrededores del cuadrante "
- },
- "97054": {
-  "fecha": "2026-10-19T14:36:51+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ2"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando el siguiente circuito: 👉Pz2, 🟢✅"
- },
- "97053": {
-  "fecha": "2026-10-19T14:36:48+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG940"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando el siguiente circuito 👉 PG940:Repartos: Comodoro, El Volpe, Rosario, Güinera, Ciudad Popular "
- },
  "97077": {
   "fecha": "2026-10-19T15:14:27+00:00",
   "tipo_llm": "afectacion",
@@ -62,24 +16,6 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 10:54 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P318:Alrededores de calles Placenci"
- },
- "97066": {
-  "fecha": "2026-10-19T15:01:45+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:37 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
- },
- "97065": {
-  "fecha": "2026-10-19T15:00:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P314"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:54 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉C14:Alrededores de calles Washingto"
  },
  "97099": {
   "fecha": "2026-10-19T15:57:30+00:00",

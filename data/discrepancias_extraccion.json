@@ -1,86 +1,4 @@
 {
- "97010": {
-  "fecha": "2026-10-19T13:29:48+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "M1603"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 09:17 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉M2044:Repartos:"
- },
- "97002": {
-  "fecha": "2026-10-19T13:07:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A708"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 09:00 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A800:Repartos M"
- },
- "97015": {
-  "fecha": "2026-10-19T13:42:13+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 09:39 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG313:Alrededor"
- },
- "97040": {
-  "fecha": "2026-10-19T14:26:50+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52",
-   "AL53"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando los circuitos: 👉AL 52, AL53 🟢✅"
- },
- "97039": {
-  "fecha": "2026-10-19T14:23:47+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL53"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨⭕️Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO DEL CIRCUITO en Alamar afectando los siguientes circuitos: 👉 AL52: Zonas: 6;"
- },
- "97036": {
-  "fecha": "2026-10-19T14:11:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C7"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando el siguiente circuito 👉C7:lrededores del cuadrante desde calles Fomento hasta Vía Banca, Prim"
- },
- "97032": {
-  "fecha": "2026-10-19T14:06:21+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Boyeros , por DISPARO DEL CIRCUITO se encuentran afectados los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Al"
- },
- "97027": {
-  "fecha": "2026-10-19T14:02:14+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Altura de Embil, Ampli"
- },
- "97026": {
-  "fecha": "2026-10-19T14:01:21+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Boyeros , por DISPARO DEL CIRCUITO se encuentran afectados los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Al"
- },
  "97064": {
   "fecha": "2026-10-19T14:58:32+00:00",
   "tipo_llm": "averia",
@@ -126,15 +44,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando el siguiente circuito 👉 PG940:Repartos: Comodoro, El Volpe, Rosario, Güinera, Ciudad Popular "
- },
- "97046": {
-  "fecha": "2026-10-19T14:32:45+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "AL53"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨⭕️Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO DEL CIRCUITO en Alamar afectando los siguientes circuitos: 👉 AL52: Zonas: 6;"
  },
  "97077": {
   "fecha": "2026-10-19T15:14:27+00:00",
@@ -2916,5 +2825,14 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 8:39 AM quedó restablecido el servicio en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde Infanta hasta"
+ },
+ "100645": {
+  "fecha": "2026-10-26T13:14:01+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 87 MW distribuidos en 187 circuitos de distribución. A continuación, "
  }
 }

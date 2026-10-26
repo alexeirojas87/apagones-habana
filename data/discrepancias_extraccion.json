@@ -1,22 +1,4 @@
 {
- "97360": {
-  "fecha": "2026-10-19T22:57:57+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1695"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️🚨Consumidores del municipio Arroyo Naranjo, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉Calle 6ta y Camilo Cienfuego"
- },
- "97359": {
-  "fecha": "2026-10-19T22:50:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P318"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢🚧Consumidores del municipio Centro Habana queda reparada la AVERÍA por PRIMARIO PARTIDO que afectaba el siguiente circuito : P318: 👉Calle :Oquendo / Carlos III"
- },
  "97364": {
   "fecha": "2026-10-19T23:04:07+00:00",
   "tipo_llm": "averia",
@@ -2455,5 +2437,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 4:05 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327, P324): "
+ },
+ "100880": {
+  "fecha": "2026-10-26T22:48:20+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico a los clientes por Disparo Automático por Frecuencia (DAF) perteneciente al siguiente circuito: 👉1243📉✅"
  }
 }

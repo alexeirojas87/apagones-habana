@@ -2575,5 +2575,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔴⚡️Consumidores del municipio San Miguel del Padrón se afecta el servicio eléctrico por TRABAJOS OPERATIVOS en el siguiente circuito: 👉S513(H343)(S515): Carrete"
+ },
+ "100767": {
+  "fecha": "2026-10-26T18:38:57+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1009",
+   "H443"
+  ],
+  "solo_regex": [],
+  "extracto": "✏️Averías existentes hasta el momento en los siguientes municipios: Guanabacoa - San Miguel del Padrón - Cotorro - Habana del Este 🚨Avería Primaria ✔️Municipio "
  }
 }

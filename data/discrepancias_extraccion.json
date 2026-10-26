@@ -2935,5 +2935,15 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:58 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desagüe d"
+ },
+ "100601": {
+  "fecha": "2026-10-26T11:10:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ1",
+   "PZ14"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Consumidores del municipio Plaza, queda normalizado el esquema del PZ14 que había sido transferido al circuito PZ1📣✅"
  }
 }

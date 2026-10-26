@@ -1,36 +1,4 @@
 {
- "97114": {
-  "fecha": "2026-10-19T16:20:07+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio Boyeros pertenecientes al circuito A820 que se encuentra transferida temporalmente parte de la carga al circuito "
- },
- "97112": {
-  "fecha": "2026-10-19T16:18:48+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando el siguiente circuito: 👉A820:Repartos 250, Miraflores Viejo, Embil, Altura de Embil, Capdevil"
- },
- "97104": {
-  "fecha": "2026-10-19T16:02:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL56",
-   "R451",
-   "R453",
-   "R454",
-   "R456"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes que se afectaban por Disparo Automático por Frecuencia (DAF).✅ 👉 R451,R454,R453,R456,AL56 🟢"
- },
  "97144": {
   "fecha": "2026-10-19T16:54:47+00:00",
   "tipo_llm": "restablecimiento",
@@ -2715,5 +2683,32 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 87 MW distribuidos en 187 circuitos de distribución. A continuación, "
+ },
+ "100704": {
+  "fecha": "2026-10-26T16:27:44+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 83 MW distribuidos en 192 circuitos de distribución. A continuación, "
+ },
+ "100700": {
+  "fecha": "2026-10-26T16:08:28+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "306"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉306 / 17 y 19 .🛑⚡️"
+ },
+ "100693": {
+  "fecha": "2026-10-26T16:02:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "L323"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico a los clientes por Disparo Automático por Frecuencia (DAF) perteneciente a los siguientes circuitos: 👉L322; L323📉✅"
  }
 }

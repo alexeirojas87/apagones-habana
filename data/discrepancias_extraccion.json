@@ -1,13 +1,4 @@
 {
- "97873": {
-  "fecha": "2026-10-20T19:42:55+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:06 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG313:Alrededor"
- },
  "97896": {
   "fecha": "2026-10-20T20:45:11+00:00",
   "tipo_llm": "afectacion",

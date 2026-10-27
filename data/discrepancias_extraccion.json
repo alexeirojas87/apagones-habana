@@ -1,13 +1,4 @@
 {
- "97444": {
-  "fecha": "2026-10-20T02:40:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P319"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢🚧Consumidores del municipio Centro Habana queda reparda y restablecida la AVERÍA POR PUENTE PRIMARIO PARTIDO que afectaba el siguiente circuito : P319: 👉Calle "
- },
  "97453": {
   "fecha": "2026-10-20T03:21:12+00:00",
   "tipo_llm": "restablecimiento",

@@ -2286,5 +2286,42 @@
   ],
   "solo_regex": [],
   "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB930,MB960 ✅"
+ },
+ "101058": {
+  "fecha": "2026-10-27T12:25:47+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 08:25 am se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 318, OP320, "
+ },
+ "101056": {
+  "fecha": "2026-10-27T12:11:27+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos: 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alre"
+ },
+ "101052": {
+  "fecha": "2026-10-27T12:04:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 08:04 AM quedó restablecido el servicio en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde Infanta hast"
  }
 }

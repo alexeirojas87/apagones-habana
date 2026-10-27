@@ -1,25 +1,4 @@
 {
- "97855": {
-  "fecha": "2026-10-20T18:56:13+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que que a partir de las 02:30 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desag"
- },
- "97852": {
-  "fecha": "2026-10-20T18:47:44+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:24 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
- },
  "97873": {
   "fecha": "2026-10-20T19:42:55+00:00",
   "tipo_llm": "afectacion",
@@ -2375,5 +2354,39 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:05 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327, P324):"
+ },
+ "101231": {
+  "fecha": "2026-10-27T18:48:13+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL53",
+   "GC13",
+   "GC17",
+   "H442",
+   "MB960"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los siguientes circuitos a continuación: 👉GC17, GC13,AL53,H442 Y MB960 ✅ 📌Usted puede, aún siendo cliente de estos circui"
+ },
+ "101230": {
+  "fecha": "2026-10-27T18:44:22+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2205",
+   "2210",
+   "A1009",
+   "A815",
+   "A940",
+   "A980",
+   "D634",
+   "PG920",
+   "PG940",
+   "PG970",
+   "SG312",
+   "SG314",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que se encuentra restablecido el servicio eléctrico en los siguientes circuitos: 👉D631,2210,A815,A940,A980,D634,SG312,SG314,SG316,PG"
  }
 }

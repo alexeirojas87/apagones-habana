@@ -1,13 +1,4 @@
 {
- "97808": {
-  "fecha": "2026-10-20T17:07:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG314"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📈Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉SG312:Alrededores de calles: Calle 206 desd"
- },
  "97840": {
   "fecha": "2026-10-20T18:27:09+00:00",
   "tipo_llm": "afectacion",

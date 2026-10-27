@@ -2314,5 +2314,14 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 08:04 AM quedó restablecido el servicio en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde Infanta hast"
+ },
+ "101070": {
+  "fecha": "2026-10-27T13:15:15+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H443"
+  ],
+  "solo_regex": [],
+  "extracto": "📣‼️Informamos a los Clientes pertenecientes al circuito H443 del Municipio San Miguel del Padrón, se encuentran afectados por Avería 📣‼️"
  }
 }

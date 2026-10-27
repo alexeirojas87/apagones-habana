@@ -1,22 +1,4 @@
 {
- "97714": {
-  "fecha": "2026-10-20T14:56:23+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L326"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Marianao, queda restablecido el servicio eléctrico en el siguiente cuadrante perteneciente al circuito L326: 👉Reparto Ciudad Liber"
- },
- "97712": {
-  "fecha": "2026-10-20T14:42:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Habana Vieja, queda restablecido el servicio eléctrico en el siguiente cuadrante perteneciente al circuito A980: 👉Alrededores de c"
- },
  "97725": {
   "fecha": "2026-10-20T15:21:52+00:00",
   "tipo_llm": "afectacion",
@@ -2347,5 +2329,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 9:59 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2203:Alrededores"
+ },
+ "101105": {
+  "fecha": "2026-10-27T14:42:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:17 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A820:Repartos 2"
+ },
+ "101106": {
+  "fecha": "2026-10-27T14:42:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:17 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores"
  }
 }

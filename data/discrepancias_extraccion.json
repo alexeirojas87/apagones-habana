@@ -1,13 +1,4 @@
 {
- "97932": {
-  "fecha": "2026-10-20T22:32:59+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1535"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 6:31 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A1443: Repartos "
- },
  "97947": {
   "fecha": "2026-10-20T23:28:17+00:00",
   "tipo_llm": "restablecimiento",

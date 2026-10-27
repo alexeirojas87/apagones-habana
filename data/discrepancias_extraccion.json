@@ -1,13 +1,4 @@
 {
- "97396": {
-  "fecha": "2026-10-20T00:21:48+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D1125"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Habana del Este, se localizó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afecta el servicio en la siguiente dirección: 👉 Av"
- },
  "97420": {
   "fecha": "2026-10-20T01:29:32+00:00",
   "tipo_llm": "restablecimiento",

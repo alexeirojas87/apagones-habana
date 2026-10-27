@@ -2388,5 +2388,31 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que se encuentra restablecido el servicio eléctrico en los siguientes circuitos: 👉D631,2210,A815,A940,A980,D634,SG312,SG314,SG316,PG"
+ },
+ "101246": {
+  "fecha": "2026-10-27T19:15:43+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1006",
+   "A1007",
+   "A1008",
+   "A1009",
+   "A465",
+   "D631",
+   "D632",
+   "D633",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "📉🚨Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO."
+ },
+ "101245": {
+  "fecha": "2026-10-27T19:08:56+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A800"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 3:00 PM se restableció el servicio eléctrico en los siguientes circuitos: 👉 A708:Reparto Abel Santamaría 👉A800:R"
  }
 }

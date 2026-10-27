@@ -1,22 +1,4 @@
 {
- "97453": {
-  "fecha": "2026-10-20T03:21:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Restablecido el Disparo del Circuito que se encontraba afectando los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Altura de Embil,Capdev"
- },
- "97452": {
-  "fecha": "2026-10-20T03:20:00+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Boyeros , por DISPARO DEL CIRCUITO se encuentran afectados los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Al"
- },
  "97490": {
   "fecha": "2026-10-20T04:45:54+00:00",
   "tipo_llm": "restablecimiento",

@@ -2314,5 +2314,38 @@
   ],
   "solo_regex": [],
   "extracto": "📣‼️Informamos a los Clientes pertenecientes al circuito H443 del Municipio San Miguel del Padrón, se encuentran afectados por Avería 📣‼️"
+ },
+ "101103": {
+  "fecha": "2026-10-27T14:24:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a la población que a partir de las 10:24 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP320, OP424, OP304, OP41"
+ },
+ "101100": {
+  "fecha": "2026-10-27T14:19:46+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:19 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC12:Centro de "
+ },
+ "101093": {
+  "fecha": "2026-10-27T14:03:31+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 9:59 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2203:Alrededores"
  }
 }

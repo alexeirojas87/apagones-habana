@@ -1,41 +1,4 @@
 {
- "97519": {
-  "fecha": "2026-10-20T06:19:07+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL56"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF). en el siguiente circuito: 👉AL56 ✅"
- },
- "97518": {
-  "fecha": "2026-10-20T06:17:36+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1248"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 02:10 am queda restablecido el servicio eléctrico en los siguientes circuitos: 👉Pz15: 35 desde 4 hasta 6, 6 desd"
- },
- "97517": {
-  "fecha": "2026-10-20T06:14:15+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ4",
-   "PZ9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:06 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉PZ1:Cuadrantes call"
- },
- "97516": {
-  "fecha": "2026-10-20T06:09:59+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C13"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 02:06 am queda restablecido el servicio eléctrico en los siguientes circuitos: 👉 C10: Alrededores del cuadrante "
- },
  "97543": {
   "fecha": "2026-10-20T07:58:31+00:00",
   "tipo_llm": "afectacion",

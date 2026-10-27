@@ -1,24 +1,4 @@
 {
- "97490": {
-  "fecha": "2026-10-20T04:45:54+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "R451",
-   "R454",
-   "R456"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF). 👉R451,R454,R456 ✅"
- },
- "97489": {
-  "fecha": "2026-10-20T04:45:18+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P329"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 11:44 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉P326: Alrededores de calles Cast"
- },
  "97519": {
   "fecha": "2026-10-20T06:19:07+00:00",
   "tipo_llm": "restablecimiento",

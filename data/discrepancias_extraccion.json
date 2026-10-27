@@ -2356,5 +2356,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚠️Consumidores del municipio Cotorro se autoriza VÍA LIBRE por EMERGENCIA para reparar Puente Primario Partido afectando el circuito: 👉 A1042:Alturas de Loterí"
+ },
+ "101135": {
+  "fecha": "2026-10-27T16:00:17+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1245"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 1245✅"
  }
 }

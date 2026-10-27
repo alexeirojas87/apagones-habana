@@ -1,14 +1,4 @@
 {
- "97840": {
-  "fecha": "2026-10-20T18:27:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:24 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 CPP17: Alreded"
- },
  "97855": {
   "fecha": "2026-10-20T18:56:13+00:00",
   "tipo_llm": "afectacion",
@@ -2357,5 +2347,33 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉MB930:Mirador de Marbella"
+ },
+ "101214": {
+  "fecha": "2026-10-27T18:09:37+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:05 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 318, OP320, "
+ },
+ "101213": {
+  "fecha": "2026-10-27T18:08:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:05 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327, P324):"
  }
 }

@@ -1,13 +1,4 @@
 {
- "97420": {
-  "fecha": "2026-10-20T01:29:32+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P318"
-  ],
-  "solo_regex": [],
-  "extracto": "✅🟢Queda Restablecida la VIA LIBRE en el municipio Centro Habana que afectaba el servicio eléctrico en el siguiente circuito: P318.✅🟢"
- },
  "97444": {
   "fecha": "2026-10-20T02:40:33+00:00",
   "tipo_llm": "restablecimiento",

@@ -1,13 +1,4 @@
 {
- "97947": {
-  "fecha": "2026-10-20T23:28:17+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L316"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF). en el siguiente circuito: 👉L316: Alrededores de calle "
- },
  "98005": {
   "fecha": "2026-10-21T01:30:49+00:00",
   "tipo_llm": "restablecimiento",

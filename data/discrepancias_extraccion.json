@@ -1,13 +1,4 @@
 {
- "97655": {
-  "fecha": "2026-10-20T12:40:07+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "H443"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Reiteramos a los cliente pertenecientes al circuito H443 que se encuentra afectado por déficit de generación desde la 01:16 AM.📣🚨"
- },
  "97674": {
   "fecha": "2026-10-20T13:34:34+00:00",
   "tipo_llm": "restablecimiento",

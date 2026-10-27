@@ -1,13 +1,4 @@
 {
- "97794": {
-  "fecha": "2026-10-20T16:51:50+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "SG314"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉SG312:Alrededores de call"
- },
  "97808": {
   "fecha": "2026-10-20T17:07:56+00:00",
   "tipo_llm": "restablecimiento",
@@ -16,15 +7,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅📈Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉SG312:Alrededores de calles: Calle 206 desd"
- },
- "97802": {
-  "fecha": "2026-10-20T17:01:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L316"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF). en el siguiente circuito: 👉L316: Alrededores de calle "
  },
  "97840": {
   "fecha": "2026-10-20T18:27:09+00:00",

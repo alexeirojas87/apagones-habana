@@ -2277,5 +2277,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: PG940 y A815"
+ },
+ "101047": {
+  "fecha": "2026-10-27T11:49:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB960"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB930,MB960 ✅"
  }
 }

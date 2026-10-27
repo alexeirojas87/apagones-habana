@@ -1,22 +1,4 @@
 {
- "97725": {
-  "fecha": "2026-10-20T15:21:52+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "M1603"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:20 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉M2044: Repartos"
- },
- "97721": {
-  "fecha": "2026-10-20T15:16:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A708"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:54 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A800:Repartos M"
- },
  "97760": {
   "fecha": "2026-10-20T16:05:48+00:00",
   "tipo_llm": "afectacion",
@@ -2347,5 +2329,32 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:17 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores"
+ },
+ "101111": {
+  "fecha": "2026-10-27T15:12:36+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los consumidores afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Emb"
+ },
+ "101110": {
+  "fecha": "2026-10-27T15:10:32+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Boyeros , por DISPARO DEL CIRCUITO se encuentran afectados los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Al"
+ },
+ "101108": {
+  "fecha": "2026-10-27T15:02:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1042"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚠️Consumidores del municipio Cotorro se autoriza VÍA LIBRE por EMERGENCIA para reparar Puente Primario Partido afectando el circuito: 👉 A1042:Alturas de Loterí"
  }
 }

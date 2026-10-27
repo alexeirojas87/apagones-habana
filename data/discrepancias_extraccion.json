@@ -1,13 +1,4 @@
 {
- "97549": {
-  "fecha": "2026-10-20T08:05:14+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "MB910"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en la siguiente dirección: 👉MB910:Justi, Agromar, Bajurayabo, Ca"
- },
  "97581": {
   "fecha": "2026-10-20T09:58:09+00:00",
   "tipo_llm": "afectacion",

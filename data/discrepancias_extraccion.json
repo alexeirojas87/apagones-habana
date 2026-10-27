@@ -1,13 +1,4 @@
 {
- "97543": {
-  "fecha": "2026-10-20T07:58:31+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:21 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318: Alrededor"
- },
  "97549": {
   "fecha": "2026-10-20T08:05:14+00:00",
   "tipo_llm": "averia",
@@ -2337,5 +2328,14 @@
   ],
   "solo_regex": [],
   "extracto": "🟢☑️Consumidores del municipio Marianao, queda reparada la AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 142 / 29 y 31 🟢☑️"
+ },
+ "100973": {
+  "fecha": "2026-10-27T07:34:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [],
+  "solo_regex": [
+   "MB910"
+  ],
+  "extracto": "✅📣Informamos a la población que quedó restablecido el servicio en los siguientes circuitos: 👉MB910(D1055): Justi, Agromar, Bajurayabo, Campo Florido, La Coca. L"
  }
 }

@@ -1,22 +1,4 @@
 {
- "97760": {
-  "fecha": "2026-10-20T16:05:48+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
- },
- "97756": {
-  "fecha": "2026-10-20T16:03:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣 Informamos a la población que a partir de las 11:56 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG940: Reparto"
- },
  "97794": {
   "fecha": "2026-10-20T16:51:50+00:00",
   "tipo_llm": "daf",
@@ -2365,5 +2347,42 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 1245✅"
+ },
+ "101149": {
+  "fecha": "2026-10-27T16:06:04+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 11:59 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores"
+ },
+ "101148": {
+  "fecha": "2026-10-27T16:06:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "H446"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 11:59 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉H341:Alrededore"
+ },
+ "101145": {
+  "fecha": "2026-10-27T16:06:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL53",
+   "MB960"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB930,MB960,AL53 ✅"
+ },
+ "101143": {
+  "fecha": "2026-10-27T16:06:02+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "AL53"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉MB930:Mirador de Marbella"
  }
 }

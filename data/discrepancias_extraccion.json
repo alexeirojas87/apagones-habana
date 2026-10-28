@@ -1,16 +1,4 @@
 {
- "98346": {
-  "fecha": "2026-10-21T18:27:53+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P325",
-   "P326"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que que a partir de las 02:26 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desag"
- },
  "98371": {
   "fecha": "2026-10-21T19:15:27+00:00",
   "tipo_llm": "deficit",

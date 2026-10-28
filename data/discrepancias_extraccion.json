@@ -1,23 +1,4 @@
 {
- "98076": {
-  "fecha": "2026-10-21T05:20:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de la 1:20 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉PG940: Repartos: Comodoro, El Volp"
- },
- "98075": {
-  "fecha": "2026-10-21T05:17:33+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A490",
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 327 MW distribuidos en 126 circuitos de distribución. A continuación,"
- },
  "98093": {
   "fecha": "2026-10-21T07:26:21+00:00",
   "tipo_llm": "afectacion",
@@ -2321,5 +2302,18 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:19 PM se afectan 307 MW distribuidos en 116 circuitos de distribución. A continuación,"
+ },
+ "101350": {
+  "fecha": "2026-10-28T05:30:24+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 01:30 AM quedó restablecido el servicio en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde Infanta hast"
  }
 }

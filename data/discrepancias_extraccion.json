@@ -1,14 +1,4 @@
 {
- "98109": {
-  "fecha": "2026-10-21T08:56:54+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 04:56 AM queda restablecido el servicio en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águila hasta "
- },
  "98133": {
   "fecha": "2026-10-21T10:48:39+00:00",
   "tipo_llm": "afectacion",

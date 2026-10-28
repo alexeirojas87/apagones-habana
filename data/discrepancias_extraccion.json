@@ -1,13 +1,4 @@
 {
- "98059": {
-  "fecha": "2026-10-21T04:11:15+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
- },
  "98076": {
   "fecha": "2026-10-21T05:20:40+00:00",
   "tipo_llm": "restablecimiento",
@@ -2321,5 +2312,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣‼️Consumidores del municipio Habana del Este se encuentran afectados por una Avería Poste Quemado afectando el siguiente circuito: 👉MB960: Repartos La Conchita"
+ },
+ "101345": {
+  "fecha": "2026-10-28T04:19:20+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:19 PM se afectan 307 MW distribuidos en 116 circuitos de distribución. A continuación,"
  }
 }

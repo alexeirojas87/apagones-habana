@@ -1,14 +1,4 @@
 {
- "98311": {
-  "fecha": "2026-10-21T17:08:42+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR820",
-   "SR860"
-  ],
-  "solo_regex": [],
-  "extracto": "‼️Consumidores del municipio Cotorro, por disparo de circuito se afecta el servicio eléctrico en: SR820/SR860: Reparto Alturas de Lotería./Repartos Dulce Nombre"
- },
  "98335": {
   "fecha": "2026-10-21T17:57:15+00:00",
   "tipo_llm": "restablecimiento",

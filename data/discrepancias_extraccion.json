@@ -1,22 +1,4 @@
 {
- "98411": {
-  "fecha": "2026-10-21T20:27:58+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Informamos a los consumidores del municipio 10 de Octubre pertenecientes al circuito A980 que se afecta por Vía Libre para reparar primario en las siguientes d"
- },
- "98406": {
-  "fecha": "2026-10-21T20:20:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A960"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito A960✅"
- },
  "98419": {
   "fecha": "2026-10-21T20:49:04+00:00",
   "tipo_llm": "restablecimiento",

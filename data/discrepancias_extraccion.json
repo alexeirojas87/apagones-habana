@@ -2293,5 +2293,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en el siguiente circuito: 👉GC 16:Soterrado Panamericano"
+ },
+ "101391": {
+  "fecha": "2026-10-28T09:20:13+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1244",
+   "1247"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1243, se ha transferido temporalmente una parte de la carga a los circuitos 1247 y 12"
  }
 }

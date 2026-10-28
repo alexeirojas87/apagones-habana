@@ -1,22 +1,4 @@
 {
- "98230": {
-  "fecha": "2026-10-21T14:44:51+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG313"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito SG313✅"
- },
- "98225": {
-  "fecha": "2026-10-21T14:39:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H343"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:37 am queda restablecido el servicio eléctrico en los siguientes circuitos: 👉S513 (H343): Carretera San Migue"
- },
  "98268": {
   "fecha": "2026-10-21T15:45:26+00:00",
   "tipo_llm": "restablecimiento",
@@ -2298,5 +2280,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio 10 de Octubre pertenecientes al circuito D634, que se ha transferido temporalmente una parte de la carga al circuito H"
+ },
+ "101439": {
+  "fecha": "2026-10-28T12:31:12+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1243, se ha transferido temporalmente una parte de la carga a los circuitos 1247 y 12"
  }
 }

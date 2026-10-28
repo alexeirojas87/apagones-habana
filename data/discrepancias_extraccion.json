@@ -1,13 +1,4 @@
 {
- "98205": {
-  "fecha": "2026-10-21T13:52:49+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "MB960"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Consumidores del municipio Habana del Este, se autoriza vía libre de emergencia para poda, quedando afectado parte del circuito MB960: 👉Profilactorio, parte de"
- },
  "98218": {
   "fecha": "2026-10-21T14:24:15+00:00",
   "tipo_llm": "restablecimiento",

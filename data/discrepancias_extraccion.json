@@ -1,13 +1,4 @@
 {
- "98133": {
-  "fecha": "2026-10-21T10:48:39+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 6:47 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2210: Alrededore"
- },
  "98148": {
   "fecha": "2026-10-21T11:58:40+00:00",
   "tipo_llm": "restablecimiento",
@@ -2284,5 +2275,20 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1243, se ha transferido temporalmente una parte de la carga a los circuitos 1247 y 12"
+ },
+ "101419": {
+  "fecha": "2026-10-28T10:32:10+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:25 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 318, OP320, "
  }
 }

@@ -1,23 +1,4 @@
 {
- "98005": {
-  "fecha": "2026-10-21T01:30:49+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A708"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 9:27 PM quedó restablecido el servicio en los siguientes circuitos: 👉A940:Reparto Fontanar 👉A800:Repartos Mazorr"
- },
- "98002": {
-  "fecha": "2026-10-21T01:26:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425",
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 331 MW distribuidos en 125 circuitos de distribución. A continuación,"
- },
  "98022": {
   "fecha": "2026-10-21T02:20:33+00:00",
   "tipo_llm": "daf",
@@ -71,15 +52,6 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de la 1:20 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉PG940: Repartos: Comodoro, El Volp"
- },
- "97999": {
-  "fecha": "2026-10-21T01:08:33+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
  },
  "98075": {
   "fecha": "2026-10-21T05:17:33+00:00",

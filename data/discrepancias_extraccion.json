@@ -8,15 +8,6 @@
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 6:47 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2210: Alrededore"
  },
- "98122": {
-  "fecha": "2026-10-21T10:06:15+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se encuentra"
- },
  "98148": {
   "fecha": "2026-10-21T11:58:40+00:00",
   "tipo_llm": "restablecimiento",
@@ -86,16 +77,6 @@
   ],
   "solo_regex": [],
   "extracto": "📣✅Informamos a la población que a partir de las 10:37 am queda restablecido el servicio eléctrico en los siguientes circuitos: 👉S513 (H343): Carretera San Migue"
- },
- "98123": {
-  "fecha": "2026-10-21T10:23:53+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 265 MW distribuidos en 114 circuitos de distribución. A continuación,"
  },
  "98268": {
   "fecha": "2026-10-21T15:45:26+00:00",

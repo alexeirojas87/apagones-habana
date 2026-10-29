@@ -1,53 +1,4 @@
 {
- "98675": {
-  "fecha": "2026-10-22T12:00:35+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "SR820"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido "
- },
- "98671": {
-  "fecha": "2026-10-22T11:48:46+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1470",
-   "D1100"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1470, que se ha transferido temporalmente la carga al circuito D1100 los si"
- },
- "98670": {
-  "fecha": "2026-10-22T11:47:31+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1470",
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1470, que se ha transferido temporalmente la carga al circuito PG970 los si"
- },
- "98669": {
-  "fecha": "2026-10-22T11:45:57+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Boyeros pertenecientes al circuito D836 , que se ha transferido temporalmente la carga al circuito A820 la zona de: 👉 "
- },
- "98668": {
-  "fecha": "2026-10-22T11:44:20+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "2204",
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Boyeros pertenecientes al circuito A820, que por condiciones en la Subestación se ha transferido temporalmente parte d"
- },
  "98687": {
   "fecha": "2026-10-22T12:26:20+00:00",
   "tipo_llm": "otro",
@@ -114,16 +65,6 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Recordamos a los clientes del municipio Marianao pertenecientes al circuito A500, que se ha transferido temporalmente la carga al circuito A1222 la zona de: 👉"
- },
- "98676": {
-  "fecha": "2026-10-22T12:01:25+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "D1055",
-   "MB910"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito D1055, que se ha transferido temporalmente la carga al circuito MB910 de los sig"
  },
  "98707": {
   "fecha": "2026-10-22T12:45:09+00:00",
@@ -2038,5 +1979,20 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 372 MW distribuidos en 175 circuitos de distribución. A continuación,"
+ },
+ "101833": {
+  "fecha": "2026-10-29T12:01:20+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP406",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a la población que a partir de las 08:00 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP320, OP424, OP304, OP41"
  }
 }

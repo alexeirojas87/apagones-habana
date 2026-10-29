@@ -2120,5 +2120,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa, pertenecientes al circuito L317 que se ha transferido temporalmente la carga para el circuito L322, debido a un"
+ },
+ "102191": {
+  "fecha": "2026-10-29T23:20:39+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2202",
+   "C13"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔✅Informamos a los clientes del municipio Cerro pertenecientes al circuito 2202, que se ha normalizado el esquema por ende ya no se encuentran transferidos al c"
  }
 }

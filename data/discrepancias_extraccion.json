@@ -1,14 +1,4 @@
 {
- "98964": {
-  "fecha": "2026-10-22T21:12:34+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ10",
-   "PZ13"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio Plaza, que se normaliza el esquema de los circuitos PZ10 y PZ13, debido al traspaso del Hospital Fa"
- },
  "98973": {
   "fecha": "2026-10-22T21:59:57+00:00",
   "tipo_llm": "afectacion",
@@ -2094,5 +2084,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉MB930"
+ },
+ "102155": {
+  "fecha": "2026-10-29T21:27:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1247"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Informamos que a partir de las 5:26PM quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el sigu"
+ },
+ "102138": {
+  "fecha": "2026-10-29T21:14:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB960"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉AL53,"
  }
 }

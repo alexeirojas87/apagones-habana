@@ -1,15 +1,4 @@
 {
- "98756": {
-  "fecha": "2026-10-22T14:03:57+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que quedó restablecido el servicio en los siguientes circuitos: 👉P327 :Desagüe desde Infanta hasta Ayestarán, Ayestarán desde Carlos"
- },
  "98773": {
   "fecha": "2026-10-22T14:33:34+00:00",
   "tipo_llm": "otro",

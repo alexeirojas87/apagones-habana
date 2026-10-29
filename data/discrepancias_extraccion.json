@@ -1915,5 +1915,36 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito 1244✅"
+ },
+ "101918": {
+  "fecha": "2026-10-29T15:45:27+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP320",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de la 11:44 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 318, OP320, O"
+ },
+ "101917": {
+  "fecha": "2026-10-29T15:44:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC17"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el GC17✅"
+ },
+ "101916": {
+  "fecha": "2026-10-29T15:42:47+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2075"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el 2075✅"
  }
 }

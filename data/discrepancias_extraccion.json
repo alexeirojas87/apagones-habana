@@ -1908,5 +1908,24 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio 10 de Octubre, se localiza avería secundaria por transformador dañado en calle 14 entre Dolores y Tejar, Lawton🚨"
+ },
+ "101875": {
+  "fecha": "2026-10-29T13:55:28+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "SR820",
+   "SR860"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Cotorro pertenecientes al circuito SR820 que se encuentra transferida temporalmente la carga al circuito SR860. 📌Una v"
+ },
+ "101869": {
+  "fecha": "2026-10-29T13:37:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SF584"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico por trabajos operativos en el circuito SF584✅"
  }
 }

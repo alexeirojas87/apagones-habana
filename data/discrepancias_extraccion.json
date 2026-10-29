@@ -1,15 +1,4 @@
 {
- "98913": {
-  "fecha": "2026-10-22T19:31:02+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1380",
-   "A425",
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 PM se afectan 199 MW distribuidos en 83 circuitos de distribución. A continuación, "
- },
  "98943": {
   "fecha": "2026-10-22T20:41:19+00:00",
   "tipo_llm": "deficit",
@@ -2019,5 +2008,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el circuito 1244✅"
+ },
+ "102058": {
+  "fecha": "2026-10-29T19:26:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1006",
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A1006 y A1007✅"
+ },
+ "102048": {
+  "fecha": "2026-10-29T19:13:03+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:13 PM se afectan 295 MW distribuidos en 131 circuitos de distribución. A continuación,"
  }
 }

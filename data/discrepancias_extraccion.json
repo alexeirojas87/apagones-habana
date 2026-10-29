@@ -1,25 +1,4 @@
 {
- "98579": {
-  "fecha": "2026-10-22T05:51:24+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [],
-  "solo_regex": [
-   "S513"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de la 1:49 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉S513 (H343): Carrete"
- },
- "98585": {
-  "fecha": "2026-10-22T06:00:45+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P325",
-   "P326"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que que a partir de las 02:00 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desag"
- },
  "98610": {
   "fecha": "2026-10-22T07:28:38+00:00",
   "tipo_llm": "afectacion",

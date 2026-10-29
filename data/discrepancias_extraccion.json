@@ -1,29 +1,4 @@
 {
- "98527": {
-  "fecha": "2026-10-22T02:45:53+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 10:44 PM queda restablecido el servicio en el siguiente circuito: 👉 P325 (P327): Alrededores de calles Infanta, "
- },
- "98526": {
-  "fecha": "2026-10-22T02:44:34+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG312",
-   "SG313",
-   "SG314",
-   "SG315",
-   "SG316"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos SG312, SG313, SG314, SG315 y SG316✅"
- },
  "98552": {
   "fecha": "2026-10-22T03:54:09+00:00",
   "tipo_llm": "restablecimiento",
@@ -2107,5 +2082,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:20 PM se afectan 395 MW distribuidos en 162 circuitos de distribución. A continuación,"
+ },
+ "101771": {
+  "fecha": "2026-10-29T02:45:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1244"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔✅Informamos a los clientes del municipio Playa pertenecientes al circuito 1243, que se ha normalizado el esquema del cuadrante que fue transferido al 1244: 👉12"
  }
 }

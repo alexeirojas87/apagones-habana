@@ -1,15 +1,4 @@
 {
- "98731": {
-  "fecha": "2026-10-22T13:26:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 9:16 AM queda restablecido el servicio en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ayestarán, A"
- },
  "98756": {
   "fecha": "2026-10-22T14:03:57+00:00",
   "tipo_llm": "restablecimiento",

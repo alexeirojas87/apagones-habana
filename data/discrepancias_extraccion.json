@@ -1,13 +1,4 @@
 {
- "98973": {
-  "fecha": "2026-10-22T21:59:57+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 05:48 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG313:Alrededor"
- },
  "99110": {
   "fecha": "2026-10-23T06:37:47+00:00",
   "tipo_llm": "restablecimiento",
@@ -2102,5 +2093,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉AL53,"
+ },
+ "102167": {
+  "fecha": "2026-10-29T21:52:20+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1550"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico del circuito en el A1550✅"
  }
 }

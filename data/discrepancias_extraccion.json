@@ -1,17 +1,4 @@
 {
- "98943": {
-  "fecha": "2026-10-22T20:41:19+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:41 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325(P327/P324):"
- },
  "98964": {
   "fecha": "2026-10-22T21:12:34+00:00",
   "tipo_llm": "restablecimiento",
@@ -2080,5 +2067,32 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el D640✅"
+ },
+ "102121": {
+  "fecha": "2026-10-29T20:55:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP310"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉OP307"
+ },
+ "102117": {
+  "fecha": "2026-10-29T20:52:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP325"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉OP321"
+ },
+ "102110": {
+  "fecha": "2026-10-29T20:44:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB960"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉MB930"
  }
 }

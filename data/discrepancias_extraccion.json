@@ -1,16 +1,4 @@
 {
- "98554": {
-  "fecha": "2026-10-22T04:14:35+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG312",
-   "SG313",
-   "SG314",
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG312, SG313, SG314 y SG315✅"
- },
  "98579": {
   "fecha": "2026-10-22T05:51:24+00:00",
   "tipo_llm": "deficit",
@@ -2082,5 +2070,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔✅Informamos a los clientes del municipio Playa pertenecientes al circuito 1243, que se ha normalizado el esquema del cuadrante que fue transferido al 1244: 👉12"
+ },
+ "101785": {
+  "fecha": "2026-10-29T04:20:33+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:15 AM se afectan 434 MW distribuidos en 183 circuitos de distribución. A continuación,"
  }
 }

@@ -1,43 +1,4 @@
 {
- "98707": {
-  "fecha": "2026-10-22T12:45:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "MR450",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio San Miguel del Padrón pertenecientes al circuito S515 que se encuentra transferida temporalmente parte de la carg"
- },
- "98706": {
-  "fecha": "2026-10-22T12:43:27+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "S513",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio San Miguel del Padrón pertenecientes al circuito S515 que se encuentra transferida temporalmente parte de la carg"
- },
- "98705": {
-  "fecha": "2026-10-22T12:40:42+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H343",
-   "MR450"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio San Miguel del Padrón pertenecientes al circuito MR450 que se encuentra transferida temporalmente parte de la car"
- },
- "98704": {
-  "fecha": "2026-10-22T12:36:09+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "H343"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio San Miguel del Padrón pertenecientes al circuito H343 que se encuentra transferida temporalmente parte de la carg"
- },
  "98731": {
   "fecha": "2026-10-22T13:26:15+00:00",
   "tipo_llm": "restablecimiento",
@@ -1927,5 +1888,36 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a la población que a partir de las 08:00 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP320, OP424, OP304, OP41"
+ },
+ "101856": {
+  "fecha": "2026-10-29T13:01:23+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:01 AM se afectan 287 MW distribuidos en 135 circuitos de distribución. A continuación, "
+ },
+ "101853": {
+  "fecha": "2026-10-29T12:55:23+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 8:55 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde Inf"
+ },
+ "101840": {
+  "fecha": "2026-10-29T12:32:02+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1009"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio 10 de Octubre, se localiza avería secundaria por transformador dañado en calle 14 entre Dolores y Tejar, Lawton🚨"
  }
 }

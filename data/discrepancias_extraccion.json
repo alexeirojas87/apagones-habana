@@ -2111,5 +2111,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:01 PM se afectan 413 MW distribuidos en 186 circuitos de distribución. A continuación,"
+ },
+ "102183": {
+  "fecha": "2026-10-29T22:36:51+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L322"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa, pertenecientes al circuito L317 que se ha transferido temporalmente la carga para el circuito L322, debido a un"
  }
 }

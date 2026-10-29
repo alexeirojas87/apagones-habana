@@ -1,14 +1,4 @@
 {
- "98773": {
-  "fecha": "2026-10-22T14:33:34+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "PZ10",
-   "PZ13"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Informamos a los consumidores del municipio Plaza pertenecientes al circuito PZ10, que fue transferido temporalmente parte de la carga al circuito PZ13, debid"
- },
  "98913": {
   "fecha": "2026-10-22T19:31:02+00:00",
   "tipo_llm": "afectacion",
@@ -1916,5 +1906,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico por trabajos operativos en el circuito SF584✅"
+ },
+ "101893": {
+  "fecha": "2026-10-29T14:32:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1244"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito 1244✅"
  }
 }

@@ -2045,5 +2045,40 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el circuito A820✅"
+ },
+ "102102": {
+  "fecha": "2026-10-29T20:17:55+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1006",
+   "A1007",
+   "A1008",
+   "A1009",
+   "A465",
+   "D631",
+   "D632",
+   "D633",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "📉🚨Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO."
+ },
+ "102096": {
+  "fecha": "2026-10-29T20:02:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PG940"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito PG940✅"
+ },
+ "102092": {
+  "fecha": "2026-10-29T20:02:24+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D640"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el D640✅"
  }
 }

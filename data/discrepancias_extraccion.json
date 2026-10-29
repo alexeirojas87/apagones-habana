@@ -2010,5 +2010,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 2:13 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327, P324): "
+ },
+ "102036": {
+  "fecha": "2026-10-29T18:48:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1244"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito 1244✅"
  }
 }

@@ -1,13 +1,4 @@
 {
- "99391": {
-  "fecha": "2026-10-23T18:05:54+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "PZ19"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚠️Consumidores del municipio Plaza, se autoriza VÍA LIBRE por AVERIA PRIMRIA , afectando una parte del siguiente circuito: Pz19 👉Calle : L hasta N, Mdesde 25 h"
- },
  "99410": {
   "fecha": "2026-10-23T19:00:10+00:00",
   "tipo_llm": "afectacion",
@@ -2034,5 +2025,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Alt"
+ },
+ "102441": {
+  "fecha": "2026-10-30T18:14:26+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Altura"
  }
 }

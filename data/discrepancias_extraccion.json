@@ -1,13 +1,4 @@
 {
- "99225": {
-  "fecha": "2026-10-23T13:27:35+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:24 AM se afectan 194 MW distribuidos en 81 circuitos de distribución. A continuación, "
- },
  "99245": {
   "fecha": "2026-10-23T13:50:37+00:00",
   "tipo_llm": "restablecimiento",
@@ -26,15 +17,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 9:37 AM quedó restablecido el servicio en los siguientes circuitos: 👉Pz16 Calle 6 desde 37 hasta Hidalgo Cuadran"
- },
- "99229": {
-  "fecha": "2026-10-23T13:31:25+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "R456"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 9:18 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R451:Calles Perd"
  },
  "99282": {
   "fecha": "2026-10-23T14:54:03+00:00",
@@ -2184,5 +2166,25 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
+ },
+ "102330": {
+  "fecha": "2026-10-30T13:17:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Informamos a los consumidores pertenecientes al municipio San Miguel del Padrón, que se normaliza el esquema en el circuito H343. 🔔📣"
+ },
+ "102327": {
+  "fecha": "2026-10-30T13:09:27+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "OP408"
+  ],
+  "solo_regex": [
+   "BRE4"
+  ],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 AM se afectan 300 MW distribuidos en 151 circuitos de distribución. A continuación,"
  }
 }

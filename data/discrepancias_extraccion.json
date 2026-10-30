@@ -1,23 +1,4 @@
 {
- "99245": {
-  "fecha": "2026-10-23T13:50:37+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C13",
-   "P322"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 9:37 AM quedó restablecido el servicio en los siguientes circuitos: 👉C10: Alrededores del cuadrante desde calles"
- },
- "99234": {
-  "fecha": "2026-10-23T13:40:53+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ17"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 9:37 AM quedó restablecido el servicio en los siguientes circuitos: 👉Pz16 Calle 6 desde 37 hasta Hidalgo Cuadran"
- },
  "99282": {
   "fecha": "2026-10-23T14:54:03+00:00",
   "tipo_llm": "restablecimiento",

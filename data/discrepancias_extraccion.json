@@ -1,40 +1,4 @@
 {
- "99326": {
-  "fecha": "2026-10-23T15:50:20+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:45 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores"
- },
- "99323": {
-  "fecha": "2026-10-23T15:47:05+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:44 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A820:Repartos 2"
- },
- "99321": {
-  "fecha": "2026-10-23T15:45:03+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P322"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:39 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz17: Hotel Gra"
- },
- "99320": {
-  "fecha": "2026-10-23T15:42:31+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "C13"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 1:39 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉C10: Alrededores"
- },
  "99362": {
   "fecha": "2026-10-23T16:55:43+00:00",
   "tipo_llm": "deficit",

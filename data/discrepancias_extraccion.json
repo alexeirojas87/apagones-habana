@@ -1,22 +1,4 @@
 {
- "99410": {
-  "fecha": "2026-10-23T19:00:10+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 PM se afectan 166 MW distribuidos en 61 circuitos de distribución. A continuación, "
- },
- "99405": {
-  "fecha": "2026-10-23T18:34:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ19"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Plaza, queda reparada la AVERÍA que afectaba el servicio eléctrico en la siguiente dirección: 👉L hasta N, M desde 25 hasta 19 N de"
- },
  "99424": {
   "fecha": "2026-10-23T19:29:37+00:00",
   "tipo_llm": "averia",
@@ -2034,5 +2016,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Altura"
+ },
+ "102454": {
+  "fecha": "2026-10-30T18:34:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
  }
 }

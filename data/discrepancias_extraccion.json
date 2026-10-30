@@ -1,13 +1,4 @@
 {
- "99375": {
-  "fecha": "2026-10-23T17:33:32+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P319"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 01:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318: Alrededor"
- },
  "99391": {
   "fecha": "2026-10-23T18:05:54+00:00",
   "tipo_llm": "averia",

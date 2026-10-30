@@ -1,23 +1,4 @@
 {
- "99308": {
-  "fecha": "2026-10-23T15:28:04+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P314"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 11:24 AM quedó restablecido el servicio en el siguiente circuito: 👉Pz7: Cuadrante desde calle 4 hasta A, Línea h"
- },
- "99285": {
-  "fecha": "2026-10-23T15:04:58+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL53",
-   "MB960"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes por Disparo Automático por Frecuencia (DAF) perteneciente a los siguientes circuitos: 👉 MB960,AL53.✅"
- },
  "99326": {
   "fecha": "2026-10-23T15:50:20+00:00",
   "tipo_llm": "afectacion",

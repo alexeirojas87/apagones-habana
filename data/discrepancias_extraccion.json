@@ -2099,5 +2099,18 @@
    "MB910"
   ],
   "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Altura"
+ },
+ "102535": {
+  "fecha": "2026-10-30T22:15:15+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 6:14 PM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P319: Alrededore"
  }
 }

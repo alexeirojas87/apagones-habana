@@ -2079,5 +2079,59 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
+ },
+ "102526": {
+  "fecha": "2026-10-30T21:28:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203",
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉2203 y2204📉✅"
+ },
+ "102525": {
+  "fecha": "2026-10-30T21:26:59+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1007",
+   "A1008",
+   "A1009",
+   "A465",
+   "D631",
+   "D632",
+   "D633",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN NACIONAL se interrumpe la rotación de los circuitos de la Subest"
+ },
+ "102523": {
+  "fecha": "2026-10-30T21:22:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
+ },
+ "102521": {
+  "fecha": "2026-10-30T21:15:47+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SF581"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Se le informa a los clientes del municipio Playa, pertenecientes al circuito SF583, que se ha transferido temporalmente la carga al circuito SF581 debido a un"
+ },
+ "102489": {
+  "fecha": "2026-10-30T20:31:25+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [],
+  "solo_regex": [
+   "MB910"
+  ],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Altura"
  }
 }

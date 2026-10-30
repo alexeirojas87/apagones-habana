@@ -1,13 +1,4 @@
 {
- "99436": {
-  "fecha": "2026-10-23T19:58:54+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "AL53"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉R451: Calles Perdomo y Si"
- },
  "99444": {
   "fecha": "2026-10-23T20:08:04+00:00",
   "tipo_llm": "otro",
@@ -2027,5 +2018,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Alt"
+ },
+ "102475": {
+  "fecha": "2026-10-30T19:51:13+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [],
+  "solo_regex": [
+   "MB910"
+  ],
+  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉Al55: Zonas: 12; 13; 14; 19; 20; 21; 23; 24 y 25."
+ },
+ "102471": {
+  "fecha": "2026-10-30T19:42:37+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉MB910(D1055): Justi, Agromar, Bajurayabo, Campo Flor"
  }
 }

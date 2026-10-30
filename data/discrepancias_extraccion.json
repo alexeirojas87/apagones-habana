@@ -1,14 +1,4 @@
 {
- "99369": {
-  "fecha": "2026-10-23T17:16:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ13",
-   "PZ5"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 01:09 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉Pz1: Cuadrantes calle Línea hast"
- },
  "99375": {
   "fecha": "2026-10-23T17:33:32+00:00",
   "tipo_llm": "afectacion",

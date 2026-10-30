@@ -1,22 +1,4 @@
 {
- "99424": {
-  "fecha": "2026-10-23T19:29:37+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1455"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito A1455 que las cargas del mismo se encuentran transferidos para los circuitos GC1"
- },
- "99420": {
-  "fecha": "2026-10-23T19:26:18+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:21 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P314:Alrededore"
- },
  "99436": {
   "fecha": "2026-10-23T19:58:54+00:00",
   "tipo_llm": "daf",
@@ -2026,5 +2008,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
+ },
+ "102463": {
+  "fecha": "2026-10-30T19:20:44+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380",
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:19 AM se afectan 342 MW distribuidos en 147 circuitos de distribución. A continuación,"
+ },
+ "102452": {
+  "fecha": "2026-10-30T18:33:34+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Alt"
  }
 }

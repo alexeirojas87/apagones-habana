@@ -2148,5 +2148,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Cerro, queda restablecido el servicio eléctrico afectado por la vía libre en el circuito: C7✅"
+ },
+ "102231": {
+  "fecha": "2026-10-30T04:00:08+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 471 MW distribuidos en 198 circuitos de distribución. A continuación,"
  }
 }

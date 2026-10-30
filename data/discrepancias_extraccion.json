@@ -1,24 +1,4 @@
 {
- "99459": {
-  "fecha": "2026-10-23T20:45:27+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "R454"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:34 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R451:Calles Per"
- },
- "99455": {
-  "fecha": "2026-10-23T20:37:10+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ13",
-   "PZ17",
-   "PZ24"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:31 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz1:Cuadrantes "
- },
  "99486": {
   "fecha": "2026-10-23T22:00:12+00:00",
   "tipo_llm": "deficit",
@@ -2046,5 +2026,58 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉2203 y2204📉✅"
+ },
+ "102512": {
+  "fecha": "2026-10-30T20:58:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
+ },
+ "102504": {
+  "fecha": "2026-10-30T20:45:46+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203",
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉2203 y2204📉✅"
+ },
+ "102503": {
+  "fecha": "2026-10-30T20:45:27+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 4:45 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde Inf"
+ },
+ "102501": {
+  "fecha": "2026-10-30T20:44:44+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
+ },
+ "102494": {
+  "fecha": "2026-10-30T20:37:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
  }
 }

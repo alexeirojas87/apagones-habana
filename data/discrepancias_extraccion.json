@@ -1,14 +1,4 @@
 {
- "99212": {
-  "fecha": "2026-10-23T12:57:19+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 8:52 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerrad"
- },
  "99225": {
   "fecha": "2026-10-23T13:27:35+00:00",
   "tipo_llm": "deficit",

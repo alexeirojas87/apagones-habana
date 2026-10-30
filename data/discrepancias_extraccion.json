@@ -1,13 +1,4 @@
 {
- "99362": {
-  "fecha": "2026-10-23T16:55:43+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:55 PM se afectan 197 MW distribuidos en 81 circuitos de distribución. A continuación, "
- },
  "99369": {
   "fecha": "2026-10-23T17:16:12+00:00",
   "tipo_llm": "restablecimiento",
@@ -2053,5 +2044,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343/MR450: Reparto Martín Pérez, Luyanó Moderno 👉A"
+ },
+ "102408": {
+  "fecha": "2026-10-30T16:49:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Alt"
  }
 }

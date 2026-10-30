@@ -1,14 +1,4 @@
 {
- "99444": {
-  "fecha": "2026-10-23T20:08:04+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "MR450",
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Reiteramos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito MR450 ( Luyanó Moderno) que se encuentra transferida temporalmente l"
- },
  "99459": {
   "fecha": "2026-10-23T20:45:27+00:00",
   "tipo_llm": "afectacion",
@@ -2036,5 +2026,25 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉MB910(D1055): Justi, Agromar, Bajurayabo, Campo Flor"
+ },
+ "102488": {
+  "fecha": "2026-10-30T20:27:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
+ },
+ "102480": {
+  "fecha": "2026-10-30T20:15:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203",
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉2203 y2204📉✅"
  }
 }

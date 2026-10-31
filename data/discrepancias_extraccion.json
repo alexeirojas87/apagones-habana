@@ -2134,5 +2134,33 @@
   ],
   "solo_regex": [],
   "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉AL52:Zonas: 6; 7; 8; 9; 10; 11 y M"
+ },
+ "102795": {
+  "fecha": "2026-10-31T14:55:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL57"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO DEL CIRCUITO en los siguientes circuitos: 👉AL52,AL57 ✅"
+ },
+ "102791": {
+  "fecha": "2026-10-31T14:49:41+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:48 am se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A820:Repartos 2"
+ },
+ "102781": {
+  "fecha": "2026-10-31T14:33:50+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL52",
+   "AL57"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉AL52:Zonas: 6; 7; 8; 9; 10; 11 y M"
  }
 }

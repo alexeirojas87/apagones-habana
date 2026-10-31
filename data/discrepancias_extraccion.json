@@ -2070,5 +2070,41 @@
   ],
   "solo_regex": [],
   "extracto": "✅⚡️Restablecido el servicio eléctrico a los clientes afectados por TRABAJOS OPERATIVOS en el siguiente circuito: 👉R453:La Gloria, Ciruela, Unión, Lídice y Colin"
+ },
+ "102744": {
+  "fecha": "2026-10-31T13:47:44+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO DEL CIRCUITO en los siguientes circuitos: 👉SG313:Alrededores de calles avenida 409 y ca"
+ },
+ "102742": {
+  "fecha": "2026-10-31T13:46:00+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en la siguiente dirección: 👉AL56: Zonas: 13; 15; 16; 17; 18; 21 "
+ },
+ "102738": {
+  "fecha": "2026-10-31T13:38:30+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 9:35 am se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A820:Repartos 25"
+ },
+ "102736": {
+  "fecha": "2026-10-31T13:36:38+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en la siguiente dirección: 👉AL56: Zonas: 13; 15; 16; 17; 18; 21 "
  }
 }

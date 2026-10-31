@@ -2121,5 +2121,28 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Playa, por DISPARO DEL CIRCUITO se afecta el servicio en: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida 5ta con calle 296 y ave"
+ },
+ "102576": {
+  "fecha": "2026-10-31T02:13:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:12 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde In"
+ },
+ "102569": {
+  "fecha": "2026-10-31T02:04:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203",
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉2203 y2204📉✅"
  }
 }

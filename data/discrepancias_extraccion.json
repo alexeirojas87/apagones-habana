@@ -2162,5 +2162,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉AL52:Zonas: 6; 7; 8; 9; 10; 11 y M"
+ },
+ "102801": {
+  "fecha": "2026-10-31T15:13:47+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1170",
+   "1243",
+   "1244"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA por Cable Primario Partido en:7ma / 24 y 26 👉 1243 👉1170 👉1244"
  }
 }

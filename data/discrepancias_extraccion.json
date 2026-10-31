@@ -1,23 +1,4 @@
 {
- "99611": {
-  "fecha": "2026-10-24T12:11:26+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2204",
-   "A1007"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito 2204, que por condiciones en la Subestación Arroyo se ha transferido tempora"
- },
- "99605": {
-  "fecha": "2026-10-24T12:02:18+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio 10 de Octubre pertenecientes al circuito D634, que se ha transferido temporalmente una parte de la carga al circuito H"
- },
  "99641": {
   "fecha": "2026-10-24T12:59:07+00:00",
   "tipo_llm": "restablecimiento",
@@ -2067,5 +2048,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a los consumidores del municipio Playa pertenecientes al circuito SF583 que se encontraba transferida temporalmente su carga al circuito SF581 , ya "
+ },
+ "102688": {
+  "fecha": "2026-10-31T12:04:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda restablecido el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Ave"
  }
 }

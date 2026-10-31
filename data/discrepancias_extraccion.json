@@ -2462,5 +2462,51 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:30 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR820:Reparto "
+ },
+ "102995": {
+  "fecha": "2026-10-31T20:59:37+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "SG314",
+   "SG316"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 4:56 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SG312:Alrededore"
+ },
+ "102993": {
+  "fecha": "2026-10-31T20:55:34+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 4:53 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A820:Repartos 25"
+ },
+ "102992": {
+  "fecha": "2026-10-31T20:51:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Restablecido el servicio eléctrico a los consumidores que se encontraban afectados por Disparo del Circuito en los siguientes circuitos: 👉A820:Repartos 250, M"
+ },
+ "102991": {
+  "fecha": "2026-10-31T20:51:41+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio Boyeros, se encuentran afectados por Disparo del Circuito por sobrecarga los siguientes circuitos: 👉A820:Repartos 250, Miraflores V"
+ },
+ "102988": {
+  "fecha": "2026-10-31T20:40:43+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Restablecido el servicio eléctrico a los consumidores que se encontraban afectados por Disparo del Circuito en los siguientes circuitos: 👉A820:Repartos 250, M"
  }
 }

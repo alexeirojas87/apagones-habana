@@ -1,72 +1,4 @@
 {
- "99604": {
-  "fecha": "2026-10-24T12:00:17+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1470",
-   "D1100"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1470, que se ha transferido temporalmente la carga al circuito D1100 los si"
- },
- "99603": {
-  "fecha": "2026-10-24T11:55:55+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1470",
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Arroyo Naranjo pertenecientes al circuito A1470, que se ha transferido temporalmente la carga al circuito PG970 los si"
- },
- "99602": {
-  "fecha": "2026-10-24T11:54:40+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Boyeros pertenecientes al circuito D836, que se ha transferido temporalmente la carga al circuito A820 la zona de: 👉 R"
- },
- "99601": {
-  "fecha": "2026-10-24T11:54:00+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "2204",
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Boyeros pertenecientes al circuito A820, que por condiciones en la Subestación se ha transferido temporalmente parte d"
- },
- "99600": {
-  "fecha": "2026-10-24T11:49:55+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "SR820"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido "
- },
- "99598": {
-  "fecha": "2026-10-24T11:45:37+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "MR450",
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio San Miguel del Padrón pertenecientes al circuito MR450 ( Luyanó Moderno) que se encuentra transferida temporalmente l"
- },
- "99597": {
-  "fecha": "2026-10-24T11:44:13+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1455"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Guanabacoa pertenecientes al circuito A1455 que las cargas del mismo se encuentran transferidos para los circuitos GC1"
- },
  "99611": {
   "fecha": "2026-10-24T12:11:26+00:00",
   "tipo_llm": "afectacion",
@@ -2113,5 +2045,27 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida 5ta "
+ },
+ "102686": {
+  "fecha": "2026-10-31T11:55:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343",
+   "MB910",
+   "MB920",
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: H343,MB910,MB920,MB950 ✅"
+ },
+ "102682": {
+  "fecha": "2026-10-31T11:37:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SF581",
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a los consumidores del municipio Playa pertenecientes al circuito SF583 que se encontraba transferida temporalmente su carga al circuito SF581 , ya "
  }
 }

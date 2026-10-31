@@ -1,15 +1,4 @@
 {
- "99859": {
-  "fecha": "2026-10-24T20:15:46+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:14 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325/P327/P324: De"
- },
  "99924": {
   "fecha": "2026-10-24T22:27:48+00:00",
   "tipo_llm": "deficit",
@@ -2455,5 +2444,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉2204:Repart"
+ },
+ "102986": {
+  "fecha": "2026-10-31T20:26:41+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio Boyeros, se encuentran afectados por Disparo del Circuito por sobrecarga los siguientes circuitos: 👉A820:Repartos 250, Miraflores V"
+ },
+ "102978": {
+  "fecha": "2026-10-31T20:06:06+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SR860"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:30 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR820:Reparto "
  }
 }

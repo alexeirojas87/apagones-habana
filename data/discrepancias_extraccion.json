@@ -1,24 +1,4 @@
 {
- "99821": {
-  "fecha": "2026-10-24T19:12:49+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "👷‍♂️🟢Consumidores del municipio Plaza y Cerro, queda restablecido el servicio eléctrico por TRABAJOS OPERATIVOS en el siguiente circuito: 👉P325 / P327 / P324: D"
- },
- "99819": {
-  "fecha": "2026-10-24T19:06:36+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "C13"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 02:39 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2202: Alrededor"
- },
  "99859": {
   "fecha": "2026-10-24T20:15:46+00:00",
   "tipo_llm": "afectacion",
@@ -2348,5 +2328,64 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 2:03 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R454:Repartos M"
+ },
+ "102946": {
+  "fecha": "2026-10-31T19:26:04+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP320",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de la 03:24 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 318, OP320, O"
+ },
+ "102941": {
+  "fecha": "2026-10-31T19:19:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que a partir de las 2:40 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP408:Alrededores del cuadrante d"
+ },
+ "102939": {
+  "fecha": "2026-10-31T19:15:50+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1443"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Informamos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉A1440:Repartos Mulgoba, Jesús Menéndez, Ampliación de Mul"
+ },
+ "102936": {
+  "fecha": "2026-10-31T19:12:46+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1170"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Playa , se localizó una AVERÍA PRIMARIA que afecta el servicio en la siguiente dirección: 👉 39A entre 42 y 44🛑⚡️"
+ },
+ "102928": {
+  "fecha": "2026-10-31T19:04:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:01 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
+ },
+ "102926": {
+  "fecha": "2026-10-31T19:03:21+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda afectado el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida"
  }
 }

@@ -1,14 +1,4 @@
 {
- "99713": {
-  "fecha": "2026-10-24T16:11:57+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ13",
-   "PZ5"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 11:40 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉Pz1: Cuadrantes calle Línea hast"
- },
  "99738": {
   "fecha": "2026-10-24T16:44:43+00:00",
   "tipo_llm": "averia",
@@ -70,16 +60,6 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:14 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325/P327/P324: De"
- },
- "99722": {
-  "fecha": "2026-10-24T16:17:32+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "S514",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 158 MW distribuidos en 67 circuitos de distribución. A continuación, "
  },
  "99924": {
   "fecha": "2026-10-24T22:27:48+00:00",
@@ -2243,5 +2223,54 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda afectado el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida"
+ },
+ "102835": {
+  "fecha": "2026-10-31T16:29:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉2204:Repart"
+ },
+ "102833": {
+  "fecha": "2026-10-31T16:28:36+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Restablecido el servicio eléctrico a los consumidores afectados por Trabajos Operativos en los siguientes circuitos: 👉SG313:Alrededores de calles avenida 409 "
+ },
+ "102830": {
+  "fecha": "2026-10-31T16:20:31+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "GC7"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉GC7:Cojimar calle 80 desde 1era ha"
+ },
+ "102829": {
+  "fecha": "2026-10-31T16:17:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1055",
+   "H343",
+   "MB910",
+   "MB920",
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ9: La Timba, calle 4 desde 37 a Hidalgo, avenid"
+ },
+ "102826": {
+  "fecha": "2026-10-31T16:10:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio Boyeros,se encuentran afectados por Trabajos Operativos los siguientes circuitos: 👉SG313:Alrededores de calles avenida 409 y calle "
  }
 }

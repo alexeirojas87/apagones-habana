@@ -2518,5 +2518,24 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:41 PM se afectan 281 MW distribuidos en 114 circuitos de distribución. A continuación,"
+ },
+ "103009": {
+  "fecha": "2026-10-31T21:52:39+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A708"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:50 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A800:Repartos Ma"
+ },
+ "103004": {
+  "fecha": "2026-10-31T21:35:04+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1006",
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Restablecido el servicio eléctrico a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que se encontraban"
  }
 }

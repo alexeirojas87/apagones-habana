@@ -2135,5 +2135,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Playa, se encuentra con servicio el siguiente circuito que se afectaba por DISPARO DEL CIRCUITO : 👉SF581: Reparto: Jaimanitas. Cuadr"
+ },
+ "102600": {
+  "fecha": "2026-10-31T04:32:12+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:31 AM se afectan 460 MW distribuidos en 195 circuitos de distribución. A continuación,"
  }
 }

@@ -1,13 +1,4 @@
 {
- "99738": {
-  "fecha": "2026-10-24T16:44:43+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "L326"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Marianao, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en la siguiente dirección: 👉35 /118 y 120.🛑⚡️"
- },
  "99797": {
   "fecha": "2026-10-24T18:28:08+00:00",
   "tipo_llm": "afectacion",
@@ -2272,5 +2263,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Consumidores del municipio Boyeros,se encuentran afectados por Trabajos Operativos los siguientes circuitos: 👉SG313:Alrededores de calles avenida 409 y calle "
+ },
+ "102843": {
+  "fecha": "2026-10-31T16:39:42+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1217"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Guanabacoa, se localizó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afecta el servicio en la siguiente dirección: 👉 Versall"
  }
 }

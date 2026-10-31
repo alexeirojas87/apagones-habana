@@ -1,26 +1,4 @@
 {
- "99797": {
-  "fecha": "2026-10-24T18:28:08+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "👷‍♂️⚡️Consumidores del municipio , Plaza/Cerro se afectó el servicio eléctrico por TRABAJOS OPERATIVOS en el siguiente circuito: 👉P325 / P327 / P324: Desagüe de"
- },
- "99784": {
-  "fecha": "2026-10-24T18:05:26+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1455",
-   "GC11",
-   "GC13"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑🔔Reiteramos a los clientes pertenecientes al circuito A1455 que fue transferida su carga a los circuitos GC11 y GC13, la cual se encuentra distribuida de la si"
- },
  "99821": {
   "fecha": "2026-10-24T19:12:49+00:00",
   "tipo_llm": "restablecimiento",
@@ -2340,5 +2318,35 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a el siguiente circuito: 👉 H343,AL55,MB9"
+ },
+ "102907": {
+  "fecha": "2026-10-31T18:16:01+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "T44"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:15 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores "
+ },
+ "102903": {
+  "fecha": "2026-10-31T18:12:23+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "AL52",
+   "AL57",
+   "GC12",
+   "GC14"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:56 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC18:Zona Franc"
+ },
+ "102897": {
+  "fecha": "2026-10-31T18:08:26+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "R466"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:03 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R454:Repartos M"
  }
 }

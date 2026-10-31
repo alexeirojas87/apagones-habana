@@ -2387,5 +2387,73 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda afectado el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida"
+ },
+ "102973": {
+  "fecha": "2026-10-31T19:57:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Restablecido el servicio eléctrico a los consumidores que se encontraban afectados por Disparo del Circuito en los siguientes circuitos: 👉A820:Repartos 250, M"
+ },
+ "102972": {
+  "fecha": "2026-10-31T19:57:38+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio Boyeros, se encuentran afectados por Disparo del Circuito por sobrecarga los siguientes circuitos: 👉A820:Repartos 250, Miraflores V"
+ },
+ "102965": {
+  "fecha": "2026-10-31T19:49:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Restablecido el servicio eléctrico a los consumidores que se encontraban afectados por Disparo del Circuito en los siguientes circuitos: 👉A820:Repartos 250, M"
+ },
+ "102962": {
+  "fecha": "2026-10-31T19:47:15+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Consumidores del municipio Boyeros, se encuentran afectados por Disparo del Circuito los siguientes circuitos: 👉A820:Repartos 250, Miraflores Viejo, Embil, Al"
+ },
+ "102961": {
+  "fecha": "2026-10-31T19:46:50+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB910",
+   "MB920",
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el siguiente circuito: 👉 MB910,"
+ },
+ "102954": {
+  "fecha": "2026-10-31T19:38:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1170",
+   "A1203",
+   "SF581",
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el siguiente circuito: 👉 1170 "
+ },
+ "102951": {
+  "fecha": "2026-10-31T19:33:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉2204:Repart"
  }
 }

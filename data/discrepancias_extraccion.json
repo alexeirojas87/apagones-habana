@@ -2173,5 +2173,75 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA por Cable Primario Partido en:7ma / 24 y 26 👉 1243 👉1170 👉1244"
+ },
+ "102819": {
+  "fecha": "2026-10-31T15:55:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 11:48 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "102818": {
+  "fecha": "2026-10-31T15:50:57+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉2204:Repart"
+ },
+ "102817": {
+  "fecha": "2026-10-31T15:49:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343",
+   "MB910",
+   "MB920"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉AL55,MB910,MB920,H343 ✅"
+ },
+ "102816": {
+  "fecha": "2026-10-31T15:48:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1055",
+   "H343",
+   "MB910",
+   "MB920",
+   "MB950"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ9: La Timba, calle 4 desde 37 a Hidalgo, avenid"
+ },
+ "102813": {
+  "fecha": "2026-10-31T15:46:14+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S516"
+  ],
+  "solo_regex": [],
+  "extracto": "🔴⚡️Consumidores del municipio San Miguel del Padrón, por TRABAJOS OPERATIVOS se afecta servicio eléctrico en los siguientes circuitos: 👉S512:Calzada de Güines d"
+ },
+ "102811": {
+  "fecha": "2026-10-31T15:44:30+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda restablecido el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Ave"
+ },
+ "102808": {
+  "fecha": "2026-10-31T15:34:40+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda afectado el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida"
  }
 }

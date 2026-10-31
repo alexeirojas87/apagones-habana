@@ -1,15 +1,4 @@
 {
- "99591": {
-  "fecha": "2026-10-24T11:08:01+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 07:05 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325:Alrededores de calles Infanta,"
- },
  "99604": {
   "fecha": "2026-10-24T12:00:17+00:00",
   "tipo_llm": "otro",
@@ -2106,5 +2095,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:31 AM se afectan 460 MW distribuidos en 195 circuitos de distribución. A continuación,"
+ },
+ "102674": {
+  "fecha": "2026-10-31T11:18:59+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "D1055"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Altura"
+ },
+ "102671": {
+  "fecha": "2026-10-31T11:14:37+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida 5ta "
  }
 }

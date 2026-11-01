@@ -1,50 +1,4 @@
 {
- "100153": {
-  "fecha": "2026-10-25T12:29:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito PG970✅"
- },
- "100151": {
-  "fecha": "2026-10-25T12:24:47+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 8:20 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉P325: Desagüe desde Infanta hasta"
- },
- "100148": {
-  "fecha": "2026-10-25T12:15:58+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 8:15 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325/P327/P324: Desagüe desde Infant"
- },
- "100147": {
-  "fecha": "2026-10-25T12:11:59+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 07:12 am se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 318, OP320, "
- },
  "100170": {
   "fecha": "2026-10-25T13:16:58+00:00",
   "tipo_llm": "deficit",
@@ -2649,5 +2603,15 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 07:06 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde In"
+ },
+ "103247": {
+  "fecha": "2026-11-01T12:19:45+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SR820",
+   "SR860"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Informamos a los clientes del municipio Cotorro que se encuentran afectados por Disparo del circuito por posible AVERÍA 👉SR820/SR860 ‼️🚨"
  }
 }

@@ -1,31 +1,4 @@
 {
- "100256": {
-  "fecha": "2026-10-25T15:52:08+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2076"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Queda restablecido el servicio eléctrico por disparo del circuito en el 2076✅"
- },
- "100250": {
-  "fecha": "2026-10-25T15:44:22+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito PG970✅"
- },
- "100245": {
-  "fecha": "2026-10-25T15:40:41+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A960"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito A960✅"
- },
  "100275": {
   "fecha": "2026-10-25T16:25:58+00:00",
   "tipo_llm": "restablecimiento",
@@ -53,15 +26,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico al circuito PG970✅"
- },
- "100261": {
-  "fecha": "2026-10-25T16:01:55+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito A820✅"
  },
  "100307": {
   "fecha": "2026-10-25T17:51:22+00:00",

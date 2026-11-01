@@ -2572,5 +2572,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 12:08 AM, quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉A708:Reparto Abel Santamaría 👉A"
+ },
+ "103144": {
+  "fecha": "2026-11-01T04:35:20+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D870"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉D860:Repartos Wajay, INAV, Ampliación del Wajay y Santa C"
  }
 }

@@ -2500,5 +2500,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Informamos a los clientes del municipio Cotorro que se encuentran afectados por Disparo del circuito por posible AVERÍA 👉SR820/SR860 ‼️🚨"
+ },
+ "103348": {
+  "fecha": "2026-11-01T16:17:33+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P319",
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 213 MW distribuidos en 84 circuitos de distribución. A continuación, "
  }
 }

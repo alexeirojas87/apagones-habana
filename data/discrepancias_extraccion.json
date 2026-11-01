@@ -1,13 +1,4 @@
 {
- "100319": {
-  "fecha": "2026-10-25T18:22:41+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1851"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito en el 1851✅"
- },
  "100323": {
   "fecha": "2026-10-25T18:34:49+00:00",
   "tipo_llm": "restablecimiento",

@@ -2581,5 +2581,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉D860:Repartos Wajay, INAV, Ampliación del Wajay y Santa C"
+ },
+ "103163": {
+  "fecha": "2026-11-01T06:29:45+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda afectado el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida"
  }
 }

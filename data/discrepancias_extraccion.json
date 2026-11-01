@@ -2618,5 +2618,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔴⚡️Consumidores del municipio Marianao , se detectó una AVERÍA PRIMARIA en la siguiente dirección: 👉48 entre 31 y 33 Afectando el servicio eléctrico en una part"
+ },
+ "103179": {
+  "fecha": "2026-11-01T08:07:46+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1248"
+  ],
+  "solo_regex": [],
+  "extracto": "🔴⚡️Consumidores del municipio Plaza, se localiza AVERÍA PRIMARIA que afecta el servicio eléctrico en la siguiente direccion: 👉(1248) Avenida Loma entre 37 y Fin"
  }
 }

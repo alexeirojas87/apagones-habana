@@ -2590,5 +2590,33 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda afectado el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida"
+ },
+ "103167": {
+  "fecha": "2026-11-01T06:47:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SF583"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda restablecido el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Ave"
+ },
+ "103166": {
+  "fecha": "2026-11-01T06:46:04+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL55",
+   "MB920"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio. eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉AL55,MB920 ✅"
+ },
+ "103165": {
+  "fecha": "2026-11-01T06:41:13+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1175"
+  ],
+  "solo_regex": [],
+  "extracto": "🔴⚡️Consumidores del municipio Marianao , se detectó una AVERÍA PRIMARIA en la siguiente dirección: 👉48 entre 31 y 33 Afectando el servicio eléctrico en una part"
  }
 }

@@ -1,13 +1,4 @@
 {
- "100338": {
-  "fecha": "2026-10-25T19:44:39+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "PZ1"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Consumidores del municipio Plaza pertenecientes al circuito PZ14, se ha transferido temporalmente la carga al circuito PZ1: 👉PZ14: Calles 14 desde Zapata hast"
- },
  "100356": {
   "fecha": "2026-10-25T20:29:18+00:00",
   "tipo_llm": "afectacion",

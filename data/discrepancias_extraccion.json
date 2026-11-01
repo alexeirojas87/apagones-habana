@@ -1,32 +1,4 @@
 {
- "100275": {
-  "fecha": "2026-10-25T16:25:58+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D631",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉📣Informamos a los clientes de los municipios Diez de Octubre y Arroyo Naranjo pertenecientes a la SUBESTACIÓN APOLO, que en el proceso de rotación se van a man"
- },
- "100267": {
-  "fecha": "2026-10-25T16:09:23+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Consumidores del municipio Arroyo Naranjo, queda reparada la avería que afectaba el circuito PG970 normalizando su esquema llevando la carga de los Hospitales"
- },
- "100266": {
-  "fecha": "2026-10-25T16:04:07+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito PG970✅"
- },
  "100307": {
   "fecha": "2026-10-25T17:51:22+00:00",
   "tipo_llm": "restablecimiento",

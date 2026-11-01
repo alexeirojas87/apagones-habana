@@ -1,24 +1,4 @@
 {
- "100080": {
-  "fecha": "2026-10-25T04:14:35+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1006",
-   "A1007",
-   "PG970"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨 Informamos a los clientes de los municipios Arroyo Naranjo y Diez de Octubre, pertenecientes a la Subestación Apolo, que a raíz de la avería en el circuito P"
- },
- "100079": {
-  "fecha": "2026-10-25T04:12:01+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 384 MW distribuidos en 153 circuitos de distribución. A continuación,"
- },
  "100122": {
   "fecha": "2026-10-25T08:37:14+00:00",
   "tipo_llm": "deficit",
@@ -2583,5 +2563,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Regla , se localizó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afecta el servicio en la siguiente dirección: 👉Maceo e/ Per"
+ },
+ "103140": {
+  "fecha": "2026-11-01T04:20:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A800"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 12:08 AM, quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉A708:Reparto Abel Santamaría 👉A"
  }
 }

@@ -1,24 +1,4 @@
 {
- "100356": {
-  "fecha": "2026-10-25T20:29:18+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de la 4:28 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde "
- },
- "100347": {
-  "fecha": "2026-10-25T20:07:39+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Guanabacoa, se localiza avería secundaria por transformador dañado en la calle Vigario entre 14 y Línea de Ferrocarril.🚨"
- },
  "100364": {
   "fecha": "2026-10-25T21:00:12+00:00",
   "tipo_llm": "restablecimiento",
@@ -2450,5 +2430,15 @@
    "OP325"
   ],
   "extracto": "🚨 📣Informamos a la población que a partir de las 2:27 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325 (P327, P32"
+ },
+ "103443": {
+  "fecha": "2026-11-01T20:05:02+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "C8",
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:40 PM se afectan 297 MW distribuidos en 115 circuitos de distribución. A continuación,"
  }
 }

@@ -1,22 +1,4 @@
 {
- "100333": {
-  "fecha": "2026-10-25T19:19:45+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito D836 afectado por sobrecarga✅"
- },
- "100332": {
-  "fecha": "2026-10-25T19:18:11+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito A820✅"
- },
  "100338": {
   "fecha": "2026-10-25T19:44:39+00:00",
   "tipo_llm": "otro",
@@ -25,15 +7,6 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Consumidores del municipio Plaza pertenecientes al circuito PZ14, se ha transferido temporalmente la carga al circuito PZ1: 👉PZ14: Calles 14 desde Zapata hast"
- },
- "100335": {
-  "fecha": "2026-10-25T19:31:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "GC11"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito GC11✅"
  },
  "100356": {
   "fecha": "2026-10-25T20:29:18+00:00",
@@ -2464,5 +2437,27 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa, pertenecientes al circuito SF581 que se ha transferido temporalmente la carga del siguiente reparto para el cir"
+ },
+ "103429": {
+  "fecha": "2026-11-01T19:22:11+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP329"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Plaza de La Revolución, se localiza avería secundaria por Transformador Dañado en la calle L / Calzada y 11.(OP329)🚨"
+ },
+ "103423": {
+  "fecha": "2026-11-01T19:08:01+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨 📣Informamos a la población que a partir de las 2:27 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325 (P327, P32"
  }
 }

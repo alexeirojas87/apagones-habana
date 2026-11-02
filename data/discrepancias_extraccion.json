@@ -2298,5 +2298,43 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Regla, se localiza avería secundaria por transformador dañado en las calles Martí entre 10 de Octubre y Juan Gualberto Gómez (Circui"
+ },
+ "103853": {
+  "fecha": "2026-11-02T16:47:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
+ },
+ "103848": {
+  "fecha": "2026-11-02T16:42:39+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:42 PM se afectan 170 MW distribuidos en 79 circuitos de distribución. A continuación, "
+ },
+ "103846": {
+  "fecha": "2026-11-02T16:39:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203",
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en los circuitos 2203 y 2204✅"
+ },
+ "103845": {
+  "fecha": "2026-11-02T16:36:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1203"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el siguiente circuito: A1203✅"
  }
 }

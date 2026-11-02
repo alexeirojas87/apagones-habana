@@ -1,17 +1,4 @@
 {
- "100630": {
-  "fecha": "2026-10-26T12:40:55+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 8:39 AM quedó restablecido el servicio en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde Infanta hasta"
- },
  "100645": {
   "fecha": "2026-10-26T13:14:01+00:00",
   "tipo_llm": "deficit",
@@ -2273,5 +2260,24 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 08:30 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde In"
+ },
+ "103739": {
+  "fecha": "2026-11-02T12:47:39+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 08:47 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "103735": {
+  "fecha": "2026-11-02T12:39:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1219"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el siguiente circuito: A1219✅"
  }
 }

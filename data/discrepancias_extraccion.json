@@ -1,24 +1,4 @@
 {
- "100760": {
-  "fecha": "2026-10-26T18:30:07+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H343",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢✔️Consumidores del municipio San Miguel del Padrón ,queda restablecido el servicio eléctrico afectado por TRABAJOS OPERATIVOS en el siguiente circuito: 👉S513(H"
- },
- "100747": {
-  "fecha": "2026-10-26T18:13:17+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "H343",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "🔴⚡️Consumidores del municipio San Miguel del Padrón se afecta el servicio eléctrico por TRABAJOS OPERATIVOS en el siguiente circuito: 👉S513(H343)(S515): Carrete"
- },
  "100767": {
   "fecha": "2026-10-26T18:38:57+00:00",
   "tipo_llm": "averia",
@@ -2386,5 +2366,34 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el: D1280✅"
+ },
+ "103926": {
+  "fecha": "2026-11-02T18:16:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203",
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en los circuitos 2203 y 2204✅"
+ },
+ "103924": {
+  "fecha": "2026-11-02T18:15:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1160"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📈Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉SF58"
+ },
+ "103917": {
+  "fecha": "2026-11-02T18:02:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2203",
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en los circuitos 2203 y 2204✅"
  }
 }

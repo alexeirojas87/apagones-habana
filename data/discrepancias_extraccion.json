@@ -1,14 +1,4 @@
 {
- "100601": {
-  "fecha": "2026-10-26T11:10:18+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ1",
-   "PZ14"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Consumidores del municipio Plaza, queda normalizado el esquema del PZ14 que había sido transferido al circuito PZ1📣✅"
- },
  "100630": {
   "fecha": "2026-10-26T12:40:55+00:00",
   "tipo_llm": "restablecimiento",
@@ -2252,5 +2242,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:30 PM se afectan 423 MW distribuidos en 178 circuitos de distribución. A continuación,"
+ },
+ "103672": {
+  "fecha": "2026-11-02T10:07:10+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 264 MW distribuidos en 110 circuitos de distribución. A continuación,"
  }
 }

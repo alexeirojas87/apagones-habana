@@ -1,14 +1,4 @@
 {
- "100779": {
-  "fecha": "2026-10-26T19:11:21+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "H343",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 3:11 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉S513(H343)(S515)"
- },
  "100811": {
   "fecha": "2026-10-26T20:05:50+00:00",
   "tipo_llm": "afectacion",
@@ -2404,5 +2394,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Boyeros, que se ha transferido temporalmente la carga de los Hospitales Cardiocentro-Pediátrico (William Soler) y Enri"
+ },
+ "103959": {
+  "fecha": "2026-11-02T19:04:44+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1280"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el: D1280✅"
  }
 }

@@ -1,14 +1,4 @@
 {
- "100726": {
-  "fecha": "2026-10-26T17:13:22+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H343",
-   "S515"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población que a partir de las 1:11 PM queda queda restablecido el servicio en el siguiente circuito: 👉S513(H343)(S515): Carretera San Miguel d"
- },
  "100760": {
   "fecha": "2026-10-26T18:30:07+00:00",
   "tipo_llm": "restablecimiento",
@@ -2336,5 +2326,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el siguiente circuito: A1203✅"
+ },
+ "103878": {
+  "fecha": "2026-11-02T17:25:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
  }
 }

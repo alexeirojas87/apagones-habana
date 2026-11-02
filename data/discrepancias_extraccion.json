@@ -1,17 +1,4 @@
 {
- "100811": {
-  "fecha": "2026-10-26T20:05:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 4:05 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327, P324): "
- },
  "100880": {
   "fecha": "2026-10-26T22:48:20+00:00",
   "tipo_llm": "restablecimiento",
@@ -2449,5 +2436,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG313 y SG315✅"
+ },
+ "103994": {
+  "fecha": "2026-11-02T20:25:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB910"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito MB910✅"
+ },
+ "103990": {
+  "fecha": "2026-11-02T20:20:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP402"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Queda reparada la avería y restablecido el servicio en el circuito OP402✅"
  }
 }

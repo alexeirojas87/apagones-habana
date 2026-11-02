@@ -1,13 +1,4 @@
 {
- "100580": {
-  "fecha": "2026-10-26T10:03:02+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:03 AM se afectan 207 MW distribuidos en 91 circuitos de distribución. A continuación, "
- },
  "100599": {
   "fecha": "2026-10-26T10:55:54+00:00",
   "tipo_llm": "otro",
@@ -16,17 +7,6 @@
   ],
   "solo_regex": [],
   "extracto": "📣Recordamos a los clientes que pertenecían a los circuitos: 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alre"
- },
- "100596": {
-  "fecha": "2026-10-26T10:32:40+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:58 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P327: Desagüe d"
  },
  "100601": {
   "fecha": "2026-10-26T11:10:18+00:00",

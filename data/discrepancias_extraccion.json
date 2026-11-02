@@ -1,22 +1,4 @@
 {
- "100704": {
-  "fecha": "2026-10-26T16:27:44+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 83 MW distribuidos en 192 circuitos de distribución. A continuación, "
- },
- "100700": {
-  "fecha": "2026-10-26T16:08:28+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "306"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Playa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉306 / 17 y 19 .🛑⚡️"
- },
  "100726": {
   "fecha": "2026-10-26T17:13:22+00:00",
   "tipo_llm": "restablecimiento",

@@ -1,15 +1,4 @@
 {
- "100487": {
-  "fecha": "2026-10-26T03:00:16+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:53 PM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉PZ7: Cuadrante desde calle 4 has"
- },
  "100491": {
   "fecha": "2026-10-26T03:20:38+00:00",
   "tipo_llm": "averia",

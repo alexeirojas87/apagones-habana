@@ -2619,5 +2619,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes pertenecientes al circuito H443✅"
+ },
+ "104128": {
+  "fecha": "2026-11-03T03:37:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP20"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el Disparo en el circuitos Cpp20✅"
  }
 }

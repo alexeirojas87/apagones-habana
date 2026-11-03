@@ -1,41 +1,4 @@
 {
- "101149": {
-  "fecha": "2026-10-27T16:06:04+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:59 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores"
- },
- "101148": {
-  "fecha": "2026-10-27T16:06:03+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "H446"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:59 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉H341:Alrededore"
- },
- "101145": {
-  "fecha": "2026-10-27T16:06:02+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL53",
-   "MB960"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB930,MB960,AL53 ✅"
- },
- "101143": {
-  "fecha": "2026-10-27T16:06:02+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "AL53"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉MB930:Mirador de Marbella"
- },
  "101214": {
   "fecha": "2026-10-27T18:09:37+00:00",
   "tipo_llm": "afectacion",
@@ -2589,5 +2552,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Informamos a los clientes del municipio Cerró pertenecientes al circuito C15, se encuentra transferido temporalmente la carga al circuito 1248: 👉C15: Alrededo"
+ },
+ "104307": {
+  "fecha": "2026-11-03T16:10:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG313",
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG313 y SG315✅"
  }
 }

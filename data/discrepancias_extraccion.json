@@ -2687,5 +2687,18 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️Consumidores del municipio Regla, quedó solucionada y con servicio la avería secundaria por transformador dañado en las calles: 👉Maceo entre Perdomo y Rubiera"
+ },
+ "104220": {
+  "fecha": "2026-11-03T10:57:37+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 6:57 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): "
  }
 }

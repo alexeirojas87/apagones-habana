@@ -2535,5 +2535,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Guanabacoa pertenecientes al circuito A1455 que se encuentra transferida temporalmente la carga al circuito GC11. 📌Una"
+ },
+ "104087": {
+  "fecha": "2026-11-03T01:27:36+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes pertenecientes al circuito H341✅"
+ },
+ "104080": {
+  "fecha": "2026-11-03T01:06:26+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A960"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Boyeros, que se ha transferido temporalmente la carga de los Hospitales Cardiocentro-Pediátrico (William Soler) y Enri"
  }
 }

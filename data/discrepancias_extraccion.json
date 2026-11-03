@@ -2639,5 +2639,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:35 AM se afectan 217 MW distribuidos en 97 circuitos de distribución. A continuación, "
+ },
+ "104190": {
+  "fecha": "2026-11-03T08:55:57+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
  }
 }

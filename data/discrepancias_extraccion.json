@@ -2628,5 +2628,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el Disparo en el circuitos Cpp20✅"
+ },
+ "104166": {
+  "fecha": "2026-11-03T06:26:43+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 2:10 AM del lunes 2 de noviembre quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉P325: Al"
  }
 }

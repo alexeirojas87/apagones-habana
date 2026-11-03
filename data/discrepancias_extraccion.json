@@ -2678,5 +2678,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣Informamos a la población que a partir de las 5:38 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318: Alrededores"
+ },
+ "104212": {
+  "fecha": "2026-11-03T10:25:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R456"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️Consumidores del municipio Regla, quedó solucionada y con servicio la avería secundaria por transformador dañado en las calles: 👉Maceo entre Perdomo y Rubiera"
  }
 }

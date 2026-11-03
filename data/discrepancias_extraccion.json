@@ -1,13 +1,4 @@
 {
- "101070": {
-  "fecha": "2026-10-27T13:15:15+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H443"
-  ],
-  "solo_regex": [],
-  "extracto": "📣‼️Informamos a los Clientes pertenecientes al circuito H443 del Municipio San Miguel del Padrón, se encuentran afectados por Avería 📣‼️"
- },
  "101103": {
   "fecha": "2026-10-27T14:24:25+00:00",
   "tipo_llm": "restablecimiento",

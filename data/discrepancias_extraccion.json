@@ -2562,5 +2562,34 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el 2075✅"
+ },
+ "104109": {
+  "fecha": "2026-11-03T02:27:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB920"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en el circuitos MB920✅"
+ },
+ "104104": {
+  "fecha": "2026-11-03T02:12:45+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "OP321",
+   "P318",
+   "P319"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los clientes pertenecientes a los circuitos P319 y P318, se encuentran en paralelo llevandose la carga del OP321. Una vez normalizado el esquema "
+ },
+ "104102": {
+  "fecha": "2026-11-03T02:06:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL55"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en el circuitos AL55✅"
  }
 }

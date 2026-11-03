@@ -2516,5 +2516,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes pertenecientes al circuito en D1195✅"
+ },
+ "104069": {
+  "fecha": "2026-11-03T00:17:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC18"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes pertenecientes al circuito GC18✅"
  }
 }

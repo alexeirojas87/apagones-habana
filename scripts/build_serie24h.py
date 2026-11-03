@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 """Serie 24 h por circuito para los sparklines de la web.
 
-Autónomo y offline: lee SOLO los JSON commiteados (web/data/partes.json y
-web/data/circuitos.json) y reescribe circuitos.json en el sitio con la clave
-nueva `serie_24h` en cada circuito, preservando el resto de las claves.
-Idempotente: cada corrida recalcula la serie desde los partes, nunca desde la
-serie ya escrita.
+Autónomo y offline: lee los JSON del ÁRBOL DE TRABAJO (web/data/partes.json
+recién generado por build_partes y web/data/circuitos.json recién generado por
+build_circuitos) y reescribe circuitos.json con la clave nueva `serie_24h` en
+cada circuito, preservando el resto de las claves. Idempotente: cada corrida
+recalcula la serie desde los partes, nunca desde la serie ya escrita.
+
+OJO orden del pipeline: tiene que correr DESPUÉS de build_partes. Si lee el
+partes.json del checkout (semanas de antigüedad, porque el workflow despliega
+sin commitear web/data), el carry de partes pinta con eventos viejos y los
+bloques contradicen el estado real.
 
 Regla aprobada ("mezcla"/carry): 24 cubos horarios en America/Havana (0 = hace
 23 h … 23 = la hora actual). El valor de cada cubo es el estado del evento más
@@ -15,12 +20,21 @@ SEN se ignoran. "nd" (ambar) únicamente antes de la primera mención histórica
 del circuito: despues de eso, el último estado se arrastra a traves de los
 huecos.
 
-Sobre ese carry se superpone el ESTADO VIGENTE del catálogo (estado /
-estado_fecha), que es la fuente autoritativa que ya usa el titular "X h sin
-luz": muchos cortes no van etiquetados con "👉 CODE" en el parte, así que el
-carry de partes puede quedarse anclado en un ✅ antiguo y pintar de verde un
-circuito que hoy está apagado (el bug de PZ7). Los cubos con fin >=
-estado_fecha toman el estado actual; los anteriores conservan el carry.
+Sobre ese carry se superpone el ESTADO VIGENTE del catálogo, que es la fuente
+autoritativa que ya usa el titular "X h sin luz": muchos cortes no van
+etiquetados con "👉 CODE" en el parte, así que el carry de partes puede
+quedarse anclado en un ✅ antiguo y pintar de verde un circuito que hoy está
+apagado (el bug de PZ7).
+
+El ancla del estado vigente es el MISMO reloj que el titular: `estado_desde`
+(fecha del parte que CAMBIÓ el estado), con respaldo en `estado_fecha` (última
+MENCIÓN) para catálogos viejos, y la señal vecinal contraria si es posterior.
+Usar `estado_fecha` era el bug de los bloques verdes: una mención que repite
+el mismo "sin servicio" refresca `estado_fecha` pero NO cambia el estado, así
+que un corte de 34 h podía pintar solo las últimas 3 h en rojo. Los cubos con
+fin >= ancla toman el estado vigente; los anteriores conservan el carry, y si
+el carry contradice la alternancia (deja el mismo estado justo antes de un
+cambio) se corrige al contrario hasta la última mención previa.
 """
 
 import json
@@ -94,30 +108,87 @@ def serie_para(eventos, fines):
     return serie
 
 
-def aplicar_estado(serie, fines, estado, estado_fecha):
-    """Superpone el estado vigente sobre el carry de partes.
+def reloj_estado(c):
+    """Estado vigente y momento de su último CAMBIO (tz-aware).
 
-    Los cubos cuyo fin cae en o despues de estado_fecha pasan al estado actual
-    (mismo fuente que el titular "X h sin luz"). Así un corte no anunciado con
-    "👉 CODE" (ausente del carry) no deja el sparkline verde mientras el circuito
-    figura apagado. Sin estado_fecha fiable, al menos el cubo actual (el último)
-    refleja el estado vigente.
+    Mismas reglas que `ultimoCambio`/`circuitoVigente` de app.js y circuitos.js:
+    el reloj es `estado_desde` (fecha del parte que CAMBIÓ el estado), con
+    respaldo en `estado_fecha` (última MENCIÓN) para catálogos viejos; una
+    señal vecinal CONTRARIA posterior manda sobre ambas.
+
+    Devuelve (estado, momento, es_cambio_real); (None, None, False) si el
+    circuito no tiene estado conocido. `es_cambio` es True cuando hubo una
+    transición real (parte o señal vecinal): antes de ese momento el estado
+    era el contrario.
     """
-    st = ESTADO_MAP.get(estado)
-    if st is None:
-        return serie
-    desde = None
-    if estado_fecha:
+    estado = ESTADO_MAP.get(c.get("estado"))
+    t0 = None
+    es_cambio = False
+    for clave in ("estado_desde", "estado_fecha"):
+        v = c.get(clave)
+        if not v:
+            continue
         try:
-            desde = datetime.fromisoformat(estado_fecha)
+            t0 = datetime.fromisoformat(v)
         except ValueError:
-            desde = None
-    if desde is None:
-        serie[-1] = st
+            continue
+        es_cambio = clave == "estado_desde"
+        break
+
+    cu = c.get("conteo_usuario") or {}
+    if c.get("discrepado") and cu.get("desde"):
+        # La UNE dice "con" y los vecinos reportan sin corriente.
+        try:
+            d = datetime.fromisoformat(cu["desde"])
+        except ValueError:
+            d = None
+        if d and (t0 is None or d > t0):
+            estado, t0, es_cambio = "sin", d, True
+    elif c.get("estado") == "sin servicio" and c.get("reportado_con") and cu.get("ultimo_con"):
+        # La UNE lo mantiene "sin" y los vecinos reportan que volvió.
+        try:
+            d = datetime.fromisoformat(cu["ultimo_con"])
+        except ValueError:
+            d = None
+        if d and (t0 is None or d > t0):
+            estado, t0, es_cambio = "con", d, True
+
+    return estado, t0, es_cambio
+
+
+def serie_para_circuito(eventos, fines, c):
+    """Sparkline que respeta el mismo reloj que el titular "X h sin luz"."""
+    estado, t0, es_cambio = reloj_estado(c)
+    if estado is None:
+        return serie_para(eventos, fines)
+    if t0 is None:
+        serie = serie_para(eventos, fines)
+        serie[-1] = estado
         return serie
+
+    previos = [e for e in eventos if e[0] < t0]
+    serie = serie_para(previos, fines)
+    contrario = "con" if estado == "sin" else "sin"
+
+    if previos:
+        ult_dt, ult_estado = previos[-1]
+        if ult_estado == estado:
+            # Los estados alternan: justo antes del cambio NO puede estar el
+            # mismo estado. Es carry rancio (parte sin "👉 CODE" o mención
+            # duplicada), así que lo corregimos desde la última mención previa.
+            for i, fin in enumerate(fines):
+                if ult_dt <= fin < t0 and serie[i] == estado:
+                    serie[i] = contrario
+    elif es_cambio:
+        # Cambio real sin ninguna mención anterior: antes era el contrario.
+        for i, fin in enumerate(fines):
+            if fin < t0:
+                serie[i] = contrario
+
     for i, fin in enumerate(fines):
-        if fin >= desde:
-            serie[i] = st
+        if fin >= t0:
+            serie[i] = estado
+
     return serie
 
 
@@ -133,8 +204,7 @@ def main():
 
     con_serie = 0
     for c in circuitos["circuitos"]:
-        serie = serie_para(eventos.get(c["codigo"], []), fines)
-        serie = aplicar_estado(serie, fines, c.get("estado"), c.get("estado_fecha"))
+        serie = serie_para_circuito(eventos.get(c["codigo"], []), fines, c)
         c["serie_24h"] = serie
         if any(v != "nd" for v in c["serie_24h"]):
             con_serie += 1

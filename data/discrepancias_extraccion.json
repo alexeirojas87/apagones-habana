@@ -1,13 +1,4 @@
 {
- "101012": {
-  "fecha": "2026-10-27T09:58:52+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [],
-  "solo_regex": [
-   "MB910"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 5:59 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉 Al57: Colina Villa"
- },
  "101036": {
   "fecha": "2026-10-27T11:14:14+00:00",
   "tipo_llm": "restablecimiento",
@@ -2649,5 +2640,43 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
+ },
+ "104210": {
+  "fecha": "2026-11-03T10:00:11+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 240 MW distribuidos en 102 circuitos de distribución. A continuación,"
+ },
+ "104200": {
+  "fecha": "2026-11-03T09:46:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1175",
+   "1246"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos 1175 y 1246✅"
+ },
+ "104199": {
+  "fecha": "2026-11-03T09:45:30+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836 (exceptuando el reparto Trigal✅"
+ },
+ "104197": {
+  "fecha": "2026-11-03T09:39:57+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Informamos a la población que a partir de las 5:38 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318: Alrededores"
  }
 }

@@ -1,37 +1,4 @@
 {
- "101103": {
-  "fecha": "2026-10-27T14:24:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a la población que a partir de las 10:24 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP320, OP424, OP304, OP41"
- },
- "101100": {
-  "fecha": "2026-10-27T14:19:46+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:19 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC12:Centro de "
- },
- "101093": {
-  "fecha": "2026-10-27T14:03:31+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 9:59 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2203:Alrededores"
- },
  "101105": {
   "fecha": "2026-10-27T14:42:04+00:00",
   "tipo_llm": "afectacion",
@@ -2657,5 +2624,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉Al55: Zonas: 12; 13; 14; 19; 20; 21; 23; 24 y 25. 👉M"
+ },
+ "104260": {
+  "fecha": "2026-11-03T14:30:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D632",
+   "D633"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los siguientes circuitos : D632 y D633 .✅"
  }
 }

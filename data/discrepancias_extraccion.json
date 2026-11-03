@@ -1,13 +1,4 @@
 {
- "100973": {
-  "fecha": "2026-10-27T07:34:11+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [],
-  "solo_regex": [
-   "MB910"
-  ],
-  "extracto": "✅📣Informamos a la población que quedó restablecido el servicio en los siguientes circuitos: 👉MB910(D1055): Justi, Agromar, Bajurayabo, Campo Florido, La Coca. L"
- },
  "101012": {
   "fecha": "2026-10-27T09:58:52+00:00",
   "tipo_llm": "afectacion",
@@ -2639,5 +2630,14 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 2:10 AM del lunes 2 de noviembre quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉P325: Al"
+ },
+ "104180": {
+  "fecha": "2026-11-03T07:35:04+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:35 AM se afectan 217 MW distribuidos en 97 circuitos de distribución. A continuación, "
  }
 }

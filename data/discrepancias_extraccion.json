@@ -2626,5 +2626,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:38 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324):"
+ },
+ "104799": {
+  "fecha": "2026-11-04T20:34:10+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL52"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Reiteramos a la población que se mantiene afectado el servicio eléctrico por Avería en el siguiente circuito: 👉 AL 52: Zonas: 6; 7; 8; 9; 10; 11 y Micro 4🚨📣"
  }
 }

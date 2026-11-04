@@ -2613,5 +2613,18 @@
   ],
   "solo_regex": [],
   "extracto": "🚧⚠️Consumidores del municipio Cotorro , se localizó una AVERÍA por Transformador Dañado en la siguiente dirección: 👉Reparto Alturas de Lotería ⚠️🚧"
+ },
+ "104784": {
+  "fecha": "2026-11-04T19:49:49+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:38 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324):"
  }
 }

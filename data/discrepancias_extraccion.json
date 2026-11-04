@@ -2567,5 +2567,14 @@
   ],
   "solo_regex": [],
   "extracto": "‼️Consumidores del municipio Lisa, por Trabajos Operativos se restablece el servicio eléctrico en el circuito 👉 A1223‼️"
+ },
+ "104738": {
+  "fecha": "2026-11-04T18:03:54+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉2203:Alrededores de los c"
  }
 }

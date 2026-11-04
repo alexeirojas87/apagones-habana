@@ -2540,5 +2540,32 @@
   ],
   "solo_regex": [],
   "extracto": "‼️Consumidores del municipio Lisa, por Trabajos Operativos se afecta el servicio eléctrico en el circuito 👉 A1223"
+ },
+ "104733": {
+  "fecha": "2026-11-04T17:59:33+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "P329"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Plaza, por disparo del circuito se afecta el servicio eléctrico en el siguiente circuito: 👉P326(P329): Hospital desde Carlos III ha"
+ },
+ "104725": {
+  "fecha": "2026-11-04T17:52:38+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1042"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Cotorro , se localizó una AVERÍA por PRIMARIO PARTIDO en la Subestación afectando el servicio eléctrico en el siguiente circuito :"
+ },
+ "104717": {
+  "fecha": "2026-11-04T17:36:13+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1223"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Lisa, por Trabajos Operativos se restablece el servicio eléctrico en el circuito 👉 A1223‼️"
  }
 }

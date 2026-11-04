@@ -1,13 +1,4 @@
 {
- "101385": {
-  "fecha": "2026-10-28T07:46:19+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "GC16"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en el siguiente circuito: 👉GC 16:Soterrado Panamericano"
- },
  "101391": {
   "fecha": "2026-10-28T09:20:13+00:00",
   "tipo_llm": "averia",

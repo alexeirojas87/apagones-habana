@@ -2594,5 +2594,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉2203:Alrede"
+ },
+ "104762": {
+  "fecha": "2026-11-04T19:08:00+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380",
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "📣⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:07 PM se afectan 246 MW distribuidos en 108 circuitos de distribución. A continuación,"
+ },
+ "104760": {
+  "fecha": "2026-11-04T19:04:51+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1042"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚠️Consumidores del municipio Cotorro , se localizó una AVERÍA por Transformador Dañado en la siguiente dirección: 👉Reparto Alturas de Lotería ⚠️🚧"
  }
 }

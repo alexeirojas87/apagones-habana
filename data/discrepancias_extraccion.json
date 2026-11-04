@@ -2513,5 +2513,14 @@
   ],
   "solo_regex": [],
   "extracto": "EELH| 🚨 Actualización restablecimiento de Subestaciones: ✅ Cerrado el circuito HB104 ✅Con servicio por 110kV la Subestacion Tropical"
+ },
+ "104662": {
+  "fecha": "2026-11-04T15:17:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H442"
+  ],
+  "solo_regex": [],
+  "extracto": "✅✔️Reparada la AVERÍA PRIMARIA que afectaba el servicio eléctrico a los clientes de San Miguel del Padrón en la siguiente dirección : 👉H442:María Cristina ✅ ✔️"
  }
 }

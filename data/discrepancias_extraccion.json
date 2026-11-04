@@ -2522,5 +2522,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los circuitos 1175 y 1246✅"
+ },
+ "104714": {
+  "fecha": "2026-11-04T17:22:37+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "2071"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Consumidores del municipio Lisa se encuentra el CIRCUITO DISPARADO afectando el siguiente circuito : 👉2073: Calle 256 hasta 51 y 234 hasta 51 entre 244 y 232 "
+ },
+ "104712": {
+  "fecha": "2026-11-04T17:16:56+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1223"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Lisa, por Trabajos Operativos se afecta el servicio eléctrico en el circuito 👉 A1223"
  }
 }

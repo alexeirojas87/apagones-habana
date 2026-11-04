@@ -59,15 +59,6 @@
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio 10 de Octubre pertenecientes al circuito D634, que se ha transferido temporalmente una parte de la carga al circuito H"
  },
- "101439": {
-  "fecha": "2026-10-28T12:31:12+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1243, se ha transferido temporalmente una parte de la carga a los circuitos 1247 y 12"
- },
  "101547": {
   "fecha": "2026-10-28T16:49:26+00:00",
   "tipo_llm": "deficit",

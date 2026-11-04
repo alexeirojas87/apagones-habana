@@ -2522,5 +2522,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅✔️Reparada la AVERÍA PRIMARIA que afectaba el servicio eléctrico a los clientes de San Miguel del Padrón en la siguiente dirección : 👉H442:María Cristina ✅ ✔️"
+ },
+ "104672": {
+  "fecha": "2026-11-04T15:45:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1175",
+   "1246"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los circuitos 1175 y 1246✅"
  }
 }

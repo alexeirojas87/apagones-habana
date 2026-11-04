@@ -1,13 +1,4 @@
 {
- "101304": {
-  "fecha": "2026-10-27T23:58:30+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "MB960"
-  ],
-  "solo_regex": [],
-  "extracto": "📣‼️Consumidores del municipio Habana del Este se encuentran afectados por una Avería Poste Quemado afectando el siguiente circuito: 👉MB960: Repartos La Conchita"
- },
  "101345": {
   "fecha": "2026-10-28T04:19:20+00:00",
   "tipo_llm": "deficit",

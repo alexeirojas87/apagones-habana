@@ -2680,5 +2680,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en el siguiente circuito: 👉H343:Reparto Martín Pérez, Ciudamar, Sichi y Alturas"
+ },
+ "104856": {
+  "fecha": "2026-11-04T23:28:35+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 7:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2203:Alrededores"
  }
 }

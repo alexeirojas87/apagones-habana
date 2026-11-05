@@ -21,15 +21,6 @@
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 8:55 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde Inf"
  },
- "101840": {
-  "fecha": "2026-10-29T12:32:02+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1009"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio 10 de Octubre, se localiza avería secundaria por transformador dañado en calle 14 entre Dolores y Tejar, Lawton🚨"
- },
  "101875": {
   "fecha": "2026-10-29T13:55:28+00:00",
   "tipo_llm": "otro",

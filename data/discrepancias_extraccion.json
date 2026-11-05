@@ -1,13 +1,4 @@
 {
- "102036": {
-  "fecha": "2026-10-29T18:48:59+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1244"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito 1244✅"
- },
  "102058": {
   "fecha": "2026-10-29T19:26:09+00:00",
   "tipo_llm": "restablecimiento",

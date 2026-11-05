@@ -2733,5 +2733,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅📈Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉SF58"
+ },
+ "104951": {
+  "fecha": "2026-11-05T07:28:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 03:28 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
+ },
+ "104935": {
+  "fecha": "2026-11-05T07:07:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H343"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉AL55,H343 ✅"
  }
 }

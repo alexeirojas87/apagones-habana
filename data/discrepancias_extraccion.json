@@ -1,31 +1,4 @@
 {
- "102121": {
-  "fecha": "2026-10-29T20:55:07+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP310"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉OP307"
- },
- "102117": {
-  "fecha": "2026-10-29T20:52:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP325"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉OP321"
- },
- "102110": {
-  "fecha": "2026-10-29T20:44:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "MB960"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉MB930"
- },
  "102155": {
   "fecha": "2026-10-29T21:27:51+00:00",
   "tipo_llm": "restablecimiento",
@@ -2568,5 +2541,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Reiteramos a los clientes pertenecientes a los circuitos P319 (P326) y P318, se encuentran en paralelo llevandose la carga del OP321. Una vez normalizado el e"
+ },
+ "105218": {
+  "fecha": "2026-11-05T20:58:54+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P329"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Consumidores de los municipios PLaza de La Revolución y Centro Habana, se autoriza vía libre de emergencia para cambio de Dropt Out quedando afectado los sigui"
  }
 }

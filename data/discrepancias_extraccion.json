@@ -1,22 +1,4 @@
 {
- "102155": {
-  "fecha": "2026-10-29T21:27:51+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1247"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Informamos que a partir de las 5:26PM quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el sigu"
- },
- "102138": {
-  "fecha": "2026-10-29T21:14:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "MB960"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉AL53,"
- },
  "102167": {
   "fecha": "2026-10-29T21:52:20+00:00",
   "tipo_llm": "restablecimiento",
@@ -2550,5 +2532,27 @@
   ],
   "solo_regex": [],
   "extracto": "📣Consumidores de los municipios PLaza de La Revolución y Centro Habana, se autoriza vía libre de emergencia para cambio de Dropt Out quedando afectado los sigui"
+ },
+ "105221": {
+  "fecha": "2026-11-05T21:06:58+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que partir de las 5:05 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325 (P327)(P324):"
+ },
+ "105206": {
+  "fecha": "2026-11-05T19:58:51+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:50 PM se afectan 150 MW distribuidos en 58 circuitos de distribución. A continuación, "
  }
 }

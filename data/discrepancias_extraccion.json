@@ -1,22 +1,4 @@
 {
- "102080": {
-  "fecha": "2026-10-29T19:56:02+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "MB960"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia(DAF) pertenecientes a los siguientes circuitos: 👉MB930"
- },
- "102064": {
-  "fecha": "2026-10-29T19:36:29+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito A820✅"
- },
  "102102": {
   "fecha": "2026-10-29T20:17:55+00:00",
   "tipo_llm": "afectacion",
@@ -33,24 +15,6 @@
   ],
   "solo_regex": [],
   "extracto": "📉🚨Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO."
- },
- "102096": {
-  "fecha": "2026-10-29T20:02:45+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PG940"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito PG940✅"
- },
- "102092": {
-  "fecha": "2026-10-29T20:02:24+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D640"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el D640✅"
  },
  "102121": {
   "fecha": "2026-10-29T20:55:07+00:00",
@@ -2592,5 +2556,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los consumidores del municipio Playa, pertenecientes al circuito 1243, que se ha normalizado el esquema por lo que las interrupciones por défici"
+ },
+ "105188": {
+  "fecha": "2026-11-05T19:34:02+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1244"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1244, se ha transferido temporalmente una parte de la carga al circuito 1243 ,debido "
+ },
+ "105187": {
+  "fecha": "2026-11-05T19:31:56+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1243"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1243, se ha transferido temporalmente una parte de la carga al circuito 1244 ,debido "
  }
 }

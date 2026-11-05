@@ -96,6 +96,58 @@ class Serie24hRelojTest(unittest.TestCase):
         )
         self.assertEqual(rojo(MOD.serie_para_circuito([], FINES, c)), "R" * 20 + "G" * 4)
 
+    def test_horas_de_la_une_mandan_sobre_el_parpadeo(self):
+        # AL53: volvió a las 08:14 y se fue a las 08:15 (1 minuto para el reloj
+        # del estado) pero el parte de déficit declara 23 h sin corriente.
+        c = circuito(
+            codigo="AL53",
+            estado="sin servicio",
+            estado_desde=(AHORA - timedelta(minutes=20)).isoformat(),
+            estado_fecha=(AHORA - timedelta(minutes=5)).isoformat(),
+        )
+        inicios = MOD.cargar_inicios_oficiales(
+            {"deficit": {"fecha": AHORA.isoformat(), "circuitos": [{"codigo": "AL53", "horas": 23}]}}
+        )
+        self.assertEqual(
+            rojo(MOD.serie_para_circuito([], FINES, c, inicios)), "R" * 24
+        )
+
+    def test_inicio_oficial_se_calcula_desde_la_fecha_del_parte(self):
+        estado = {
+            "deficit": {
+                "fecha": (AHORA - timedelta(hours=5)).isoformat(),
+                "circuitos": [{"codigo": "AL53", "horas": 20}],
+            }
+        }
+        inicio = MOD.cargar_inicios_oficiales(estado)["AL53"]
+        self.assertEqual(inicio, AHORA - timedelta(hours=25))
+
+    def test_horas_de_la_une_se_ignoran_si_hay_servicio(self):
+        c = circuito(
+            codigo="AL53",
+            estado="con servicio",
+            estado_desde=(AHORA - timedelta(hours=2)).isoformat(),
+            estado_fecha=(AHORA - timedelta(hours=2)).isoformat(),
+        )
+        inicios = MOD.cargar_inicios_oficiales(
+            {"deficit": {"fecha": AHORA.isoformat(), "circuitos": [{"codigo": "AL53", "horas": 23}]}}
+        )
+        self.assertEqual(
+            rojo(MOD.serie_para_circuito([], FINES, c, inicios)), "R" * 20 + "G" * 4
+        )
+
+    def test_codigo_del_parte_con_otra_capitalizacion(self):
+        partes = {
+            "partes": [
+                {"fecha": (AHORA - timedelta(hours=8)).isoformat(), "tag": "🔻 Afectación",
+                 "texto": "se afecta el servicio 👉Al53: Zonas 1, 2"},
+                {"fecha": (AHORA - timedelta(hours=3)).isoformat(), "tag": "✅ Restablecimiento",
+                 "texto": "quedó restablecido 👉AL53"},
+            ]
+        }
+        eventos = MOD.cargar_eventos({"AL53"}, partes)
+        self.assertEqual(len(eventos.get("AL53", [])), 2)
+
 
 if __name__ == "__main__":
     unittest.main()

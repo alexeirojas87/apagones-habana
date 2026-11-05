@@ -2,9 +2,10 @@
 """Serie 24 h por circuito para los sparklines de la web.
 
 Autónomo y offline: lee los JSON del ÁRBOL DE TRABAJO (web/data/partes.json
-recién generado por build_partes y web/data/circuitos.json recién generado por
-build_circuitos) y reescribe circuitos.json con la clave nueva `serie_24h` en
-cada circuito, preservando el resto de las claves. Idempotente: cada corrida
+recién generado por build_partes, web/data/circuitos.json recién generado por
+build_circuitos y web/data/estado.json por las horas oficiales del parte de
+déficit) y reescribe circuitos.json con la clave nueva `serie_24h` en cada
+circuito, preservando el resto de las claves. Idempotente: cada corrida
 recalcula la serie desde los partes, nunca desde la serie ya escrita.
 
 OJO orden del pipeline: tiene que correr DESPUÉS de build_partes. Si lee el
@@ -35,6 +36,12 @@ que un corte de 34 h podía pintar solo las últimas 3 h en rojo. Los cubos con
 fin >= ancla toman el estado vigente; los anteriores conservan el carry, y si
 el carry contradice la alternancia (deja el mismo estado justo antes de un
 cambio) se corrige al contrario hasta la última mención previa.
+
+Si el parte de déficit vigente declara horas para el circuito (la MISMA fuente
+del titular "lleva Xh (según la UNE)"), ese inicio manda cuando implica un
+corte más viejo que el reloj del estado: un parpadeo de un minuto no borra
+23 horas sin corriente. Los códigos se comparan sin distinguir mayúsculas
+porque la UNE escribe "AL53" y "Al53" indistintamente.
 """
 
 import json
@@ -46,6 +53,7 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parent.parent
 PARTES_JSON = ROOT / "web" / "data" / "partes.json"
 CIRCUITOS_JSON = ROOT / "web" / "data" / "circuitos.json"
+ESTADO_JSON = ROOT / "web" / "data" / "estado.json"
 
 HABANA = ZoneInfo("America/Havana")
 
@@ -67,7 +75,14 @@ ESTADO_MAP = {"sin servicio": "sin", "con servicio": "con"}
 
 
 def cargar_eventos(known_codes, partes):
-    """{codigo: [(dt, "con"|"sin"), ...]} ordenado por dt ascendente."""
+    """{codigo: [(dt, "con"|"sin"), ...]} ordenado por dt ascendente.
+
+    Los códigos se normalizan a mayúsculas porque la UNE escribe tanto "AL53"
+    como "Al53" en el mismo parte, y el catálogo (y build_circuitos) los trata
+    como el mismo circuito. Sin esto el carry se perdía justo el ✅ que marca
+    el retorno y el sparkline quedaba anclado en el estado viejo.
+    """
+    por_mayusculas = {c.upper(): c for c in known_codes}
     eventos = {}
     for p in partes.get("partes", []):
         tag = p.get("tag", "")
@@ -78,12 +93,42 @@ def cargar_eventos(known_codes, partes):
         else:
             continue  # "⚡ Parte del SEN" y etiquetas desconocidas: se ignoran
         dt = datetime.fromisoformat(p["fecha"])
-        for code in CODE_RE.findall(p.get("texto", "")):
-            if code in known_codes:
+        for raw in CODE_RE.findall(p.get("texto", "")):
+            code = por_mayusculas.get(raw.upper())
+            if code:
                 eventos.setdefault(code, []).append((dt, state))
     for ev in eventos.values():
         ev.sort(key=lambda x: x[0])
     return eventos
+
+
+def cargar_inicios_oficiales(estado):
+    """{codigo: inicio del corte} según las horas declaradas por la UNE.
+
+    El parte de déficit publica "horas" de afectación por circuito y es la
+    MISMA fuente del titular "lleva Xh (según la UNE)". `horas` está declarado
+    a la hora del parte, así que el inicio absoluto es `fecha - horas` (no
+    `generado - horas`: el parte puede tener horas de antigüedad).
+    """
+    deficit = (estado or {}).get("deficit") or {}
+    fecha = deficit.get("fecha")
+    if not fecha:
+        return {}
+    try:
+        base = datetime.fromisoformat(fecha)
+    except ValueError:
+        return {}
+    inicio = {}
+    for d in deficit.get("circuitos") or []:
+        code = d.get("codigo")
+        horas = d.get("horas")
+        if not code or horas is None:
+            continue
+        try:
+            inicio[code] = base - timedelta(hours=float(horas))
+        except (TypeError, ValueError):
+            continue
+    return inicio
 
 
 def fin_de_cubos(now):
@@ -156,11 +201,21 @@ def reloj_estado(c):
     return estado, t0, es_cambio
 
 
-def serie_para_circuito(eventos, fines, c):
+def serie_para_circuito(eventos, fines, c, inicios_oficiales=None):
     """Sparkline que respeta el mismo reloj que el titular "X h sin luz"."""
     estado, t0, es_cambio = reloj_estado(c)
     if estado is None:
         return serie_para(eventos, fines)
+
+    # Las horas que declara la UNE (misma fuente del titular "lleva Xh") mandan
+    # cuando implican un corte MÁS VIEJO que el reloj del estado. Caso real:
+    # AL53 vuelve a las 08:14 y se va a las 08:15 (parpadeo de un minuto); el
+    # reloj del estado dice "1 minuto" y el parte de déficit dice "23 h".
+    if estado == "sin":
+        inicio_oficial = (inicios_oficiales or {}).get(c.get("codigo"))
+        if inicio_oficial is not None and (t0 is None or inicio_oficial < t0):
+            t0 = inicio_oficial
+
     if t0 is None:
         serie = serie_para(eventos, fines)
         serie[-1] = estado
@@ -197,14 +252,22 @@ def main():
         circuitos = json.load(f)
     with open(PARTES_JSON, encoding="utf-8") as f:
         partes = json.load(f)
+    try:
+        with open(ESTADO_JSON, encoding="utf-8") as f:
+            estado = json.load(f)
+    except (OSError, ValueError):
+        estado = {}
 
     known_codes = {c["codigo"] for c in circuitos.get("circuitos", [])}
     eventos = cargar_eventos(known_codes, partes)
+    inicios_oficiales = cargar_inicios_oficiales(estado)
     fines = fin_de_cubos(datetime.fromisoformat(circuitos["generado"]))
 
     con_serie = 0
     for c in circuitos["circuitos"]:
-        serie = serie_para_circuito(eventos.get(c["codigo"], []), fines, c)
+        serie = serie_para_circuito(
+            eventos.get(c["codigo"], []), fines, c, inicios_oficiales
+        )
         c["serie_24h"] = serie
         if any(v != "nd" for v in c["serie_24h"]):
             con_serie += 1

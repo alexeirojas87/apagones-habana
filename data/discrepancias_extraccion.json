@@ -1,13 +1,4 @@
 {
- "101804": {
-  "fecha": "2026-10-29T07:41:40+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:30 AM se afectan 394 MW distribuidos en 175 circuitos de distribución. A continuación,"
- },
  "101811": {
   "fecha": "2026-10-29T10:06:43+00:00",
   "tipo_llm": "deficit",
@@ -2752,5 +2743,20 @@
   ],
   "solo_regex": [],
   "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉AL55,H343 ✅"
+ },
+ "104955": {
+  "fecha": "2026-11-05T07:54:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP318",
+   "OP320",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a la población que a partir de las 03:37 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP320, OP424, OP304, OP41"
  }
 }

@@ -1,21 +1,4 @@
 {
- "102102": {
-  "fecha": "2026-10-29T20:17:55+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1006",
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D631",
-   "D632",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉🚨Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se afecta la rotación de los circuitos de la SUBESTACIÓN APOLO."
- },
  "102121": {
   "fecha": "2026-10-29T20:55:07+00:00",
   "tipo_llm": "restablecimiento",
@@ -2574,5 +2557,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1243, se ha transferido temporalmente una parte de la carga al circuito 1244 ,debido "
+ },
+ "105210": {
+  "fecha": "2026-11-05T20:24:51+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "P318",
+   "P319",
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Reiteramos a los clientes pertenecientes a los circuitos P319 (P326) y P318, se encuentran en paralelo llevandose la carga del OP321. Una vez normalizado el e"
  }
 }

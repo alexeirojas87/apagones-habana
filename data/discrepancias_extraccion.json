@@ -2706,5 +2706,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:13 PM se afectan 389 MW distribuidos en 157 circuitos de distribución. A continuación,"
+ },
+ "104882": {
+  "fecha": "2026-11-05T02:05:50+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "1245"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes pertenecientes al municipio Plaza, debido a una AVERÍA PRIMARIA queda transferida una parte de la carga del circuito PZ7 al circuito"
  }
 }

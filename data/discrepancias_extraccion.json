@@ -1,13 +1,4 @@
 {
- "101893": {
-  "fecha": "2026-10-29T14:32:54+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1244"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito 1244✅"
- },
  "101918": {
   "fecha": "2026-10-29T15:45:27+00:00",
   "tipo_llm": "afectacion",

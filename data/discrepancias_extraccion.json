@@ -2554,5 +2554,32 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:00 AM se afectan 231 MW distribuidos en 97 circuitos de distribución. A continuación, "
+ },
+ "105584": {
+  "fecha": "2026-11-06T15:27:43+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "C16"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los clientes pertenecientes al circuito C15 , se encuentra transferido temporalmente la carga al C16 los siguientes cuadrantes: 👉C15: Alrededores"
+ },
+ "105571": {
+  "fecha": "2026-11-06T15:09:57+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C16"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Cerro, queda reparada y con servicio la avería por primario partido en el circuito C16✅"
+ },
+ "105570": {
+  "fecha": "2026-11-06T15:09:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H446"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito H446✅"
  }
 }

@@ -2632,5 +2632,20 @@
    "OP325"
   ],
   "extracto": "📣Consumidores pertenecientes a l subestación Príncipe, por Disparo en la misma se afectan los siguientes circuitos: 👉P318: Alrededores de calles Placencia desde"
+ },
+ "105647": {
+  "fecha": "2026-11-06T17:40:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP321",
+   "P318",
+   "P319",
+   "P324",
+   "P325",
+   "P327",
+   "P329"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo en la subestación en los circuitos P325 (P327 y P324), P318, P319, P329 y OP321✅"
  }
 }

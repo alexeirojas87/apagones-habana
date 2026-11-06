@@ -1,13 +1,4 @@
 {
- "102399": {
-  "fecha": "2026-10-30T16:27:08+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343/MR450: Reparto Martín Pérez, Luyanó Moderno 👉A"
- },
  "102408": {
   "fecha": "2026-10-30T16:49:54+00:00",
   "tipo_llm": "restablecimiento",
@@ -2599,5 +2590,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito por sobrecarga en el D1280✅"
+ },
+ "105614": {
+  "fecha": "2026-11-06T16:21:02+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A980",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:10 PM se afectan 193 MW distribuidos en 85 circuitos de distribución. A continuación, "
+ },
+ "105613": {
+  "fecha": "2026-11-06T16:20:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1280"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito en el D1280✅"
  }
 }

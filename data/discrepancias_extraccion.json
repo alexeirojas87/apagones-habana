@@ -1,49 +1,4 @@
 {
- "102526": {
-  "fecha": "2026-10-30T21:28:11+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2203",
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉2203 y2204📉✅"
- },
- "102525": {
-  "fecha": "2026-10-30T21:26:59+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D631",
-   "D632",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN NACIONAL se interrumpe la rotación de los circuitos de la Subest"
- },
- "102523": {
-  "fecha": "2026-10-30T21:22:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
- },
- "102521": {
-  "fecha": "2026-10-30T21:15:47+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "SF581"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Se le informa a los clientes del municipio Playa, pertenecientes al circuito SF583, que se ha transferido temporalmente la carga al circuito SF581 debido a un"
- },
  "102535": {
   "fecha": "2026-10-30T22:15:15+00:00",
   "tipo_llm": "afectacion",
@@ -2679,5 +2634,62 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico al circuito H341✅"
+ },
+ "105773": {
+  "fecha": "2026-11-06T21:22:53+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A170",
+   "A845"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A845 y A170✅"
+ },
+ "105764": {
+  "fecha": "2026-11-06T21:13:31+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1006",
+   "A1007",
+   "A1008",
+   "A1009",
+   "A465",
+   "D631",
+   "D633",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
+ },
+ "105763": {
+  "fecha": "2026-11-06T21:12:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1372",
+   "D1380"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos D1380 y D1372✅"
+ },
+ "105761": {
+  "fecha": "2026-11-06T21:08:13+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1465",
+   "A1547",
+   "A928",
+   "VC100"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A1465, A928, A1547 y VC100✅"
+ },
+ "105756": {
+  "fecha": "2026-11-06T21:03:47+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H443"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito al circuito H443✅"
  }
 }

@@ -1,24 +1,4 @@
 {
- "102488": {
-  "fecha": "2026-10-30T20:27:48+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
- },
- "102480": {
-  "fecha": "2026-10-30T20:15:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2203",
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉2203 y2204📉✅"
- },
  "102512": {
   "fecha": "2026-10-30T20:58:09+00:00",
   "tipo_llm": "restablecimiento",
@@ -116,15 +96,6 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Se le informa a los clientes del municipio Playa, pertenecientes al circuito SF583, que se ha transferido temporalmente la carga al circuito SF581 debido a un"
- },
- "102489": {
-  "fecha": "2026-10-30T20:31:25+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [],
-  "solo_regex": [
-   "MB910"
-  ],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Altura"
  },
  "102535": {
   "fecha": "2026-10-30T22:15:15+00:00",
@@ -2724,5 +2695,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito PZ7✅"
+ },
+ "105738": {
+  "fecha": "2026-11-06T20:18:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P314",
+   "P322"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Centro Habana, quedó restablecido el servicio eléctrico en el siguiente circuito: P322, P314✅"
+ },
+ "105734": {
+  "fecha": "2026-11-06T20:05:12+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por la vía libre en el circuito L326✅"
  }
 }

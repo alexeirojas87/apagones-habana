@@ -1,22 +1,4 @@
 {
- "102475": {
-  "fecha": "2026-10-30T19:51:13+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [],
-  "solo_regex": [
-   "MB910"
-  ],
-  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉Al55: Zonas: 12; 13; 14; 19; 20; 21; 23; 24 y 25."
- },
- "102471": {
-  "fecha": "2026-10-30T19:42:37+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉MB910(D1055): Justi, Agromar, Bajurayabo, Campo Flor"
- },
  "102488": {
   "fecha": "2026-10-30T20:27:48+00:00",
   "tipo_llm": "restablecimiento",
@@ -2697,5 +2679,50 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: L326✅"
+ },
+ "105726": {
+  "fecha": "2026-11-06T19:50:12+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "1247"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los clientes pertenecientes a los circuitos 1243 y 1244 que se encuentran transferidas temporalmente las cargas al 1247: 👉1243: Alrededores de Av"
+ },
+ "105722": {
+  "fecha": "2026-11-06T19:39:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1247"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el 1247✅"
+ },
+ "105719": {
+  "fecha": "2026-11-06T19:36:42+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: L326✅"
+ },
+ "105717": {
+  "fecha": "2026-11-06T19:33:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C10"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: C10✅"
+ },
+ "105716": {
+  "fecha": "2026-11-06T19:31:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito PZ7✅"
  }
 }

@@ -1,14 +1,4 @@
 {
- "102454": {
-  "fecha": "2026-10-30T18:34:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
- },
  "102463": {
   "fecha": "2026-10-30T19:20:44+00:00",
   "tipo_llm": "deficit",
@@ -18,15 +8,6 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:19 AM se afectan 342 MW distribuidos en 147 circuitos de distribución. A continuación,"
- },
- "102452": {
-  "fecha": "2026-10-30T18:33:34+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Alt"
  },
  "102475": {
   "fecha": "2026-10-30T19:51:13+00:00",
@@ -2670,5 +2651,32 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico del circuito A170✅"
+ },
+ "105675": {
+  "fecha": "2026-11-06T18:42:08+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1516"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito A1516✅"
+ },
+ "105666": {
+  "fecha": "2026-11-06T18:34:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el L326✅"
+ },
+ "105665": {
+  "fecha": "2026-11-06T18:32:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P329"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico del circuito P329✅"
  }
 }

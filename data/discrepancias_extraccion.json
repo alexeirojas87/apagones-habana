@@ -1,13 +1,4 @@
 {
- "102441": {
-  "fecha": "2026-10-30T18:14:26+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Altura"
- },
  "102454": {
   "fecha": "2026-10-30T18:34:25+00:00",
   "tipo_llm": "restablecimiento",
@@ -2647,5 +2638,37 @@
   ],
   "solo_regex": [],
   "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo en la subestación en los circuitos P325 (P327 y P324), P318, P319, P329 y OP321✅"
+ },
+ "105663": {
+  "fecha": "2026-11-06T18:27:53+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL52",
+   "AL57"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico de los circuitos AL52 y Al57✅"
+ },
+ "105661": {
+  "fecha": "2026-11-06T18:23:19+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣Consumidores de los municipios Plaza de la Revolución, Cerro y Centro Habana por disparo en la Subestación Príncipe, se afecta el servicio eléctrico en: 👉P318:"
+ },
+ "105655": {
+  "fecha": "2026-11-06T18:04:07+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A170"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico del circuito A170✅"
  }
 }

@@ -1,22 +1,4 @@
 {
- "102216": {
-  "fecha": "2026-10-30T01:00:06+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 447 MW distribuidos en 196 circuitos de distribución. A continuación, "
- },
- "102212": {
-  "fecha": "2026-10-30T00:45:11+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C7"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Cerro, queda restablecido el servicio eléctrico afectado por la vía libre en el circuito: C7✅"
- },
  "102231": {
   "fecha": "2026-10-30T04:00:08+00:00",
   "tipo_llm": "deficit",

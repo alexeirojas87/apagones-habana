@@ -2795,5 +2795,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:05 PM se afectan 145 MW distribuidos en 328 circuitos de distribución. A continuación,"
+ },
+ "105816": {
+  "fecha": "2026-11-06T23:06:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL52",
+   "AL57"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos AL52 y AL57✅"
  }
 }

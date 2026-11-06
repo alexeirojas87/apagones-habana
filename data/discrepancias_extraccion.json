@@ -1,57 +1,4 @@
 {
- "102512": {
-  "fecha": "2026-10-30T20:58:09+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
- },
- "102504": {
-  "fecha": "2026-10-30T20:45:46+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2203",
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉2203 y2204📉✅"
- },
- "102503": {
-  "fecha": "2026-10-30T20:45:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 4:45 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde Inf"
- },
- "102501": {
-  "fecha": "2026-10-30T20:44:44+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
- },
- "102494": {
-  "fecha": "2026-10-30T20:37:55+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico de los circuitos A820 y D836✅"
- },
  "102526": {
   "fecha": "2026-10-30T21:28:11+00:00",
   "tipo_llm": "restablecimiento",
@@ -2714,5 +2661,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por la vía libre en el circuito L326✅"
+ },
+ "105752": {
+  "fecha": "2026-11-06T20:57:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL52"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por Trabajos Operativos en el circuito AL52✅"
+ },
+ "105743": {
+  "fecha": "2026-11-06T20:33:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico al circuito H341✅"
  }
 }

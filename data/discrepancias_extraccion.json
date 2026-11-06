@@ -2495,5 +2495,16 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 8:17AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde Infa"
+ },
+ "105461": {
+  "fecha": "2026-11-06T10:16:08+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 261 MW distribuidos en 115 circuitos de distribución. A continuación,"
  }
 }

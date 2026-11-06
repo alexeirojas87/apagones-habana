@@ -2619,5 +2619,18 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico por trabajos operativos en el siguiente circuito: L322✅"
+ },
+ "105646": {
+  "fecha": "2026-11-06T17:27:25+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣Consumidores pertenecientes a l subestación Príncipe, por Disparo en la misma se afectan los siguientes circuitos: 👉P318: Alrededores de calles Placencia desde"
  }
 }

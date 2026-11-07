@@ -1,13 +1,4 @@
 {
- "102561": {
-  "fecha": "2026-10-31T01:10:33+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:10 PM se afectan 488 MW distribuidos en 203 circuitos de distribución. A continuación,"
- },
  "102565": {
   "fecha": "2026-10-31T01:41:15+00:00",
   "tipo_llm": "afectacion",
@@ -2815,5 +2806,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en los circuitos D1195 y D1190 (pendiente a recorrer tramo del Villena afectado por posible avería)✅"
+ },
+ "105841": {
+  "fecha": "2026-11-07T01:22:26+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1425",
+   "A1516"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A1425 y A1516✅"
+ },
+ "105839": {
+  "fecha": "2026-11-07T01:20:44+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A945"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito A945✅"
  }
 }

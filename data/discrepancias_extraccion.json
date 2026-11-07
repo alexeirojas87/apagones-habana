@@ -1,28 +1,4 @@
 {
- "102706": {
-  "fecha": "2026-10-31T12:39:21+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP304",
-   "OP306",
-   "OP318",
-   "OP320",
-   "OP406",
-   "OP411",
-   "OP424"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a la población que a partir de las 08:37 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP320, OP424, OP304, OP41"
- },
- "102703": {
-  "fecha": "2026-10-31T12:37:20+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "R453"
-  ],
-  "solo_regex": [],
-  "extracto": "✅⚡️Restablecido el servicio eléctrico a los clientes afectados por TRABAJOS OPERATIVOS en el siguiente circuito: 👉R453:La Gloria, Ciruela, Unión, Lídice y Colin"
- },
  "102744": {
   "fecha": "2026-10-31T13:47:44+00:00",
   "tipo_llm": "restablecimiento",

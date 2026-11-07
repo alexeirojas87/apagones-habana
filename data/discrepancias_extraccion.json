@@ -2991,5 +2991,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 281 MW distribuidos en 127 circuitos de distribución. A continuación,"
+ },
+ "105953": {
+  "fecha": "2026-11-07T10:45:25+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "L313"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los clientes pertenecientes al circuito 1175 que se encuentra transferida temporalmente la carga al L313: 👉1175: Desde 72B hasta 84, desde 49 has"
+ },
+ "105951": {
+  "fecha": "2026-11-07T10:40:57+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "1242"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los clientes pertenecientes al circuito 1246 que se encuentra transferida temporalmente la carga al 1242: 👉1246: Avenida 51 hasta 58 C. Cuadrante"
  }
 }

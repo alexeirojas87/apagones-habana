@@ -2814,5 +2814,27 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el circuito OP323✅"
+ },
+ "105874": {
+  "fecha": "2026-11-07T03:54:46+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1247"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el 1247✅"
+ },
+ "105865": {
+  "fecha": "2026-11-07T03:41:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 11:39 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde In"
  }
 }

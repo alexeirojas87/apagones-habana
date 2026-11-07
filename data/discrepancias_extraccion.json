@@ -2525,5 +2525,21 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de la 5:45 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): D"
+ },
+ "106259": {
+  "fecha": "2026-11-07T22:56:19+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1006",
+   "A1007",
+   "A1008",
+   "A1009",
+   "A465",
+   "D631",
+   "D633",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
  }
 }

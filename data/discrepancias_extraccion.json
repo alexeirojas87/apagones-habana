@@ -1,34 +1,4 @@
 {
- "102907": {
-  "fecha": "2026-10-31T18:16:01+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "T44"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:15 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉T41:Alrededores "
- },
- "102903": {
-  "fecha": "2026-10-31T18:12:23+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL52",
-   "AL57",
-   "GC12",
-   "GC14"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 1:56 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 GC18:Zona Franc"
- },
- "102897": {
-  "fecha": "2026-10-31T18:08:26+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "R466"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:03 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 R454:Repartos M"
- },
  "102946": {
   "fecha": "2026-10-31T19:26:04+00:00",
   "tipo_llm": "deficit",

@@ -1,32 +1,4 @@
 {
- "102795": {
-  "fecha": "2026-10-31T14:55:28+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO DEL CIRCUITO en los siguientes circuitos: 👉AL52,AL57 ✅"
- },
- "102791": {
-  "fecha": "2026-10-31T14:49:41+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:48 am se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A820:Repartos 2"
- },
- "102781": {
-  "fecha": "2026-10-31T14:33:50+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "AL52",
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉AL52:Zonas: 6; 7; 8; 9; 10; 11 y M"
- },
  "102801": {
   "fecha": "2026-10-31T15:13:47+00:00",
   "tipo_llm": "averia",
@@ -2906,5 +2878,27 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 10:19 AM se afectan 174 MW distribuidos en 78 circuitos de distribución. A continuación, "
+ },
+ "106046": {
+  "fecha": "2026-11-07T14:52:13+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1202"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los clientes pertenecientes al circuito A500 que se encuentra transferida temporalmente la carga al A1202: 👉A500: Calle 130 desde avenida 25 hast"
+ },
+ "106038": {
+  "fecha": "2026-11-07T14:36:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣Consumidores de los municipios Plaza de la Revolución, Cerro y Centro Habana por disparo en la Subestación Príncipe, se afecta el servicio eléctrico en: 👉P318:"
  }
 }

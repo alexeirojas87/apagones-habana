@@ -1,27 +1,4 @@
 {
- "102576": {
-  "fecha": "2026-10-31T02:13:03+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:12 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde In"
- },
- "102569": {
-  "fecha": "2026-10-31T02:04:54+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2203",
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉2203 y2204📉✅"
- },
  "102582": {
   "fecha": "2026-10-31T02:50:39+00:00",
   "tipo_llm": "afectacion",
@@ -2825,5 +2802,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el circuito A980✅"
+ },
+ "105843": {
+  "fecha": "2026-11-07T01:29:04+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1380",
+   "A425",
+   "P326"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:10 PM se afectan 341 MW distribuidos en 138 circuitos de distribución. A continuación,"
  }
 }

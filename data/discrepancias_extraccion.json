@@ -1,13 +1,4 @@
 {
- "102843": {
-  "fecha": "2026-10-31T16:39:42+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1217"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Guanabacoa, se localizó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afecta el servicio en la siguiente dirección: 👉 Versall"
- },
  "102875": {
   "fecha": "2026-10-31T17:26:02+00:00",
   "tipo_llm": "restablecimiento",
@@ -52,16 +43,6 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Reiteramos que por Disparo Automático por Frecuencia (DAF) queda restablecido el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. "
- },
- "102841": {
-  "fecha": "2026-10-31T16:38:46+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "H443",
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:38 PM se afectan 169 MW distribuidos en 64 circuitos de distribución. A continuación, "
  },
  "102883": {
   "fecha": "2026-10-31T17:34:57+00:00",
@@ -2779,5 +2760,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣Informamos a los clientes del municipio Plaza/Centro Habana pertenecientes al circuito P329 y P326, que por disparo en la Subestación de Principe se ha transfe"
+ },
+ "106088": {
+  "fecha": "2026-11-07T16:51:33+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ19"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Informamos a los clientes del municipio Plaza pertenecientes al circuito P329, que por disparo en la Subestación de Principe se ha transferido temporalmente pa"
  }
 }

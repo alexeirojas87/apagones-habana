@@ -49,15 +49,6 @@
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 03:01 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
  },
- "102926": {
-  "fecha": "2026-10-31T19:03:21+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "SF583"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda afectado el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida"
- },
  "102973": {
   "fecha": "2026-10-31T19:57:52+00:00",
   "tipo_llm": "restablecimiento",
@@ -2681,5 +2672,23 @@
   ],
   "solo_regex": [],
   "extracto": "📣Informamos a los clientes del municipio Plaza pertenecientes al circuito P329, que por disparo en la Subestación de Principe se ha transferido temporalmente pa"
+ },
+ "106145": {
+  "fecha": "2026-11-07T18:54:29+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ14"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Informamos a los clientes del municipio Plaza, pertenecientes al circuito 1248, que se ha transferido temporalmente parte de la carga al circuito PZ14: 👉1248: "
+ },
+ "106142": {
+  "fecha": "2026-11-07T18:51:58+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "PZ15"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Informamos a los clientes del municipio Plaza, pertenecientes al circuito 1248, que se ha transferido temporalmente parte de la carga al circuito PZ15: 👉1248: "
  }
 }

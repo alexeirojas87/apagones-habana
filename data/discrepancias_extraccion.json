@@ -1,32 +1,4 @@
 {
- "102769": {
-  "fecha": "2026-10-31T14:14:54+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "1856"
-  ],
-  "solo_regex": [],
-  "extracto": "🔊📌Estimado cliente.Se les comunica que en el Municipio Marianao se encuentra con el Circuito Disparado, -1856(Los Quemados,Ángeles,Puentes Nuevo). 📌La Lisa el r"
- },
- "102766": {
-  "fecha": "2026-10-31T14:12:16+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO DEL CIRCUITO en los siguientes circuitos: 👉AL52,AL57 ✅"
- },
- "102763": {
-  "fecha": "2026-10-31T14:10:32+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "AL52",
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉AL52:Zonas: 6; 7; 8; 9; 10; 11 y M"
- },
  "102795": {
   "fecha": "2026-10-31T14:55:28+00:00",
   "tipo_llm": "restablecimiento",
@@ -2916,5 +2888,23 @@
   ],
   "solo_regex": [],
   "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
+ },
+ "106034": {
+  "fecha": "2026-11-07T14:28:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB910"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el disparo del circuito que afectaba el circuito MB910✅"
+ },
+ "106023": {
+  "fecha": "2026-11-07T14:19:28+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 10:19 AM se afectan 174 MW distribuidos en 78 circuitos de distribución. A continuación, "
  }
 }

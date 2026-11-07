@@ -1,22 +1,4 @@
 {
- "102674": {
-  "fecha": "2026-10-31T11:18:59+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉 H343:Reparto Martín Pérez, Ciudamar, Sichi y Altura"
- },
- "102671": {
-  "fecha": "2026-10-31T11:14:37+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "SF583"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida 5ta "
- },
  "102686": {
   "fecha": "2026-10-31T11:55:10+00:00",
   "tipo_llm": "restablecimiento",
@@ -3009,5 +2991,21 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Informamos a los clientes pertenecientes al circuito 1246 que se encuentra transferida temporalmente la carga al 1242: 👉1246: Avenida 51 hasta 58 C. Cuadrante"
+ },
+ "105959": {
+  "fecha": "2026-11-07T11:20:27+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1006",
+   "A1007",
+   "A1008",
+   "A1009",
+   "A465",
+   "D631",
+   "D633",
+   "D634"
+  ],
+  "solo_regex": [],
+  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
  }
 }

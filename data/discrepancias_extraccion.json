@@ -1,22 +1,4 @@
 {
- "102986": {
-  "fecha": "2026-10-31T20:26:41+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Consumidores del municipio Boyeros, se encuentran afectados por Disparo del Circuito por sobrecarga los siguientes circuitos: 👉A820:Repartos 250, Miraflores V"
- },
- "102978": {
-  "fecha": "2026-10-31T20:06:06+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SR860"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:30 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉 SR820:Reparto "
- },
  "102995": {
   "fecha": "2026-10-31T20:59:37+00:00",
   "tipo_llm": "deficit",
@@ -2575,5 +2557,16 @@
    "OP325"
   ],
   "extracto": "✅📣Consumidores del municipio Plaza/Cerro/Centro Habana, quedó restablecido el servicio eléctrico, afectado por disparo en la Subestación Príncipe: 👉P325 (P327)("
+ },
+ "106192": {
+  "fecha": "2026-11-07T20:24:57+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "H341",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos OP408, C8 y H341✅"
  }
 }

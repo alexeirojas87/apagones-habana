@@ -1,26 +1,4 @@
 {
- "102686": {
-  "fecha": "2026-10-31T11:55:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H343",
-   "MB910",
-   "MB920",
-   "MB950"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: H343,MB910,MB920,MB950 ✅"
- },
- "102682": {
-  "fecha": "2026-10-31T11:37:03+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SF581",
-   "SF583"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a los consumidores del municipio Playa pertenecientes al circuito SF583 que se encontraba transferida temporalmente su carga al circuito SF581 , ya "
- },
  "102688": {
   "fecha": "2026-10-31T12:04:51+00:00",
   "tipo_llm": "restablecimiento",

@@ -1,22 +1,4 @@
 {
- "103063": {
-  "fecha": "2026-11-01T00:28:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "R464"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes que se afectaban por DISPARO de Circuito 👉R464 ✅"
- },
- "103050": {
-  "fecha": "2026-11-01T00:04:17+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1217"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Guanabacoa , queda reparada la AVERÍA SECUNDARIA POR TRANSFORMADOR DAÑADO que afectaba el servicio eléctrico en la siguiente direc"
- },
  "103102": {
   "fecha": "2026-11-01T02:29:15+00:00",
   "tipo_llm": "afectacion",

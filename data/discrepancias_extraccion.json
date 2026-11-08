@@ -2572,5 +2572,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 06:40 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A708:Reparto Ab"
+ },
+ "106698": {
+  "fecha": "2026-11-08T23:05:35+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "C15"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Cerro pertenecientes al circuito C15, que se ha transferido temporalmente parte de la carga a los circuitos: 👉1248: Cu"
  }
 }

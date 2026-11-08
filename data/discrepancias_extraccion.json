@@ -1,13 +1,4 @@
 {
- "103144": {
-  "fecha": "2026-11-01T04:35:20+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D870"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉D860:Repartos Wajay, INAV, Ampliación del Wajay y Santa C"
- },
  "103163": {
   "fecha": "2026-11-01T06:29:45+00:00",
   "tipo_llm": "daf",
@@ -2498,5 +2489,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Informamos a los consumidores del municipio Cerro pertenecientes al circuito C16 que fue transferido temporalmente parte de la carga al circuito C13, debido a"
+ },
+ "106344": {
+  "fecha": "2026-11-08T04:42:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuitos H341✅"
  }
 }

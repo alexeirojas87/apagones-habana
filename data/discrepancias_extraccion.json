@@ -1,26 +1,4 @@
 {
- "103239": {
-  "fecha": "2026-11-01T11:09:14+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SF583"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda restablecido el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Ave"
- },
- "103237": {
-  "fecha": "2026-11-01T11:06:30+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 07:06 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde In"
- },
  "103247": {
   "fecha": "2026-11-01T12:19:45+00:00",
   "tipo_llm": "averia",
@@ -2443,5 +2421,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a los consumidores del municipio Plaza, que se encuentra normalizado el esquema que afectaba al circuito 1248 por una avería primaria. ✅"
+ },
+ "106419": {
+  "fecha": "2026-11-08T11:08:05+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1242",
+   "1246"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Informamos a los clientes pertenecientes al circuito 1246 que se encontraban transferidos temporalmente la carga al 1242, ya se encuentran en su esquema normal"
  }
 }

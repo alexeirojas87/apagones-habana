@@ -1,22 +1,4 @@
 {
- "103413": {
-  "fecha": "2026-11-01T18:38:10+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "L322"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Playa, pertenecientes al circuito L317 que se ha transferido temporalmente la carga para el circuito L322, debido a un"
- },
- "103408": {
-  "fecha": "2026-11-01T18:34:59+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1203"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Playa, pertenecientes al circuito SF581 que se ha transferido temporalmente la carga del siguiente reparto para el cir"
- },
  "103429": {
   "fecha": "2026-11-01T19:22:11+00:00",
   "tipo_llm": "averia",
@@ -2537,5 +2519,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes al siguiente circuito: 👉A1217: Reparto V"
+ },
+ "106603": {
+  "fecha": "2026-11-08T18:51:53+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R461",
+   "R464"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉R461,R464 ✅"
+ },
+ "106602": {
+  "fecha": "2026-11-08T18:51:42+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Concluida la Vía Libre de Emergencia en la subestación Melones y restablecido el servicio eléctrico en los siguientes circuitos : 👉A980:Alrededores de los cua"
  }
 }

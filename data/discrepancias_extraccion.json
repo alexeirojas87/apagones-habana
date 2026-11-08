@@ -1,16 +1,4 @@
 {
- "103501": {
-  "fecha": "2026-11-01T22:45:56+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "C8",
-   "OP408",
-   "P319",
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:30 PM se afectan 423 MW distribuidos en 178 circuitos de distribución. A continuación,"
- },
  "103672": {
   "fecha": "2026-11-02T10:07:10+00:00",
   "tipo_llm": "deficit",
@@ -2566,5 +2554,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 04:57 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB910:Justi, Ag"
+ },
+ "106696": {
+  "fecha": "2026-11-08T22:49:30+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C16"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Cerro pertenecientes al circuito C16 que, se normaliza el esquema del circuito C16: sus clientes vuelven a recibir el "
+ },
+ "106694": {
+  "fecha": "2026-11-08T22:43:36+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A940"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 06:40 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A708:Reparto Ab"
  }
 }

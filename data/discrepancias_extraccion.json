@@ -1,14 +1,4 @@
 {
- "103348": {
-  "fecha": "2026-11-01T16:17:33+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P319",
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 PM se afectan 213 MW distribuidos en 84 circuitos de distribución. A continuación, "
- },
  "103413": {
   "fecha": "2026-11-01T18:38:10+00:00",
   "tipo_llm": "averia",
@@ -2490,5 +2480,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes de San Miguel del Padrón que se afectaban por DISPARO DEL CIRCUITO ✅ 👉H443"
+ },
+ "106544": {
+  "fecha": "2026-11-08T16:30:35+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "2204"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 12:28 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉2203:Alrededores de los cuadrant"
+ },
+ "106540": {
+  "fecha": "2026-11-08T16:27:56+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425",
+   "PZ15"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:27 PM se afectan 94 MW distribuidos en 42 circuitos de distribución. A continuación, s"
  }
 }

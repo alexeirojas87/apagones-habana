@@ -1,13 +1,4 @@
 {
- "103046": {
-  "fecha": "2026-10-31T23:53:17+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1547"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Reparada la Avería que afectaba el circuito A1547 ✅"
- },
  "103063": {
   "fecha": "2026-11-01T00:28:56+00:00",
   "tipo_llm": "restablecimiento",

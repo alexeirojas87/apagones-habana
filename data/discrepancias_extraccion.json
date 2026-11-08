@@ -2434,5 +2434,33 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 08:20 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde In"
+ },
+ "106468": {
+  "fecha": "2026-11-08T13:53:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H442",
+   "H443"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes de San Miguel del Padrón que se afectaban por DISPARO DEL CIRCUITO ✅ 👉H442,H443"
+ },
+ "106466": {
+  "fecha": "2026-11-08T13:45:42+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1218"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: A1218✅"
+ },
+ "106462": {
+  "fecha": "2026-11-08T13:38:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: L326✅"
  }
 }

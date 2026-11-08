@@ -1,14 +1,4 @@
 {
- "103247": {
-  "fecha": "2026-11-01T12:19:45+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "SR820",
-   "SR860"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Informamos a los clientes del municipio Cotorro que se encuentran afectados por Disparo del circuito por posible AVERÍA 👉SR820/SR860 ‼️🚨"
- },
  "103348": {
   "fecha": "2026-11-01T16:17:33+00:00",
   "tipo_llm": "deficit",
@@ -2431,5 +2421,18 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a los clientes pertenecientes al circuito 1246 que se encontraban transferidos temporalmente la carga al 1242, ya se encuentran en su esquema normal"
+ },
+ "106431": {
+  "fecha": "2026-11-08T12:21:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 08:20 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde In"
  }
 }

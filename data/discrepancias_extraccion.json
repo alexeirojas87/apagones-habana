@@ -1,22 +1,4 @@
 {
- "103229": {
-  "fecha": "2026-11-01T10:52:49+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:50 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A820:Repartos 2"
- },
- "103227": {
-  "fecha": "2026-11-01T10:52:31+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "SF583"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda afectado el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida"
- },
  "103239": {
   "fecha": "2026-11-01T11:09:14+00:00",
   "tipo_llm": "restablecimiento",

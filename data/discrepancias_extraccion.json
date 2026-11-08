@@ -2529,5 +2529,34 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de la 03:12 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): "
+ },
+ "106634": {
+  "fecha": "2026-11-08T19:50:09+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "H446"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:47 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG980:Repartos: "
+ },
+ "106633": {
+  "fecha": "2026-11-08T19:49:29+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:46 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
+ },
+ "106629": {
+  "fecha": "2026-11-08T19:45:32+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "H442",
+   "R454"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:43 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR840:Centro del"
  }
 }

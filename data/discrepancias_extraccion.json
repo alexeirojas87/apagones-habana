@@ -1,13 +1,4 @@
 {
- "103112": {
-  "fecha": "2026-11-01T03:19:53+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "GC17"
-  ],
-  "solo_regex": [],
-  "extracto": "🟢☑️Consumidores del municipio Habana del Este, queda reparada la AVERÍA POR Primario Partido en los siguientes circuitos: 👉 GC7:Cojimar calle 80 desde 1era hast"
- },
  "103114": {
   "fecha": "2026-11-01T03:33:56+00:00",
   "tipo_llm": "averia",

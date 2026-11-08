@@ -2462,5 +2462,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: L326✅"
+ },
+ "106480": {
+  "fecha": "2026-11-08T14:22:38+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "R456"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:18 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉R451:Calles Per"
+ },
+ "106479": {
+  "fecha": "2026-11-08T14:22:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 10:22 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
  }
 }

@@ -2524,5 +2524,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a los clientes pertenecientes al circuito A500 que se encontraban transferidos temporalmente la carga al A1202, ya se encuentran en su esquema norma"
+ },
+ "106298": {
+  "fecha": "2026-11-08T00:56:25+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "C13",
+   "C16"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los consumidores del municipio Cerro pertenecientes al circuito C16 que fue transferido temporalmente parte de la carga al circuito C13, debido a"
  }
 }

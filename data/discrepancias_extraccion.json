@@ -1,13 +1,4 @@
 {
- "103114": {
-  "fecha": "2026-11-01T03:33:56+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "R456"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Regla , se localizó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO que afecta el servicio en la siguiente dirección: 👉Maceo e/ Per"
- },
  "103140": {
   "fecha": "2026-11-01T04:20:55+00:00",
   "tipo_llm": "restablecimiento",

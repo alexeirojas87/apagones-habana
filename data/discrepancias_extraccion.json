@@ -1,13 +1,4 @@
 {
- "103163": {
-  "fecha": "2026-11-01T06:29:45+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "SF583"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) queda afectado el servicio eléctrico en los siguientes circuitos: 👉SF581: Reparto: Jaimanitas. Cuadrantes: Avenida"
- },
  "103167": {
   "fecha": "2026-11-01T06:47:00+00:00",
   "tipo_llm": "restablecimiento",

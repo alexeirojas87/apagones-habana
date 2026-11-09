@@ -2581,5 +2581,18 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Cerro pertenecientes al circuito C15, que se ha transferido temporalmente parte de la carga a los circuitos: 👉1248: Cu"
+ },
+ "106711": {
+  "fecha": "2026-11-09T00:04:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 08:04 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde In"
  }
 }

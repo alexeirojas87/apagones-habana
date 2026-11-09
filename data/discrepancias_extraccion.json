@@ -1,40 +1,4 @@
 {
- "103806": {
-  "fecha": "2026-11-02T15:30:01+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "GC14"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🚨Informamos a la población que a partir de las 11:28 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC 14 :Guiteras"
- },
- "103797": {
-  "fecha": "2026-11-02T15:17:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Informamos a la población queda restablecido el servicio eléctrico en el siguiente circuito: 👉P319 (P326): Alrededores de calles Castillejo desde Carlos III h"
- },
- "103786": {
-  "fecha": "2026-11-02T15:06:27+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1248"
-  ],
-  "solo_regex": [],
-  "extracto": "🔴⚡️Consumidores del municipio Plaza, se localiza AVERÍA PRIMARIA que afecta el servicio eléctrico en la siguiente direccion: 👉(1248) Avenida Loma entre 37 y Fin"
- },
- "103784": {
-  "fecha": "2026-11-02T15:03:24+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1202"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el: A1202✅"
- },
  "103821": {
   "fecha": "2026-11-02T16:00:50+00:00",
   "tipo_llm": "averia",
@@ -2686,5 +2650,21 @@
   ],
   "solo_regex": [],
   "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ7: Cuadrante desde calle 4 hasta A, Línea hasta"
+ },
+ "106896": {
+  "fecha": "2026-11-09T15:03:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP310",
+   "OP318",
+   "OP320",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ 📈Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ7: Cuadrante desde calle 4 hasta A, Líne"
  }
 }

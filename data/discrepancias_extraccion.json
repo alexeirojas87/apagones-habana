@@ -1,13 +1,4 @@
 {
- "103959": {
-  "fecha": "2026-11-02T19:04:44+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1280"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el: D1280✅"
- },
  "103980": {
   "fecha": "2026-11-02T19:51:16+00:00",
   "tipo_llm": "restablecimiento",
@@ -43,16 +34,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por la avería debido al primario partido en el circuito: 1241✅"
- },
- "103967": {
-  "fecha": "2026-11-02T19:31:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG313",
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG313 y SG315✅"
  },
  "103994": {
   "fecha": "2026-11-02T20:25:51+00:00",

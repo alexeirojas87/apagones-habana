@@ -1,23 +1,4 @@
 {
- "103739": {
-  "fecha": "2026-11-02T12:47:39+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 08:47 AM quedó restablecido el servicio en los siguientes circuitos: 👉 CPP17: Alrededores de calles Puerta Cerra"
- },
- "103735": {
-  "fecha": "2026-11-02T12:39:45+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1219"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el siguiente circuito: A1219✅"
- },
  "103755": {
   "fecha": "2026-11-02T13:41:40+00:00",
   "tipo_llm": "deficit",
@@ -2629,5 +2610,23 @@
    "OP325"
   ],
   "extracto": "✅Consumidores de los municipios Centro Habana, Cerro y Plaza, quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 / P327: Alrededores de ca"
+ },
+ "106839": {
+  "fecha": "2026-11-09T12:43:43+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "SR820"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Reiteramos a los clientes del municipio Cotorro pertenecientes al circuito SR860 que se encuentra transferida temporalmente la carga al circuito SR820 debido "
+ },
+ "106838": {
+  "fecha": "2026-11-09T12:41:27+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Reiteramos a los clientes del municipio San Miguel del padrón, pertenecientes al circuito S515 que se ha transferido temporalmente parte de su carga al S513:"
  }
 }

@@ -1,54 +1,4 @@
 {
- "103901": {
-  "fecha": "2026-11-02T17:48:49+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1223"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Queda restablecido el servicio eléctrico afectado por la vía libre en el A1223✅"
- },
- "103900": {
-  "fecha": "2026-11-02T17:46:36+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1280"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el: D1280✅"
- },
- "103894": {
-  "fecha": "2026-11-02T17:42:46+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2203",
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en los circuitos 2203 y 2204✅"
- },
- "103891": {
-  "fecha": "2026-11-02T17:40:55+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 11:40 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327, P324):"
- },
- "103888": {
-  "fecha": "2026-11-02T17:35:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1280"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el: D1280✅"
- },
  "103926": {
   "fecha": "2026-11-02T18:16:28+00:00",
   "tipo_llm": "restablecimiento",
@@ -67,16 +17,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅📈Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉SF58"
- },
- "103917": {
-  "fecha": "2026-11-02T18:02:05+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2203",
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en los circuitos 2203 y 2204✅"
  },
  "103944": {
   "fecha": "2026-11-02T18:42:38+00:00",

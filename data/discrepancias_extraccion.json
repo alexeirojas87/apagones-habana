@@ -1,13 +1,4 @@
 {
- "103821": {
-  "fecha": "2026-11-02T16:00:50+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "R461"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Regla, se localiza avería secundaria por transformador dañado en las calles Martí entre 10 de Octubre y Juan Gualberto Gómez (Circui"
- },
  "103853": {
   "fecha": "2026-11-02T16:47:38+00:00",
   "tipo_llm": "restablecimiento",

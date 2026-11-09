@@ -2460,5 +2460,15 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 2:10 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): "
+ },
+ "107108": {
+  "fecha": "2026-11-09T21:02:21+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1516",
+   "GC17"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes del municipio Regla pertenecientes al circuito A1516, que se ha transferido temporalmente parte de su carga al circuito GC17 por sob"
  }
 }

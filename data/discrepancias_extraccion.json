@@ -1,22 +1,4 @@
 {
- "104020": {
-  "fecha": "2026-11-02T21:48:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SF584"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito en el SF584✅"
- },
- "104018": {
-  "fecha": "2026-11-02T21:42:42+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H446"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico al circuito H446✅"
- },
  "104033": {
   "fecha": "2026-11-02T22:21:03+00:00",
   "tipo_llm": "restablecimiento",

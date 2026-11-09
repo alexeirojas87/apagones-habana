@@ -1,23 +1,4 @@
 {
- "103926": {
-  "fecha": "2026-11-02T18:16:28+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2203",
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en los circuitos 2203 y 2204✅"
- },
- "103924": {
-  "fecha": "2026-11-02T18:15:32+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1160"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📈Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉SF58"
- },
  "103944": {
   "fecha": "2026-11-02T18:42:38+00:00",
   "tipo_llm": "restablecimiento",
@@ -26,16 +7,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico al circuito A820✅"
- },
- "103932": {
-  "fecha": "2026-11-02T18:32:29+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2205",
-   "A960"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Boyeros, que se ha transferido temporalmente la carga de los Hospitales Cardiocentro-Pediátrico (William Soler) y Enri"
  },
  "103959": {
   "fecha": "2026-11-02T19:04:44+00:00",
@@ -2558,5 +2529,18 @@
   ],
   "solo_regex": [],
   "extracto": "🚨Consumidores del municipio Cerro, se localiza avería secundaria por transformador dañado en la Covadonga Pabellón José Martí.(OP325)🚨"
+ },
+ "107022": {
+  "fecha": "2026-11-09T18:14:21+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:10 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): "
  }
 }

@@ -1,14 +1,4 @@
 {
- "103878": {
-  "fecha": "2026-11-02T17:25:09+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
- },
  "103901": {
   "fecha": "2026-11-02T17:48:49+00:00",
   "tipo_llm": "restablecimiento",
@@ -2619,5 +2609,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅ 📈Queda restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ7: Cuadrante desde calle 4 hasta A, Líne"
+ },
+ "106971": {
+  "fecha": "2026-11-09T17:09:03+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "OP325"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨Consumidores del municipio Cerro, se localiza avería secundaria por transformador dañado en la Covadonga Pabellón José Martí.(OP325)🚨"
  }
 }

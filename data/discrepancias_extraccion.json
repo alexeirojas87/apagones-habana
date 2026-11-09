@@ -1,17 +1,4 @@
 {
- "103728": {
-  "fecha": "2026-11-02T12:30:09+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 08:30 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327, P324): Desagüe desde In"
- },
  "103739": {
   "fecha": "2026-11-02T12:47:39+00:00",
   "tipo_llm": "restablecimiento",
@@ -2631,5 +2618,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅Informamos a la población que a partir de las 06:32 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP 318, OP320, OP424, OP304, OP41"
+ },
+ "106834": {
+  "fecha": "2026-11-09T12:28:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅Consumidores de los municipios Centro Habana, Cerro y Plaza, quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 / P327: Alrededores de ca"
  }
 }

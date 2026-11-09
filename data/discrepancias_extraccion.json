@@ -2654,5 +2654,37 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: Al52: Zonas 6,7,8,9,10,11 "
+ },
+ "106894": {
+  "fecha": "2026-11-09T15:00:09+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP310",
+   "OP318",
+   "OP320",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Riteramos que por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉PZ7: Cuadrante desde calle 4 hasta A, "
+ },
+ "106892": {
+  "fecha": "2026-11-09T14:59:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP304",
+   "OP306",
+   "OP310",
+   "OP318",
+   "OP320",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ7: Cuadrante desde calle 4 hasta A, Línea hasta"
  }
 }

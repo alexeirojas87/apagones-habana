@@ -2594,5 +2594,32 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 08:04 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde In"
+ },
+ "106745": {
+  "fecha": "2026-11-09T03:56:52+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP304",
+   "OP318",
+   "OP320",
+   "OP410",
+   "OP411",
+   "OP424"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de la 11:55 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉OP 318, OP320, O"
+ },
+ "106742": {
+  "fecha": "2026-11-09T03:49:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de la 11:48 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): "
  }
 }

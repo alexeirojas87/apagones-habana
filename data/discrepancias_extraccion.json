@@ -1,33 +1,4 @@
 {
- "104109": {
-  "fecha": "2026-11-03T02:27:11+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "MB920"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en el circuitos MB920✅"
- },
- "104104": {
-  "fecha": "2026-11-03T02:12:45+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "OP321",
-   "P318",
-   "P319"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Informamos a los clientes pertenecientes a los circuitos P319 y P318, se encuentran en paralelo llevandose la carga del OP321. Una vez normalizado el esquema "
- },
- "104102": {
-  "fecha": "2026-11-03T02:06:15+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL55"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en el circuitos AL55✅"
- },
  "104116": {
   "fecha": "2026-11-03T02:49:21+00:00",
   "tipo_llm": "restablecimiento",
@@ -2335,5 +2306,27 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Regla pertenecientes al circuito A1516, que se ha transferido temporalmente parte de su carga al circuito GC17 por sob"
+ },
+ "107212": {
+  "fecha": "2026-11-10T02:21:52+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "L326"
+  ],
+  "solo_regex": [],
+  "extracto": "🛑⚡️Consumidores del municipio Marianao, se localizó una AVERÍA PRIMARIA por Secundario Partido que afecta el servicio en la siguiente dirección: 👉 114 / 43 y 45"
+ },
+ "107207": {
+  "fecha": "2026-11-10T02:05:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "📣✅Informamos a la población que a partir de las 10:04 pm queda restablecido el servicio eléctrico en los siguientes circuitos: 👉P325 (P327)(P324): Desagüe desde"
  }
 }

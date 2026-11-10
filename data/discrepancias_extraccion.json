@@ -1,14 +1,4 @@
 {
- "104352": {
-  "fecha": "2026-11-03T18:05:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2203",
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en los circuitos 2203 y 2204✅"
- },
  "104382": {
   "fecha": "2026-11-03T18:55:57+00:00",
   "tipo_llm": "restablecimiento",

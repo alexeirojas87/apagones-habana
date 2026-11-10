@@ -2258,5 +2258,23 @@
   ],
   "solo_regex": [],
   "extracto": "📣Informamos a los consumidores del municipio Boyeros, que los circuitos M1603 y M2044 se encuentran afectados por déficit de generación mientras se realiza una "
+ },
+ "107579": {
+  "fecha": "2026-11-10T19:17:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1223"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito A1223✅"
+ },
+ "107578": {
+  "fecha": "2026-11-10T19:11:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H443"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito H443✅"
  }
 }

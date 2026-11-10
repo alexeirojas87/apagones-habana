@@ -1,31 +1,4 @@
 {
- "104097": {
-  "fecha": "2026-11-03T01:53:33+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "S513"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio San Miguel del padrón, pertenecientes al circuito S515 que se ha transferido temporalmente al S513 la carga de: 👉S515:"
- },
- "104096": {
-  "fecha": "2026-11-03T01:50:16+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2075"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Lisa, se localiza avería secundaria por transformador dañado en la calle 23 entre 250 y 252, San Agustín🚨"
- },
- "104095": {
-  "fecha": "2026-11-03T01:48:44+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2075"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el 2075✅"
- },
  "104109": {
   "fecha": "2026-11-03T02:27:11+00:00",
   "tipo_llm": "restablecimiento",

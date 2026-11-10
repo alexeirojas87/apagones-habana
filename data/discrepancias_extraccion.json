@@ -1,15 +1,4 @@
 {
- "104414": {
-  "fecha": "2026-11-03T20:15:37+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP306",
-   "OP402",
-   "OP410"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉OP329: Call"
- },
  "104433": {
   "fecha": "2026-11-03T21:22:11+00:00",
   "tipo_llm": "restablecimiento",
@@ -2267,5 +2256,14 @@
   ],
   "solo_regex": [],
   "extracto": "📣Informamos a los clientes que pertenecían a los circuitos: 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alre"
+ },
+ "107595": {
+  "fecha": "2026-11-10T20:01:33+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [],
+  "solo_regex": [
+   "A1695"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 3:42 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG920/A1695: Rep"
  }
 }

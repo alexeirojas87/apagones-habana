@@ -2232,5 +2232,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el disparo del circuito en el L315✅"
+ },
+ "107448": {
+  "fecha": "2026-11-10T15:01:29+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1249"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico por la vía libre en el circuito 1249✅"
  }
 }

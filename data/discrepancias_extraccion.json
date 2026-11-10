@@ -1,22 +1,4 @@
 {
- "104402": {
-  "fecha": "2026-11-03T19:38:32+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [],
-  "solo_regex": [
-   "MB910"
-  ],
-  "extracto": "🟢👷‍♂️Consumidores los municipios Habana del Este y Guanabacoa , queda restablecido el servicio afectado por TRABAJOS OPERATIVOS en el siguiente circuito: 👉MB910"
- },
- "104397": {
-  "fecha": "2026-11-03T19:32:58+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [],
-  "solo_regex": [
-   "MB910"
-  ],
-  "extracto": "📌👷‍♂️Consumidores los municipios Habana del Este y Guanabacoa , por TRABAJOS OPERATIVOS se afecta el servicio eléctrico en el siguiente circuito: 👉MB910(D1055):"
- },
  "104414": {
   "fecha": "2026-11-03T20:15:37+00:00",
   "tipo_llm": "restablecimiento",
@@ -2276,5 +2258,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito H443✅"
+ },
+ "107586": {
+  "fecha": "2026-11-10T19:55:09+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Informamos a los clientes que pertenecían a los circuitos: 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alre"
  }
 }

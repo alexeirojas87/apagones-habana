@@ -1,13 +1,4 @@
 {
- "104212": {
-  "fecha": "2026-11-03T10:25:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "R456"
-  ],
-  "solo_regex": [],
-  "extracto": "⚡️Consumidores del municipio Regla, quedó solucionada y con servicio la avería secundaria por transformador dañado en las calles: 👉Maceo entre Perdomo y Rubiera"
- },
  "104220": {
   "fecha": "2026-11-03T10:57:37+00:00",
   "tipo_llm": "afectacion",
@@ -2245,5 +2236,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de la1:28 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): De"
+ },
+ "107343": {
+  "fecha": "2026-11-10T10:13:20+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1695"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:10 AM se afectan 215 MW distribuidos en 98 circuitos de distribución. A continuación, "
  }
 }

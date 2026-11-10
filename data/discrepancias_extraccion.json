@@ -2300,5 +2300,18 @@
   ],
   "solo_regex": [],
   "extracto": "🚧🟢Consumidores del municipio Marianao, queda reparada y con servicio eléctrico la AVERÍA SECUNDARIA que afectaba el servicio en el siguiente circuito: 👉 114 / 4"
+ },
+ "107255": {
+  "fecha": "2026-11-10T05:29:16+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P324",
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de la1:28 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): De"
  }
 }

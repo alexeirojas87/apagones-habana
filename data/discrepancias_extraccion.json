@@ -1,13 +1,4 @@
 {
- "104246": {
-  "fecha": "2026-11-03T13:42:57+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "D1055"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Por Disparo Automático por Frecuencia (DAF) se afecta el servicio eléctrico en los siguientes circuitos: 👉Al55: Zonas: 12; 13; 14; 19; 20; 21; 23; 24 y 25. 👉M"
- },
  "104260": {
   "fecha": "2026-11-03T14:30:10+00:00",
   "tipo_llm": "restablecimiento",
@@ -2232,5 +2223,15 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 7:53 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde Inf"
+ },
+ "107421": {
+  "fecha": "2026-11-10T13:51:17+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 9:50 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águi"
  }
 }

@@ -1,32 +1,4 @@
 {
- "104116": {
-  "fecha": "2026-11-03T02:49:21+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2203",
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en los circuitos 2203 y 2204✅"
- },
- "104113": {
-  "fecha": "2026-11-03T02:43:59+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H343"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el Disparo Automático por Frecuencia (DAF) en el circuitos H343✅"
- },
- "104112": {
-  "fecha": "2026-11-03T02:40:29+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H443"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes pertenecientes al circuito H443✅"
- },
  "104128": {
   "fecha": "2026-11-03T03:37:19+00:00",
   "tipo_llm": "restablecimiento",

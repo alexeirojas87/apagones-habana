@@ -2271,5 +2271,54 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito A815✅"
+ },
+ "107678": {
+  "fecha": "2026-11-10T23:30:20+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A960"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito A960✅📉"
+ },
+ "107677": {
+  "fecha": "2026-11-10T23:29:50+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R461",
+   "R464"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos R464 y R461✅📉"
+ },
+ "107671": {
+  "fecha": "2026-11-10T23:20:19+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R461",
+   "R464"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos R464 y R461✅📉"
+ },
+ "107668": {
+  "fecha": "2026-11-10T23:16:13+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos OP408 y C8✅📉"
+ },
+ "107667": {
+  "fecha": "2026-11-10T23:13:17+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ24",
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos PZ7 y PZ24✅📉"
  }
 }

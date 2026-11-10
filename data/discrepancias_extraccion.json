@@ -1,14 +1,4 @@
 {
- "104449": {
-  "fecha": "2026-11-03T22:30:20+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
- },
  "104455": {
   "fecha": "2026-11-03T22:57:43+00:00",
   "tipo_llm": "restablecimiento",
@@ -2272,5 +2262,24 @@
   ],
   "solo_regex": [],
   "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
+ },
+ "107660": {
+  "fecha": "2026-11-10T22:26:08+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ24",
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos PZ7 y PZ24✅📉"
+ },
+ "107654": {
+  "fecha": "2026-11-10T22:12:56+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A815"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito A815✅"
  }
 }

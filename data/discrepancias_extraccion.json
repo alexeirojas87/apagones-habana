@@ -2265,5 +2265,25 @@
    "A1695"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 3:42 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG920/A1695: Rep"
+ },
+ "107623": {
+  "fecha": "2026-11-10T21:01:53+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 5:00 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
+ },
+ "107619": {
+  "fecha": "2026-11-10T20:49:26+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1202"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por el puente partido en el A1202✅"
  }
 }

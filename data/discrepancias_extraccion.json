@@ -2291,5 +2291,14 @@
    "OP325"
   ],
   "extracto": "📣✅Informamos a la población que a partir de las 10:04 pm queda restablecido el servicio eléctrico en los siguientes circuitos: 👉P325 (P327)(P324): Desagüe desde"
+ },
+ "107231": {
+  "fecha": "2026-11-10T04:12:22+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "114"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🟢Consumidores del municipio Marianao, queda reparada y con servicio eléctrico la AVERÍA SECUNDARIA que afectaba el servicio en el siguiente circuito: 👉 114 / 4"
  }
 }

@@ -1,14 +1,4 @@
 {
- "104455": {
-  "fecha": "2026-11-03T22:57:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG312",
-   "SG314"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los siguientes circuitos: SG312 y SG314✅"
- },
  "104477": {
   "fecha": "2026-11-04T00:53:04+00:00",
   "tipo_llm": "restablecimiento",

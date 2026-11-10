@@ -1,13 +1,4 @@
 {
- "104336": {
-  "fecha": "2026-11-03T17:30:12+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [],
-  "solo_regex": [
-   "MB910"
-  ],
-  "extracto": "✅📈 Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB910(D1055): Justi, Agromar, Bajurayabo, Campo "
- },
  "104341": {
   "fecha": "2026-11-03T17:33:37+00:00",
   "tipo_llm": "restablecimiento",
@@ -2270,5 +2261,32 @@
   ],
   "solo_regex": [],
   "extracto": "✅Queda restablecido el servicio eléctrico por disparo del circuito en el D640✅"
+ },
+ "107535": {
+  "fecha": "2026-11-10T17:30:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H443"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito H443✅"
+ },
+ "107527": {
+  "fecha": "2026-11-10T17:12:44+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1042"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito A1042✅"
+ },
+ "107524": {
+  "fecha": "2026-11-10T17:10:06+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1249"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el siguiente circuito: 1249✅"
  }
 }

@@ -1,22 +1,4 @@
 {
- "104714": {
-  "fecha": "2026-11-04T17:22:37+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "2071"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Consumidores del municipio Lisa se encuentra el CIRCUITO DISPARADO afectando el siguiente circuito : 👉2073: Calle 256 hasta 51 y 234 hasta 51 entre 244 y 232 "
- },
- "104712": {
-  "fecha": "2026-11-04T17:16:56+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1223"
-  ],
-  "solo_regex": [],
-  "extracto": "‼️Consumidores del municipio Lisa, por Trabajos Operativos se afecta el servicio eléctrico en el circuito 👉 A1223"
- },
  "104733": {
   "fecha": "2026-11-04T17:59:33+00:00",
   "tipo_llm": "averia",
@@ -2521,5 +2503,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes de los municipios Centro Habana y Plaza pertenecientes al circuito P326 que se encuentra transferida temporalmente la carga al circu"
+ },
+ "107949": {
+  "fecha": "2026-11-11T17:12:53+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "P314"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Recordamos a los clientes pertenecientes al circuito P319, se encuentra transferido temporalmente la carga al circuito P314 en los siguientes cuadrantes: 👉P31"
  }
 }

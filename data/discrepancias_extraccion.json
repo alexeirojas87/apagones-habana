@@ -2431,5 +2431,74 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito A960✅📉"
+ },
+ "107758": {
+  "fecha": "2026-11-11T04:58:24+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1243",
+   "1244",
+   "1247"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos: 1243; 1244; 1247✅📉"
+ },
+ "107754": {
+  "fecha": "2026-11-11T04:48:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R461",
+   "R464"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos R464 y R461✅📉"
+ },
+ "107751": {
+  "fecha": "2026-11-11T04:47:12+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 12:45 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P322: Alrededor"
+ },
+ "107750": {
+  "fecha": "2026-11-11T04:43:46+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "H341"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito H341📉✅"
+ },
+ "107749": {
+  "fecha": "2026-11-11T04:42:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C8",
+   "OP408"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos OP408 y C8✅📉"
+ },
+ "107748": {
+  "fecha": "2026-11-11T04:40:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ7"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito PZ7✅📉"
+ },
+ "107747": {
+  "fecha": "2026-11-11T04:40:23+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ24"
+  ],
+  "solo_regex": [],
+  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito PZ24✅📉"
  }
 }

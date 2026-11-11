@@ -2496,5 +2496,26 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 1:50 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC19: Repartos R"
+ },
+ "107985": {
+  "fecha": "2026-11-11T18:15:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC16",
+   "GC17"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: .👉GC"
+ },
+ "107981": {
+  "fecha": "2026-11-11T18:07:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP310"
+  ],
+  "solo_regex": [
+   "NET10"
+  ],
+  "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉OP3"
  }
 }

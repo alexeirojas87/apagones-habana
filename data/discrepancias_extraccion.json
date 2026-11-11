@@ -1,13 +1,4 @@
 {
- "104547": {
-  "fecha": "2026-11-04T08:28:02+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "⭕⚡Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO por posible AVERÍA en: 👉AL52:Zonas: 6; 7; 8; 9; 10; 11 y Micro 4"
- },
  "104623": {
   "fecha": "2026-11-04T12:37:48+00:00",
   "tipo_llm": "restablecimiento",

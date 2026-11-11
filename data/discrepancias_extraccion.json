@@ -1,14 +1,4 @@
 {
- "104762": {
-  "fecha": "2026-11-04T19:08:00+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1380",
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "📣⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:07 PM se afectan 246 MW distribuidos en 108 circuitos de distribución. A continuación,"
- },
  "104784": {
   "fecha": "2026-11-04T19:49:49+00:00",
   "tipo_llm": "afectacion",
@@ -2520,5 +2510,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afectó el servicio eléctrico en los siguientes circuitos: 👉OP325: Alrededores de calles San Beni"
+ },
+ "107924": {
+  "fecha": "2026-11-11T16:08:19+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A490"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:06 PM se afectan 189 MW distribuidos en 90 circuitos de distribución. A continuación, "
  }
 }

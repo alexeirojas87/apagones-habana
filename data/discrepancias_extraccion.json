@@ -1,40 +1,4 @@
 {
- "104733": {
-  "fecha": "2026-11-04T17:59:33+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "P329"
-  ],
-  "solo_regex": [],
-  "extracto": "‼️Consumidores del municipio Plaza, por disparo del circuito se afecta el servicio eléctrico en el siguiente circuito: 👉P326(P329): Hospital desde Carlos III ha"
- },
- "104725": {
-  "fecha": "2026-11-04T17:52:38+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1042"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Cotorro , se localizó una AVERÍA por PRIMARIO PARTIDO en la Subestación afectando el servicio eléctrico en el siguiente circuito :"
- },
- "104717": {
-  "fecha": "2026-11-04T17:36:13+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1223"
-  ],
-  "solo_regex": [],
-  "extracto": "‼️Consumidores del municipio Lisa, por Trabajos Operativos se restablece el servicio eléctrico en el circuito 👉 A1223‼️"
- },
- "104738": {
-  "fecha": "2026-11-04T18:03:54+00:00",
-  "tipo_llm": "daf",
-  "solo_llm": [
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉2203:Alrededores de los c"
- },
  "104757": {
   "fecha": "2026-11-04T18:56:20+00:00",
   "tipo_llm": "restablecimiento",
@@ -2512,5 +2476,25 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Recordamos a los clientes pertenecientes al circuito P319, se encuentra transferido temporalmente la carga al circuito P314 en los siguientes cuadrantes: 👉P31"
+ },
+ "107973": {
+  "fecha": "2026-11-11T17:57:15+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "GC16",
+   "GC17"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: .👉GC17/ GC16: Soterrado Pa"
+ },
+ "107971": {
+  "fecha": "2026-11-11T17:52:03+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "D1050",
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 1:50 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉GC19: Repartos R"
  }
 }

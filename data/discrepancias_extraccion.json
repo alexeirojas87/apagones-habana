@@ -1,13 +1,4 @@
 {
- "104623": {
-  "fecha": "2026-11-04T12:37:48+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "HB104"
-  ],
-  "solo_regex": [],
-  "extracto": "EELH| 🚨 Actualización restablecimiento de Subestaciones: ✅ Cerrado el circuito HB104 ✅Con servicio por 110kV la Subestacion Tropical"
- },
  "104662": {
   "fecha": "2026-11-04T15:17:49+00:00",
   "tipo_llm": "restablecimiento",
@@ -2530,5 +2521,14 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 7:46 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta Ay"
+ },
+ "107826": {
+  "fecha": "2026-11-11T12:44:03+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A1455"
+  ],
+  "solo_regex": [],
+  "extracto": "📣Reiteramos a los clientes pertenecientes al circuito A1455 que se encuentra transferida la carga temporalmente a los circuitos GC11 Y GC13. 👉GC11 : Debeche 👉GC"
  }
 }

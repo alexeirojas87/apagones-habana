@@ -1,14 +1,4 @@
 {
- "104477": {
-  "fecha": "2026-11-04T00:53:04+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A820",
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los circuitos A820 y D836✅"
- },
  "104547": {
   "fecha": "2026-11-04T08:28:02+00:00",
   "tipo_llm": "averia",
@@ -2357,5 +2347,34 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el circuito M2044✅"
+ },
+ "107699": {
+  "fecha": "2026-11-11T00:54:21+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1690"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito A1690✅"
+ },
+ "107698": {
+  "fecha": "2026-11-11T00:53:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1249"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el 1249✅"
+ },
+ "107695": {
+  "fecha": "2026-11-11T00:41:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 8:41 PM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉P322: Alrededores de calles Sitio"
  }
 }

@@ -1,22 +1,4 @@
 {
- "104757": {
-  "fecha": "2026-11-04T18:56:20+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL55"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉MB920,AL55 ✅"
- },
- "104753": {
-  "fecha": "2026-11-04T18:42:40+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉2203:Alrede"
- },
  "104762": {
   "fecha": "2026-11-04T19:08:00+00:00",
   "tipo_llm": "afectacion",
@@ -26,15 +8,6 @@
   ],
   "solo_regex": [],
   "extracto": "📣⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:07 PM se afectan 246 MW distribuidos en 108 circuitos de distribución. A continuación,"
- },
- "104760": {
-  "fecha": "2026-11-04T19:04:51+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1042"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧⚠️Consumidores del municipio Cotorro , se localizó una AVERÍA por Transformador Dañado en la siguiente dirección: 👉Reparto Alturas de Lotería ⚠️🚧"
  },
  "104784": {
   "fecha": "2026-11-04T19:49:49+00:00",
@@ -2517,5 +2490,35 @@
    "NET10"
   ],
   "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉OP3"
+ },
+ "108012": {
+  "fecha": "2026-11-11T18:43:59+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC16",
+   "GC17"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: .👉GC"
+ },
+ "108010": {
+  "fecha": "2026-11-11T18:43:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP310"
+  ],
+  "solo_regex": [
+   "NET10"
+  ],
+  "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉OP3"
+ },
+ "108009": {
+  "fecha": "2026-11-11T18:42:27+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP310"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afectó el servicio eléctrico en los siguientes circuitos: 👉OP325: Alrededores de calles San Beni"
  }
 }

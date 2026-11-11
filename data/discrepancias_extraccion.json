@@ -1,13 +1,4 @@
 {
- "104856": {
-  "fecha": "2026-11-04T23:28:35+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 7:25 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2203:Alrededores"
- },
  "104860": {
   "fecha": "2026-11-05T00:05:25+00:00",
   "tipo_llm": "afectacion",
@@ -2470,5 +2461,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 5:12 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
+ },
+ "108121": {
+  "fecha": "2026-11-11T23:17:07+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "OP404"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes de los municipios Centro Habana y Habana Vieja pertenecientes al circuito OP323 que se encuentra transferida temporalmente la carga "
  }
 }

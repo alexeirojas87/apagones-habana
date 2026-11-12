@@ -1,20 +1,4 @@
 {
- "104860": {
-  "fecha": "2026-11-05T00:05:25+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1006",
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D631",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
- },
  "104869": {
   "fecha": "2026-11-05T01:13:25+00:00",
   "tipo_llm": "afectacion",
@@ -2481,5 +2465,16 @@
   ],
   "solo_regex": [],
   "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos :H341,OP408 y C8✅📉"
+ },
+ "108115": {
+  "fecha": "2026-11-11T22:32:01+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP310"
+  ],
+  "solo_regex": [
+   "NET10"
+  ],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afectó el servicio eléctrico en los siguientes circuitos: 👉OP329: Calle L desde Línea hasta Male"
  }
 }

@@ -1,13 +1,4 @@
 {
- "104934": {
-  "fecha": "2026-11-05T06:53:01+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SF581"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📈Queda restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) pertenecientes a los siguientes circuitos: 👉SF58"
- },
  "104951": {
   "fecha": "2026-11-05T07:28:12+00:00",
   "tipo_llm": "restablecimiento",

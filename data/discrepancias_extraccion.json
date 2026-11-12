@@ -2505,5 +2505,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el 1247✅"
+ },
+ "108280": {
+  "fecha": "2026-11-12T15:12:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP323"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ7"
  }
 }

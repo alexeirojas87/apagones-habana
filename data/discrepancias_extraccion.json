@@ -2485,5 +2485,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:16 AM se afectan 314 MW distribuidos en 151 circuitos de distribución. A continuación,"
+ },
+ "108252": {
+  "fecha": "2026-11-12T13:50:52+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 09:45 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Desagüe desde Infanta hasta A"
  }
 }

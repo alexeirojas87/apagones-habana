@@ -1,14 +1,4 @@
 {
- "105289": {
-  "fecha": "2026-11-05T22:43:47+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A425",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:30 PM se afectan 340 MW distribuidos en 150 circuitos de distribución. A continuación,"
- },
  "105316": {
   "fecha": "2026-11-05T23:57:10+00:00",
   "tipo_llm": "averia",
@@ -2595,6 +2585,15 @@
  },
  "108449": {
   "fecha": "2026-11-12T22:13:48+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Boyeros, por disparo del circuito se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de c"
+ },
+ "108460": {
+  "fecha": "2026-11-12T22:37:39+00:00",
   "tipo_llm": "afectacion",
   "solo_llm": [
    "SG315"

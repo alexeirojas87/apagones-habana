@@ -1,15 +1,4 @@
 {
- "105210": {
-  "fecha": "2026-11-05T20:24:51+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "P318",
-   "P319",
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Reiteramos a los clientes pertenecientes a los circuitos P319 (P326) y P318, se encuentran en paralelo llevandose la carga del OP321. Una vez normalizado el e"
- },
  "105218": {
   "fecha": "2026-11-05T20:58:54+00:00",
   "tipo_llm": "afectacion",
@@ -2561,5 +2550,24 @@
   ],
   "solo_regex": [],
   "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
+ },
+ "108395": {
+  "fecha": "2026-11-12T20:19:19+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:00 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
+ },
+ "108392": {
+  "fecha": "2026-11-12T20:15:28+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "A1042"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Cotorro , se encuentran afectados por DISPARO del CIRCUITO en el siguiente circuito: A1042:Alturas de Lotería y Alberro.🚧🛑"
  }
 }

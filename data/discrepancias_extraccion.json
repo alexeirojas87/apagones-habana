@@ -2487,5 +2487,14 @@
    "NET10"
   ],
   "extracto": "✅📉Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉OP310/OP417(NET10): Alrededores de calle"
+ },
+ "108162": {
+  "fecha": "2026-11-12T04:07:25+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Reiteramos a la población que aún se encuentra afectado el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A490 (S514) : Reparto Di"
  }
 }

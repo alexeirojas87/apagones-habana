@@ -1,14 +1,4 @@
 {
- "104869": {
-  "fecha": "2026-11-05T01:13:25+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1380",
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "📣⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:13 PM se afectan 389 MW distribuidos en 157 circuitos de distribución. A continuación,"
- },
  "104882": {
   "fecha": "2026-11-05T02:05:50+00:00",
   "tipo_llm": "averia",
@@ -2486,5 +2476,23 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio Regla pertenecientes al circuito A1516, que se ha transferido temporalmente parte de su carga al circuito GC17 por sob"
+ },
+ "108144": {
+  "fecha": "2026-11-12T01:17:16+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:00 PM se afectan 397 MW distribuidos en 161 circuitos de distribución. A continuación,"
+ },
+ "108143": {
+  "fecha": "2026-11-12T01:07:46+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Reiteramos a la población que aún se encuentra afectado el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A490 (S514) : Reparto Di"
  }
 }

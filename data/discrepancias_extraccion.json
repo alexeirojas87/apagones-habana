@@ -1,13 +1,4 @@
 {
- "105188": {
-  "fecha": "2026-11-05T19:34:02+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1244"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1244, se ha transferido temporalmente una parte de la carga al circuito 1243 ,debido "
- },
  "105210": {
   "fecha": "2026-11-05T20:24:51+00:00",
   "tipo_llm": "otro",
@@ -40,15 +31,6 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que partir de las 5:05 pm se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P325 (P327)(P324):"
- },
- "105206": {
-  "fecha": "2026-11-05T19:58:51+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:50 PM se afectan 150 MW distribuidos en 58 circuitos de distribución. A continuación, "
  },
  "105289": {
   "fecha": "2026-11-05T22:43:47+00:00",

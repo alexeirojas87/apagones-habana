@@ -2496,5 +2496,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Reiteramos a la población que aún se encuentra afectado el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉A490 (S514) : Reparto Di"
+ },
+ "108166": {
+  "fecha": "2026-11-12T04:18:16+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:00 AM se afectan 362 MW distribuidos en 147 circuitos de distribución. A continuación,"
  }
 }

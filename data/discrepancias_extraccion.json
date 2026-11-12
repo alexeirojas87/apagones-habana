@@ -1,26 +1,4 @@
 {
- "105007": {
-  "fecha": "2026-11-05T11:23:05+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 7:21 am quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉P325 (P327)(P324): Desagüe desde "
- },
- "105003": {
-  "fecha": "2026-11-05T11:15:44+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los consumidores del municipio Playa, pertenecientes al circuito 1243, que se ha normalizado el esquema por lo que las interrupciones por défici"
- },
  "105188": {
   "fecha": "2026-11-05T19:34:02+00:00",
   "tipo_llm": "averia",

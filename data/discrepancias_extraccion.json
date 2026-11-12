@@ -2458,5 +2458,32 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Lisa, se detectó una AVERÍA SECUNDARIA por TRANSFORMADOR DAÑADO en: 👉234 / 37 y 51.🛑⚡️"
+ },
+ "108246": {
+  "fecha": "2026-11-12T13:28:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP323"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el siguiente circuito: 👉PZ7: C"
+ },
+ "108240": {
+  "fecha": "2026-11-12T13:21:38+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "C8"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Informamos a la población que por Disparo Automático por Frecuencia (DAF), se afectó el servicio eléctrico en los siguientes circuitos: 👉OP408:Alrededores de"
+ },
+ "108237": {
+  "fecha": "2026-11-12T13:20:05+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:16 AM se afectan 314 MW distribuidos en 151 circuitos de distribución. A continuación,"
  }
 }

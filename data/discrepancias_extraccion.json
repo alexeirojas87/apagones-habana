@@ -1,13 +1,4 @@
 {
- "105218": {
-  "fecha": "2026-11-05T20:58:54+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P329"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Consumidores de los municipios PLaza de La Revolución y Centro Habana, se autoriza vía libre de emergencia para cambio de Dropt Out quedando afectado los sigui"
- },
  "105221": {
   "fecha": "2026-11-05T21:06:58+00:00",
   "tipo_llm": "afectacion",
@@ -2569,5 +2560,23 @@
   ],
   "solo_regex": [],
   "extracto": "🚧🛑Consumidores del municipio Cotorro , se encuentran afectados por DISPARO del CIRCUITO en el siguiente circuito: A1042:Alturas de Lotería y Alberro.🚧🛑"
+ },
+ "108407": {
+  "fecha": "2026-11-12T20:45:44+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "AL57"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉AL52:Zonas 6,7,8,9,10,11 y Micro 4"
+ },
+ "108405": {
+  "fecha": "2026-11-12T20:38:26+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P314"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 04:24 PM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318:Prado desd"
  }
 }

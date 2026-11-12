@@ -2514,5 +2514,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ7"
+ },
+ "108341": {
+  "fecha": "2026-11-12T18:12:57+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 02:05 PM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águ"
+ },
+ "108339": {
+  "fecha": "2026-11-12T18:09:51+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP404"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que a partir de las 02:08 AM por Disparo Automático por Frecuencia (DAF), se afectó el servicio eléctrico en el siguiente circuito: 👉OP323,,OP404. "
  }
 }

@@ -8,15 +8,6 @@
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1244, se ha transferido temporalmente una parte de la carga al circuito 1243 ,debido "
  },
- "105187": {
-  "fecha": "2026-11-05T19:31:56+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "1243"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1243, se ha transferido temporalmente una parte de la carga al circuito 1244 ,debido "
- },
  "105210": {
   "fecha": "2026-11-05T20:24:51+00:00",
   "tipo_llm": "otro",

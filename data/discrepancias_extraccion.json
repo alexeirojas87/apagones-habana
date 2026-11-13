@@ -1,17 +1,4 @@
 {
- "105646": {
-  "fecha": "2026-11-06T17:27:25+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣Consumidores pertenecientes a l subestación Príncipe, por Disparo en la misma se afectan los siguientes circuitos: 👉P318: Alrededores de calles Placencia desde"
- },
  "105647": {
   "fecha": "2026-11-06T17:40:31+00:00",
   "tipo_llm": "restablecimiento",
@@ -2684,5 +2671,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣 Reiteramos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉P329: O desde 19 hasta 23, 21 desde O hasta K, N desde 2"
+ },
+ "108852": {
+  "fecha": "2026-11-13T17:09:42+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "R461"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨‼️Consumidores del municipio Regla, por avería por poste en combustión se afecta el servicio eléctrico en la siguiente dirección: Santuario y Máximo Gómez.‼️🚨"
  }
 }

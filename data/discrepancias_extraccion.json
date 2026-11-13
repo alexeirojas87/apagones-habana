@@ -1,33 +1,4 @@
 {
- "105715": {
-  "fecha": "2026-11-06T19:27:47+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos OP408 y C8✅"
- },
- "105712": {
-  "fecha": "2026-11-06T19:24:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52",
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico de los circuitos AL52 y Al57✅"
- },
- "105702": {
-  "fecha": "2026-11-06T19:15:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L326"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: L326✅"
- },
  "105726": {
   "fecha": "2026-11-06T19:50:12+00:00",
   "tipo_llm": "otro",
@@ -63,15 +34,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: C10✅"
- },
- "105716": {
-  "fecha": "2026-11-06T19:31:02+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito PZ7✅"
  },
  "105738": {
   "fecha": "2026-11-06T20:18:49+00:00",
@@ -2617,5 +2579,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 2:37 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
+ },
+ "108912": {
+  "fecha": "2026-11-13T19:09:34+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:07 PM se afectan 229 MW distribuidos en 96 circuitos de distribución. A continuación, "
  }
 }

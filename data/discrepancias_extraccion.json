@@ -1,31 +1,4 @@
 {
- "105584": {
-  "fecha": "2026-11-06T15:27:43+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "C16"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Informamos a los clientes pertenecientes al circuito C15 , se encuentra transferido temporalmente la carga al C16 los siguientes cuadrantes: 👉C15: Alrededores"
- },
- "105571": {
-  "fecha": "2026-11-06T15:09:57+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C16"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Consumidores del municipio Cerro, queda reparada y con servicio la avería por primario partido en el circuito C16✅"
- },
- "105570": {
-  "fecha": "2026-11-06T15:09:28+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H446"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito H446✅"
- },
  "105600": {
   "fecha": "2026-11-06T15:53:49+00:00",
   "tipo_llm": "restablecimiento",
@@ -34,15 +7,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el 2075✅"
- },
- "105588": {
-  "fecha": "2026-11-06T15:31:01+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1280"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito por sobrecarga en el D1280✅"
  },
  "105614": {
   "fecha": "2026-11-06T16:21:02+00:00",
@@ -2728,5 +2692,26 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:27 AM se afectan 295 MW distribuidos en 138 circuitos de distribución. A continuación,"
+ },
+ "108809": {
+  "fecha": "2026-11-13T15:18:53+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP310",
+   "OP404"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉OP321: Alrededores de cal"
+ },
+ "108803": {
+  "fecha": "2026-11-13T15:06:13+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP310"
+  ],
+  "solo_regex": [
+   "NET10"
+  ],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ2: 39 desde Hidalgo has"
  }
 }

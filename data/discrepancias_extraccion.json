@@ -2665,5 +2665,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 11:00 PM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB930:Mirador d"
+ },
+ "108550": {
+  "fecha": "2026-11-13T04:00:03+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "⚡️📣Informamos a los clientes de la capital que los circuitos protegidos por Disparo Automático por Frecuencia (DAF) serán rotados cada viernes con el objetivo d"
  }
 }

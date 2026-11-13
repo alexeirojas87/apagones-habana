@@ -1,23 +1,4 @@
 {
- "105812": {
-  "fecha": "2026-11-06T22:47:40+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "1248"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔 Informamos a los clientes pertenecientes al circuito C15 , se encuentra transferido temporalmente la carga al 1248 los siguientes cuadrantes: 👉C15: Cuadrante"
- },
- "105811": {
-  "fecha": "2026-11-06T22:41:04+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos OP408 y C8✅"
- },
  "105816": {
   "fecha": "2026-11-06T23:06:03+00:00",
   "tipo_llm": "restablecimiento",

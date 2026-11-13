@@ -1,61 +1,4 @@
 {
- "105807": {
-  "fecha": "2026-11-06T22:25:20+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "SG313",
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los circuitos SG313 y SG315✅"
- },
- "105805": {
-  "fecha": "2026-11-06T22:10:21+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1218"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito: A1218✅"
- },
- "105804": {
-  "fecha": "2026-11-06T22:09:11+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito H341✅"
- },
- "105803": {
-  "fecha": "2026-11-06T22:08:54+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1217"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito: A1217✅"
- },
- "105800": {
-  "fecha": "2026-11-06T22:07:09+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ24",
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos PZ7 y PZ24✅"
- },
- "105798": {
-  "fecha": "2026-11-06T22:06:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos OP408 y C8✅"
- },
  "105812": {
   "fecha": "2026-11-06T22:47:40+00:00",
   "tipo_llm": "otro",
@@ -74,17 +17,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos OP408 y C8✅"
- },
- "105808": {
-  "fecha": "2026-11-06T22:31:34+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "2203",
-   "A1380",
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:05 PM se afectan 145 MW distribuidos en 328 circuitos de distribución. A continuación,"
  },
  "105816": {
   "fecha": "2026-11-06T23:06:03+00:00",

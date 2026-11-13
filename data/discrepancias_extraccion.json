@@ -1,22 +1,4 @@
 {
- "105792": {
-  "fecha": "2026-11-06T21:58:32+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1175"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por vía libre en el circuito 1175✅"
- },
- "105782": {
-  "fecha": "2026-11-06T21:33:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1223"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el A1223✅"
- },
  "105807": {
   "fecha": "2026-11-06T22:25:20+00:00",
   "tipo_llm": "restablecimiento",

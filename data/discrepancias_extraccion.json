@@ -1,13 +1,4 @@
 {
- "105316": {
-  "fecha": "2026-11-05T23:57:10+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C15"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Cerro, pertenecientes al circuito C15, que se ha transferido temporalmente la carga al circuito C16 ,debido a una aver"
- },
  "105352": {
   "fecha": "2026-11-06T01:48:08+00:00",
   "tipo_llm": "deficit",

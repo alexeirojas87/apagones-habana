@@ -1,61 +1,4 @@
 {
- "105773": {
-  "fecha": "2026-11-06T21:22:53+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A170",
-   "A845"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A845 y A170✅"
- },
- "105764": {
-  "fecha": "2026-11-06T21:13:31+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1006",
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D631",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
- },
- "105763": {
-  "fecha": "2026-11-06T21:12:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1372",
-   "D1380"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos D1380 y D1372✅"
- },
- "105761": {
-  "fecha": "2026-11-06T21:08:13+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1465",
-   "A1547",
-   "A928",
-   "VC100"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A1465, A928, A1547 y VC100✅"
- },
- "105756": {
-  "fecha": "2026-11-06T21:03:47+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H443"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito al circuito H443✅"
- },
  "105792": {
   "fecha": "2026-11-06T21:58:32+00:00",
   "tipo_llm": "restablecimiento",
@@ -73,25 +16,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el A1223✅"
- },
- "105781": {
-  "fecha": "2026-11-06T21:32:02+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52",
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos AL52 y AL57✅"
- },
- "105780": {
-  "fecha": "2026-11-06T21:31:44+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito P326 ✅"
  },
  "105807": {
   "fecha": "2026-11-06T22:25:20+00:00",
@@ -2504,5 +2428,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:07 PM se afectan 229 MW distribuidos en 96 circuitos de distribución. A continuación, "
+ },
+ "108973": {
+  "fecha": "2026-11-13T21:09:42+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP310",
+   "OP404"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉OP325: Alrededores de calles San Benigno"
  }
 }

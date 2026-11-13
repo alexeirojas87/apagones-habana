@@ -2696,5 +2696,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes del municipio Playa pertenecientes al circuito 1243 que se encuentra transferida temporalmente al circuito 1244 la carga de las sigu"
+ },
+ "108637": {
+  "fecha": "2026-11-13T08:11:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO del CIRCUITO pertenecientes al siguiente circuito: 👉S513:S513:Carretera San Miguel del "
  }
 }

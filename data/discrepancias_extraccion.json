@@ -1,19 +1,4 @@
 {
- "105647": {
-  "fecha": "2026-11-06T17:40:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP321",
-   "P318",
-   "P319",
-   "P324",
-   "P325",
-   "P327",
-   "P329"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo en la subestación en los circuitos P325 (P327 y P324), P318, P319, P329 y OP321✅"
- },
  "105663": {
   "fecha": "2026-11-06T18:27:53+00:00",
   "tipo_llm": "restablecimiento",

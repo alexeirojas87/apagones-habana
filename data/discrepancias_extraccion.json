@@ -2609,5 +2609,43 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO del CIRCUITO pertenecientes al siguiente circuito: 👉AL52:Zonas 6,7,8,9,10,11 y Micro 4✅"
+ },
+ "108510": {
+  "fecha": "2026-11-13T00:56:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1690"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Reparada la avería y restablecido el servicio eléctrico a los consumidores de los municipios Boyeros, Arroyo Naranjo y Cotorro,que se encontraban afectados por"
+ },
+ "108507": {
+  "fecha": "2026-11-13T00:49:43+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "MB920",
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO del CIRCUITO pertenecientes a los siguientes circuitos: 👉MB920,MB930 ✅"
+ },
+ "108506": {
+  "fecha": "2026-11-13T00:48:34+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "MB920",
+   "MB930"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉MB920:Alturas de Boca Ciega, Santa"
+ },
+ "108499": {
+  "fecha": "2026-11-13T00:31:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los consumidores del municipio Boyeros,que se encontraban afectados por disparo del circuito en los siguientes circuitos: "
  }
 }

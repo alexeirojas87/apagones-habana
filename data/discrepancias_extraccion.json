@@ -1,22 +1,4 @@
 {
- "105675": {
-  "fecha": "2026-11-06T18:42:08+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1516"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito A1516✅"
- },
- "105666": {
-  "fecha": "2026-11-06T18:34:14+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L326"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el L326✅"
- },
  "105715": {
   "fecha": "2026-11-06T19:27:47+00:00",
   "tipo_llm": "restablecimiento",
@@ -2624,5 +2606,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚨‼️Consumidores del municipio Regla, por avería por poste en combustión se afecta el servicio eléctrico en la siguiente dirección: Santuario y Máximo Gómez.‼️🚨"
+ },
+ "108904": {
+  "fecha": "2026-11-13T18:39:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:37 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
  }
 }

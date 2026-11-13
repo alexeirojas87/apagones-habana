@@ -1,40 +1,4 @@
 {
- "105726": {
-  "fecha": "2026-11-06T19:50:12+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "1247"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Informamos a los clientes pertenecientes a los circuitos 1243 y 1244 que se encuentran transferidas temporalmente las cargas al 1247: 👉1243: Alrededores de Av"
- },
- "105722": {
-  "fecha": "2026-11-06T19:39:01+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1247"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el 1247✅"
- },
- "105719": {
-  "fecha": "2026-11-06T19:36:42+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L326"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: L326✅"
- },
- "105717": {
-  "fecha": "2026-11-06T19:33:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C10"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el: C10✅"
- },
  "105738": {
   "fecha": "2026-11-06T20:18:49+00:00",
   "tipo_llm": "restablecimiento",
@@ -165,17 +129,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el circuito P326 ✅"
- },
- "105720": {
-  "fecha": "2026-11-06T19:37:51+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "2203",
-   "A1380",
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:20 PM se afectan 70 MW distribuidos en 168 circuitos de distribución. A continuación, "
  },
  "105807": {
   "fecha": "2026-11-06T22:25:20+00:00",

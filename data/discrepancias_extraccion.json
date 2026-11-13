@@ -2647,5 +2647,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los consumidores del municipio Boyeros,que se encontraban afectados por disparo del circuito en los siguientes circuitos: "
+ },
+ "108514": {
+  "fecha": "2026-11-13T01:19:53+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1248"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO del CIRCUITO perteneciente al siguiente circuito: 👉1248: Avenida del Río desde calle 35"
+ },
+ "108513": {
+  "fecha": "2026-11-13T01:18:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los consumidores del municipio Boyeros,que se encontraban afectados por disparo del circuito en los siguientes circuitos: "
  }
 }

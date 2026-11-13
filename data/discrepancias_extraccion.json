@@ -2591,5 +2591,23 @@
   ],
   "solo_regex": [],
   "extracto": "‼️Consumidores del municipio Boyeros, por disparo del circuito se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de c"
+ },
+ "108489": {
+  "fecha": "2026-11-13T00:14:16+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP404"
+  ],
+  "solo_regex": [],
+  "extracto": "👷‍♂️⚡️Informamos a los consumidores del municipio Plaza , por TRABAJOS OPERATIVOS se afecta el servicio eléctrico en el siguiente circuito: 👉OP323(OP404): Águil"
+ },
+ "108486": {
+  "fecha": "2026-11-13T00:03:43+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL52"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO del CIRCUITO pertenecientes al siguiente circuito: 👉AL52:Zonas 6,7,8,9,10,11 y Micro 4✅"
  }
 }

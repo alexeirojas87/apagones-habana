@@ -2743,5 +2743,16 @@
   ],
   "solo_regex": [],
   "extracto": "🚧📉Informamos a la población que por Disparo Automático por Frecuencia (DAF), se afectó el servicio eléctrico en el los siguientes circuitos: 👉OP325: Alrededores"
+ },
+ "108721": {
+  "fecha": "2026-11-13T12:35:16+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 8:34 am quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
  }
 }

@@ -2705,5 +2705,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO del CIRCUITO pertenecientes al siguiente circuito: 👉S513:S513:Carretera San Miguel del "
+ },
+ "108649": {
+  "fecha": "2026-11-13T09:34:24+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1006"
+  ],
+  "solo_regex": [],
+  "extracto": "📣✅Restablecido el servicio eléctrico a los consumidores del municipio Arroyo Naranjo, que se encontraban afectados por disparo del circuito en los siguientes ci"
+ },
+ "108647": {
+  "fecha": "2026-11-13T09:32:39+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1006"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Arroyo Naranjo, por disparo del circuito se afecta el servicio eléctrico en los siguientes circuitos: 👉A1007: Alrededores de calles"
  }
 }

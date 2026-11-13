@@ -1,13 +1,4 @@
 {
- "105388": {
-  "fecha": "2026-11-06T04:16:16+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:10 AM se afectan 318 MW distribuidos en 120 circuitos de distribución. A continuación,"
- },
  "105492": {
   "fecha": "2026-11-06T11:25:20+00:00",
   "tipo_llm": "afectacion",
@@ -2674,5 +2665,14 @@
   ],
   "solo_regex": [],
   "extracto": "⚡️📣Informamos a los clientes de la capital que los circuitos protegidos por Disparo Automático por Frecuencia (DAF) serán rotados cada viernes con el objetivo d"
+ },
+ "108563": {
+  "fecha": "2026-11-13T04:26:51+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Boyeros, por disparo del circuito se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de c"
  }
 }

@@ -1,17 +1,4 @@
 {
- "105508": {
-  "fecha": "2026-11-06T12:18:06+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 8:17AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde Infa"
- },
  "105535": {
   "fecha": "2026-11-06T13:28:17+00:00",
   "tipo_llm": "restablecimiento",
@@ -2736,5 +2723,25 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 06:40 AM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PZ5:Calles 2 de"
+ },
+ "108715": {
+  "fecha": "2026-11-13T12:18:15+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP310"
+  ],
+  "solo_regex": [
+   "NET10"
+  ],
+  "extracto": "🚧📉Informamos a la población que por Disparo Automático por Frecuencia (DAF), se afectó el servicio eléctrico en el los siguientes circuitos: 👉OP310/OP417(NET10)"
+ },
+ "108714": {
+  "fecha": "2026-11-13T12:15:18+00:00",
+  "tipo_llm": "daf",
+  "solo_llm": [
+   "OP404"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧📉Informamos a la población que por Disparo Automático por Frecuencia (DAF), se afectó el servicio eléctrico en el los siguientes circuitos: 👉OP325: Alrededores"
  }
 }

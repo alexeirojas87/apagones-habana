@@ -1,36 +1,4 @@
 {
- "105663": {
-  "fecha": "2026-11-06T18:27:53+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52",
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico de los circuitos AL52 y Al57✅"
- },
- "105661": {
-  "fecha": "2026-11-06T18:23:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣Consumidores de los municipios Plaza de la Revolución, Cerro y Centro Habana por disparo en la Subestación Príncipe, se afecta el servicio eléctrico en: 👉P318:"
- },
- "105655": {
-  "fecha": "2026-11-06T18:04:07+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A170"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico del circuito A170✅"
- },
  "105675": {
   "fecha": "2026-11-06T18:42:08+00:00",
   "tipo_llm": "restablecimiento",
@@ -48,15 +16,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el L326✅"
- },
- "105665": {
-  "fecha": "2026-11-06T18:32:05+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P329"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico del circuito P329✅"
  },
  "105715": {
   "fecha": "2026-11-06T19:27:47+00:00",

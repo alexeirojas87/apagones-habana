@@ -1,14 +1,4 @@
 {
- "105816": {
-  "fecha": "2026-11-06T23:06:03+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52",
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos AL52 y AL57✅"
- },
  "105830": {
   "fecha": "2026-11-07T00:17:02+00:00",
   "tipo_llm": "restablecimiento",

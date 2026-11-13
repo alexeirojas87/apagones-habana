@@ -1,23 +1,4 @@
 {
- "105614": {
-  "fecha": "2026-11-06T16:21:02+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A980",
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:10 PM se afectan 193 MW distribuidos en 85 circuitos de distribución. A continuación, "
- },
- "105613": {
-  "fecha": "2026-11-06T16:20:07+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1280"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito en el D1280✅"
- },
  "105635": {
   "fecha": "2026-11-06T17:00:03+00:00",
   "tipo_llm": "restablecimiento",
@@ -27,15 +8,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos OP408 y C8✅"
- },
- "105618": {
-  "fecha": "2026-11-06T16:32:04+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L322"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico por trabajos operativos en el siguiente circuito: L322✅"
  },
  "105646": {
   "fecha": "2026-11-06T17:27:25+00:00",
@@ -2704,5 +2676,14 @@
    "NET10"
   ],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉PZ2: 39 desde Hidalgo has"
+ },
+ "108821": {
+  "fecha": "2026-11-13T15:50:21+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP310"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📈Queda restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉OP411, OP424: Soterrado Habana Vie"
  }
 }

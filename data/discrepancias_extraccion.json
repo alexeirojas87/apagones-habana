@@ -2114,5 +2114,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣 Reiteramos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP329: Calle L desde Línea hasta Malecón. 👉OP323(OP404):"
+ },
+ "109213": {
+  "fecha": "2026-11-14T08:40:32+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9",
+   "OP410"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 4:38 am queda restablecido el servicio eléctrico en los siguientes circuitos: ✅OP410: Soterrado Habana Vieja. 👉C"
  }
 }

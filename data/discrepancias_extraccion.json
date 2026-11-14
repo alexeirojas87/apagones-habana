@@ -1,26 +1,4 @@
 {
- "105874": {
-  "fecha": "2026-11-07T03:54:46+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1247"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por disparo del circuito en el 1247✅"
- },
- "105865": {
-  "fecha": "2026-11-07T03:41:37+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 11:39 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde In"
- },
  "105876": {
   "fecha": "2026-11-07T04:11:57+00:00",
   "tipo_llm": "deficit",
@@ -2282,5 +2260,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Habana Vieja, se encuentra restablecido el servicio eléctrico afectado por disparo de circuito en: 👉NET 10: Alrededores de calles de"
+ },
+ "109129": {
+  "fecha": "2026-11-14T03:40:18+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP404"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣 Reiteramos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP329: Calle L desde Línea hasta Malecón. 👉OP323(OP404):"
  }
 }

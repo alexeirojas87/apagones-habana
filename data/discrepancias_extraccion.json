@@ -1,23 +1,4 @@
 {
- "105841": {
-  "fecha": "2026-11-07T01:22:26+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1425",
-   "A1516"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A1425 y A1516✅"
- },
- "105839": {
-  "fecha": "2026-11-07T01:20:44+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A945"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito A945✅"
- },
  "105846": {
   "fecha": "2026-11-07T01:35:04+00:00",
   "tipo_llm": "restablecimiento",
@@ -26,17 +7,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el circuito A980✅"
- },
- "105843": {
-  "fecha": "2026-11-07T01:29:04+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380",
-   "A425",
-   "P326"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:10 PM se afectan 341 MW distribuidos en 138 circuitos de distribución. A continuación,"
  },
  "105858": {
   "fecha": "2026-11-07T02:55:20+00:00",
@@ -2322,5 +2292,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Consumidores del municipio Regla, queda restablecido el servicio eléctrico a los clientes que se centraban en avería por poste en combustión en: Santuario y Má"
+ },
+ "109075": {
+  "fecha": "2026-11-14T01:11:02+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "NET10"
+  ],
+  "solo_regex": [],
+  "extracto": "‼️Consumidores del municipio Habana Vieja, por Disparo de Circuito se afecta el servicio eléctrico en: 👉NET 10: Alrededores de calles de cuadrantes desde Reina "
  }
 }

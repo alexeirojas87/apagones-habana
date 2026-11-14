@@ -2323,5 +2323,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📉Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉OP325: Alrededores de calles San Benigno"
+ },
+ "109025": {
+  "fecha": "2026-11-13T23:37:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R461"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Consumidores del municipio Regla, queda restablecido el servicio eléctrico a los clientes que se centraban en avería por poste en combustión en: Santuario y Má"
  }
 }

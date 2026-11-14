@@ -1,20 +1,4 @@
 {
- "106259": {
-  "fecha": "2026-11-07T22:56:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1006",
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D631",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
- },
  "106262": {
   "fecha": "2026-11-07T23:14:10+00:00",
   "tipo_llm": "restablecimiento",
@@ -2256,5 +2240,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:11 PM se afectan 315 MW distribuidos en 138 circuitos de distribución. A continuación,"
+ },
+ "109582": {
+  "fecha": "2026-11-14T22:45:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A820 y D836✅"
  }
 }

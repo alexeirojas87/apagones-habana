@@ -1,13 +1,4 @@
 {
- "106062": {
-  "fecha": "2026-11-07T15:36:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ5"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los clientes del municipio Plaza/Centro Habana pertenecientes al circuito P329 y P326, que por disparo en la Subestación de Principe se ha transfe"
- },
  "106088": {
   "fecha": "2026-11-07T16:51:33+00:00",
   "tipo_llm": "afectacion",
@@ -2124,5 +2115,24 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por trabajos operativos en el circuito C13✅"
+ },
+ "109389": {
+  "fecha": "2026-11-14T15:53:47+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG313",
+   "SG315"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos SG313 y SG315✅"
+ },
+ "109376": {
+  "fecha": "2026-11-14T15:40:15+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SF584"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico por disparo del circuito en el SF584✅"
  }
 }

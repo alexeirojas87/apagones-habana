@@ -1,23 +1,4 @@
 {
- "105896": {
-  "fecha": "2026-11-07T04:52:49+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP325",
-   "OP402"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos OP325 y OP402✅"
- },
- "105893": {
-  "fecha": "2026-11-07T04:35:46+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1217"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito: A1217✅"
- },
  "105904": {
   "fecha": "2026-11-07T05:25:53+00:00",
   "tipo_llm": "restablecimiento",

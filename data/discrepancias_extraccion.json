@@ -1,20 +1,4 @@
 {
- "105959": {
-  "fecha": "2026-11-07T11:20:27+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1006",
-   "A1007",
-   "A1008",
-   "A1009",
-   "A465",
-   "D631",
-   "D633",
-   "D634"
-  ],
-  "solo_regex": [],
-  "extracto": "📉Consumidores de los municipios 10 de Octubre y Arroyo Naranjo, por EMERGENCIA en la GENERACIÓN se interrumpe la rotación de los circuitos de la Subestación APO"
- },
  "106034": {
   "fecha": "2026-11-07T14:28:38+00:00",
   "tipo_llm": "restablecimiento",

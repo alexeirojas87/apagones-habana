@@ -1,22 +1,4 @@
 {
- "105904": {
-  "fecha": "2026-11-07T05:25:53+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP323"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito OP323✅"
- },
- "105903": {
-  "fecha": "2026-11-07T05:18:49+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "L315"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el disparo del circuito que afectaba el circuito L315✅"
- },
  "105907": {
   "fecha": "2026-11-07T05:37:07+00:00",
   "tipo_llm": "restablecimiento",
@@ -25,16 +7,6 @@
   ],
   "solo_regex": [],
   "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito: PZ7✅"
- },
- "105906": {
-  "fecha": "2026-11-07T05:32:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP310",
-   "OP417"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos OP310 y OP417✅"
  },
  "105916": {
   "fecha": "2026-11-07T06:30:34+00:00",

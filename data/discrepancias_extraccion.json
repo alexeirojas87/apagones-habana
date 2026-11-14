@@ -1,17 +1,4 @@
 {
- "106175": {
-  "fecha": "2026-11-07T19:58:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Consumidores del municipio Plaza/Cerro/Centro Habana, quedó restablecido el servicio eléctrico, afectado por disparo en la Subestación Príncipe: 👉P325 (P327)("
- },
  "106192": {
   "fecha": "2026-11-07T20:24:57+00:00",
   "tipo_llm": "restablecimiento",
@@ -2267,5 +2254,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los circuitos A820 y D836✅"
+ },
+ "109524": {
+  "fecha": "2026-11-14T19:55:45+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1245"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito 1245✅"
  }
 }

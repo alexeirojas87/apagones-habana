@@ -1,13 +1,4 @@
 {
- "105846": {
-  "fecha": "2026-11-07T01:35:04+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A980"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito A980✅"
- },
  "105858": {
   "fecha": "2026-11-07T02:55:20+00:00",
   "tipo_llm": "restablecimiento",

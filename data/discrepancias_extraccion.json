@@ -1,14 +1,4 @@
 {
- "106262": {
-  "fecha": "2026-11-07T23:14:10+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1202",
-   "A500"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a los clientes pertenecientes al circuito A500 que se encontraban transferidos temporalmente la carga al A1202, ya se encuentran en su esquema norma"
- },
  "106298": {
   "fecha": "2026-11-08T00:56:25+00:00",
   "tipo_llm": "averia",

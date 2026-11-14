@@ -1,14 +1,4 @@
 {
- "106206": {
-  "fecha": "2026-11-07T20:54:57+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P329",
-   "PZ19"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a los consumidores del municipio Plaza, pertenecientes al circuito P329, se les informa que la transferencia temporal al circuito PZ19 ya concluyó y"
- },
  "106238": {
   "fecha": "2026-11-07T21:59:13+00:00",
   "tipo_llm": "restablecimiento",
@@ -2270,5 +2260,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:06 PM se afectan 189 MW distribuidos en 88 circuitos de distribución. A continuación, "
+ },
+ "109553": {
+  "fecha": "2026-11-14T20:51:58+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL52"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito AL52 ✅"
  }
 }

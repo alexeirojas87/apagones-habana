@@ -1,22 +1,4 @@
 {
- "105953": {
-  "fecha": "2026-11-07T10:45:25+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "L313"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Informamos a los clientes pertenecientes al circuito 1175 que se encuentra transferida temporalmente la carga al L313: 👉1175: Desde 72B hasta 84, desde 49 has"
- },
- "105951": {
-  "fecha": "2026-11-07T10:40:57+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "1242"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Informamos a los clientes pertenecientes al circuito 1246 que se encuentra transferida temporalmente la carga al 1242: 👉1246: Avenida 51 hasta 58 C. Cuadrante"
- },
  "105959": {
   "fecha": "2026-11-07T11:20:27+00:00",
   "tipo_llm": "afectacion",
@@ -2116,5 +2098,16 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 4:38 am queda restablecido el servicio eléctrico en los siguientes circuitos: ✅OP410: Soterrado Habana Vieja. 👉C"
+ },
+ "109237": {
+  "fecha": "2026-11-14T10:41:40+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 6:40 am queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
  }
 }

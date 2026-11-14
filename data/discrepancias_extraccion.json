@@ -2191,5 +2191,43 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el circuito: H443✅"
+ },
+ "109483": {
+  "fecha": "2026-11-14T18:30:47+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "S516"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el circuito S516✅"
+ },
+ "109480": {
+  "fecha": "2026-11-14T18:29:50+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:28 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
+ },
+ "109476": {
+  "fecha": "2026-11-14T18:20:53+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "D1140"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por avería primaria en el circuito D1140✅"
+ },
+ "109473": {
+  "fecha": "2026-11-14T18:20:26+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "L316"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico afectado por la vía libre en el L316✅"
  }
 }

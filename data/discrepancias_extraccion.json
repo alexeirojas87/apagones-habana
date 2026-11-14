@@ -1,13 +1,4 @@
 {
- "106088": {
-  "fecha": "2026-11-07T16:51:33+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ19"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los clientes del municipio Plaza pertenecientes al circuito P329, que por disparo en la Subestación de Principe se ha transferido temporalmente pa"
- },
  "106145": {
   "fecha": "2026-11-07T18:54:29+00:00",
   "tipo_llm": "afectacion",
@@ -2161,5 +2152,25 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en el circuito SG312✅"
+ },
+ "109429": {
+  "fecha": "2026-11-14T16:44:55+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1006",
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A1006 y A1007✅"
+ },
+ "109422": {
+  "fecha": "2026-11-14T16:32:37+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1006",
+   "A1007"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A1006 y A1007✅"
  }
 }

@@ -2093,5 +2093,26 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 6:40 am queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
+ },
+ "109280": {
+  "fecha": "2026-11-14T12:27:54+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R451",
+   "R453",
+   "R454",
+   "R456"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los circuitos R451, R453, R454 y R456.✅"
+ },
+ "109278": {
+  "fecha": "2026-11-14T12:21:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el circuito AL56.✅"
  }
 }

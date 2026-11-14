@@ -2211,5 +2211,61 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico afectado por la vía libre en el L316✅"
+ },
+ "109512": {
+  "fecha": "2026-11-14T19:30:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1547"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Concluyen las labores de Vía Libre quedando restablecido el servicio eléctrico en el circuito A1547✅"
+ },
+ "109511": {
+  "fecha": "2026-11-14T19:28:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "R454"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito R454✅"
+ },
+ "109510": {
+  "fecha": "2026-11-14T19:28:27+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1470",
+   "D1100"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Concluyen las labores de Vía Libre quedando restablecido el servicio eléctrico en los circuitos A1470 y D1100✅"
+ },
+ "109509": {
+  "fecha": "2026-11-14T19:25:48+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "S516"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito S516✅"
+ },
+ "109505": {
+  "fecha": "2026-11-14T19:16:07+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "2203"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:10 PM se afectan 184 MW distribuidos en 76 circuitos de distribución. A continuación, "
+ },
+ "109502": {
+  "fecha": "2026-11-14T19:11:14+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los circuitos A820 y D836✅"
  }
 }

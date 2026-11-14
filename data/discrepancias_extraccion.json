@@ -2114,5 +2114,37 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el circuito AL56.✅"
+ },
+ "109300": {
+  "fecha": "2026-11-14T13:04:23+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "SG312",
+   "SG314"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los circuitos SG312 y SG314✅"
+ },
+ "109299": {
+  "fecha": "2026-11-14T13:04:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los circuitos A820 y D836✅"
+ },
+ "109297": {
+  "fecha": "2026-11-14T13:01:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "AL56",
+   "R451",
+   "R454",
+   "R456"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los circuitos AL56, R451, R454 y R456.✅"
  }
 }

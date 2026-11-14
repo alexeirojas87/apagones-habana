@@ -1,13 +1,4 @@
 {
- "105907": {
-  "fecha": "2026-11-07T05:37:07+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito: PZ7✅"
- },
  "105916": {
   "fecha": "2026-11-07T06:30:34+00:00",
   "tipo_llm": "restablecimiento",

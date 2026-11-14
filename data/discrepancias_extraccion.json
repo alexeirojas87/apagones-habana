@@ -1,26 +1,4 @@
 {
- "106046": {
-  "fecha": "2026-11-07T14:52:13+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1202"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Informamos a los clientes pertenecientes al circuito A500 que se encuentra transferida temporalmente la carga al A1202: 👉A500: Calle 130 desde avenida 25 hast"
- },
- "106038": {
-  "fecha": "2026-11-07T14:36:48+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣Consumidores de los municipios Plaza de la Revolución, Cerro y Centro Habana por disparo en la Subestación Príncipe, se afecta el servicio eléctrico en: 👉P318:"
- },
  "106062": {
   "fecha": "2026-11-07T15:36:19+00:00",
   "tipo_llm": "afectacion",

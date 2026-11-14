@@ -1,22 +1,4 @@
 {
- "106145": {
-  "fecha": "2026-11-07T18:54:29+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ14"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los clientes del municipio Plaza, pertenecientes al circuito 1248, que se ha transferido temporalmente parte de la carga al circuito PZ14: 👉1248: "
- },
- "106142": {
-  "fecha": "2026-11-07T18:51:58+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "PZ15"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los clientes del municipio Plaza, pertenecientes al circuito 1248, que se ha transferido temporalmente parte de la carga al circuito PZ15: 👉1248: "
- },
  "106175": {
   "fecha": "2026-11-07T19:58:10+00:00",
   "tipo_llm": "restablecimiento",

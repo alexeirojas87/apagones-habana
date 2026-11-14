@@ -1,22 +1,4 @@
 {
- "106034": {
-  "fecha": "2026-11-07T14:28:38+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "MB910"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el disparo del circuito que afectaba el circuito MB910✅"
- },
- "106023": {
-  "fecha": "2026-11-07T14:19:28+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 10:19 AM se afectan 174 MW distribuidos en 78 circuitos de distribución. A continuación, "
- },
  "106046": {
   "fecha": "2026-11-07T14:52:13+00:00",
   "tipo_llm": "otro",
@@ -2146,5 +2128,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los circuitos AL56, R451, R454 y R456.✅"
+ },
+ "109327": {
+  "fecha": "2026-11-14T14:05:34+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1545"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes pertenecientes al circuito A1545✅"
+ },
+ "109326": {
+  "fecha": "2026-11-14T14:04:11+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C13"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por trabajos operativos en el circuito C13✅"
  }
 }

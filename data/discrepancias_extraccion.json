@@ -1,14 +1,4 @@
 {
- "105830": {
-  "fecha": "2026-11-07T00:17:02+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1190",
-   "D1195"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos D1195 y D1190 (pendiente a recorrer tramo del Villena afectado por posible avería)✅"
- },
  "105841": {
   "fecha": "2026-11-07T01:22:26+00:00",
   "tipo_llm": "restablecimiento",

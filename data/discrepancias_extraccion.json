@@ -1,23 +1,4 @@
 {
- "105858": {
-  "fecha": "2026-11-07T02:55:20+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1425",
-   "A1516"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito A1425 y A1516✅"
- },
- "105854": {
-  "fecha": "2026-11-07T02:50:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP323"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito OP323✅"
- },
  "105874": {
   "fecha": "2026-11-07T03:54:46+00:00",
   "tipo_llm": "restablecimiento",

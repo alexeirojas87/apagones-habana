@@ -1,13 +1,4 @@
 {
- "106698": {
-  "fecha": "2026-11-08T23:05:35+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "C15"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Informamos a los clientes del municipio Cerro pertenecientes al circuito C15, que se ha transferido temporalmente parte de la carga a los circuitos: 👉1248: Cu"
- },
  "106711": {
   "fecha": "2026-11-09T00:04:52+00:00",
   "tipo_llm": "restablecimiento",
@@ -2186,5 +2177,15 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el circuito A1202✅"
+ },
+ "110111": {
+  "fecha": "2026-11-15T23:04:33+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A820 y D836✅"
  }
 }

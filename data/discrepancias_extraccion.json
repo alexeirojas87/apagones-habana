@@ -2250,5 +2250,14 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 8:57 PM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
+ },
+ "109644": {
+  "fecha": "2026-11-15T01:40:57+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC14"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en el circuito GC14✅"
  }
 }

@@ -1,23 +1,4 @@
 {
- "106544": {
-  "fecha": "2026-11-08T16:30:35+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "2204"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 12:28 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉2203:Alrededores de los cuadrant"
- },
- "106540": {
-  "fecha": "2026-11-08T16:27:56+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425",
-   "PZ15"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 12:27 PM se afectan 94 MW distribuidos en 42 circuitos de distribución. A continuación, s"
- },
  "106555": {
   "fecha": "2026-11-08T16:46:57+00:00",
   "tipo_llm": "restablecimiento",

@@ -2348,5 +2348,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el circuito AL56✅"
+ },
+ "109785": {
+  "fecha": "2026-11-15T10:06:17+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:00 AM se afectan 236 MW distribuidos en 101 circuitos de distribución. A continuación,"
  }
 }

@@ -2186,5 +2186,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en los siguientes circuitos : SG314 y SG312✅"
+ },
+ "110066": {
+  "fecha": "2026-11-15T21:45:49+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1241"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el circuito A1241✅"
+ },
+ "110065": {
+  "fecha": "2026-11-15T21:45:21+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1202"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el circuito A1202✅"
  }
 }

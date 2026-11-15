@@ -1,23 +1,4 @@
 {
- "106603": {
-  "fecha": "2026-11-08T18:51:53+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "R461",
-   "R464"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉R461,R464 ✅"
- },
- "106602": {
-  "fecha": "2026-11-08T18:51:42+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "📣✅Concluida la Vía Libre de Emergencia en la subestación Melones y restablecido el servicio eléctrico en los siguientes circuitos : 👉A980:Alrededores de los cua"
- },
  "106613": {
   "fecha": "2026-11-08T19:15:36+00:00",
   "tipo_llm": "afectacion",

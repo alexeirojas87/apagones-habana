@@ -1,13 +1,4 @@
 {
- "106353": {
-  "fecha": "2026-11-08T06:54:25+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1248"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a los consumidores del municipio Plaza, que se encuentra normalizado el esquema que afectaba al circuito 1248 por una avería primaria. ✅"
- },
  "106419": {
   "fecha": "2026-11-08T11:08:05+00:00",
   "tipo_llm": "restablecimiento",
@@ -2315,5 +2306,15 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 12:12AM se afecta el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
+ },
+ "109735": {
+  "fecha": "2026-11-15T06:45:00+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A219",
+   "A223"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A219 y A223✅"
  }
 }

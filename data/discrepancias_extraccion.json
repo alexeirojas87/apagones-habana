@@ -2211,5 +2211,15 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Informamos a los consumidores del municipio Cerro pertenecientes al circuito C15 que fue transferido temporalmente parte de la carga al circuito C16, debido a"
+ },
+ "110176": {
+  "fecha": "2026-11-16T01:53:51+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A820",
+   "D836"
+  ],
+  "solo_regex": [],
+  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A820 y D836✅"
  }
 }

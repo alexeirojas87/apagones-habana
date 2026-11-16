@@ -1,17 +1,4 @@
 {
- "107022": {
-  "fecha": "2026-11-09T18:14:21+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:10 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): "
- },
  "107108": {
   "fecha": "2026-11-09T21:02:21+00:00",
   "tipo_llm": "otro",
@@ -2153,5 +2140,25 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 01:05 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P319: Alrededores de calles Castill"
+ },
+ "110506": {
+  "fecha": "2026-11-16T18:25:27+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1223"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:23 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉A1218(A1223) : de 2"
+ },
+ "110501": {
+  "fecha": "2026-11-16T18:21:38+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 2:18 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz17: Hotel Gran"
  }
 }

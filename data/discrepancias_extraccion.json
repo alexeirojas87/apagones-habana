@@ -1,17 +1,4 @@
 {
- "106711": {
-  "fecha": "2026-11-09T00:04:52+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 08:04 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325 (P327)(P324): Desagüe desde In"
- },
  "106745": {
   "fecha": "2026-11-09T03:56:52+00:00",
   "tipo_llm": "afectacion",
@@ -2197,5 +2184,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅Restablecido el servicio eléctrico en los circuitos A820 y D836✅"
+ },
+ "110133": {
+  "fecha": "2026-11-16T00:27:35+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "H344"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los clientes pertenecientes a los municipios 10 de Octubre Habana Vieja que debido a una avería en el interruptor en la Subestación Melones se en"
  }
 }

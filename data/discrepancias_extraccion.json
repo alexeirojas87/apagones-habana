@@ -2160,5 +2160,14 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 2:18 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz17: Hotel Gran"
+ },
+ "110514": {
+  "fecha": "2026-11-16T18:56:36+00:00",
+  "tipo_llm": "averia",
+  "solo_llm": [
+   "NET10"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧🛑Consumidores del municipio Centro Habana, se encuentran afectados por DISPARO del CIRCUITO en el siguiente circuito: 👉NET 10:Alrededores de calles del cuadran"
  }
 }

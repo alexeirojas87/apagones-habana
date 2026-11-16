@@ -2213,5 +2213,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Reiteramos a los clientes del municipio Plaza pertenecientes al circuito 1248 que se encuentra transferida temporalmente al circuito C15 la carga de las sigui"
+ },
+ "110572": {
+  "fecha": "2026-11-16T21:23:09+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "1175",
+   "1246"
+  ],
+  "solo_regex": [],
+  "extracto": "📣🔔Informamos a los clientes del municipio Playa pertenecientes a los circuitos 1246 y 1175 que se normaliza el esquema y vuelven a recibir el servicio por su pr"
  }
 }

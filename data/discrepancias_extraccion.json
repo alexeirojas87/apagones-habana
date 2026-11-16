@@ -2115,14 +2115,15 @@
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 9:05 am queda restablecido el servicio eléctrico en los siguientes circuitos: ✅OP410: Soterrado Habana Vieja. 👉C"
  },
- "110414": {
-  "fecha": "2026-11-16T14:49:03+00:00",
+ "110434": {
+  "fecha": "2026-11-16T15:10:06+00:00",
   "tipo_llm": "afectacion",
   "solo_llm": [
-   "S516"
+   "CPP10",
+   "CPP9"
   ],
   "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:47 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR830: Reparto "
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:08 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
  },
  "110390": {
   "fecha": "2026-11-16T14:06:41+00:00",

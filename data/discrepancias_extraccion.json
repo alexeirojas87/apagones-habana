@@ -2224,5 +2224,15 @@
    "OP325"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 3:51 AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
+ },
+ "110314": {
+  "fecha": "2026-11-16T10:18:38+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "GC16",
+   "GC17"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📉Informamos que quedó restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: .👉GC"
  }
 }

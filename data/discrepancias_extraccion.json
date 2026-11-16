@@ -2144,5 +2144,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 10:47 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR830: Reparto "
+ },
+ "110372": {
+  "fecha": "2026-11-16T13:14:30+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A425"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:14 AM se afectan 228 MW distribuidos en 103 circuitos de distribución. A continuación,"
  }
 }

@@ -1,13 +1,4 @@
 {
- "106971": {
-  "fecha": "2026-11-09T17:09:03+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "OP325"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨Consumidores del municipio Cerro, se localiza avería secundaria por transformador dañado en la Covadonga Pabellón José Martí.(OP325)🚨"
- },
  "107022": {
   "fecha": "2026-11-09T18:14:21+00:00",
   "tipo_llm": "afectacion",
@@ -2153,5 +2144,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:14 AM se afectan 228 MW distribuidos en 103 circuitos de distribución. A continuación,"
+ },
+ "110477": {
+  "fecha": "2026-11-16T17:13:02+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "C14"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 01:05 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P319: Alrededores de calles Castill"
  }
 }

@@ -2136,14 +2136,13 @@
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 9:47 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
  },
- "110434": {
-  "fecha": "2026-11-16T15:10:06+00:00",
+ "110414": {
+  "fecha": "2026-11-16T14:49:03+00:00",
   "tipo_llm": "afectacion",
   "solo_llm": [
-   "CPP10",
-   "CPP9"
+   "S516"
   ],
   "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 10:08 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
+  "extracto": "🚨📣Informamos a la población que a partir de las 10:47 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR830: Reparto "
  }
 }

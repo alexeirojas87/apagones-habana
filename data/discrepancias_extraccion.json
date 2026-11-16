@@ -2169,5 +2169,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚧🛑Consumidores del municipio Centro Habana, se encuentran afectados por DISPARO del CIRCUITO en el siguiente circuito: 👉NET 10:Alrededores de calles del cuadran"
+ },
+ "110518": {
+  "fecha": "2026-11-16T19:07:53+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1380"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:07 PM se afectan 163 MW distribuidos en 71 circuitos de distribución. A continuación, "
  }
 }

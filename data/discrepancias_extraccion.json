@@ -1,15 +1,4 @@
 {
- "106834": {
-  "fecha": "2026-11-09T12:28:09+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅Consumidores de los municipios Centro Habana, Cerro y Plaza, quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325 / P327: Alrededores de ca"
- },
  "106839": {
   "fecha": "2026-11-09T12:43:43+00:00",
   "tipo_llm": "averia",

@@ -1,22 +1,4 @@
 {
- "107579": {
-  "fecha": "2026-11-10T19:17:18+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1223"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito A1223✅"
- },
- "107578": {
-  "fecha": "2026-11-10T19:11:18+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H443"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito H443✅"
- },
  "107586": {
   "fecha": "2026-11-10T19:55:09+00:00",
   "tipo_llm": "otro",
@@ -2231,5 +2213,18 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 02:32 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
+ },
+ "110999": {
+  "fecha": "2026-11-17T19:27:16+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1695",
+   "A425",
+   "A490",
+   "PG920",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:20 PM se afectan 172 MW distribuidos en 83 circuitos de distribución. A continuación, "
  }
 }

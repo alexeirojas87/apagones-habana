@@ -1,13 +1,4 @@
 {
- "107448": {
-  "fecha": "2026-11-10T15:01:29+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "1249"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico por la vía libre en el circuito 1249✅"
- },
  "107473": {
   "fecha": "2026-11-10T15:59:26+00:00",
   "tipo_llm": "restablecimiento",
@@ -2305,5 +2296,14 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 09:30AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águi"
+ },
+ "110892": {
+  "fecha": "2026-11-17T14:40:34+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S513"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Reiteramos a los clientes del municipio San Miguel del padrón, pertenecientes al circuito S515 que se ha transferido temporalmente parte de su carga al S513:"
  }
 }

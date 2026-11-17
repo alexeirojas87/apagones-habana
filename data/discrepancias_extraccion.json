@@ -1,23 +1,4 @@
 {
- "107544": {
-  "fecha": "2026-11-10T17:47:58+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico afectado por trabajos operativos en el siguiente circuito: PZ7✅"
- },
- "107541": {
-  "fecha": "2026-11-10T17:44:16+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "M1603",
-   "M2044"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los consumidores del municipio Boyeros, que los circuitos M1603 y M2044 se encuentran afectados por déficit de generación mientras se realiza una "
- },
  "107579": {
   "fecha": "2026-11-10T19:17:18+00:00",
   "tipo_llm": "restablecimiento",

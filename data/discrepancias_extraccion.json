@@ -2318,5 +2318,14 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 6:54AM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉A1218(A1223) : de 20"
+ },
+ "110814": {
+  "fecha": "2026-11-17T11:11:21+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "C13"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 7:05 AM, se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz16: Alrededor"
  }
 }

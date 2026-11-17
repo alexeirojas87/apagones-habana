@@ -1,14 +1,4 @@
 {
- "107421": {
-  "fecha": "2026-11-10T13:51:17+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 9:50 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águi"
- },
  "107426": {
   "fecha": "2026-11-10T14:03:44+00:00",
   "tipo_llm": "restablecimiento",
@@ -2314,5 +2304,15 @@
   ],
   "solo_regex": [],
   "extracto": "🚨📣Informamos a la población que a partir de las 7:05 AM, se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉Pz16: Alrededor"
+ },
+ "110861": {
+  "fecha": "2026-11-17T13:32:28+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 09:30AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águi"
  }
 }

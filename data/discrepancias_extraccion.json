@@ -1,17 +1,4 @@
 {
- "107255": {
-  "fecha": "2026-11-10T05:29:16+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de la1:28 am se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325 (P327)(P324): De"
- },
  "107343": {
   "fecha": "2026-11-10T10:13:20+00:00",
   "tipo_llm": "deficit",
@@ -2240,5 +2227,23 @@
   ],
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 10:50PM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉CPP 9: Alrededores de calles Águi"
+ },
+ "110708": {
+  "fecha": "2026-11-17T05:13:21+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ19"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 01:10 AM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉Pz14: Calles 14 desde Zapata has"
+ },
+ "110699": {
+  "fecha": "2026-11-17T05:03:45+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "S516"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 01:03 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉SR830: Reparto "
  }
 }

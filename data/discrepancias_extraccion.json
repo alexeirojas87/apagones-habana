@@ -1,22 +1,4 @@
 {
- "107586": {
-  "fecha": "2026-11-10T19:55:09+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Informamos a los clientes que pertenecían a los circuitos: 👉P324: Alrededores de calles cuadrante de Ayestarán a Boyeros y de Carlos III a Desagüe. 👉P327: Alre"
- },
- "107595": {
-  "fecha": "2026-11-10T20:01:33+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [],
-  "solo_regex": [
-   "A1695"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 3:42 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉PG920/A1695: Rep"
- },
  "107623": {
   "fecha": "2026-11-10T21:01:53+00:00",
   "tipo_llm": "deficit",
@@ -2226,5 +2208,25 @@
   ],
   "solo_regex": [],
   "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 03:20 PM se afectan 172 MW distribuidos en 83 circuitos de distribución. A continuación, "
+ },
+ "111015": {
+  "fecha": "2026-11-17T20:00:16+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 03:58 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325/P327,P324:Alr"
+ },
+ "111014": {
+  "fecha": "2026-11-17T19:58:51+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "A1223"
+  ],
+  "solo_regex": [],
+  "extracto": "🔴⚡️Consumidores del municipio Playa, por TRABAJOS OPERATIVOS se afecta el servicio eléctrico en el siguiente circuito: 👉A1218(A1223): de 200 hasta 218 y de 17 h"
  }
 }

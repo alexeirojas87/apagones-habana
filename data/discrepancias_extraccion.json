@@ -1,32 +1,4 @@
 {
- "107473": {
-  "fecha": "2026-11-10T15:59:26+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1280"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el siguiente circuito D1280✅"
- },
- "107466": {
-  "fecha": "2026-11-10T15:33:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "C8",
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos OP408 y C8✅📉"
- },
- "107465": {
-  "fecha": "2026-11-10T15:33:27+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito H341📉✅"
- },
  "107492": {
   "fecha": "2026-11-10T16:17:44+00:00",
   "tipo_llm": "restablecimiento",
@@ -2305,5 +2277,24 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Reiteramos a los clientes del municipio San Miguel del padrón, pertenecientes al circuito S515 que se ha transferido temporalmente parte de su carga al S513:"
+ },
+ "110910": {
+  "fecha": "2026-11-17T15:55:31+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "PZ19"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 11:55 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉Pz4: Calles 27 y 2 hasta B, B desde"
+ },
+ "110904": {
+  "fecha": "2026-11-17T15:37:11+00:00",
+  "tipo_llm": "otro",
+  "solo_llm": [
+   "A155",
+   "A820"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣 Recordamos a los clientes del municipio Boyeros, pertenecientes al circuito A155 que las siguientes zonas del mismo forman parte del circuito A820: 👉 Miraflo"
  }
 }

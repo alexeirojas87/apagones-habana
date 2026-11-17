@@ -1,23 +1,4 @@
 {
- "107660": {
-  "fecha": "2026-11-10T22:26:08+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ24",
-   "PZ7"
-  ],
-  "solo_regex": [],
-  "extracto": "📉✅Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los circuitos PZ7 y PZ24✅📉"
- },
- "107654": {
-  "fecha": "2026-11-10T22:12:56+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A815"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito A815✅"
- },
  "107678": {
   "fecha": "2026-11-10T23:30:20+00:00",
   "tipo_llm": "restablecimiento",
@@ -2192,5 +2173,18 @@
   ],
   "solo_regex": [],
   "extracto": "🔴⚡️Consumidores del municipio Playa, por TRABAJOS OPERATIVOS se afecta el servicio eléctrico en el siguiente circuito: 👉A1218(A1223): de 200 hasta 218 y de 17 h"
+ },
+ "111068": {
+  "fecha": "2026-11-17T22:07:45+00:00",
+  "tipo_llm": "deficit",
+  "solo_llm": [
+   "A1695",
+   "A425",
+   "A490",
+   "PG920",
+   "S514"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:05 PM se afectan 287 MW distribuidos en 123 circuitos de distribución. A continuación,"
  }
 }

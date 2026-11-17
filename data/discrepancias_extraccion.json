@@ -1,26 +1,4 @@
 {
- "107212": {
-  "fecha": "2026-11-10T02:21:52+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "L326"
-  ],
-  "solo_regex": [],
-  "extracto": "🛑⚡️Consumidores del municipio Marianao, se localizó una AVERÍA PRIMARIA por Secundario Partido que afecta el servicio en la siguiente dirección: 👉 114 / 43 y 45"
- },
- "107207": {
-  "fecha": "2026-11-10T02:05:54+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P324",
-   "P325",
-   "P327"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "📣✅Informamos a la población que a partir de las 10:04 pm queda restablecido el servicio eléctrico en los siguientes circuitos: 👉P325 (P327)(P324): Desagüe desde"
- },
  "107231": {
   "fecha": "2026-11-10T04:12:22+00:00",
   "tipo_llm": "restablecimiento",

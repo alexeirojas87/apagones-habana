@@ -2223,5 +2223,24 @@
   ],
   "solo_regex": [],
   "extracto": "📣🔔Informamos a los clientes del municipio Playa pertenecientes a los circuitos 1246 y 1175 que se normaliza el esquema y vuelven a recibir el servicio por su pr"
+ },
+ "110634": {
+  "fecha": "2026-11-17T00:31:01+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "OP325"
+  ],
+  "solo_regex": [],
+  "extracto": "🚧⚠️Informamos a los consumidores del municipio Cerro , que la VÍA LIBRE POR CAMBIO DE TRANSFORMADOR queda restablecida en el circuito :OP325 .🚧⚠️"
+ },
+ "110631": {
+  "fecha": "2026-11-17T00:23:25+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "P325",
+   "P327"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de la 08:21 PM queda restablecido el servicio eléctrico en los siguientes circuitos: 👉P325/P327,P324:Alrededores de cal"
  }
 }

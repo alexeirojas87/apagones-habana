@@ -2221,5 +2221,15 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Recordamos a los clientes del municipio Boyeros, pertenecientes al circuito A155 que las siguientes zonas del mismo forman parte del circuito A820: 👉 Miraflo"
+ },
+ "110978": {
+  "fecha": "2026-11-17T18:32:34+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "CPP10",
+   "CPP9"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨📣Informamos a la población que a partir de las 02:32 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
  }
 }

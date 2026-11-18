@@ -1,13 +1,4 @@
 {
- "107826": {
-  "fecha": "2026-11-11T12:44:03+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A1455"
-  ],
-  "solo_regex": [],
-  "extracto": "📣Reiteramos a los clientes pertenecientes al circuito A1455 que se encuentra transferida la carga temporalmente a los circuitos GC11 Y GC13. 👉GC11 : Debeche 👉GC"
- },
  "107841": {
   "fecha": "2026-11-11T13:19:10+00:00",
   "tipo_llm": "otro",

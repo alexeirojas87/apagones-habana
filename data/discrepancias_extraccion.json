@@ -1,14 +1,4 @@
 {
- "107702": {
-  "fecha": "2026-11-11T01:11:08+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1006",
-   "A1007"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en los circuitos A1006 y A1007✅"
- },
  "107711": {
   "fecha": "2026-11-11T01:46:48+00:00",
   "tipo_llm": "restablecimiento",

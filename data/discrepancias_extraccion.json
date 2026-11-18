@@ -96,15 +96,6 @@
   "solo_regex": [],
   "extracto": "✅📣Informamos a la población que a partir de las 2:08 AM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉MB910 (D1050): Justi, Agromar, Ba"
  },
- "108106": {
-  "fecha": "2026-11-11T22:21:10+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A425"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:19 PM se afectan 359 MW distribuidos en 157 circuitos de distribución. A continuación,"
- },
  "108196": {
   "fecha": "2026-11-12T09:20:22+00:00",
   "tipo_llm": "afectacion",

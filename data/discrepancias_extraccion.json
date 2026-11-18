@@ -1,13 +1,4 @@
 {
- "107949": {
-  "fecha": "2026-11-11T17:12:53+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "P314"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Recordamos a los clientes pertenecientes al circuito P319, se encuentra transferido temporalmente la carga al circuito P314 en los siguientes cuadrantes: 👉P31"
- },
  "107973": {
   "fecha": "2026-11-11T17:57:15+00:00",
   "tipo_llm": "daf",

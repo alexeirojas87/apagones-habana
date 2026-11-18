@@ -1,31 +1,4 @@
 {
- "107722": {
-  "fecha": "2026-11-11T02:54:41+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP402"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito OP402✅"
- },
- "107720": {
-  "fecha": "2026-11-11T02:44:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H443"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes del circuito H443✅"
- },
- "107719": {
-  "fecha": "2026-11-11T02:43:33+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "H341"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en el circuito H341📉✅"
- },
  "107746": {
   "fecha": "2026-11-11T04:29:45+00:00",
   "tipo_llm": "restablecimiento",
@@ -2072,5 +2045,14 @@
    "OP325"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 10:16 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta"
+ },
+ "111166": {
+  "fecha": "2026-11-18T02:35:03+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1223"
+  ],
+  "solo_regex": [],
+  "extracto": "✅📣Informamos a la población que a partir de las 10:32 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉A1218(A1223): de 200 hasta 218 y de"
  }
 }

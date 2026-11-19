@@ -1,13 +1,4 @@
 {
- "108196": {
-  "fecha": "2026-11-12T09:20:22+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "D1050"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de la 05:18 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉MB910 ( D1050): "
- },
  "108201": {
   "fecha": "2026-11-12T10:06:46+00:00",
   "tipo_llm": "afectacion",

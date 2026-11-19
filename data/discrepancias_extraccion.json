@@ -1,13 +1,4 @@
 {
- "108441": {
-  "fecha": "2026-11-12T21:50:29+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "R464"
-  ],
-  "solo_regex": [],
-  "extracto": "✅ Restablecido el servicio eléctrico por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉R464:Reparto Modelo -Alturas de Vía Blanca, Haban"
- },
  "108456": {
   "fecha": "2026-11-12T22:20:52+00:00",
   "tipo_llm": "restablecimiento",

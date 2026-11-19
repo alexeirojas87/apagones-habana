@@ -1,22 +1,4 @@
 {
- "108407": {
-  "fecha": "2026-11-12T20:45:44+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "AL57"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉AL52:Zonas 6,7,8,9,10,11 y Micro 4"
- },
- "108405": {
-  "fecha": "2026-11-12T20:38:26+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P314"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:24 PM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉P318:Prado desd"
- },
  "108422": {
   "fecha": "2026-11-12T21:17:43+00:00",
   "tipo_llm": "afectacion",

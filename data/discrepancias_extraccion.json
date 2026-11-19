@@ -1,23 +1,4 @@
 {
- "108395": {
-  "fecha": "2026-11-12T20:19:19+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 04:00 PM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
- },
- "108392": {
-  "fecha": "2026-11-12T20:15:28+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "A1042"
-  ],
-  "solo_regex": [],
-  "extracto": "🚧🛑Consumidores del municipio Cotorro , se encuentran afectados por DISPARO del CIRCUITO en el siguiente circuito: A1042:Alturas de Lotería y Alberro.🚧🛑"
- },
  "108407": {
   "fecha": "2026-11-12T20:45:44+00:00",
   "tipo_llm": "averia",

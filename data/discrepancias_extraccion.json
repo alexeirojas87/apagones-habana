@@ -1,22 +1,4 @@
 {
- "108769": {
-  "fecha": "2026-11-13T13:51:03+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP404"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Informamos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP329: Calle L desde Línea hasta Malecón. 👉OP323(OP404): Á"
- },
- "108755": {
-  "fecha": "2026-11-13T13:31:15+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "S514"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:27 AM se afectan 295 MW distribuidos en 138 circuitos de distribución. A continuación,"
- },
  "108809": {
   "fecha": "2026-11-13T15:18:53+00:00",
   "tipo_llm": "daf",

@@ -1,13 +1,4 @@
 {
- "108841": {
-  "fecha": "2026-11-13T16:34:30+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "NET10"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣 Reiteramos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉P329: O desde 19 hasta 23, 21 desde O hasta K, N desde 2"
- },
  "108852": {
   "fecha": "2026-11-13T17:09:42+00:00",
   "tipo_llm": "averia",

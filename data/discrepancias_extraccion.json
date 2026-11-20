@@ -1,14 +1,4 @@
 {
- "108973": {
-  "fecha": "2026-11-13T21:09:42+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP310",
-   "OP404"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📉Restablecido el servicio eléctrico afectado por Disparo Automático por Frecuencia (DAF) en los siguientes circuitos: 👉OP325: Alrededores de calles San Benigno"
- },
  "109025": {
   "fecha": "2026-11-13T23:37:03+00:00",
   "tipo_llm": "restablecimiento",

@@ -1,13 +1,4 @@
 {
- "108852": {
-  "fecha": "2026-11-13T17:09:42+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "R461"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨‼️Consumidores del municipio Regla, por avería por poste en combustión se afecta el servicio eléctrico en la siguiente dirección: Santuario y Máximo Gómez.‼️🚨"
- },
  "108904": {
   "fecha": "2026-11-13T18:39:50+00:00",
   "tipo_llm": "afectacion",

@@ -1,15 +1,4 @@
 {
- "108904": {
-  "fecha": "2026-11-13T18:39:50+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 2:37 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Alrededores d"
- },
  "108912": {
   "fecha": "2026-11-13T19:09:34+00:00",
   "tipo_llm": "deficit",

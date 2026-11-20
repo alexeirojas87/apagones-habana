@@ -1399,5 +1399,14 @@
    "S514"
   ],
   "extracto": "🚨📣Informamos a la población que a partir de las 9:28 pm se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉A490/S514: Diezmero"
+ },
+ "112322": {
+  "fecha": "2026-11-20T02:58:50+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [
+   "A1516"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔🟢Informamos a los clientes del municipio Regla pertenecientes al circuito A1516, que queda normalizado el esquema transferido temporalmente parte de su carga a"
  }
 }

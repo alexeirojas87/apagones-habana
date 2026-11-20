@@ -1,22 +1,4 @@
 {
- "108489": {
-  "fecha": "2026-11-13T00:14:16+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "OP404"
-  ],
-  "solo_regex": [],
-  "extracto": "👷‍♂️⚡️Informamos a los consumidores del municipio Plaza , por TRABAJOS OPERATIVOS se afecta el servicio eléctrico en el siguiente circuito: 👉OP323(OP404): Águil"
- },
- "108486": {
-  "fecha": "2026-11-13T00:03:43+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL52"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por DISPARO del CIRCUITO pertenecientes al siguiente circuito: 👉AL52:Zonas 6,7,8,9,10,11 y Micro 4✅"
- },
  "108510": {
   "fecha": "2026-11-13T00:56:00+00:00",
   "tipo_llm": "restablecimiento",
@@ -45,15 +27,6 @@
   ],
   "solo_regex": [],
   "extracto": "🚧🛑Consumidores del municipio Habana del Este , se encuentran afectados por DISPARO del CIRCUITO en los siguientes circuitos: 👉MB920:Alturas de Boca Ciega, Santa"
- },
- "108499": {
-  "fecha": "2026-11-13T00:31:28+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D836"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los consumidores del municipio Boyeros,que se encontraban afectados por disparo del circuito en los siguientes circuitos: "
  },
  "108514": {
   "fecha": "2026-11-13T01:19:53+00:00",
@@ -1453,5 +1426,16 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣 Informamos a los clientes del municipio Marianao, pertenecientes al circuito A1227 que se ha transferido temporalmente parte de su carga al 1175: A1227: desd"
+ },
+ "112257": {
+  "fecha": "2026-11-20T00:06:02+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "P325"
+  ],
+  "solo_regex": [
+   "OP325"
+  ],
+  "extracto": "🚨📣Informamos a la población que a partir de las 8:05 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325: Desagüe desde"
  }
 }

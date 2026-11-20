@@ -1,13 +1,4 @@
 {
- "108563": {
-  "fecha": "2026-11-13T04:26:51+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "‼️Consumidores del municipio Boyeros, por disparo del circuito se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de c"
- },
  "108568": {
   "fecha": "2026-11-13T04:41:19+00:00",
   "tipo_llm": "restablecimiento",

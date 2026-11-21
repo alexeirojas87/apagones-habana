@@ -1,13 +1,4 @@
 {
- "109129": {
-  "fecha": "2026-11-14T03:40:18+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "OP404"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣 Reiteramos a la población que quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉OP329: Calle L desde Línea hasta Malecón. 👉OP323(OP404):"
- },
  "109213": {
   "fecha": "2026-11-14T08:40:32+00:00",
   "tipo_llm": "restablecimiento",

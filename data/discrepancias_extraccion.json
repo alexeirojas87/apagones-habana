@@ -1,13 +1,4 @@
 {
- "109644": {
-  "fecha": "2026-11-15T01:40:57+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "GC14"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico en el circuito GC14✅"
- },
  "109671": {
   "fecha": "2026-11-15T03:29:25+00:00",
   "tipo_llm": "restablecimiento",

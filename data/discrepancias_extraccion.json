@@ -1,24 +1,4 @@
 {
- "109782": {
-  "fecha": "2026-11-15T09:59:28+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "✅📣Informamos a la población que a partir de las 5:58 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P325: Alrededores de calles Infanta,"
- },
- "109774": {
-  "fecha": "2026-11-15T09:40:18+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "AL56"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el circuito AL56✅"
- },
  "109785": {
   "fecha": "2026-11-15T10:06:17+00:00",
   "tipo_llm": "afectacion",

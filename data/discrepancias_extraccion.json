@@ -1,13 +1,4 @@
 {
- "109913": {
-  "fecha": "2026-11-15T15:59:14+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1202"
-  ],
-  "solo_regex": [],
-  "extracto": "✅Restablecido el servicio eléctrico a los clientes afectados por Disparo Automático por Frecuencia (DAF) en el circuito A1202✅"
- },
  "109995": {
   "fecha": "2026-11-15T19:19:23+00:00",
   "tipo_llm": "deficit",

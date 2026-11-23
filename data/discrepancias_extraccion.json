@@ -1,22 +1,4 @@
 {
- "110160": {
-  "fecha": "2026-11-16T01:18:31+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "OP408"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 09:15 PM se afectan 327 MW distribuidos en 128 circuitos de distribución. A continuación,"
- },
- "110153": {
-  "fecha": "2026-11-16T01:02:38+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "C16"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Informamos a los consumidores del municipio Cerro pertenecientes al circuito C15 que fue transferido temporalmente parte de la carga al circuito C16, debido a"
- },
  "110176": {
   "fecha": "2026-11-16T01:53:51+00:00",
   "tipo_llm": "restablecimiento",

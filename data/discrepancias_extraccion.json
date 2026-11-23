@@ -1,13 +1,4 @@
 {
- "110133": {
-  "fecha": "2026-11-16T00:27:35+00:00",
-  "tipo_llm": "averia",
-  "solo_llm": [
-   "H344"
-  ],
-  "solo_regex": [],
-  "extracto": "📣🔔Informamos a los clientes pertenecientes a los municipios 10 de Octubre Habana Vieja que debido a una avería en el interruptor en la Subestación Melones se en"
- },
  "110160": {
   "fecha": "2026-11-16T01:18:31+00:00",
   "tipo_llm": "deficit",

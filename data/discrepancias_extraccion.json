@@ -1,22 +1,4 @@
 {
- "110724": {
-  "fecha": "2026-11-17T05:40:16+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "P319"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 1:39 AM quedó restablecido el servicio eléctrico en el siguiente circuito: 👉P318:Alrededores de calles Placencia"
- },
- "110723": {
-  "fecha": "2026-11-17T05:38:29+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "SG315"
-  ],
-  "solo_regex": [],
-  "extracto": "‼️Consumidores del municipio Boyeros, por disparo del circuito se encuentra afectado el servicio eléctrico en los siguientes circuitos: 👉SG313: Alrededores de c"
- },
  "110738": {
   "fecha": "2026-11-17T06:20:26+00:00",
   "tipo_llm": "averia",

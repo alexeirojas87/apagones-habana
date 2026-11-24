@@ -1,24 +1,4 @@
 {
- "111015": {
-  "fecha": "2026-11-17T20:00:16+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "P325"
-  ],
-  "solo_regex": [
-   "OP325"
-  ],
-  "extracto": "🚨📣Informamos a la población que a partir de las 03:58 PM se afectó el servicio eléctrico por déficit de generación en el siguiente circuito: 👉P325/P327,P324:Alr"
- },
- "111014": {
-  "fecha": "2026-11-17T19:58:51+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1223"
-  ],
-  "solo_regex": [],
-  "extracto": "🔴⚡️Consumidores del municipio Playa, por TRABAJOS OPERATIVOS se afecta el servicio eléctrico en el siguiente circuito: 👉A1218(A1223): de 200 hasta 218 y de 17 h"
- },
  "111068": {
   "fecha": "2026-11-17T22:07:45+00:00",
   "tipo_llm": "deficit",

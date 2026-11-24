@@ -1,14 +1,4 @@
 {
- "110644": {
-  "fecha": "2026-11-17T00:57:55+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "D1050",
-   "S516"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 08:56 PM quedó restablecido el servicio eléctrico en los siguientes circuitos: 👉SR830: Reparto Delicias. 👉SR850("
- },
  "110651": {
   "fecha": "2026-11-17T01:11:49+00:00",
   "tipo_llm": "afectacion",

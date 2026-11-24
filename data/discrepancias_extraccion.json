@@ -1,32 +1,4 @@
 {
- "110791": {
-  "fecha": "2026-11-17T10:20:35+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "CPP10",
-   "CPP9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de las 06:18 AM se afectó el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉CPP 9: Alrededo"
- },
- "110788": {
-  "fecha": "2026-11-17T10:16:24+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "PZ9"
-  ],
-  "solo_regex": [],
-  "extracto": "🚨📣Informamos a la población que a partir de la 6:11 AM se afecta el servicio eléctrico por déficit de generación en los siguientes circuitos: 👉2202: Alrededores"
- },
- "110783": {
-  "fecha": "2026-11-17T10:01:29+00:00",
-  "tipo_llm": "deficit",
-  "solo_llm": [
-   "A1380"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔⚡️Actualización de afectaciones por déficit en la capital. Siendo las 06:01 AM se afectan 89 MW distribuidos en 36 circuitos de distribución. A continuación, s"
- },
  "110807": {
   "fecha": "2026-11-17T10:55:41+00:00",
   "tipo_llm": "afectacion",

@@ -1,23 +1,4 @@
 {
- "110910": {
-  "fecha": "2026-11-17T15:55:31+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "PZ19"
-  ],
-  "solo_regex": [],
-  "extracto": "✅📣Informamos a la población que a partir de las 11:55 AM queda restablecido el servicio eléctrico en el siguiente circuito: 👉Pz4: Calles 27 y 2 hasta B, B desde"
- },
- "110904": {
-  "fecha": "2026-11-17T15:37:11+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "A155",
-   "A820"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Recordamos a los clientes del municipio Boyeros, pertenecientes al circuito A155 que las siguientes zonas del mismo forman parte del circuito A820: 👉 Miraflo"
- },
  "110978": {
   "fecha": "2026-11-17T18:32:34+00:00",
   "tipo_llm": "afectacion",

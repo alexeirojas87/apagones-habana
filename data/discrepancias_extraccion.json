@@ -1,13 +1,4 @@
 {
- "111094": {
-  "fecha": "2026-11-17T23:08:00+00:00",
-  "tipo_llm": "otro",
-  "solo_llm": [
-   "C15"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣Reiteramos a los clientes del municipio Cerro pertenecientes al circuito C15, que se ha transferido temporalmente parte de la carga a los circuitos: 👉1248: Cu"
- },
  "111160": {
   "fecha": "2026-11-18T02:18:45+00:00",
   "tipo_llm": "restablecimiento",

@@ -1,13 +1,4 @@
 {
- "111284": {
-  "fecha": "2026-11-18T09:29:52+00:00",
-  "tipo_llm": "afectacion",
-  "solo_llm": [
-   "A1227"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔📣 Informamos a los clientes del municipio Marianao, pertenecientes al circuito A1227 que se ha transferido temporalmente parte de su carga al 1175: A1227: desd"
- },
  "112257": {
   "fecha": "2026-11-20T00:06:02+00:00",
   "tipo_llm": "afectacion",

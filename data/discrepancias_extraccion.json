@@ -74,5 +74,14 @@
    "D1050"
   ],
   "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afectó el servicio eléctrico en los siguientes circuitos: 👉AL53: Zonas: 1, 2, 3, 5, 24, 8, 7. 👉M"
+ },
+ "115157": {
+  "fecha": "2026-11-26T02:54:10+00:00",
+  "tipo_llm": "restablecimiento",
+  "solo_llm": [],
+  "solo_regex": [
+   "D1055"
+  ],
+  "extracto": "✅📣Informamos a la población que a partir de las 10:52 PM, queda restablecido el servicio eléctrico en el siguiente circuito: 👉MB910/D1055: Justi, Agromar, Bajur"
  }
 }

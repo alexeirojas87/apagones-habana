@@ -65,5 +65,14 @@
    "A1455"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 09:28 PM queda restablecido el servicio eléctrico en el siguiente circuito: 👉GC11/A1455: Reparto Garrido, Alrede"
+ },
+ "115133": {
+  "fecha": "2026-11-26T02:26:40+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [],
+  "solo_regex": [
+   "D1050"
+  ],
+  "extracto": "🚧📉Informamos que por Disparo Automático por Frecuencia (DAF) se afectó el servicio eléctrico en los siguientes circuitos: 👉AL53: Zonas: 1, 2, 3, 5, 24, 8, 7. 👉M"
  }
 }

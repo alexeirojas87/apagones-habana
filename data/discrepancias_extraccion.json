@@ -47,5 +47,14 @@
   ],
   "solo_regex": [],
   "extracto": "🛑⚡️Consumidores del municipio Plaza , Cerro y Centro Habana , se detectó una AVERÍA PRIMARIA que afecta el servicio en el siguiente circuito: P325 (P327 y P324)"
+ },
+ "115071": {
+  "fecha": "2026-11-26T00:59:00+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [],
+  "solo_regex": [
+   "D1055"
+  ],
+  "extracto": "🚨‼️Consumidores de los municipios Habana del Este/Guanabacoa, desde la 08:50 PM se afecta el servicio eléctrico por disparo del circuito en: 👉MB910/D1055: Justi"
  }
 }

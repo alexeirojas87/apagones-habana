@@ -1,13 +1,4 @@
 {
- "112322": {
-  "fecha": "2026-11-20T02:58:50+00:00",
-  "tipo_llm": "restablecimiento",
-  "solo_llm": [
-   "A1516"
-  ],
-  "solo_regex": [],
-  "extracto": "🔔🟢Informamos a los clientes del municipio Regla pertenecientes al circuito A1516, que queda normalizado el esquema transferido temporalmente parte de su carga a"
- },
  "113264": {
   "fecha": "2026-11-22T02:41:56+00:00",
   "tipo_llm": "restablecimiento",

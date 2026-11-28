@@ -54,5 +54,14 @@
    "D1055"
   ],
   "extracto": "✅📣Informamos a la población que a partir de las 10:52 PM, queda restablecido el servicio eléctrico en el siguiente circuito: 👉MB910/D1055: Justi, Agromar, Bajur"
+ },
+ "116274": {
+  "fecha": "2026-11-28T00:18:38+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "PZ16"
+  ],
+  "solo_regex": [],
+  "extracto": "🔔📣Informamos a los clientes de los municipios Plaza/Cerro pertenecientes al circuito PZ16, se ha transferido temporalmente la carga al circuito C14 del siguient"
  }
 }

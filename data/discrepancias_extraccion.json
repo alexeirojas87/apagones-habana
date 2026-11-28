@@ -63,5 +63,14 @@
   ],
   "solo_regex": [],
   "extracto": "🔔📣Informamos a los clientes de los municipios Plaza/Cerro pertenecientes al circuito PZ16, se ha transferido temporalmente la carga al circuito C14 del siguient"
+ },
+ "116308": {
+  "fecha": "2026-11-28T02:03:32+00:00",
+  "tipo_llm": "afectacion",
+  "solo_llm": [
+   "OP321"
+  ],
+  "solo_regex": [],
+  "extracto": "🚨 Estimados clientes: Recordamos que tal y como fue informado en días anteriores, debido a una falla en el circuito OP321 que tiene averiado su interruptor, se "
  }
 }
